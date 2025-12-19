@@ -132,6 +132,19 @@ nav {
   transition: background 0.2s ease, color 0.2s ease;
 }
 
+.nav-trigger {
+  appearance: none;
+  border: 1px solid transparent;
+  background: transparent;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.95rem;
+}
+
+.nav-trigger:focus-visible {
+  outline: 2px solid rgba(47, 158, 133, 0.5);
+  outline-offset: 2px;
+}
+
 .nav-links a:hover,
 .nav-trigger:hover,
 .nav-trigger:focus {
@@ -198,6 +211,7 @@ nav {
   font-weight: 600;
 }
 
+.nav-group[data-open="true"] .nav-menu,
 .nav-group:hover .nav-menu,
 .nav-group:focus-within .nav-menu {
   opacity: 1;
