@@ -27,6 +27,12 @@ jobs:
         run: bun install
       - name: Build static site
         run: bun run build
+      - name: Run smoke tests
+        run: bun run test
+      - name: Install Playwright browsers
+        run: bunx playwright install --with-deps chromium
+      - name: Run Playwright checks
+        run: bun run test:e2e:ci
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

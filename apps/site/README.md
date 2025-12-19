@@ -29,6 +29,15 @@ bun run build
 ```
 The static export is written to `out/` and deployed via GitHub Pages.
 
+## Testing
+```bash
+# Smoke checks
+bun run test
+
+# E2E checks (runs Playwright against the static export)
+bun run test:e2e
+```
+
 ## GitHub Pages
 This repository is intended to be published via GitHub Pages. If the GitHub org is
 `local-loop-io`, the default URL will be `https://local-loop-io.github.io`.

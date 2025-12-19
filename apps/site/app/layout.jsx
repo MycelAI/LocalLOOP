@@ -5,9 +5,17 @@ export const metadata = {
   description: 'LocalLoop documentation hub for the LOOP Protocol.',
 };
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+};
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="stylesheet" href="/assets/css/site.css" />
+      </head>
       <body>
         {children}
         <Script src="/assets/js/main.js" strategy="afterInteractive" />
