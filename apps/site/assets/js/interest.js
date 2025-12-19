@@ -1,6 +1,6 @@
 (function () {
   const config = window.LOCALLOOP_CONFIG || {};
-  const apiBase = config.apiBase || 'https://api.local-loop.io';
+  const apiBase = config.apiBase || 'https://loop-api.urbnia.com';
 
   const form = document.querySelector('[data-interest-form]');
   const listEl = document.querySelector('[data-interest-list]');

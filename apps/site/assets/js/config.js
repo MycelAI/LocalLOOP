@@ -1,3 +1,3 @@
 window.LOCALLOOP_CONFIG = {
-  apiBase: 'https://api.local-loop.io'
+  apiBase: 'https://loop-api.urbnia.com'
 };
