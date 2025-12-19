@@ -1,0 +1,28 @@
+name: Aggregate Protocol Docs
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 */6 * * *'
+
+permissions:
+  contents: write
+
+jobs:
+  aggregate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Sync docs from protocol repos
+        env:
+          DOCS_ORG: local-loop-io
+          DOCS_REPOS: loop-protocol
+        run: ./scripts/aggregate-docs.sh
+      - name: Commit updates
+        run: |
+          git config user.name "Docs Bot"
+          git config user.email "docs-bot@users.noreply.github.com"
+          git add projects
+          git diff --staged --quiet || git commit -m "docs: sync protocol docs"
+      - name: Push updates
+        run: git push
