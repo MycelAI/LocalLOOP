@@ -2,13 +2,15 @@
 
 This repository hosts the LocalLoop documentation hub for the LOOP Protocol. It mirrors
 protocol artifacts (specification, schemas, RFCs, examples) and provides a lightweight
-viewer for markdown and JSON files.
+viewer for markdown and JSON files. The project is an early, low‑TRL concept with no
+public pilots or deployments yet.
 
 ## Structure
 - `index.html`: main hub landing page
 - `viewer.html`: markdown/JSON viewer
 - `projects/loop-protocol/`: mirrored assets from `loop-protocol`
 - `assets/`: site styling and scripts
+- `assets/js/interest.js`: public Expression of Interest form and list
 
 ## Updating content
 If you add new docs or schemas in the protocol repo, copy them into
@@ -16,5 +18,4 @@ If you add new docs or schemas in the protocol repo, copy them into
 
 ## GitHub Pages
 This repository is intended to be published via GitHub Pages. If the GitHub org is
-`localloop`, the default URL is `https://localloop.github.io`. If the org is
 `local-loop-io`, the default URL will be `https://local-loop-io.github.io`.

@@ -22,8 +22,8 @@ LOOP Protocol enables cities to create federated circular economy networks while
 
 ### For Cities
 ```bash
-# Deploy a LOOP node in minutes
-docker run -p 8080:8080 localloop/node:latest
+# Prototype-only example (no official images yet)
+# docker run -p 8080:8080 localloop/node:latest
 ```
 
 ### For Developers
@@ -64,21 +64,13 @@ Read the full LOOP Protocol Specification v0.1
 
 ## 🏗️ Implementations
 
-|Language|Repository|Status|
-|---|---|---|
-|JavaScript/Node.js|[loop-node-js](https://github.com/local-loop-io/loop-node-js)|Reference Implementation|
-|Python|[loop-node-py](https://github.com/local-loop-io/loop-node-py)|In Development|
-|Rust|[loop-node-rust](https://github.com/local-loop-io/loop-node-rust)|Planned|
+Implementations are exploratory and may not be publicly available yet. If you
+are building one, open an issue or RFC so we can link it here.
 
 ## 🧪 Test Network
 
-Join our test network to experiment:
-
-- `test-munich.loop` - Munich test node
-- `test-berlin.loop` - Berlin test node
-- `test-vienna.loop` - Vienna test node
-
-Access the [Network Explorer](https://explorer.local-loop.io)
+No public test network is available yet. This is an early, low‑TRL concept and the
+reference materials here are for specification and research only.
 
 ## 🤝 Contributing
 
@@ -93,10 +85,8 @@ We welcome contributions! See CONTRIBUTING.md for guidelines.
 
 ## 📚 Resources
 
-- **Documentation**: [docs.local-loop.io](https://docs.local-loop.io)
-- **Forum**: [forum.local-loop.io](https://forum.local-loop.io)
-- **Blog**: [blog.local-loop.io](https://blog.local-loop.io)
-- **Twitter**: [@localloop_io](https://twitter.com/localloop_io)
+Public resources are still being assembled. For now, use GitHub Discussions and
+the repository documentation.
 
 ## 🎯 Roadmap
 
@@ -107,14 +97,14 @@ We welcome contributions! See CONTRIBUTING.md for guidelines.
 - ✅ Test network
 - 🔄 First pilot cities
 
-### v0.2 (Q3 2025)
+### v0.2 (Planned)
 
 - Smart contract integration
 - Advanced routing algorithms
 - Mobile SDKs
 - Production deployments
 
-### v1.0 (Q1 2026)
+### v1.0 (Planned)
 
 - Stable protocol
 - 100+ cities connected
@@ -123,8 +113,8 @@ We welcome contributions! See CONTRIBUTING.md for guidelines.
 
 ## 📊 Adoption
 
-- **Test Network**: 3 nodes, 1,247 materials tracked
-- **Pilot Cities**: Munich, Freiburg (starting June 2025)
+There are no public pilots or deployments at this time. We are actively seeking
+collaboration partners and research contributors.
 - **Development**: 12 contributors, 4 implementations
 
 ## ⚖️ License

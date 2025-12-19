@@ -326,6 +326,69 @@ nav {
   color: var(--ink);
 }
 
+.interest-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 22px;
+}
+
+.interest-form label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.interest-form input,
+.interest-form textarea,
+.interest-form select {
+  width: 100%;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(11, 27, 43, 0.15);
+  padding: 10px 12px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.95rem;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.interest-form textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+.interest-form .field {
+  margin-bottom: 14px;
+}
+
+.interest-form .inline {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.interest-list {
+  display: grid;
+  gap: 12px;
+}
+
+.interest-card {
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  border: 1px solid rgba(11, 27, 43, 0.1);
+}
+
+.interest-card h4 {
+  margin: 0 0 4px;
+  font-size: 1rem;
+}
+
+.interest-card p {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+}
+
 @media (max-width: 720px) {
   .hero {
     padding-top: 12px;

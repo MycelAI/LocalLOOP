@@ -19,6 +19,7 @@
           <a href="#examples">Examples</a>
           <a href="#rfcs">RFCs</a>
           <a href="#docs">Docs</a>
+          <a href="#interest">Interest</a>
           <a href="projects/loop-protocol/index.html">Projects</a>
         </div>
       </nav>
@@ -31,7 +32,7 @@
         <p>
           This hub curates the specification, schemas, examples, and governance docs for
           the LOOP Protocol. Use it as the canonical reference for implementers and city
-          operators.
+          operators. The project is an early, low‑TRL concept with no public pilots yet.
         </p>
         <div class="cta-row">
           <a class="button primary" href="viewer.html?path=projects/loop-protocol/SPECIFICATION.md&title=LOOP%20Protocol%20Specification">Read the Spec</a>
@@ -71,6 +72,70 @@
           <h4>Security Policy</h4>
           <p>Disclosure process, cryptography, and operator requirements.</p>
           <a href="viewer.html?path=projects/loop-protocol/SECURITY.md&title=Security%20Policy">Open security policy</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="interest">
+      <h3>Expression of Interest</h3>
+      <div class="interest-wrapper">
+        <div class="card">
+          <h4>Tell us you’re interested</h4>
+          <p>
+            Submissions are public so collaborators can see who is exploring the protocol.
+            Email is optional and shown only if you opt in.
+          </p>
+          <form class="interest-form" data-interest-form>
+            <div class="field">
+              <label for="name">Name *</label>
+              <input id="name" name="name" type="text" required />
+            </div>
+            <div class="field">
+              <label for="organization">Organization</label>
+              <input id="organization" name="organization" type="text" />
+            </div>
+            <div class="field">
+              <label for="role">Role</label>
+              <input id="role" name="role" type="text" />
+            </div>
+            <div class="field">
+              <label for="country">Country</label>
+              <input id="country" name="country" type="text" />
+            </div>
+            <div class="field">
+              <label for="city">City</label>
+              <input id="city" name="city" type="text" />
+            </div>
+            <div class="field">
+              <label for="website">Website</label>
+              <input id="website" name="website" type="url" />
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" />
+            </div>
+            <div class="field">
+              <label for="message">Message</label>
+              <textarea id="message" name="message"></textarea>
+            </div>
+            <div class="field inline">
+              <input id="shareEmail" name="shareEmail" type="checkbox" />
+              <label for="shareEmail">Show my email in the public list</label>
+            </div>
+            <div class="field inline">
+              <input id="consentPublic" name="consentPublic" type="checkbox" required />
+              <label for="consentPublic">I agree my submission is listed publicly</label>
+            </div>
+            <input type="text" name="honey" tabindex="-1" autocomplete="off" style="display:none" />
+            <div class="field">
+              <button class="button primary" type="submit">Submit interest</button>
+            </div>
+            <div class="notice" data-interest-status>Ready for your submission.</div>
+          </form>
+        </div>
+        <div class="card">
+          <h4>Public interest list</h4>
+          <div class="interest-list" data-interest-list></div>
         </div>
       </div>
     </section>
@@ -200,5 +265,7 @@
     </footer>
 
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/interest.js"></script>
   </body>
 </html>
