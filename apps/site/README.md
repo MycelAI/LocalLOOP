@@ -2,7 +2,7 @@
 
 This repository hosts the LocalLoop documentation hub for the LOOP Protocol. It mirrors
 protocol artifacts (specification, schemas, RFCs, examples) and provides a lightweight
-viewer for markdown and JSON files. The project is an early, low‑TRL concept with no
+viewer for markdown and JSON files. The project is an early, low-TRL concept with no
 public pilots or deployments yet.
 
 ## Structure
