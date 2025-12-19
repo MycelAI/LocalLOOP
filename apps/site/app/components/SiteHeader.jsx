@@ -14,6 +14,7 @@ const matchesPath = (pathname, prefixes) =>
 export function SiteHeader({ subtitle = 'Protocol Knowledge Base', showStatus = true }) {
   const pathname = usePathname();
   const headerRef = useRef(null);
+  const closeTimer = useRef(null);
   const [openMenu, setOpenMenu] = useState(null);
   const platformActive = matchesPath(pathname, ['/', '/materialDNA', '/cities', '/DEMO-City']);
   const protocolActive = matchesPath(pathname, ['/protocol']);
@@ -46,6 +47,32 @@ export function SiteHeader({ subtitle = 'Protocol Knowledge Base', showStatus = 
     };
   }, []);
 
+  const cancelClose = () => {
+    if (closeTimer.current) {
+      clearTimeout(closeTimer.current);
+      closeTimer.current = null;
+    }
+  };
+
+  const openMenuPanel = (menuKey) => {
+    cancelClose();
+    setOpenMenu(menuKey);
+  };
+
+  const scheduleClose = () => {
+    cancelClose();
+    closeTimer.current = setTimeout(() => {
+      setOpenMenu(null);
+    }, 220);
+  };
+
+  const handleBlur = (event) => {
+    if (event.currentTarget.contains(event.relatedTarget)) {
+      return;
+    }
+    scheduleClose();
+  };
+
   return (
     <header ref={headerRef}>
       <nav>
@@ -57,19 +84,20 @@ export function SiteHeader({ subtitle = 'Protocol Knowledge Base', showStatus = 
           <div
             className="nav-group"
             data-open={openMenu === 'platform'}
-            onMouseEnter={() => setOpenMenu('platform')}
-            onMouseLeave={() => setOpenMenu(null)}
+            onMouseEnter={() => openMenuPanel('platform')}
+            onMouseLeave={scheduleClose}
+            onFocusCapture={() => openMenuPanel('platform')}
+            onBlurCapture={handleBlur}
           >
-            <button
+            <a
               className={`nav-trigger${platformActive ? ' active' : ''}`}
-              type="button"
+              href="/"
               aria-haspopup="true"
               aria-expanded={openMenu === 'platform'}
               aria-controls="nav-menu-platform"
-              onClick={() => setOpenMenu(openMenu === 'platform' ? null : 'platform')}
             >
               Platform
-            </button>
+            </a>
             <div className="nav-menu" id="nav-menu-platform">
               <span className="nav-eyebrow">Platform</span>
               <a href="/" aria-current={pathname === '/' ? 'page' : undefined} className={pathname === '/' ? 'active' : ''}>Overview</a>
@@ -81,19 +109,20 @@ export function SiteHeader({ subtitle = 'Protocol Knowledge Base', showStatus = 
           <div
             className="nav-group"
             data-open={openMenu === 'protocol'}
-            onMouseEnter={() => setOpenMenu('protocol')}
-            onMouseLeave={() => setOpenMenu(null)}
+            onMouseEnter={() => openMenuPanel('protocol')}
+            onMouseLeave={scheduleClose}
+            onFocusCapture={() => openMenuPanel('protocol')}
+            onBlurCapture={handleBlur}
           >
-            <button
+            <a
               className={`nav-trigger${protocolActive ? ' active' : ''}`}
-              type="button"
+              href="/protocol"
               aria-haspopup="true"
               aria-expanded={openMenu === 'protocol'}
               aria-controls="nav-menu-protocol"
-              onClick={() => setOpenMenu(openMenu === 'protocol' ? null : 'protocol')}
             >
               Protocol
-            </button>
+            </a>
             <div className="nav-menu" id="nav-menu-protocol">
               <span className="nav-eyebrow">Protocol</span>
               <a href="/protocol" aria-current={pathname === '/protocol' ? 'page' : undefined} className={pathname === '/protocol' ? 'active' : ''}>Overview</a>
@@ -105,19 +134,20 @@ export function SiteHeader({ subtitle = 'Protocol Knowledge Base', showStatus = 
           <div
             className="nav-group"
             data-open={openMenu === 'library'}
-            onMouseEnter={() => setOpenMenu('library')}
-            onMouseLeave={() => setOpenMenu(null)}
+            onMouseEnter={() => openMenuPanel('library')}
+            onMouseLeave={scheduleClose}
+            onFocusCapture={() => openMenuPanel('library')}
+            onBlurCapture={handleBlur}
           >
-            <button
+            <a
               className={`nav-trigger${libraryActive ? ' active' : ''}`}
-              type="button"
+              href="/library"
               aria-haspopup="true"
               aria-expanded={openMenu === 'library'}
               aria-controls="nav-menu-library"
-              onClick={() => setOpenMenu(openMenu === 'library' ? null : 'library')}
             >
               Library
-            </button>
+            </a>
             <div className="nav-menu" id="nav-menu-library">
               <span className="nav-eyebrow">Library</span>
               <a href="/library/schemas" aria-current={pathname === '/library/schemas' ? 'page' : undefined} className={pathname === '/library/schemas' ? 'active' : ''}>Schemas</a>
@@ -128,19 +158,20 @@ export function SiteHeader({ subtitle = 'Protocol Knowledge Base', showStatus = 
           <div
             className="nav-group"
             data-open={openMenu === 'governance'}
-            onMouseEnter={() => setOpenMenu('governance')}
-            onMouseLeave={() => setOpenMenu(null)}
+            onMouseEnter={() => openMenuPanel('governance')}
+            onMouseLeave={scheduleClose}
+            onFocusCapture={() => openMenuPanel('governance')}
+            onBlurCapture={handleBlur}
           >
-            <button
+            <a
               className={`nav-trigger${governanceActive ? ' active' : ''}`}
-              type="button"
+              href="/governance"
               aria-haspopup="true"
               aria-expanded={openMenu === 'governance'}
               aria-controls="nav-menu-governance"
-              onClick={() => setOpenMenu(openMenu === 'governance' ? null : 'governance')}
             >
               Governance
-            </button>
+            </a>
             <div className="nav-menu" id="nav-menu-governance">
               <span className="nav-eyebrow">Governance</span>
               <a href="/governance/rfcs" aria-current={pathname === '/governance/rfcs' ? 'page' : undefined} className={pathname === '/governance/rfcs' ? 'active' : ''}>RFC Guide</a>
@@ -151,19 +182,20 @@ export function SiteHeader({ subtitle = 'Protocol Knowledge Base', showStatus = 
           <div
             className="nav-group"
             data-open={openMenu === 'docs'}
-            onMouseEnter={() => setOpenMenu('docs')}
-            onMouseLeave={() => setOpenMenu(null)}
+            onMouseEnter={() => openMenuPanel('docs')}
+            onMouseLeave={scheduleClose}
+            onFocusCapture={() => openMenuPanel('docs')}
+            onBlurCapture={handleBlur}
           >
-            <button
+            <a
               className={`nav-trigger${docsActive ? ' active' : ''}`}
-              type="button"
+              href="/docs"
               aria-haspopup="true"
               aria-expanded={openMenu === 'docs'}
               aria-controls="nav-menu-docs"
-              onClick={() => setOpenMenu(openMenu === 'docs' ? null : 'docs')}
             >
               Docs
-            </button>
+            </a>
             <div className="nav-menu" id="nav-menu-docs">
               <span className="nav-eyebrow">Docs</span>
               <a href="/docs/implementation" aria-current={pathname === '/docs/implementation' ? 'page' : undefined} className={pathname === '/docs/implementation' ? 'active' : ''}>Implementation</a>
@@ -177,19 +209,20 @@ export function SiteHeader({ subtitle = 'Protocol Knowledge Base', showStatus = 
           <div
             className="nav-group"
             data-open={openMenu === 'engage'}
-            onMouseEnter={() => setOpenMenu('engage')}
-            onMouseLeave={() => setOpenMenu(null)}
+            onMouseEnter={() => openMenuPanel('engage')}
+            onMouseLeave={scheduleClose}
+            onFocusCapture={() => openMenuPanel('engage')}
+            onBlurCapture={handleBlur}
           >
-            <button
+            <a
               className={`nav-trigger${engageActive ? ' active' : ''}`}
-              type="button"
+              href="/interest"
               aria-haspopup="true"
               aria-expanded={openMenu === 'engage'}
               aria-controls="nav-menu-engage"
-              onClick={() => setOpenMenu(openMenu === 'engage' ? null : 'engage')}
             >
               Engage
-            </button>
+            </a>
             <div className="nav-menu" id="nav-menu-engage">
               <span className="nav-eyebrow">Engage</span>
               <a href="/interest" aria-current={pathname === '/interest' ? 'page' : undefined} className={pathname === '/interest' ? 'active' : ''}>Express Interest</a>
