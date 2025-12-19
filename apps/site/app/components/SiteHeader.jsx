@@ -10,7 +10,7 @@ const matchesPath = (pathname, prefixes) =>
     return pathname === prefix || pathname.startsWith(`${prefix}/`);
   });
 
-export function SiteHeader({ subtitle = 'Protocol Knowledge Base' }) {
+export function SiteHeader({ subtitle = 'Protocol Knowledge Base', showStatus = true }) {
   const pathname = usePathname();
   const platformActive = matchesPath(pathname, ['/', '/materialDNA', '/cities', '/DEMO-City']);
   const protocolActive = matchesPath(pathname, ['/protocol']);
@@ -88,6 +88,11 @@ export function SiteHeader({ subtitle = 'Protocol Knowledge Base' }) {
           </div>
         </div>
       </nav>
+      {showStatus ? (
+        <div className="status-banner" role="note">
+          Early-stage concept — no public pilots or deployments yet.
+        </div>
+      ) : null}
     </header>
   );
 }
