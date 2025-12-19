@@ -31,22 +31,34 @@ export default function ProjectsPage() {
       <div className="content-panel">
         <h3>Project resources</h3>
         <div className="grid">
-          <div className="card" data-icon="SP">
+          <div className="card has-icon">
+            <span className="card-icon" aria-hidden="true">
+              <i className="ph-thin ph-scroll"></i>
+            </span>
             <h4>Specification</h4>
             <p>Normative requirements and endpoint flows.</p>
             <a href="/viewer.html?path=projects/loop-protocol/SPECIFICATION.md&title=Specification">Open spec</a>
           </div>
-          <div className="card" data-icon="SE">
+          <div className="card has-icon">
+            <span className="card-icon" aria-hidden="true">
+              <i className="ph-thin ph-shield-check"></i>
+            </span>
             <h4>Security Policy</h4>
             <p>Disclosure and operator requirements.</p>
             <a href="/viewer.html?path=projects/loop-protocol/SECURITY.md&title=Security%20Policy">Open policy</a>
           </div>
-          <div className="card" data-icon="CO">
+          <div className="card has-icon">
+            <span className="card-icon" aria-hidden="true">
+              <i className="ph-thin ph-git-pull-request"></i>
+            </span>
             <h4>Contribution Guide</h4>
             <p>How to contribute and collaborate.</p>
             <a href="/viewer.html?path=projects/loop-protocol/CONTRIBUTING.md&title=Contributing">Open guide</a>
           </div>
-          <div className="card" data-icon="CC">
+          <div className="card has-icon">
+            <span className="card-icon" aria-hidden="true">
+              <i className="ph-thin ph-handshake"></i>
+            </span>
             <h4>Code of Conduct</h4>
             <p>Community expectations for collaboration.</p>
             <a href="/viewer.html?path=projects/loop-protocol/CODE_OF_CONDUCT.md&title=Code%20of%20Conduct">Open policy</a>

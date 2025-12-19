@@ -26,17 +26,26 @@ export default function GovernancePage() {
       <div className="content-panel">
         <h3>Governance resources</h3>
         <div className="grid">
-          <div className="card" data-icon="RF">
+          <div className="card has-icon">
+            <span className="card-icon" aria-hidden="true">
+              <i className="ph-thin ph-scroll"></i>
+            </span>
             <h4>RFC Guide</h4>
             <p>How protocol changes are proposed and reviewed.</p>
             <a href="/governance/rfcs">Open RFC guide</a>
           </div>
-          <div className="card" data-icon="TM">
+          <div className="card has-icon">
+            <span className="card-icon" aria-hidden="true">
+              <i className="ph-thin ph-file-text"></i>
+            </span>
             <h4>RFC Template</h4>
             <p>Standard template for drafting new proposals.</p>
             <a href="/governance/template">Open template</a>
           </div>
-          <div className="card" data-icon="SC">
+          <div className="card has-icon">
+            <span className="card-icon" aria-hidden="true">
+              <i className="ph-thin ph-atom"></i>
+            </span>
             <h4>Smart Contract Integration</h4>
             <p>Draft RFC for optional settlement automation.</p>
             <a href="/governance/smart-contracts">Open RFC 0004</a>

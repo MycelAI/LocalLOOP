@@ -26,32 +26,50 @@ export default function DocsPage() {
       <div className="content-panel">
         <h3>Documentation library</h3>
         <div className="grid">
-          <div className="card" data-icon="IM">
+          <div className="card has-icon">
+            <span className="card-icon" aria-hidden="true">
+              <i className="ph-thin ph-gear"></i>
+            </span>
             <h4>Implementation Guide</h4>
             <p>Build a compliant node with minimal components.</p>
             <a href="/docs/implementation">Open guide</a>
           </div>
-          <div className="card" data-icon="SE">
+          <div className="card has-icon">
+            <span className="card-icon" aria-hidden="true">
+              <i className="ph-thin ph-shield-check"></i>
+            </span>
             <h4>Security Guide</h4>
             <p>Operational security playbook for node operators.</p>
             <a href="/docs/security">Open guide</a>
           </div>
-          <div className="card" data-icon="SC">
+          <div className="card has-icon">
+            <span className="card-icon" aria-hidden="true">
+              <i className="ph-thin ph-lock"></i>
+            </span>
             <h4>Secure Coding</h4>
             <p>Developer guardrails for building LOOP services.</p>
             <a href="/docs/secure-coding">Open guide</a>
           </div>
-          <div className="card" data-icon="IR">
+          <div className="card has-icon">
+            <span className="card-icon" aria-hidden="true">
+              <i className="ph-thin ph-siren"></i>
+            </span>
             <h4>Incident Response</h4>
             <p>Prepare for containment, recovery, and post-mortems.</p>
             <a href="/docs/incident-response">Open playbook</a>
           </div>
-          <div className="card" data-icon="FQ">
+          <div className="card has-icon">
+            <span className="card-icon" aria-hidden="true">
+              <i className="ph-thin ph-question"></i>
+            </span>
             <h4>FAQ</h4>
             <p>Answer recurring questions about the protocol.</p>
             <a href="/docs/faq">Open FAQ</a>
           </div>
-          <div className="card" data-icon="GL">
+          <div className="card has-icon">
+            <span className="card-icon" aria-hidden="true">
+              <i className="ph-thin ph-book-open-text"></i>
+            </span>
             <h4>Glossary</h4>
             <p>Shared vocabulary for the LOOP ecosystem.</p>
             <a href="/docs/glossary">Open glossary</a>

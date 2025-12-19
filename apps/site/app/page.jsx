@@ -52,22 +52,34 @@ export default function HomePage() {
       <section className="section">
         <h3>Navigate the platform</h3>
         <div className="grid">
-          <div className="card" data-icon="PR">
+          <div className="card has-icon">
+            <span className="card-icon" aria-hidden="true">
+              <i className="ph-thin ph-scroll"></i>
+            </span>
             <h4>Protocol Overview</h4>
             <p>Specifications, changelog, and security requirements.</p>
             <a href="/protocol">Open protocol overview</a>
           </div>
-          <div className="card" data-icon="LB">
+          <div className="card has-icon">
+            <span className="card-icon" aria-hidden="true">
+              <i className="ph-thin ph-books"></i>
+            </span>
             <h4>Library</h4>
             <p>Schema definitions and example payloads for integrators.</p>
             <a href="/library">Open the library</a>
           </div>
-          <div className="card" data-icon="DC">
+          <div className="card has-icon">
+            <span className="card-icon" aria-hidden="true">
+              <i className="ph-thin ph-notebook"></i>
+            </span>
             <h4>Docs</h4>
             <p>Implementation, operations, and incident response guides.</p>
             <a href="/docs">Read operator docs</a>
           </div>
-          <div className="card" data-icon="GV">
+          <div className="card has-icon">
+            <span className="card-icon" aria-hidden="true">
+              <i className="ph-thin ph-gavel"></i>
+            </span>
             <h4>Governance</h4>
             <p>RFC process, templates, and proposal references.</p>
             <a href="/governance">Review governance</a>
@@ -78,22 +90,34 @@ export default function HomePage() {
       <section className="section">
         <h3>Core components</h3>
         <div className="grid">
-          <div className="card" data-icon="MD">
+          <div className="card has-icon">
+            <span className="card-icon" aria-hidden="true">
+              <i className="ph-thin ph-fingerprint"></i>
+            </span>
             <h4>MaterialDNA</h4>
             <p>Material identity layer for traceability across city loops.</p>
             <a href="/materialDNA">Explore MaterialDNA</a>
           </div>
-          <div className="card" data-icon="LC">
+          <div className="card has-icon">
+            <span className="card-icon" aria-hidden="true">
+              <i className="ph-thin ph-coins"></i>
+            </span>
             <h4>LoopCoin</h4>
             <p>Settlement primitives for circular economy transactions.</p>
             <a href="/library/schemas">View schema</a>
           </div>
-          <div className="card" data-icon="LS">
+          <div className="card has-icon">
+            <span className="card-icon" aria-hidden="true">
+              <i className="ph-thin ph-broadcast"></i>
+            </span>
             <h4>LoopSignal</h4>
             <p>Community signal and preference mechanisms.</p>
             <a href="/library/schemas">View schema</a>
           </div>
-          <div className="card" data-icon="CT">
+          <div className="card has-icon">
+            <span className="card-icon" aria-hidden="true">
+              <i className="ph-thin ph-buildings"></i>
+            </span>
             <h4>City portals</h4>
             <p>Localized experiences for cities and operators.</p>
             <a href="/cities">See city portals</a>
@@ -104,17 +128,26 @@ export default function HomePage() {
       <section className="section">
         <h3>Get involved</h3>
         <div className="grid">
-          <div className="card" data-icon="IN">
+          <div className="card has-icon">
+            <span className="card-icon" aria-hidden="true">
+              <i className="ph-thin ph-handshake"></i>
+            </span>
             <h4>Express interest</h4>
             <p>Public registry for organizations exploring LocalLoop.</p>
             <a href="/interest">Submit interest</a>
           </div>
-          <div className="card" data-icon="CO">
+          <div className="card has-icon">
+            <span className="card-icon" aria-hidden="true">
+              <i className="ph-thin ph-git-pull-request"></i>
+            </span>
             <h4>Contribute</h4>
             <p>Contribution paths, code of conduct, and governance.</p>
             <a href="/contribute">Contribution guide</a>
           </div>
-          <div className="card" data-icon="PH">
+          <div className="card has-icon">
+            <span className="card-icon" aria-hidden="true">
+              <i className="ph-thin ph-folder-open"></i>
+            </span>
             <h4>Project hub</h4>
             <p>Repository links, spec viewer, and supporting docs.</p>
             <a href="/projects">Open project hub</a>

@@ -37,17 +37,26 @@ export default function MaterialDNAPage() {
       <div className="content-panel">
         <h3>Current status</h3>
         <div className="grid">
-          <div className="card" data-icon="SP">
+          <div className="card has-icon">
+            <span className="card-icon" aria-hidden="true">
+              <i className="ph-thin ph-scroll"></i>
+            </span>
             <h4>Specification</h4>
             <p>Draft schema is available in the LOOP Protocol repository.</p>
             <a href="/viewer.html?path=projects/loop-protocol/schemas/material-dna.schema.json&title=MaterialDNA%20Schema">Open schema</a>
           </div>
-          <div className="card" data-icon="PL">
+          <div className="card has-icon">
+            <span className="card-icon" aria-hidden="true">
+              <i className="ph-thin ph-map-pin"></i>
+            </span>
             <h4>Pilots</h4>
             <p>No public pilots or deployments yet.</p>
             <a href="/interest">Register interest</a>
           </div>
-          <div className="card" data-icon="IN">
+          <div className="card has-icon">
+            <span className="card-icon" aria-hidden="true">
+              <i className="ph-thin ph-plug"></i>
+            </span>
             <h4>Integration</h4>
             <p>Implementation guidance will be published as the spec matures.</p>
             <a href="/viewer.html?path=projects/loop-protocol/docs/implementation-guide.md&title=Implementation%20Guide">Read the guide</a>

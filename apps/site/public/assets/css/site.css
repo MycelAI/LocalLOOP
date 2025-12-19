@@ -799,29 +799,29 @@ nav {
   font-weight: 600;
 }
 
-.card[data-icon] {
+.card.has-icon {
   position: relative;
-  padding-top: 46px;
+  padding-top: 54px;
 }
 
-.card[data-icon]::before {
-  content: attr(data-icon);
+.card-icon {
   position: absolute;
-  top: 14px;
+  top: 16px;
   left: 16px;
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   background: linear-gradient(135deg, rgba(47, 158, 133, 0.28), rgba(47, 158, 133, 0.08));
   border: 1px solid rgba(47, 158, 133, 0.4);
   color: var(--accent-2);
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+}
+
+.card-icon i {
+  font-size: 18px;
+  line-height: 1;
 }
 
 .footer {

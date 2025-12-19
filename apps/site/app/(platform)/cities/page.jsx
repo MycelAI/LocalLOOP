@@ -26,12 +26,18 @@ export default function CitiesPage() {
       <div className="content-panel">
         <h3>Available portals</h3>
         <div className="grid">
-          <div className="card" data-icon="DC">
+          <div className="card has-icon">
+            <span className="card-icon" aria-hidden="true">
+              <i className="ph-thin ph-city"></i>
+            </span>
             <h4>DEMO City</h4>
             <p>Sample portal to illustrate a future city experience.</p>
             <a href="/DEMO-City">Open demo portal</a>
           </div>
-          <div className="card" data-icon="FT">
+          <div className="card has-icon">
+            <span className="card-icon" aria-hidden="true">
+              <i className="ph-thin ph-compass"></i>
+            </span>
             <h4>Future cities</h4>
             <p>City subdomains will launch as pilots begin.</p>
             <a href="/interest">Express interest</a>
