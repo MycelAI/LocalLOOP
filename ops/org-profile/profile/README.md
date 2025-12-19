@@ -1,6 +1,6 @@
 # LocalLoop
 
-LocalLoop is an early-stage, low‑TRL concept for a federated circular economy protocol.
+LocalLoop is an early-stage, low-TRL concept for a federated circular economy protocol.
 We publish specifications, schemas, and examples so cities, labs, and builders can explore
 and shape the ecosystem.
 
