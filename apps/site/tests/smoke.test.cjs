@@ -7,7 +7,7 @@ const read = (segments) =>
   fs.readFileSync(path.join(process.cwd(), ...segments), 'utf8');
 
 test('interest page wires interest form hooks', () => {
-  const content = read(['app', 'interest', 'page.jsx']);
+  const content = read(['app', '(engage)', 'interest', 'page.jsx']);
   assert.ok(content.includes('data-interest-form'));
   assert.ok(content.includes('data-interest-list'));
   assert.ok(content.includes('data-interest-status'));

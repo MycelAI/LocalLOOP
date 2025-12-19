@@ -1,41 +1,35 @@
-import { SiteHeader } from '../components/SiteHeader';
-import { SiteFooter } from '../components/SiteFooter';
-
 export default function InterestPage() {
   return (
-    <>
-      <SiteHeader subtitle="Expression of Interest" />
-
-      <section className="hero">
-        <div className="hero-card">
-          <div className="badge">Public interest registry</div>
-          <h2>Tell us you’re interested in LocalLoop.</h2>
-          <p>
-            Submissions are public so collaborators can see who is exploring the protocol.
-            Email is optional and shown only if you opt in.
-          </p>
-          <div className="cta-row">
-            <a className="button primary" href="/protocol">Review the protocol</a>
-            <a className="button secondary" href="/projects">Project hub</a>
-          </div>
+    <div className="content-stack">
+      <div className="content-panel">
+        <div className="badge">Public interest registry</div>
+        <h2>Expression of Interest</h2>
+        <p>
+          Submissions are public so collaborators can see who is exploring the protocol.
+          Email is optional and shown only if you opt in.
+        </p>
+        <div className="cta-row">
+          <a className="button primary" href="/protocol">Review the protocol</a>
+          <a className="button secondary" href="/projects">Project hub</a>
         </div>
-        <div className="hero-card">
-          <h3>Why we collect this</h3>
-          <p>
-            Early signal from cities, labs, and operators helps us prioritize the roadmap.
-          </p>
-          <div className="table-list">
-            <div><span>Transparency</span><div>Public list of interested parties</div></div>
-            <div><span>Momentum</span><div>Helps align pilots and funding</div></div>
-          </div>
-        </div>
-      </section>
+      </div>
 
-      <section className="section">
-        <h3>Expression of Interest</h3>
+      <div className="content-panel">
+        <h3>Why we collect this</h3>
+        <p>
+          Early signal from cities, labs, and operators helps us prioritize the roadmap.
+        </p>
+        <div className="table-list">
+          <div><span>Transparency</span><div>Public list of interested parties</div></div>
+          <div><span>Momentum</span><div>Helps align pilots and funding</div></div>
+        </div>
+      </div>
+
+      <div className="content-panel">
+        <h3>Submit your interest</h3>
         <div className="interest-wrapper">
           <div className="card">
-            <h4>Submit your interest</h4>
+            <h4>Submission form</h4>
             <p>
               Submissions are public so collaborators can see who is exploring the protocol.
               Email is optional and shown only if you opt in.
@@ -93,9 +87,7 @@ export default function InterestPage() {
             <div className="interest-list" data-interest-list></div>
           </div>
         </div>
-      </section>
-
-      <SiteFooter />
-    </>
+      </div>
+    </div>
   );
 }
