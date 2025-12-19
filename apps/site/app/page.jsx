@@ -12,17 +12,25 @@ export default function HomePage() {
           <span className="loop-orbit loop-orbit-two"></span>
           <span className="loop-orbit loop-orbit-three"></span>
         </div>
-        <div className="hero-wide-content">
-          <div className="hero-kicker">LOOP Protocol</div>
-          <h2>Local Optimization with Overflow Protocol (LOOP)</h2>
-          <p>
-            A proposed federated protocol for material identity, exchange, and settlement
-            across city loops. Designed to keep sovereignty local while enabling a shared
-            circular economy network.
-          </p>
-          <div className="cta-row">
-            <a className="button primary" href="/protocol/spec">Read the specification</a>
-            <a className="button secondary" href="/interest">Register interest</a>
+        <div className="hero-top">
+          <div className="hero-wide-content">
+            <div className="hero-kicker">LOOP Protocol</div>
+            <h2>Local Optimization with Overflow Protocol (LOOP)</h2>
+            <p>
+              A proposed federated protocol for material identity, exchange, and settlement
+              across city loops. Designed to keep sovereignty local while enabling a shared
+              circular economy network.
+            </p>
+            <div className="cta-row">
+              <a className="button primary" href="/protocol/spec">Read the specification</a>
+              <a className="button secondary" href="/interest">Register interest</a>
+            </div>
+          </div>
+          <div className="hero-visual" aria-hidden="true">
+            <div className="loop-sculpture">
+              <span className="loop-core"></span>
+            </div>
+            <span className="loop-glow"></span>
           </div>
         </div>
         <div className="hero-wide-panels">
