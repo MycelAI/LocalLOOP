@@ -9,9 +9,13 @@
   --accent-2: #2f9e85;
   --accent-3: #f0b44d;
   --shadow: rgba(13, 26, 38, 0.15);
+  --shadow-soft: rgba(13, 26, 38, 0.08);
+  --shadow-strong: rgba(13, 26, 38, 0.2);
   --radius-lg: 24px;
   --radius-md: 16px;
   --radius-sm: 10px;
+  --page-max: 1180px;
+  --gutter: clamp(20px, 6vw, 64px);
 }
 
 * {
@@ -26,6 +30,14 @@ body {
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+h2,
+h3 {
+  font-family: 'Fraunces', serif;
+  letter-spacing: -0.01em;
 }
 
 body::before,
@@ -58,7 +70,9 @@ body::after {
 }
 
 header {
-  padding: 32px 6vw 16px;
+  padding: 32px var(--gutter) 16px;
+  max-width: var(--page-max);
+  margin: 0 auto;
 }
 
 nav {
@@ -79,6 +93,7 @@ nav {
   margin: 0;
   font-size: 1.6rem;
   font-weight: 700;
+  font-family: 'Fraunces', serif;
 }
 
 .nav-brand span {
@@ -177,15 +192,19 @@ nav {
 }
 
 .hero {
-  padding: 24px 6vw 32px;
+  padding: 24px var(--gutter) 32px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 32px;
   align-items: center;
+  max-width: var(--page-max);
+  margin: 0 auto;
 }
 
 .content-main {
-  padding: 12px 6vw 48px;
+  padding: 12px var(--gutter) 48px;
+  max-width: var(--page-max);
+  margin: 0 auto;
 }
 
 .content-layout {
@@ -209,7 +228,8 @@ nav {
   border-radius: var(--radius-md);
   border: 1px solid rgba(11, 27, 43, 0.08);
   padding: 22px 24px;
-  box-shadow: 0 16px 30px rgba(11, 27, 43, 0.1);
+  box-shadow: 0 16px 30px var(--shadow-soft);
+  backdrop-filter: blur(6px);
 }
 
 .content-panel h2,
@@ -222,11 +242,12 @@ nav {
   border-radius: var(--radius-md);
   border: 1px solid rgba(11, 27, 43, 0.08);
   padding: 18px;
-  box-shadow: 0 16px 30px rgba(11, 27, 43, 0.08);
+  box-shadow: 0 16px 30px var(--shadow-soft);
   position: sticky;
   top: 24px;
   display: grid;
   gap: 16px;
+  backdrop-filter: blur(6px);
 }
 
 .side-title {
@@ -286,6 +307,7 @@ nav {
   box-shadow: 0 20px 40px var(--shadow);
   border: 1px solid rgba(11, 27, 43, 0.08);
   animation: rise 0.6s ease-out both;
+  backdrop-filter: blur(6px);
 }
 
 .hero-card:nth-child(2) {
@@ -323,7 +345,9 @@ nav {
   background: rgba(47, 158, 133, 0.15);
   color: var(--accent-2);
   font-weight: 600;
-  font-size: 0.85rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
 }
 
 .cta-row {
@@ -362,7 +386,9 @@ nav {
 }
 
 .section {
-  padding: 24px 6vw 48px;
+  padding: 24px var(--gutter) 48px;
+  max-width: var(--page-max);
+  margin: 0 auto;
 }
 
 .section h3 {
@@ -381,8 +407,9 @@ nav {
   padding: 18px 20px;
   border-radius: var(--radius-md);
   border: 1px solid rgba(11, 27, 43, 0.1);
-  box-shadow: 0 12px 24px rgba(11, 27, 43, 0.08);
+  box-shadow: 0 12px 24px var(--shadow-soft);
   transition: transform 0.2s ease, border-color 0.2s ease;
+  backdrop-filter: blur(6px);
 }
 
 .card:hover {
@@ -408,15 +435,17 @@ nav {
 }
 
 .footer {
-  padding: 32px 6vw 48px;
+  padding: 32px var(--gutter) 48px;
   color: var(--ink-soft);
   font-size: 0.9rem;
+  max-width: var(--page-max);
+  margin: 0 auto;
 }
 
 .viewer-shell {
-  max-width: 1100px;
+  max-width: min(1100px, var(--page-max));
   margin: 0 auto;
-  padding: 24px 6vw 48px;
+  padding: 24px var(--gutter) 48px;
 }
 
 .viewer-toolbar {
