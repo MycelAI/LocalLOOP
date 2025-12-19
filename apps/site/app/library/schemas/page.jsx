@@ -1,39 +1,33 @@
-import { SiteHeader } from '../../components/SiteHeader';
-import { SiteFooter } from '../../components/SiteFooter';
-
 export default function SchemasPage() {
   return (
-    <>
-      <SiteHeader subtitle="Schema Library" />
-
-      <section className="hero">
-        <div className="hero-card">
-          <div className="badge">Schema library</div>
-          <h2>JSON schemas for every payload type.</h2>
-          <p>
-            Use these schemas to validate payloads and build compliant implementations.
-          </p>
-          <div className="cta-row">
-            <a className="button primary" href="/library">Back to library</a>
-            <a
-              className="button secondary"
-              href="/viewer.html?path=projects/loop-protocol/schemas/README.md&title=Schema%20Library"
-            >
-              Schema README
-            </a>
-          </div>
+    <div className="content-stack">
+      <div className="content-panel">
+        <div className="badge">Schema library</div>
+        <h2>JSON schemas for every payload type.</h2>
+        <p>
+          Use these schemas to validate payloads and build compliant implementations.
+        </p>
+        <div className="cta-row">
+          <a className="button primary" href="/library">Back to library</a>
+          <a
+            className="button secondary"
+            href="/viewer.html?path=projects/loop-protocol/schemas/README.md&title=Schema%20Library"
+          >
+            Schema README
+          </a>
         </div>
-        <div className="hero-card">
-          <h3>Available schemas</h3>
-          <div className="table-list">
-            <div><span>MaterialDNA</span><div>Identity and metadata schema</div></div>
-            <div><span>LoopCoin</span><div>Payment and settlement schema</div></div>
-            <div><span>LoopSignal</span><div>Community preference schema</div></div>
-          </div>
-        </div>
-      </section>
+      </div>
 
-      <section className="section">
+      <div className="content-panel">
+        <h3>Available schemas</h3>
+        <div className="table-list">
+          <div><span>MaterialDNA</span><div>Identity and metadata schema</div></div>
+          <div><span>LoopCoin</span><div>Payment and settlement schema</div></div>
+          <div><span>LoopSignal</span><div>Community preference schema</div></div>
+        </div>
+      </div>
+
+      <div className="content-panel">
         <h3>Schema catalog</h3>
         <div className="grid">
           <div className="card">
@@ -62,9 +56,7 @@ export default function SchemasPage() {
             <a href="/viewer.html?path=projects/loop-protocol/schemas/node-info.schema.json&title=Node%20Info%20Schema">Open schema</a>
           </div>
         </div>
-      </section>
-
-      <SiteFooter />
-    </>
+      </div>
+    </div>
   );
 }

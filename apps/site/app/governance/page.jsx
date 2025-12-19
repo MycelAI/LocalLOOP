@@ -1,35 +1,29 @@
-import { SiteHeader } from '../components/SiteHeader';
-import { SiteFooter } from '../components/SiteFooter';
-
 export default function GovernancePage() {
   return (
-    <>
-      <SiteHeader subtitle="Governance" />
-
-      <section className="hero">
-        <div className="hero-card">
-          <div className="badge">Governance & RFCs</div>
-          <h2>How protocol changes are proposed and reviewed.</h2>
-          <p>
-            Governance is managed through RFCs that capture proposals, review notes, and
-            decisions for the LOOP Protocol.
-          </p>
-          <div className="cta-row">
-            <a className="button primary" href="/governance/rfcs">Open RFC guide</a>
-            <a className="button secondary" href="/governance/template">Use template</a>
-          </div>
+    <div className="content-stack">
+      <div className="content-panel">
+        <div className="badge">Governance & RFCs</div>
+        <h2>How protocol changes are proposed and reviewed.</h2>
+        <p>
+          Governance is managed through RFCs that capture proposals, review notes, and
+          decisions for the LOOP Protocol.
+        </p>
+        <div className="cta-row">
+          <a className="button primary" href="/governance/rfcs">Open RFC guide</a>
+          <a className="button secondary" href="/governance/template">Use template</a>
         </div>
-        <div className="hero-card">
-          <h3>Governance tools</h3>
-          <div className="table-list">
-            <div><span>RFC guide</span><div>Process and expectations</div></div>
-            <div><span>Templates</span><div>Standard structure for proposals</div></div>
-            <div><span>Experiments</span><div>Optional smart contract RFCs</div></div>
-          </div>
-        </div>
-      </section>
+      </div>
 
-      <section className="section">
+      <div className="content-panel">
+        <h3>Governance tools</h3>
+        <div className="table-list">
+          <div><span>RFC guide</span><div>Process and expectations</div></div>
+          <div><span>Templates</span><div>Standard structure for proposals</div></div>
+          <div><span>Experiments</span><div>Optional smart contract RFCs</div></div>
+        </div>
+      </div>
+
+      <div className="content-panel">
         <h3>Governance resources</h3>
         <div className="grid">
           <div className="card">
@@ -48,9 +42,7 @@ export default function GovernancePage() {
             <a href="/governance/smart-contracts">Open RFC 0004</a>
           </div>
         </div>
-      </section>
-
-      <SiteFooter />
-    </>
+      </div>
+    </div>
   );
 }
