@@ -28,6 +28,7 @@
 
   function formatEntry(entry) {
     const name = escapeHtml(entry.name || 'Anonymous');
+    const demoBadge = entry.is_demo ? '<span class="interest-badge">DEMO</span>' : '';
     const org = entry.organization ? ` • ${escapeHtml(entry.organization)}` : '';
     const role = entry.role ? ` (${escapeHtml(entry.role)})` : '';
     const location = [entry.city, entry.country].filter(Boolean).map(escapeHtml).join(', ');
@@ -39,7 +40,7 @@
 
     return `
       <div class="interest-card">
-        <h4>${name}${org}${role}</h4>
+        <h4>${name}${demoBadge}${org}${role}</h4>
         <p>${meta}${website}${email}</p>
         ${entry.message ? `<p>${escapeHtml(entry.message)}</p>` : ''}
       </div>
