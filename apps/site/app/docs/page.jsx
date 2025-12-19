@@ -1,35 +1,29 @@
-import { SiteHeader } from '../components/SiteHeader';
-import { SiteFooter } from '../components/SiteFooter';
-
 export default function DocsPage() {
   return (
-    <>
-      <SiteHeader subtitle="Operator & Developer Docs" />
-
-      <section className="hero">
-        <div className="hero-card">
-          <div className="badge">Implementation guidance</div>
-          <h2>Operational playbooks and developer references.</h2>
-          <p>
-            Documentation for node operators and implementers. Guidance will evolve as
-            the protocol matures.
-          </p>
-          <div className="cta-row">
-            <a className="button primary" href="/docs/implementation">Implementation guide</a>
-            <a className="button secondary" href="/docs/security">Security guide</a>
-          </div>
+    <div className="content-stack">
+      <div className="content-panel">
+        <div className="badge">Implementation guidance</div>
+        <h2>Operational playbooks and developer references.</h2>
+        <p>
+          Documentation for node operators and implementers. Guidance will evolve as
+          the protocol matures.
+        </p>
+        <div className="cta-row">
+          <a className="button primary" href="/docs/implementation">Implementation guide</a>
+          <a className="button secondary" href="/docs/security">Security guide</a>
         </div>
-        <div className="hero-card">
-          <h3>Doc categories</h3>
-          <div className="table-list">
-            <div><span>Implementation</span><div>Node build and integration steps</div></div>
-            <div><span>Security</span><div>Operational security playbooks</div></div>
-            <div><span>Response</span><div>Incident handling guidance</div></div>
-          </div>
-        </div>
-      </section>
+      </div>
 
-      <section className="section">
+      <div className="content-panel">
+        <h3>Doc categories</h3>
+        <div className="table-list">
+          <div><span>Implementation</span><div>Node build and integration steps</div></div>
+          <div><span>Security</span><div>Operational security playbooks</div></div>
+          <div><span>Response</span><div>Incident handling guidance</div></div>
+        </div>
+      </div>
+
+      <div className="content-panel">
         <h3>Documentation library</h3>
         <div className="grid">
           <div className="card">
@@ -63,9 +57,7 @@ export default function DocsPage() {
             <a href="/docs/glossary">Open glossary</a>
           </div>
         </div>
-      </section>
-
-      <SiteFooter />
-    </>
+      </div>
+    </div>
   );
 }

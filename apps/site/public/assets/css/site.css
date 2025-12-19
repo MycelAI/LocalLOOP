@@ -184,6 +184,101 @@ nav {
   align-items: center;
 }
 
+.content-main {
+  padding: 12px 6vw 48px;
+}
+
+.content-layout {
+  display: grid;
+  grid-template-columns: minmax(220px, 260px) minmax(0, 1fr);
+  gap: 28px;
+  align-items: start;
+}
+
+.content-body {
+  min-width: 0;
+}
+
+.content-stack {
+  display: grid;
+  gap: 18px;
+}
+
+.content-panel {
+  background: rgba(255, 255, 255, 0.82);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(11, 27, 43, 0.08);
+  padding: 22px 24px;
+  box-shadow: 0 16px 30px rgba(11, 27, 43, 0.1);
+}
+
+.content-panel h2,
+.content-panel h3 {
+  margin-top: 0;
+}
+
+.side-nav {
+  background: rgba(255, 255, 255, 0.82);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(11, 27, 43, 0.08);
+  padding: 18px;
+  box-shadow: 0 16px 30px rgba(11, 27, 43, 0.08);
+  position: sticky;
+  top: 24px;
+  display: grid;
+  gap: 16px;
+}
+
+.side-title {
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.side-group {
+  display: grid;
+  gap: 6px;
+}
+
+.side-label {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.7rem;
+  color: var(--ink-soft);
+  font-weight: 600;
+}
+
+.side-nav a {
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 600;
+  padding: 6px 8px;
+  border-radius: 10px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.side-nav a:hover {
+  background: rgba(224, 108, 71, 0.12);
+  color: var(--accent);
+}
+
+.side-nav a.active {
+  background: rgba(47, 158, 133, 0.18);
+  color: var(--accent-2);
+}
+
+.side-note {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  border-top: 1px solid rgba(11, 27, 43, 0.1);
+  padding-top: 12px;
+}
+
+.side-note a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+
 .hero-card {
   background: rgba(255, 255, 255, 0.8);
   border-radius: var(--radius-lg);
@@ -470,6 +565,10 @@ nav {
   .table-list div {
     grid-template-columns: 1fr;
   }
+
+  .content-panel {
+    padding: 18px;
+  }
 }
 
 @media (max-width: 960px) {
@@ -502,5 +601,13 @@ nav {
     border: none;
     background: transparent;
     padding: 0 0 8px;
+  }
+
+  .content-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .side-nav {
+    position: static;
   }
 }
