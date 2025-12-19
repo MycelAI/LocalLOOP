@@ -110,6 +110,16 @@ nav {
   color: var(--accent);
 }
 
+.nav-trigger.active,
+.nav-menu a.active {
+  background: rgba(47, 158, 133, 0.18);
+  color: var(--accent-2);
+}
+
+.nav-menu a.active {
+  font-weight: 700;
+}
+
 .nav-group {
   position: relative;
 }

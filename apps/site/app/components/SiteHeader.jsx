@@ -1,4 +1,24 @@
+'use client';
+
+import { usePathname } from 'next/navigation';
+
+const matchesPath = (pathname, prefixes) =>
+  prefixes.some((prefix) => {
+    if (prefix === '/') {
+      return pathname === '/';
+    }
+    return pathname === prefix || pathname.startsWith(`${prefix}/`);
+  });
+
 export function SiteHeader({ subtitle = 'Protocol Knowledge Base' }) {
+  const pathname = usePathname();
+  const platformActive = matchesPath(pathname, ['/', '/materialDNA', '/cities', '/DEMO-City']);
+  const protocolActive = matchesPath(pathname, ['/protocol']);
+  const libraryActive = matchesPath(pathname, ['/library']);
+  const governanceActive = matchesPath(pathname, ['/governance']);
+  const docsActive = matchesPath(pathname, ['/docs']);
+  const engageActive = matchesPath(pathname, ['/interest', '/projects', '/contribute']);
+
   return (
     <header>
       <nav>
@@ -8,62 +28,62 @@ export function SiteHeader({ subtitle = 'Protocol Knowledge Base' }) {
         </div>
         <div className="nav-links">
           <div className="nav-group">
-            <a className="nav-trigger" href="/">Platform</a>
+            <a className={`nav-trigger${platformActive ? ' active' : ''}`} href="/">Platform</a>
             <div className="nav-menu">
               <span className="nav-eyebrow">Platform</span>
-              <a href="/">Overview</a>
-              <a href="/materialDNA">MaterialDNA</a>
-              <a href="/cities">City Portals</a>
-              <a href="/DEMO-City">DEMO City</a>
+              <a href="/" aria-current={pathname === '/' ? 'page' : undefined} className={pathname === '/' ? 'active' : ''}>Overview</a>
+              <a href="/materialDNA" aria-current={pathname === '/materialDNA' ? 'page' : undefined} className={pathname === '/materialDNA' ? 'active' : ''}>MaterialDNA</a>
+              <a href="/cities" aria-current={pathname === '/cities' ? 'page' : undefined} className={pathname === '/cities' ? 'active' : ''}>City Portals</a>
+              <a href="/DEMO-City" aria-current={pathname === '/DEMO-City' ? 'page' : undefined} className={pathname === '/DEMO-City' ? 'active' : ''}>DEMO City</a>
             </div>
           </div>
           <div className="nav-group">
-            <a className="nav-trigger" href="/protocol">Protocol</a>
+            <a className={`nav-trigger${protocolActive ? ' active' : ''}`} href="/protocol">Protocol</a>
             <div className="nav-menu">
               <span className="nav-eyebrow">Protocol</span>
-              <a href="/protocol">Overview</a>
-              <a href="/protocol/spec">Specification</a>
-              <a href="/protocol/changelog">Changelog</a>
-              <a href="/protocol/security">Security</a>
+              <a href="/protocol" aria-current={pathname === '/protocol' ? 'page' : undefined} className={pathname === '/protocol' ? 'active' : ''}>Overview</a>
+              <a href="/protocol/spec" aria-current={pathname === '/protocol/spec' ? 'page' : undefined} className={pathname === '/protocol/spec' ? 'active' : ''}>Specification</a>
+              <a href="/protocol/changelog" aria-current={pathname === '/protocol/changelog' ? 'page' : undefined} className={pathname === '/protocol/changelog' ? 'active' : ''}>Changelog</a>
+              <a href="/protocol/security" aria-current={pathname === '/protocol/security' ? 'page' : undefined} className={pathname === '/protocol/security' ? 'active' : ''}>Security</a>
             </div>
           </div>
           <div className="nav-group">
-            <a className="nav-trigger" href="/library">Library</a>
+            <a className={`nav-trigger${libraryActive ? ' active' : ''}`} href="/library">Library</a>
             <div className="nav-menu">
               <span className="nav-eyebrow">Library</span>
-              <a href="/library/schemas">Schemas</a>
-              <a href="/library/examples">Examples</a>
-              <a href="/library">All resources</a>
+              <a href="/library/schemas" aria-current={pathname === '/library/schemas' ? 'page' : undefined} className={pathname === '/library/schemas' ? 'active' : ''}>Schemas</a>
+              <a href="/library/examples" aria-current={pathname === '/library/examples' ? 'page' : undefined} className={pathname === '/library/examples' ? 'active' : ''}>Examples</a>
+              <a href="/library" aria-current={pathname === '/library' ? 'page' : undefined} className={pathname === '/library' ? 'active' : ''}>All resources</a>
             </div>
           </div>
           <div className="nav-group">
-            <a className="nav-trigger" href="/governance">Governance</a>
+            <a className={`nav-trigger${governanceActive ? ' active' : ''}`} href="/governance">Governance</a>
             <div className="nav-menu">
               <span className="nav-eyebrow">Governance</span>
-              <a href="/governance/rfcs">RFC Guide</a>
-              <a href="/governance/template">RFC Template</a>
-              <a href="/governance/smart-contracts">Smart Contracts</a>
+              <a href="/governance/rfcs" aria-current={pathname === '/governance/rfcs' ? 'page' : undefined} className={pathname === '/governance/rfcs' ? 'active' : ''}>RFC Guide</a>
+              <a href="/governance/template" aria-current={pathname === '/governance/template' ? 'page' : undefined} className={pathname === '/governance/template' ? 'active' : ''}>RFC Template</a>
+              <a href="/governance/smart-contracts" aria-current={pathname === '/governance/smart-contracts' ? 'page' : undefined} className={pathname === '/governance/smart-contracts' ? 'active' : ''}>Smart Contracts</a>
             </div>
           </div>
           <div className="nav-group">
-            <a className="nav-trigger" href="/docs">Docs</a>
+            <a className={`nav-trigger${docsActive ? ' active' : ''}`} href="/docs">Docs</a>
             <div className="nav-menu">
               <span className="nav-eyebrow">Docs</span>
-              <a href="/docs/implementation">Implementation</a>
-              <a href="/docs/security">Security Guide</a>
-              <a href="/docs/secure-coding">Secure Coding</a>
-              <a href="/docs/incident-response">Incident Response</a>
-              <a href="/docs/faq">FAQ</a>
-              <a href="/docs/glossary">Glossary</a>
+              <a href="/docs/implementation" aria-current={pathname === '/docs/implementation' ? 'page' : undefined} className={pathname === '/docs/implementation' ? 'active' : ''}>Implementation</a>
+              <a href="/docs/security" aria-current={pathname === '/docs/security' ? 'page' : undefined} className={pathname === '/docs/security' ? 'active' : ''}>Security Guide</a>
+              <a href="/docs/secure-coding" aria-current={pathname === '/docs/secure-coding' ? 'page' : undefined} className={pathname === '/docs/secure-coding' ? 'active' : ''}>Secure Coding</a>
+              <a href="/docs/incident-response" aria-current={pathname === '/docs/incident-response' ? 'page' : undefined} className={pathname === '/docs/incident-response' ? 'active' : ''}>Incident Response</a>
+              <a href="/docs/faq" aria-current={pathname === '/docs/faq' ? 'page' : undefined} className={pathname === '/docs/faq' ? 'active' : ''}>FAQ</a>
+              <a href="/docs/glossary" aria-current={pathname === '/docs/glossary' ? 'page' : undefined} className={pathname === '/docs/glossary' ? 'active' : ''}>Glossary</a>
             </div>
           </div>
           <div className="nav-group">
-            <a className="nav-trigger" href="/interest">Engage</a>
+            <a className={`nav-trigger${engageActive ? ' active' : ''}`} href="/interest">Engage</a>
             <div className="nav-menu">
               <span className="nav-eyebrow">Engage</span>
-              <a href="/interest">Express Interest</a>
-              <a href="/projects">Project Hub</a>
-              <a href="/contribute">Contribute</a>
+              <a href="/interest" aria-current={pathname === '/interest' ? 'page' : undefined} className={pathname === '/interest' ? 'active' : ''}>Express Interest</a>
+              <a href="/projects" aria-current={pathname === '/projects' ? 'page' : undefined} className={pathname === '/projects' ? 'active' : ''}>Project Hub</a>
+              <a href="/contribute" aria-current={pathname === '/contribute' ? 'page' : undefined} className={pathname === '/contribute' ? 'active' : ''}>Contribute</a>
             </div>
           </div>
         </div>
