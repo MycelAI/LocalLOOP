@@ -19,3 +19,19 @@ If you add new docs or schemas in the protocol repo, copy them into
 ## GitHub Pages
 This repository is intended to be published via GitHub Pages. If the GitHub org is
 `local-loop-io`, the default URL will be `https://local-loop-io.github.io`.
+
+## How to Cite
+
+If you reference this repository, please cite:
+Alphin Tom. "LocalLoop Docs Hub." LocalLoop, GitHub repository, 2025-2026. https://github.com/local-loop-io/local-loop-io.github.io
+
+```bibtex
+@misc{localloop_docs_hub_2025,
+  author = {Alphin Tom},
+  title = {LocalLoop Docs Hub},
+  year = {2025},
+  howpublished = {GitHub repository},
+  url = {https://github.com/local-loop-io/local-loop-io.github.io},
+  note = {Accessed 2025-12-19}
+}
+```
