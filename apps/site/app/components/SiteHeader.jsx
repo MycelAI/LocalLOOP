@@ -78,11 +78,7 @@ export function SiteHeader({ subtitle = '' }) {
       <nav>
         <div className="nav-brand">
           <span className="nav-logo" aria-hidden="true">
-            <svg viewBox="0 0 120 48" role="presentation">
-              <path
-                d="M20 24c0-10.5 8.5-19 19-19 12.5 0 21 10 32 19 11-9 19.5-19 32-19 10.5 0 19 8.5 19 19s-8.5 19-19 19c-12.5 0-21-10-32-19-11 9-19.5 19-32 19-10.5 0-19-8.5-19-19Z"
-              />
-            </svg>
+            <i className="ph-bold ph-infinity"></i>
           </span>
           <h1>localLOOP</h1>
           {subtitle ? <span className="nav-subtitle">{subtitle}</span> : null}
