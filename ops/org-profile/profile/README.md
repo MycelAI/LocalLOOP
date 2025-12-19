@@ -21,3 +21,19 @@ and shape the ecosystem.
 
 ## Contact
 Alphin Tom • GitHub: @alpha912 • alphinctom@gmail.com
+
+## How to Cite
+
+If you reference this repository, please cite:
+Alphin Tom. "LocalLoop Organization." LocalLoop, GitHub repository, 2025-2026. https://github.com/local-loop-io
+
+```bibtex
+@misc{localloop_org_2025,
+  author = {Alphin Tom},
+  title = {LocalLoop Organization},
+  year = {2025},
+  howpublished = {GitHub repository},
+  url = {https://github.com/local-loop-io},
+  note = {Accessed 2025-12-19}
+}
+```
