@@ -2,19 +2,32 @@
 
 This repository hosts the LocalLoop documentation hub for the LOOP Protocol. It mirrors
 protocol artifacts (specification, schemas, RFCs, examples) and provides a lightweight
-viewer for markdown and JSON files. The project is an early, low-TRL concept with no
-public pilots or deployments yet.
+viewer for markdown and JSON files. The site is built with Next.js (static export) and
+published via GitHub Pages. The project is an early, low-TRL concept with no public
+pilots or deployments yet.
 
 ## Structure
-- `index.html`: main hub landing page
-- `viewer.html`: markdown/JSON viewer
-- `projects/loop-protocol/`: mirrored assets from `loop-protocol`
-- `assets/`: site styling and scripts
-- `assets/js/interest.js`: public Expression of Interest form and list
+- `app/`: Next.js App Router pages
+- `public/viewer.html`: markdown/JSON viewer
+- `public/projects/loop-protocol/`: mirrored assets from `loop-protocol`
+- `public/assets/`: site styling and scripts
+- `public/assets/js/interest.js`: public Expression of Interest form and list
 
 ## Updating content
 If you add new docs or schemas in the protocol repo, copy them into
-`projects/loop-protocol/` (or use the aggregation workflow once configured).
+`public/projects/loop-protocol/` (or use the aggregation workflow once configured).
+
+## Local development
+```bash
+bun install
+bun run dev
+```
+
+## Build
+```bash
+bun run build
+```
+The static export is written to `out/` and deployed via GitHub Pages.
 
 ## GitHub Pages
 This repository is intended to be published via GitHub Pages. If the GitHub org is

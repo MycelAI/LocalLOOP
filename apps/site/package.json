@@ -1,0 +1,18 @@
+{
+  "name": "localloop-site",
+  "private": true,
+  "version": "0.1.0",
+  "description": "LocalLoop protocol hub and city landing pages",
+  "license": "MIT",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "next": "16.0.10",
+    "react": "19.0.0",
+    "react-dom": "19.0.0"
+  }
+}

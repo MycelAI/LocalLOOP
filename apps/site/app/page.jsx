@@ -1,0 +1,260 @@
+import Script from 'next/script';
+import { SiteHeader } from './components/SiteHeader';
+import { SiteFooter } from './components/SiteFooter';
+
+export default function HomePage() {
+  return (
+    <>
+      <SiteHeader />
+
+      <section className="hero">
+        <div className="hero-card">
+          <div className="badge">Federated circular economy infrastructure</div>
+          <h2>Host the entire LOOP Protocol stack in one place.</h2>
+          <p>
+            This hub curates the specification, schemas, examples, and governance docs for
+            the LOOP Protocol. Use it as the canonical reference for implementers and city
+            operators. The project is an early, low-TRL concept with no public pilots yet.
+          </p>
+          <div className="cta-row">
+            <a
+              className="button primary"
+              href="/viewer.html?path=projects/loop-protocol/SPECIFICATION.md&title=LOOP%20Protocol%20Specification"
+            >
+              Read the Spec
+            </a>
+            <a
+              className="button secondary"
+              href="/viewer.html?path=projects/loop-protocol/README.md&title=LOOP%20Protocol%20README"
+            >
+              Explore the Project
+            </a>
+          </div>
+        </div>
+        <div className="hero-card">
+          <h3>What is hosted here?</h3>
+          <p>
+            Every living artifact from the protocol repo: specification, schemas, RFCs,
+            implementation guides, and examples. The viewer renders markdown and JSON
+            with zero build steps.
+          </p>
+          <div className="table-list">
+            <div><span>Spec</span><div>Protocol requirements and reference flows</div></div>
+            <div><span>Schemas</span><div>JSON Schema for each payload type</div></div>
+            <div><span>Examples</span><div>Validated example payloads</div></div>
+            <div><span>Security</span><div>Operator and developer guidance</div></div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section" id="protocol">
+        <h3>Protocol Essentials</h3>
+        <div className="grid">
+          <div className="card">
+            <h4>Specification v0.1</h4>
+            <p>Normative requirements, API endpoints, and federation flows.</p>
+            <a href="/viewer.html?path=projects/loop-protocol/SPECIFICATION.md&title=LOOP%20Protocol%20Specification">Open specification</a>
+          </div>
+          <div className="card">
+            <h4>Changelog</h4>
+            <p>Track released changes and planned updates.</p>
+            <a href="/viewer.html?path=projects/loop-protocol/CHANGELOG.md&title=Changelog">Open changelog</a>
+          </div>
+          <div className="card">
+            <h4>Security Policy</h4>
+            <p>Disclosure process, cryptography, and operator requirements.</p>
+            <a href="/viewer.html?path=projects/loop-protocol/SECURITY.md&title=Security%20Policy">Open security policy</a>
+          </div>
+        </div>
+      </section>
+
+      <section className="section" id="interest">
+        <h3>Expression of Interest</h3>
+        <div className="interest-wrapper">
+          <div className="card">
+            <h4>Tell us you’re interested</h4>
+            <p>
+              Submissions are public so collaborators can see who is exploring the protocol.
+              Email is optional and shown only if you opt in.
+            </p>
+            <form className="interest-form" data-interest-form>
+              <div className="field">
+                <label htmlFor="name">Name *</label>
+                <input id="name" name="name" type="text" required />
+              </div>
+              <div className="field">
+                <label htmlFor="organization">Organization</label>
+                <input id="organization" name="organization" type="text" />
+              </div>
+              <div className="field">
+                <label htmlFor="role">Role</label>
+                <input id="role" name="role" type="text" />
+              </div>
+              <div className="field">
+                <label htmlFor="country">Country</label>
+                <input id="country" name="country" type="text" />
+              </div>
+              <div className="field">
+                <label htmlFor="city">City</label>
+                <input id="city" name="city" type="text" />
+              </div>
+              <div className="field">
+                <label htmlFor="website">Website</label>
+                <input id="website" name="website" type="url" />
+              </div>
+              <div className="field">
+                <label htmlFor="email">Email</label>
+                <input id="email" name="email" type="email" />
+              </div>
+              <div className="field">
+                <label htmlFor="message">Message</label>
+                <textarea id="message" name="message"></textarea>
+              </div>
+              <div className="field inline">
+                <input id="shareEmail" name="shareEmail" type="checkbox" />
+                <label htmlFor="shareEmail">Show my email in the public list</label>
+              </div>
+              <div className="field inline">
+                <input id="consentPublic" name="consentPublic" type="checkbox" required />
+                <label htmlFor="consentPublic">I agree my submission is listed publicly</label>
+              </div>
+              <input type="text" name="honey" tabIndex={-1} autoComplete="off" style={{ display: 'none' }} />
+              <div className="field">
+                <button className="button primary" type="submit">Submit interest</button>
+              </div>
+              <div className="notice" data-interest-status>Ready for your submission.</div>
+            </form>
+          </div>
+          <div className="card">
+            <h4>Public interest list</h4>
+            <div className="interest-list" data-interest-list></div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section" id="schemas">
+        <h3>Schema Library</h3>
+        <div className="grid">
+          <div className="card">
+            <h4>MaterialDNA</h4>
+            <p>Material registry identifiers and metadata.</p>
+            <a href="/viewer.html?path=projects/loop-protocol/schemas/material-dna.schema.json&title=MaterialDNA%20Schema">Open schema</a>
+          </div>
+          <div className="card">
+            <h4>LoopCoin</h4>
+            <p>Currency configuration, transfers, and settlement.</p>
+            <a href="/viewer.html?path=projects/loop-protocol/schemas/loopcoin.schema.json&title=LoopCoin%20Schema">Open schema</a>
+          </div>
+          <div className="card">
+            <h4>LoopSignal</h4>
+            <p>Community preference configuration and voting.</p>
+            <a href="/viewer.html?path=projects/loop-protocol/schemas/loopsignal.schema.json&title=LoopSignal%20Schema">Open schema</a>
+          </div>
+          <div className="card">
+            <h4>Transactions</h4>
+            <p>Material transactions, settlements, and status.</p>
+            <a href="/viewer.html?path=projects/loop-protocol/schemas/transaction.schema.json&title=Transaction%20Schema">Open schema</a>
+          </div>
+          <div className="card">
+            <h4>Node Info</h4>
+            <p>Node metadata, registry, and status.</p>
+            <a href="/viewer.html?path=projects/loop-protocol/schemas/node-info.schema.json&title=Node%20Info%20Schema">Open schema</a>
+          </div>
+        </div>
+      </section>
+
+      <section className="section" id="examples">
+        <h3>Validated Examples</h3>
+        <div className="grid">
+          <div className="card">
+            <h4>Material Registration</h4>
+            <p>Full MaterialDNA payload for onboarding a batch.</p>
+            <a href="/viewer.html?path=projects/loop-protocol/examples/01-material-registration.json&title=Material%20Registration">View example</a>
+          </div>
+          <div className="card">
+            <h4>LoopCoin Transfer</h4>
+            <p>Local currency payment linked to material flow.</p>
+            <a href="/viewer.html?path=projects/loop-protocol/examples/02-loopcoin-transfer.json&title=LoopCoin%20Transfer">View example</a>
+          </div>
+          <div className="card">
+            <h4>Signal Voting</h4>
+            <p>LoopVote result record after community vote.</p>
+            <a href="/viewer.html?path=projects/loop-protocol/examples/03-signal-voting.json&title=Signal%20Voting">View example</a>
+          </div>
+          <div className="card">
+            <h4>Cross-City Trade</h4>
+            <p>Material transaction with LoopCost breakdown.</p>
+            <a href="/viewer.html?path=projects/loop-protocol/examples/04-cross-city-trade.json&title=Cross-City%20Trade">View example</a>
+          </div>
+          <div className="card">
+            <h4>Complete Flow</h4>
+            <p>Multi-step flow from registration to settlement.</p>
+            <a href="/viewer.html?path=projects/loop-protocol/examples/05-complete-flow.json&title=Complete%20Flow">View example</a>
+          </div>
+        </div>
+      </section>
+
+      <section className="section" id="rfcs">
+        <h3>Governance and RFCs</h3>
+        <div className="grid">
+          <div className="card">
+            <h4>RFC Guide</h4>
+            <p>How protocol changes are proposed and reviewed.</p>
+            <a href="/viewer.html?path=projects/loop-protocol/rfcs/README.md&title=RFCs">Open RFC guide</a>
+          </div>
+          <div className="card">
+            <h4>RFC Template</h4>
+            <p>Standard template for drafting new proposals.</p>
+            <a href="/viewer.html?path=projects/loop-protocol/rfcs/0000-template.md&title=RFC%20Template">Open template</a>
+          </div>
+          <div className="card">
+            <h4>Smart Contract Integration</h4>
+            <p>Draft RFC for optional settlement automation.</p>
+            <a href="/viewer.html?path=projects/loop-protocol/rfcs/0004-smart-contract-integration.md&title=RFC%200004">Open RFC 0004</a>
+          </div>
+        </div>
+      </section>
+
+      <section className="section" id="docs">
+        <h3>Operator and Developer Docs</h3>
+        <div className="grid">
+          <div className="card">
+            <h4>Implementation Guide</h4>
+            <p>Build a compliant node with minimal components.</p>
+            <a href="/viewer.html?path=projects/loop-protocol/docs/implementation-guide.md&title=Implementation%20Guide">Open guide</a>
+          </div>
+          <div className="card">
+            <h4>Security Guide</h4>
+            <p>Operational security playbook for node operators.</p>
+            <a href="/viewer.html?path=projects/loop-protocol/docs/security-guide.md&title=Security%20Guide">Open guide</a>
+          </div>
+          <div className="card">
+            <h4>Secure Coding</h4>
+            <p>Developer guardrails for building LOOP services.</p>
+            <a href="/viewer.html?path=projects/loop-protocol/docs/secure-coding.md&title=Secure%20Coding">Open guide</a>
+          </div>
+          <div className="card">
+            <h4>Incident Response</h4>
+            <p>Prepare for containment, recovery, and post-mortems.</p>
+            <a href="/viewer.html?path=projects/loop-protocol/docs/incident-response.md&title=Incident%20Response">Open playbook</a>
+          </div>
+          <div className="card">
+            <h4>FAQ</h4>
+            <p>Answer recurring questions about the protocol.</p>
+            <a href="/viewer.html?path=projects/loop-protocol/docs/faq.md&title=FAQ">Open FAQ</a>
+          </div>
+          <div className="card">
+            <h4>Glossary</h4>
+            <p>Shared vocabulary for the LOOP ecosystem.</p>
+            <a href="/viewer.html?path=projects/loop-protocol/docs/glossary.md&title=Glossary">Open glossary</a>
+          </div>
+        </div>
+      </section>
+
+      <SiteFooter />
+
+      <Script src="/assets/js/config.js" strategy="beforeInteractive" />
+      <Script src="/assets/js/interest.js" strategy="afterInteractive" />
+    </>
+  );
+}

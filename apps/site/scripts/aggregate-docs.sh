@@ -46,7 +46,7 @@ for repo in "${REPOS[@]}"; do
   }
 
   SRC="$WORK_DIR/$repo_trimmed"
-  DEST="$ROOT_DIR/projects/$repo_trimmed"
+  DEST="$ROOT_DIR/public/projects/$repo_trimmed"
   mkdir -p "$DEST"
 
   sync_file "$SRC/README.md" "$DEST/README.md"
