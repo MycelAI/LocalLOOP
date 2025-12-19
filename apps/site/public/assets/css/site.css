@@ -89,11 +89,12 @@ nav {
 
 .nav-links {
   display: flex;
-  gap: 18px;
+  gap: 14px;
   flex-wrap: wrap;
 }
 
-.nav-links a {
+.nav-links a,
+.nav-trigger {
   text-decoration: none;
   color: var(--ink);
   font-weight: 500;
@@ -102,9 +103,67 @@ nav {
   transition: background 0.2s ease, color 0.2s ease;
 }
 
-.nav-links a:hover {
+.nav-links a:hover,
+.nav-trigger:hover,
+.nav-trigger:focus {
   background: rgba(224, 108, 71, 0.12);
   color: var(--accent);
+}
+
+.nav-group {
+  position: relative;
+}
+
+.nav-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid transparent;
+  background: transparent;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.nav-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  min-width: 220px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(11, 27, 43, 0.12);
+  padding: 12px;
+  display: grid;
+  gap: 6px;
+  box-shadow: 0 18px 30px rgba(11, 27, 43, 0.14);
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 10;
+}
+
+.nav-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.7rem;
+  color: var(--ink-soft);
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.nav-menu a {
+  padding: 6px 8px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.nav-group:hover .nav-menu,
+.nav-group:focus-within .nav-menu {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
 }
 
 .hero {
@@ -400,5 +459,38 @@ nav {
 
   .table-list div {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 960px) {
+  nav {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .nav-links {
+    width: 100%;
+  }
+
+  .nav-group {
+    width: 100%;
+  }
+
+  .nav-trigger {
+    width: 100%;
+    justify-content: space-between;
+    border-color: rgba(11, 27, 43, 0.12);
+    background: rgba(255, 255, 255, 0.75);
+  }
+
+  .nav-menu {
+    position: static;
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+    box-shadow: none;
+    border: none;
+    background: transparent;
+    padding: 0 0 8px;
   }
 }

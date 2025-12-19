@@ -21,8 +21,8 @@ export default function MaterialDNAPage() {
             >
               Review the schema
             </a>
-            <a className="button secondary" href="/">
-              Back to hub
+            <a className="button secondary" href="/cities">
+              City portals
             </a>
           </div>
         </div>
@@ -51,7 +51,7 @@ export default function MaterialDNAPage() {
           <div className="card">
             <h4>Pilots</h4>
             <p>No public pilots or deployments yet.</p>
-            <a href="/#interest">Register interest</a>
+            <a href="/interest">Register interest</a>
           </div>
           <div className="card">
             <h4>Integration</h4>

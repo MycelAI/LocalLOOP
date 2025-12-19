@@ -6,8 +6,8 @@ const path = require('node:path');
 const read = (segments) =>
   fs.readFileSync(path.join(process.cwd(), ...segments), 'utf8');
 
-test('home page wires interest form hooks', () => {
-  const content = read(['app', 'page.jsx']);
+test('interest page wires interest form hooks', () => {
+  const content = read(['app', 'interest', 'page.jsx']);
   assert.ok(content.includes('data-interest-form'));
   assert.ok(content.includes('data-interest-list'));
   assert.ok(content.includes('data-interest-status'));

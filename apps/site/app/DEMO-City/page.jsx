@@ -15,8 +15,8 @@ export default function DemoCityPage() {
             There are no active deployments yet.
           </p>
           <div className="cta-row">
-            <a className="button primary" href="/#interest">Register interest</a>
-            <a className="button secondary" href="/">Back to hub</a>
+            <a className="button primary" href="/interest">Register interest</a>
+            <a className="button secondary" href="/cities">Back to city portals</a>
           </div>
         </div>
         <div className="hero-card">
@@ -39,7 +39,7 @@ export default function DemoCityPage() {
           <div className="card">
             <h4>City profile</h4>
             <p>Population, circular economy goals, and governance model.</p>
-            <a href="/#interest">Express interest</a>
+            <a href="/interest">Express interest</a>
           </div>
           <div className="card">
             <h4>Material streams</h4>
