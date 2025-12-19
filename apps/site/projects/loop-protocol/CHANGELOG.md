@@ -19,6 +19,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Clarified LoopSignal voting weight calculations
 - Updated project structure documentation
+- Adjusted README to remove unverified deployment claims
+- Updated maintainer contact details
 
 ### Deprecated
 - Nothing yet
