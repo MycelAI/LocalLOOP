@@ -16,13 +16,23 @@
     statusEl.style.color = isError ? '#b3261e' : '#234058';
   }
 
+  function escapeHtml(value) {
+    if (!value) return '';
+    return value
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/\"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
   function formatEntry(entry) {
-    const name = entry.name || 'Anonymous';
-    const org = entry.organization ? ` • ${entry.organization}` : '';
-    const role = entry.role ? ` (${entry.role})` : '';
-    const location = [entry.city, entry.country].filter(Boolean).join(', ');
-    const website = entry.website ? ` • ${entry.website}` : '';
-    const email = entry.email ? ` • ${entry.email}` : '';
+    const name = escapeHtml(entry.name || 'Anonymous');
+    const org = entry.organization ? ` • ${escapeHtml(entry.organization)}` : '';
+    const role = entry.role ? ` (${escapeHtml(entry.role)})` : '';
+    const location = [entry.city, entry.country].filter(Boolean).map(escapeHtml).join(', ');
+    const website = entry.website ? ` • ${escapeHtml(entry.website)}` : '';
+    const email = entry.email ? ` • ${escapeHtml(entry.email)}` : '';
     const meta = [location, entry.created_at ? new Date(entry.created_at).toLocaleDateString() : null]
       .filter(Boolean)
       .join(' • ');
@@ -31,7 +41,7 @@
       <div class="interest-card">
         <h4>${name}${org}${role}</h4>
         <p>${meta}${website}${email}</p>
-        ${entry.message ? `<p>${entry.message}</p>` : ''}
+        ${entry.message ? `<p>${escapeHtml(entry.message)}</p>` : ''}
       </div>
     `;
   }
