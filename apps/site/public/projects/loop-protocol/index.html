@@ -5,66 +5,163 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>LOOP Protocol Project</title>
     <link rel="stylesheet" href="../../assets/css/site.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/thin/style.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/bold/style.css"
+    />
   </head>
   <body>
     <header>
       <nav>
         <div class="nav-brand">
-          <h1>LOOP Protocol</h1>
-          <span>Project Index</span>
+          <span class="nav-logo" aria-hidden="true">
+            <i class="ph-bold ph-infinity"></i>
+          </span>
+          <h1>localLOOP</h1>
+          <span class="nav-subtitle">Protocol Repository</span>
         </div>
         <div class="nav-links">
-          <a href="../../index.html">Hub</a>
-          <a href="../../viewer.html?path=projects/loop-protocol/SPECIFICATION.md&title=LOOP%20Protocol%20Specification">Spec</a>
-          <a href="../../viewer.html?path=projects/loop-protocol/CHANGELOG.md&title=Changelog">Changelog</a>
-          <a href="../../viewer.html?path=projects/loop-protocol/README.md&title=README">README</a>
+          <div class="nav-group">
+            <a class="nav-trigger" href="/">Platform</a>
+            <div class="nav-menu">
+              <span class="nav-eyebrow">Platform</span>
+              <a href="/">Overview</a>
+              <a href="/materialDNA">MaterialDNA</a>
+              <a href="/cities">City Portals</a>
+              <a href="/DEMO-City">DEMO City</a>
+            </div>
+          </div>
+          <div class="nav-group">
+            <a class="nav-trigger active" href="/protocol">Protocol</a>
+            <div class="nav-menu">
+              <span class="nav-eyebrow">Protocol</span>
+              <a href="/protocol">Overview</a>
+              <a href="/protocol/spec">Specification</a>
+              <a href="/protocol/changelog">Changelog</a>
+              <a href="/protocol/security">Security</a>
+            </div>
+          </div>
+          <div class="nav-group">
+            <a class="nav-trigger" href="/library">Library</a>
+            <div class="nav-menu">
+              <span class="nav-eyebrow">Library</span>
+              <a href="/library/schemas">Schemas</a>
+              <a href="/library/examples">Examples</a>
+              <a href="/library">All resources</a>
+            </div>
+          </div>
+          <div class="nav-group">
+            <a class="nav-trigger" href="/governance">Governance</a>
+            <div class="nav-menu">
+              <span class="nav-eyebrow">Governance</span>
+              <a href="/governance/rfcs">RFC Guide</a>
+              <a href="/governance/template">RFC Template</a>
+              <a href="/governance/smart-contracts">Smart Contracts</a>
+            </div>
+          </div>
+          <div class="nav-group">
+            <a class="nav-trigger" href="/docs">Docs</a>
+            <div class="nav-menu">
+              <span class="nav-eyebrow">Docs</span>
+              <a href="/docs/implementation">Implementation</a>
+              <a href="/docs/security">Security Guide</a>
+              <a href="/docs/secure-coding">Secure Coding</a>
+              <a href="/docs/incident-response">Incident Response</a>
+              <a href="/docs/faq">FAQ</a>
+              <a href="/docs/glossary">Glossary</a>
+            </div>
+          </div>
+          <div class="nav-group">
+            <a class="nav-trigger" href="/interest">Engage</a>
+            <div class="nav-menu">
+              <span class="nav-eyebrow">Engage</span>
+              <a href="/interest">Express Interest</a>
+              <a href="/projects">Project Hub</a>
+              <a href="/contribute">Contribute</a>
+            </div>
+          </div>
         </div>
       </nav>
     </header>
 
-    <section class="hero">
-      <div class="hero-card">
-        <div class="badge">Version 0.1</div>
-        <h2>Protocol documentation, schemas, and examples.</h2>
-        <p>
-          Everything in this directory mirrors the official protocol repository. Use the
-          viewer to read markdown and inspect JSON payloads.
-        </p>
-        <div class="cta-row">
-          <a class="button primary" href="../../viewer.html?path=projects/loop-protocol/SPECIFICATION.md&title=LOOP%20Protocol%20Specification">Open specification</a>
-          <a class="button secondary" href="../../viewer.html?path=projects/loop-protocol/README.md&title=README">View README</a>
+    <section class="hero hero-wide">
+      <div class="hero-wide-bg" aria-hidden="true">
+        <span class="loop-orbit loop-orbit-one"></span>
+        <span class="loop-orbit loop-orbit-two"></span>
+        <span class="loop-orbit loop-orbit-three"></span>
+      </div>
+      <div class="hero-top">
+        <div class="hero-wide-content">
+          <div class="hero-kicker">Protocol Repository</div>
+          <h2>LOOP protocol reference artifacts.</h2>
+          <p>
+            The repository mirror for specifications, schemas, examples, and RFC guidance.
+            Use the viewer to inspect markdown and JSON payloads used across the LocalLoop
+            protocol stack.
+          </p>
+          <div class="cta-row">
+            <a class="button primary" href="../../viewer.html?path=projects/loop-protocol/SPECIFICATION.md&title=LOOP%20Protocol%20Specification">Open specification</a>
+            <a class="button secondary" href="../../viewer.html?path=projects/loop-protocol/README.md&title=README">View README</a>
+          </div>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <div class="loop-sculpture">
+            <span class="loop-core"></span>
+          </div>
+          <span class="loop-glow"></span>
         </div>
       </div>
-      <div class="hero-card">
-        <h3>Quick Links</h3>
-        <div class="table-list">
-          <div><span>Docs</span><div><a href="../../viewer.html?path=projects/loop-protocol/docs/implementation-guide.md&title=Implementation%20Guide">Implementation guide</a></div></div>
-          <div><span>Schemas</span><div><a href="../../viewer.html?path=projects/loop-protocol/schemas/material-dna.schema.json&title=MaterialDNA%20Schema">MaterialDNA schema</a></div></div>
-          <div><span>Examples</span><div><a href="../../viewer.html?path=projects/loop-protocol/examples/05-complete-flow.json&title=Complete%20Flow">Complete flow</a></div></div>
-          <div><span>RFCs</span><div><a href="../../viewer.html?path=projects/loop-protocol/rfcs/README.md&title=RFCs">RFC guide</a></div></div>
+      <div class="hero-wide-panels">
+        <div class="hero-panel">
+          <h3>Docs</h3>
+          <p>Implementation guide, glossary, and operator references.</p>
+        </div>
+        <div class="hero-panel">
+          <h3>Schemas</h3>
+          <p>JSON schemas for MaterialDNA, LoopCoin, and LoopSignal.</p>
+        </div>
+        <div class="hero-panel">
+          <h3>Examples</h3>
+          <p>Validated payload examples and end-to-end flows.</p>
         </div>
       </div>
     </section>
 
     <section class="section">
-      <h3>Repository Artifacts</h3>
+      <h3>Repository artifacts</h3>
       <div class="grid">
-        <div class="card">
-          <h4>Core Docs</h4>
+        <div class="card has-icon">
+          <span class="card-icon" aria-hidden="true">
+            <i class="ph-thin ph-book-open-text"></i>
+          </span>
+          <h4>Core docs</h4>
           <p>README, security policy, and contribution guidance.</p>
           <a href="../../viewer.html?path=projects/loop-protocol/CONTRIBUTING.md&title=Contributing">Contributing</a>
         </div>
-        <div class="card">
-          <h4>Docs Folder</h4>
+        <div class="card has-icon">
+          <span class="card-icon" aria-hidden="true">
+            <i class="ph-thin ph-notebook"></i>
+          </span>
+          <h4>Docs folder</h4>
           <p>Guides, glossary, FAQ, and runbooks.</p>
           <a href="../../viewer.html?path=projects/loop-protocol/docs/glossary.md&title=Glossary">Open glossary</a>
         </div>
-        <div class="card">
+        <div class="card has-icon">
+          <span class="card-icon" aria-hidden="true">
+            <i class="ph-thin ph-brackets-curly"></i>
+          </span>
           <h4>Schemas</h4>
-          <p>JSON Schemas for all payload types.</p>
+          <p>JSON schemas for every payload type.</p>
           <a href="../../viewer.html?path=projects/loop-protocol/schemas/README.md&title=Schema%20Library">Open schema library</a>
         </div>
-        <div class="card">
+        <div class="card has-icon">
+          <span class="card-icon" aria-hidden="true">
+            <i class="ph-thin ph-flow-arrow"></i>
+          </span>
           <h4>Examples</h4>
           <p>Validated examples used in tests.</p>
           <a href="../../viewer.html?path=projects/loop-protocol/examples/README.md&title=Examples">Open examples</a>
@@ -73,7 +170,7 @@
     </section>
 
     <footer class="footer">
-      <div>LOOP Protocol project mirror for LocalLoop docs hub.</div>
+      <div>LOOP Protocol project mirror for the LocalLoop docs hub.</div>
       <div>© <span data-year></span> LocalLoop. All rights reserved.</div>
     </footer>
 
