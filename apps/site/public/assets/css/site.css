@@ -109,6 +109,8 @@ header {
   padding: 32px var(--gutter) 16px;
   max-width: var(--page-max);
   margin: 0 auto;
+  position: relative;
+  z-index: 50;
 }
 
 .status-banner {
@@ -255,7 +257,7 @@ nav {
   transform: translateY(8px);
   pointer-events: none;
   transition: opacity 0.2s ease, transform 0.2s ease;
-  z-index: 10;
+  z-index: 100;
 }
 
 .nav-eyebrow {
