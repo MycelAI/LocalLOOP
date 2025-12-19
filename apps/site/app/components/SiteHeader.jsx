@@ -11,7 +11,7 @@ const matchesPath = (pathname, prefixes) =>
     return pathname === prefix || pathname.startsWith(`${prefix}/`);
   });
 
-export function SiteHeader({ subtitle = 'Protocol Knowledge Base', showStatus = true }) {
+export function SiteHeader({ subtitle = '' }) {
   const pathname = usePathname();
   const headerRef = useRef(null);
   const closeTimer = useRef(null);
@@ -63,7 +63,7 @@ export function SiteHeader({ subtitle = 'Protocol Knowledge Base', showStatus = 
     cancelClose();
     closeTimer.current = setTimeout(() => {
       setOpenMenu(null);
-    }, 220);
+    }, 260);
   };
 
   const handleBlur = (event) => {
@@ -77,8 +77,15 @@ export function SiteHeader({ subtitle = 'Protocol Knowledge Base', showStatus = 
     <header ref={headerRef}>
       <nav>
         <div className="nav-brand">
-          <h1>LocalLoop</h1>
-          <span>{subtitle}</span>
+          <span className="nav-logo" aria-hidden="true">
+            <svg viewBox="0 0 120 48" role="presentation">
+              <path
+                d="M20 24c0-10.5 8.5-19 19-19 12.5 0 21 10 32 19 11-9 19.5-19 32-19 10.5 0 19 8.5 19 19s-8.5 19-19 19c-12.5 0-21-10-32-19-11 9-19.5 19-32 19-10.5 0-19-8.5-19-19Z"
+              />
+            </svg>
+          </span>
+          <h1>localLOOP</h1>
+          {subtitle ? <span className="nav-subtitle">{subtitle}</span> : null}
         </div>
         <div className="nav-links">
           <div
@@ -232,11 +239,6 @@ export function SiteHeader({ subtitle = 'Protocol Knowledge Base', showStatus = 
           </div>
         </div>
       </nav>
-      {showStatus ? (
-        <div className="status-banner" role="note">
-          Early-stage concept — no public pilots or deployments yet.
-        </div>
-      ) : null}
     </header>
   );
 }

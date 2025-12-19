@@ -31,22 +31,22 @@ export default function ProjectsPage() {
       <div className="content-panel">
         <h3>Project resources</h3>
         <div className="grid">
-          <div className="card">
+          <div className="card" data-icon="SP">
             <h4>Specification</h4>
             <p>Normative requirements and endpoint flows.</p>
             <a href="/viewer.html?path=projects/loop-protocol/SPECIFICATION.md&title=Specification">Open spec</a>
           </div>
-          <div className="card">
+          <div className="card" data-icon="SE">
             <h4>Security Policy</h4>
             <p>Disclosure and operator requirements.</p>
             <a href="/viewer.html?path=projects/loop-protocol/SECURITY.md&title=Security%20Policy">Open policy</a>
           </div>
-          <div className="card">
+          <div className="card" data-icon="CO">
             <h4>Contribution Guide</h4>
             <p>How to contribute and collaborate.</p>
             <a href="/viewer.html?path=projects/loop-protocol/CONTRIBUTING.md&title=Contributing">Open guide</a>
           </div>
-          <div className="card">
+          <div className="card" data-icon="CC">
             <h4>Code of Conduct</h4>
             <p>Community expectations for collaboration.</p>
             <a href="/viewer.html?path=projects/loop-protocol/CODE_OF_CONDUCT.md&title=Code%20of%20Conduct">Open policy</a>

@@ -8,9 +8,9 @@ test('site styles are applied', async ({ page }) => {
   );
   expect(background).toContain('linear-gradient');
 
-  const heroCard = page.locator('.hero-card').first();
-  await expect(heroCard).toBeVisible();
-  const radius = await heroCard.evaluate((el) =>
+  const heroPanel = page.locator('.hero-panel').first();
+  await expect(heroPanel).toBeVisible();
+  const radius = await heroPanel.evaluate((el) =>
     window.getComputedStyle(el).borderRadius
   );
   expect(radius).not.toBe('0px');

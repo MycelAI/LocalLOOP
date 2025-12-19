@@ -4,7 +4,7 @@ test('home page loads primary navigation', async ({ page }) => {
   await page.goto('/');
 
   await expect(
-    page.getByRole('heading', { name: /Host the entire LOOP Protocol stack in one place/i })
+    page.getByRole('heading', { name: /Local Optimization with Overflow Protocol/i })
   ).toBeVisible();
 
   await expect(page.locator('.nav-trigger', { hasText: 'Protocol' })).toBeVisible();

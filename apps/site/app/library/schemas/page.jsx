@@ -30,27 +30,27 @@ export default function SchemasPage() {
       <div className="content-panel">
         <h3>Schema catalog</h3>
         <div className="grid">
-          <div className="card">
+          <div className="card" data-icon="MD">
             <h4>MaterialDNA</h4>
             <p>Material registry identifiers and metadata.</p>
             <a href="/viewer.html?path=projects/loop-protocol/schemas/material-dna.schema.json&title=MaterialDNA%20Schema">Open schema</a>
           </div>
-          <div className="card">
+          <div className="card" data-icon="LC">
             <h4>LoopCoin</h4>
             <p>Currency configuration, transfers, and settlement.</p>
             <a href="/viewer.html?path=projects/loop-protocol/schemas/loopcoin.schema.json&title=LoopCoin%20Schema">Open schema</a>
           </div>
-          <div className="card">
+          <div className="card" data-icon="LS">
             <h4>LoopSignal</h4>
             <p>Community preference configuration and voting.</p>
             <a href="/viewer.html?path=projects/loop-protocol/schemas/loopsignal.schema.json&title=LoopSignal%20Schema">Open schema</a>
           </div>
-          <div className="card">
+          <div className="card" data-icon="TX">
             <h4>Transactions</h4>
             <p>Material transactions, settlements, and status.</p>
             <a href="/viewer.html?path=projects/loop-protocol/schemas/transaction.schema.json&title=Transaction%20Schema">Open schema</a>
           </div>
-          <div className="card">
+          <div className="card" data-icon="NI">
             <h4>Node Info</h4>
             <p>Node metadata, registry, and status.</p>
             <a href="/viewer.html?path=projects/loop-protocol/schemas/node-info.schema.json&title=Node%20Info%20Schema">Open schema</a>

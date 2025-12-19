@@ -1,4 +1,5 @@
 import Script from 'next/script';
+import { StickyInterestCta } from './components/StickyInterestCta';
 
 export const metadata = {
   title: 'LocalLoop Protocol Hub',
@@ -18,6 +19,7 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         {children}
+        <StickyInterestCta />
         <Script src="/assets/js/config.js" strategy="beforeInteractive" />
         <Script src="/assets/js/main.js" strategy="afterInteractive" />
         <Script src="/assets/js/interest.js" strategy="afterInteractive" />

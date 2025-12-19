@@ -26,12 +26,12 @@ export default function CitiesPage() {
       <div className="content-panel">
         <h3>Available portals</h3>
         <div className="grid">
-          <div className="card">
+          <div className="card" data-icon="DC">
             <h4>DEMO City</h4>
             <p>Sample portal to illustrate a future city experience.</p>
             <a href="/DEMO-City">Open demo portal</a>
           </div>
-          <div className="card">
+          <div className="card" data-icon="FT">
             <h4>Future cities</h4>
             <p>City subdomains will launch as pilots begin.</p>
             <a href="/interest">Express interest</a>

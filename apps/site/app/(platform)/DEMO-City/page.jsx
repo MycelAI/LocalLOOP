@@ -30,17 +30,17 @@ export default function DemoCityPage() {
       <div className="content-panel">
         <h3>Prototype modules</h3>
         <div className="grid">
-          <div className="card">
+          <div className="card" data-icon="CP">
             <h4>City profile</h4>
             <p>Population, circular economy goals, and governance model.</p>
             <a href="/interest">Express interest</a>
           </div>
-          <div className="card">
+          <div className="card" data-icon="MS">
             <h4>Material streams</h4>
             <p>Catalog of priority material categories and current bottlenecks.</p>
             <a href="/viewer.html?path=projects/loop-protocol/README.md&title=LOOP%20Protocol%20README">Review the protocol</a>
           </div>
-          <div className="card">
+          <div className="card" data-icon="DI">
             <h4>Data integrations</h4>
             <p>Planned data sources, schemas, and interoperability guidance.</p>
             <a href="/viewer.html?path=projects/loop-protocol/docs/implementation-guide.md&title=Implementation%20Guide">Implementation guide</a>

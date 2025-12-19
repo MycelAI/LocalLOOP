@@ -27,17 +27,17 @@ export default function ProtocolPage() {
       <div className="content-panel">
         <h3>Protocol references</h3>
         <div className="grid">
-          <div className="card">
+          <div className="card" data-icon="SP">
             <h4>Specification v0.1</h4>
             <p>Normative requirements, API endpoints, and federation flows.</p>
             <a href="/protocol/spec">Open specification</a>
           </div>
-          <div className="card">
+          <div className="card" data-icon="CL">
             <h4>Changelog</h4>
             <p>Track released changes and planned updates.</p>
             <a href="/protocol/changelog">Open changelog</a>
           </div>
-          <div className="card">
+          <div className="card" data-icon="SE">
             <h4>Security policy</h4>
             <p>Disclosure process, cryptography, and operator requirements.</p>
             <a href="/protocol/security">Open security policy</a>
