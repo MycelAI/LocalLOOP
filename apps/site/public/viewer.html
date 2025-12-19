@@ -5,19 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>LocalLoop Document Viewer</title>
     <link rel="stylesheet" href="/assets/css/site.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/thin/style.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/bold/style.css"
+    />
   </head>
   <body>
     <header>
       <nav>
         <div class="nav-brand">
-          <h1>LocalLoop</h1>
-          <span>Document Viewer</span>
+          <span class="nav-logo" aria-hidden="true">
+            <i class="ph-bold ph-infinity"></i>
+          </span>
+          <h1>localLOOP</h1>
+          <span class="nav-subtitle">Document Viewer</span>
         </div>
         <div class="nav-links">
-          <a href="/">Home</a>
-          <a href="/viewer.html?path=projects/loop-protocol/README.md&title=LOOP%20Protocol%20README">Project</a>
-          <a href="/viewer.html?path=projects/loop-protocol/SPECIFICATION.md&title=LOOP%20Protocol%20Specification">Spec</a>
-          <a href="/viewer.html?path=projects/loop-protocol/README.md&title=README">README</a>
+          <div class="nav-group">
+            <a class="nav-trigger" href="/">Platform</a>
+            <div class="nav-menu">
+              <span class="nav-eyebrow">Platform</span>
+              <a href="/">Overview</a>
+              <a href="/materialDNA">MaterialDNA</a>
+              <a href="/cities">City Portals</a>
+              <a href="/DEMO-City">DEMO City</a>
+            </div>
+          </div>
+          <div class="nav-group">
+            <a class="nav-trigger" href="/protocol">Protocol</a>
+            <div class="nav-menu">
+              <span class="nav-eyebrow">Protocol</span>
+              <a href="/protocol">Overview</a>
+              <a href="/protocol/spec">Specification</a>
+              <a href="/protocol/changelog">Changelog</a>
+              <a href="/protocol/security">Security</a>
+            </div>
+          </div>
+          <div class="nav-group">
+            <a class="nav-trigger" href="/library">Library</a>
+            <div class="nav-menu">
+              <span class="nav-eyebrow">Library</span>
+              <a href="/library/schemas">Schemas</a>
+              <a href="/library/examples">Examples</a>
+              <a href="/library">All resources</a>
+            </div>
+          </div>
+          <div class="nav-group">
+            <a class="nav-trigger" href="/docs">Docs</a>
+            <div class="nav-menu">
+              <span class="nav-eyebrow">Docs</span>
+              <a href="/docs/implementation">Implementation</a>
+              <a href="/docs/security">Security Guide</a>
+              <a href="/docs/secure-coding">Secure Coding</a>
+              <a href="/docs/incident-response">Incident Response</a>
+              <a href="/docs/faq">FAQ</a>
+              <a href="/docs/glossary">Glossary</a>
+            </div>
+          </div>
         </div>
       </nav>
     </header>
