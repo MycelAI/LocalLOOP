@@ -46,6 +46,18 @@ bun run lab:demo`}</code></pre>
       </div>
 
       <div className="content-panel">
+        <h3>Optional API key protection</h3>
+        <p>
+          If you enable API key protection, write endpoints require an `x-api-key`
+          header (or `Authorization: Bearer &lt;key&gt;`). This is optional and
+          disabled by default.
+        </p>
+        <div className="code-block">
+          <pre><code>{`API_KEY_ENABLED=true\nAPI_KEY=change-me`}</code></pre>
+        </div>
+      </div>
+
+      <div className="content-panel">
         <h3>Federation relay demo (two nodes)</h3>
         <p>
           Spins up two local node instances and relays events to demonstrate

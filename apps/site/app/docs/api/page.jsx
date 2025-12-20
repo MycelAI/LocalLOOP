@@ -21,6 +21,7 @@ export default function ApiDocsPage() {
         <p>
           The public API documentation is served from the lab backend. If you are
           running locally, make sure the API is available at the configured base URL.
+          Write endpoints may require an API key if enabled.
         </p>
         <div className="cta-row">
           <a className="button primary" href="/docs/metrics">View metrics</a>
