@@ -1,0 +1,31 @@
+<svg width="1200" height="360" viewBox="0 0 1200 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="360" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F6F2EA"/>
+      <stop offset="1" stop-color="#E9F0EC"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#E06C47"/>
+      <stop offset="1" stop-color="#2F9E85"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="360" rx="28" fill="url(#bg)"/>
+  <rect x="60" y="70" width="250" height="120" rx="18" fill="#FFFFFF" stroke="#D9E3DE"/>
+  <rect x="340" y="70" width="250" height="120" rx="18" fill="#FFFFFF" stroke="#D9E3DE"/>
+  <rect x="620" y="70" width="250" height="120" rx="18" fill="#FFFFFF" stroke="#D9E3DE"/>
+  <rect x="900" y="70" width="250" height="120" rx="18" fill="#FFFFFF" stroke="#D9E3DE"/>
+  <path d="M310 130H330" stroke="url(#accent)" stroke-width="6" stroke-linecap="round"/>
+  <path d="M590 130H610" stroke="url(#accent)" stroke-width="6" stroke-linecap="round"/>
+  <path d="M870 130H890" stroke="url(#accent)" stroke-width="6" stroke-linecap="round"/>
+  <text x="90" y="112" font-family="Space Grotesk, sans-serif" font-size="16" fill="#234058">1. MaterialDNA</text>
+  <text x="90" y="138" font-family="Space Grotesk, sans-serif" font-size="13" fill="#234058">Register material batch</text>
+  <text x="370" y="112" font-family="Space Grotesk, sans-serif" font-size="16" fill="#234058">2. Offer</text>
+  <text x="370" y="138" font-family="Space Grotesk, sans-serif" font-size="13" fill="#234058">Publish availability</text>
+  <text x="650" y="112" font-family="Space Grotesk, sans-serif" font-size="16" fill="#234058">3. Match</text>
+  <text x="650" y="138" font-family="Space Grotesk, sans-serif" font-size="13" fill="#234058">Accept cross-city match</text>
+  <text x="930" y="112" font-family="Space Grotesk, sans-serif" font-size="16" fill="#234058">4. Transfer</text>
+  <text x="930" y="138" font-family="Space Grotesk, sans-serif" font-size="13" fill="#234058">Record handoff & receipt</text>
+  <circle cx="140" cy="240" r="54" stroke="#E06C47" stroke-width="4" fill="none"/>
+  <circle cx="210" cy="240" r="54" stroke="#2F9E85" stroke-width="4" fill="none"/>
+  <text x="320" y="255" font-family="IBM Plex Mono, monospace" font-size="12" fill="#234058">Lab-only demo flow (v0.1.1)</text>
+</svg>

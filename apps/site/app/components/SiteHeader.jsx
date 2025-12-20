@@ -202,6 +202,7 @@ export function SiteHeader({ subtitle = '' }) {
             <div className="nav-menu" id="nav-menu-docs">
               <span className="nav-eyebrow">Docs</span>
               <a href="/docs/implementation" aria-current={pathname === '/docs/implementation' ? 'page' : undefined} className={pathname === '/docs/implementation' ? 'active' : ''}>Implementation</a>
+              <a href="/docs/lab-demo" aria-current={pathname === '/docs/lab-demo' ? 'page' : undefined} className={pathname === '/docs/lab-demo' ? 'active' : ''}>Lab demo</a>
               <a href="/docs/security" aria-current={pathname === '/docs/security' ? 'page' : undefined} className={pathname === '/docs/security' ? 'active' : ''}>Security Guide</a>
               <a href="/docs/secure-coding" aria-current={pathname === '/docs/secure-coding' ? 'page' : undefined} className={pathname === '/docs/secure-coding' ? 'active' : ''}>Secure Coding</a>
               <a href="/docs/incident-response" aria-current={pathname === '/docs/incident-response' ? 'page' : undefined} className={pathname === '/docs/incident-response' ? 'active' : ''}>Incident Response</a>

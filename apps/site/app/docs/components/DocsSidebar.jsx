@@ -26,6 +26,13 @@ export function DocsSidebar() {
           Implementation
         </a>
         <a
+          href="/docs/lab-demo"
+          aria-current={isActive(pathname, '/docs/lab-demo') ? 'page' : undefined}
+          className={isActive(pathname, '/docs/lab-demo') ? 'active' : ''}
+        >
+          Lab demo
+        </a>
+        <a
           href="/docs/security"
           aria-current={isActive(pathname, '/docs/security') ? 'page' : undefined}
           className={isActive(pathname, '/docs/security') ? 'active' : ''}

@@ -22,6 +22,7 @@ export default function SecurityGuidePage() {
         <div className="table-list">
           <div><span>Threat model</span><div>Key risks and mitigations</div></div>
           <div><span>Operational control</span><div>Logging, access, and response</div></div>
+          <div><span>GDPR baseline</span><div>Data minimization and consent</div></div>
         </div>
       </div>
     </div>

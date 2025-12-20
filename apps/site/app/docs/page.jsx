@@ -36,6 +36,14 @@ export default function DocsPage() {
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
+              <i className="ph-thin ph-activity"></i>
+            </span>
+            <h4>Lab Demo</h4>
+            <p>Run the minimal interop flow in a controlled environment.</p>
+            <a href="/docs/lab-demo">Open lab demo</a>
+          </div>
+          <div className="card has-icon">
+            <span className="card-icon" aria-hidden="true">
               <i className="ph-thin ph-shield-check"></i>
             </span>
             <h4>Security Guide</h4>
