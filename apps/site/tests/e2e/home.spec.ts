@@ -7,6 +7,7 @@ test('home page loads primary navigation', async ({ page }) => {
     page.getByRole('heading', { name: /Local Optimization with Overflow Protocol/i })
   ).toBeVisible();
 
+  await expect(page.locator('.nav-trigger', { hasText: 'Platform' })).toBeVisible();
   await expect(page.locator('.nav-trigger', { hasText: 'Protocol' })).toBeVisible();
   await expect(page.locator('.nav-trigger', { hasText: 'Docs' })).toBeVisible();
   await expect(page.locator('.nav-trigger', { hasText: 'Engage' })).toBeVisible();

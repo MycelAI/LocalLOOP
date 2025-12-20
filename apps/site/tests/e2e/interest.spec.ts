@@ -28,6 +28,7 @@ test.beforeEach(async ({ page }) => {
             website: 'https://example.com',
             email: 'hello@example.com',
             message: 'Exploring the protocol.',
+            is_demo: true,
             created_at: '2025-01-01T00:00:00Z',
           },
         ],
@@ -41,6 +42,7 @@ test('interest page loads list and form', async ({ page }) => {
 
   await expect(page.getByRole('heading', { name: /Expression of Interest/i })).toBeVisible();
   await expect(page.locator('.interest-card')).toHaveCount(1);
+  await expect(page.locator('.interest-badge')).toHaveText('DEMO');
   await expect(page.getByText('Test Cooperative')).toBeVisible();
 });
 

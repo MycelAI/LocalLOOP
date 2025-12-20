@@ -219,6 +219,7 @@ nav {
   color: var(--accent);
 }
 
+.nav-links a.active,
 .nav-trigger.active,
 .nav-menu a.active {
   background: rgba(47, 158, 133, 0.18);

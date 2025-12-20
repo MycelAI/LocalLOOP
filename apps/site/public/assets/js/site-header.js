@@ -3,6 +3,7 @@
   if (!host) return;
 
   const subtitle = host.dataset.siteSubtitle || '';
+  const forcedSection = host.dataset.activeSection;
   const sectionOrder = [
     { key: 'protocol', prefixes: ['/projects/loop-protocol', '/protocol'] },
     { key: 'platform', prefixes: ['/', '/materialDNA', '/cities', '/DEMO-City'] },
@@ -58,11 +59,10 @@
         }
       });
 
-      const activeSection = sectionOrder.find((section) => matchesPath(section.prefixes));
+      const activeSection = forcedSection || sectionOrder.find((section) => matchesPath(section.prefixes))?.key;
+      if (!activeSection) return;
       host.querySelectorAll('[data-nav-section]').forEach((trigger) => {
-        const section = trigger.getAttribute('data-nav-section');
-        if (!section) return;
-        if (activeSection && activeSection.key === section) {
+        if (trigger.getAttribute('data-nav-section') === activeSection) {
           trigger.classList.add('active');
         }
       });
