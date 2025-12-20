@@ -31,6 +31,7 @@ export default function RootLayout({ children }) {
         <Script src="/assets/js/config.js" strategy="beforeInteractive" />
         <Script src="/assets/js/main.js" strategy="afterInteractive" />
         <Script src="/assets/js/interest.js" strategy="afterInteractive" />
+        <Script src="/assets/js/metrics.js" strategy="afterInteractive" />
       </body>
     </html>
   );

@@ -8,10 +8,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "test": "node --test",
+    "test": "node --test tests/smoke.test.cjs",
     "test:e2e": "bun run build && playwright test",
     "test:e2e:ci": "playwright test",
-    "test:all": "node --test && bun run test:e2e"
+    "test:all": "node --test tests/smoke.test.cjs && bun run test:e2e"
   },
   "dependencies": {
     "next": "16.0.10",

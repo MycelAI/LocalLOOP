@@ -44,6 +44,22 @@ export default function DocsPage() {
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
+              <i className="ph-thin ph-file-doc"></i>
+            </span>
+            <h4>API Docs</h4>
+            <p>Redoc reference for the public lab API.</p>
+            <a href="/docs/api">Open API docs</a>
+          </div>
+          <div className="card has-icon">
+            <span className="card-icon" aria-hidden="true">
+              <i className="ph-thin ph-gauge"></i>
+            </span>
+            <h4>Metrics</h4>
+            <p>Live counters for lab activity and event flow.</p>
+            <a href="/docs/metrics">Open metrics</a>
+          </div>
+          <div className="card has-icon">
+            <span className="card-icon" aria-hidden="true">
               <i className="ph-thin ph-shield-check"></i>
             </span>
             <h4>Security Guide</h4>
@@ -81,6 +97,22 @@ export default function DocsPage() {
             <h4>Glossary</h4>
             <p>Shared vocabulary for the LOOP ecosystem.</p>
             <a href="/docs/glossary">Open glossary</a>
+          </div>
+          <div className="card has-icon">
+            <span className="card-icon" aria-hidden="true">
+              <i className="ph-thin ph-warning-circle"></i>
+            </span>
+            <h4>Threat Model</h4>
+            <p>STRIDE-lite baseline for lab environments.</p>
+            <a href="/viewer.html?path=projects/loop-protocol/docs/compliance/threat-model.md&title=Threat%20Model">Open threat model</a>
+          </div>
+          <div className="card has-icon">
+            <span className="card-icon" aria-hidden="true">
+              <i className="ph-thin ph-clipboard-text"></i>
+            </span>
+            <h4>DPIA Lite</h4>
+            <p>Baseline data protection assessment for lab demos.</p>
+            <a href="/viewer.html?path=projects/loop-protocol/docs/compliance/dpia-lite.md&title=DPIA%20Lite">Open DPIA</a>
           </div>
         </div>
       </div>

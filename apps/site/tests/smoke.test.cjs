@@ -23,3 +23,13 @@ test('public projects directory exists', () => {
   const projectsPath = path.join(process.cwd(), 'public', 'projects', 'loop-protocol');
   assert.ok(fs.existsSync(projectsPath));
 });
+
+test('metrics page wires live metrics panel', () => {
+  const content = read(['app', 'docs', 'metrics', 'page.jsx']);
+  assert.ok(content.includes('data-metrics-panel'));
+});
+
+test('api docs page renders iframe shell', () => {
+  const content = read(['app', 'docs', 'api', 'page.jsx']);
+  assert.ok(content.includes('api-iframe'));
+});

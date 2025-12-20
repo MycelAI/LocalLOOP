@@ -222,6 +222,8 @@ export function SiteHeader({ subtitle = '' }) {
               <a href="/docs/security" aria-current={pathname === '/docs/security' ? 'page' : undefined} className={pathname === '/docs/security' ? 'active' : ''}>Security Guide</a>
               <a href="/docs/secure-coding" aria-current={pathname === '/docs/secure-coding' ? 'page' : undefined} className={pathname === '/docs/secure-coding' ? 'active' : ''}>Secure Coding</a>
               <a href="/docs/incident-response" aria-current={pathname === '/docs/incident-response' ? 'page' : undefined} className={pathname === '/docs/incident-response' ? 'active' : ''}>Incident Response</a>
+              <a href="/docs/api" aria-current={pathname === '/docs/api' ? 'page' : undefined} className={pathname === '/docs/api' ? 'active' : ''}>API Docs</a>
+              <a href="/docs/metrics" aria-current={pathname === '/docs/metrics' ? 'page' : undefined} className={pathname === '/docs/metrics' ? 'active' : ''}>Metrics</a>
               <a href="/docs/faq" aria-current={pathname === '/docs/faq' ? 'page' : undefined} className={pathname === '/docs/faq' ? 'active' : ''}>FAQ</a>
               <a href="/docs/glossary" aria-current={pathname === '/docs/glossary' ? 'page' : undefined} className={pathname === '/docs/glossary' ? 'active' : ''}>Glossary</a>
             </div>

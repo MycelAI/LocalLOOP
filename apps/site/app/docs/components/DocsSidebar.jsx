@@ -53,6 +53,20 @@ export function DocsSidebar() {
         >
           Incident response
         </a>
+        <a
+          href="/docs/api"
+          aria-current={isActive(pathname, '/docs/api') ? 'page' : undefined}
+          className={isActive(pathname, '/docs/api') ? 'active' : ''}
+        >
+          API docs
+        </a>
+        <a
+          href="/docs/metrics"
+          aria-current={isActive(pathname, '/docs/metrics') ? 'page' : undefined}
+          className={isActive(pathname, '/docs/metrics') ? 'active' : ''}
+        >
+          Metrics
+        </a>
       </div>
       <div className="side-group">
         <span className="side-label">Reference</span>
@@ -65,6 +79,12 @@ export function DocsSidebar() {
           className={isActive(pathname, '/docs/glossary') ? 'active' : ''}
         >
           Glossary
+        </a>
+        <a href="/viewer.html?path=projects/loop-protocol/docs/compliance/threat-model.md&title=Threat%20Model">
+          Threat model
+        </a>
+        <a href="/viewer.html?path=projects/loop-protocol/docs/compliance/dpia-lite.md&title=DPIA%20Lite">
+          DPIA lite
         </a>
       </div>
       <div className="side-note">
