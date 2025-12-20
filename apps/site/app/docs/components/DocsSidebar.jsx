@@ -33,6 +33,13 @@ export function DocsSidebar() {
           Lab demo
         </a>
         <a
+          href="/docs/federation"
+          aria-current={isActive(pathname, '/docs/federation') ? 'page' : undefined}
+          className={isActive(pathname, '/docs/federation') ? 'active' : ''}
+        >
+          Federation handshake
+        </a>
+        <a
           href="/docs/security"
           aria-current={isActive(pathname, '/docs/security') ? 'page' : undefined}
           className={isActive(pathname, '/docs/security') ? 'active' : ''}

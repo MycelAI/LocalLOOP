@@ -44,6 +44,14 @@ export default function DocsPage() {
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
+              <i className="ph-thin ph-shuffle"></i>
+            </span>
+            <h4>Federation Handshake</h4>
+            <p>Lab-only handshake and registry endpoints.</p>
+            <a href="/docs/federation">Open federation guide</a>
+          </div>
+          <div className="card has-icon">
+            <span className="card-icon" aria-hidden="true">
               <i className="ph-thin ph-file-doc"></i>
             </span>
             <h4>API Docs</h4>

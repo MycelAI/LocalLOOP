@@ -50,6 +50,14 @@ export default function GovernancePage() {
             <p>Draft RFC for optional settlement automation.</p>
             <a href="/governance/smart-contracts">Open RFC 0004</a>
           </div>
+          <div className="card has-icon">
+            <span className="card-icon" aria-hidden="true">
+              <i className="ph-thin ph-shuffle"></i>
+            </span>
+            <h4>Federation Handshake</h4>
+            <p>Lab-only handshake spec and registry flow.</p>
+            <a href="/docs/federation">Open federation guide</a>
+          </div>
         </div>
       </div>
     </div>

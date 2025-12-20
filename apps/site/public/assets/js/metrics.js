@@ -12,6 +12,7 @@
     loop_transfer_created: 'Transfers completed',
     loop_event_emitted: 'Events emitted',
     loop_event_relayed: 'Events relayed',
+    federation_handshake: 'Federation handshakes',
     interest_submitted: 'Interest submissions',
   };
 

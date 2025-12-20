@@ -33,3 +33,8 @@ test('api docs page renders iframe shell', () => {
   const content = read(['app', 'docs', 'api', 'page.jsx']);
   assert.ok(content.includes('api-iframe'));
 });
+
+test('federation docs page renders handshake guide', () => {
+  const content = read(['app', 'docs', 'federation', 'page.jsx']);
+  assert.ok(content.includes('NodeHandshake'));
+});
