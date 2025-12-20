@@ -46,6 +46,22 @@ bun run lab:demo`}</code></pre>
       </div>
 
       <div className="content-panel">
+        <h3>Federation relay demo (two nodes)</h3>
+        <p>
+          Spins up two local node instances and relays events to demonstrate
+          lab-only federation messaging. Nodes share a single lab database for
+          convenience and do not represent production federation.
+        </p>
+        <div className="code-block">
+          <pre><code>{`bun run lab:federation`}</code></pre>
+        </div>
+        <div className="table-list">
+          <div><span>Relay endpoint</span><div>`/api/loop/relay`</div></div>
+          <div><span>Events stream</span><div>`/api/loop/stream` (SSE)</div></div>
+        </div>
+      </div>
+
+      <div className="content-panel">
         <h3>Interop flow snapshot</h3>
         <p>Conceptual view of the four-step lab flow.</p>
         <div className="media-card">
