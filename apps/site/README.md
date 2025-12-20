@@ -12,6 +12,7 @@ pilots or deployments yet.
 - `public/projects/loop-protocol/`: mirrored assets from `loop-protocol`
 - `public/assets/`: site styling and scripts
 - `public/assets/js/interest.js`: public Expression of Interest form and list
+- `app/docs/lab-demo/`: lab demo runbook and visuals
 
 ## Updating content
 If you add new docs or schemas in the protocol repo, copy them into
