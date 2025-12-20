@@ -64,6 +64,46 @@
     }
   }
 
+  let stream = null;
+  let retryTimer = null;
+
+  function scheduleReconnect() {
+    if (retryTimer) return;
+    retryTimer = setTimeout(() => {
+      retryTimer = null;
+      connectStream();
+    }, 5000);
+  }
+
+  function connectStream() {
+    if (!('EventSource' in window) || stream) return;
+    const streamUrl = `${apiBase}/api/interest/stream`;
+    stream = new EventSource(streamUrl);
+
+    stream.onmessage = () => {
+      loadList();
+    };
+
+    stream.onerror = () => {
+      if (stream) {
+        stream.close();
+        stream = null;
+      }
+      scheduleReconnect();
+    };
+  }
+
+  function disconnectStream() {
+    if (stream) {
+      stream.close();
+      stream = null;
+    }
+    if (retryTimer) {
+      clearTimeout(retryTimer);
+      retryTimer = null;
+    }
+  }
+
   if (form) {
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
@@ -107,4 +147,9 @@
   }
 
   loadList();
+  connectStream();
+
+  window.addEventListener('beforeunload', () => {
+    disconnectStream();
+  });
 })();
