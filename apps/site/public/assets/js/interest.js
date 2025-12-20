@@ -47,6 +47,75 @@
     `;
   }
 
+  const demoEntries = [
+    {
+      name: 'Lucia Torres',
+      organization: 'GreenLoop Collective',
+      role: 'Partnerships',
+      country: 'ES',
+      city: 'Valencia',
+      website: 'https://example.org/greenloop',
+      email: null,
+      message: 'Exploring circularity pilots for civic materials.',
+      is_demo: true,
+      created_at: '2025-12-12T09:00:00Z',
+    },
+    {
+      name: 'Jonas Becker',
+      organization: 'CircularFoundry',
+      role: 'Innovation Director',
+      country: 'DE',
+      city: 'Hamburg',
+      website: 'https://example.org/circularfoundry',
+      email: null,
+      message: 'Interested in inter-city material exchange research.',
+      is_demo: true,
+      created_at: '2025-12-14T12:00:00Z',
+    },
+    {
+      name: 'Priya Nair',
+      organization: 'Urban Materials Office',
+      role: 'Program Manager',
+      country: 'IN',
+      city: 'Pune',
+      website: 'https://example.org/urban-materials',
+      email: null,
+      message: 'Looking to join a future city cohort once pilots open.',
+      is_demo: true,
+      created_at: '2025-12-16T15:30:00Z',
+    },
+    {
+      name: 'Malik Chen',
+      organization: 'LoopLab Studio',
+      role: 'Research Fellow',
+      country: 'SG',
+      city: 'Singapore',
+      website: 'https://example.org/looplab',
+      email: null,
+      message: 'Interested in schema alignment and data interoperability.',
+      is_demo: true,
+      created_at: '2025-12-18T08:20:00Z',
+    },
+    {
+      name: 'Ava Reyes',
+      organization: 'Circular Works',
+      role: 'City Sustainability Lead',
+      country: 'US',
+      city: 'Austin',
+      website: 'https://example.org/circular-works',
+      email: null,
+      message: 'Exploring a pilot partnership for material traceability.',
+      is_demo: true,
+      created_at: '2025-12-19T11:45:00Z',
+    },
+  ];
+
+  function renderEntries(entries, notice) {
+    const cards = entries.map(formatEntry).join('');
+    const noticeHtml = notice ? `<div class="notice">${notice}</div>` : '';
+    listEl.innerHTML = `${noticeHtml}${cards}`;
+  }
+
   async function loadList() {
     try {
       const response = await fetch(`${apiBase}/api/interest`);
@@ -58,9 +127,9 @@
         listEl.innerHTML = '<div class="notice">No public expressions of interest yet.</div>';
         return;
       }
-      listEl.innerHTML = data.results.map(formatEntry).join('');
+      renderEntries(data.results);
     } catch (error) {
-      listEl.innerHTML = `<div class="notice">${error.message}</div>`;
+      renderEntries(demoEntries, 'Public list unavailable — showing demo entries.');
     }
   }
 

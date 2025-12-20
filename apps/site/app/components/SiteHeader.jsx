@@ -15,6 +15,7 @@ export function SiteHeader({ subtitle = '' }) {
   const pathname = usePathname();
   const headerRef = useRef(null);
   const closeTimer = useRef(null);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const [openMenu, setOpenMenu] = useState(null);
   const platformActive = matchesPath(pathname, ['/', '/materialDNA', '/cities', '/DEMO-City']);
   const protocolActive = matchesPath(pathname, ['/protocol']);
@@ -25,6 +26,7 @@ export function SiteHeader({ subtitle = '' }) {
 
   useEffect(() => {
     setOpenMenu(null);
+    setMobileOpen(false);
   }, [pathname]);
 
   useEffect(() => {
@@ -76,14 +78,28 @@ export function SiteHeader({ subtitle = '' }) {
   return (
     <header ref={headerRef}>
       <nav>
-        <div className="nav-brand">
-          <span className="nav-logo" aria-hidden="true">
-            <i className="ph-bold ph-infinity"></i>
-          </span>
-          <h1>localLOOP</h1>
-          {subtitle ? <span className="nav-subtitle">{subtitle}</span> : null}
+        <div className="nav-header">
+          <div className="nav-brand">
+            <span className="nav-logo" aria-hidden="true">
+              <i className="ph-bold ph-infinity"></i>
+            </span>
+            <h1>localLOOP</h1>
+            {subtitle ? <span className="nav-subtitle">{subtitle}</span> : null}
+          </div>
+          <button
+            className="nav-toggle"
+            type="button"
+            aria-controls="site-nav-links"
+            aria-expanded={mobileOpen}
+            onClick={() => setMobileOpen((value) => !value)}
+          >
+            <span aria-hidden="true">
+              <i className={`ph-bold ${mobileOpen ? 'ph-x' : 'ph-list'}`}></i>
+            </span>
+            <span>{mobileOpen ? 'Close' : 'Menu'}</span>
+          </button>
         </div>
-        <div className="nav-links">
+        <div className="nav-links" id="site-nav-links" data-open={mobileOpen}>
           <div
             className="nav-group"
             data-open={openMenu === 'platform'}

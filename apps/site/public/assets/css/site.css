@@ -135,6 +135,14 @@ nav {
   flex-wrap: wrap;
 }
 
+.nav-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+}
+
 .nav-brand {
   display: flex;
   align-items: center;
@@ -187,6 +195,25 @@ nav {
   border: 1px solid rgba(11, 27, 43, 0.08);
   box-shadow: 0 16px 30px rgba(11, 27, 43, 0.08);
   backdrop-filter: blur(12px);
+}
+
+.nav-toggle {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(11, 27, 43, 0.12);
+  background: rgba(255, 255, 255, 0.9);
+  padding: 8px 14px;
+  font-weight: 600;
+  font-family: 'Space Grotesk', sans-serif;
+  color: var(--ink);
+  cursor: pointer;
+  box-shadow: 0 12px 24px rgba(11, 27, 43, 0.12);
+}
+
+.nav-toggle i {
+  font-size: 1rem;
 }
 
 .nav-links a,
@@ -1180,12 +1207,26 @@ nav {
     align-items: stretch;
   }
 
+  .nav-header {
+    width: 100%;
+  }
+
+  .nav-toggle {
+    display: inline-flex;
+  }
+
   .nav-links {
     width: 100%;
+    display: none;
+    flex-direction: column;
     background: transparent;
     padding: 0;
     border: none;
     box-shadow: none;
+  }
+
+  .nav-links[data-open="true"] {
+    display: flex;
   }
 
   .nav-group {
