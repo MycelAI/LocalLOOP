@@ -3,14 +3,14 @@
   if (!host) return;
 
   const subtitle = host.dataset.siteSubtitle || '';
-  const sectionMap = {
-    platform: ['/', '/materialDNA', '/cities', '/DEMO-City'],
-    protocol: ['/protocol'],
-    library: ['/library'],
-    governance: ['/governance'],
-    docs: ['/docs'],
-    engage: ['/interest', '/projects', '/contribute'],
-  };
+  const sectionOrder = [
+    { key: 'protocol', prefixes: ['/projects/loop-protocol', '/protocol'] },
+    { key: 'platform', prefixes: ['/', '/materialDNA', '/cities', '/DEMO-City'] },
+    { key: 'library', prefixes: ['/library'] },
+    { key: 'governance', prefixes: ['/governance'] },
+    { key: 'docs', prefixes: ['/docs'] },
+    { key: 'engage', prefixes: ['/projects', '/interest', '/contribute'] },
+  ];
 
   const normalizePath = (value) => {
     if (!value) return '/';
@@ -58,11 +58,11 @@
         }
       });
 
+      const activeSection = sectionOrder.find((section) => matchesPath(section.prefixes));
       host.querySelectorAll('[data-nav-section]').forEach((trigger) => {
         const section = trigger.getAttribute('data-nav-section');
         if (!section) return;
-        const prefixes = sectionMap[section];
-        if (prefixes && matchesPath(prefixes)) {
+        if (activeSection && activeSection.key === section) {
           trigger.classList.add('active');
         }
       });
