@@ -40,10 +40,20 @@ for repo in "${REPOS[@]}"; do
   fi
 
   echo "Syncing $ORG/$repo_trimmed"
-  git clone --depth 1 "https://github.com/${ORG}/${repo_trimmed}.git" "$WORK_DIR/$repo_trimmed" >/dev/null 2>&1 || {
-    echo "Failed to clone $ORG/$repo_trimmed" >&2
-    exit 1
-  }
+  clone_log="$WORK_DIR/${repo_trimmed}.clone.log"
+  if [[ -n "${GITHUB_TOKEN:-}" ]]; then
+    if ! GIT_TERMINAL_PROMPT=0 git -c http.extraheader="AUTHORIZATION: bearer ${GITHUB_TOKEN}" clone --depth 1 "https://github.com/${ORG}/${repo_trimmed}.git" "$WORK_DIR/$repo_trimmed" >"$clone_log" 2>&1; then
+      echo "Failed to clone $ORG/$repo_trimmed using GITHUB_TOKEN" >&2
+      cat "$clone_log" >&2
+      exit 1
+    fi
+  else
+    if ! GIT_TERMINAL_PROMPT=0 git clone --depth 1 "https://github.com/${ORG}/${repo_trimmed}.git" "$WORK_DIR/$repo_trimmed" >"$clone_log" 2>&1; then
+      echo "Failed to clone $ORG/$repo_trimmed" >&2
+      cat "$clone_log" >&2
+      exit 1
+    fi
+  fi
 
   SRC="$WORK_DIR/$repo_trimmed"
   DEST="$ROOT_DIR/public/projects/$repo_trimmed"

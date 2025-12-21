@@ -10,10 +10,26 @@ const banned = [
   'materialdna.eu',
 ];
 
-const rg = `rg -n "(${banned.map((d) => d.replace('.', '\\.')).join('|')})" --hidden --glob '!node_modules/**' --glob '!out/**' --glob '!.next/**'`;
+const pattern = banned
+  .map((d) => d.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'))
+  .join('|');
+
+const rg = `rg -n "(${pattern})" --hidden --glob '!node_modules/**' --glob '!out/**' --glob '!.next/**' --glob '!.git/**'`;
+const grep = `grep -RIn --exclude-dir=node_modules --exclude-dir=out --exclude-dir=.next --exclude-dir=.git -E "(${pattern})" .`;
+
+const hasRg = (() => {
+  try {
+    execSync('rg --version', { stdio: 'ignore' });
+    return true;
+  } catch {
+    return false;
+  }
+})();
+
+const cmd = hasRg ? rg : grep;
 
 try {
-  const output = execSync(rg, { stdio: 'pipe' }).toString().trim();
+  const output = execSync(cmd, { stdio: 'pipe' }).toString().trim();
   if (output) {
     console.error('Banned domains found:');
     console.error(output);
