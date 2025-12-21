@@ -18,7 +18,7 @@ jobs:
         env:
           DOCS_ORG: local-loop-io
           DOCS_REPOS: loop-protocol
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DOCS_SYNC_TOKEN: ${{ secrets.DOCS_SYNC_TOKEN }}
         run: ./scripts/aggregate-docs.sh
       - name: Create pull request
         uses: peter-evans/create-pull-request@v6

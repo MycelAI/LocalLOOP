@@ -41,17 +41,16 @@ for repo in "${REPOS[@]}"; do
 
   echo "Syncing $ORG/$repo_trimmed"
   clone_log="$WORK_DIR/${repo_trimmed}.clone.log"
-  if [[ -n "${GITHUB_TOKEN:-}" ]]; then
-    clone_url="https://x-access-token:${GITHUB_TOKEN}@github.com/${ORG}/${repo_trimmed}.git"
+  if [[ -n "${DOCS_SYNC_TOKEN:-}" ]]; then
+    clone_url="https://x-access-token:${DOCS_SYNC_TOKEN}@github.com/${ORG}/${repo_trimmed}.git"
     if ! GIT_TERMINAL_PROMPT=0 git clone --depth 1 "$clone_url" "$WORK_DIR/$repo_trimmed" >"$clone_log" 2>&1; then
-      echo "Failed to clone $ORG/$repo_trimmed using GITHUB_TOKEN" >&2
+      echo "Failed to clone $ORG/$repo_trimmed using DOCS_SYNC_TOKEN" >&2
       exit 1
     fi
   else
     if ! GIT_TERMINAL_PROMPT=0 git clone --depth 1 "https://github.com/${ORG}/${repo_trimmed}.git" "$WORK_DIR/$repo_trimmed" >"$clone_log" 2>&1; then
-      echo "Failed to clone $ORG/$repo_trimmed" >&2
-      cat "$clone_log" >&2
-      exit 1
+      echo "Skipping $ORG/$repo_trimmed: DOCS_SYNC_TOKEN not set or repo inaccessible." >&2
+      continue
     fi
   fi
 
