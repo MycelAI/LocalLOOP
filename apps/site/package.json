@@ -11,7 +11,8 @@
     "test": "node --test tests/smoke.test.cjs",
     "test:e2e": "bun run build && playwright test",
     "test:e2e:ci": "playwright test",
-    "test:all": "node --test tests/smoke.test.cjs && bun run test:e2e"
+    "test:all": "node --test tests/smoke.test.cjs && bun run test:e2e",
+    "check:domains": "node scripts/check-domains.cjs"
   },
   "dependencies": {
     "next": "16.0.10",
