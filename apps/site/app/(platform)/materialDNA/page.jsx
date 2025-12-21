@@ -22,6 +22,15 @@ export default function MaterialDNAPage() {
       </div>
 
       <div className="content-panel">
+        <h3>Scope & boundaries</h3>
+        <div className="table-list">
+          <div><span>In scope</span><div>Stable material identifiers, provenance metadata, and basic compliance signals.</div></div>
+          <div><span>Out of scope</span><div>Live asset tracking, financial settlement, or verified carbon accounting.</div></div>
+          <div><span>Status</span><div>Lab-demo concept only — no public pilots or deployments yet.</div></div>
+        </div>
+      </div>
+
+      <div className="content-panel">
         <h3>What we aim to enable</h3>
         <p>
           A common, verifiable identity for materials to support traceability, provenance,
@@ -31,6 +40,37 @@ export default function MaterialDNAPage() {
           <div><span>Identity</span><div>Persistent IDs for batches and materials</div></div>
           <div><span>Metadata</span><div>Attributes, quality, and compliance signals</div></div>
           <div><span>Interoperability</span><div>Shared schema across city nodes</div></div>
+        </div>
+      </div>
+
+      <div className="content-panel">
+        <h3>Data model snapshot</h3>
+        <p>
+          The v0.1.1 lab schema captures the minimum fields needed to identify and route
+          materials across loops.
+        </p>
+        <div className="grid">
+          <div className="card has-icon">
+            <span className="card-icon" aria-hidden="true">
+              <i className="ph-thin ph-fingerprint"></i>
+            </span>
+            <h4>Identity fields</h4>
+            <p>Material ID, category, and unique batch references.</p>
+          </div>
+          <div className="card has-icon">
+            <span className="card-icon" aria-hidden="true">
+              <i className="ph-thin ph-clipboard-text"></i>
+            </span>
+            <h4>Provenance tags</h4>
+            <p>Origin city, current city, and quality descriptors.</p>
+          </div>
+          <div className="card has-icon">
+            <span className="card-icon" aria-hidden="true">
+              <i className="ph-thin ph-timer"></i>
+            </span>
+            <h4>Availability</h4>
+            <p>Time windows and status fields for matching logic.</p>
+          </div>
         </div>
       </div>
 

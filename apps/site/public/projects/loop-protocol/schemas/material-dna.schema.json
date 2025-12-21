@@ -19,7 +19,7 @@
     "@context": {
       "description": "JSON-LD context",
       "type": "string",
-      "const": "https://local-loop-io.github.io/projects/loop-protocol/v0.1.1"
+      "const": "https://local-loop-io.github.io/projects/loop-protocol/contexts/loop-v0.1.1.jsonld"
     },
     "@type": {
       "description": "Object type identifier",

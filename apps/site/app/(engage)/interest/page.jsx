@@ -12,6 +12,9 @@ export default function InterestPage() {
           <a className="button primary" href="/protocol">Review the protocol</a>
           <a className="button secondary" href="/projects">Project hub</a>
         </div>
+        <div className="status-banner" data-api-status>
+          Checking backend status…
+        </div>
       </div>
 
       <div className="content-panel">

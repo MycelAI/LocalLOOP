@@ -5,6 +5,7 @@
   const form = document.querySelector('[data-interest-form]');
   const listEl = document.querySelector('[data-interest-list]');
   const statusEl = document.querySelector('[data-interest-status]');
+  const apiStatusEl = document.querySelector('[data-api-status]');
 
   if (!listEl) {
     return;
@@ -116,6 +117,34 @@
     listEl.innerHTML = `${noticeHtml}${cards}`;
   }
 
+  function formatUptime(seconds) {
+    if (!seconds && seconds !== 0) return '';
+    if (seconds < 60) return `${Math.floor(seconds)}s`;
+    const minutes = Math.floor(seconds / 60);
+    if (minutes < 60) return `${minutes}m`;
+    const hours = Math.floor(minutes / 60);
+    if (hours < 24) return `${hours}h`;
+    const days = Math.floor(hours / 24);
+    return `${days}d`;
+  }
+
+  async function updateApiStatus() {
+    if (!apiStatusEl) return;
+    apiStatusEl.textContent = 'Checking backend status…';
+    try {
+      const response = await fetch(`${apiBase}/api/metrics`);
+      if (!response.ok) {
+        throw new Error('status');
+      }
+      const data = await response.json();
+      const uptime = formatUptime(data?.uptimeSeconds);
+      const uptimeText = uptime ? ` · uptime ${uptime}` : '';
+      apiStatusEl.textContent = `Backend online${uptimeText} · ${apiBase}`;
+    } catch (error) {
+      apiStatusEl.textContent = 'Backend unavailable — showing demo data from this page.';
+    }
+  }
+
   async function loadList() {
     try {
       const response = await fetch(`${apiBase}/api/interest`);
@@ -216,6 +245,7 @@
   }
 
   loadList();
+  updateApiStatus();
   connectStream();
 
   window.addEventListener('beforeunload', () => {

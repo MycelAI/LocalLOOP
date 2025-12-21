@@ -25,6 +25,8 @@ jobs:
           bun-version: 'latest'
       - name: Install dependencies
         run: bun install
+      - name: Audit dependencies
+        run: bun audit
       - name: Build static site
         run: bun run build
       - name: Run smoke tests

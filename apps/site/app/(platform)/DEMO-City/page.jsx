@@ -15,6 +15,15 @@ export default function DemoCityPage() {
       </div>
 
       <div className="content-panel">
+        <h3>What this demo is (and is not)</h3>
+        <div className="table-list">
+          <div><span>Demo only</span><div>Concept design for how a city portal could be structured.</div></div>
+          <div><span>No live data</span><div>Figures and listings are illustrative placeholders.</div></div>
+          <div><span>Next step</span><div>Collect interest from cities to shape a future lab pilot.</div></div>
+        </div>
+      </div>
+
+      <div className="content-panel">
         <h3>What a city portal will include</h3>
         <p>
           As the platform evolves, each city portal will surface loop metrics, initiatives,
@@ -24,6 +33,15 @@ export default function DemoCityPage() {
           <div><span>Initiatives</span><div>Local pilots and priority material streams</div></div>
           <div><span>Partners</span><div>Verified contributors and operators</div></div>
           <div><span>Metrics</span><div>Impact tracking and reporting</div></div>
+        </div>
+      </div>
+
+      <div className="content-panel">
+        <h3>What we would need from a city</h3>
+        <div className="table-list">
+          <div><span>Data partners</span><div>Material flow data sources and consented datasets.</div></div>
+          <div><span>Operator team</span><div>A local coordinator to run the lab node.</div></div>
+          <div><span>Governance</span><div>A city-approved process for onboarding partners.</div></div>
         </div>
       </div>
 
