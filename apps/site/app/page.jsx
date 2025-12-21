@@ -25,6 +25,9 @@ export default function HomePage() {
               <a className="button primary" href="/protocol/spec">Read the specification</a>
               <a className="button secondary" href="/interest">Register interest</a>
             </div>
+            <div className="status-banner" data-api-status>
+              Checking backend status…
+            </div>
           </div>
           <div className="hero-visual" aria-hidden="true">
             <div className="loop-sculpture">

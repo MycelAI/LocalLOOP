@@ -7,10 +7,6 @@
   const statusEl = document.querySelector('[data-interest-status]');
   const apiStatusEl = document.querySelector('[data-api-status]');
 
-  if (!listEl) {
-    return;
-  }
-
   function setStatus(message, isError) {
     if (!statusEl) return;
     statusEl.textContent = message;
@@ -146,6 +142,7 @@
   }
 
   async function loadList() {
+    if (!listEl) return;
     try {
       const response = await fetch(`${apiBase}/api/interest`);
       if (!response.ok) {
@@ -244,8 +241,11 @@
     });
   }
 
-  loadList();
   updateApiStatus();
+  if (!listEl) {
+    return;
+  }
+  loadList();
   connectStream();
 
   window.addEventListener('beforeunload', () => {
