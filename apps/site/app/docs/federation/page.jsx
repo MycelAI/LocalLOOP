@@ -31,7 +31,7 @@ export default function FederationPage() {
         <h3>Sample handshake</h3>
         <div className="code-block">
           <pre><code>{`{
-  "@context": "https://loop-protocol.org/v0.1.1",
+  "@context": "https://local-loop-io.github.io/projects/loop-protocol/v0.1.1",
   "@type": "NodeHandshake",
   "schema_version": "0.1.1",
   "node_id": "munich.loop",
