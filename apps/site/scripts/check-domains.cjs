@@ -15,7 +15,7 @@ const pattern = banned
   .join('|');
 
 const rg = `rg -n "(${pattern})" --hidden --glob '!node_modules/**' --glob '!out/**' --glob '!.next/**' --glob '!.git/**' --glob '!scripts/check-domains.cjs' --glob '!DOMAIN-POLICY.md'`;
-const grep = `grep -RIn --exclude-dir=node_modules --exclude-dir=out --exclude-dir=.next --exclude-dir=.git --exclude=DOMAIN-POLICY.md --exclude=scripts/check-domains.cjs -E "(${pattern})" .`;
+const grep = `grep -RIn --exclude-dir=node_modules --exclude-dir=out --exclude-dir=.next --exclude-dir=.git --exclude=DOMAIN-POLICY.md --exclude=check-domains.cjs -E "(${pattern})" .`;
 
 const hasRg = (() => {
   try {
