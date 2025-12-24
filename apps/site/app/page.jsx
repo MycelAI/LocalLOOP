@@ -8,42 +8,67 @@ export default function HomePage() {
     <>
       <SiteHeader />
 
-      {/* Hero Section - Simplified */}
-      <section className="hero hero-wide">
-        <div className="hero-wide-bg" aria-hidden="true">
-          <span className="loop-orbit loop-orbit-one"></span>
-          <span className="loop-orbit loop-orbit-two"></span>
-          <span className="loop-orbit loop-orbit-three"></span>
+      {/* Hero Section - Centered, Modern */}
+      <section className="hero-section">
+        <div className="hero-bg" aria-hidden="true">
+          <div className="hero-gradient"></div>
+          <div className="hero-grid"></div>
         </div>
-        <div className="hero-top">
-          <div className="hero-wide-content">
-            <div className="hero-kicker">LOOP Protocol</div>
-            <h2>Circular Economy Infrastructure for Cities</h2>
-            <p>
-              A federated protocol enabling cities to track, exchange, and settle
-              material flows while maintaining local sovereignty.
-            </p>
-            <div className="cta-row">
-              <a className="button primary" href="/protocol">
-                Explore the Protocol
-              </a>
+        <div className="hero-content">
+          <div className="hero-badge">
+            <i className="ph-bold ph-globe" aria-hidden="true"></i>
+            Open Protocol
+          </div>
+          <h1 className="hero-title">
+            Circular Economy<br />
+            <span className="hero-title-accent">Infrastructure for Cities</span>
+          </h1>
+          <p className="hero-description">
+            A federated protocol enabling cities to track, exchange, and settle
+            material flows while maintaining local sovereignty.
+          </p>
+          <div className="hero-actions">
+            <a className="button primary" href="/protocol">
+              <i className="ph-bold ph-book-open" aria-hidden="true"></i>
+              Read the Spec
+            </a>
+            <a className="button secondary" href="/interest">
+              <i className="ph-bold ph-hand-waving" aria-hidden="true"></i>
+              Express Interest
+            </a>
+          </div>
+          <div className="hero-stats">
+            <div className="hero-stat">
+              <span className="hero-stat-value">4</span>
+              <span className="hero-stat-label">Core Schemas</span>
             </div>
-            <div className="status-banner" data-api-status>
-              Checking backend status…
+            <div className="hero-stat-divider"></div>
+            <div className="hero-stat">
+              <span className="hero-stat-value">v0.1</span>
+              <span className="hero-stat-label">Protocol Version</span>
+            </div>
+            <div className="hero-stat-divider"></div>
+            <div className="hero-stat">
+              <span className="hero-stat-value" data-api-status-indicator>
+                <i className="ph-fill ph-circle"></i>
+              </span>
+              <span className="hero-stat-label">Lab Demo</span>
             </div>
           </div>
-          <div className="hero-visual" aria-hidden="true">
-            <div className="loop-sculpture">
-              <span className="loop-core"></span>
-            </div>
-            <span className="loop-glow"></span>
+        </div>
+        <div className="hero-visual">
+          <div className="hero-loop-icon">
+            <i className="ph-duotone ph-recycle"></i>
           </div>
+          <div className="hero-orbit hero-orbit-1"></div>
+          <div className="hero-orbit hero-orbit-2"></div>
+          <div className="hero-orbit hero-orbit-3"></div>
         </div>
       </section>
 
       {/* How LOOP Works - Visual Flow */}
       <section className="section">
-        <h3>How LOOP Works</h3>
+        <h2 className="section-title">How LOOP Works</h2>
         <div className="flow-explainer">
           <div className="flow-step">
             <div className="flow-step-icon">
@@ -87,7 +112,7 @@ export default function HomePage() {
 
       {/* Quick Start - 3 Clear Paths */}
       <section className="section">
-        <h3>Get Started</h3>
+        <h2 className="section-title">Get Started</h2>
         <div className="quick-start">
           <a href="/protocol" className="quick-start-card">
             <span className="card-icon" aria-hidden="true">
@@ -115,7 +140,7 @@ export default function HomePage() {
 
       {/* Explore More */}
       <section className="section">
-        <h3>Explore</h3>
+        <h2 className="section-title">Explore</h2>
         <CardGrid columns="auto">
           <Card
             icon="scroll"
@@ -146,12 +171,12 @@ export default function HomePage() {
 
       {/* CTA */}
       <section className="section">
-        <div className="content-panel" style={{ textAlign: 'center', padding: '48px 32px' }}>
-          <h3 style={{ marginBottom: '12px' }}>Ready to join the circular economy?</h3>
-          <p style={{ color: 'var(--ink-soft)', marginBottom: '24px', maxWidth: '480px', margin: '0 auto 24px' }}>
+        <div className="cta-panel">
+          <h2>Ready to join the circular economy?</h2>
+          <p>
             Whether you're a city, operator, or developer, there's a place for you in the LOOP ecosystem.
           </p>
-          <div className="cta-row" style={{ justifyContent: 'center' }}>
+          <div className="cta-row">
             <a className="button primary" href="/interest">
               Express Interest
             </a>
