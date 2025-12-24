@@ -72,6 +72,37 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Key Concepts */}
+      <section className="section">
+        <h2 className="section-title">Key Concepts</h2>
+        <div className="concepts-grid">
+          <div className="concept-card">
+            <div className="concept-icon">
+              <img src="/assets/local-loop-logo.png" alt="" width={48} height={48} />
+            </div>
+            <h3>LOOP Protocol</h3>
+            <p>
+              <strong>Local Optimization with Overflow Protocol</strong> — An open, federated standard
+              for tracking material flows between cities. LOOP enables municipalities to share surplus
+              resources, coordinate circular economy initiatives, and maintain sovereignty over local data
+              while participating in regional material exchanges.
+            </p>
+          </div>
+          <div className="concept-card">
+            <div className="concept-icon">
+              <i className="ph-duotone ph-fingerprint"></i>
+            </div>
+            <h3>MaterialDNA</h3>
+            <p>
+              A unique digital identity for physical materials. MaterialDNA captures a material's
+              composition, origin, quality metrics, and chain of custody — enabling trusted exchanges
+              and full lifecycle tracking from source to reuse. Think of it as a passport for materials
+              in the circular economy.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* How LOOP Works - Visual Flow */}
       <section className="section">
         <h2 className="section-title">How LOOP Works</h2>

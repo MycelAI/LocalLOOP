@@ -1583,6 +1583,67 @@ nav {
   font-size: var(--text-sm);
 }
 
+/* Key Concepts Section */
+.concepts-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-6);
+}
+
+.concept-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(11, 27, 43, 0.1);
+  padding: var(--space-8);
+  box-shadow: 0 12px 32px rgba(11, 27, 43, 0.08);
+}
+
+.concept-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(13, 148, 136, 0.12), rgba(234, 88, 12, 0.08));
+  display: grid;
+  place-items: center;
+  margin-bottom: var(--space-4);
+}
+
+.concept-icon img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+
+.concept-icon i {
+  font-size: 32px;
+  color: var(--accent-2);
+}
+
+.concept-card h3 {
+  font-family: 'Fraunces', serif;
+  font-size: var(--text-xl);
+  margin: 0 0 var(--space-3);
+  color: var(--ink);
+}
+
+.concept-card p {
+  margin: 0;
+  color: var(--ink-soft);
+  line-height: 1.7;
+  font-size: var(--text-base);
+}
+
+.concept-card p strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .concepts-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Flow Explainer */
 .flow-explainer {
   display: flex;
