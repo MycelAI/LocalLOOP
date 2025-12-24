@@ -2,7 +2,7 @@
 
 import { usePathname } from 'next/navigation';
 
-const hiddenPrefixes = ['/interest'];
+const hiddenPrefixes = ['/', '/interest'];
 
 export function StickyInterestCta() {
   const pathname = usePathname();

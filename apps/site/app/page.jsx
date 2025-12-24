@@ -141,7 +141,7 @@ export default function HomePage() {
       {/* Explore More */}
       <section className="section">
         <h2 className="section-title">Explore</h2>
-        <CardGrid columns="auto">
+        <CardGrid columns={2}>
           <Card
             icon="scroll"
             title="Protocol Spec"

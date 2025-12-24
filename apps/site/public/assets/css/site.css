@@ -1987,20 +1987,21 @@ nav {
   right: 15%;
   top: 50%;
   transform: translateY(-50%);
-  width: 120px;
-  height: 120px;
+  width: 140px;
+  height: 140px;
   display: grid;
   place-items: center;
-  opacity: 0.6;
+  opacity: 0.85;
 }
 
 .hero-loop-icon i {
-  font-size: 80px;
+  font-size: 90px;
   background: linear-gradient(135deg, var(--accent-2), var(--accent));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   animation: loopPulse 4s ease-in-out infinite;
+  filter: drop-shadow(0 8px 24px rgba(13, 148, 136, 0.3));
 }
 
 /* Infinity loop paths - flowing abstract shapes */
@@ -2008,7 +2009,7 @@ nav {
   position: absolute;
   border-radius: 50%;
   border: none;
-  opacity: 0.4;
+  opacity: 0.6;
 }
 
 .hero-orbit-1 {
@@ -2016,10 +2017,10 @@ nav {
   height: 300px;
   right: -10%;
   top: 20%;
-  background: linear-gradient(135deg, transparent 40%, rgba(47, 158, 133, 0.15) 50%, transparent 60%);
+  background: linear-gradient(135deg, transparent 30%, rgba(13, 148, 136, 0.25) 50%, transparent 70%);
   border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
   animation: infinityFlow1 12s ease-in-out infinite;
-  filter: blur(2px);
+  filter: blur(1px);
 }
 
 .hero-orbit-2 {
@@ -2027,10 +2028,10 @@ nav {
   height: 250px;
   right: 5%;
   top: 35%;
-  background: linear-gradient(225deg, transparent 40%, rgba(224, 108, 71, 0.12) 50%, transparent 60%);
+  background: linear-gradient(225deg, transparent 30%, rgba(234, 88, 12, 0.2) 50%, transparent 70%);
   border-radius: 40% 60% 60% 40% / 50% 50% 50% 50%;
   animation: infinityFlow2 15s ease-in-out infinite;
-  filter: blur(3px);
+  filter: blur(2px);
 }
 
 .hero-orbit-3 {
@@ -2038,10 +2039,10 @@ nav {
   height: 350px;
   right: -5%;
   top: 10%;
-  background: linear-gradient(180deg, transparent 35%, rgba(240, 180, 77, 0.1) 50%, transparent 65%);
+  background: linear-gradient(180deg, transparent 25%, rgba(234, 179, 8, 0.18) 50%, transparent 75%);
   border-radius: 60% 40% 40% 60% / 50% 60% 40% 50%;
   animation: infinityFlow3 18s ease-in-out infinite;
-  filter: blur(4px);
+  filter: blur(2px);
 }
 
 /* Flowing infinity animations */
@@ -2096,25 +2097,25 @@ nav {
   content: '';
   position: absolute;
   border-radius: 50%;
-  filter: blur(60px);
+  filter: blur(40px);
   animation: blobFloat 20s ease-in-out infinite;
 }
 
 .hero-visual::before {
-  width: 400px;
-  height: 400px;
-  right: 10%;
-  top: 10%;
-  background: radial-gradient(circle, rgba(47, 158, 133, 0.2) 0%, transparent 70%);
+  width: 500px;
+  height: 500px;
+  right: 5%;
+  top: 5%;
+  background: radial-gradient(circle, rgba(13, 148, 136, 0.3) 0%, transparent 65%);
   animation-delay: -5s;
 }
 
 .hero-visual::after {
-  width: 350px;
-  height: 350px;
-  right: 25%;
-  bottom: 10%;
-  background: radial-gradient(circle, rgba(224, 108, 71, 0.15) 0%, transparent 70%);
+  width: 450px;
+  height: 450px;
+  right: 20%;
+  bottom: 5%;
+  background: radial-gradient(circle, rgba(234, 88, 12, 0.22) 0%, transparent 65%);
   animation-delay: -10s;
 }
 
