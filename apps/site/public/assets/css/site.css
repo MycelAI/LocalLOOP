@@ -1775,6 +1775,12 @@ nav {
   color: var(--ink);
 }
 
+.nav-logo-img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
 .nav-wordmark {
   font-family: 'Fraunces', serif;
   font-size: 1.35rem;
@@ -1987,21 +1993,18 @@ nav {
   right: 15%;
   top: 50%;
   transform: translateY(-50%);
-  width: 140px;
-  height: 140px;
+  width: 160px;
+  height: 160px;
   display: grid;
   place-items: center;
-  opacity: 0.85;
 }
 
-.hero-loop-icon i {
-  font-size: 90px;
-  background: linear-gradient(135deg, var(--accent-2), var(--accent));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+.hero-loop-icon img {
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
   animation: loopPulse 4s ease-in-out infinite;
-  filter: drop-shadow(0 8px 24px rgba(13, 148, 136, 0.3));
+  filter: drop-shadow(0 12px 32px rgba(13, 148, 136, 0.35));
 }
 
 /* Infinity loop paths - flowing abstract shapes */
@@ -2281,22 +2284,23 @@ nav {
   }
 
   .hero-loop-icon {
-    opacity: 0.7;
-    right: 20%;
+    right: 18%;
   }
 
-  .hero-loop-icon i {
-    font-size: 100px;
+  .hero-loop-icon img {
+    width: 160px;
+    height: 160px;
   }
 }
 
 @media (min-width: 1536px) {
   .hero-loop-icon {
-    right: 22%;
+    right: 20%;
   }
 
-  .hero-loop-icon i {
-    font-size: 120px;
+  .hero-loop-icon img {
+    width: 180px;
+    height: 180px;
   }
 }
 

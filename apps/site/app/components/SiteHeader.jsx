@@ -85,9 +85,13 @@ export function SiteHeader({ subtitle = '' }) {
     <header ref={headerRef} className="site-header">
       <nav className="nav-container">
         <a href="/" className="nav-brand">
-          <span className="nav-logo" aria-hidden="true">
-            <i className="ph-bold ph-infinity"></i>
-          </span>
+          <img
+            src="/assets/local-loop-logo.png"
+            alt="LocalLoop"
+            className="nav-logo-img"
+            width={32}
+            height={32}
+          />
           <span className="nav-wordmark">LocalLoop</span>
         </a>
 

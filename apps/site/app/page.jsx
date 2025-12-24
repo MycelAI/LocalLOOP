@@ -58,7 +58,13 @@ export default function HomePage() {
         </div>
         <div className="hero-visual">
           <div className="hero-loop-icon">
-            <i className="ph-duotone ph-recycle"></i>
+            <img
+              src="/assets/local-loop-logo.png"
+              alt=""
+              aria-hidden="true"
+              width={120}
+              height={120}
+            />
           </div>
           <div className="hero-orbit hero-orbit-1"></div>
           <div className="hero-orbit hero-orbit-2"></div>
