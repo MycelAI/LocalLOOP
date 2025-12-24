@@ -1,20 +1,9 @@
-import { SiteHeader } from '../components/SiteHeader';
-import { SiteFooter } from '../components/SiteFooter';
-import { LibrarySidebar } from './components/LibrarySidebar';
+import { ContentLayout } from '../components/layout';
 
-export default function LibraryLayout({ children }) {
+export default function Layout({ children }) {
   return (
-    <>
-      <SiteHeader subtitle="Schema Library" />
-      <main className="content-main">
-        <div className="content-layout">
-          <LibrarySidebar />
-          <div className="content-body">
-            {children}
-          </div>
-        </div>
-      </main>
-      <SiteFooter />
-    </>
+    <ContentLayout section="library" subtitle="Schema Library">
+      {children}
+    </ContentLayout>
   );
 }

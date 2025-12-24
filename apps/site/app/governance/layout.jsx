@@ -1,20 +1,5 @@
-import { SiteHeader } from '../components/SiteHeader';
-import { SiteFooter } from '../components/SiteFooter';
-import { GovernanceSidebar } from './components/GovernanceSidebar';
+import { GovernanceLayout } from '../components/layout';
 
-export default function GovernanceLayout({ children }) {
-  return (
-    <>
-      <SiteHeader subtitle="Governance" />
-      <main className="content-main">
-        <div className="content-layout">
-          <GovernanceSidebar />
-          <div className="content-body">
-            {children}
-          </div>
-        </div>
-      </main>
-      <SiteFooter />
-    </>
-  );
+export default function Layout({ children }) {
+  return <GovernanceLayout>{children}</GovernanceLayout>;
 }

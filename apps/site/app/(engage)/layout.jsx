@@ -1,20 +1,9 @@
-import { SiteHeader } from '../components/SiteHeader';
-import { SiteFooter } from '../components/SiteFooter';
-import { EngageSidebar } from './components/EngageSidebar';
+import { ContentLayout } from '../components/layout';
 
-export default function EngageLayout({ children }) {
+export default function Layout({ children }) {
   return (
-    <>
-      <SiteHeader subtitle="Engage & Contribute" />
-      <main className="content-main">
-        <div className="content-layout">
-          <EngageSidebar />
-          <div className="content-body">
-            {children}
-          </div>
-        </div>
-      </main>
-      <SiteFooter />
-    </>
+    <ContentLayout section="engage" subtitle="Engage & Contribute">
+      {children}
+    </ContentLayout>
   );
 }
