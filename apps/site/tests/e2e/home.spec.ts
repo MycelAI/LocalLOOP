@@ -4,7 +4,7 @@ test('home page loads primary navigation', async ({ page }) => {
   await page.goto('/');
 
   await expect(
-    page.getByRole('heading', { name: /Local Optimization with Overflow Protocol/i })
+    page.getByRole('heading', { name: /Circular Economy Infrastructure for Cities/i })
   ).toBeVisible();
 
   await expect(page.locator('.nav-trigger', { hasText: 'Platform' })).toBeVisible();
@@ -12,5 +12,5 @@ test('home page loads primary navigation', async ({ page }) => {
   await expect(page.locator('.nav-trigger', { hasText: 'Docs' })).toBeVisible();
   await expect(page.locator('.nav-trigger', { hasText: 'Engage' })).toBeVisible();
 
-  await expect(page.getByRole('heading', { name: /Navigate the platform/i })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /How LOOP Works/i })).toBeVisible();
 });

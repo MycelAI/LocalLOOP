@@ -8,10 +8,10 @@ test('site styles are applied', async ({ page }) => {
   );
   expect(background).toContain('linear-gradient');
 
-  const heroPanel = page.locator('.hero-panel').first();
-  await expect(heroPanel).toBeVisible();
-  const radius = await heroPanel.evaluate((el) =>
-    window.getComputedStyle(el).borderRadius
+  const flowStep = page.locator('.flow-step').first();
+  await expect(flowStep).toBeVisible();
+  const padding = await flowStep.evaluate((el) =>
+    window.getComputedStyle(el).padding
   );
-  expect(radius).not.toBe('0px');
+  expect(padding).not.toBe('0px');
 });

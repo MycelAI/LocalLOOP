@@ -1,0 +1,5 @@
+# CODEOWNERS for local-loop-io.github.io
+# These owners will be requested for review when changes are made
+
+# Default owner for everything
+* @alpha912
