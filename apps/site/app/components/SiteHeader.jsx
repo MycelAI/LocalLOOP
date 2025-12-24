@@ -87,12 +87,12 @@ export function SiteHeader({ subtitle = '' }) {
         <a href="/" className="nav-brand">
           <img
             src="/assets/local-loop-logo.png"
-            alt="LocalLoop"
+            alt="localLOOP"
             className="nav-logo-img"
             width={32}
             height={32}
           />
-          <span className="nav-wordmark">LocalLoop</span>
+          <span className="nav-wordmark">local<span className="nav-wordmark-accent">LOOP</span></span>
         </a>
 
         <button

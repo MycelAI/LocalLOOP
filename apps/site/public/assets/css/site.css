@@ -1813,9 +1813,7 @@ nav {
   top: 0;
   z-index: 100;
   width: 100%;
-  background: rgba(250, 250, 249, 0.85);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(11, 27, 43, 0.06);
+  background: transparent;
 }
 
 .nav-container {
@@ -1847,6 +1845,13 @@ nav {
   font-size: 1.35rem;
   font-weight: 700;
   letter-spacing: 0.02em;
+}
+
+.nav-wordmark-accent {
+  background: linear-gradient(135deg, var(--accent-2), var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .nav-link {
@@ -2051,21 +2056,21 @@ nav {
 
 .hero-loop-icon {
   position: absolute;
-  right: 15%;
+  right: 12%;
   top: 50%;
   transform: translateY(-50%);
-  width: 160px;
-  height: 160px;
+  width: 280px;
+  height: 280px;
   display: grid;
   place-items: center;
 }
 
 .hero-loop-icon img {
-  width: 140px;
-  height: 140px;
+  width: 260px;
+  height: 260px;
   object-fit: contain;
   animation: loopPulse 4s ease-in-out infinite;
-  filter: drop-shadow(0 12px 32px rgba(13, 148, 136, 0.35));
+  filter: drop-shadow(0 20px 50px rgba(13, 148, 136, 0.4));
 }
 
 /* Infinity loop paths - flowing abstract shapes */
@@ -2233,6 +2238,10 @@ nav {
   margin-right: auto;
 }
 
+.cta-panel .cta-row {
+  justify-content: center;
+}
+
 /* ==========================================
    HEADER/HERO RESPONSIVE
    ========================================== */
@@ -2345,23 +2354,23 @@ nav {
   }
 
   .hero-loop-icon {
-    right: 18%;
+    right: 10%;
   }
 
   .hero-loop-icon img {
-    width: 160px;
-    height: 160px;
+    width: 300px;
+    height: 300px;
   }
 }
 
 @media (min-width: 1536px) {
   .hero-loop-icon {
-    right: 20%;
+    right: 12%;
   }
 
   .hero-loop-icon img {
-    width: 180px;
-    height: 180px;
+    width: 350px;
+    height: 350px;
   }
 }
 
