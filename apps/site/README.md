@@ -1,22 +1,15 @@
 # LocalLoop GitHub Pages
 
-This repository hosts the LocalLoop documentation hub for the LOOP Protocol. It mirrors
-protocol artifacts (specification, schemas, RFCs, examples) and provides a lightweight
-viewer for markdown and JSON files. The site is built with Next.js (static export) and
-published via GitHub Pages. The project is an early, low-TRL concept with no public
-pilots or deployments yet.
+Documentation hub for the LOOP Protocol. This site mirrors protocol artifacts (specs, schemas, RFCs, examples) and provides a lightweight viewer for markdown and JSON files.
 
-## Structure
-- `app/`: Next.js App Router pages
-- `public/viewer.html`: markdown/JSON viewer
-- `public/projects/loop-protocol/`: mirrored assets from `loop-protocol`
-- `public/assets/`: site styling and scripts
-- `public/assets/js/interest.js`: public Expression of Interest form and list
-- `app/docs/lab-demo/`: lab demo runbook and visuals
+> Early-stage, low-TRL concept. No public pilots or deployments. Lab demo only.
 
-## Updating content
-If you add new docs or schemas in the protocol repo, copy them into
-`public/projects/loop-protocol/` (or use the aggregation workflow once configured).
+## At a glance
+| Item | Details |
+| --- | --- |
+| Stack | Next.js (static export) |
+| Publish | https://local-loop-io.github.io |
+| Content | `public/projects/loop-protocol/` |
 
 ## Local development
 ```bash
@@ -30,31 +23,19 @@ bun run build
 ```
 The static export is written to `out/` and deployed via GitHub Pages.
 
-## Testing
-```bash
-# Smoke checks
-bun run test
+## Repo layout
+- `app/`: Next.js App Router pages.
+- `public/viewer.html`: markdown/JSON viewer.
+- `public/projects/loop-protocol/`: mirrored assets from `loop-protocol`.
+- `public/assets/`: site styling and scripts.
+- `public/assets/js/interest.js`: Expression of Interest form.
 
-# E2E checks (runs Playwright against the static export)
-bun run test:e2e
-```
+## Updating content
+If you add new docs or schemas in the protocol repo, copy them into `public/projects/loop-protocol/` or use the aggregation workflow when configured.
 
-## GitHub Pages
-This repository is intended to be published via GitHub Pages. If the GitHub org is
-`local-loop-io`, the default URL will be `https://local-loop-io.github.io`.
+## Links
+- Protocol spec: https://github.com/local-loop-io/loop-protocol
+- Backend API: https://loop-api.urbnia.com
 
-## How to Cite
-
-If you reference this repository, please cite:
-Alphin Tom. "LocalLoop Docs Hub." LocalLoop, GitHub repository, 2025-2026. https://github.com/local-loop-io/local-loop-io.github.io
-
-```bibtex
-@misc{localloop_docs_hub_2025,
-  author = {Alphin Tom},
-  title = {LocalLoop Docs Hub},
-  year = {2025},
-  howpublished = {GitHub repository},
-  url = {https://github.com/local-loop-io/local-loop-io.github.io},
-  note = {Accessed 2025-12-19}
-}
-```
+## Contributing
+- See `../AGENTS.md` for org context and domain policy.
