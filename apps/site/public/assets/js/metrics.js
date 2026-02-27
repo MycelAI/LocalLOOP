@@ -16,28 +16,43 @@
     interest_submitted: 'Interest submissions',
   };
 
+  function escapeHtml(value) {
+    if (value === null || value === undefined) return '';
+    return String(value)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
   const render = (payload, notice) => {
     if (!payload) {
-      panel.innerHTML = `<div class="notice">${notice || 'Metrics unavailable.'}</div>`;
+      panel.innerHTML = `<div class="notice">${escapeHtml(notice || 'Metrics unavailable.')}</div>`;
       return;
     }
 
     const metrics = payload.metrics || {};
     const cards = Object.entries(metrics).map(([key, value]) => {
-      const label = labelMap[key] || key.replace(/_/g, ' ');
+      const label = escapeHtml(labelMap[key] || key.replace(/_/g, ' '));
+      const safeValue = escapeHtml(value);
       return `
         <div class="metric-card">
           <div class="metric-label">${label}</div>
-          <div class="metric-value">${value}</div>
+          <div class="metric-value">${safeValue}</div>
         </div>
       `;
     }).join('');
 
+    const safeStarted = escapeHtml(new Date(payload.startedAt).toLocaleString());
+    const uptimeSeconds = Number(payload.uptimeSeconds);
+    const safeUptime = Number.isFinite(uptimeSeconds) ? Math.round(uptimeSeconds) : 0;
+
     panel.innerHTML = `
-      ${notice ? `<div class="notice">${notice}</div>` : ''}
+      ${notice ? `<div class="notice">${escapeHtml(notice)}</div>` : ''}
       <div class="metrics-meta">
-        <span>Started: ${new Date(payload.startedAt).toLocaleString()}</span>
-        <span>Uptime: ${Math.round(payload.uptimeSeconds)}s</span>
+        <span>Started: ${safeStarted}</span>
+        <span>Uptime: ${safeUptime}s</span>
       </div>
       <div class="metrics-grid">${cards || '<div class="notice">No metrics yet.</div>'}</div>
     `;

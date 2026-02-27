@@ -19,6 +19,17 @@ test('viewer uses absolute asset paths', () => {
   assert.ok(content.includes('src="/assets/js/viewer.js"'));
 });
 
+test('viewer sanitizes markdown urls before rendering', () => {
+  const content = read(['public', 'assets', 'js', 'viewer.js']);
+  assert.ok(content.includes('function sanitizeUrl(rawHref, allowedProtocols)'));
+  assert.ok(content.includes('function isSafeRelativePath(rawPath)'));
+  assert.ok(content.includes("value.includes(':')"));
+  assert.ok(content.includes("sanitizeUrl(link.getAttribute('href'), new Set(['http:', 'https:', 'mailto:']))"));
+  assert.ok(content.includes("sanitizeUrl(image.getAttribute('src'), new Set(['http:', 'https:']))"));
+  assert.ok(content.includes("container.querySelectorAll('a[href]')"));
+  assert.ok(content.includes("container.querySelectorAll('img[src]')"));
+});
+
 test('public projects directory exists', () => {
   const projectsPath = path.join(process.cwd(), 'public', 'projects', 'loop-protocol');
   assert.ok(fs.existsSync(projectsPath));
