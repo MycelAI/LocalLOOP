@@ -66,6 +66,55 @@
     return /^[A-Za-z0-9._/-]+$/.test(value);
   }
 
+  function normalizeRelativeDocumentPath(basePath, rawHref) {
+    if (typeof rawHref !== 'string') {
+      return '';
+    }
+
+    const value = rawHref.trim();
+    if (!value || value.startsWith('#') || value.startsWith('?') || value.includes('\\')) {
+      return '';
+    }
+
+    const hrefPath = value.split('#', 1)[0].split('?', 1)[0];
+    if (!hrefPath) {
+      return '';
+    }
+
+    const baseSegments = basePath.split('/');
+    baseSegments.pop();
+
+    const combinedSegments = [...baseSegments, ...hrefPath.split('/')];
+    const normalized = [];
+
+    for (const segment of combinedSegments) {
+      if (!segment || segment === '.') {
+        continue;
+      }
+      if (segment === '..') {
+        if (normalized.length === 0) {
+          return '';
+        }
+        normalized.pop();
+        continue;
+      }
+      if (!/^[A-Za-z0-9._-]+$/.test(segment)) {
+        return '';
+      }
+      normalized.push(segment);
+    }
+
+    const resolvedPath = normalized.join('/');
+    return resolvedPath.startsWith('projects/') ? resolvedPath : '';
+  }
+
+  function buildViewerHref(documentPath, rawTitle) {
+    const viewerTitle = typeof rawTitle === 'string' && rawTitle.trim()
+      ? rawTitle.trim()
+      : documentPath.split('/').pop() || 'Document Viewer';
+    return `/viewer.html?path=${encodeURIComponent(documentPath)}&title=${encodeURIComponent(viewerTitle)}`;
+  }
+
   if (!path) {
     setError('No file selected. Use the navigation links to open a document.');
     return;
@@ -107,7 +156,15 @@
         container.innerHTML = rendered;
 
         container.querySelectorAll('a[href]').forEach((link) => {
-          const safeHref = sanitizeUrl(link.getAttribute('href'), new Set(['http:', 'https:', 'mailto:']));
+          const rawHref = link.getAttribute('href');
+          const relativeDocumentPath = normalizeRelativeDocumentPath(path, rawHref);
+          if (relativeDocumentPath) {
+            link.setAttribute('href', buildViewerHref(relativeDocumentPath, link.textContent || 'Document Viewer'));
+            link.removeAttribute('rel');
+            return;
+          }
+
+          const safeHref = sanitizeUrl(rawHref, new Set(['http:', 'https:', 'mailto:']));
           if (!safeHref) {
             const textNode = document.createTextNode(link.textContent || '');
             link.replaceWith(textNode);

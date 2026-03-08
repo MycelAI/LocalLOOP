@@ -70,7 +70,7 @@ export default function ExamplesPage() {
             </span>
             <h4>Material Status</h4>
             <p>Status-update payload for reservation and withdrawal events.</p>
-            <a href="/viewer.html?path=projects/loop-protocol/examples/09-material-status.json&title=Material%20Status">View example</a>
+            <a href="/viewer.html?path=projects/loop-protocol/examples/10-material-status.json&title=Material%20Status">View example</a>
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
@@ -86,7 +86,7 @@ export default function ExamplesPage() {
             </span>
             <h4>Handshake Response</h4>
             <p>Lab-only handshake acceptance payload.</p>
-            <a href="/viewer.html?path=projects/loop-protocol/examples/10-handshake-response.json&title=Handshake%20Response">View example</a>
+            <a href="/viewer.html?path=projects/loop-protocol/examples/11-handshake-response.json&title=Handshake%20Response">View example</a>
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">

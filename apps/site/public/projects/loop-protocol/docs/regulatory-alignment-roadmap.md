@@ -11,8 +11,6 @@ The immediate goal is to make v0.1.1 payloads easier to extend without breaking 
 ## Current baseline
 
 - `v0.2.0` is the current baseline with comprehensive DPP extension fields (ESPR, UNTP, PPWR, Battery Passport, NKWS-aligned). `v0.1.1` payloads remain valid.
-- **ProductDNA** schema provides product-level DPP alignment (ESPR Art. 9-10), referencing constituent MaterialDNA entries via `material_ids`.
-- Offer/Match/Transfer schemas accept either `material_id` or `product_id`, enabling the same lifecycle flow for both materials and products.
 - Receivers should accept additive `0.1.x` patch releases when they can preserve or safely ignore unknown fields.
 - Minimal interop payloads must stay free of personal contact data.
 - Passport, classification, and traceability blocks are optional extension points, not required fields.
@@ -25,7 +23,7 @@ The immediate goal is to make v0.1.1 payloads easier to extend without breaking 
 - The regulation establishes the Digital Product Passport framework and requires delegated acts to define product-specific rules.
 - The first ESPR Working Plan for 2025-2030 prioritizes product groups including textiles, furniture, tyres, mattresses, iron and steel, and aluminium.
 - Implication for localLOOP:
-  use additive passport identifiers, access-scope metadata, classification hints, and stable traceability references without hard-coding product-specific delegated-act fields too early. The ProductDNA schema provides the product-level entity for DPP integration, with category coverage for furniture, electronics, textiles, building materials, packaging, vehicles, and equipment.
+  use additive passport identifiers, access-scope metadata, classification hints, and stable traceability references without hard-coding product-specific delegated-act fields too early.
 
 ### EU Batteries Regulation
 

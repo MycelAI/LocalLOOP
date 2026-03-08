@@ -1,7 +1,6 @@
 # Glossary
 
 - **MaterialDNA**: Globally unique identifier and metadata for a material item or batch.
-- **ProductDNA**: Globally unique identifier and metadata for a product or product batch, referencing constituent MaterialDNA entries. DPP-aligned (ESPR Art. 9-10).
 - **LoopCoin (LC)**: Local currency issued by a node with expiry and decay rules.
 - **LoopSignal**: Community preference signal for material categories used in routing.
 - **LoopCost**: Total cost including base price, penalties, and distance.

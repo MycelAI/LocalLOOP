@@ -11,7 +11,6 @@ This guide summarizes the minimum steps to build a compatibility-oriented LOOP l
 
 ## Core services
 - **Material registry**: Create, read, search, and expire MaterialDNA records.
-- **Product registry**: Create, read, search, and expire ProductDNA records (references MaterialDNA entries via `material_ids`).
 - **Signal governance**: Publish LoopSignalConfig and record LoopVote results.
 - **LoopCoin engine**: Track balances, transfers, and inter-node settlement.
 - **Transaction processor**: Create MaterialTransaction and Settlement records.

@@ -9,12 +9,6 @@ Any municipality, cooperative, or authorized operator can run a node, provided t
 ## What is MaterialDNA?
 MaterialDNA is the globally unique identifier and metadata record for a material item or batch.
 
-## What is ProductDNA?
-ProductDNA is the product-level counterpart to MaterialDNA. It captures product category, condition, lifecycle stage, and references to constituent MaterialDNA entries. ProductDNA is aligned with EU Digital Product Passport requirements (ESPR Art. 9-10, UNTP ProductPassport).
-
-## How do MaterialDNA and ProductDNA relate?
-Materials compose products. A standing desk (ProductDNA) might contain metal-steel and plastic-hdpe (MaterialDNA entries). ProductDNA links to its materials via `material_ids`. Both flow through the same Offer → Match → Transfer lifecycle.
-
 ## Do nodes have to use LoopCoin?
 LoopCoin is part of the core protocol for settlement. Implementations can support additional currencies, but LoopCoin is required for interoperability.
 

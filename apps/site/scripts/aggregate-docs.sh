@@ -36,10 +36,15 @@ sync_dir() {
 publish_versioned_schema_aliases() {
   local schemas_dir="$1"
   local v011_dir="$schemas_dir/v0.1.1"
+  local v020_dir="$schemas_dir/v0.2.0"
   local v1_dir="$schemas_dir/v1"
 
-  rm -rf "$v011_dir" "$v1_dir"
-  mkdir -p "$v011_dir" "$v1_dir"
+  rm -rf "$v011_dir" "$v020_dir" "$v1_dir"
+  mkdir -p "$v011_dir" "$v020_dir" "$v1_dir"
+
+  for schema in material-dna product-dna offer match transfer material-status handshake loopcoin loopsignal node-info transaction; do
+    sync_file "$schemas_dir/${schema}.schema.json" "$v020_dir/${schema}.schema.json"
+  done
 
   for schema in material-dna offer match transfer material-status handshake; do
     sync_file "$schemas_dir/${schema}.schema.json" "$v011_dir/${schema}.schema.json"
@@ -81,6 +86,7 @@ for repo in "${REPOS[@]}"; do
   sync_file "$SRC/CONTRIBUTING.md" "$DEST/CONTRIBUTING.md"
   sync_file "$SRC/CODE_OF_CONDUCT.md" "$DEST/CODE_OF_CONDUCT.md"
   sync_file "$SRC/SECURITY.md" "$DEST/SECURITY.md"
+  sync_file "$SRC/DOMAIN-POLICY.md" "$DEST/DOMAIN-POLICY.md"
   sync_file "$SRC/LICENSE" "$DEST/LICENSE"
   sync_file "$SRC/PROJECT_STRUCTURE.md" "$DEST/PROJECT_STRUCTURE.md"
   sync_file "$SRC/openapi.json" "$DEST/openapi.json"

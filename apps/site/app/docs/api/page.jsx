@@ -3,10 +3,11 @@ export default function ApiDocsPage() {
     <div className="content-stack">
       <div className="content-panel">
         <div className="badge">API reference</div>
-        <h2>Open the lab API docs directly.</h2>
+        <h2>Use the live lab API docs and the protocol reference separately.</h2>
         <p>
-          The live backend serves Redoc with headers that block cross-origin framing, so
-          this page links to the canonical docs instead of embedding a blank iframe.
+          The live backend serves Redoc with headers that block cross-origin framing, so this
+          page links directly to the lab API docs. The normative protocol contract lives in the
+          mirrored `loop-protocol` OpenAPI artifact.
         </p>
         <div className="cta-row">
           <a
@@ -23,7 +24,15 @@ export default function ApiDocsPage() {
             target="_blank"
             rel="noreferrer"
           >
-            Open OpenAPI JSON
+            Open lab OpenAPI JSON
+          </a>
+          <a
+            className="button secondary"
+            href="https://local-loop-io.github.io/projects/loop-protocol/openapi.json"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Open protocol reference
           </a>
         </div>
       </div>
@@ -35,9 +44,10 @@ export default function ApiDocsPage() {
           `http://localhost:8088/openapi.json` directly in your browser.
         </p>
         <div className="table-list">
+          <div><span>Protocol reference</span><div>`https://local-loop-io.github.io/projects/loop-protocol/openapi.json`</div></div>
+          <div><span>Live lab API</span><div>`https://loop-api.urbnia.com`</div></div>
           <div><span>Preferred media type</span><div>`application/ld+json` for LOOP payloads</div></div>
-          <div><span>Live API</span><div>`https://loop-api.urbnia.com`</div></div>
-          <div><span>Scope</span><div>Lab demo only, not a public production API</div></div>
+          <div><span>Scope</span><div>Lab demo only. The live backend is not a claim of protocol-wide conformance.</div></div>
         </div>
       </div>
     </div>
