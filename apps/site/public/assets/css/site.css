@@ -1413,6 +1413,16 @@ header[data-site-header] .nav-controls {
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
 }
 
+.viewer-content pre code.hljs {
+  background: transparent;
+  padding: 0;
+}
+
+.viewer-content code:not(pre code) a,
+.viewer-content a > code {
+  color: inherit;
+}
+
 .viewer-content a {
   color: var(--accent);
   font-weight: 600;
