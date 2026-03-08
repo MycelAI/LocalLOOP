@@ -163,6 +163,7 @@ export function SiteHeader({ subtitle = '' }) {
             <span className="nav-wordmark">
               local<span className="nav-wordmark-accent">LOOP</span>
             </span>
+            <span className="nav-subtitle">{subtitle}</span>
           </span>
         </a>
 
@@ -186,13 +187,14 @@ export function SiteHeader({ subtitle = '' }) {
             <span className="visually-hidden">{mobileOpen ? 'Close menu' : 'Open menu'}</span>
           </button>
 
-          <div className="nav-links" id="site-nav-links" data-open={mobileOpen}>
-            {navigationSections.map((section) => {
-              const sectionActive = matchesPath(pathname, section.matchPrefixes);
-              const mobileSectionOpen = openMobileSection === section.key;
-              const exactSectionMatch = pathnameNormalized === normalizePath(section.href);
+          <div className="nav-bar" data-open={mobileOpen}>
+            <div className="nav-links" id="site-nav-links" data-open={mobileOpen}>
+              {navigationSections.map((section) => {
+                const sectionActive = matchesPath(pathname, section.matchPrefixes);
+                const mobileSectionOpen = openMobileSection === section.key;
+                const exactSectionMatch = pathnameNormalized === normalizePath(section.href);
 
-              return (
+                return (
                 <div
                   key={section.key}
                   className={`nav-group${section.align === 'end' ? ' nav-group--align-end' : ''}`}
@@ -206,7 +208,7 @@ export function SiteHeader({ subtitle = '' }) {
                       aria-current={exactSectionMatch ? 'page' : undefined}
                     >
                       <span>{section.label}</span>
-                      <i className="ph ph-caret-down nav-link-caret" aria-hidden="true"></i>
+                      <span className="nav-link-caret" aria-hidden="true"></span>
                     </a>
 
                     <button
@@ -219,7 +221,7 @@ export function SiteHeader({ subtitle = '' }) {
                         setOpenMobileSection((current) => (current === section.key ? null : section.key))
                       }
                     >
-                      <i className="ph ph-caret-down" aria-hidden="true"></i>
+                      <span className="nav-group-caret" aria-hidden="true"></span>
                     </button>
                   </div>
 
@@ -240,14 +242,15 @@ export function SiteHeader({ subtitle = '' }) {
                     })}
                   </div>
                 </div>
-              );
-            })}
-          </div>
+                );
+              })}
+            </div>
 
-          <a href="/interest" className="nav-cta">
-            <span>Get Started</span>
-            <i className="ph-bold ph-arrow-right" aria-hidden="true"></i>
-          </a>
+            <a href="/interest" className="nav-cta">
+              <span>Get Started</span>
+              <i className="ph-bold ph-arrow-right" aria-hidden="true"></i>
+            </a>
+          </div>
         </div>
       </nav>
     </header>
