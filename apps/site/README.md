@@ -1,8 +1,8 @@
 <div align="center">
 
-# localLOOP · Docs Hub
+# localLOOP
 
-**The public face of the LOOP protocol — specification, schemas, governance, and an interest registry for the circular economy.**
+**The official website of localLOOP and home of the LOOP protocol, MaterialDNA, ProductDNA, city portals, and governance.**
 
 [![Deploy](https://github.com/local-loop-io/local-loop-io.github.io/actions/workflows/deploy.yml/badge.svg)](https://github.com/local-loop-io/local-loop-io.github.io/actions/workflows/deploy.yml)
 [![Site](https://img.shields.io/badge/site-local--loop--io.github.io-4f46e5?logo=github)](https://local-loop-io.github.io)
@@ -18,12 +18,12 @@
 
 ## What this is
 
-This repository is the source for **[local-loop-io.github.io](https://local-loop-io.github.io)** — a statically exported Next.js site that serves as the public hub for the localLOOP project.
+This repository is the source for **[local-loop-io.github.io](https://local-loop-io.github.io)** — the official website of the localLOOP project and the canonical home for everything LOOP.
 
 It does three things:
 
-1. **Publishes the LOOP protocol** — spec, changelog, schemas, JSON-LD context, and examples, mirrored from [`loop-protocol`](https://github.com/local-loop-io/loop-protocol)
-2. **Documents the platform** — MaterialDNA, ProductDNA, city portals, implementation guides, governance, and regulatory alignment
+1. **Is the home of LOOP** — spec, changelog, schemas, JSON-LD contexts, and examples for the LOOP protocol, MaterialDNA, ProductDNA, and governance RFCs
+2. **Runs the platform** — MaterialDNA, ProductDNA, city portals, implementation guides, regulatory alignment, and the full governance framework
 3. **Collects interest** — a public expression-of-interest form backed by the [localloop-backend](https://github.com/local-loop-io/localloop-backend) API
 
 ---
