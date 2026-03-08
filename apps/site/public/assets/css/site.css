@@ -947,33 +947,32 @@ header[data-site-header] .nav-controls {
 .side-title {
   font-weight: 700;
   font-size: 1.05rem;
+  color: var(--ink);
+  text-decoration: none;
+  display: block;
+  padding: 6px 12px;
+  border-radius: 10px;
+  border-left: 3px solid transparent;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.side-title:hover {
+  background: rgba(224, 108, 71, 0.08);
+  color: var(--accent);
+}
+
+.side-title.active {
+  background: rgba(47, 158, 133, 0.18);
+  color: var(--accent-2);
+  border-left-color: var(--accent-2);
 }
 
 .side-group {
   display: grid;
-  gap: 6px;
-}
-
-/* Sidebar hierarchy: first group = hub/overview link, rest = sub-items */
-.side-group:first-child a {
-  font-weight: 700;
-  font-size: 0.95rem;
-  color: var(--ink);
-}
-
-.side-group:not(:first-child) a {
-  font-size: 0.88rem;
-  font-weight: 500;
-  color: var(--ink-soft);
-  padding-left: 18px;
-}
-
-.side-group:not(:first-child) a:hover {
-  color: var(--accent);
-}
-
-.side-group:not(:first-child) a.active {
-  color: var(--accent-2);
+  gap: 4px;
+  border-left: 1px solid rgba(11, 27, 43, 0.08);
+  padding-left: 8px;
+  margin-left: 4px;
 }
 
 .side-label {
@@ -986,10 +985,11 @@ header[data-site-header] .nav-controls {
 
 .side-nav a {
   text-decoration: none;
-  color: var(--ink);
-  font-weight: 600;
-  padding: 8px 12px;
-  border-radius: 10px;
+  color: var(--ink-soft);
+  font-weight: 500;
+  font-size: 0.88rem;
+  padding: 6px 10px;
+  border-radius: 8px;
   transition: background 0.2s ease, color 0.2s ease;
   border-left: 3px solid transparent;
   margin-left: 0;
@@ -1234,19 +1234,37 @@ a.card h4 {
 }
 
 .card.card-ref {
+  border: 1px dashed rgba(47, 158, 133, 0.45);
   border-left: 3px solid var(--accent-2, #2f9e85);
-  background: rgba(47, 158, 133, 0.04);
+  background: rgba(47, 158, 133, 0.03);
   position: relative;
+}
+
+.card.card-ref:hover {
+  border-color: rgba(47, 158, 133, 0.65);
+}
+
+.card.card-ref::before {
+  content: "External section";
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent-2, #2f9e85);
+  opacity: 0.8;
 }
 
 .card.card-ref::after {
   content: "↗";
   position: absolute;
-  top: 12px;
+  top: 22px;
   right: 14px;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   color: var(--accent-2, #2f9e85);
-  opacity: 0.75;
+  opacity: 0.65;
   font-weight: 700;
 }
 

@@ -6,13 +6,8 @@
 export const sectionConfigs = {
   docs: {
     title: 'Docs',
+    href: '/docs',
     groups: [
-      {
-        label: 'Overview',
-        links: [
-          { href: '/docs', label: 'Docs' }
-        ]
-      },
       {
         label: 'Guides',
         links: [
@@ -45,13 +40,8 @@ export const sectionConfigs = {
 
   protocol: {
     title: 'Protocol',
+    href: '/protocol',
     groups: [
-      {
-        label: 'Overview',
-        links: [
-          { href: '/protocol', label: 'Protocol' }
-        ]
-      },
       {
         label: 'Reference',
         links: [
@@ -70,13 +60,8 @@ export const sectionConfigs = {
 
   governance: {
     title: 'Governance',
+    href: '/governance',
     groups: [
-      {
-        label: 'Overview',
-        links: [
-          { href: '/governance', label: 'Governance' }
-        ]
-      },
       {
         label: 'RFCs',
         links: [
@@ -94,13 +79,8 @@ export const sectionConfigs = {
 
   library: {
     title: 'Library',
+    href: '/library',
     groups: [
-      {
-        label: 'Overview',
-        links: [
-          { href: '/library', label: 'Library' }
-        ]
-      },
       {
         label: 'Artifacts',
         links: [
@@ -117,13 +97,8 @@ export const sectionConfigs = {
 
   platform: {
     title: 'Platform',
+    href: '/platform',
     groups: [
-      {
-        label: 'Overview',
-        links: [
-          { href: '/platform', label: 'Platform' }
-        ]
-      },
       {
         label: 'Identity Layers',
         links: [
@@ -147,6 +122,7 @@ export const sectionConfigs = {
 
   engage: {
     title: 'Engage',
+    href: '/interest',
     groups: [
       {
         label: 'Engage',

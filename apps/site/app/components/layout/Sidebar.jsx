@@ -20,14 +20,25 @@ export function Sidebar({ section }) {
 
   const current = normalizePath(pathname);
   const isActive = (href) => !href.startsWith('http') && normalizePath(href) === current;
+  const isTitleActive = config.href && normalizePath(config.href) === current;
 
   return (
     <aside className="side-nav">
-      <div className="side-title">{config.title}</div>
+      {config.href ? (
+        <a
+          href={config.href}
+          className={`side-title${isTitleActive ? ' active' : ''}`}
+          aria-current={isTitleActive ? 'page' : undefined}
+        >
+          {config.title}
+        </a>
+      ) : (
+        <div className="side-title">{config.title}</div>
+      )}
 
       {config.groups.map((group, groupIndex) => (
         <div className="side-group" key={groupIndex}>
-{group.links.map((link) => (
+          {group.links.map((link) => (
             <a
               key={link.href}
               href={link.href}
@@ -43,7 +54,8 @@ export function Sidebar({ section }) {
 
       {config.note && (
         <div className="side-note">
-          {config.note.text} <a href={config.note.link.href}>{config.note.link.label}</a>
+          <span>{config.note.text}</span>
+          <a href={config.note.link.href}>{config.note.link.label}</a>
         </div>
       )}
     </aside>
