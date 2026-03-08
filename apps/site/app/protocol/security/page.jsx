@@ -3,9 +3,7 @@ import MarkdownDoc from '@/app/components/docs/MarkdownDoc'
 export default function ProtocolSecurityPage() {
   return (
     <div className="content-stack">
-      <div className="content-panel">
-        <div className="badge">Security Policy</div>
-        <h2>Security policy and disclosure process.</h2>
+      <div className="content-panel">        <h2>Security policy and disclosure process.</h2>
         <p>
           Follow the security policy for responsible disclosure and operator guidance.
           Implementation guidance will evolve as the protocol matures.

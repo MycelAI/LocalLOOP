@@ -2,63 +2,43 @@ export default function ProtocolPage() {
   return (
     <div className="content-stack">
       <div className="content-panel">
-        <div className="badge">Protocol Hub</div>
-        <h2>LOOP Defines How Cities Federate Material and Product Loops.</h2>
+        <h2>Protocol</h2>
         <p>
           Explore the specification, changelog, and security requirements that guide
           implementations. This is an early, low-TRL concept with no public pilots yet.
         </p>
-        <div className="cta-row">
-          <a className="button primary" href="/protocol/spec">Read specification</a>
-          <a className="button secondary" href="/docs/regulatory-alignment">View roadmap</a>
-        </div>
       </div>
 
       <div className="content-panel">
-        <h3>Protocol scope</h3>
-        <p>Normative requirements and flows for interoperability across cities.</p>
-        <div className="table-list">
-          <div><span>Federation</span><div>Cross-city interoperability and syncing</div></div>
-          <div><span>Security</span><div>Disclosure, cryptography, and operator guidance</div></div>
-          <div><span>Governance</span><div>RFC process and change control</div></div>
-        </div>
-      </div>
-
-      <div className="content-panel">
-        <h3>Protocol references</h3>
         <div className="grid">
-          <div className="card has-icon">
+          <a className="card has-icon" href="/protocol/spec">
             <span className="card-icon" aria-hidden="true">
               <i className="ph-thin ph-scroll"></i>
             </span>
             <h4>Specification v0.2.0</h4>
             <p>Normative requirements, API endpoints, and federation flows.</p>
-            <a href="/protocol/spec">Open specification</a>
-          </div>
-          <div className="card has-icon">
+          </a>
+          <a className="card has-icon" href="/protocol/changelog">
             <span className="card-icon" aria-hidden="true">
               <i className="ph-thin ph-archive-box"></i>
             </span>
             <h4>Changelog</h4>
             <p>Track released changes and planned updates.</p>
-            <a href="/protocol/changelog">Open changelog</a>
-          </div>
-          <div className="card has-icon">
+          </a>
+          <a className="card has-icon" href="/protocol/security">
             <span className="card-icon" aria-hidden="true">
               <i className="ph-thin ph-shield-check"></i>
             </span>
-            <h4>Security policy</h4>
+            <h4>Security Policy</h4>
             <p>Disclosure process, cryptography, and operator requirements.</p>
-            <a href="/protocol/security">Open security policy</a>
-          </div>
-          <div className="card has-icon">
+          </a>
+          <a className="card has-icon card-ref" href="/docs/regulatory-alignment">
             <span className="card-icon" aria-hidden="true">
               <i className="ph-thin ph-scale"></i>
             </span>
-            <h4>Compatibility roadmap</h4>
+            <h4>Compatibility Roadmap</h4>
             <p>Long-horizon plan for DPP, waste, packaging, and battery alignment.</p>
-            <a href="/docs/regulatory-alignment">Open roadmap</a>
-          </div>
+          </a>
         </div>
       </div>
     </div>

@@ -7,9 +7,7 @@ export const metadata = {
 export default function DemoCityPage() {
   return (
     <div className="content-stack">
-      <div className="content-panel">
-        <div className="badge">Demo City</div>
-        <h2>DEMO City: how a localLOOP city portal could look.</h2>
+      <div className="content-panel">        <h2>DEMO City: how a localLOOP city portal could look.</h2>
         <p>
           This is a mock landing page to illustrate the future city portal experience.
           There are no active deployments yet.

@@ -9,9 +9,7 @@ export const metadata = {
 export default function ProductDNAPage() {
   return (
     <div className="content-stack">
-      <div className="content-panel">
-        <div className="badge">ProductDNA</div>
-        <h2>ProductDNA — a digital passport for finished products.</h2>
+      <div className="content-panel">        <h2>ProductDNA — a digital passport for finished products.</h2>
         <p>
           ProductDNA is the product-level identity layer for the localLOOP platform. It references
           constituent MaterialDNA entries and aligns with EU Digital Product Passport requirements

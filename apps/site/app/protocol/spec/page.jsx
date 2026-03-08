@@ -3,9 +3,7 @@ import MarkdownDoc from '@/app/components/docs/MarkdownDoc'
 export default function ProtocolSpecPage() {
   return (
     <div className="content-stack">
-      <div className="content-panel">
-        <div className="badge">Specification</div>
-        <h2>LOOP Specification v0.2.0</h2>
+      <div className="content-panel">        <h2>LOOP Specification v0.2.0</h2>
         <p>
           The normative requirements and API contracts that define interoperable
           localLOOP implementations. No public pilots or deployments yet.

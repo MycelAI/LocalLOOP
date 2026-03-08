@@ -3,9 +3,7 @@ import MarkdownDoc from '@/app/components/docs/MarkdownDoc'
 export default function ProtocolChangelogPage() {
   return (
     <div className="content-stack">
-      <div className="content-panel">
-        <div className="badge">Changelog</div>
-        <h2>Track protocol changes and milestones.</h2>
+      <div className="content-panel">        <h2>Track protocol changes and milestones.</h2>
         <p>
           The changelog captures updates to the protocol and planned roadmap items.
           The project is early-stage with no public pilots yet.

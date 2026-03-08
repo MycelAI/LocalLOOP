@@ -3,9 +3,7 @@ import MarkdownDoc from '@/app/components/docs/MarkdownDoc'
 export default function ProjectsPage() {
   return (
     <div className="content-stack">
-      <div className="content-panel">
-        <div className="badge">Project Hub</div>
-        <h2>Repository references and living artifacts.</h2>
+      <div className="content-panel">        <h2>Repository references and living artifacts.</h2>
         <p>
           Direct access to protocol assets, governance docs, and contribution
           guidelines hosted in the protocol repository.

@@ -27,8 +27,7 @@ export function Sidebar({ section }) {
 
       {config.groups.map((group, groupIndex) => (
         <div className="side-group" key={groupIndex}>
-          <span className="side-label">{group.label}</span>
-          {group.links.map((link) => (
+{group.links.map((link) => (
             <a
               key={link.href}
               href={link.href}

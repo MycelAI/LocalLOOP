@@ -7,9 +7,7 @@ export default function NotFound() {
       <SiteHeader />
 
       <section className="section">
-        <div className="content-panel">
-          <div className="badge">404</div>
-          <h2>This page could not be found.</h2>
+        <div className="content-panel">          <h2>This page could not be found.</h2>
           <p>
             The path you opened does not exist in the localLOOP hub. Use the quick links
             below to jump back into the platform.

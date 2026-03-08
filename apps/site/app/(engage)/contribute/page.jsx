@@ -3,9 +3,7 @@ import MarkdownDoc from '@/app/components/docs/MarkdownDoc'
 export default function ContributePage() {
   return (
     <div className="content-stack">
-      <div className="content-panel">
-        <div className="badge">Contribute</div>
-        <h2>Help shape the localLOOP platform.</h2>
+      <div className="content-panel">        <h2>Help shape the localLOOP platform.</h2>
         <p>
           Contributions are welcome across specs, schemas, docs, and tooling.
           This project is early-stage, so feedback is especially valuable.

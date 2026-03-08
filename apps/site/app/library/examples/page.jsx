@@ -1,9 +1,7 @@
 export default function ExamplesPage() {
   return (
     <div className="content-stack">
-      <div className="content-panel">
-        <div className="badge">Examples</div>
-        <h2>Reference payloads for the v0.2.0 lab flow.</h2>
+      <div className="content-panel">        <h2>Reference payloads for the v0.2.0 lab flow.</h2>
         <p>
           These examples demonstrate the current baseline interop sequence for both
           materials and products, plus the handshake and status-update payloads used

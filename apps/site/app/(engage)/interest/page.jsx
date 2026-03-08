@@ -1,9 +1,7 @@
 export default function InterestPage() {
   return (
     <div className="content-stack">
-      <div className="content-panel">
-        <div className="badge">Interest Registry</div>
-        <h2>Expression of Interest</h2>
+      <div className="content-panel">        <h2>Expression of Interest</h2>
         <p>
           Submissions are public so collaborators can see who is exploring the protocol.
           Email is optional and shown only if you opt in.

@@ -945,6 +945,10 @@ header[data-site-header] .nav-controls {
   gap: 6px;
 }
 
+.side-group + .side-group {
+  margin-top: 1rem;
+}
+
 .side-label {
   text-transform: uppercase;
   letter-spacing: 0.12em;
@@ -1178,6 +1182,21 @@ header[data-site-header] .nav-controls {
   text-decoration: none;
   color: var(--accent);
   font-weight: 600;
+}
+
+a.card {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+a.card h4 {
+  color: var(--ink);
+}
+
+.card.card-ref {
+  border-left: 3px solid var(--accent-2, #2f9e85);
+  background: rgba(47, 158, 133, 0.04);
 }
 
 .card.has-icon {

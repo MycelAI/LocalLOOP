@@ -2,22 +2,29 @@ export default function LibraryPage() {
   return (
     <div className="content-stack">
       <div className="content-panel">
-        <div className="badge">Library Hub</div>
-        <h2>Everything needed to implement the LOOP protocol.</h2>
+        <h2>Library</h2>
         <p>
           Browse the schema library and validated example payloads used by implementers
-          and node operators. This project is in early concept stage.
+          and node operators. Early concept stage.
         </p>
-        <div className="cta-row">
-          <a className="button primary" href="/library/schemas">Browse schemas</a>
-          <a className="button secondary" href="/library/examples">View examples</a>
-        </div>
       </div>
+
       <div className="content-panel">
-        <h3>Library coverage</h3>
-        <div className="table-list">
-          <div><span>Schemas</span><div>MaterialDNA, ProductDNA, LoopCoin, LoopSignal, Node Info</div></div>
-          <div><span>Examples</span><div>Validated payload flows and transactions</div></div>
+        <div className="grid">
+          <a className="card has-icon" href="/library/schemas">
+            <span className="card-icon" aria-hidden="true">
+              <i className="ph-thin ph-brackets-curly"></i>
+            </span>
+            <h4>Schemas</h4>
+            <p>MaterialDNA, ProductDNA, Offer, Match, Transfer, and more.</p>
+          </a>
+          <a className="card has-icon" href="/library/examples">
+            <span className="card-icon" aria-hidden="true">
+              <i className="ph-thin ph-file-code"></i>
+            </span>
+            <h4>Examples</h4>
+            <p>Validated payload flows and transactions.</p>
+          </a>
         </div>
       </div>
     </div>

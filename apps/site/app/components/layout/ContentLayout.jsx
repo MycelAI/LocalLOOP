@@ -43,7 +43,7 @@ export function ContentLayout({
  */
 export function DocsLayout({ children }) {
   return (
-    <ContentLayout section="docs" subtitle="Operator & Developer Docs">
+    <ContentLayout section="docs" subtitle="Docs">
       {children}
     </ContentLayout>
   );
@@ -51,7 +51,7 @@ export function DocsLayout({ children }) {
 
 export function ProtocolLayout({ children }) {
   return (
-    <ContentLayout section="protocol" subtitle="THE PROTOCOL">
+    <ContentLayout section="protocol" subtitle="Protocol">
       {children}
     </ContentLayout>
   );
