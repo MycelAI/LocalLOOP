@@ -3,7 +3,7 @@ import MarkdownDoc from '@/app/components/docs/MarkdownDoc'
 export default function RfcTemplatePage() {
   return (
     <div className="content-stack">
-      <div className="content-panel">        <h2>Standard template for drafting new proposals.</h2>
+      <div className="content-panel">        <h2>RFC Template</h2>
         <p>
           Use the template to structure proposals consistently across the protocol.
         </p>

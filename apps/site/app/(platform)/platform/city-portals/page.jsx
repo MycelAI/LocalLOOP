@@ -7,7 +7,7 @@ export const metadata = {
 export default function CityPortalsPage() {
   return (
     <div className="content-stack">
-      <div className="content-panel">        <h2>localLOOP city landing pages and demos.</h2>
+      <div className="content-panel">        <h2>City Portals</h2>
         <p>
           City portals will showcase local initiatives, partners, and impact metrics.
           There are no active deployments yet.

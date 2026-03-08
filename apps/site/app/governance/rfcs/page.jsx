@@ -3,7 +3,7 @@ import MarkdownDoc from '@/app/components/docs/MarkdownDoc'
 export default function RfcGuidePage() {
   return (
     <div className="content-stack">
-      <div className="content-panel">        <h2>Governance through Requests for Comments.</h2>
+      <div className="content-panel">        <h2>RFC Guide</h2>
         <p>
           RFCs document protocol proposals and decisions. Use the guide below to
           understand how changes are reviewed.

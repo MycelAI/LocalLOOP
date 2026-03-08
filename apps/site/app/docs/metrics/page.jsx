@@ -1,7 +1,7 @@
 export default function MetricsPage() {
   return (
     <div className="content-stack">
-      <div className="content-panel">        <h2>Lab metrics and observability dashboard.</h2>
+      <div className="content-panel">        <h2>Metrics</h2>
         <p>
           Live counters from the LOOP lab API. This is a demo-grade snapshot to
           validate activity in a controlled environment.

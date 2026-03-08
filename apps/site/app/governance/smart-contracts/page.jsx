@@ -3,7 +3,7 @@ import MarkdownDoc from '@/app/components/docs/MarkdownDoc'
 export default function SmartContractsPage() {
   return (
     <div className="content-stack">
-      <div className="content-panel">        <h2>Optional smart contract integration proposal.</h2>
+      <div className="content-panel">        <h2>Smart Contract RFC</h2>
         <p>
           Draft RFC describing how smart contracts could automate settlement flows.
         </p>

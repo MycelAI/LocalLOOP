@@ -3,7 +3,7 @@ import MarkdownDoc from '@/app/components/docs/MarkdownDoc'
 export default function SecureCodingPage() {
   return (
     <div className="content-stack">
-      <div className="content-panel">        <h2>Secure coding practices for LOOP services.</h2>
+      <div className="content-panel">        <h2>Secure Coding</h2>
         <p>
           Guardrails for building secure integrations and services in the localLOOP
           ecosystem.

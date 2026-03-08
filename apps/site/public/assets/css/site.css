@@ -944,7 +944,8 @@ header[data-site-header] .nav-controls {
   backdrop-filter: blur(6px);
 }
 
-.side-title {
+.side-title,
+.side-nav a.side-title {
   font-weight: 700;
   font-size: 1.05rem;
   color: var(--ink);
@@ -956,15 +957,24 @@ header[data-site-header] .nav-controls {
   transition: background 0.2s ease, color 0.2s ease;
 }
 
-.side-title:hover {
+.side-title:hover,
+.side-nav a.side-title:hover {
   background: rgba(224, 108, 71, 0.08);
   color: var(--accent);
 }
 
-.side-title.active {
+.side-title.active,
+.side-nav a.side-title.active {
   background: rgba(47, 158, 133, 0.18);
   color: var(--accent-2);
   border-left-color: var(--accent-2);
+}
+
+.side-link-ext {
+  font-size: 0.7rem;
+  opacity: 0.6;
+  margin-left: 4px;
+  vertical-align: middle;
 }
 
 .side-group {

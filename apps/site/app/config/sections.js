@@ -14,7 +14,7 @@ export const sectionConfigs = {
           { href: '/docs/implementation', label: 'Implementation' },
           { href: '/docs/regulatory-alignment', label: 'Regulatory Alignment' },
           { href: '/docs/lab-demo', label: 'Lab Demo' },
-          { href: '/docs/federation', label: 'Federation Handshake' },
+          { href: '/docs/federation', label: 'Federation Handshake', crossSection: true },
           { href: '/docs/security', label: 'Security Guide' },
           { href: '/docs/secure-coding', label: 'Secure Coding' },
           { href: '/docs/incident-response', label: 'Incident Response' },
@@ -48,7 +48,7 @@ export const sectionConfigs = {
           { href: '/protocol/spec', label: 'Specification' },
           { href: '/protocol/changelog', label: 'Changelog' },
           { href: '/protocol/security', label: 'Security Policy' },
-          { href: '/docs/regulatory-alignment', label: 'Compatibility Roadmap' }
+          { href: '/docs/regulatory-alignment', label: 'Compatibility Roadmap', crossSection: true }
         ]
       }
     ],

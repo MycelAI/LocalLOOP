@@ -3,7 +3,7 @@ import MarkdownDoc from '@/app/components/docs/MarkdownDoc'
 export default function FederationPage() {
   return (
     <div className="content-stack">
-      <div className="content-panel">        <h2>Federation handshake for demo nodes.</h2>
+      <div className="content-panel">        <h2>Federation Handshake</h2>
         <p>
           The lab handshake introduces two nodes and registers them in the demo
           registry. This is not a production federation protocol.

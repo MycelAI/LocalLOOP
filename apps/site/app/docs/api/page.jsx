@@ -1,7 +1,7 @@
 export default function ApiDocsPage() {
   return (
     <div className="content-stack">
-      <div className="content-panel">        <h2>Use the live lab API docs and the protocol reference separately.</h2>
+      <div className="content-panel">        <h2>API Docs</h2>
         <p>
           The live backend serves Redoc with headers that block cross-origin framing, so this
           page links directly to the lab API docs. The normative protocol contract lives in the

@@ -3,7 +3,7 @@ import MarkdownDoc from '@/app/components/docs/MarkdownDoc'
 export default function GlossaryPage() {
   return (
     <div className="content-stack">
-      <div className="content-panel">        <h2>Standard terminology for the LOOP ecosystem.</h2>
+      <div className="content-panel">        <h2>Glossary</h2>
         <p>
           Reference terminology that appears across the specification and docs.
         </p>

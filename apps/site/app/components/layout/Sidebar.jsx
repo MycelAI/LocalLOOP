@@ -47,6 +47,7 @@ export function Sidebar({ section }) {
               {...(link.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
             >
               {link.label}
+              {link.crossSection && <span className="side-link-ext">↗</span>}
             </a>
           ))}
         </div>

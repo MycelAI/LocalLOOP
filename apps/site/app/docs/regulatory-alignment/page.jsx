@@ -3,7 +3,7 @@ import MarkdownDoc from '@/app/components/docs/MarkdownDoc'
 export default function RegulatoryAlignmentPage() {
   return (
     <div className="content-stack">
-      <div className="content-panel">        <h2>Compatibility roadmap for EU and German circular-data rules.</h2>
+      <div className="content-panel">        <h2>Regulatory Alignment</h2>
         <p>
           localLOOP is still lab-demo infrastructure, but the protocol now documents how
           it can evolve toward DPP, battery, packaging, waste-traceability, and German

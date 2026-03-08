@@ -9,7 +9,7 @@ export const metadata = {
 export default function MaterialDNAPage() {
   return (
     <div className="content-stack">
-      <div className="content-panel">        <h2>MaterialDNA — a shared identity for materials in the circular economy.</h2>
+      <div className="content-panel">        <h2>MaterialDNA</h2>
         <p>
           MaterialDNA is the identification layer for tracking raw and processed materials
           across city loops. It provides stable, verifiable identifiers and provenance metadata
