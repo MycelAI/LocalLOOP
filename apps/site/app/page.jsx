@@ -24,7 +24,7 @@ export default function HomePage() {
             <span className="hero-title-accent">Infrastructure for Cities</span>
           </h1>
           <p className="hero-description">
-            A federated, DPP-compatible protocol enabling cities to track,
+            A federated, Digital Product Passport (DPP)-compatible protocol enabling cities to track,
             exchange, and settle material and product flows while maintaining local sovereignty.
           </p>
           <div className="hero-actions">
@@ -83,9 +83,10 @@ export default function HomePage() {
             <h3>LOOP</h3>
             <p>
               <strong>Local Optimization with Overflow Protocol</strong> — An open, federated standard
-              for tracking material flows between cities. LOOP enables municipalities to share surplus
-              resources, coordinate circular economy initiatives, and maintain sovereignty over local data
-              while participating in regional material exchanges.
+              for tracking material and product flows between cities. LOOP enables municipalities to share
+              surplus resources, coordinate circular economy initiatives, and maintain sovereignty over
+              local data while participating in regional exchanges — built around MaterialDNA, ProductDNA,
+              LoopCoin, and LoopSignal.
             </p>
           </div>
           <div className="concept-card">
@@ -110,6 +111,40 @@ export default function HomePage() {
               condition, manufacturer, lifecycle stage, and references to constituent MaterialDNA
               entries — enabling product-level reuse, trading, and EU Digital Product Passport
               compliance (ESPR Art. 9-10).
+            </p>
+          </div>
+          <div className="concept-card">
+            <div className="concept-icon">
+              <i className="ph-bold ph-coins" aria-hidden="true"></i>
+            </div>
+            <h3>LoopCoin</h3>
+            <p>
+              A node-issued local currency used to settle material and product transfers between
+              federation peers. LoopCoin carries expiry and decay rules defined by each node,
+              keeping value circulating locally while enabling inter-node clearing.
+            </p>
+          </div>
+          <div className="concept-card">
+            <div className="concept-icon">
+              <i className="ph-bold ph-broadcast" aria-hidden="true"></i>
+            </div>
+            <h3>LoopSignal</h3>
+            <p>
+              A community preference signal that expresses demand or surplus intent for specific
+              material categories. LoopSignals inform routing and matching across the federation,
+              helping nodes prioritise the right resources for the right places.
+            </p>
+          </div>
+          <div className="concept-card">
+            <div className="concept-icon">
+              <i className="ph-bold ph-calculator" aria-hidden="true"></i>
+            </div>
+            <h3>LoopCost</h3>
+            <p>
+              The total routing cost for any material or product transfer: base price plus export
+              and import penalties (derived from LoopSignals) plus distance cost. LoopCost ensures
+              local exchanges are always cheaper than cross-boundary ones, keeping circular value
+              circulating close to its source.
             </p>
           </div>
         </div>
@@ -207,7 +242,7 @@ export default function HomePage() {
             icon="buildings"
             title="City Portals"
             description="See LOOP in action with city-specific implementations."
-            href="/cities"
+            href="/platform/city-portals"
           />
           <Card
             icon="gavel"
