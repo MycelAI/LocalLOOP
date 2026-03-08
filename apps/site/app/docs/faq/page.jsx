@@ -5,7 +5,7 @@ export default function FaqPage() {
         <div className="badge">Frequently asked questions</div>
         <h2>Answers to common protocol and implementation questions.</h2>
         <p>
-          This FAQ reflects the current early-stage status of LocalLoop.
+          This FAQ reflects the current early-stage status of localLOOP.
         </p>
         <div className="cta-row">
           <a

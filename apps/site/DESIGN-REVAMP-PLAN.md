@@ -1,4 +1,4 @@
-# LocalLoop Design Revamp Plan
+# localLOOP Design Revamp Plan
 
 ## Current State Analysis
 

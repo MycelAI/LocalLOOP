@@ -17,15 +17,15 @@ export default function HomePage() {
         <div className="hero-content">
           <div className="hero-badge">
             <i className="ph-bold ph-globe" aria-hidden="true"></i>
-            Open Protocol
+            Local Optimization with Overflow Protocol
           </div>
           <h1 className="hero-title">
             Circular Economy<br />
             <span className="hero-title-accent">Infrastructure for Cities</span>
           </h1>
           <p className="hero-description">
-            A federated protocol enabling cities to track, exchange, and settle
-            material flows while maintaining local sovereignty.
+            A federated, DPP-compatible protocol enabling cities to track,
+            exchange, and settle material flows while maintaining local sovereignty.
           </p>
           <div className="hero-actions">
             <a className="button primary" href="/protocol">
@@ -39,12 +39,12 @@ export default function HomePage() {
           </div>
           <div className="hero-stats">
             <div className="hero-stat">
-              <span className="hero-stat-value">4</span>
-              <span className="hero-stat-label">Core Schemas</span>
+              <span className="hero-stat-value">10</span>
+              <span className="hero-stat-label">Unified Schemas</span>
             </div>
             <div className="hero-stat-divider"></div>
             <div className="hero-stat">
-              <span className="hero-stat-value">v0.1</span>
+              <span className="hero-stat-value">v0.2</span>
               <span className="hero-stat-label">Protocol Version</span>
             </div>
             <div className="hero-stat-divider"></div>
@@ -80,7 +80,7 @@ export default function HomePage() {
             <div className="concept-icon">
               <img src="/assets/local-loop-logo.png" alt="" width={48} height={48} />
             </div>
-            <h3>LOOP Protocol</h3>
+            <h3>LOOP</h3>
             <p>
               <strong>Local Optimization with Overflow Protocol</strong> — An open, federated standard
               for tracking material flows between cities. LOOP enables municipalities to share surplus

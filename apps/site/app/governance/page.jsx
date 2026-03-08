@@ -6,7 +6,7 @@ export default function GovernancePage() {
         <h2>How protocol changes are proposed and reviewed.</h2>
         <p>
           Governance is managed through RFCs that capture proposals, review notes, and
-          decisions for the LOOP Protocol.
+          decisions for LOOP.
         </p>
         <div className="cta-row">
           <a className="button primary" href="/governance/rfcs">Open RFC guide</a>

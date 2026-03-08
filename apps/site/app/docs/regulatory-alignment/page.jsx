@@ -5,9 +5,9 @@ export default function RegulatoryAlignmentPage() {
         <div className="badge">Regulatory alignment</div>
         <h2>Compatibility roadmap for EU and German circular-data rules.</h2>
         <p>
-          LocalLoop is still lab-demo infrastructure, but the protocol now documents how
+          localLOOP is still lab-demo infrastructure, but the protocol now documents how
           it can evolve toward DPP, battery, packaging, waste-traceability, and German
-          circular-economy data expectations without breaking the v0.1.1 baseline.
+          circular-economy data expectations building on the v0.2.0 DPP-compatible baseline.
         </p>
         <div className="cta-row">
           <a

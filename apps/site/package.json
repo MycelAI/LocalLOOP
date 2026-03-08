@@ -2,7 +2,8 @@
   "name": "localloop-site",
   "private": true,
   "version": "0.1.0",
-  "description": "LocalLoop protocol hub and city landing pages",
+  "description": "localLOOP hub and city landing pages",
+  "author": "Alphin Tom / Mycel UG (haftungsbeschränkt) <alphin@mycel-ai.de>",
   "license": "MIT",
   "engines": {
     "node": ">=25.1.0"

@@ -22,8 +22,8 @@ export default function FederationPage() {
       <div className="content-panel">
         <h3>Endpoints (lab)</h3>
         <div className="table-list">
-          <div><span>Handshake</span><div>`/api/federation/handshake`</div></div>
-          <div><span>Registry</span><div>`/api/federation/nodes`</div></div>
+          <div><span>Handshake</span><div>`/api/v1/federation/handshake`</div></div>
+          <div><span>Registry</span><div>`/api/v1/federation/nodes`</div></div>
         </div>
       </div>
 

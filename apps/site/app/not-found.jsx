@@ -11,7 +11,7 @@ export default function NotFound() {
           <div className="badge">404</div>
           <h2>This page could not be found.</h2>
           <p>
-            The path you opened does not exist in the LocalLoop hub. Use the quick links
+            The path you opened does not exist in the localLOOP hub. Use the quick links
             below to jump back into the platform.
           </p>
           <div className="cta-row">

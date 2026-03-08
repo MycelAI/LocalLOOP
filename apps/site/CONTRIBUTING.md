@@ -1,6 +1,6 @@
-# Contributing to LocalLoop Docs Hub
+# Contributing to localLOOP Docs Hub
 
-Thanks for your interest in helping with the LocalLoop documentation hub!
+Thanks for your interest in helping with the localLOOP documentation hub!
 
 ## Quick Start
 - Create a feature branch.
@@ -12,4 +12,4 @@ The site mirrors protocol artifacts from `loop-protocol`. Update the source repo
 possible and run the aggregation workflow to sync changes here.
 
 ## Contact
-Questions? Email alphinctom@gmail.com or open a GitHub Discussion.
+Questions? Email alphin@mycel-ai.de or open a GitHub Discussion.

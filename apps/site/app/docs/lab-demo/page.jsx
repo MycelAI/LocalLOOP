@@ -3,7 +3,7 @@ export default function LabDemoPage() {
     <div className="content-stack">
       <div className="content-panel">
         <div className="badge">Lab demo</div>
-        <h2>Minimal interop flow (v0.1.1) in a controlled environment.</h2>
+        <h2>Lab demo flow (v0.2.0) in a controlled environment.</h2>
         <p>
           This lab demo runs a full MaterialDNA → Offer → Match → Transfer flow
           using the sandbox API. It is not a pilot or production deployment.
@@ -38,8 +38,8 @@ docker compose --env-file .env.docker up -d
 bun run lab:demo`}</code></pre>
         </div>
         <div className="table-list">
-          <div><span>Events stream</span><div>`/api/loop/stream` (SSE)</div></div>
-          <div><span>Event log</span><div>`/api/loop/events`</div></div>
+          <div><span>Events stream</span><div>`/api/v1/stream` (SSE)</div></div>
+          <div><span>Event log</span><div>`/api/v1/events`</div></div>
           <div><span>Metrics</span><div>`/api/metrics`</div></div>
           <div><span>Privacy notice</span><div>`/api/privacy`</div></div>
         </div>
@@ -68,8 +68,8 @@ bun run lab:demo`}</code></pre>
           <pre><code>{`bun run lab:federation`}</code></pre>
         </div>
         <div className="table-list">
-          <div><span>Relay endpoint</span><div>`/api/loop/relay`</div></div>
-          <div><span>Events stream</span><div>`/api/loop/stream` (SSE)</div></div>
+          <div><span>Relay endpoint</span><div>`/api/v1/relay`</div></div>
+          <div><span>Events stream</span><div>`/api/v1/stream` (SSE)</div></div>
         </div>
       </div>
 

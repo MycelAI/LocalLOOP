@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://local-loop-io.github.io/projects/loop-protocol/schemas/v1/transaction.schema.json",
   "title": "Transaction",
-  "description": "Schema for LOOP Protocol transactions",
+  "description": "Transaction schema — LOOP v0.2.0",
   "oneOf": [
     {
       "$ref": "#/definitions/MaterialTransaction"

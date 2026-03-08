@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://local-loop-io.github.io/projects/loop-protocol/schemas/v0.1.1/offer.schema.json",
   "title": "Offer",
-  "description": "Minimal interop offer for LOOP Protocol v0.1.1",
+  "description": "Offer schema — LOOP v0.1.1",
   "type": "object",
   "required": [
     "@context",

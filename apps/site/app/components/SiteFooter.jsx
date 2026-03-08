@@ -22,7 +22,7 @@ export function SiteFooter() {
           <a href="https://github.com/local-loop-io" target="_blank" rel="noopener noreferrer">GitHub</a>
         </div>
         <div className="footer-legal">
-          © 2025–2026 localLOOP. All rights reserved.
+          © 2025–2026 Alphin Tom / Mycel UG (haftungsbeschränkt). All rights reserved.
         </div>
       </div>
     </footer>

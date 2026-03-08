@@ -5,7 +5,7 @@ export default function IncidentResponsePage() {
         <div className="badge">Response playbooks</div>
         <h2>Prepare for containment, recovery, and post-mortems.</h2>
         <p>
-          Response workflows for LocalLoop operators and infrastructure teams.
+          Response workflows for localLOOP operators and infrastructure teams.
         </p>
         <div className="cta-row">
           <a

@@ -5,7 +5,7 @@ export default function SecurityGuidePage() {
         <div className="badge">Security guidance</div>
         <h2>Operational security playbook for operators.</h2>
         <p>
-          Practical guidance on securing LocalLoop nodes and integrations.
+          Practical guidance on securing localLOOP nodes and integrations.
         </p>
         <div className="cta-row">
           <a

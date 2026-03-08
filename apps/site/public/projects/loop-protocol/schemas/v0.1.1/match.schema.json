@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://local-loop-io.github.io/projects/loop-protocol/schemas/v0.1.1/match.schema.json",
   "title": "Match",
-  "description": "Minimal interop match for LOOP Protocol v0.1.1",
+  "description": "Match schema — LOOP v0.1.1",
   "type": "object",
   "required": [
     "@context",
