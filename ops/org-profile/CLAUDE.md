@@ -14,7 +14,7 @@ Keep it in sync with AGENTS.md.
 
 - Public site: `https://local-loop-io.github.io`
 - Backend API: `https://loop-api.urbnia.com`
-- Deprecated / invalid: `api.local-loop.io`
+- `api.local-loop.io` does not exist
 
 ## VPS / Traefik
 
@@ -30,7 +30,7 @@ docker compose up -d --build
 
 ## API Endpoints
 
-- `/api/health`
+- `/health`
 - `/api/metrics`
 - `/api/interest`
 - `/api/interest/stream` (SSE)
@@ -60,4 +60,3 @@ Update `DOMAIN-POLICY.md` and domain check scripts if domains change.
 ## Claims Policy
 
 No public pilots or deployments. Keep all outward messaging “lab demo only.”
-

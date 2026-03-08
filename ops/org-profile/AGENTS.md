@@ -37,7 +37,7 @@ or infrastructure change.
 ## Backend Quick Reference
 
 - API base: `https://loop-api.urbnia.com`
-- Health: `/api/health`
+- Health: `/health`
 - Metrics: `/api/metrics`
 - Interest list: `/api/interest`
 - Interest SSE: `/api/interest/stream`
@@ -135,4 +135,3 @@ only `alpha912` should merge.
 ## Security
 
 Never commit secrets or credentials. Keep `.env` files local only.
-
