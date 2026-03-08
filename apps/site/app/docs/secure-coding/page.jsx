@@ -1,3 +1,5 @@
+import MarkdownDoc from '@/app/components/docs/MarkdownDoc'
+
 export default function SecureCodingPage() {
   return (
     <div className="content-stack">
@@ -9,12 +11,6 @@ export default function SecureCodingPage() {
           ecosystem.
         </p>
         <div className="cta-row">
-          <a
-            className="button primary"
-            href="/viewer.html?path=projects/loop-protocol/docs/secure-coding.md&title=Secure%20Coding"
-          >
-            Open guide
-          </a>
           <a className="button secondary" href="/docs">Back to docs</a>
         </div>
       </div>
@@ -24,6 +20,9 @@ export default function SecureCodingPage() {
           <div><span>Data handling</span><div>Validation and sanitization</div></div>
           <div><span>Infrastructure</span><div>Credential and secret hygiene</div></div>
         </div>
+      </div>
+      <div className="content-panel">
+        <MarkdownDoc filePath="projects/loop-protocol/docs/secure-coding.md" />
       </div>
     </div>
   );

@@ -1,3 +1,5 @@
+import MarkdownDoc from '@/app/components/docs/MarkdownDoc'
+
 export default function SecurityGuidePage() {
   return (
     <div className="content-stack">
@@ -8,12 +10,6 @@ export default function SecurityGuidePage() {
           Practical guidance on securing localLOOP nodes and integrations.
         </p>
         <div className="cta-row">
-          <a
-            className="button primary"
-            href="/viewer.html?path=projects/loop-protocol/docs/security-guide.md&title=Security%20Guide"
-          >
-            Open guide
-          </a>
           <a className="button secondary" href="/docs">Back to docs</a>
         </div>
       </div>
@@ -24,6 +20,9 @@ export default function SecurityGuidePage() {
           <div><span>Operational control</span><div>Logging, access, and response</div></div>
           <div><span>GDPR baseline</span><div>Data minimization and consent</div></div>
         </div>
+      </div>
+      <div className="content-panel">
+        <MarkdownDoc filePath="projects/loop-protocol/docs/security-guide.md" />
       </div>
     </div>
   );

@@ -1,3 +1,5 @@
+import MarkdownDoc from '@/app/components/docs/MarkdownDoc'
+
 export default function FaqPage() {
   return (
     <div className="content-stack">
@@ -8,12 +10,6 @@ export default function FaqPage() {
           This FAQ reflects the current early-stage status of localLOOP.
         </p>
         <div className="cta-row">
-          <a
-            className="button primary"
-            href="/viewer.html?path=projects/loop-protocol/docs/faq.md&title=FAQ"
-          >
-            Open FAQ
-          </a>
           <a className="button secondary" href="/docs">Back to docs</a>
         </div>
       </div>
@@ -23,6 +19,9 @@ export default function FaqPage() {
         <div className="cta-row">
           <a className="button primary" href="/interest">Express interest</a>
         </div>
+      </div>
+      <div className="content-panel">
+        <MarkdownDoc filePath="projects/loop-protocol/docs/faq.md" />
       </div>
     </div>
   );

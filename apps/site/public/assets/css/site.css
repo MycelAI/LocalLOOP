@@ -2767,3 +2767,151 @@ header[data-site-header] .nav-controls {
   white-space: nowrap;
   border: 0;
 }
+
+/* ──────────────────────────────────────────────────────────────
+   Inline Markdown Document (.markdown-doc)
+   Renders protocol docs inline as seamless content panels
+   ────────────────────────────────────────────────────────────── */
+
+.markdown-doc {
+  font-size: 0.9375rem;
+  line-height: 1.75;
+  color: var(--fg-muted);
+  overflow-wrap: break-word;
+}
+
+.markdown-doc h1,
+.markdown-doc h2,
+.markdown-doc h3,
+.markdown-doc h4,
+.markdown-doc h5,
+.markdown-doc h6 {
+  color: var(--fg);
+  font-weight: 700;
+  line-height: 1.3;
+  margin: 1.75rem 0 0.5rem;
+}
+
+.markdown-doc h1 { font-size: 1.5rem; }
+.markdown-doc h2 {
+  font-size: 1.25rem;
+  padding-left: 0.75rem;
+  border-left: 3px solid var(--accent);
+}
+.markdown-doc h3 { font-size: 1.0625rem; }
+.markdown-doc h4 { font-size: 0.9375rem; }
+
+.markdown-doc h1:first-child,
+.markdown-doc h2:first-child,
+.markdown-doc h3:first-child {
+  margin-top: 0;
+}
+
+.markdown-doc p {
+  margin: 0.75rem 0;
+}
+
+.markdown-doc a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.markdown-doc a:hover {
+  color: var(--accent-2);
+}
+
+.markdown-doc ul,
+.markdown-doc ol {
+  padding-left: 1.5rem;
+  margin: 0.75rem 0;
+}
+
+.markdown-doc li {
+  margin: 0.35rem 0;
+}
+
+.markdown-doc blockquote {
+  border-left: 3px solid var(--accent-2);
+  margin: 1rem 0;
+  padding: 0.5rem 1rem;
+  background: rgba(47, 158, 133, 0.07);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  color: var(--fg-muted);
+}
+
+.markdown-doc blockquote p {
+  margin: 0;
+}
+
+.markdown-doc code {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.875em;
+  background: rgba(0, 0, 0, 0.06);
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+  color: var(--fg);
+}
+
+.markdown-doc pre {
+  margin: 1rem 0;
+  border-radius: var(--radius);
+  overflow-x: auto;
+}
+
+.markdown-doc pre code {
+  background: transparent;
+  padding: 0;
+  font-size: 0.8125rem;
+  color: inherit;
+}
+
+.markdown-doc table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  margin: 1rem 0;
+}
+
+.markdown-doc th {
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  background: rgba(0, 0, 0, 0.04);
+  border-bottom: 2px solid var(--border);
+  font-weight: 600;
+  color: var(--fg);
+}
+
+.markdown-doc td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+.markdown-doc tr:last-child td {
+  border-bottom: none;
+}
+
+.markdown-doc hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 1.5rem 0;
+}
+
+.markdown-doc img {
+  max-width: 100%;
+  border-radius: var(--radius);
+}
+
+/* Mermaid diagram block */
+.mermaid-block {
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+  padding: 1rem 0;
+}
+
+.mermaid-block svg {
+  max-width: 100%;
+  height: auto;
+}

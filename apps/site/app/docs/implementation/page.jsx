@@ -1,3 +1,5 @@
+import MarkdownDoc from '@/app/components/docs/MarkdownDoc'
+
 export default function ImplementationPage() {
   return (
     <div className="content-stack">
@@ -9,12 +11,6 @@ export default function ImplementationPage() {
           yet — this guide is a living draft.
         </p>
         <div className="cta-row">
-          <a
-            className="button primary"
-            href="/viewer.html?path=projects/loop-protocol/docs/implementation-guide.md&title=Implementation%20Guide"
-          >
-            Open guide
-          </a>
           <a className="button secondary" href="/docs">Back to docs</a>
         </div>
       </div>
@@ -24,6 +20,9 @@ export default function ImplementationPage() {
           <div><span>Node setup</span><div>Required services and integration</div></div>
           <div><span>Data flows</span><div>Syncing, validation, and federation</div></div>
         </div>
+      </div>
+      <div className="content-panel">
+        <MarkdownDoc filePath="projects/loop-protocol/docs/implementation-guide.md" />
       </div>
     </div>
   );

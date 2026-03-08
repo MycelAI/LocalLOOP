@@ -9,9 +9,7 @@ export default function LabDemoPage() {
           flow using the sandbox API. It is not a pilot or production deployment.
         </p>
         <div className="cta-row">
-          <a className="button primary" href="/viewer.html?path=projects/loop-protocol/SPECIFICATION.md&title=LOOP%20Protocol%20Spec">
-            Open specification
-          </a>
+          <a className="button primary" href="/protocol/spec">Open specification</a>
           <a className="button secondary" href="/docs">Back to docs</a>
         </div>
       </div>

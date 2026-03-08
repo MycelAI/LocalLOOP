@@ -1,3 +1,5 @@
+import MarkdownDoc from '@/app/components/docs/MarkdownDoc'
+
 export default function RegulatoryAlignmentPage() {
   return (
     <div className="content-stack">
@@ -11,12 +13,6 @@ export default function RegulatoryAlignmentPage() {
           The new ProductDNA schema provides product-level DPP alignment (ESPR Art. 9-10).
         </p>
         <div className="cta-row">
-          <a
-            className="button primary"
-            href="/viewer.html?path=projects/loop-protocol/docs/regulatory-alignment-roadmap.md&title=Regulatory%20Alignment%20Roadmap"
-          >
-            Open roadmap
-          </a>
           <a className="button secondary" href="/protocol/spec">
             Review the spec
           </a>
@@ -39,6 +35,9 @@ export default function RegulatoryAlignmentPage() {
           This roadmap does not claim legal compliance, certification, or product-group
           coverage for delegated acts that are still emerging.
         </p>
+      </div>
+      <div className="content-panel">
+        <MarkdownDoc filePath="projects/loop-protocol/docs/regulatory-alignment-roadmap.md" />
       </div>
     </div>
   );

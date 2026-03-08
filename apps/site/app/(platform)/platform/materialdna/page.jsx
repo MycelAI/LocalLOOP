@@ -1,3 +1,5 @@
+import MarkdownDoc from '@/app/components/docs/MarkdownDoc'
+
 export const metadata = {
   alternates: {
     canonical: '/platform/materialdna',
@@ -16,12 +18,6 @@ export default function MaterialDNAPage() {
           to support traceability and matching. This is an early concept with no public pilots yet.
         </p>
         <div className="cta-row">
-          <a
-            className="button primary"
-            href="/viewer.html?path=projects/loop-protocol/schemas/material-dna.schema.json&title=MaterialDNA%20Schema"
-          >
-            Review the schema
-          </a>
           <a className="button secondary" href="/platform/city-portals">
             City portals
           </a>
@@ -103,9 +99,12 @@ export default function MaterialDNAPage() {
             </span>
             <h4>Integration</h4>
             <p>Implementation guidance will be published as the spec matures.</p>
-            <a href="/viewer.html?path=projects/loop-protocol/docs/implementation-guide.md&title=Implementation%20Guide">Read the guide</a>
+            <a href="/docs/implementation">Read the guide</a>
           </div>
         </div>
+      </div>
+      <div className="content-panel">
+        <MarkdownDoc filePath="projects/loop-protocol/schemas/material-dna.schema.json" />
       </div>
     </div>
   );

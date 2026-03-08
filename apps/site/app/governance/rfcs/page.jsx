@@ -1,3 +1,5 @@
+import MarkdownDoc from '@/app/components/docs/MarkdownDoc'
+
 export default function RfcGuidePage() {
   return (
     <div className="content-stack">
@@ -9,12 +11,6 @@ export default function RfcGuidePage() {
           understand how changes are reviewed.
         </p>
         <div className="cta-row">
-          <a
-            className="button primary"
-            href="/viewer.html?path=projects/loop-protocol/rfcs/README.md&title=RFCs"
-          >
-            Open RFC guide
-          </a>
           <a className="button secondary" href="/governance">Back to governance</a>
         </div>
       </div>
@@ -25,6 +21,9 @@ export default function RfcGuidePage() {
           <div><span>Proposal</span><div>Specification changes and impacts</div></div>
           <div><span>Review</span><div>Discussion and acceptance criteria</div></div>
         </div>
+      </div>
+      <div className="content-panel">
+        <MarkdownDoc filePath="projects/loop-protocol/rfcs/README.md" />
       </div>
     </div>
   );

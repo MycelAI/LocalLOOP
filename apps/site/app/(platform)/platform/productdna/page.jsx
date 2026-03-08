@@ -1,3 +1,5 @@
+import MarkdownDoc from '@/app/components/docs/MarkdownDoc'
+
 export const metadata = {
   alternates: {
     canonical: '/platform/productdna',
@@ -16,12 +18,6 @@ export default function ProductDNAPage() {
           under ESPR Art. 9-10. This is an early-stage lab concept with no public pilots yet.
         </p>
         <div className="cta-row">
-          <a
-            className="button primary"
-            href="/viewer.html?path=projects/loop-protocol/schemas/product-dna.schema.json&title=ProductDNA%20Schema"
-          >
-            Review the schema
-          </a>
           <a className="button secondary" href="/platform/materialdna">
             MaterialDNA
           </a>
@@ -103,9 +99,12 @@ export default function ProductDNAPage() {
             </span>
             <h4>Integration</h4>
             <p>Implementation guidance will be published as the spec matures.</p>
-            <a href="/viewer.html?path=projects/loop-protocol/docs/implementation-guide.md&title=Implementation%20Guide">Read the guide</a>
+            <a href="/docs/implementation">Read the guide</a>
           </div>
         </div>
+      </div>
+      <div className="content-panel">
+        <MarkdownDoc filePath="projects/loop-protocol/schemas/product-dna.schema.json" />
       </div>
     </div>
   );

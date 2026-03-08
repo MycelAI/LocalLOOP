@@ -1,3 +1,5 @@
+import MarkdownDoc from '@/app/components/docs/MarkdownDoc'
+
 export default function RfcTemplatePage() {
   return (
     <div className="content-stack">
@@ -8,12 +10,6 @@ export default function RfcTemplatePage() {
           Use the template to structure proposals consistently across the protocol.
         </p>
         <div className="cta-row">
-          <a
-            className="button primary"
-            href="/viewer.html?path=projects/loop-protocol/rfcs/0000-template.md&title=RFC%20Template"
-          >
-            Open template
-          </a>
           <a className="button secondary" href="/governance">Back to governance</a>
         </div>
       </div>
@@ -24,6 +20,9 @@ export default function RfcTemplatePage() {
           <div><span>Specification</span><div>API and schema updates</div></div>
           <div><span>Rollout</span><div>Migration and compatibility notes</div></div>
         </div>
+      </div>
+      <div className="content-panel">
+        <MarkdownDoc filePath="projects/loop-protocol/rfcs/0000-template.md" />
       </div>
     </div>
   );

@@ -121,7 +121,7 @@ export default function DocsPage() {
             </span>
             <h4>Threat Model</h4>
             <p>STRIDE-lite baseline for lab environments.</p>
-            <a href="/viewer.html?path=projects/loop-protocol/docs/compliance/threat-model.md&title=Threat%20Model">Open threat model</a>
+            <a href="/docs/threat-model">Open threat model</a>
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
@@ -129,7 +129,7 @@ export default function DocsPage() {
             </span>
             <h4>DPIA Lite</h4>
             <p>Baseline data protection assessment for lab demos.</p>
-            <a href="/viewer.html?path=projects/loop-protocol/docs/compliance/dpia-lite.md&title=DPIA%20Lite">Open DPIA</a>
+            <a href="/docs/dpia-lite">Open DPIA</a>
           </div>
         </div>
       </div>

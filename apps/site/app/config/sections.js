@@ -32,8 +32,8 @@ export const sectionConfigs = {
         links: [
           { href: '/docs/faq', label: 'FAQ' },
           { href: '/docs/glossary', label: 'Glossary' },
-          { href: '/viewer.html?path=projects/loop-protocol/docs/compliance/threat-model.md&title=Threat%20Model', label: 'Threat Model', external: true },
-          { href: '/viewer.html?path=projects/loop-protocol/docs/compliance/dpia-lite.md&title=DPIA%20Lite', label: 'DPIA Lite', external: true }
+          { href: '/docs/threat-model', label: 'Threat Model' },
+          { href: '/docs/dpia-lite', label: 'DPIA Lite' }
         ]
       }
     ],

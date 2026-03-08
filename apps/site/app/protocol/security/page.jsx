@@ -1,3 +1,5 @@
+import MarkdownDoc from '@/app/components/docs/MarkdownDoc'
+
 export default function ProtocolSecurityPage() {
   return (
     <div className="content-stack">
@@ -9,12 +11,6 @@ export default function ProtocolSecurityPage() {
           Implementation guidance will evolve as the protocol matures.
         </p>
         <div className="cta-row">
-          <a
-            className="button primary"
-            href="/viewer.html?path=projects/loop-protocol/SECURITY.md&title=Security%20Policy"
-          >
-            Open security policy
-          </a>
           <a className="button secondary" href="/docs/security">Security guide</a>
         </div>
       </div>
@@ -25,6 +21,9 @@ export default function ProtocolSecurityPage() {
           <div><span>Incident response</span><div>Containment and recovery playbooks</div></div>
         </div>
       </div>
+      <div className="content-panel">
+        <MarkdownDoc filePath="projects/loop-protocol/SECURITY.md" />
+      </div>
     </div>
-  );
+  )
 }

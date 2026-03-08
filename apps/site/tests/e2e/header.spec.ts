@@ -64,16 +64,14 @@ test('static headers use the same navigation model', async ({ page }) => {
   await expect(staticHeader.locator('.nav-subtitle')).toHaveText('Protocol Repository');
   await expect(staticHeader.locator('.nav-section-link', { hasText: 'Protocol' }).first()).toHaveClass(/active/);
 
-  await page.goto('/viewer.html?path=projects/loop-protocol/SPECIFICATION.md&title=LOOP%20Protocol%20Specification');
+  await page.goto('/protocol/spec');
 
-  const viewerHeader = page.locator('.site-header');
-  await expect(viewerHeader.locator('.nav-subtitle')).toHaveText('Document Viewer');
-
-  const docsLink = viewerHeader.locator('.nav-section-link', { hasText: 'Docs' }).first();
+  const specHeader = page.locator('.site-header');
+  const docsLink = specHeader.locator('.nav-section-link', { hasText: 'Docs' }).first();
   await expect(docsLink).toBeVisible();
   await docsLink.hover();
   await expect(page.locator('#nav-menu-docs')).toBeVisible();
 
-  await viewerHeader.locator('.nav-section-link', { hasText: 'Library' }).first().click();
+  await specHeader.locator('.nav-section-link', { hasText: 'Library' }).first().click();
   await expect(page).toHaveURL(/\/library\/?$/);
 });

@@ -26,26 +26,10 @@ test('interest page wires interest form hooks', () => {
   assert.ok(content.includes('data-interest-status'));
 });
 
-test('viewer uses absolute asset paths', () => {
-  const content = read(['public', 'viewer.html']);
-  assert.ok(content.includes('href="/assets/css/site.css"'));
-  assert.ok(content.includes('src="/assets/js/viewer.js"'));
-});
-
-test('viewer sanitizes markdown urls before rendering', () => {
-  const content = read(['public', 'assets', 'js', 'viewer.js']);
-  assert.ok(content.includes('function sanitizeUrl(rawHref, allowedProtocols)'));
-  assert.ok(content.includes('function isSafeRelativePath(rawPath)'));
-  assert.ok(content.includes('function normalizeRelativeDocumentPath(basePath, rawHref)'));
-  assert.ok(content.includes('function buildViewerHref(documentPath, rawTitle)'));
-  assert.ok(content.includes("const projectRoot = basePathSegments.length >= 2 && basePathSegments[0] === 'projects'"));
-  assert.ok(content.includes("resolvedPath === projectRoot || resolvedPath.startsWith(`${projectRoot}/`)"));
-  assert.ok(content.includes("value.includes(':')"));
-  assert.ok(content.includes("link.setAttribute('href', buildViewerHref(relativeDocumentPath, link.textContent || 'Document Viewer'))"));
-  assert.ok(content.includes("sanitizeUrl(rawHref, new Set(['http:', 'https:', 'mailto:']))"));
-  assert.ok(content.includes("sanitizeUrl(image.getAttribute('src'), new Set(['http:', 'https:']))"));
-  assert.ok(content.includes("container.querySelectorAll('a[href]')"));
-  assert.ok(content.includes("container.querySelectorAll('img[src]')"));
+test('markdown doc component exists', () => {
+  const content = read(['app', 'components', 'docs', 'MarkdownDoc.jsx']);
+  assert.ok(content.includes('MarkdownRenderer'));
+  assert.ok(content.includes('filePath'));
 });
 
 test('react site header preserves subtitle rendering', () => {
@@ -100,17 +84,14 @@ test('versioned protocol schema aliases exist', () => {
   assert.ok(fs.existsSync(productSchemaPath));
 });
 
-test('all protocol viewer targets referenced by the site exist in the mirror', () => {
+test('all MarkdownDoc filePaths referenced by the site exist in the mirror', () => {
   const appFiles = walk(path.join(process.cwd(), 'app')).filter((filePath) => filePath.endsWith('.js') || filePath.endsWith('.jsx'));
   const referencedTargets = new Set();
 
   for (const filePath of appFiles) {
     const content = fs.readFileSync(filePath, 'utf8');
-    for (const match of content.matchAll(/\/viewer\.html\?path=([^"&]+)(?:&title=[^"]*)?/g)) {
-      const target = decodeURIComponent(match[1]);
-      if (target.startsWith('projects/loop-protocol/')) {
-        referencedTargets.add(target);
-      }
+    for (const match of content.matchAll(/filePath="(projects\/loop-protocol\/[^"]+)"/g)) {
+      referencedTargets.add(match[1]);
     }
   }
 

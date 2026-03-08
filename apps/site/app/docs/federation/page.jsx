@@ -1,3 +1,5 @@
+import MarkdownDoc from '@/app/components/docs/MarkdownDoc'
+
 export default function FederationPage() {
   return (
     <div className="content-stack">
@@ -9,12 +11,6 @@ export default function FederationPage() {
           registry. This is not a production federation protocol.
         </p>
         <div className="cta-row">
-          <a
-            className="button primary"
-            href="/viewer.html?path=projects/loop-protocol/docs/federation-handshake.md&title=Federation%20Handshake"
-          >
-            Open handshake spec
-          </a>
           <a className="button secondary" href="/docs/lab-demo">Lab demo</a>
         </div>
       </div>
@@ -41,6 +37,9 @@ export default function FederationPage() {
   "timestamp": "2025-12-20T10:00:00Z"
 }`}</code></pre>
         </div>
+      </div>
+      <div className="content-panel">
+        <MarkdownDoc filePath="projects/loop-protocol/docs/federation-handshake.md" />
       </div>
     </div>
   );

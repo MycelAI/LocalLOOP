@@ -13,7 +13,7 @@ export default function ExamplesPage() {
           <a className="button primary" href="/library">Back to library</a>
           <a
             className="button secondary"
-            href="/viewer.html?path=projects/loop-protocol/examples/README.md&title=Examples"
+            href="/library/examples"
           >
             Example README
           </a>
@@ -38,7 +38,7 @@ export default function ExamplesPage() {
             </span>
             <h4>Material Registration</h4>
             <p>MaterialDNA example with additive passport and traceability fields.</p>
-            <a href="/viewer.html?path=projects/loop-protocol/examples/01-material-registration.json&title=Material%20Registration">View example</a>
+            <a href="/library/examples/material-registration">View example</a>
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
@@ -46,7 +46,7 @@ export default function ExamplesPage() {
             </span>
             <h4>Offer</h4>
             <p>Offer payload for a registered material batch.</p>
-            <a href="/viewer.html?path=projects/loop-protocol/examples/06-offer.json&title=Offer">View example</a>
+            <a href="/library/examples/offer">View example</a>
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
@@ -54,7 +54,7 @@ export default function ExamplesPage() {
             </span>
             <h4>Match</h4>
             <p>Accepted match for a material and offer pairing.</p>
-            <a href="/viewer.html?path=projects/loop-protocol/examples/07-match.json&title=Match">View example</a>
+            <a href="/library/examples/match">View example</a>
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
@@ -62,7 +62,7 @@ export default function ExamplesPage() {
             </span>
             <h4>Transfer</h4>
             <p>Transfer payload for handoff and receipt tracking.</p>
-            <a href="/viewer.html?path=projects/loop-protocol/examples/08-transfer.json&title=Transfer">View example</a>
+            <a href="/library/examples/transfer">View example</a>
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
@@ -70,7 +70,7 @@ export default function ExamplesPage() {
             </span>
             <h4>Material Status</h4>
             <p>Status-update payload for reservation and withdrawal events.</p>
-            <a href="/viewer.html?path=projects/loop-protocol/examples/10-material-status.json&title=Material%20Status">View example</a>
+            <a href="/library/examples/material-status">View example</a>
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
@@ -78,7 +78,7 @@ export default function ExamplesPage() {
             </span>
             <h4>Handshake Request</h4>
             <p>Lab-only node handshake request payload.</p>
-            <a href="/viewer.html?path=projects/loop-protocol/examples/09-handshake-request.json&title=Handshake%20Request">View example</a>
+            <a href="/library/examples/handshake-request">View example</a>
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
@@ -86,7 +86,7 @@ export default function ExamplesPage() {
             </span>
             <h4>Handshake Response</h4>
             <p>Lab-only handshake acceptance payload.</p>
-            <a href="/viewer.html?path=projects/loop-protocol/examples/11-handshake-response.json&title=Handshake%20Response">View example</a>
+            <a href="/library/examples/handshake-response">View example</a>
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
@@ -94,7 +94,7 @@ export default function ExamplesPage() {
             </span>
             <h4>Complete Flow</h4>
             <p>Multi-step reference bundle across older and current artifacts.</p>
-            <a href="/viewer.html?path=projects/loop-protocol/examples/05-complete-flow.json&title=Complete%20Flow">View example</a>
+            <a href="/library/examples/complete-flow">View example</a>
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
@@ -102,7 +102,7 @@ export default function ExamplesPage() {
             </span>
             <h4>Product Registration</h4>
             <p>ProductDNA registration for office furniture reuse with DPP passport.</p>
-            <a href="/viewer.html?path=projects/loop-protocol/examples/14-product-reuse-registration.json&title=Product%20Registration">View example</a>
+            <a href="/library/examples/product-registration">View example</a>
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
@@ -110,7 +110,7 @@ export default function ExamplesPage() {
             </span>
             <h4>Product Offer Flow</h4>
             <p>Complete Offer → Match → Transfer flow using product_id.</p>
-            <a href="/viewer.html?path=projects/loop-protocol/examples/15-product-offer-flow.json&title=Product%20Offer%20Flow">View example</a>
+            <a href="/library/examples/product-offer-flow">View example</a>
           </div>
         </div>
       </div>

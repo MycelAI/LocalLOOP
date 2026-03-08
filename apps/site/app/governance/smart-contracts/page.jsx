@@ -1,3 +1,5 @@
+import MarkdownDoc from '@/app/components/docs/MarkdownDoc'
+
 export default function SmartContractsPage() {
   return (
     <div className="content-stack">
@@ -8,12 +10,6 @@ export default function SmartContractsPage() {
           Draft RFC describing how smart contracts could automate settlement flows.
         </p>
         <div className="cta-row">
-          <a
-            className="button primary"
-            href="/viewer.html?path=projects/loop-protocol/rfcs/0004-smart-contract-integration.md&title=RFC%200004"
-          >
-            Open RFC 0004
-          </a>
           <a className="button secondary" href="/governance">Back to governance</a>
         </div>
       </div>
@@ -23,6 +19,9 @@ export default function SmartContractsPage() {
           <div><span>Automation</span><div>Settlement and escrow flows</div></div>
           <div><span>Interoperability</span><div>Optional integration points</div></div>
         </div>
+      </div>
+      <div className="content-panel">
+        <MarkdownDoc filePath="projects/loop-protocol/rfcs/0004-smart-contract-integration.md" />
       </div>
     </div>
   );

@@ -1,3 +1,5 @@
+import MarkdownDoc from '@/app/components/docs/MarkdownDoc'
+
 export default function ProjectsPage() {
   return (
     <div className="content-stack">
@@ -9,12 +11,6 @@ export default function ProjectsPage() {
           guidelines hosted in the protocol repository.
         </p>
         <div className="cta-row">
-          <a
-            className="button primary"
-            href="/viewer.html?path=projects/loop-protocol/README.md&title=LOOP%20Protocol%20README"
-          >
-            Open protocol README
-          </a>
           <a className="button secondary" href="/contribute">Contribution guide</a>
         </div>
       </div>
@@ -37,7 +33,7 @@ export default function ProjectsPage() {
             </span>
             <h4>Specification</h4>
             <p>Normative requirements and endpoint flows.</p>
-            <a href="/viewer.html?path=projects/loop-protocol/SPECIFICATION.md&title=Specification">Open spec</a>
+            <a href="/protocol/spec">Open spec</a>
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
@@ -45,7 +41,7 @@ export default function ProjectsPage() {
             </span>
             <h4>Security Policy</h4>
             <p>Disclosure and operator requirements.</p>
-            <a href="/viewer.html?path=projects/loop-protocol/SECURITY.md&title=Security%20Policy">Open policy</a>
+            <a href="/protocol/security">Open policy</a>
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
@@ -53,7 +49,7 @@ export default function ProjectsPage() {
             </span>
             <h4>Contribution Guide</h4>
             <p>How to contribute and collaborate.</p>
-            <a href="/viewer.html?path=projects/loop-protocol/CONTRIBUTING.md&title=Contributing">Open guide</a>
+            <a href="/contribute">Open guide</a>
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
@@ -61,9 +57,12 @@ export default function ProjectsPage() {
             </span>
             <h4>Code of Conduct</h4>
             <p>Community expectations for collaboration.</p>
-            <a href="/viewer.html?path=projects/loop-protocol/CODE_OF_CONDUCT.md&title=Code%20of%20Conduct">Open policy</a>
+            <a href="/contribute">Open policy</a>
           </div>
         </div>
+      </div>
+      <div className="content-panel">
+        <MarkdownDoc filePath="projects/loop-protocol/README.md" />
       </div>
     </div>
   );

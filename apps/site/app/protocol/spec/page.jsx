@@ -1,3 +1,5 @@
+import MarkdownDoc from '@/app/components/docs/MarkdownDoc'
+
 export default function ProtocolSpecPage() {
   return (
     <div className="content-stack">
@@ -9,12 +11,6 @@ export default function ProtocolSpecPage() {
           localLOOP implementations. No public pilots or deployments yet.
         </p>
         <div className="cta-row">
-          <a
-            className="button primary"
-            href="/viewer.html?path=projects/loop-protocol/SPECIFICATION.md&title=LOOP%20Protocol%20Specification"
-          >
-            Open spec in viewer
-          </a>
           <a className="button secondary" href="/docs/regulatory-alignment">Compatibility roadmap</a>
         </div>
       </div>
@@ -26,6 +22,9 @@ export default function ProtocolSpecPage() {
           <div><span>Security</span><div>Operator and developer guardrails</div></div>
         </div>
       </div>
+      <div className="content-panel">
+        <MarkdownDoc filePath="projects/loop-protocol/SPECIFICATION.md" />
+      </div>
     </div>
-  );
+  )
 }

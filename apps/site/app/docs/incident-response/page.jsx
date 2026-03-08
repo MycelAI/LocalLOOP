@@ -1,3 +1,5 @@
+import MarkdownDoc from '@/app/components/docs/MarkdownDoc'
+
 export default function IncidentResponsePage() {
   return (
     <div className="content-stack">
@@ -8,12 +10,6 @@ export default function IncidentResponsePage() {
           Response workflows for localLOOP operators and infrastructure teams.
         </p>
         <div className="cta-row">
-          <a
-            className="button primary"
-            href="/viewer.html?path=projects/loop-protocol/docs/incident-response.md&title=Incident%20Response"
-          >
-            Open playbook
-          </a>
           <a className="button secondary" href="/docs">Back to docs</a>
         </div>
       </div>
@@ -23,6 +19,9 @@ export default function IncidentResponsePage() {
           <div><span>Detection</span><div>Alerting and triage workflows</div></div>
           <div><span>Recovery</span><div>Service restoration checklist</div></div>
         </div>
+      </div>
+      <div className="content-panel">
+        <MarkdownDoc filePath="projects/loop-protocol/docs/incident-response.md" />
       </div>
     </div>
   );

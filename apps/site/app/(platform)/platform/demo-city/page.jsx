@@ -68,7 +68,7 @@ export default function DemoCityPage() {
             </span>
             <h4>Material streams</h4>
             <p>Catalog of priority material categories and current bottlenecks.</p>
-            <a href="/viewer.html?path=projects/loop-protocol/README.md&title=LOOP%20Protocol%20README">Review the protocol</a>
+            <a href="/projects">Review the protocol</a>
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
@@ -76,7 +76,7 @@ export default function DemoCityPage() {
             </span>
             <h4>Data integrations</h4>
             <p>Planned data sources, schemas, and interoperability guidance.</p>
-            <a href="/viewer.html?path=projects/loop-protocol/docs/implementation-guide.md&title=Implementation%20Guide">Implementation guide</a>
+            <a href="/docs/implementation">Implementation guide</a>
           </div>
         </div>
       </div>

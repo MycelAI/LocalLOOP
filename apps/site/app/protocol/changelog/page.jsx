@@ -1,3 +1,5 @@
+import MarkdownDoc from '@/app/components/docs/MarkdownDoc'
+
 export default function ProtocolChangelogPage() {
   return (
     <div className="content-stack">
@@ -9,12 +11,6 @@ export default function ProtocolChangelogPage() {
           The project is early-stage with no public pilots yet.
         </p>
         <div className="cta-row">
-          <a
-            className="button primary"
-            href="/viewer.html?path=projects/loop-protocol/CHANGELOG.md&title=Changelog"
-          >
-            Open changelog
-          </a>
           <a className="button secondary" href="/protocol">Back to overview</a>
         </div>
       </div>
@@ -26,6 +22,9 @@ export default function ProtocolChangelogPage() {
           <div><span>Versioning</span><div>Tracked by semantic changelog entries</div></div>
         </div>
       </div>
+      <div className="content-panel">
+        <MarkdownDoc filePath="projects/loop-protocol/CHANGELOG.md" />
+      </div>
     </div>
-  );
+  )
 }
