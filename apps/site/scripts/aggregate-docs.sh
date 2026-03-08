@@ -55,28 +55,54 @@ publish_versioned_schema_aliases() {
   done
 }
 
+resolve_local_source() {
+  local repo_name="$1"
+  local configured_root="${DOCS_LOCAL_ROOT:-}"
+  local candidate=""
+
+  if [[ -n "$configured_root" ]]; then
+    candidate="${configured_root%/}/$repo_name"
+    if [[ -d "$candidate" && -f "$candidate/README.md" ]]; then
+      printf '%s\n' "$candidate"
+      return 0
+    fi
+  fi
+
+  candidate="$ROOT_DIR/../$repo_name"
+  if [[ -d "$candidate" && -f "$candidate/README.md" ]]; then
+    printf '%s\n' "$candidate"
+    return 0
+  fi
+
+  return 1
+}
+
 for repo in "${REPOS[@]}"; do
   repo_trimmed="$(echo "$repo" | xargs)"
   if [[ -z "$repo_trimmed" ]]; then
     continue
   fi
 
-  echo "Syncing $ORG/$repo_trimmed"
-  clone_log="$WORK_DIR/${repo_trimmed}.clone.log"
-  if [[ -n "${DOCS_SYNC_TOKEN:-}" ]]; then
-    clone_url="https://x-access-token:${DOCS_SYNC_TOKEN}@github.com/${ORG}/${repo_trimmed}.git"
-    if ! GIT_TERMINAL_PROMPT=0 git clone --depth 1 "$clone_url" "$WORK_DIR/$repo_trimmed" >"$clone_log" 2>&1; then
-      echo "Failed to clone $ORG/$repo_trimmed using DOCS_SYNC_TOKEN" >&2
-      exit 1
-    fi
+  if SRC="$(resolve_local_source "$repo_trimmed")"; then
+    echo "Syncing $ORG/$repo_trimmed from local source: $SRC"
   else
-    if ! GIT_TERMINAL_PROMPT=0 git clone --depth 1 "https://github.com/${ORG}/${repo_trimmed}.git" "$WORK_DIR/$repo_trimmed" >"$clone_log" 2>&1; then
-      echo "Skipping $ORG/$repo_trimmed: DOCS_SYNC_TOKEN not set or repo inaccessible." >&2
-      continue
+    echo "Syncing $ORG/$repo_trimmed from GitHub"
+    clone_log="$WORK_DIR/${repo_trimmed}.clone.log"
+    if [[ -n "${DOCS_SYNC_TOKEN:-}" ]]; then
+      clone_url="https://x-access-token:${DOCS_SYNC_TOKEN}@github.com/${ORG}/${repo_trimmed}.git"
+      if ! GIT_TERMINAL_PROMPT=0 git clone --depth 1 "$clone_url" "$WORK_DIR/$repo_trimmed" >"$clone_log" 2>&1; then
+        echo "Failed to clone $ORG/$repo_trimmed using DOCS_SYNC_TOKEN" >&2
+        exit 1
+      fi
+    else
+      if ! GIT_TERMINAL_PROMPT=0 git clone --depth 1 "https://github.com/${ORG}/${repo_trimmed}.git" "$WORK_DIR/$repo_trimmed" >"$clone_log" 2>&1; then
+        echo "Skipping $ORG/$repo_trimmed: DOCS_SYNC_TOKEN not set or repo inaccessible." >&2
+        continue
+      fi
     fi
-  fi
 
-  SRC="$WORK_DIR/$repo_trimmed"
+    SRC="$WORK_DIR/$repo_trimmed"
+  fi
   DEST="$ROOT_DIR/public/projects/$repo_trimmed"
   mkdir -p "$DEST"
 

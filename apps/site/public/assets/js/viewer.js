@@ -81,6 +81,14 @@
       return '';
     }
 
+    const basePathSegments = basePath.split('/');
+    const projectRoot = basePathSegments.length >= 2 && basePathSegments[0] === 'projects'
+      ? `${basePathSegments[0]}/${basePathSegments[1]}`
+      : '';
+    if (!projectRoot) {
+      return '';
+    }
+
     const baseSegments = basePath.split('/');
     baseSegments.pop();
 
@@ -105,7 +113,7 @@
     }
 
     const resolvedPath = normalized.join('/');
-    return resolvedPath.startsWith('projects/') ? resolvedPath : '';
+    return resolvedPath === projectRoot || resolvedPath.startsWith(`${projectRoot}/`) ? resolvedPath : '';
   }
 
   function buildViewerHref(documentPath, rawTitle) {

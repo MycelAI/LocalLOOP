@@ -38,12 +38,20 @@ test('viewer sanitizes markdown urls before rendering', () => {
   assert.ok(content.includes('function isSafeRelativePath(rawPath)'));
   assert.ok(content.includes('function normalizeRelativeDocumentPath(basePath, rawHref)'));
   assert.ok(content.includes('function buildViewerHref(documentPath, rawTitle)'));
+  assert.ok(content.includes("const projectRoot = basePathSegments.length >= 2 && basePathSegments[0] === 'projects'"));
+  assert.ok(content.includes("resolvedPath === projectRoot || resolvedPath.startsWith(`${projectRoot}/`)"));
   assert.ok(content.includes("value.includes(':')"));
   assert.ok(content.includes("link.setAttribute('href', buildViewerHref(relativeDocumentPath, link.textContent || 'Document Viewer'))"));
   assert.ok(content.includes("sanitizeUrl(rawHref, new Set(['http:', 'https:', 'mailto:']))"));
   assert.ok(content.includes("sanitizeUrl(image.getAttribute('src'), new Set(['http:', 'https:']))"));
   assert.ok(content.includes("container.querySelectorAll('a[href]')"));
   assert.ok(content.includes("container.querySelectorAll('img[src]')"));
+});
+
+test('react site header preserves subtitle rendering', () => {
+  const content = read(['app', 'components', 'SiteHeader.jsx']);
+  assert.ok(content.includes('className="nav-subtitle"'));
+  assert.ok(content.includes('{subtitle}'));
 });
 
 test('public projects directory exists', () => {
@@ -127,4 +135,12 @@ test('protocol mirror includes required v0.2.0 contract assets', () => {
   for (const segments of requiredFiles) {
     assert.ok(fs.existsSync(path.join(process.cwd(), ...segments)), segments.join('/'));
   }
+});
+
+test('aggregate docs script prefers a local source checkout when available', () => {
+  const content = read(['scripts', 'aggregate-docs.sh']);
+  assert.ok(content.includes('resolve_local_source()'));
+  assert.ok(content.includes('DOCS_LOCAL_ROOT'));
+  assert.ok(content.includes('ROOT_DIR/../$repo_name'));
+  assert.ok(content.includes('from local source'));
 });
