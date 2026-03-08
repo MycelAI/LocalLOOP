@@ -1,51 +1,61 @@
-# localLOOP
+<div align="center">
 
-localLOOP is an early-stage, low-TRL concept for a federated circular economy
-protocol. We publish specs, schemas, and examples so cities, labs, and builders
-can explore the ecosystem.
+[<img src="https://local-loop-io.github.io/assets/local-loop-logo.png" width="160" alt="localLOOP" />](https://local-loop-io.github.io)
 
-> No public pilots or deployments. Lab demo only.
+# **localLOOP**
 
-## What exists today
+**Local Optimization with Overflow Protocol**
 
-- Protocol specification and schemas (draft).
-- Example payloads for interoperability.
-- Documentation hub and RFC process.
+### Circular Economy Infrastructure for Cities
 
-## What does not exist yet
+A federated, DPP-compatible protocol enabling cities to track, exchange, and settle material and product flows while maintaining local sovereignty.
 
-- Public pilots or production deployments.
-- Official test network.
-- Certified implementations.
+[![Spec v0.2](https://img.shields.io/badge/spec-v0.2.0-2563eb?style=flat-square)](https://github.com/local-loop-io/loop-protocol)
+[![Docs](https://img.shields.io/badge/docs-hub-16a34a?style=flat-square)](https://local-loop-io.github.io)
+[![API docs](https://img.shields.io/badge/API%20docs-Swagger-ea580c?style=flat-square)](https://loop-api.urbnia.com/docs)
 
-## Repositories
+</div>
 
-- `loop-protocol`: spec, schemas, examples, RFCs.
-- `localloop.github.io`: documentation hub (GitHub Pages).
-- `localloop-backend`: lab demo API and interest registry.
-- `.github`: org profile and policies.
+---
 
-## Live endpoints
+We’re building the protocol, schemas, and docs so that cities, labs, and builders can experiment with federated material exchange—MaterialDNA, LoopCoin, LoopSignal—and move toward a shared, interoperable circular economy.
 
-- Public site: <https://local-loop-io.github.io>
-- Backend API: <https://loop-api.urbnia.com>
-- Canonical note: `api.local-loop.io` does not exist.
+*This is early-stage work. Lab demo only; no public pilots or production deployments yet.*
 
-## How to get involved
+---
 
-- Read the protocol docs in `loop-protocol`.
-- Share feedback via issues and RFCs.
-- Submit an Expression of Interest at <https://local-loop-io.github.io>.
+### Start here
 
-## Contact
+**[→ Docs hub](https://local-loop-io.github.io)** — Read the spec, browse examples, and submit an [Expression of Interest](https://local-loop-io.github.io).
 
-Alphin Tom, Co-founder & CEO, Mycel UG (haftungsbeschränkt) | GitHub: @alpha912 | <alphin@mycel-ai.de> | https://mycel-ai.de
+**[→ Protocol repo](https://github.com/local-loop-io/loop-protocol)** — Source of truth: [SPECIFICATION.md](https://github.com/local-loop-io/loop-protocol/blob/main/SPECIFICATION.md), JSON Schema, JSON-LD contexts, RFCs.
 
-## How to cite
+*API base for integrations: `loop-api.urbnia.com`. (`api.local-loop.io` does not exist.)*
 
-If you reference this organization, please cite:
-Alphin Tom / Mycel UG (haftungsbeschränkt). "localLOOP Organization." localLOOP,
-2025-2026. <https://github.com/local-loop-io>
+---
+
+### What we build
+
+| | |
+|:--|:--|
+| [**loop-protocol**](https://github.com/local-loop-io/loop-protocol) | Spec (v0.2), schemas, examples, RFCs |
+| [**localloop.github.io**](https://github.com/local-loop-io/localloop.github.io) | Documentation hub and interest form |
+| [**localloop-backend**](https://github.com/local-loop-io/localloop-backend) | Lab API: interest registry, LOOP demo flows |
+
+---
+
+### Get involved
+
+**Read** the [spec](https://github.com/local-loop-io/loop-protocol/blob/main/SPECIFICATION.md) and [examples](https://github.com/local-loop-io/loop-protocol/tree/main/examples). **Share feedback** via issues or RFCs in the protocol repo. **Express interest** on the [docs hub](https://local-loop-io.github.io).
+
+---
+
+### Contact & citation
+
+**Alphin Tom** — Co-founder & CEO, Mycel UG (haftungsbeschränkt)  
+[@alpha912](https://github.com/alpha912) · [alphin@mycel-ai.de](mailto:alphin@mycel-ai.de) · [mycel-ai.de](https://mycel-ai.de)
+
+*Cite:* Alphin Tom / Mycel UG (haftungsbeschränkt). “localLOOP Organization.” localLOOP, 2025–2026. <https://github.com/local-loop-io>
 
 ```bibtex
 @misc{localloop_org_2025,
@@ -54,6 +64,6 @@ Alphin Tom / Mycel UG (haftungsbeschränkt). "localLOOP Organization." localLOOP
   year = {2025},
   howpublished = {GitHub repository},
   url = {https://github.com/local-loop-io},
-  note = {Accessed 2026-01-16}
+  note = {Accessed 2026}
 }
 ```
