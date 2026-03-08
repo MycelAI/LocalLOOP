@@ -1,4 +1,10 @@
-export default function CitiesPage() {
+export const metadata = {
+  alternates: {
+    canonical: '/platform/city-portals',
+  },
+};
+
+export default function CityPortalsPage() {
   return (
     <div className="content-stack">
       <div className="content-panel">
@@ -9,7 +15,7 @@ export default function CitiesPage() {
           There are no active deployments yet.
         </p>
         <div className="cta-row">
-          <a className="button primary" href="/demo-city">View DEMO City</a>
+          <a className="button primary" href="/platform/demo-city">View DEMO City</a>
           <a className="button secondary" href="/interest">Register interest</a>
         </div>
       </div>
@@ -32,7 +38,7 @@ export default function CitiesPage() {
             </span>
             <h4>DEMO City</h4>
             <p>Sample portal to illustrate a future city experience.</p>
-            <a href="/demo-city">Open demo portal</a>
+            <a href="/platform/demo-city">Open demo portal</a>
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">

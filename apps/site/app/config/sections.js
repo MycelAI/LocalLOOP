@@ -121,15 +121,21 @@ export const sectionConfigs = {
       {
         label: 'Overview',
         links: [
-          { href: '/', label: 'Platform overview' }
+          { href: '/platform', label: 'Platform overview' }
         ]
       },
       {
-        label: 'Portals',
+        label: 'Identity layers',
         links: [
-          { href: '/materialdna', label: 'MaterialDNA' },
-          { href: '/cities', label: 'City portals' },
-          { href: '/demo-city', label: 'DEMO City' }
+          { href: '/platform/materialdna', label: 'MaterialDNA' },
+          { href: '/platform/productdna', label: 'ProductDNA' }
+        ]
+      },
+      {
+        label: 'City portals',
+        links: [
+          { href: '/platform/city-portals', label: 'City portals' },
+          { href: '/platform/demo-city', label: 'DEMO City' }
         ]
       }
     ],

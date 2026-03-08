@@ -7,17 +7,6 @@ const BASE = 'https://local-loop-io.github.io';
 
 export const navigationSections = [
   {
-    key: 'platform',
-    label: 'Platform',
-    href: '/',
-    matchPrefixes: ['/', '/platform', '/materialdna', '/cities', '/demo-city'],
-    items: [
-      { href: '/materialdna', label: 'MaterialDNA' },
-      { href: '/cities', label: 'City Portals' },
-      { href: '/demo-city', label: 'DEMO City' },
-    ],
-  },
-  {
     key: 'protocol',
     label: 'Protocol',
     href: '/protocol',
@@ -26,6 +15,18 @@ export const navigationSections = [
       { href: '/protocol/spec', label: 'Specification' },
       { href: '/protocol/changelog', label: 'Changelog' },
       { href: '/protocol/security', label: 'Security' },
+    ],
+  },
+  {
+    key: 'platform',
+    label: 'Platform',
+    href: '/platform',
+    matchPrefixes: ['/platform'],
+    items: [
+      { href: '/platform/materialdna', label: 'MaterialDNA' },
+      { href: '/platform/productdna', label: 'ProductDNA' },
+      { href: '/platform/city-portals', label: 'City Portals' },
+      { href: '/platform/demo-city', label: 'DEMO City' },
     ],
   },
   {
