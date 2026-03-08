@@ -3,6 +3,8 @@
 import { usePathname } from 'next/navigation';
 import { sectionConfigs } from '../../config/sections';
 
+const normalizePath = (path) => (path || '/').replace(/\/$/, '') || '/';
+
 /**
  * Unified Sidebar component - replaces 6 separate sidebar components
  * @param {string} section - The section key from sectionConfigs (docs, protocol, governance, library, platform, engage)
@@ -16,7 +18,8 @@ export function Sidebar({ section }) {
     return null;
   }
 
-  const isActive = (href) => pathname === href;
+  const current = normalizePath(pathname);
+  const isActive = (href) => !href.startsWith('http') && normalizePath(href) === current;
 
   return (
     <aside className="side-nav">
