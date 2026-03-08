@@ -1,3 +1,9 @@
+export const metadata = {
+  alternates: {
+    canonical: '/materialdna',
+  },
+};
+
 export default function MaterialDNAPage() {
   return (
     <div className="content-stack">
@@ -24,7 +30,7 @@ export default function MaterialDNAPage() {
       <div className="content-panel">
         <h3>Scope & boundaries</h3>
         <div className="table-list">
-          <div><span>In scope</span><div>Stable material identifiers, provenance metadata, and basic compliance signals.</div></div>
+          <div><span>In scope</span><div>Stable material identifiers, provenance metadata, and additive compatibility signals.</div></div>
           <div><span>Out of scope</span><div>Live asset tracking, financial settlement, or verified carbon accounting.</div></div>
           <div><span>Status</span><div>Lab-demo concept only — no public pilots or deployments yet.</div></div>
         </div>
@@ -89,7 +95,7 @@ export default function MaterialDNAPage() {
             <span className="card-icon" aria-hidden="true">
               <i className="ph-thin ph-map-pin"></i>
             </span>
-            <h4>Pilots</h4>
+            <h4>Status</h4>
             <p>No public pilots or deployments yet.</p>
             <a href="/interest">Register interest</a>
           </div>

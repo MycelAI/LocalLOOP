@@ -23,7 +23,7 @@ export function SiteHeader({ subtitle = '' }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openMenu, setOpenMenu] = useState(null);
   const pathnameLower = normalizePath(pathname);
-  const platformActive = matchesPath(pathname, ['/', '/materialDNA', '/cities', '/DEMO-City', '/platform']);
+  const platformActive = matchesPath(pathname, ['/', '/materialdna', '/cities', '/demo-city', '/platform']);
   const protocolActive = matchesPath(pathname, ['/protocol']);
   const libraryActive = matchesPath(pathname, ['/library']);
   const governanceActive = matchesPath(pathname, ['/governance']);
@@ -127,9 +127,9 @@ export function SiteHeader({ subtitle = '' }) {
             </button>
             <div className="nav-menu" id="nav-menu-platform">
               <a href="/" className={pathnameLower === '/' ? 'active' : ''}>Overview</a>
-              <a href="/materialDNA" className={pathnameLower === '/materialdna' ? 'active' : ''}>MaterialDNA</a>
+              <a href="/materialdna" className={pathnameLower === '/materialdna' ? 'active' : ''}>MaterialDNA</a>
               <a href="/cities" className={pathnameLower === '/cities' ? 'active' : ''}>City Portals</a>
-              <a href="/DEMO-City" className={pathnameLower === '/demo-city' ? 'active' : ''}>DEMO City</a>
+              <a href="/demo-city" className={pathnameLower === '/demo-city' ? 'active' : ''}>DEMO City</a>
             </div>
           </div>
 

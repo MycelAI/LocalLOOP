@@ -3,7 +3,7 @@ export default function ProtocolSpecPage() {
     <div className="content-stack">
       <div className="content-panel">
         <div className="badge">Specification</div>
-        <h2>LOOP Protocol Specification v0.1</h2>
+        <h2>LOOP Protocol Specification v0.1.1</h2>
         <p>
           The normative requirements and API contracts that define interoperable
           LocalLoop implementations. No public pilots or deployments yet.
@@ -15,7 +15,7 @@ export default function ProtocolSpecPage() {
           >
             Open spec in viewer
           </a>
-          <a className="button secondary" href="/protocol">Back to overview</a>
+          <a className="button secondary" href="/docs/regulatory-alignment">Compatibility roadmap</a>
         </div>
       </div>
       <div className="content-panel">

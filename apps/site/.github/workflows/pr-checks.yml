@@ -1,0 +1,25 @@
+name: Pull Request Checks
+
+on:
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+      - name: Install dependencies
+        run: bun install
+      - name: Verify protocol mirror sync
+        run: ./scripts/aggregate-docs.sh
+      - name: Fail on unsynced mirrored artifacts
+        run: git diff --exit-code
+      - name: Build static site
+        run: bun run build
+      - name: Run smoke tests
+        run: bun run test
+      - name: Install Playwright browsers
+        run: bunx playwright install --with-deps chromium
+      - name: Run Playwright checks
+        run: bun run test:e2e:ci
