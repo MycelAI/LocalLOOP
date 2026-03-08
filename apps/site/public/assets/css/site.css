@@ -1423,6 +1423,12 @@ header[data-site-header] .nav-controls {
   color: inherit;
 }
 
+.viewer-content .mermaid {
+  margin: 18px 0;
+  display: flex;
+  justify-content: center;
+}
+
 .viewer-content a {
   color: var(--accent);
   font-weight: 600;

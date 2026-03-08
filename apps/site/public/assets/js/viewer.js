@@ -223,6 +223,9 @@
         code: function (token) {
           var code = typeof token === 'string' ? token : token.text || '';
           var lang = typeof token === 'string' ? arguments[1] : token.lang || '';
+          if (lang === 'mermaid') {
+            return '<div class="mermaid">' + escapeHtml(code) + '</div>\n';
+          }
           var highlighted = highlightCode(code, lang);
           if (highlighted !== null) {
             var cls = lang ? 'hljs language-' + lang : 'hljs';
@@ -306,6 +309,12 @@
 
         contentEl.textContent = '';
         contentEl.appendChild(container);
+
+        if (window.mermaid && container.querySelectorAll('.mermaid').length) {
+          window.mermaid.run({ nodes: container.querySelectorAll('.mermaid') }).catch(function (err) {
+            console.warn('Mermaid render failed:', err);
+          });
+        }
         return;
       }
 
