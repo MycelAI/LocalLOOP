@@ -10,7 +10,7 @@ export default function ProtocolPage() {
         </p>
         <div className="cta-row">
           <a className="button primary" href="/protocol/spec">Read specification</a>
-          <a className="button secondary" href="/protocol/changelog">View changelog</a>
+          <a className="button secondary" href="/docs/regulatory-alignment">View roadmap</a>
         </div>
       </div>
 
@@ -31,7 +31,7 @@ export default function ProtocolPage() {
             <span className="card-icon" aria-hidden="true">
               <i className="ph-thin ph-scroll"></i>
             </span>
-            <h4>Specification v0.1</h4>
+            <h4>Specification v0.1.1</h4>
             <p>Normative requirements, API endpoints, and federation flows.</p>
             <a href="/protocol/spec">Open specification</a>
           </div>
@@ -50,6 +50,14 @@ export default function ProtocolPage() {
             <h4>Security policy</h4>
             <p>Disclosure process, cryptography, and operator requirements.</p>
             <a href="/protocol/security">Open security policy</a>
+          </div>
+          <div className="card has-icon">
+            <span className="card-icon" aria-hidden="true">
+              <i className="ph-thin ph-scale"></i>
+            </span>
+            <h4>Compatibility roadmap</h4>
+            <p>Long-horizon plan for DPP, waste, packaging, and battery alignment.</p>
+            <a href="/docs/regulatory-alignment">Open roadmap</a>
           </div>
         </div>
       </div>

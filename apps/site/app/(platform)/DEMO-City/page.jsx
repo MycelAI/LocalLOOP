@@ -1,3 +1,9 @@
+export const metadata = {
+  alternates: {
+    canonical: '/demo-city',
+  },
+};
+
 export default function DemoCityPage() {
   return (
     <div className="content-stack">
@@ -19,7 +25,7 @@ export default function DemoCityPage() {
         <div className="table-list">
           <div><span>Demo only</span><div>Concept design for how a city portal could be structured.</div></div>
           <div><span>No live data</span><div>Figures and listings are illustrative placeholders.</div></div>
-          <div><span>Next step</span><div>Collect interest from cities to shape a future lab pilot.</div></div>
+          <div><span>Next step</span><div>Collect interest from cities to shape future controlled demos.</div></div>
         </div>
       </div>
 
@@ -30,7 +36,7 @@ export default function DemoCityPage() {
           and partner listings.
         </p>
         <div className="table-list">
-          <div><span>Initiatives</span><div>Local pilots and priority material streams</div></div>
+          <div><span>Initiatives</span><div>Local research programs and priority material streams</div></div>
           <div><span>Partners</span><div>Verified contributors and operators</div></div>
           <div><span>Metrics</span><div>Impact tracking and reporting</div></div>
         </div>

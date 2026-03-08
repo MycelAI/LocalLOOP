@@ -17,6 +17,7 @@ export const sectionConfigs = {
         label: 'Guides',
         links: [
           { href: '/docs/implementation', label: 'Implementation' },
+          { href: '/docs/regulatory-alignment', label: 'Regulatory alignment' },
           { href: '/docs/lab-demo', label: 'Lab demo' },
           { href: '/docs/federation', label: 'Federation handshake' },
           { href: '/docs/security', label: 'Security guide' },
@@ -56,7 +57,8 @@ export const sectionConfigs = {
         links: [
           { href: '/protocol/spec', label: 'Specification' },
           { href: '/protocol/changelog', label: 'Changelog' },
-          { href: '/protocol/security', label: 'Security policy' }
+          { href: '/protocol/security', label: 'Security policy' },
+          { href: '/docs/regulatory-alignment', label: 'Compatibility roadmap' }
         ]
       }
     ],
@@ -125,9 +127,9 @@ export const sectionConfigs = {
       {
         label: 'Portals',
         links: [
-          { href: '/materialDNA', label: 'MaterialDNA' },
+          { href: '/materialdna', label: 'MaterialDNA' },
           { href: '/cities', label: 'City portals' },
-          { href: '/DEMO-City', label: 'DEMO City' }
+          { href: '/demo-city', label: 'DEMO City' }
         ]
       }
     ],

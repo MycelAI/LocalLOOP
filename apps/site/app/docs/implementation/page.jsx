@@ -3,7 +3,7 @@ export default function ImplementationPage() {
     <div className="content-stack">
       <div className="content-panel">
         <div className="badge">Implementation</div>
-        <h2>Build a compliant LocalLoop node.</h2>
+        <h2>Build a compatibility-oriented LocalLoop lab node.</h2>
         <p>
           Step-by-step guidance for operators and developers. No public deployments
           yet — this guide is a living draft.

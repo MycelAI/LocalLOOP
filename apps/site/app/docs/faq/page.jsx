@@ -19,7 +19,7 @@ export default function FaqPage() {
       </div>
       <div className="content-panel">
         <h3>Need more help?</h3>
-        <p>Use the interest form to ask about pilots or partnerships.</p>
+        <p>Use the interest form to ask about lab demos, interoperability work, or partnerships.</p>
         <div className="cta-row">
           <a className="button primary" href="/interest">Express interest</a>
         </div>

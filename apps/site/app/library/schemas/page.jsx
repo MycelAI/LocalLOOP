@@ -3,9 +3,11 @@ export default function SchemasPage() {
     <div className="content-stack">
       <div className="content-panel">
         <div className="badge">Schema library</div>
-        <h2>JSON schemas for every payload type.</h2>
+        <h2>Baseline schemas for the v0.1.1 lab flow.</h2>
         <p>
-          Use these schemas to validate payloads and build compliant implementations.
+          Use these schemas to validate payloads and build interoperable lab
+          implementations. The current baseline prioritizes MaterialDNA, Offer, Match,
+          Transfer, status updates, and handshake flows.
         </p>
         <div className="cta-row">
           <a className="button primary" href="/library">Back to library</a>
@@ -19,11 +21,11 @@ export default function SchemasPage() {
       </div>
 
       <div className="content-panel">
-        <h3>Available schemas</h3>
+        <h3>What is stable today</h3>
         <div className="table-list">
-          <div><span>MaterialDNA</span><div>Identity and metadata schema</div></div>
-          <div><span>LoopCoin</span><div>Payment and settlement schema</div></div>
-          <div><span>LoopSignal</span><div>Community preference schema</div></div>
+          <div><span>Minimal interop</span><div>Material registration, offer, match, transfer, and status updates</div></div>
+          <div><span>Federation</span><div>Lab-only handshake payloads and node metadata</div></div>
+          <div><span>Exploratory</span><div>LoopCoin, LoopSignal, and transaction models remain draft reference material</div></div>
         </div>
       </div>
 
@@ -35,40 +37,56 @@ export default function SchemasPage() {
               <i className="ph-thin ph-fingerprint"></i>
             </span>
             <h4>MaterialDNA</h4>
-            <p>Material registry identifiers and metadata.</p>
+            <p>Material identity, provenance, and DPP-ready extension hooks.</p>
             <a href="/viewer.html?path=projects/loop-protocol/schemas/material-dna.schema.json&title=MaterialDNA%20Schema">Open schema</a>
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
-              <i className="ph-thin ph-coins"></i>
+              <i className="ph-thin ph-package"></i>
             </span>
-            <h4>LoopCoin</h4>
-            <p>Currency configuration, transfers, and settlement.</p>
-            <a href="/viewer.html?path=projects/loop-protocol/schemas/loopcoin.schema.json&title=LoopCoin%20Schema">Open schema</a>
+            <h4>Offer</h4>
+            <p>Availability and routing offers for registered materials.</p>
+            <a href="/viewer.html?path=projects/loop-protocol/schemas/offer.schema.json&title=Offer%20Schema">Open schema</a>
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
-              <i className="ph-thin ph-broadcast"></i>
+              <i className="ph-thin ph-handshake"></i>
             </span>
-            <h4>LoopSignal</h4>
-            <p>Community preference configuration and voting.</p>
-            <a href="/viewer.html?path=projects/loop-protocol/schemas/loopsignal.schema.json&title=LoopSignal%20Schema">Open schema</a>
+            <h4>Match</h4>
+            <p>Agreement state between a material and an offer.</p>
+            <a href="/viewer.html?path=projects/loop-protocol/schemas/match.schema.json&title=Match%20Schema">Open schema</a>
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
-              <i className="ph-thin ph-arrows-left-right"></i>
+              <i className="ph-thin ph-truck"></i>
             </span>
-            <h4>Transactions</h4>
-            <p>Material transactions, settlements, and status.</p>
-            <a href="/viewer.html?path=projects/loop-protocol/schemas/transaction.schema.json&title=Transaction%20Schema">Open schema</a>
+            <h4>Transfer</h4>
+            <p>Handoff and receipt events for the physical move.</p>
+            <a href="/viewer.html?path=projects/loop-protocol/schemas/transfer.schema.json&title=Transfer%20Schema">Open schema</a>
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
-              <i className="ph-thin ph-map-pin"></i>
+              <i className="ph-thin ph-list-checks"></i>
             </span>
-            <h4>Node Info</h4>
-            <p>Node metadata, registry, and status.</p>
-            <a href="/viewer.html?path=projects/loop-protocol/schemas/node-info.schema.json&title=Node%20Info%20Schema">Open schema</a>
+            <h4>Material Status</h4>
+            <p>Status changes that keep a material record current.</p>
+            <a href="/viewer.html?path=projects/loop-protocol/schemas/material-status.schema.json&title=Material%20Status%20Schema">Open schema</a>
+          </div>
+          <div className="card has-icon">
+            <span className="card-icon" aria-hidden="true">
+              <i className="ph-thin ph-plugs-connected"></i>
+            </span>
+            <h4>Handshake</h4>
+            <p>Lab-only node discovery and handshake payloads.</p>
+            <a href="/viewer.html?path=projects/loop-protocol/schemas/handshake.schema.json&title=Handshake%20Schema">Open schema</a>
+          </div>
+          <div className="card has-icon">
+            <span className="card-icon" aria-hidden="true">
+              <i className="ph-thin ph-flask"></i>
+            </span>
+            <h4>Exploratory schemas</h4>
+            <p>LoopCoin, LoopSignal, transaction, and node-info drafts.</p>
+            <a href="/viewer.html?path=projects/loop-protocol/schemas/README.md&title=Schema%20Library">Browse all schemas</a>
           </div>
         </div>
       </div>

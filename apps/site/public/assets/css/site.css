@@ -96,22 +96,6 @@
   margin-top: 6px;
 }
 
-.iframe-shell {
-  border-radius: 16px;
-  overflow: hidden;
-  border: 1px solid rgba(87, 108, 122, 0.16);
-  background: #ffffff;
-  min-height: 70vh;
-  box-shadow: 0 16px 30px rgba(21, 42, 51, 0.12);
-}
-
-.api-iframe {
-  width: 100%;
-  height: 80vh;
-  border: none;
-  display: block;
-}
-
 * {
   box-sizing: border-box;
 }

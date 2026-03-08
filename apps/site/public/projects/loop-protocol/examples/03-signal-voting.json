@@ -6,8 +6,8 @@
   "proposals": [
     {
       "category": "plastic-pet",
-      "current_value": 0.20,
-      "proposed_value": 0.30,
+      "current_value": 0.2,
+      "proposed_value": 0.3,
       "rationale": "Increase local plastic recycling"
     }
   ],

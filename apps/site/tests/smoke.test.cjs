@@ -40,12 +40,26 @@ test('metrics page wires live metrics panel', () => {
   assert.ok(content.includes('data-metrics-panel'));
 });
 
-test('api docs page renders iframe shell', () => {
+test('api docs page links to the live docs instead of embedding an iframe', () => {
   const content = read(['app', 'docs', 'api', 'page.jsx']);
-  assert.ok(content.includes('api-iframe'));
+  assert.ok(content.includes('Open live Redoc'));
+  assert.ok(content.includes('https://loop-api.urbnia.com/openapi.json'));
 });
 
 test('federation docs page renders handshake guide', () => {
   const content = read(['app', 'docs', 'federation', 'page.jsx']);
   assert.ok(content.includes('NodeHandshake'));
+});
+
+test('versioned protocol schema aliases exist', () => {
+  const schemaPath = path.join(
+    process.cwd(),
+    'public',
+    'projects',
+    'loop-protocol',
+    'schemas',
+    'v0.1.1',
+    'material-dna.schema.json',
+  );
+  assert.ok(fs.existsSync(schemaPath));
 });

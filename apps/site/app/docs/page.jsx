@@ -3,14 +3,14 @@ export default function DocsPage() {
     <div className="content-stack">
       <div className="content-panel">
         <div className="badge">Implementation guidance</div>
-        <h2>Operational playbooks and developer references.</h2>
+        <h2>Operational playbooks, references, and compatibility guidance.</h2>
         <p>
           Documentation for node operators and implementers. Guidance will evolve as
-          the protocol matures.
+          the protocol matures, and it stays scoped to lab-demo infrastructure.
         </p>
         <div className="cta-row">
           <a className="button primary" href="/docs/implementation">Implementation guide</a>
-          <a className="button secondary" href="/docs/security">Security guide</a>
+          <a className="button secondary" href="/docs/regulatory-alignment">Regulatory alignment</a>
         </div>
       </div>
 
@@ -18,6 +18,7 @@ export default function DocsPage() {
         <h3>Doc categories</h3>
         <div className="table-list">
           <div><span>Implementation</span><div>Node build and integration steps</div></div>
+          <div><span>Compatibility</span><div>Roadmap for DPP-style and traceability-ready extensions</div></div>
           <div><span>Security</span><div>Operational security playbooks</div></div>
           <div><span>Response</span><div>Incident handling guidance</div></div>
         </div>
@@ -31,7 +32,7 @@ export default function DocsPage() {
               <i className="ph-thin ph-gear"></i>
             </span>
             <h4>Implementation Guide</h4>
-            <p>Build a compliant node with minimal components.</p>
+            <p>Build a compatibility-oriented lab node with minimal components.</p>
             <a href="/docs/implementation">Open guide</a>
           </div>
           <div className="card has-icon">
@@ -65,6 +66,14 @@ export default function DocsPage() {
             <h4>Metrics</h4>
             <p>Live counters for lab activity and event flow.</p>
             <a href="/docs/metrics">Open metrics</a>
+          </div>
+          <div className="card has-icon">
+            <span className="card-icon" aria-hidden="true">
+              <i className="ph-thin ph-scale"></i>
+            </span>
+            <h4>Regulatory Alignment</h4>
+            <p>DPP, battery, packaging, waste, and governance roadmap.</p>
+            <a href="/docs/regulatory-alignment">Open roadmap</a>
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">

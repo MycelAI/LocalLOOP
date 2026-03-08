@@ -24,7 +24,7 @@ export default function InterestPage() {
         </p>
         <div className="table-list">
           <div><span>Transparency</span><div>Public list of interested parties</div></div>
-          <div><span>Momentum</span><div>Helps align pilots and funding</div></div>
+          <div><span>Momentum</span><div>Helps align research, demos, and funding</div></div>
         </div>
       </div>
 

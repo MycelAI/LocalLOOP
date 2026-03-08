@@ -9,7 +9,7 @@ export default function CitiesPage() {
           There are no active deployments yet.
         </p>
         <div className="cta-row">
-          <a className="button primary" href="/DEMO-City">View DEMO City</a>
+          <a className="button primary" href="/demo-city">View DEMO City</a>
           <a className="button secondary" href="/interest">Register interest</a>
         </div>
       </div>
@@ -32,14 +32,14 @@ export default function CitiesPage() {
             </span>
             <h4>DEMO City</h4>
             <p>Sample portal to illustrate a future city experience.</p>
-            <a href="/DEMO-City">Open demo portal</a>
+            <a href="/demo-city">Open demo portal</a>
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
               <i className="ph-thin ph-compass"></i>
             </span>
             <h4>Future cities</h4>
-            <p>City subdomains will launch as pilots begin.</p>
+            <p>City subdomains will launch as controlled demos mature.</p>
             <a href="/interest">Express interest</a>
           </div>
         </div>

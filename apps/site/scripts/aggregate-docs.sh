@@ -33,6 +33,23 @@ sync_dir() {
   fi
 }
 
+publish_versioned_schema_aliases() {
+  local schemas_dir="$1"
+  local v011_dir="$schemas_dir/v0.1.1"
+  local v1_dir="$schemas_dir/v1"
+
+  rm -rf "$v011_dir" "$v1_dir"
+  mkdir -p "$v011_dir" "$v1_dir"
+
+  for schema in material-dna offer match transfer material-status handshake; do
+    sync_file "$schemas_dir/${schema}.schema.json" "$v011_dir/${schema}.schema.json"
+  done
+
+  for schema in loopcoin loopsignal node-info transaction; do
+    sync_file "$schemas_dir/${schema}.schema.json" "$v1_dir/${schema}.schema.json"
+  done
+}
+
 for repo in "${REPOS[@]}"; do
   repo_trimmed="$(echo "$repo" | xargs)"
   if [[ -z "$repo_trimmed" ]]; then
@@ -66,11 +83,14 @@ for repo in "${REPOS[@]}"; do
   sync_file "$SRC/SECURITY.md" "$DEST/SECURITY.md"
   sync_file "$SRC/LICENSE" "$DEST/LICENSE"
   sync_file "$SRC/PROJECT_STRUCTURE.md" "$DEST/PROJECT_STRUCTURE.md"
+  sync_file "$SRC/openapi.json" "$DEST/openapi.json"
 
   sync_dir "$SRC/docs" "$DEST/docs"
+  sync_dir "$SRC/contexts" "$DEST/contexts"
   sync_dir "$SRC/schemas" "$DEST/schemas"
   sync_dir "$SRC/examples" "$DEST/examples"
   sync_dir "$SRC/rfcs" "$DEST/rfcs"
+  publish_versioned_schema_aliases "$DEST/schemas"
 
 done
 
