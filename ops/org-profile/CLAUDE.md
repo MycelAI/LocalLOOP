@@ -1,4 +1,4 @@
-# LocalLoop Org Context (for AI agents)
+# localLOOP Org Context (for AI agents)
 
 Use this file as a quick, canonical reference for repos, domains, and ops.
 Keep it in sync with AGENTS.md.
@@ -34,15 +34,17 @@ docker compose up -d --build
 - `/api/metrics`
 - `/api/interest`
 - `/api/interest/stream` (SSE)
-- `/api/loop/stream` (SSE)
+- `/api/v1/stream` (SSE)
 - `/api/auth/status`
 - `/docs` (Swagger)
 
 ## JSON‑LD Context
 
-All `@context` values must resolve to:
+Preferred `@context` value:
 
-`https://local-loop-io.github.io/projects/loop-protocol/contexts/loop-v0.1.1.jsonld`
+`https://local-loop-io.github.io/projects/loop-protocol/contexts/loop-v0.2.0.jsonld`
+
+The v0.1.1 context remains valid for backward compatibility.
 
 ## BrowserLab
 

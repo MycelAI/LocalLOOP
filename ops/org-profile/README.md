@@ -1,6 +1,6 @@
-# LocalLoop Organization Profile
+# localLOOP Organization Profile
 
-This repository defines the GitHub organization profile for LocalLoop.
+This repository defines the GitHub organization profile for localLOOP.
 See `profile/README.md` for the public landing page content.
 
 > Early-stage, low-TRL concept. No public pilots or deployments. Lab demo only.
@@ -29,13 +29,13 @@ See `profile/README.md` for the public landing page content.
 ## How to cite
 
 If you reference this repository, please cite:
-Alphin Tom. "LocalLoop Organization Profile." LocalLoop, GitHub repository,
+Alphin Tom / Mycel UG (haftungsbeschränkt). "localLOOP Organization Profile." localLOOP,
 2025-2026. <https://github.com/local-loop-io/.github>
 
 ```bibtex
 @misc{localloop_org_profile_2025,
-  author = {Alphin Tom},
-  title = {LocalLoop Organization Profile},
+  author = {Alphin Tom / Mycel UG (haftungsbeschränkt)},
+  title = {localLOOP Organization Profile},
   year = {2025},
   howpublished = {GitHub repository},
   url = {https://github.com/local-loop-io/.github},

@@ -1,6 +1,6 @@
-# LocalLoop Org Agent Guide
+# localLOOP Org Agent Guide
 
-This file documents the current LocalLoop multi‑repo organization, live domains,
+This file documents the current localLOOP multi‑repo organization, live domains,
 VPS context, and operational runbooks. Keep it updated whenever domains, repos,
 or infrastructure change.
 
@@ -41,7 +41,7 @@ or infrastructure change.
 - Metrics: `/api/metrics`
 - Interest list: `/api/interest`
 - Interest SSE: `/api/interest/stream`
-- Loop SSE: `/api/loop/stream`
+- Loop SSE: `/api/v1/stream`
 - Auth status: `/api/auth/status`
 - Swagger docs: `/docs`
 
@@ -58,9 +58,10 @@ See `.env.example` and `.env.docker.example`. Highlights:
 
 ## Protocol Contexts (JSON‑LD)
 
-- Primary JSON‑LD context:  
+- Preferred JSON‑LD context:
+  `https://local-loop-io.github.io/projects/loop-protocol/contexts/loop-v0.2.0.jsonld`
+- The v0.1.1 context remains valid for backward compatibility:
   `https://local-loop-io.github.io/projects/loop-protocol/contexts/loop-v0.1.1.jsonld`
-- All `@context` references should point to this file (no `/v1` or `/v0.1.1` aliases).
 
 ## CI / Domain Consistency
 

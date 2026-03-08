@@ -1,6 +1,6 @@
-# LocalLoop
+# localLOOP
 
-LocalLoop is an early-stage, low-TRL concept for a federated circular economy
+localLOOP is an early-stage, low-TRL concept for a federated circular economy
 protocol. We publish specs, schemas, and examples so cities, labs, and builders
 can explore the ecosystem.
 
@@ -39,18 +39,18 @@ can explore the ecosystem.
 
 ## Contact
 
-Alphin Tom | GitHub: @alpha912 | <alphinctom@gmail.com>
+Alphin Tom, Co-founder & CEO, Mycel UG (haftungsbeschränkt) | GitHub: @alpha912 | <alphin@mycel-ai.de> | https://mycel-ai.de
 
 ## How to cite
 
 If you reference this organization, please cite:
-Alphin Tom. "LocalLoop Organization." LocalLoop, GitHub repository,
+Alphin Tom / Mycel UG (haftungsbeschränkt). "localLOOP Organization." localLOOP,
 2025-2026. <https://github.com/local-loop-io>
 
 ```bibtex
 @misc{localloop_org_2025,
-  author = {Alphin Tom},
-  title = {LocalLoop Organization},
+  author = {Alphin Tom / Mycel UG (haftungsbeschränkt)},
+  title = {localLOOP Organization},
   year = {2025},
   howpublished = {GitHub repository},
   url = {https://github.com/local-loop-io},
