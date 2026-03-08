@@ -9,6 +9,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Verify protocol mirror sync
+        env:
+          DOCS_SYNC_TOKEN: ${{ secrets.DOCS_SYNC_TOKEN }}
         run: ./scripts/aggregate-docs.sh
       - name: Fail on unsynced mirrored artifacts
         run: git diff --exit-code
