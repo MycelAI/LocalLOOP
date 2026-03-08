@@ -572,6 +572,32 @@ header[data-site-header] .nav-controls {
   transform: translateX(2px);
 }
 
+/* Engage as primary CTA (section link styled as CTA) */
+.nav-section-link.nav-cta {
+  background: linear-gradient(135deg, #e06c47, #e8893f);
+  color: #fff;
+  box-shadow: 0 12px 22px rgba(224, 108, 71, 0.28);
+}
+
+.nav-section-link.nav-cta:hover,
+.nav-section-link.nav-cta:focus-visible {
+  background: linear-gradient(135deg, #e06c47, #e8893f);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 16px 28px rgba(224, 108, 71, 0.34);
+}
+
+.nav-section-link.nav-cta.active {
+  background: linear-gradient(135deg, #e06c47, #e8893f);
+  color: #fff;
+  box-shadow: 0 12px 22px rgba(224, 108, 71, 0.28), inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+}
+
+.nav-section-link.nav-cta .nav-link-caret {
+  border-color: #fff;
+  opacity: 0.9;
+}
+
 .hero {
   position: relative;
   padding: 72px var(--gutter) 72px;
@@ -1693,6 +1719,17 @@ header[data-site-header] .nav-controls {
     border: 1px solid rgba(11, 27, 43, 0.08);
   }
 
+  .nav-menu-group:first-child {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+  }
+
+  .nav-menu-group-label {
+    padding: 6px 10px 2px;
+    font-size: 0.65rem;
+  }
+
   .nav-menu a {
     white-space: normal;
   }
@@ -1971,7 +2008,15 @@ header[data-site-header] .nav-controls {
   font-weight: 600;
 }
 
-@media (max-width: 900px) {
+/* Tablet: 2 columns for Key Concepts */
+@media (max-width: 900px) and (min-width: 601px) {
+  .concepts-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile: single column */
+@media (max-width: 600px) {
   .concepts-grid {
     grid-template-columns: 1fr;
   }
@@ -2071,17 +2116,28 @@ header[data-site-header] .nav-controls {
   }
 }
 
-/* Tablet portrait */
-@media (max-width: 768px) {
+/* Tablet portrait: Get Started 2 cols; card grids 2 cols; flow 2x2 */
+@media (max-width: 768px) and (min-width: 481px) {
+  .quick-start {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   .card-grid--3,
   .card-grid--4 {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .quick-start {
-    grid-template-columns: 1fr;
+  .flow-explainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-4);
+  }
+
+  .flow-arrow {
+    display: none;
   }
 }
+
 
 /* Tablet landscape / small desktop */
 @media (min-width: 1024px) {

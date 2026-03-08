@@ -14,7 +14,7 @@ test('home page loads primary navigation', async ({ page }) => {
   await expect(page.locator('.nav-section-link', { hasText: 'Docs' })).toBeVisible();
   await expect(page.locator('.nav-section-link', { hasText: 'Governance' })).toBeVisible();
   await expect(page.locator('.nav-section-link', { hasText: 'Engage' })).toBeVisible();
-  await expect(page.locator('.nav-cta')).toContainText('Get Started');
+  await expect(page.locator('.nav-section-link.nav-cta')).toContainText('Engage');
 
   await expect(page.getByRole('heading', { name: /How LOOP Works/i })).toBeVisible();
 });

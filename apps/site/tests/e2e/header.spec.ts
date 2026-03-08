@@ -60,7 +60,7 @@ test('static headers use the same navigation model', async ({ page }) => {
   await page.goto('/projects/loop-protocol/');
 
   const staticHeader = page.locator('.site-header');
-  await expect(staticHeader.locator('.nav-group')).toHaveCount(5);
+  await expect(staticHeader.locator('.nav-group')).toHaveCount(6);
   await expect(staticHeader.locator('.nav-subtitle')).toHaveText('Protocol Repository');
   await expect(staticHeader.locator('.nav-section-link', { hasText: 'Protocol' }).first()).toHaveClass(/active/);
 

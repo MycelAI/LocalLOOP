@@ -172,7 +172,7 @@ export function SiteHeader({ subtitle = '' }) {
                   <div className="nav-item">
                     <a
                       href={section.href}
-                      className={`nav-section-link${sectionActive ? ' active' : ''}`}
+                      className={`nav-section-link${sectionActive ? ' active' : ''}${section.isCta ? ' nav-cta' : ''}`}
                       data-nav-section={section.key}
                       aria-current={exactSectionMatch ? 'page' : undefined}
                     >
@@ -232,11 +232,6 @@ export function SiteHeader({ subtitle = '' }) {
                 );
               })}
             </div>
-
-            <a href="/interest" className="nav-cta">
-              <span>Get Started</span>
-              <i className="ph-bold ph-arrow-right" aria-hidden="true"></i>
-            </a>
           </div>
         </div>
       </nav>

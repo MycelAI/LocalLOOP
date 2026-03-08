@@ -86,6 +86,7 @@ export const navigationSections = [
     href: '/interest',
     matchPrefixes: ['/interest', '/contribute', '/projects'],
     align: 'end',
+    isCta: true,
     items: [
       { href: '/interest', label: 'Express interest' },
       { href: '/contribute', label: 'Contribute' },
