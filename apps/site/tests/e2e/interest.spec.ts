@@ -21,7 +21,7 @@ test.beforeEach(async ({ page }) => {
         results: [
           {
             name: 'Test Cooperative',
-            organization: 'LocalLoop Lab',
+            organization: 'localLOOP Lab',
             role: 'Research',
             city: 'Testville',
             country: 'US',

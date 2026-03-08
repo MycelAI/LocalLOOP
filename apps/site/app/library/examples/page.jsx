@@ -3,7 +3,7 @@ export default function ExamplesPage() {
     <div className="content-stack">
       <div className="content-panel">
         <div className="badge">Validated examples</div>
-        <h2>Reference payloads for the v0.1.1 lab flow.</h2>
+        <h2>Reference payloads for the v0.2.0 lab flow.</h2>
         <p>
           These examples demonstrate the current baseline interop sequence plus the
           handshake and status-update payloads used by the lab backend.

@@ -52,7 +52,7 @@ export default function MaterialDNAPage() {
       <div className="content-panel">
         <h3>Data model snapshot</h3>
         <p>
-          The v0.1.1 lab schema captures the minimum fields needed to identify and route
+          The v0.2.0 lab schema captures the minimum fields needed to identify and route
           materials across loops.
         </p>
         <div className="grid">
@@ -88,7 +88,7 @@ export default function MaterialDNAPage() {
               <i className="ph-thin ph-scroll"></i>
             </span>
             <h4>Specification</h4>
-            <p>Draft schema is available in the LOOP Protocol repository.</p>
+            <p>Draft schema is available in the LOOP repository.</p>
             <a href="/viewer.html?path=projects/loop-protocol/schemas/material-dna.schema.json&title=MaterialDNA%20Schema">Open schema</a>
           </div>
           <div className="card has-icon">

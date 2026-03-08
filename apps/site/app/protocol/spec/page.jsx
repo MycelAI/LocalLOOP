@@ -3,10 +3,10 @@ export default function ProtocolSpecPage() {
     <div className="content-stack">
       <div className="content-panel">
         <div className="badge">Specification</div>
-        <h2>LOOP Protocol Specification v0.1.1</h2>
+        <h2>LOOP Specification v0.2.0</h2>
         <p>
           The normative requirements and API contracts that define interoperable
-          LocalLoop implementations. No public pilots or deployments yet.
+          localLOOP implementations. No public pilots or deployments yet.
         </p>
         <div className="cta-row">
           <a

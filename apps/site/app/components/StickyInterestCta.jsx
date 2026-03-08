@@ -12,7 +12,7 @@ export function StickyInterestCta() {
   }
 
   return (
-    <a className="sticky-cta" href="/interest" aria-label="Express interest in LocalLoop">
+    <a className="sticky-cta" href="/interest" aria-label="Express interest in localLOOP">
       <span>Express interest</span>
       <span className="sticky-cta-sub">Join the public interest list</span>
     </a>

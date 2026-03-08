@@ -52,7 +52,7 @@
           ]
         },
         "version": {
-          "description": "LOOP Protocol version",
+          "description": "LOOP version",
           "type": "string",
           "pattern": "^\\d+\\.\\d+\\.\\d+$",
           "examples": [

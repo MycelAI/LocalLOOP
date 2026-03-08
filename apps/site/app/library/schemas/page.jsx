@@ -3,7 +3,7 @@ export default function SchemasPage() {
     <div className="content-stack">
       <div className="content-panel">
         <div className="badge">Schema library</div>
-        <h2>Baseline schemas for the v0.1.1 lab flow.</h2>
+        <h2>Baseline schemas for the v0.2.0 lab flow.</h2>
         <p>
           Use these schemas to validate payloads and build interoperable lab
           implementations. The current baseline prioritizes MaterialDNA, Offer, Match,

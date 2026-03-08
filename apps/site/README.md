@@ -1,6 +1,6 @@
-# LocalLoop GitHub Pages
+# localLOOP GitHub Pages
 
-Documentation hub for the LOOP Protocol. This site mirrors protocol artifacts (specs, schemas, RFCs, examples) and provides a lightweight viewer for markdown and JSON files.
+Documentation hub for LOOP. This site mirrors protocol artifacts (specs, schemas, RFCs, examples) and provides a lightweight viewer for markdown and JSON files.
 
 > Early-stage, low-TRL concept. No public pilots or deployments. Lab demo only.
 

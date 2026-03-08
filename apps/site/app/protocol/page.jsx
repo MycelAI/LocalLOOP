@@ -3,7 +3,7 @@ export default function ProtocolPage() {
     <div className="content-stack">
       <div className="content-panel">
         <div className="badge">Protocol essentials</div>
-        <h2>The LOOP Protocol defines how city loops federate.</h2>
+        <h2>LOOP defines how city loops federate.</h2>
         <p>
           Explore the specification, changelog, and security requirements that guide
           implementations. This is an early, low-TRL concept with no public pilots yet.
@@ -31,7 +31,7 @@ export default function ProtocolPage() {
             <span className="card-icon" aria-hidden="true">
               <i className="ph-thin ph-scroll"></i>
             </span>
-            <h4>Specification v0.1.1</h4>
+            <h4>Specification v0.2.0</h4>
             <p>Normative requirements, API endpoints, and federation flows.</p>
             <a href="/protocol/spec">Open specification</a>
           </div>

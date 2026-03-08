@@ -2,8 +2,8 @@ import Script from 'next/script';
 import { StickyInterestCta } from './components/StickyInterestCta';
 
 export const metadata = {
-  title: 'LocalLoop Protocol Hub',
-  description: 'LocalLoop documentation hub for the LOOP Protocol.',
+  title: 'localLOOP | Circular Economy Infrastructure for Cities',
+  description: 'localLOOP documentation hub for LOOP.',
 };
 
 export const viewport = {

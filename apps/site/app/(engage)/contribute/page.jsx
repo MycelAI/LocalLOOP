@@ -3,7 +3,7 @@ export default function ContributePage() {
     <div className="content-stack">
       <div className="content-panel">
         <div className="badge">Contribute</div>
-        <h2>Help shape the LocalLoop protocol.</h2>
+        <h2>Help shape the localLOOP platform.</h2>
         <p>
           Contributions are welcome across specs, schemas, docs, and tooling.
           This project is early-stage, so feedback is especially valuable.

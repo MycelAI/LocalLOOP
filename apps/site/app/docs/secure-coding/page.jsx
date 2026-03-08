@@ -5,7 +5,7 @@ export default function SecureCodingPage() {
         <div className="badge">Developer guidance</div>
         <h2>Secure coding practices for LOOP services.</h2>
         <p>
-          Guardrails for building secure integrations and services in the LocalLoop
+          Guardrails for building secure integrations and services in the localLOOP
           ecosystem.
         </p>
         <div className="cta-row">

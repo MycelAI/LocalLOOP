@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://local-loop-io.github.io/projects/loop-protocol/schemas/v0.1.1/handshake.schema.json",
   "title": "NodeHandshake",
-  "description": "Lab-only federation handshake payload for LOOP Protocol v0.1.1",
+  "description": "Federation handshake schema — LOOP v0.1.1",
   "oneOf": [
     {
       "$ref": "#/definitions/HandshakeRequest"

@@ -51,7 +51,7 @@ export function DocsLayout({ children }) {
 
 export function ProtocolLayout({ children }) {
   return (
-    <ContentLayout section="protocol" subtitle="LOOP Protocol">
+    <ContentLayout section="protocol" subtitle="LOOP">
       {children}
     </ContentLayout>
   );
