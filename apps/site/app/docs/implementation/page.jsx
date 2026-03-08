@@ -2,7 +2,7 @@ export default function ImplementationPage() {
   return (
     <div className="content-stack">
       <div className="content-panel">
-        <div className="badge">Implementation</div>
+        <div className="badge">Implementation Guide</div>
         <h2>Build a compatibility-oriented localLOOP lab node.</h2>
         <p>
           Step-by-step guidance for operators and developers. No public deployments

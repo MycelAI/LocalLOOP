@@ -2,8 +2,8 @@ export default function ProtocolPage() {
   return (
     <div className="content-stack">
       <div className="content-panel">
-        <div className="badge">Protocol essentials</div>
-        <h2>LOOP defines how city loops federate.</h2>
+        <div className="badge">Protocol Hub</div>
+        <h2>LOOP Defines How Cities Federate Material and Product Loops.</h2>
         <p>
           Explore the specification, changelog, and security requirements that guide
           implementations. This is an early, low-TRL concept with no public pilots yet.

@@ -2,7 +2,7 @@ export default function ProtocolSecurityPage() {
   return (
     <div className="content-stack">
       <div className="content-panel">
-        <div className="badge">Security guidance</div>
+        <div className="badge">Security Policy</div>
         <h2>Security policy and disclosure process.</h2>
         <p>
           Follow the security policy for responsible disclosure and operator guidance.

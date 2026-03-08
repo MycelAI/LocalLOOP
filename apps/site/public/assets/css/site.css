@@ -1038,7 +1038,7 @@ header[data-site-header] .nav-controls {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  padding: 6px 14px;
+  padding: 8px 20px;
   border-radius: 999px;
   background: rgba(47, 158, 133, 0.15);
   color: var(--accent-2);

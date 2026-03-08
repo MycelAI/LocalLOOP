@@ -2,7 +2,7 @@ export default function RfcGuidePage() {
   return (
     <div className="content-stack">
       <div className="content-panel">
-        <div className="badge">RFC process</div>
+        <div className="badge">RFC Guide</div>
         <h2>Governance through Requests for Comments.</h2>
         <p>
           RFCs document protocol proposals and decisions. Use the guide below to

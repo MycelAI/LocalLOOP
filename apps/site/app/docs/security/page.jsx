@@ -2,7 +2,7 @@ export default function SecurityGuidePage() {
   return (
     <div className="content-stack">
       <div className="content-panel">
-        <div className="badge">Security guidance</div>
+        <div className="badge">Security Guide</div>
         <h2>Operational security playbook for operators.</h2>
         <p>
           Practical guidance on securing localLOOP nodes and integrations.

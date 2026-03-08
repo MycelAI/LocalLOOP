@@ -2,7 +2,7 @@ export default function ApiDocsPage() {
   return (
     <div className="content-stack">
       <div className="content-panel">
-        <div className="badge">API reference</div>
+        <div className="badge">API Docs</div>
         <h2>Use the live lab API docs and the protocol reference separately.</h2>
         <p>
           The live backend serves Redoc with headers that block cross-origin framing, so this

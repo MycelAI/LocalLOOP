@@ -2,7 +2,7 @@ export default function RfcTemplatePage() {
   return (
     <div className="content-stack">
       <div className="content-panel">
-        <div className="badge">RFC template</div>
+        <div className="badge">RFC Template</div>
         <h2>Standard template for drafting new proposals.</h2>
         <p>
           Use the template to structure proposals consistently across the protocol.

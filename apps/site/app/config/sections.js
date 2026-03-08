@@ -10,20 +10,20 @@ export const sectionConfigs = {
       {
         label: 'Overview',
         links: [
-          { href: '/docs', label: 'Documentation home' }
+          { href: '/docs', label: 'Documentation Home' }
         ]
       },
       {
         label: 'Guides',
         links: [
           { href: '/docs/implementation', label: 'Implementation' },
-          { href: '/docs/regulatory-alignment', label: 'Regulatory alignment' },
-          { href: '/docs/lab-demo', label: 'Lab demo' },
-          { href: '/docs/federation', label: 'Federation handshake' },
-          { href: '/docs/security', label: 'Security guide' },
-          { href: '/docs/secure-coding', label: 'Secure coding' },
-          { href: '/docs/incident-response', label: 'Incident response' },
-          { href: '/docs/api', label: 'API docs' },
+          { href: '/docs/regulatory-alignment', label: 'Regulatory Alignment' },
+          { href: '/docs/lab-demo', label: 'Lab Demo' },
+          { href: '/docs/federation', label: 'Federation Handshake' },
+          { href: '/docs/security', label: 'Security Guide' },
+          { href: '/docs/secure-coding', label: 'Secure Coding' },
+          { href: '/docs/incident-response', label: 'Incident Response' },
+          { href: '/docs/api', label: 'API Docs' },
           { href: '/docs/metrics', label: 'Metrics' }
         ]
       },
@@ -32,8 +32,8 @@ export const sectionConfigs = {
         links: [
           { href: '/docs/faq', label: 'FAQ' },
           { href: '/docs/glossary', label: 'Glossary' },
-          { href: '/viewer.html?path=projects/loop-protocol/docs/compliance/threat-model.md&title=Threat%20Model', label: 'Threat model', external: true },
-          { href: '/viewer.html?path=projects/loop-protocol/docs/compliance/dpia-lite.md&title=DPIA%20Lite', label: 'DPIA lite', external: true }
+          { href: '/viewer.html?path=projects/loop-protocol/docs/compliance/threat-model.md&title=Threat%20Model', label: 'Threat Model', external: true },
+          { href: '/viewer.html?path=projects/loop-protocol/docs/compliance/dpia-lite.md&title=DPIA%20Lite', label: 'DPIA Lite', external: true }
         ]
       }
     ],
@@ -49,7 +49,7 @@ export const sectionConfigs = {
       {
         label: 'Overview',
         links: [
-          { href: '/protocol', label: 'Protocol hub' }
+          { href: '/protocol', label: 'Protocol Hub' }
         ]
       },
       {
@@ -57,8 +57,8 @@ export const sectionConfigs = {
         links: [
           { href: '/protocol/spec', label: 'Specification' },
           { href: '/protocol/changelog', label: 'Changelog' },
-          { href: '/protocol/security', label: 'Security policy' },
-          { href: '/docs/regulatory-alignment', label: 'Compatibility roadmap' }
+          { href: '/protocol/security', label: 'Security Policy' },
+          { href: '/docs/regulatory-alignment', label: 'Compatibility Roadmap' }
         ]
       }
     ],
@@ -74,15 +74,15 @@ export const sectionConfigs = {
       {
         label: 'Overview',
         links: [
-          { href: '/governance', label: 'Governance hub' }
+          { href: '/governance', label: 'Governance Hub' }
         ]
       },
       {
         label: 'RFCs',
         links: [
-          { href: '/governance/rfcs', label: 'RFC guide' },
-          { href: '/governance/template', label: 'RFC template' },
-          { href: '/governance/smart-contracts', label: 'Smart contract RFC' }
+          { href: '/governance/rfcs', label: 'RFC Guide' },
+          { href: '/governance/template', label: 'RFC Template' },
+          { href: '/governance/smart-contracts', label: 'Smart Contract RFC' }
         ]
       }
     ],
@@ -98,7 +98,7 @@ export const sectionConfigs = {
       {
         label: 'Overview',
         links: [
-          { href: '/library', label: 'Library hub' }
+          { href: '/library', label: 'Library Hub' }
         ]
       },
       {
@@ -121,20 +121,20 @@ export const sectionConfigs = {
       {
         label: 'Overview',
         links: [
-          { href: '/platform', label: 'Platform overview' }
+          { href: '/platform', label: 'Platform Overview' }
         ]
       },
       {
-        label: 'Identity layers',
+        label: 'Identity Layers',
         links: [
           { href: '/platform/materialdna', label: 'MaterialDNA' },
           { href: '/platform/productdna', label: 'ProductDNA' }
         ]
       },
       {
-        label: 'City portals',
+        label: 'City Portals',
         links: [
-          { href: '/platform/city-portals', label: 'City portals' },
+          { href: '/platform/city-portals', label: 'City Portals' },
           { href: '/platform/demo-city', label: 'DEMO City' }
         ]
       }
@@ -151,8 +151,8 @@ export const sectionConfigs = {
       {
         label: 'Engage',
         links: [
-          { href: '/interest', label: 'Expression of interest' },
-          { href: '/projects', label: 'Project hub' },
+          { href: '/interest', label: 'Expression of Interest' },
+          { href: '/projects', label: 'Project Hub' },
           { href: '/contribute', label: 'Contribute' }
         ]
       }

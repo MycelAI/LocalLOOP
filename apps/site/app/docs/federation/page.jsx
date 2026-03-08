@@ -2,7 +2,7 @@ export default function FederationPage() {
   return (
     <div className="content-stack">
       <div className="content-panel">
-        <div className="badge">Federation (lab only)</div>
+        <div className="badge">Federation Handshake</div>
         <h2>Federation handshake for demo nodes.</h2>
         <p>
           The lab handshake introduces two nodes and registers them in the demo

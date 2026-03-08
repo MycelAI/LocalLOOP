@@ -2,8 +2,8 @@ export default function LibraryPage() {
   return (
     <div className="content-stack">
       <div className="content-panel">
-        <div className="badge">Schemas & examples</div>
-        <h2>Everything needed to implement the protocol.</h2>
+        <div className="badge">Library Hub</div>
+        <h2>Everything needed to implement the LOOP protocol.</h2>
         <p>
           Browse the schema library and validated example payloads used by implementers
           and node operators. This project is in early concept stage.

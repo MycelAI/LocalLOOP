@@ -8,7 +8,7 @@ export default function DemoCityPage() {
   return (
     <div className="content-stack">
       <div className="content-panel">
-        <div className="badge">Sample city portal</div>
+        <div className="badge">Demo City</div>
         <h2>DEMO City: how a localLOOP city portal could look.</h2>
         <p>
           This is a mock landing page to illustrate the future city portal experience.

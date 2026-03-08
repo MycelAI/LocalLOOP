@@ -2,7 +2,7 @@ export default function RegulatoryAlignmentPage() {
   return (
     <div className="content-stack">
       <div className="content-panel">
-        <div className="badge">Regulatory alignment</div>
+        <div className="badge">Regulatory Alignment</div>
         <h2>Compatibility roadmap for EU and German circular-data rules.</h2>
         <p>
           localLOOP is still lab-demo infrastructure, but the protocol now documents how

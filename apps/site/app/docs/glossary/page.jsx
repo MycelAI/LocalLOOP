@@ -2,7 +2,7 @@ export default function GlossaryPage() {
   return (
     <div className="content-stack">
       <div className="content-panel">
-        <div className="badge">Shared vocabulary</div>
+        <div className="badge">Glossary</div>
         <h2>Standard terminology for the LOOP ecosystem.</h2>
         <p>
           Reference terminology that appears across the specification and docs.

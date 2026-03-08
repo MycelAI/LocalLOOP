@@ -2,8 +2,8 @@ export default function DocsPage() {
   return (
     <div className="content-stack">
       <div className="content-panel">
-        <div className="badge">Implementation guidance</div>
-        <h2>Operational playbooks, references, and compatibility guidance.</h2>
+        <div className="badge">Documentation Hub</div>
+        <h2>Operator and developer guides for building with LOOP.</h2>
         <p>
           Documentation for node operators and implementers. Guidance will evolve as
           the protocol matures, and it stays scoped to lab-demo infrastructure.

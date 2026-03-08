@@ -8,7 +8,7 @@ export default function CityPortalsPage() {
   return (
     <div className="content-stack">
       <div className="content-panel">
-        <div className="badge">City portals</div>
+        <div className="badge">City Portals</div>
         <h2>localLOOP city landing pages and demos.</h2>
         <p>
           City portals will showcase local initiatives, partners, and impact metrics.

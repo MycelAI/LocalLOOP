@@ -2,7 +2,7 @@ export default function IncidentResponsePage() {
   return (
     <div className="content-stack">
       <div className="content-panel">
-        <div className="badge">Response playbooks</div>
+        <div className="badge">Incident Response</div>
         <h2>Prepare for containment, recovery, and post-mortems.</h2>
         <p>
           Response workflows for localLOOP operators and infrastructure teams.

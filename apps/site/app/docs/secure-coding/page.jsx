@@ -2,7 +2,7 @@ export default function SecureCodingPage() {
   return (
     <div className="content-stack">
       <div className="content-panel">
-        <div className="badge">Developer guidance</div>
+        <div className="badge">Secure Coding</div>
         <h2>Secure coding practices for LOOP services.</h2>
         <p>
           Guardrails for building secure integrations and services in the localLOOP

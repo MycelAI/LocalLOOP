@@ -8,7 +8,7 @@ export default function MaterialDNAPage() {
   return (
     <div className="content-stack">
       <div className="content-panel">
-        <div className="badge">Material identity layer</div>
+        <div className="badge">MaterialDNA</div>
         <h2>MaterialDNA — a shared identity for materials in the circular economy.</h2>
         <p>
           MaterialDNA is the identification layer for tracking raw and processed materials

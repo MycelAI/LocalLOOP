@@ -8,7 +8,7 @@ export default function ProductDNAPage() {
   return (
     <div className="content-stack">
       <div className="content-panel">
-        <div className="badge">Product identity layer</div>
+        <div className="badge">ProductDNA</div>
         <h2>ProductDNA — a digital passport for finished products.</h2>
         <p>
           ProductDNA is the product-level identity layer for the localLOOP platform. It references

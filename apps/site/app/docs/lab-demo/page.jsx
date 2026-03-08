@@ -2,7 +2,7 @@ export default function LabDemoPage() {
   return (
     <div className="content-stack">
       <div className="content-panel">
-        <div className="badge">Lab demo</div>
+        <div className="badge">Lab Demo</div>
         <h2>Lab demo flow (v0.2.0) in a controlled environment.</h2>
         <p>
           This lab demo runs a full MaterialDNA/ProductDNA → Offer → Match → Transfer

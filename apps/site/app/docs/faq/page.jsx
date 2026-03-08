@@ -2,7 +2,7 @@ export default function FaqPage() {
   return (
     <div className="content-stack">
       <div className="content-panel">
-        <div className="badge">Frequently asked questions</div>
+        <div className="badge">FAQ</div>
         <h2>Answers to common protocol and implementation questions.</h2>
         <p>
           This FAQ reflects the current early-stage status of localLOOP.

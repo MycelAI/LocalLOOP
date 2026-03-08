@@ -2,7 +2,7 @@ export default function ExamplesPage() {
   return (
     <div className="content-stack">
       <div className="content-panel">
-        <div className="badge">Validated examples</div>
+        <div className="badge">Examples</div>
         <h2>Reference payloads for the v0.2.0 lab flow.</h2>
         <p>
           These examples demonstrate the current baseline interop sequence for both

@@ -8,8 +8,8 @@ export default function PlatformPage() {
   return (
     <div className="content-stack">
       <div className="content-panel">
-        <div className="badge">Platform overview</div>
-        <h2>The localLOOP platform</h2>
+        <div className="badge">Platform Hub</div>
+        <h2>The localLOOP platform — identity, portals, and demo tools.</h2>
         <p>
           The localLOOP platform consists of two identity layers — MaterialDNA and ProductDNA —
           for tracking materials and finished products across circular economy loops, plus city

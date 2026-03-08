@@ -2,7 +2,7 @@ export default function SchemasPage() {
   return (
     <div className="content-stack">
       <div className="content-panel">
-        <div className="badge">Schema library</div>
+        <div className="badge">Schemas</div>
         <h2>Baseline schemas for the v0.2.0 lab flow.</h2>
         <p>
           Use these schemas to validate payloads and build interoperable lab

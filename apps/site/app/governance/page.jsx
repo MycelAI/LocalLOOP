@@ -2,7 +2,7 @@ export default function GovernancePage() {
   return (
     <div className="content-stack">
       <div className="content-panel">
-        <div className="badge">Governance & RFCs</div>
+        <div className="badge">Governance Hub</div>
         <h2>How protocol changes are proposed and reviewed.</h2>
         <p>
           Governance is managed through RFCs that capture proposals, review notes, and
