@@ -5,8 +5,8 @@ export default function LabDemoPage() {
         <div className="badge">Lab demo</div>
         <h2>Lab demo flow (v0.2.0) in a controlled environment.</h2>
         <p>
-          This lab demo runs a full MaterialDNA → Offer → Match → Transfer flow
-          using the sandbox API. It is not a pilot or production deployment.
+          This lab demo runs a full MaterialDNA/ProductDNA → Offer → Match → Transfer
+          flow using the sandbox API. It is not a pilot or production deployment.
         </p>
         <div className="cta-row">
           <a className="button primary" href="/viewer.html?path=projects/loop-protocol/SPECIFICATION.md&title=LOOP%20Protocol%20Spec">

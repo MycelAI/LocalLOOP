@@ -25,7 +25,7 @@ export default function HomePage() {
           </h1>
           <p className="hero-description">
             A federated, DPP-compatible protocol enabling cities to track,
-            exchange, and settle material flows while maintaining local sovereignty.
+            exchange, and settle material and product flows while maintaining local sovereignty.
           </p>
           <div className="hero-actions">
             <a className="button primary" href="/protocol">
@@ -39,7 +39,7 @@ export default function HomePage() {
           </div>
           <div className="hero-stats">
             <div className="hero-stat">
-              <span className="hero-stat-value">10</span>
+              <span className="hero-stat-value">11</span>
               <span className="hero-stat-label">Unified Schemas</span>
             </div>
             <div className="hero-stat-divider"></div>
@@ -100,6 +100,18 @@ export default function HomePage() {
               in the circular economy.
             </p>
           </div>
+          <div className="concept-card">
+            <div className="concept-icon">
+              <i className="ph-duotone ph-cube"></i>
+            </div>
+            <h3>ProductDNA</h3>
+            <p>
+              A DPP-aligned identity for finished products. ProductDNA captures product category,
+              condition, manufacturer, lifecycle stage, and references to constituent MaterialDNA
+              entries — enabling product-level reuse, trading, and EU Digital Product Passport
+              compliance (ESPR Art. 9-10).
+            </p>
+          </div>
         </div>
       </section>
 
@@ -111,8 +123,8 @@ export default function HomePage() {
             <div className="flow-step-icon">
               <i className="ph-bold ph-fingerprint"></i>
             </div>
-            <span className="flow-step-title">MaterialDNA</span>
-            <span className="flow-step-desc">Tag materials with identity</span>
+            <span className="flow-step-title">Register</span>
+            <span className="flow-step-desc">Tag materials or products</span>
           </div>
           <span className="flow-arrow" aria-hidden="true">
             <i className="ph-bold ph-arrow-right"></i>
@@ -122,7 +134,7 @@ export default function HomePage() {
               <i className="ph-bold ph-tag"></i>
             </div>
             <span className="flow-step-title">Offer</span>
-            <span className="flow-step-desc">List available materials</span>
+            <span className="flow-step-desc">List available resources</span>
           </div>
           <span className="flow-arrow" aria-hidden="true">
             <i className="ph-bold ph-arrow-right"></i>

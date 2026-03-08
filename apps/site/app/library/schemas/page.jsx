@@ -6,7 +6,7 @@ export default function SchemasPage() {
         <h2>Baseline schemas for the v0.2.0 lab flow.</h2>
         <p>
           Use these schemas to validate payloads and build interoperable lab
-          implementations. The current baseline prioritizes MaterialDNA, Offer, Match,
+          implementations. The current baseline covers MaterialDNA, ProductDNA, Offer, Match,
           Transfer, status updates, and handshake flows.
         </p>
         <div className="cta-row">
@@ -23,7 +23,7 @@ export default function SchemasPage() {
       <div className="content-panel">
         <h3>What is stable today</h3>
         <div className="table-list">
-          <div><span>Minimal interop</span><div>Material registration, offer, match, transfer, and status updates</div></div>
+          <div><span>Minimal interop</span><div>Material and product registration, offer, match, transfer, and status updates</div></div>
           <div><span>Federation</span><div>Lab-only handshake payloads and node metadata</div></div>
           <div><span>Exploratory</span><div>LoopCoin, LoopSignal, and transaction models remain draft reference material</div></div>
         </div>
@@ -42,10 +42,18 @@ export default function SchemasPage() {
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
+              <i className="ph-thin ph-cube"></i>
+            </span>
+            <h4>ProductDNA</h4>
+            <p>Product identity, condition, lifecycle, and DPP-aligned passport fields (ESPR Art. 9-10).</p>
+            <a href="/viewer.html?path=projects/loop-protocol/schemas/product-dna.schema.json&title=ProductDNA%20Schema">Open schema</a>
+          </div>
+          <div className="card has-icon">
+            <span className="card-icon" aria-hidden="true">
               <i className="ph-thin ph-package"></i>
             </span>
             <h4>Offer</h4>
-            <p>Availability and routing offers for registered materials.</p>
+            <p>Availability and routing offers for materials or products.</p>
             <a href="/viewer.html?path=projects/loop-protocol/schemas/offer.schema.json&title=Offer%20Schema">Open schema</a>
           </div>
           <div className="card has-icon">
@@ -53,7 +61,7 @@ export default function SchemasPage() {
               <i className="ph-thin ph-handshake"></i>
             </span>
             <h4>Match</h4>
-            <p>Agreement state between a material and an offer.</p>
+            <p>Agreement state between a material or product and an offer.</p>
             <a href="/viewer.html?path=projects/loop-protocol/schemas/match.schema.json&title=Match%20Schema">Open schema</a>
           </div>
           <div className="card has-icon">

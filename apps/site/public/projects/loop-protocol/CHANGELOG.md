@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- ProductDNA schema — product-level DPP entity (ESPR Art. 9-10 aligned) with 17 product categories
+- Offer/Match/Transfer schemas now accept `product_id` as alternative to `material_id` (anyOf)
+- ProductDNA term mappings in JSON-LD context (product_id, product_category, condition, dimensions, etc.)
+- Product reuse registration example (14-product-reuse-registration.json)
+- Product offer flow example (15-product-offer-flow.json)
+- Product endpoints in OpenAPI spec (POST /product, GET /product/{id})
+
 ## [0.2.0] - 2026-03-08
 
 ### Added

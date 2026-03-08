@@ -16,7 +16,7 @@ export default function LibraryPage() {
       <div className="content-panel">
         <h3>Library coverage</h3>
         <div className="table-list">
-          <div><span>Schemas</span><div>MaterialDNA, LoopCoin, LoopSignal, Node Info</div></div>
+          <div><span>Schemas</span><div>MaterialDNA, ProductDNA, LoopCoin, LoopSignal, Node Info</div></div>
           <div><span>Examples</span><div>Validated payload flows and transactions</div></div>
         </div>
       </div>

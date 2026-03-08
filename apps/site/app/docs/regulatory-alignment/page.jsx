@@ -8,6 +8,7 @@ export default function RegulatoryAlignmentPage() {
           localLOOP is still lab-demo infrastructure, but the protocol now documents how
           it can evolve toward DPP, battery, packaging, waste-traceability, and German
           circular-economy data expectations building on the v0.2.0 DPP-compatible baseline.
+          The new ProductDNA schema provides product-level DPP alignment (ESPR Art. 9-10).
         </p>
         <div className="cta-row">
           <a
@@ -28,6 +29,7 @@ export default function RegulatoryAlignmentPage() {
           <div><span>Data minimization</span><div>Minimal interop payloads now explicitly reject personal contact fields.</div></div>
           <div><span>Forward compatibility</span><div>Receivers can accept additive `0.1.x` payloads and preserve unknown fields.</div></div>
           <div><span>DPP-ready hooks</span><div>`passport`, `classification`, and `traceability` blocks create a non-breaking upgrade path.</div></div>
+          <div><span>ProductDNA</span><div>Product-level DPP entity with ESPR-aligned passport fields, referencing MaterialDNA composition.</div></div>
         </div>
       </div>
 

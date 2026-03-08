@@ -5,8 +5,9 @@ export default function ExamplesPage() {
         <div className="badge">Validated examples</div>
         <h2>Reference payloads for the v0.2.0 lab flow.</h2>
         <p>
-          These examples demonstrate the current baseline interop sequence plus the
-          handshake and status-update payloads used by the lab backend.
+          These examples demonstrate the current baseline interop sequence for both
+          materials and products, plus the handshake and status-update payloads used
+          by the lab backend.
         </p>
         <div className="cta-row">
           <a className="button primary" href="/library">Back to library</a>
@@ -22,8 +23,8 @@ export default function ExamplesPage() {
       <div className="content-panel">
         <h3>Current baseline</h3>
         <div className="table-list">
-          <div><span>Registration</span><div>Material onboarding with traceability-ready fields</div></div>
-          <div><span>Interop flow</span><div>Offer, match, transfer, and material-status payloads</div></div>
+          <div><span>Registration</span><div>Material and product onboarding with traceability-ready fields</div></div>
+          <div><span>Interop flow</span><div>Offer, match, transfer for both materials and products</div></div>
           <div><span>Federation</span><div>Handshake request and response examples</div></div>
         </div>
       </div>
@@ -94,6 +95,22 @@ export default function ExamplesPage() {
             <h4>Complete Flow</h4>
             <p>Multi-step reference bundle across older and current artifacts.</p>
             <a href="/viewer.html?path=projects/loop-protocol/examples/05-complete-flow.json&title=Complete%20Flow">View example</a>
+          </div>
+          <div className="card has-icon">
+            <span className="card-icon" aria-hidden="true">
+              <i className="ph-thin ph-cube"></i>
+            </span>
+            <h4>Product Registration</h4>
+            <p>ProductDNA registration for office furniture reuse with DPP passport.</p>
+            <a href="/viewer.html?path=projects/loop-protocol/examples/14-product-reuse-registration.json&title=Product%20Registration">View example</a>
+          </div>
+          <div className="card has-icon">
+            <span className="card-icon" aria-hidden="true">
+              <i className="ph-thin ph-arrows-left-right"></i>
+            </span>
+            <h4>Product Offer Flow</h4>
+            <p>Complete Offer → Match → Transfer flow using product_id.</p>
+            <a href="/viewer.html?path=projects/loop-protocol/examples/15-product-offer-flow.json&title=Product%20Offer%20Flow">View example</a>
           </div>
         </div>
       </div>
