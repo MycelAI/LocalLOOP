@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 test('materialDNA page highlights the concept', async ({ page }) => {
-  await page.goto('/materialDNA/');
+  await page.goto('/materialdna/');
 
   await expect(
     page.getByRole('heading', { name: /MaterialDNA & ProductDNA: shared identities for the circular economy/i })

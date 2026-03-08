@@ -1,3 +1,5 @@
-import DemoCityPage from '../../DEMO-City/page';
+import { Redirect } from '../../../components/Redirect';
 
-export default DemoCityPage;
+export default function PlatformDemoCityRedirectPage() {
+  return <Redirect to="/demo-city/" label="Go to DEMO City" />;
+}

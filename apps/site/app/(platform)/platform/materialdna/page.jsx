@@ -1,3 +1,5 @@
-import MaterialDnaPage from '../../materialDNA/page';
+import { Redirect } from '../../../components/Redirect';
 
-export default MaterialDnaPage;
+export default function PlatformMaterialDnaRedirectPage() {
+  return <Redirect to="/materialdna/" label="Go to MaterialDNA" />;
+}

@@ -466,6 +466,27 @@ header[data-site-header] .nav-controls {
   right: 0;
 }
 
+.nav-menu-group {
+  display: grid;
+  gap: 4px;
+}
+
+.nav-menu-group:not(:first-child) {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(11, 27, 43, 0.08);
+}
+
+.nav-menu-group-label {
+  display: block;
+  padding: 4px 14px 2px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+}
+
 .nav-menu a {
   display: block;
   padding: 11px 14px;

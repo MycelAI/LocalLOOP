@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
+import { navigationSections } from '../config/siteRoutes.js';
 
 const normalizePath = (value) => {
   if (!value) return '/';
@@ -28,69 +29,6 @@ const matchesPath = (pathname, prefixes) => {
     return current === normalizedPrefix || current.startsWith(`${normalizedPrefix}/`);
   });
 };
-
-const navigationSections = [
-  {
-    key: 'platform',
-    label: 'Platform',
-    href: '/',
-    matchPrefixes: ['/', '/platform', '/materialdna', '/cities', '/demo-city'],
-    items: [
-      { href: '/materialdna', label: 'MaterialDNA' },
-      { href: '/cities', label: 'City Portals' },
-      { href: '/demo-city', label: 'DEMO City' },
-    ],
-  },
-  {
-    key: 'protocol',
-    label: 'Protocol',
-    href: '/protocol',
-    matchPrefixes: ['/protocol'],
-    items: [
-      { href: '/protocol/spec', label: 'Specification' },
-      { href: '/protocol/changelog', label: 'Changelog' },
-      { href: '/protocol/security', label: 'Security' },
-    ],
-  },
-  {
-    key: 'library',
-    label: 'Library',
-    href: '/library',
-    matchPrefixes: ['/library'],
-    items: [
-      { href: '/library/schemas', label: 'Schemas' },
-      { href: '/library/examples', label: 'Examples' },
-    ],
-  },
-  {
-    key: 'docs',
-    label: 'Docs',
-    href: '/docs',
-    matchPrefixes: ['/docs'],
-    align: 'end',
-    items: [
-      { href: '/docs/implementation', label: 'Implementation' },
-      { href: '/docs/api', label: 'API Docs' },
-      { href: '/docs/security', label: 'Security Guide' },
-      { href: '/docs/secure-coding', label: 'Secure Coding' },
-      { href: '/docs/incident-response', label: 'Incident Response' },
-      { href: '/docs/faq', label: 'FAQ' },
-      { href: '/docs/glossary', label: 'Glossary' },
-    ],
-  },
-  {
-    key: 'governance',
-    label: 'Governance',
-    href: '/governance',
-    matchPrefixes: ['/governance'],
-    align: 'end',
-    items: [
-      { href: '/governance/rfcs', label: 'RFC Guide' },
-      { href: '/governance/template', label: 'RFC Template' },
-      { href: '/governance/smart-contracts', label: 'Smart Contracts' },
-    ],
-  },
-];
 
 const DROPDOWN_CLOSE_DELAY_MS = 200;
 
@@ -257,20 +195,38 @@ export function SiteHeader({ subtitle = '' }) {
                   </div>
 
                   <div className="nav-menu" id={`nav-menu-${section.key}`}>
-                    {section.items.map((item) => {
-                      const itemActive = pathnameNormalized === normalizePath(item.href);
-
-                      return (
-                        <a
-                          key={item.href}
-                          href={item.href}
-                          className={itemActive ? 'active' : ''}
-                          aria-current={itemActive ? 'page' : undefined}
-                        >
-                          {item.label}
-                        </a>
-                      );
-                    })}
+                    {section.groups
+                      ? section.groups.map((group) => (
+                          <div key={group.label} className="nav-menu-group">
+                            <span className="nav-menu-group-label" aria-hidden="true">{group.label}</span>
+                            {group.items.map((item) => {
+                              const itemActive = pathnameNormalized === normalizePath(item.href);
+                              return (
+                                <a
+                                  key={item.href}
+                                  href={item.href}
+                                  className={itemActive ? 'active' : ''}
+                                  aria-current={itemActive ? 'page' : undefined}
+                                >
+                                  {item.label}
+                                </a>
+                              );
+                            })}
+                          </div>
+                        ))
+                      : section.items.map((item) => {
+                          const itemActive = pathnameNormalized === normalizePath(item.href);
+                          return (
+                            <a
+                              key={item.href}
+                              href={item.href}
+                              className={itemActive ? 'active' : ''}
+                              aria-current={itemActive ? 'page' : undefined}
+                            >
+                              {item.label}
+                            </a>
+                          );
+                        })}
                   </div>
                 </div>
                 );
