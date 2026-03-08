@@ -78,7 +78,7 @@ export default function HomePage() {
         <div className="concepts-grid">
           <div className="concept-card">
             <div className="concept-icon">
-              <img src="/assets/local-loop-logo.png" alt="" width={48} height={48} />
+              <i className="ph-bold ph-infinity" aria-hidden="true"></i>
             </div>
             <h3>LOOP</h3>
             <p>
@@ -90,7 +90,7 @@ export default function HomePage() {
           </div>
           <div className="concept-card">
             <div className="concept-icon">
-              <i className="ph-duotone ph-fingerprint"></i>
+              <i className="ph-bold ph-fingerprint" aria-hidden="true"></i>
             </div>
             <h3>MaterialDNA</h3>
             <p>
@@ -102,7 +102,7 @@ export default function HomePage() {
           </div>
           <div className="concept-card">
             <div className="concept-icon">
-              <i className="ph-duotone ph-cube"></i>
+              <i className="ph-bold ph-cube" aria-hidden="true"></i>
             </div>
             <h3>ProductDNA</h3>
             <p>

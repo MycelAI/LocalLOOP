@@ -92,12 +92,35 @@ const navigationSections = [
   },
 ];
 
+const DROPDOWN_CLOSE_DELAY_MS = 200;
+
 export function SiteHeader({ subtitle = '' }) {
   const pathname = usePathname();
   const headerRef = useRef(null);
+  const closeTimeoutRef = useRef(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openMobileSection, setOpenMobileSection] = useState(null);
+  const [hoverGroupKey, setHoverGroupKey] = useState(null);
   const pathnameNormalized = normalizePath(pathname);
+
+  const clearCloseTimeout = () => {
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+      closeTimeoutRef.current = null;
+    }
+  };
+
+  const handleNavGroupEnter = (key) => {
+    clearCloseTimeout();
+    setHoverGroupKey(key);
+  };
+
+  const handleNavGroupLeave = () => {
+    closeTimeoutRef.current = setTimeout(() => {
+      setHoverGroupKey(null);
+      closeTimeoutRef.current = null;
+    }, DROPDOWN_CLOSE_DELAY_MS);
+  };
 
   useEffect(() => {
     setMobileOpen(false);
@@ -137,6 +160,9 @@ export function SiteHeader({ subtitle = '' }) {
       if (event.matches) {
         setMobileOpen(false);
         setOpenMobileSection(null);
+      } else {
+        setHoverGroupKey(null);
+        clearCloseTimeout();
       }
     };
 
@@ -147,6 +173,8 @@ export function SiteHeader({ subtitle = '' }) {
       mediaQuery.removeEventListener('change', handleChange);
     };
   }, []);
+
+  useEffect(() => () => clearCloseTimeout(), []);
 
   return (
     <header ref={headerRef} className="site-header" data-nav-subtitle={subtitle || undefined}>
@@ -199,6 +227,9 @@ export function SiteHeader({ subtitle = '' }) {
                   key={section.key}
                   className={`nav-group${section.align === 'end' ? ' nav-group--align-end' : ''}`}
                   data-mobile-open={mobileSectionOpen}
+                  data-dropdown-open={hoverGroupKey === section.key}
+                  onMouseEnter={() => handleNavGroupEnter(section.key)}
+                  onMouseLeave={handleNavGroupLeave}
                 >
                   <div className="nav-item">
                     <a
