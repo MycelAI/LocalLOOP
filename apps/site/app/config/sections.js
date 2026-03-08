@@ -10,7 +10,7 @@ export const sectionConfigs = {
       {
         label: 'Overview',
         links: [
-          { href: '/docs', label: 'Documentation Home' }
+          { href: '/docs', label: 'Docs' }
         ]
       },
       {
@@ -49,7 +49,7 @@ export const sectionConfigs = {
       {
         label: 'Overview',
         links: [
-          { href: '/protocol', label: 'Protocol Hub' }
+          { href: '/protocol', label: 'Protocol' }
         ]
       },
       {
@@ -74,7 +74,7 @@ export const sectionConfigs = {
       {
         label: 'Overview',
         links: [
-          { href: '/governance', label: 'Governance Hub' }
+          { href: '/governance', label: 'Governance' }
         ]
       },
       {
@@ -98,7 +98,7 @@ export const sectionConfigs = {
       {
         label: 'Overview',
         links: [
-          { href: '/library', label: 'Library Hub' }
+          { href: '/library', label: 'Library' }
         ]
       },
       {
@@ -121,7 +121,7 @@ export const sectionConfigs = {
       {
         label: 'Overview',
         links: [
-          { href: '/platform', label: 'Platform Overview' }
+          { href: '/platform', label: 'Platform' }
         ]
       },
       {

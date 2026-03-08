@@ -2,7 +2,7 @@ export default function DocsPage() {
   return (
     <div className="content-stack">
       <div className="content-panel">
-        <h2>Documentation</h2>
+        <h2 className="hub-heading">Documentation</h2>
         <p>
           Operator and developer guides for building with LOOP. Guidance evolves as the
           protocol matures, scoped to lab-demo infrastructure.
@@ -48,7 +48,7 @@ export default function DocsPage() {
           </a>
           <a className="card has-icon" href="/docs/regulatory-alignment">
             <span className="card-icon" aria-hidden="true">
-              <i className="ph-thin ph-scale"></i>
+              <i className="ph-thin ph-scales"></i>
             </span>
             <h4>Regulatory Alignment</h4>
             <p>DPP, battery, packaging, waste, and governance roadmap.</p>

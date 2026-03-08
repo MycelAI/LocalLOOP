@@ -8,7 +8,7 @@ export default function PlatformPage() {
   return (
     <div className="content-stack">
       <div className="content-panel">
-        <h2>Platform</h2>
+        <h2 className="hub-heading">Platform</h2>
         <p>
           Two identity layers — MaterialDNA and ProductDNA — for tracking materials and
           finished products across circular economy loops, plus city portals surfacing local

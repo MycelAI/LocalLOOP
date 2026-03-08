@@ -2,7 +2,7 @@ export default function LibraryPage() {
   return (
     <div className="content-stack">
       <div className="content-panel">
-        <h2>Library</h2>
+        <h2 className="hub-heading">Library</h2>
         <p>
           Browse the schema library and validated example payloads used by implementers
           and node operators. Early concept stage.

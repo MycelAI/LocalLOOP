@@ -2,7 +2,7 @@ export default function GovernancePage() {
   return (
     <div className="content-stack">
       <div className="content-panel">
-        <h2>Governance</h2>
+        <h2 className="hub-heading">Governance</h2>
         <p>
           Protocol changes are managed through RFCs that capture proposals, review notes,
           and decisions for LOOP.

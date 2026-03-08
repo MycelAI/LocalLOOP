@@ -2,7 +2,7 @@ export default function ProtocolPage() {
   return (
     <div className="content-stack">
       <div className="content-panel">
-        <h2>Protocol</h2>
+        <h2 className="hub-heading">Protocol</h2>
         <p>
           Explore the specification, changelog, and security requirements that guide
           implementations. This is an early, low-TRL concept with no public pilots yet.
@@ -34,7 +34,7 @@ export default function ProtocolPage() {
           </a>
           <a className="card has-icon card-ref" href="/docs/regulatory-alignment">
             <span className="card-icon" aria-hidden="true">
-              <i className="ph-thin ph-scale"></i>
+              <i className="ph-thin ph-scales"></i>
             </span>
             <h4>Compatibility Roadmap</h4>
             <p>Long-horizon plan for DPP, waste, packaging, and battery alignment.</p>

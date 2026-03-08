@@ -44,7 +44,7 @@
   --radius-sm: 10px;
 
   /* Layout */
-  --page-max: 1180px;
+  --page-max: 1440px;
   --gutter: clamp(20px, 6vw, 64px);
 
   /* Animation */
@@ -920,6 +920,15 @@ header[data-site-header] .nav-controls {
 .content-panel h2,
 .content-panel h3 {
   margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.content-panel h2 {
+  color: rgba(11, 27, 43, 0.65);
+}
+
+.content-panel h2.hub-heading {
+  color: var(--ink);
 }
 
 .side-nav {
@@ -945,8 +954,26 @@ header[data-site-header] .nav-controls {
   gap: 6px;
 }
 
-.side-group + .side-group {
-  margin-top: 1rem;
+/* Sidebar hierarchy: first group = hub/overview link, rest = sub-items */
+.side-group:first-child a {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--ink);
+}
+
+.side-group:not(:first-child) a {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--ink-soft);
+  padding-left: 18px;
+}
+
+.side-group:not(:first-child) a:hover {
+  color: var(--accent);
+}
+
+.side-group:not(:first-child) a.active {
+  color: var(--accent-2);
 }
 
 .side-label {
@@ -984,13 +1011,25 @@ header[data-site-header] .nav-controls {
   font-size: 0.85rem;
   color: var(--ink-soft);
   border-top: 1px solid rgba(11, 27, 43, 0.1);
-  padding-top: 12px;
+  padding-top: 20px;
+  display: grid;
+  gap: 4px;
 }
 
 .side-note a {
   color: var(--accent);
   text-decoration: none;
   font-weight: 600;
+  display: block;
+  padding: 0;
+  background: none !important;
+  border-radius: 0;
+}
+
+.side-note a:hover {
+  background: none !important;
+  color: var(--accent-dark, color-mix(in srgb, var(--accent) 80%, #000));
+  text-decoration: underline;
 }
 
 .hero-card {
@@ -1197,6 +1236,18 @@ a.card h4 {
 .card.card-ref {
   border-left: 3px solid var(--accent-2, #2f9e85);
   background: rgba(47, 158, 133, 0.04);
+  position: relative;
+}
+
+.card.card-ref::after {
+  content: "↗";
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  font-size: 0.8rem;
+  color: var(--accent-2, #2f9e85);
+  opacity: 0.75;
+  font-weight: 700;
 }
 
 .card.has-icon {
