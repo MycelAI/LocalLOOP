@@ -136,3 +136,6 @@ only `alpha912` should merge.
 ## Security
 
 Never commit secrets or credentials. Keep `.env` files local only.
+
+## Commit Message Policy
+Never include Claude, Anthropic, or any AI tool name or co-authorship trailer in commit messages. Commits must read as if written by the human developer. No `Co-Authored-By: Claude` or similar lines.
