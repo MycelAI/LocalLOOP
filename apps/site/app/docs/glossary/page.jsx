@@ -6,17 +6,12 @@ export default function GlossaryPage() {
       <div className="content-panel">        <h2>Glossary</h2>
         <p>
           Reference terminology that appears across the specification and docs.
+          Canonical definitions live in{' '}
+          <a href="/protocol/spec">SPECIFICATION.md §2 and §2.1</a>;
+          this page is a quick-reference derived from the spec.
         </p>
         <div className="cta-row">
           <a className="button secondary" href="/docs">Back to docs</a>
-        </div>
-      </div>
-      <div className="content-panel">
-        <h3>Terms you will see</h3>
-        <div className="table-list">
-          <div><span>Loop node</span><div>City-level protocol implementation</div></div>
-          <div><span>MaterialDNA</span><div>Material identity primitives</div></div>
-          <div><span>ProductDNA</span><div>Product identity layer (DPP-aligned, references MaterialDNA)</div></div>
         </div>
       </div>
       <div className="content-panel">

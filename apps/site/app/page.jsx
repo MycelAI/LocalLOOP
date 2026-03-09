@@ -75,6 +75,9 @@ export default function HomePage() {
       {/* Key Concepts */}
       <section className="section">
         <h2 className="section-title">Key Concepts</h2>
+        <p className="section-note">
+          Definitions follow the <a href="/protocol/spec">LOOP Specification (§2 and §2.1)</a>.
+        </p>
         <div className="concepts-grid">
           <div className="concept-card">
             <div className="concept-icon">
