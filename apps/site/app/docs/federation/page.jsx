@@ -16,6 +16,7 @@ export default function FederationPage() {
       <div className="content-panel">
         <h3>Endpoints (lab)</h3>
         <div className="table-list">
+          <div><span>Node info</span><div>`/api/v1/node/info`</div></div>
           <div><span>Handshake</span><div>`/api/v1/federation/handshake`</div></div>
           <div><span>Registry</span><div>`/api/v1/federation/nodes`</div></div>
         </div>
@@ -25,9 +26,9 @@ export default function FederationPage() {
         <h3>Sample handshake</h3>
         <div className="code-block">
           <pre><code>{`{
-  "@context": "https://local-loop-io.github.io/projects/loop-protocol/contexts/loop-v0.1.1.jsonld",
+  "@context": "https://local-loop-io.github.io/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
   "@type": "NodeHandshake",
-  "schema_version": "0.1.1",
+  "schema_version": "0.2.0",
   "node_id": "munich.loop",
   "name": "DEMO Munich Node",
   "endpoint": "https://demo-munich.loop/api",

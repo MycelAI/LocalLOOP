@@ -48,6 +48,23 @@ export default function ApiDocsPage() {
           <div><span>Scope</span><div>Lab demo only. The live backend is not a claim of protocol-wide conformance.</div></div>
         </div>
       </div>
+
+      <div className="content-panel">
+        <h3>Current lab protocol surface</h3>
+        <p>
+          The live lab backend currently exposes the minimal MaterialDNA, ProductDNA,
+          Offer, Match, Transfer, Material Status, node info, stream, and
+          federation-registry routes. Search, signals, transaction creation, and
+          spec-native federated announce or offer endpoints are still tracked as
+          future work.
+        </p>
+        <div className="table-list">
+          <div><span>Node metadata</span><div>`GET /api/v1/node/info`</div></div>
+          <div><span>Material status</span><div>`POST /api/v1/material-status`</div></div>
+          <div><span>Lab relay</span><div>`POST /api/v1/relay` for supported lab event families</div></div>
+          <div><span>Federation registry</span><div>`GET /api/v1/federation/nodes` and `POST /api/v1/federation/handshake`</div></div>
+        </div>
+      </div>
     </div>
   );
 }

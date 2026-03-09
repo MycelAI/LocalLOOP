@@ -5,9 +5,11 @@
 - API docs page (Redoc iframe) and metrics dashboard.
 - Compliance links for threat model and DPIA-lite docs.
 - Lab federation relay instructions.
+- Current lab API surface summary, including node info, material status, relay, and federation registry endpoints.
 
 ### Changed
 - Smoke test runner now targets the dedicated smoke file (Playwright remains in `test:e2e`).
+- Federation docs now show the v0.2.0 handshake sample used by the live lab backend.
 
 ## 0.1.1-demo - 2025-12-20
 ### Added
