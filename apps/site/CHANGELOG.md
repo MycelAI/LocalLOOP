@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.6] - 2026-05-26
+
+### Added
+- `/platform/demo-city` fully wired city portal with live backend data:
+  - Node heartbeat — fetches `/health`, shows live/offline status with pulsing dot
+  - Activity stats — live counts of materials, offers, matches, transfers
+  - Material registry — live table from `/api/v1/material` with city filter buttons (All / Munich / Berlin / DEMO nodes)
+  - Protocol flows — tabbed live tables for Offers, Matches, and Transfers
+  - Register Material form — POST to `/api/v1/material`, generates MAT- prefixed ID, refreshes registry on success
+  - Live event stream — SSE connection to `/api/v1/stream`, pre-seeded with recent events from `/api/v1/events`
+  - LoopSignal panel — visual bar chart of demo node signal values with explanation
+  - Node capabilities summary with links to spec, portals, and interest form
+- `public/assets/js/demo-city.js` — client-side wiring: fetch, SSE, form submit, tabs, filters, auto-refresh (30s)
+- Demo city CSS — heartbeat, stat grid, filter/tab buttons, data tables, status badges, stream log, signal bar chart
+
 ## [0.2.5] - 2026-05-26
 
 ### Added
@@ -110,7 +125,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-[Unreleased]: https://github.com/local-loop-io/local-loop-io.github.io/compare/v0.2.5...HEAD
+[Unreleased]: https://github.com/local-loop-io/local-loop-io.github.io/compare/v0.2.6...HEAD
+[0.2.6]: https://github.com/local-loop-io/local-loop-io.github.io/compare/v0.2.5...v0.2.6
 [0.2.5]: https://github.com/local-loop-io/local-loop-io.github.io/compare/v0.2.4...v0.2.5
 [0.2.4]: https://github.com/local-loop-io/local-loop-io.github.io/compare/v0.2.3...v0.2.4
 [0.2.3]: https://github.com/local-loop-io/local-loop-io.github.io/compare/v0.2.2...v0.2.3
