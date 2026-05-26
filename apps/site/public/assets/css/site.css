@@ -1158,38 +1158,6 @@ header[data-site-header] .nav-controls {
   box-shadow: 0 14px 24px rgba(11, 27, 43, 0.18);
 }
 
-.sticky-cta {
-  position: fixed;
-  right: clamp(16px, 4vw, 36px);
-  bottom: clamp(16px, 4vw, 36px);
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  padding: 12px 18px;
-  border-radius: 999px;
-  background: var(--accent);
-  color: #fff;
-  text-decoration: none;
-  font-weight: 700;
-  font-size: 0.9rem;
-  letter-spacing: 0.01em;
-  box-shadow: 0 16px 32px rgba(224, 108, 71, 0.35);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  z-index: 20;
-}
-
-.sticky-cta-sub {
-  font-size: 0.72rem;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.85);
-}
-
-.sticky-cta:hover,
-.sticky-cta:focus-visible {
-  transform: translateY(-2px);
-  box-shadow: 0 18px 34px rgba(224, 108, 71, 0.42);
-}
 
 .section {
   padding: 24px var(--gutter) 48px;
@@ -1731,12 +1699,6 @@ a.card h4 {
 
   .hero-visual {
     min-height: 180px;
-  }
-
-  .sticky-cta {
-    left: 16px;
-    right: 16px;
-    align-items: flex-start;
   }
 
   .viewer-hero {
@@ -2390,6 +2352,67 @@ a.card h4 {
    ========================================== */
 
 /* Header styles are consolidated near the top of the file. */
+
+/* ==========================================
+   404 NOT FOUND
+   ========================================== */
+
+.not-found-hero {
+  position: relative;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-16) var(--gutter);
+  padding-top: calc(var(--space-16) + var(--header-h));
+  margin-top: calc(-1 * var(--header-h));
+  overflow: hidden;
+  text-align: center;
+}
+
+.not-found-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.not-found-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.not-found-code {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(6rem, 18vw, 12rem);
+  font-weight: 700;
+  line-height: 1;
+  background: linear-gradient(135deg, var(--accent-2), var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  letter-spacing: -0.03em;
+  opacity: 0.35;
+  user-select: none;
+}
+
+.not-found-title {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0;
+}
+
+.not-found-desc {
+  color: var(--ink-soft);
+  font-size: var(--text-lg);
+  margin: 0 0 var(--space-4);
+  max-width: 40ch;
+}
 
 /* ==========================================
    NEW HERO SECTION

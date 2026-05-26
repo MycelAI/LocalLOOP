@@ -6,43 +6,45 @@ export default function NotFound() {
     <>
       <SiteHeader />
 
-      <section className="section">
-        <div className="content-panel">          <h2>This page could not be found.</h2>
-          <p>
-            The path you opened does not exist in the localLOOP hub. Use the quick links
-            below to jump back into the platform.
-          </p>
-          <div className="cta-row">
-            <a className="button primary" href="/">Back to platform</a>
-            <a className="button secondary" href="/interest">Express interest</a>
-          </div>
+      <section className="not-found-hero">
+        <div className="not-found-bg" aria-hidden="true">
+          <div className="hero-gradient"></div>
+          <div className="hero-grid"></div>
         </div>
+        <div className="not-found-content">
+          <span className="not-found-code" aria-hidden="true">404</span>
+          <h1 className="not-found-title">Page not found</h1>
+          <p className="not-found-desc">
+            This path doesn't exist in the localLOOP hub.
+          </p>
+          <a className="button primary" href="/">Back to home</a>
+        </div>
+      </section>
 
-        <div className="grid">
-          <div className="card has-icon">
+      <section className="section">
+        <h2 className="section-title">Quick links</h2>
+        <div className="quick-start">
+          <a href="/protocol" className="quick-start-card">
             <span className="card-icon" aria-hidden="true">
-              <i className="ph-thin ph-scroll"></i>
+              <i className="ph-bold ph-book-open"></i>
             </span>
-            <h4>Protocol hub</h4>
-            <p>Specification, changelog, and security policy.</p>
-            <a href="/protocol">Open protocol</a>
-          </div>
-          <div className="card has-icon">
+            <h3>Protocol</h3>
+            <p>Specification, schemas, and changelog.</p>
+          </a>
+          <a href="/docs" className="quick-start-card">
             <span className="card-icon" aria-hidden="true">
-              <i className="ph-thin ph-books"></i>
+              <i className="ph-bold ph-code"></i>
             </span>
-            <h4>Library</h4>
-            <p>Schemas and example payloads for implementers.</p>
-            <a href="/library">Open library</a>
-          </div>
-          <div className="card has-icon">
+            <h3>Docs</h3>
+            <p>Implementation guides and operator playbooks.</p>
+          </a>
+          <a href="/library" className="quick-start-card">
             <span className="card-icon" aria-hidden="true">
-              <i className="ph-thin ph-notebook"></i>
+              <i className="ph-bold ph-books"></i>
             </span>
-            <h4>Docs</h4>
-            <p>Implementation guidance and operator playbooks.</p>
-            <a href="/docs">Open docs</a>
-          </div>
+            <h3>Library</h3>
+            <p>JSON schemas, contexts, and example payloads.</p>
+          </a>
         </div>
       </section>
 
