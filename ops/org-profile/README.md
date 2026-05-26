@@ -29,12 +29,12 @@ See `profile/README.md` for the public landing page content.
 ## How to cite
 
 If you reference this repository, please cite:
-Alphin Tom / Mycel UG (haftungsbeschränkt). "localLOOP Organization Profile." localLOOP,
+Mycel UG (haftungsbeschränkt). "localLOOP Organization Profile." localLOOP,
 2025-2026. <https://github.com/local-loop-io/.github>
 
 ```bibtex
 @misc{localloop_org_profile_2025,
-  author = {Alphin Tom / Mycel UG (haftungsbeschränkt)},
+  author = {Mycel UG (haftungsbeschränkt)},
   title = {localLOOP Organization Profile},
   year = {2025},
   howpublished = {GitHub repository},

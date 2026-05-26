@@ -79,12 +79,12 @@ Current release: **v0.2.0** (lab baseline). Schemas validated with AJV.
 
 ## Contact & citation
 
-**Alphin Tom** — Co-founder & CEO, Mycel UG (haftungsbeschränkt)
-[@alpha912](https://github.com/alpha912) · [alphin@mycel-ai.de](mailto:alphin@mycel-ai.de) · [mycel-ai.de](https://mycel-ai.de)
+**Mycel UG (haftungsbeschränkt)**
+[@alpha912](https://github.com/alpha912) · [dev@mycel-ai.de](mailto:dev@mycel-ai.de) · [mycel-ai.de](https://mycel-ai.de)
 
 ```bibtex
 @misc{localloop_org_2025,
-  author    = {Alphin Tom and Mycel UG (haftungsbeschränkt)},
+  author    = {Mycel UG (haftungsbeschränkt)},
   title     = {localLOOP — Local Optimization with Overflow Protocol},
   year      = {2025},
   publisher = {GitHub},
