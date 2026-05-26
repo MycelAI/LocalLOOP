@@ -267,6 +267,7 @@ header[data-site-header] .nav-controls {
   padding: 10px 0;
   width: 100%;
   max-width: 100%;
+  justify-content: flex-end;
 }
 
 .status-banner {
