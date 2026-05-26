@@ -7,13 +7,15 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }) {
-  const example = examples.find(e => e.slug === params.slug)
+  const { slug } = await params
+  const example = examples.find(e => e.slug === slug)
   if (!example) return {}
   return { title: example.title }
 }
 
-export default function ExamplePage({ params }) {
-  const example = examples.find(e => e.slug === params.slug)
+export default async function ExamplePage({ params }) {
+  const { slug } = await params
+  const example = examples.find(e => e.slug === slug)
   if (!example) notFound()
   return (
     <div className="content-stack">

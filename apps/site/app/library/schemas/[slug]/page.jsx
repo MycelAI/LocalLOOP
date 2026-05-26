@@ -7,13 +7,15 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }) {
-  const schema = schemas.find(s => s.slug === params.slug)
+  const { slug } = await params
+  const schema = schemas.find(s => s.slug === slug)
   if (!schema) return {}
   return { title: schema.title }
 }
 
-export default function SchemaPage({ params }) {
-  const schema = schemas.find(s => s.slug === params.slug)
+export default async function SchemaPage({ params }) {
+  const { slug } = await params
+  const schema = schemas.find(s => s.slug === slug)
   if (!schema) notFound()
   return (
     <div className="content-stack">
