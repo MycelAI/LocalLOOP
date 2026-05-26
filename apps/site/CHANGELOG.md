@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.1] - 2026-05-26
+
+### Fixed
+- `/contribute/CODE_OF_CONDUCT.md` URL now redirects to `/contribute` instead of returning 404
+
+### Changed
+- 404 page redesigned: hero-style layout with large gradient "404", clean title/description, and 3-card quick links (Protocol, Docs, Library)
+
+### Removed
+- Floating "Express Interest" sticky CTA button and all associated CSS
+
 ## [0.2.0] - 2026-05-26
 
 ### Added
@@ -47,6 +58,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-[Unreleased]: https://github.com/local-loop-io/local-loop-io.github.io/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/local-loop-io/local-loop-io.github.io/compare/v0.2.1...HEAD
+[0.2.1]: https://github.com/local-loop-io/local-loop-io.github.io/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/local-loop-io/local-loop-io.github.io/compare/v0.1.1-demo...v0.2.0
 [0.1.1]: https://github.com/local-loop-io/local-loop-io.github.io/releases/tag/v0.1.1-demo

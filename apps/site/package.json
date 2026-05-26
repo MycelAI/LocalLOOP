@@ -1,7 +1,7 @@
 {
   "name": "localloop-site",
   "private": true,
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "localLOOP hub and city landing pages",
   "author": "Mycel UG (haftungsbeschränkt) <dev@mycel-ai.de>",
   "license": "MIT",
