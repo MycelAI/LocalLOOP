@@ -899,6 +899,7 @@ header[data-site-header] .nav-controls {
 }
 
 .content-panel {
+  min-width: 0;
   background: rgba(255, 255, 255, 0.82);
   border-radius: var(--radius-md);
   border: 1px solid rgba(11, 27, 43, 0.08);
