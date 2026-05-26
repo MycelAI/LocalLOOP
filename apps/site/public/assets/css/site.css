@@ -2187,6 +2187,19 @@ a.card h4 {
   font-weight: 600;
 }
 
+.concept-card a {
+  display: inline-block;
+  margin-top: var(--space-4);
+  color: var(--accent);
+  font-weight: 600;
+  font-size: var(--text-sm);
+  text-decoration: none;
+}
+
+.concept-card a:hover {
+  text-decoration: underline;
+}
+
 /* Tablet: 2 columns for Key Concepts */
 @media (max-width: 900px) and (min-width: 601px) {
   .concepts-grid {

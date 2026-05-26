@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.4] - 2026-05-26
+
+### Added
+- "Who is this for?" section on homepage with three audience cards: Cities & Municipalities, Operators & Logistics, Researchers & Labs — each linking to the relevant entry point
+- "For city decision-makers" FAQ section: cost/investment, GDPR/data residency, governance model, and EU mandate timeline questions
+- "City Operations Terms" glossary section: Node Operator, Audit Trail, Federation, Data Residency, Governance
+- "Executive Summary for City Decision-Makers" at the top of the Implementation Guide: staffing, infrastructure, cost, and data residency overview
+- City Action Timeline table in Regulatory Alignment Roadmap: maps DIWASS (May 2026), PPWR (Aug 2026), Green Claims (Sep 2026), ESPR DPP first wave (2026-2027), Battery Passport (Feb 2027) to city planning checkpoints
+- City-facing intro note on Docs hub page with direct links to Regulatory Alignment and Implementation Guide
+- CSS `.concept-card a` link style for homepage audience cards
+
+### Changed
+- Docs hub card order: Regulatory Alignment and Implementation Guide now lead; FAQ and Glossary promoted to top section
+- FAQ card description updated to reflect new city-focused content
+- Glossary card description updated to mention city operations terms
+- GitHub org profile: spec badge updated to v0.2.2, EU DPP/ESPR alignment tagline added, "Register interest" elevated to top of Where to Start table, Regulatory Alignment and Implementation Guide rows added
+
 ## [0.2.3] - 2026-05-26
 
 ### Added
@@ -82,7 +99,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-[Unreleased]: https://github.com/local-loop-io/local-loop-io.github.io/compare/v0.2.2...HEAD
+[Unreleased]: https://github.com/local-loop-io/local-loop-io.github.io/compare/v0.2.4...HEAD
+[0.2.4]: https://github.com/local-loop-io/local-loop-io.github.io/compare/v0.2.3...v0.2.4
+[0.2.3]: https://github.com/local-loop-io/local-loop-io.github.io/compare/v0.2.2...v0.2.3
 [0.2.2]: https://github.com/local-loop-io/local-loop-io.github.io/compare/v0.2.1...v0.2.2
 [0.2.1]: https://github.com/local-loop-io/local-loop-io.github.io/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/local-loop-io/local-loop-io.github.io/compare/v0.1.1-demo...v0.2.0

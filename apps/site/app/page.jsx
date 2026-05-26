@@ -198,6 +198,48 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Who is this for? */}
+      <section className="section">
+        <h2 className="section-title">Who is this for?</h2>
+        <div className="concepts-grid">
+          <div className="concept-card">
+            <div className="concept-icon">
+              <i className="ph-bold ph-buildings" aria-hidden="true"></i>
+            </div>
+            <h3>Cities & Municipalities</h3>
+            <p>
+              Prepare your infrastructure for EU Digital Product Passport mandates, circular
+              procurement, and waste traceability obligations (DIWASS, PPWR, Battery Passport)
+              — using open standards that stay under municipal control.
+            </p>
+            <a href="/platform/city-portals">City portals →</a>
+          </div>
+          <div className="concept-card">
+            <div className="concept-icon">
+              <i className="ph-bold ph-factory" aria-hidden="true"></i>
+            </div>
+            <h3>Operators & Logistics</h3>
+            <p>
+              Run lab nodes, integrate LOOP flows into existing material management systems,
+              and participate in federated exchanges between municipalities and circular
+              economy platforms.
+            </p>
+            <a href="/docs/implementation">Implementation guide →</a>
+          </div>
+          <div className="concept-card">
+            <div className="concept-icon">
+              <i className="ph-bold ph-flask" aria-hidden="true"></i>
+            </div>
+            <h3>Researchers & Labs</h3>
+            <p>
+              Explore open schemas, contribute to the protocol specification, and test
+              circular economy models using the lab API and validated example payloads.
+            </p>
+            <a href="/library">Schema library →</a>
+          </div>
+        </div>
+      </section>
+
       {/* Quick Start - 3 Clear Paths */}
       <section className="section">
         <h2 className="section-title">Get Started</h2>
