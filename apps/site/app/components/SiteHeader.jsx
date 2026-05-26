@@ -39,6 +39,7 @@ export function SiteHeader({ subtitle = '' }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openMobileSection, setOpenMobileSection] = useState(null);
   const [hoverGroupKey, setHoverGroupKey] = useState(null);
+  const [scrolled, setScrolled] = useState(false);
   const pathnameNormalized = normalizePath(pathname);
 
   const clearCloseTimeout = () => {
@@ -114,8 +115,15 @@ export function SiteHeader({ subtitle = '' }) {
 
   useEffect(() => () => clearCloseTimeout(), []);
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
   return (
-    <header ref={headerRef} className="site-header" data-nav-subtitle={subtitle || undefined}>
+    <header ref={headerRef} className="site-header" data-scrolled={scrolled} data-nav-subtitle={subtitle || undefined}>
       <nav className="nav-container" aria-label="Primary">
         <a href="/" className="nav-brand">
           <img

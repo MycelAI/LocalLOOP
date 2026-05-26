@@ -257,7 +257,7 @@ export default function HomePage() {
       </section>
 
       {/* CTA */}
-      <section className="section">
+      <section className="cta-section">
         <div className="cta-panel">
           <h2>Ready to join the circular economy?</h2>
           <p>
