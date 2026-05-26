@@ -284,6 +284,30 @@ header[data-site-header] .nav-controls {
   gap: 10px;
 }
 
+.status-notice {
+  margin: 12px 0 16px;
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  background: rgba(240, 180, 77, 0.12);
+  border: 1px solid rgba(240, 180, 77, 0.4);
+  color: #5c3800;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.status-notice strong {
+  display: block;
+  margin-bottom: 2px;
+  font-weight: 700;
+}
+
+.status-notice a {
+  margin-left: 6px;
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+}
+
 .nav-brand {
   display: inline-flex;
   align-items: center;

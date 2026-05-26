@@ -66,7 +66,7 @@ export default function DemoCityPage() {
             </span>
             <h4>Material streams</h4>
             <p>Catalog of priority material categories and current bottlenecks.</p>
-            <a href="/projects">Review the protocol</a>
+            <a href="/protocol/spec">Review the protocol</a>
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">

@@ -32,6 +32,17 @@ export default function ProductDNAPage() {
       </div>
 
       <div className="content-panel">
+        <h3>Why cities adopt ProductDNA</h3>
+        <div className="table-list">
+          <div><span>EU DPP readiness</span><div>Future-proof your city's product data infrastructure ahead of ESPR Art. 9-10 Digital Product Passport mandates coming into force from 2026 onwards</div></div>
+          <div><span>Circular procurement</span><div>Verify product condition, material composition, and lifecycle stage to meet circular public procurement requirements</div></div>
+          <div><span>Reuse marketplaces</span><div>Enable inter-city product exchanges for furniture, equipment, and refurbished goods with verified provenance data</div></div>
+          <div><span>Fraud prevention</span><div>Prevent false sustainability claims by attaching verifiable certifications and conformity evidence to every product record</div></div>
+          <div><span>Data sovereignty</span><div>Passport data stays under city control — third parties can be granted scoped read access without handing over raw records</div></div>
+        </div>
+      </div>
+
+      <div className="content-panel">
         <h3>What we aim to enable</h3>
         <p>
           A DPP-aligned digital passport for finished products, linking provenance metadata

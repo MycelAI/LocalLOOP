@@ -7,10 +7,15 @@ export const metadata = {
 export default function CityPortalsPage() {
   return (
     <div className="content-stack">
-      <div className="content-panel">        <h2>City Portals</h2>
+      <div className="content-panel">
+        <h2>City Portals</h2>
+        <div className="status-notice">
+          <strong>No active deployments.</strong> City portals are in the design and concept phase.
+          This page describes what a live city portal will include once controlled pilots launch.
+        </div>
         <p>
-          City portals will showcase local initiatives, partners, and impact metrics.
-          There are no active deployments yet.
+          Each city portal will surface local circular economy initiatives, verified partners,
+          and material flow metrics — giving cities a dedicated hub within the LOOP network.
         </p>
         <div className="cta-row">
           <a className="button primary" href="/platform/demo-city">View DEMO City</a>

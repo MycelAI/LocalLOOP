@@ -18,12 +18,27 @@ export default function InterestPage() {
       <div className="content-panel">
         <h3>Why we collect this</h3>
         <p>
-          Early signal from cities, labs, and operators helps us prioritize the roadmap.
+          Early signal from cities, labs, and operators helps us prioritize the roadmap
+          and identify partners for the first controlled pilots.
         </p>
         <div className="table-list">
-          <div><span>Transparency</span><div>Public list of interested parties</div></div>
-          <div><span>Momentum</span><div>Helps align research, demos, and funding</div></div>
+          <div><span>Transparency</span><div>Public list of interested parties — see who else is exploring LOOP</div></div>
+          <div><span>Momentum</span><div>Helps align research, demos, and funding towards the right use cases</div></div>
+          <div><span>Pilot selection</span><div>Interest registrations inform which cities are considered for the first lab pilots</div></div>
         </div>
+      </div>
+
+      <div className="content-panel">
+        <h3>What happens next</h3>
+        <div className="table-list">
+          <div><span>After submission</span><div>Your entry appears in the public interest list immediately</div></div>
+          <div><span>Follow-up</span><div>For city and operator enquiries, we aim to respond within two weeks to discuss pilot scope</div></div>
+          <div><span>Pilot timeline</span><div>First controlled lab pilots are planned for late 2026 — interest registrations open now</div></div>
+        </div>
+        <p style={{marginTop: '14px', fontSize: '0.9rem', color: 'var(--ink-soft)'}}>
+          Prefer a direct conversation? Reach out at{' '}
+          <a href="mailto:dev@mycel-ai.de">dev@mycel-ai.de</a>.
+        </p>
       </div>
 
       <div className="content-panel">

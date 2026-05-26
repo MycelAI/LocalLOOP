@@ -12,8 +12,13 @@ export default function PlatformPage() {
         <p>
           Two identity layers — MaterialDNA and ProductDNA — for tracking materials and
           finished products across circular economy loops, plus city portals surfacing local
-          initiatives. All components are early-stage lab demos with no public pilots yet.
+          initiatives.
         </p>
+        <div className="status-notice">
+          <strong>Early-stage research.</strong> All components are lab-demo concepts.
+          There are no active city deployments or public pilots yet.
+          <a href="/interest">Register interest</a> to be considered for future controlled pilots.
+        </div>
       </div>
 
       <div className="content-panel">

@@ -32,6 +32,17 @@ export default function MaterialDNAPage() {
       </div>
 
       <div className="content-panel">
+        <h3>Why cities adopt MaterialDNA</h3>
+        <div className="table-list">
+          <div><span>Traceability</span><div>Verify that recycled materials came from specific sources — demolition sites, collection campaigns, industrial by-products — with a permanent audit trail</div></div>
+          <div><span>Circular procurement</span><div>Prove local sourcing for public procurement policies and qualify for circular economy incentive programmes</div></div>
+          <div><span>EPR compliance</span><div>Meet Extended Producer Responsibility reporting requirements with verifiable material flow records</div></div>
+          <div><span>Inter-city matching</span><div>Discover and offer surplus materials to neighbouring regions using shared, compatible identifiers</div></div>
+          <div><span>Fraud prevention</span><div>Prevent downcycling and greenwashing by attaching verifiable quality and certification metadata to every batch</div></div>
+        </div>
+      </div>
+
+      <div className="content-panel">
         <h3>What we aim to enable</h3>
         <p>
           A common, verifiable identity for materials to support traceability, provenance,

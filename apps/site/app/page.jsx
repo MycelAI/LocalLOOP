@@ -24,8 +24,9 @@ export default function HomePage() {
             <span className="hero-title-accent">Infrastructure for Cities</span>
           </h1>
           <p className="hero-description">
-            A federated, Digital Product Passport (DPP)-compatible protocol enabling cities to track,
-            exchange, and settle material and product flows while maintaining local sovereignty.
+            An open protocol for cities to discover, exchange, and trace material and product flows
+            across city boundaries — keeping circular value local while meeting emerging EU data
+            and product passport requirements.
           </p>
           <div className="hero-actions">
             <a className="button primary" href="/protocol">
@@ -244,7 +245,7 @@ export default function HomePage() {
           <Card
             icon="buildings"
             title="City Portals"
-            description="See LOOP in action with city-specific implementations."
+            description="Explore how city portals will surface local material flows and initiatives (lab concept, no live deployments yet)."
             href="/platform/city-portals"
           />
           <Card
@@ -259,16 +260,17 @@ export default function HomePage() {
       {/* CTA */}
       <section className="cta-section">
         <div className="cta-panel">
-          <h2>Ready to join the circular economy?</h2>
+          <h2>Ready to shape the circular economy?</h2>
           <p>
-            Whether you're a city, operator, or developer, there's a place for you in the LOOP ecosystem.
+            Whether you represent a city, a research lab, or a circular economy operator —
+            register your interest to help define the first controlled pilots.
           </p>
           <div className="cta-row">
             <a className="button primary" href="/interest">
-              Express Interest
+              Register Interest
             </a>
-            <a className="button secondary" href="/contribute">
-              Contribute
+            <a className="button secondary" href="/platform/demo-city">
+              Explore the demo
             </a>
           </div>
         </div>

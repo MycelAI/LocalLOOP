@@ -7,6 +7,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.3] - 2026-05-26
+
+### Added
+- `.status-notice` component (amber callout) used across Platform and City Portals pages to surface lab-demo status prominently
+- "Why cities care" sections on MaterialDNA and ProductDNA pages with city-specific use cases (traceability, circular procurement, EPR, DPP readiness, fraud prevention)
+- "What happens next" and direct contact pathway on Interest page
+- Intro context panels on Threat Model and DPIA Lite docs pages (scope, method, applicability)
+
+### Changed
+- Homepage hero description rewritten for city decision-makers: clearer operational language, drops jargon
+- Homepage CTA updated: "Register Interest" / "Explore the demo" replacing generic "Express Interest" / "Contribute"
+- Homepage City Portals explore card updated to clarify no live deployments
+- Platform Hub: "early-stage research" status notice added prominently below heading
+- City Portals: status notice leads the page before any portal listings
+
+### Fixed
+- DEMO City "Review the protocol" card link corrected from `/projects` to `/protocol/spec`
+
 ## [0.2.2] - 2026-05-26
 
 ### Changed
