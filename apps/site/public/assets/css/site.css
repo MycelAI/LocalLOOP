@@ -46,6 +46,7 @@
   /* Layout */
   --page-max: 1440px;
   --gutter: clamp(20px, 6vw, 64px);
+  --header-h: 102px;
 
   /* Animation */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -256,7 +257,7 @@ header[data-site-header] .nav-controls {
 
 .nav-brand {
   display: inline-flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 12px;
   text-decoration: none;
   color: var(--ink);
@@ -276,7 +277,6 @@ header[data-site-header] .nav-controls {
   height: 34px;
   object-fit: contain;
   flex-shrink: 0;
-  margin-top: 2px;
 }
 
 .nav-wordmark {
@@ -1746,6 +1746,10 @@ a.card h4 {
     display: inline-flex;
   }
 
+  :root {
+    --header-h: 94px;
+  }
+
   .site-header,
   header[data-site-header] {
     padding: 18px 0 12px;
@@ -2369,6 +2373,8 @@ a.card h4 {
   align-items: center;
   justify-content: center;
   padding: var(--space-16) var(--gutter);
+  padding-top: calc(var(--space-16) + var(--header-h));
+  margin-top: calc(-1 * var(--header-h));
   overflow: hidden;
 }
 
