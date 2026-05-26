@@ -6,5 +6,5 @@ test('demo city page frames the sample portal', async ({ page }) => {
   await expect(
     page.getByRole('heading', { name: /DEMO City/i })
   ).toBeVisible();
-  await expect(page.getByText(/no active deployments yet/i)).toBeVisible();
+  await expect(page.getByText(/no public deployment/i)).toBeVisible();
 });
