@@ -12,4 +12,4 @@ The site mirrors protocol artifacts from `loop-protocol`. Update the source repo
 possible and run the aggregation workflow to sync changes here.
 
 ## Contact
-Questions? Email alphin@mycel-ai.de or open a GitHub Discussion.
+Questions? Email dev@mycel-ai.de or open a GitHub Discussion.

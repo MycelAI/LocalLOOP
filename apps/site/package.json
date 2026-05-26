@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.1.0",
   "description": "localLOOP hub and city landing pages",
-  "author": "Alphin Tom / Mycel UG (haftungsbeschränkt) <alphin@mycel-ai.de>",
+  "author": "Mycel UG (haftungsbeschränkt) <dev@mycel-ai.de>",
   "license": "MIT",
   "engines": {
     "node": ">=25.1.0"
