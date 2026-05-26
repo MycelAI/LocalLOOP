@@ -7,8 +7,9 @@
 **Local Optimization with Overflow Protocol**
 
 Circular economy infrastructure for cities — federated, open, and sovereignty-preserving.
+EU DPP / ESPR aligned · DIWASS / Battery Passport / PPWR ready
 
-[![Spec](https://img.shields.io/badge/LOOP_spec-v0.2.0-2563eb?style=flat-square)](https://local-loop-io.github.io/protocol/spec)
+[![Spec](https://img.shields.io/badge/LOOP_spec-v0.2.2-2563eb?style=flat-square)](https://local-loop-io.github.io/protocol/spec)
 [![Website](https://img.shields.io/badge/website-local--loop--io.github.io-16a34a?style=flat-square)](https://local-loop-io.github.io)
 [![API](https://img.shields.io/badge/lab_API-loop--api.urbnia.com-ea580c?style=flat-square)](https://loop-api.urbnia.com/docs)
 [![Status](https://img.shields.io/badge/status-lab_demo_only-f59e0b?style=flat-square)](https://local-loop-io.github.io/protocol/spec)
@@ -58,14 +59,15 @@ Current release: **v0.2.0** (lab baseline). Schemas validated with AJV.
 
 | Goal | Go here |
 |:---|:---|
+| **Register your city's interest** | [local-loop-io.github.io/interest](https://local-loop-io.github.io/interest) |
 | Read the protocol spec | [local-loop-io.github.io/protocol/spec](https://local-loop-io.github.io/protocol/spec) |
+| EU regulatory alignment (ESPR, Battery, PPWR, DIWASS) | [local-loop-io.github.io/docs/regulatory-alignment](https://local-loop-io.github.io/docs/regulatory-alignment) |
+| Implementation guide (city decision-maker summary) | [local-loop-io.github.io/docs/implementation](https://local-loop-io.github.io/docs/implementation) |
 | Browse schemas & examples | [local-loop-io.github.io/library](https://local-loop-io.github.io/library) |
 | Understand MaterialDNA | [local-loop-io.github.io/platform/materialdna](https://local-loop-io.github.io/platform/materialdna) |
-| Understand ProductDNA | [local-loop-io.github.io/platform/productdna](https://local-loop-io.github.io/platform/productdna) |
-| Read implementation guides | [local-loop-io.github.io/docs](https://local-loop-io.github.io/docs) |
+| Understand ProductDNA (EU DPP aligned) | [local-loop-io.github.io/platform/productdna](https://local-loop-io.github.io/platform/productdna) |
 | Explore governance & RFCs | [local-loop-io.github.io/governance](https://local-loop-io.github.io/governance) |
 | Run the lab API | [loop-api.urbnia.com/docs](https://loop-api.urbnia.com/docs) |
-| **Express interest** | [local-loop-io.github.io/interest](https://local-loop-io.github.io/interest) |
 
 ---
 
