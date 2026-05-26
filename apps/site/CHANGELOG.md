@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.7] - 2026-05-26
+
+### Fixed
+- DEMO City E2E test selector updated to match new page content (`/no public deployment/i` replacing stale `/no active deployments yet/i`)
+
 ## [0.2.6] - 2026-05-26
 
 ### Added
@@ -125,7 +130,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-[Unreleased]: https://github.com/local-loop-io/local-loop-io.github.io/compare/v0.2.6...HEAD
+[Unreleased]: https://github.com/local-loop-io/local-loop-io.github.io/compare/v0.2.7...HEAD
+[0.2.7]: https://github.com/local-loop-io/local-loop-io.github.io/compare/v0.2.6...v0.2.7
 [0.2.6]: https://github.com/local-loop-io/local-loop-io.github.io/compare/v0.2.5...v0.2.6
 [0.2.5]: https://github.com/local-loop-io/local-loop-io.github.io/compare/v0.2.4...v0.2.5
 [0.2.4]: https://github.com/local-loop-io/local-loop-io.github.io/compare/v0.2.3...v0.2.4
