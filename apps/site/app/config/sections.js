@@ -107,6 +107,14 @@ export const sectionConfigs = {
         ]
       },
       {
+        label: 'Exchange Mechanics',
+        links: [
+          { href: '/platform/loopcoin', label: 'LoopCoin' },
+          { href: '/platform/loopsignal', label: 'LoopSignal' },
+          { href: '/platform/loopcost', label: 'LoopCost' }
+        ]
+      },
+      {
         label: 'City Portals',
         links: [
           { href: '/platform/city-portals', label: 'City Portals' },

@@ -25,6 +25,9 @@ export const navigationSections = [
     items: [
       { href: '/platform/materialdna', label: 'MaterialDNA' },
       { href: '/platform/productdna', label: 'ProductDNA' },
+      { href: '/platform/loopcoin', label: 'LoopCoin' },
+      { href: '/platform/loopsignal', label: 'LoopSignal' },
+      { href: '/platform/loopcost', label: 'LoopCost' },
       { href: '/platform/city-portals', label: 'City Portals' },
       { href: '/platform/demo-city', label: 'DEMO City' },
     ],
