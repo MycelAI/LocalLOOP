@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.5] - 2026-05-26
+
+### Added
+- `/platform/loopcoin` page: LoopCoin concept, how it works (issuance, transfers, inter-node settlement, expiry/decay), data model snapshot, schema viewer
+- `/platform/loopsignal` page: LoopSignal concept, signal values, material categories, governance (SignalProposal → LoopVote), routing effect, data model snapshot, schema viewer
+- `/platform/loopcost` page: LoopCost formula explanation, four components (base price, export penalty, import penalty, distance cost), why local-first routing works, relationship to LoopSignal and LoopCoin
+
+### Changed
+- Platform hub (`/platform`) restructured into three sections: Identity layers, Exchange mechanics (LoopCoin, LoopSignal, LoopCost), City portals
+- Platform hub intro updated to mention all five protocol concepts
+
 ## [0.2.4] - 2026-05-26
 
 ### Added
@@ -99,7 +110,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-[Unreleased]: https://github.com/local-loop-io/local-loop-io.github.io/compare/v0.2.4...HEAD
+[Unreleased]: https://github.com/local-loop-io/local-loop-io.github.io/compare/v0.2.5...HEAD
+[0.2.5]: https://github.com/local-loop-io/local-loop-io.github.io/compare/v0.2.4...v0.2.5
 [0.2.4]: https://github.com/local-loop-io/local-loop-io.github.io/compare/v0.2.3...v0.2.4
 [0.2.3]: https://github.com/local-loop-io/local-loop-io.github.io/compare/v0.2.2...v0.2.3
 [0.2.2]: https://github.com/local-loop-io/local-loop-io.github.io/compare/v0.2.1...v0.2.2

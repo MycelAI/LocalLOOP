@@ -10,9 +10,9 @@ export default function PlatformPage() {
       <div className="content-panel">
         <h2 className="hub-heading">Platform</h2>
         <p>
-          Two identity layers — MaterialDNA and ProductDNA — for tracking materials and
-          finished products across circular economy loops, plus city portals surfacing local
-          initiatives.
+          The localLOOP platform comprises five protocol concepts — two identity layers,
+          a local currency, a community signal mechanism, and a routing cost model — plus
+          city portals that surface local circular economy initiatives.
         </p>
         <div className="status-notice">
           <strong>Early-stage research.</strong> All components are lab-demo concepts.
@@ -22,6 +22,7 @@ export default function PlatformPage() {
       </div>
 
       <div className="content-panel">
+        <h3>Identity layers</h3>
         <div className="grid">
           <a className="card has-icon" href="/platform/materialdna">
             <span className="card-icon" aria-hidden="true">
@@ -37,6 +38,39 @@ export default function PlatformPage() {
             <h4>ProductDNA</h4>
             <p>Digital passport layer for finished products, aligned with EU DPP requirements.</p>
           </a>
+        </div>
+      </div>
+
+      <div className="content-panel">
+        <h3>Exchange mechanics</h3>
+        <div className="grid">
+          <a className="card has-icon" href="/platform/loopcoin">
+            <span className="card-icon" aria-hidden="true">
+              <i className="ph-thin ph-coins"></i>
+            </span>
+            <h4>LoopCoin</h4>
+            <p>Node-issued local currency with expiry and decay rules, used to settle material and product transfers between federation peers.</p>
+          </a>
+          <a className="card has-icon" href="/platform/loopsignal">
+            <span className="card-icon" aria-hidden="true">
+              <i className="ph-thin ph-broadcast"></i>
+            </span>
+            <h4>LoopSignal</h4>
+            <p>Community preference signal expressing demand or surplus intent for material categories, informing routing and matching across the federation.</p>
+          </a>
+          <a className="card has-icon" href="/platform/loopcost">
+            <span className="card-icon" aria-hidden="true">
+              <i className="ph-thin ph-calculator"></i>
+            </span>
+            <h4>LoopCost</h4>
+            <p>Total routing cost for any transfer: base price plus export and import penalties from LoopSignals plus distance cost — keeping local exchanges cheapest.</p>
+          </a>
+        </div>
+      </div>
+
+      <div className="content-panel">
+        <h3>City portals</h3>
+        <div className="grid">
           <a className="card has-icon" href="/platform/city-portals">
             <span className="card-icon" aria-hidden="true">
               <i className="ph-thin ph-city"></i>
