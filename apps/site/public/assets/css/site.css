@@ -2133,6 +2133,350 @@ a.card h4 {
 }
 
 /* Key Concepts Section */
+/* ============================================
+   KEY CONCEPTS SHOWCASE
+   ============================================ */
+
+.kc-section {
+  padding: 48px var(--gutter) 64px;
+  max-width: var(--page-max);
+  margin: 0 auto;
+}
+
+/* --- Header --- */
+.kc-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.kc-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--accent-2);
+  background: rgba(13, 148, 136, 0.08);
+  border: 1px solid rgba(13, 148, 136, 0.2);
+  padding: 6px 16px;
+  border-radius: 999px;
+  margin-bottom: 16px;
+}
+
+.kc-title {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0 0 10px;
+  letter-spacing: -0.02em;
+}
+
+.kc-header-note {
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.kc-header-note a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* --- Tab bar --- */
+.kc-tabs {
+  display: flex;
+  gap: 4px;
+  padding: 6px;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(11, 27, 43, 0.09);
+  border-radius: 18px;
+  margin-bottom: 16px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.kc-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.kc-tab {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 9px 14px;
+  border: none;
+  border-radius: 12px;
+  background: transparent;
+  color: var(--ink-soft);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 150ms ease, background 150ms ease;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.kc-tab-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.68rem;
+  opacity: 0.5;
+  transition: opacity 150ms ease;
+}
+
+.kc-tab-name {
+  font-weight: 600;
+}
+
+.kc-tab:hover:not(.is-active) {
+  background: rgba(11, 27, 43, 0.05);
+  color: var(--ink);
+}
+
+.kc-tab.is-active {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.kc-tab.is-active .kc-tab-num {
+  opacity: 0.6;
+  color: var(--accent-2);
+}
+
+/* Progress bar at bottom of active tab */
+.kc-tab-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0;
+  border-radius: 1px;
+  background: var(--accent-2);
+  animation: kcBarFill 6s linear forwards;
+}
+
+.kc-showcase[data-paused="true"] .kc-tab-bar {
+  animation-play-state: paused;
+}
+
+@keyframes kcBarFill {
+  to { width: 100%; }
+}
+
+/* --- Main Panel --- */
+.kc-panel {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow:
+    0 2px 4px rgba(11, 27, 43, 0.04),
+    0 8px 24px rgba(11, 27, 43, 0.1),
+    0 32px 64px rgba(11, 27, 43, 0.12);
+  min-height: 460px;
+  animation: kcPanelIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes kcPanelIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Left: illustration */
+.kc-panel-media {
+  position: relative;
+  background: #f8f9fa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 32px;
+}
+
+.kc-panel-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  border-radius: 8px;
+  animation: kcImgIn 0.55s 0.05s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes kcImgIn {
+  from {
+    opacity: 0;
+    transform: scale(1.04) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Subtle gradient vignette on right edge to blend into dark content panel */
+.kc-panel-shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 70%, rgba(15, 23, 42, 0.08) 100%);
+  pointer-events: none;
+}
+
+/* Right: content */
+.kc-panel-content {
+  background: var(--ink);
+  padding: 48px 44px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0;
+}
+
+.kc-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  animation: kcContentIn 0.4s 0.08s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.kc-panel-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 2.25rem;
+  font-weight: 600;
+  color: var(--accent-2);
+  line-height: 1;
+}
+
+.kc-panel-tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+.kc-panel-name {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(1.75rem, 2.5vw, 2.25rem);
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 6px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  animation: kcContentIn 0.4s 0.13s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.kc-panel-subtitle {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent-2);
+  margin: 0 0 20px;
+  letter-spacing: 0.01em;
+  animation: kcContentIn 0.4s 0.18s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.kc-panel-desc {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.8;
+  margin: 0 0 32px;
+  max-width: 38ch;
+  animation: kcContentIn 0.4s 0.23s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.kc-panel-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(13, 148, 136, 0.15);
+  border: 1px solid rgba(13, 148, 136, 0.35);
+  color: var(--accent-2);
+  padding: 12px 22px;
+  border-radius: 12px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-decoration: none;
+  width: fit-content;
+  transition: background 180ms ease, border-color 180ms ease, color 180ms ease, transform 180ms ease;
+  animation: kcContentIn 0.4s 0.28s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.kc-panel-cta:hover {
+  background: var(--accent-2);
+  border-color: var(--accent-2);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.kc-panel-cta svg {
+  transition: transform 180ms ease;
+}
+
+.kc-panel-cta:hover svg {
+  transform: translateX(3px);
+}
+
+@keyframes kcContentIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- Navigation dots (mobile) --- */
+.kc-nav-dots {
+  display: none;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.kc-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  background: rgba(11, 27, 43, 0.15);
+  cursor: pointer;
+  transition: background 200ms ease, transform 200ms ease;
+}
+
+.kc-dot.is-active {
+  background: var(--ink);
+  transform: scale(1.25);
+}
+
+/* ============================================
+   LEGACY concept-card (kept for non-homepage use)
+   ============================================ */
+
 .concepts-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -2200,17 +2544,108 @@ a.card h4 {
   text-decoration: underline;
 }
 
-/* Tablet: 2 columns for Key Concepts */
+/* Tablet: 2 columns for Key Concepts (legacy) */
 @media (max-width: 900px) and (min-width: 601px) {
   .concepts-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-/* Mobile: single column */
+/* Mobile: single column (legacy) */
 @media (max-width: 600px) {
   .concepts-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+/* --- Key Concepts Showcase — Tablet --- */
+@media (max-width: 900px) {
+  .kc-panel {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .kc-panel-media {
+    aspect-ratio: 16 / 9;
+    padding: 20px;
+  }
+
+  .kc-panel-content {
+    padding: 36px 32px;
+  }
+
+  .kc-panel-shimmer {
+    background: linear-gradient(180deg, transparent 70%, rgba(15, 23, 42, 0.08) 100%);
+  }
+
+  .kc-panel-desc {
+    max-width: none;
+  }
+
+  .kc-nav-dots {
+    display: flex;
+  }
+}
+
+/* --- Key Concepts Showcase — Mobile --- */
+@media (max-width: 600px) {
+  .kc-section {
+    padding: 36px var(--gutter) 48px;
+  }
+
+  .kc-tabs {
+    padding: 4px;
+    border-radius: 14px;
+    gap: 2px;
+  }
+
+  .kc-tab {
+    padding: 8px 10px;
+    font-size: 0.75rem;
+    border-radius: 10px;
+    flex: none;
+  }
+
+  .kc-tab-num {
+    display: none;
+  }
+
+  .kc-panel {
+    border-radius: 20px;
+  }
+
+  .kc-panel-media {
+    padding: 16px;
+  }
+
+  .kc-panel-content {
+    padding: 28px 24px;
+  }
+
+  .kc-panel-num {
+    font-size: 1.6rem;
+  }
+
+  .kc-panel-name {
+    font-size: 1.5rem;
+  }
+}
+
+/* --- Reduced motion --- */
+@media (prefers-reduced-motion: reduce) {
+  .kc-panel,
+  .kc-panel-img,
+  .kc-meta-row,
+  .kc-panel-name,
+  .kc-panel-subtitle,
+  .kc-panel-desc,
+  .kc-panel-cta {
+    animation: none;
+  }
+
+  .kc-tab-bar {
+    animation: none;
+    width: 100%;
   }
 }
 

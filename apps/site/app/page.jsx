@@ -2,6 +2,7 @@ import { SiteHeader } from './components/SiteHeader';
 import { SiteFooter } from './components/SiteFooter';
 import { Card } from './components/ui/Card';
 import { CardGrid } from './components/ui/CardGrid';
+import { KeyConceptsShowcase } from './components/KeyConceptsShowcase';
 
 export default function HomePage() {
   return (
@@ -74,84 +75,15 @@ export default function HomePage() {
       </section>
 
       {/* Key Concepts */}
-      <section className="section">
-        <h2 className="section-title">Key Concepts</h2>
-        <p className="section-note">
-          Definitions follow the <a href="/protocol/spec">LOOP Specification (§2 and §2.1)</a>.
-        </p>
-        <div className="concepts-grid">
-          <div className="concept-card">
-            <div className="concept-icon">
-              <i className="ph-bold ph-infinity" aria-hidden="true"></i>
-            </div>
-            <h3>LOOP</h3>
-            <p>
-              <strong>Local Optimization with Overflow Protocol</strong> — An open, federated standard
-              for tracking material and product flows between cities. LOOP enables municipalities to share
-              surplus resources, coordinate circular economy initiatives, and maintain sovereignty over
-              local data while participating in regional exchanges — built around MaterialDNA, ProductDNA,
-              LoopCoin, and LoopSignal.
-            </p>
-          </div>
-          <div className="concept-card">
-            <div className="concept-icon">
-              <i className="ph-bold ph-fingerprint" aria-hidden="true"></i>
-            </div>
-            <h3>MaterialDNA</h3>
-            <p>
-              A unique digital identity for physical materials. MaterialDNA captures a material's
-              composition, origin, quality metrics, and chain of custody — enabling trusted exchanges
-              and full lifecycle tracking from source to reuse. Think of it as a passport for materials
-              in the circular economy.
-            </p>
-          </div>
-          <div className="concept-card">
-            <div className="concept-icon">
-              <i className="ph-bold ph-cube" aria-hidden="true"></i>
-            </div>
-            <h3>ProductDNA</h3>
-            <p>
-              A DPP-aligned identity for finished products. ProductDNA captures product category,
-              condition, manufacturer, lifecycle stage, and references to constituent MaterialDNA
-              entries — enabling product-level reuse, trading, and EU Digital Product Passport
-              compliance (ESPR Art. 9-10).
-            </p>
-          </div>
-          <div className="concept-card">
-            <div className="concept-icon">
-              <i className="ph-bold ph-coins" aria-hidden="true"></i>
-            </div>
-            <h3>LoopCoin</h3>
-            <p>
-              A node-issued local currency used to settle material and product transfers between
-              federation peers. LoopCoin carries expiry and decay rules defined by each node,
-              keeping value circulating locally while enabling inter-node clearing.
-            </p>
-          </div>
-          <div className="concept-card">
-            <div className="concept-icon">
-              <i className="ph-bold ph-broadcast" aria-hidden="true"></i>
-            </div>
-            <h3>LoopSignal</h3>
-            <p>
-              A community preference signal that expresses demand or surplus intent for specific
-              material categories. LoopSignals inform routing and matching across the federation,
-              helping nodes prioritise the right resources for the right places.
-            </p>
-          </div>
-          <div className="concept-card">
-            <div className="concept-icon">
-              <i className="ph-bold ph-calculator" aria-hidden="true"></i>
-            </div>
-            <h3>LoopCost</h3>
-            <p>
-              The total routing cost for any material or product transfer: base price plus export
-              and import penalties (derived from LoopSignals) plus distance cost. LoopCost ensures
-              local exchanges are always cheaper than cross-boundary ones, keeping circular value
-              circulating close to its source.
-            </p>
-          </div>
+      <section className="kc-section">
+        <div className="kc-header">
+          <span className="kc-eyebrow">Core Building Blocks</span>
+          <h2 className="kc-title">Key Concepts</h2>
+          <p className="kc-header-note">
+            Definitions follow the <a href="/protocol/spec">LOOP Specification (§2 and §2.1)</a>.
+          </p>
         </div>
+        <KeyConceptsShowcase />
       </section>
 
       {/* How LOOP Works - Visual Flow */}
