@@ -8,6 +8,6 @@ export default function sitemap() {
     url,
     lastModified: now,
     changeFrequency: 'weekly',
-    priority: url === 'https://local-loop-io.github.io/' ? 1 : 0.8,
+    priority: url === 'https://localloop.urbnia.com/' ? 1 : 0.8,
   }));
 }

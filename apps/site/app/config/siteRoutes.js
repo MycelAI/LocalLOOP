@@ -3,7 +3,7 @@
  * Used by SiteHeader (nav) and sitemap.js (canonical URLs).
  */
 
-const BASE = 'https://local-loop-io.github.io';
+const BASE = 'https://localloop.urbnia.com';
 
 export const navigationSections = [
   {

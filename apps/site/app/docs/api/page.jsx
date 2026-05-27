@@ -26,7 +26,7 @@ export default function ApiDocsPage() {
           </a>
           <a
             className="button secondary"
-            href="https://local-loop-io.github.io/projects/loop-protocol/openapi.json"
+            href="https://localloop.urbnia.com/projects/loop-protocol/openapi.json"
             target="_blank"
             rel="noreferrer"
           >
@@ -42,7 +42,7 @@ export default function ApiDocsPage() {
           `http://localhost:8088/openapi.json` directly in your browser.
         </p>
         <div className="table-list">
-          <div><span>Protocol reference</span><div>`https://local-loop-io.github.io/projects/loop-protocol/openapi.json`</div></div>
+          <div><span>Protocol reference</span><div>`https://localloop.urbnia.com/projects/loop-protocol/openapi.json`</div></div>
           <div><span>Live lab API</span><div>`https://loop-api.urbnia.com`</div></div>
           <div><span>Preferred media type</span><div>`application/ld+json` for LOOP payloads</div></div>
           <div><span>Scope</span><div>Lab demo only. The live backend is not a claim of protocol-wide conformance.</div></div>
