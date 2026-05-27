@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.8] - 2026-05-27
+
+### Added
+- Six 16:9 illustrated assets for the homepage Key Concepts showcase
+  (`localloop-01` through `localloop-06`).
+
+### Fixed
+- API docs smoke test expects the canonical `localloop.urbnia.com` OpenAPI mirror
+  URL instead of the deprecated GitHub Pages domain.
+
 ## [0.2.7] - 2026-05-26
 
 ### Fixed
@@ -130,7 +140,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-[Unreleased]: https://github.com/local-loop-io/local-loop-io.github.io/compare/v0.2.7...HEAD
+[Unreleased]: https://github.com/local-loop-io/local-loop-io.github.io/compare/v0.2.8...HEAD
+[0.2.8]: https://github.com/local-loop-io/local-loop-io.github.io/compare/v0.2.7...v0.2.8
 [0.2.7]: https://github.com/local-loop-io/local-loop-io.github.io/compare/v0.2.6...v0.2.7
 [0.2.6]: https://github.com/local-loop-io/local-loop-io.github.io/compare/v0.2.5...v0.2.6
 [0.2.5]: https://github.com/local-loop-io/local-loop-io.github.io/compare/v0.2.4...v0.2.5

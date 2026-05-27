@@ -52,7 +52,7 @@ test('api docs page links to the live docs instead of embedding an iframe', () =
   const content = read(['app', 'docs', 'api', 'page.jsx']);
   assert.ok(content.includes('Open live Redoc'));
   assert.ok(content.includes('https://loop-api.urbnia.com/openapi.json'));
-  assert.ok(content.includes('https://local-loop-io.github.io/projects/loop-protocol/openapi.json'));
+  assert.ok(content.includes('https://localloop.urbnia.com/projects/loop-protocol/openapi.json'));
 });
 
 test('federation docs page renders handshake guide', () => {
