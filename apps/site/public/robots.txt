@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://local-loop-io.github.io/sitemap.xml
+Sitemap: https://localloop.urbnia.com/sitemap.xml

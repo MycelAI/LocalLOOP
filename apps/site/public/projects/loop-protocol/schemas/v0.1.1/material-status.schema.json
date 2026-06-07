@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://local-loop-io.github.io/projects/loop-protocol/schemas/v0.2.0/material-status.schema.json",
+  "$id": "https://localloop.urbnia.com/projects/loop-protocol/schemas/v0.1.1/material-status.schema.json",
   "title": "MaterialStatusUpdate",
   "description": "Material status update schema — LOOP v0.2.0",
   "type": "object",
@@ -18,8 +18,8 @@
       "description": "JSON-LD context",
       "type": "string",
       "enum": [
-        "https://local-loop-io.github.io/projects/loop-protocol/contexts/loop-v0.1.1.jsonld",
-        "https://local-loop-io.github.io/projects/loop-protocol/contexts/loop-v0.2.0.jsonld"
+        "https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld",
+        "https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld"
       ]
     },
     "@type": {
@@ -47,9 +47,9 @@
     "material_id": {
       "description": "MaterialDNA identifier",
       "type": "string",
-      "pattern": "^[A-Z]{2}-[A-Z]{3}-\\d{4}-[A-Z]+-[A-Z0-9]{6,}$",
+      "pattern": "^MAT-[A-Z]{2}-[A-Z]{3}-\\d{4}-[A-Z]+-[A-Z0-9]{6,}$",
       "examples": [
-        "DE-MUC-2025-PLASTIC-B847F3"
+        "MAT-DE-MUC-2025-PLASTIC-B847F3"
       ]
     },
     "status": {

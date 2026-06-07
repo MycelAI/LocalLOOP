@@ -309,7 +309,7 @@
       const matId = `MAT-DE-DMO-2026-${catAbbrev}-${randomHex(6)}`;
 
       const payload = {
-        '@context': 'https://local-loop-io.github.io/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
+        '@context': 'https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
         '@type': 'MaterialDNA',
         schema_version: '0.2.0',
         id: matId,

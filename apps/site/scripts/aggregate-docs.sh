@@ -33,6 +33,22 @@ sync_dir() {
   fi
 }
 
+# Source schemas live at /schemas/v0.2.0/ (their canonical $id). When we copy them
+# into another versioned alias directory, rewrite that path segment so each alias
+# self-describes the version it is actually served under (previously the v0.1.1
+# and v1 aliases inherited the v0.2.0 $id, which never resolved).
+SOURCE_SCHEMA_VERSION="v0.2.0"
+
+rewrite_schema_id_version() {
+  local dir="$1"
+  local target_version="$2"
+  if [[ "$target_version" == "$SOURCE_SCHEMA_VERSION" ]]; then
+    return 0
+  fi
+  find "$dir" -name '*.schema.json' -type f -exec \
+    sed -i "s#/projects/loop-protocol/schemas/${SOURCE_SCHEMA_VERSION}/#/projects/loop-protocol/schemas/${target_version}/#g" {} +
+}
+
 publish_versioned_schema_aliases() {
   local schemas_dir="$1"
   local v011_dir="$schemas_dir/v0.1.1"
@@ -49,10 +65,12 @@ publish_versioned_schema_aliases() {
   for schema in material-dna offer match transfer material-status handshake; do
     sync_file "$schemas_dir/${schema}.schema.json" "$v011_dir/${schema}.schema.json"
   done
+  rewrite_schema_id_version "$v011_dir" "v0.1.1"
 
   for schema in loopcoin loopsignal node-info transaction; do
     sync_file "$schemas_dir/${schema}.schema.json" "$v1_dir/${schema}.schema.json"
   done
+  rewrite_schema_id_version "$v1_dir" "v1"
 }
 
 resolve_local_source() {

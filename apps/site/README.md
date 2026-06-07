@@ -4,11 +4,11 @@
 
 **The official website of localLOOP and home of the LOOP protocol, MaterialDNA, ProductDNA, city portals, and governance.**
 
-[![Deploy](https://github.com/local-loop-io/local-loop-io.github.io/actions/workflows/deploy.yml/badge.svg)](https://github.com/local-loop-io/local-loop-io.github.io/actions/workflows/deploy.yml)
-[![Site](https://img.shields.io/badge/site-local--loop--io.github.io-4f46e5?logo=github)](https://local-loop-io.github.io)
+[![Deploy](https://github.com/local-loop-io/localloop-site/actions/workflows/deploy.yml/badge.svg)](https://github.com/local-loop-io/localloop-site/actions/workflows/deploy.yml)
+[![Site](https://img.shields.io/badge/site-localloop.urbnia.com-4f46e5?logo=github)](https://localloop.urbnia.com)
 [![Protocol](https://img.shields.io/badge/protocol-loop--protocol-10b981?logo=github)](https://github.com/local-loop-io/loop-protocol)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Low TRL](https://img.shields.io/badge/status-lab%20demo%20only-orange)](https://local-loop-io.github.io/protocol/spec)
+[![Low TRL](https://img.shields.io/badge/status-lab%20demo%20only-orange)](https://localloop.urbnia.com/protocol/spec)
 
 > **Early-stage, low-TRL concept.** No public pilots or deployments. Lab demo only.
 
@@ -18,7 +18,7 @@
 
 ## What this is
 
-This repository is the source for **[local-loop-io.github.io](https://local-loop-io.github.io)** — the official website of the localLOOP project and the canonical home for everything LOOP.
+This repository is the source for **[localloop.urbnia.com](https://localloop.urbnia.com)** — the official website of the localLOOP project and the canonical home for everything LOOP.
 
 It does three things:
 
@@ -123,7 +123,7 @@ tests/
 
 Protocol artifacts (schemas, docs, JSON-LD contexts) live in [`loop-protocol`](https://github.com/local-loop-io/loop-protocol) and are mirrored here under `public/projects/loop-protocol/`. When the protocol repo is updated, copy the changed files into that directory and commit.
 
-The `Domain Consistency` CI workflow validates that all internal links respect the canonical domain policy (`local-loop-io.github.io` / `loop-api.urbnia.com`).
+The `Domain Consistency` CI workflow validates that all internal links respect the canonical domain policy (`localloop.urbnia.com` / `loop-api.urbnia.com`).
 
 ---
 
@@ -150,6 +150,6 @@ For org-level context, domain policy, and agents guidance see [`AGENTS.md`](../A
 
 <div align="center">
 
-Built with [Next.js](https://nextjs.org) · Deployed on [GitHub Pages](https://pages.github.com) · Part of the [localLOOP](https://local-loop-io.github.io) project
+Built with [Next.js](https://nextjs.org) · Deployed on [GitHub Pages](https://pages.github.com) · Part of the [localLOOP](https://localloop.urbnia.com) project
 
 </div>

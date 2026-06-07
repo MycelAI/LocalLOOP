@@ -2,6 +2,7 @@
 const { execSync } = require('node:child_process');
 
 const banned = [
+  'local-loop-io.github.io',
   'loop-protocol.org',
   'localloop.org',
   'local-loop.io',
