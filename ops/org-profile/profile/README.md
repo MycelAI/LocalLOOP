@@ -1,6 +1,6 @@
 <div align="center">
 
-[<img src="https://local-loop-io.github.io/assets/local-loop-logo.png" width="180" alt="localLOOP" />](https://local-loop-io.github.io)
+[<img src="https://localloop.urbnia.com/assets/local-loop-logo.png" width="180" alt="localLOOP" />](https://localloop.urbnia.com)
 
 # localLOOP
 
@@ -9,10 +9,10 @@
 Circular economy infrastructure for cities — federated, open, and sovereignty-preserving.
 EU DPP / ESPR aligned · DIWASS / Battery Passport / PPWR ready
 
-[![Spec](https://img.shields.io/badge/LOOP_spec-v0.2.2-2563eb?style=flat-square)](https://local-loop-io.github.io/protocol/spec)
-[![Website](https://img.shields.io/badge/website-local--loop--io.github.io-16a34a?style=flat-square)](https://local-loop-io.github.io)
+[![Spec](https://img.shields.io/badge/LOOP_spec-v0.2.2-2563eb?style=flat-square)](https://localloop.urbnia.com/protocol/spec)
+[![Website](https://img.shields.io/badge/website-localloop.urbnia.com-16a34a?style=flat-square)](https://localloop.urbnia.com)
 [![API](https://img.shields.io/badge/lab_API-loop--api.urbnia.com-ea580c?style=flat-square)](https://loop-api.urbnia.com/docs)
-[![Status](https://img.shields.io/badge/status-lab_demo_only-f59e0b?style=flat-square)](https://local-loop-io.github.io/protocol/spec)
+[![Status](https://img.shields.io/badge/status-lab_demo_only-f59e0b?style=flat-square)](https://localloop.urbnia.com/protocol/spec)
 
 </div>
 
@@ -50,7 +50,7 @@ Current release: **v0.2.0** (lab baseline). Schemas validated with AJV.
 | Repo | What's inside |
 |:---|:---|
 | [**loop-protocol**](https://github.com/local-loop-io/loop-protocol) | Normative spec, 11 JSON schemas, JSON-LD contexts (v0.1.1 + v0.2.0), 15+ examples, governance RFCs |
-| [**local-loop-io.github.io**](https://github.com/local-loop-io/local-loop-io.github.io) | Official website — protocol spec, platform docs, schema library, guides, governance, interest registry |
+| [**localloop.urbnia.com**](https://github.com/local-loop-io/localloop-site) | Official website — protocol spec, platform docs, schema library, guides, governance, interest registry |
 | [**localloop-backend**](https://github.com/local-loop-io/localloop-backend) | Lab REST API — interest registry, demo flows, SSE streams, federation handshake, city data |
 
 ---
@@ -59,23 +59,23 @@ Current release: **v0.2.0** (lab baseline). Schemas validated with AJV.
 
 | Goal | Go here |
 |:---|:---|
-| **Register your city's interest** | [local-loop-io.github.io/interest](https://local-loop-io.github.io/interest) |
-| Read the protocol spec | [local-loop-io.github.io/protocol/spec](https://local-loop-io.github.io/protocol/spec) |
-| EU regulatory alignment (ESPR, Battery, PPWR, DIWASS) | [local-loop-io.github.io/docs/regulatory-alignment](https://local-loop-io.github.io/docs/regulatory-alignment) |
-| Implementation guide (city decision-maker summary) | [local-loop-io.github.io/docs/implementation](https://local-loop-io.github.io/docs/implementation) |
-| Browse schemas & examples | [local-loop-io.github.io/library](https://local-loop-io.github.io/library) |
-| Understand MaterialDNA | [local-loop-io.github.io/platform/materialdna](https://local-loop-io.github.io/platform/materialdna) |
-| Understand ProductDNA (EU DPP aligned) | [local-loop-io.github.io/platform/productdna](https://local-loop-io.github.io/platform/productdna) |
-| Explore governance & RFCs | [local-loop-io.github.io/governance](https://local-loop-io.github.io/governance) |
+| **Register your city's interest** | [localloop.urbnia.com/interest](https://localloop.urbnia.com/interest) |
+| Read the protocol spec | [localloop.urbnia.com/protocol/spec](https://localloop.urbnia.com/protocol/spec) |
+| EU regulatory alignment (ESPR, Battery, PPWR, DIWASS) | [localloop.urbnia.com/docs/regulatory-alignment](https://localloop.urbnia.com/docs/regulatory-alignment) |
+| Implementation guide (city decision-maker summary) | [localloop.urbnia.com/docs/implementation](https://localloop.urbnia.com/docs/implementation) |
+| Browse schemas & examples | [localloop.urbnia.com/library](https://localloop.urbnia.com/library) |
+| Understand MaterialDNA | [localloop.urbnia.com/platform/materialdna](https://localloop.urbnia.com/platform/materialdna) |
+| Understand ProductDNA (EU DPP aligned) | [localloop.urbnia.com/platform/productdna](https://localloop.urbnia.com/platform/productdna) |
+| Explore governance & RFCs | [localloop.urbnia.com/governance](https://localloop.urbnia.com/governance) |
 | Run the lab API | [loop-api.urbnia.com/docs](https://loop-api.urbnia.com/docs) |
 
 ---
 
 ## Get involved
 
-**Read** the [specification](https://local-loop-io.github.io/protocol/spec) and [examples](https://github.com/local-loop-io/loop-protocol/tree/main/examples).
+**Read** the [specification](https://localloop.urbnia.com/protocol/spec) and [examples](https://github.com/local-loop-io/loop-protocol/tree/main/examples).
 **Raise ideas** via issues or draft an RFC in the [protocol repo](https://github.com/local-loop-io/loop-protocol).
-**Express interest** if you represent a city, research group, or operator — [register here](https://local-loop-io.github.io/interest).
+**Express interest** if you represent a city, research group, or operator — [register here](https://localloop.urbnia.com/interest).
 
 ---
 

@@ -12,7 +12,7 @@ Keep it in sync with AGENTS.md.
 
 ## Live URLs
 
-- Public site: `https://local-loop-io.github.io`
+- Public site: `https://localloop.urbnia.com`
 - Backend API: `https://loop-api.urbnia.com`
 - `api.local-loop.io` does not exist
 
@@ -42,14 +42,14 @@ docker compose up -d --build
 
 Preferred `@context` value:
 
-`https://local-loop-io.github.io/projects/loop-protocol/contexts/loop-v0.2.0.jsonld`
+`https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld`
 
 The v0.1.1 context remains valid for backward compatibility.
 
 ## BrowserLab
 
 ```bash
-browserlab run https://local-loop-io.github.io/
+browserlab run https://localloop.urbnia.com/
 ```
 
 Artifacts:

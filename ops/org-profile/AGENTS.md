@@ -8,7 +8,7 @@ or infrastructure change.
 
 - `localloop.github.io`  
   Public GitHub Pages site (Next.js static export).  
-  Primary public domain: `https://local-loop-io.github.io`
+  Primary public domain: `https://localloop.urbnia.com`
 
 - `loop-protocol`  
   Protocol spec, schemas, examples, RFCs, and JSON‑LD context source of truth.
@@ -21,7 +21,7 @@ or infrastructure change.
 
 ## Live Domains / Endpoints
 
-- **Public site:** `https://local-loop-io.github.io`
+- **Public site:** `https://localloop.urbnia.com`
 - **Backend API:** `https://loop-api.urbnia.com`
 - **Note:** `api.local-loop.io` does **not** exist.
 
@@ -49,7 +49,7 @@ or infrastructure change.
 
 See `.env.example` and `.env.docker.example`. Highlights:
 
-- `ALLOWED_ORIGINS` (default: `https://local-loop-io.github.io`)
+- `ALLOWED_ORIGINS` (default: `https://localloop.urbnia.com`)
 - `RATE_LIMIT_MAX`, `RATE_LIMIT_WRITE_MAX`
 - `RATE_LIMIT_WINDOW`, `RATE_LIMIT_WRITE_WINDOW`
 - `SSE_KEEPALIVE_MS`, `SSE_MAX_CLIENTS`
@@ -59,9 +59,9 @@ See `.env.example` and `.env.docker.example`. Highlights:
 ## Protocol Contexts (JSON‑LD)
 
 - Preferred JSON‑LD context:
-  `https://local-loop-io.github.io/projects/loop-protocol/contexts/loop-v0.2.0.jsonld`
+  `https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld`
 - The v0.1.1 context remains valid for backward compatibility:
-  `https://local-loop-io.github.io/projects/loop-protocol/contexts/loop-v0.1.1.jsonld`
+  `https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld`
 
 ## CI / Domain Consistency
 
@@ -83,7 +83,7 @@ Use BrowserLab for smoke visual runs:
 
 ```bash
 cd /path/to/project
-browserlab run https://local-loop-io.github.io/
+browserlab run https://localloop.urbnia.com/
 ```
 
 Artifacts:
