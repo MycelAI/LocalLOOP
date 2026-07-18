@@ -2238,7 +2238,12 @@ a.card h4 {
    Collapses to normal flow below (tablet/mobile and reduced-motion rules). */
 .kc-scroll-wrapper {
   position: relative;
-  height: calc(var(--kc-steps, 6) * 100dvh);
+  /* Less than a full viewport height per step: 6 x 100dvh (5400px on a
+     900px-tall screen) took an uncomfortable number of scroll gestures to
+     get through and felt unresponsive/stuck. 65dvh per step still gives
+     each concept a deliberate, readable dwell time without demanding that
+     much cumulative scrolling. */
+  height: calc(var(--kc-steps, 6) * 65dvh);
 }
 
 .kc-sticky {
@@ -2254,10 +2259,10 @@ a.card h4 {
   max-width: var(--page-max);
   margin: 0 auto;
   padding: 0 var(--gutter);
-  height: min(640px, 78dvh);
+  height: min(640px, 82dvh);
   display: grid;
-  grid-template-columns: 220px 1fr;
-  gap: 28px;
+  grid-template-columns: clamp(160px, 18vw, 220px) 1fr;
+  gap: clamp(16px, 2vw, 28px);
 }
 
 /* --- Tab rail (vertical) --- */
@@ -2338,7 +2343,11 @@ a.card h4 {
   position: absolute;
   inset: 0;
   display: grid;
-  grid-template-columns: 3fr 2fr;
+  /* Content never gets narrower than 300px regardless of how the 3:2 split
+     would otherwise resolve — at ~1000-1300px viewport widths, a bare `2fr`
+     could compress the description column enough that its text overflowed
+     the panel's fixed height instead of fitting or scrolling. */
+  grid-template-columns: minmax(0, 3fr) minmax(300px, 2fr);
   opacity: 0;
   visibility: hidden;
   transition: opacity 450ms ease, visibility 0s linear 450ms;
@@ -2367,12 +2376,19 @@ a.card h4 {
 /* Right: content */
 .kc-panel-content {
   background: rgba(255, 255, 255, 0.96);
-  padding: 48px 44px;
+  padding: clamp(28px, 4vw, 48px) clamp(24px, 3.5vw, 44px);
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 0;
   overflow-y: auto;
+  /* Grid items default to min-height:auto (sized to content), which silently
+     defeats overflow-y and lets content grow past the panel's fixed height
+     instead of respecting it — confirmed live at ~1024px width, where the
+     CTA button rendered ~200px below the visible viewport. This is what
+     makes overflow-y actually take effect: excess content now scrolls
+     within the box instead of spilling out of it. */
+  min-height: 0;
 }
 
 .kc-meta-row {

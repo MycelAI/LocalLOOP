@@ -7,6 +7,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.1] - 2026-07-18
+
+### Fixed
+- Key Concepts panel content could overflow outside its visible box at
+  common desktop widths (~1000-1300px): confirmed live at 1024px, where the
+  CTA button rendered ~200px below the visible viewport and the panel's
+  own bottom edge. Root cause was two-fold — the description column could
+  be compressed by the raw `3fr 2fr` split, and `.kc-panel-content`, as a
+  grid item, defaulted to `min-height: auto`, which silently defeats
+  `overflow-y` and lets content grow past its box instead of respecting
+  it or scrolling internally. Fixed by giving the content column a
+  guaranteed minimum width, making the tab rail and panel padding/gaps
+  fluid across viewport width, and setting `min-height: 0` so overflow
+  handling actually engages as a safety net.
+- Reduced the scroll distance required to move between concepts (100dvh
+  per step down to 65dvh) — 6 full viewport-heights of cumulative scroll
+  felt unresponsive.
+- Added an e2e regression test checking the CTA button stays within its
+  panel across five common desktop widths (905-1920px).
+
 ## [0.4.0] - 2026-07-18
 
 ### Changed

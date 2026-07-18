@@ -62,6 +62,23 @@ test('key concepts scroll-links the active tab to scroll position on desktop', a
   await expect(page.getByRole('tab', { selected: true })).not.toHaveAttribute('id', initial || '');
 });
 
+test('key concepts content never overflows the panel at common desktop widths', async ({ page }) => {
+  // Regression test: at ~1024px width the description column used to
+  // compress enough that the CTA button rendered ~200px below the visible
+  // panel (and the viewport). Check the actual worst-offender width plus
+  // neighbors, using the longest description in CONCEPTS (LOOP's, index 0,
+  // which is active by default) as the stress case.
+  for (const width of [905, 1024, 1280, 1366, 1920]) {
+    await page.setViewportSize({ width, height: 768 });
+    await page.goto('/');
+    const content = page.locator('.kc-panel-face.is-active .kc-panel-content');
+    const cta = page.locator('.kc-panel-face.is-active .kc-panel-cta');
+    const contentBox = await content.boundingBox();
+    const ctaBox = await cta.boundingBox();
+    expect(ctaBox.y + ctaBox.height).toBeLessThanOrEqual(contentBox.y + contentBox.height + 1);
+  }
+});
+
 test('reduced motion disables scroll-linked pinning for key concepts', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/');
