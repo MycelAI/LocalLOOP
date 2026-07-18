@@ -102,25 +102,21 @@ test('all MarkdownDoc filePaths referenced by the site exist in the mirror', () 
   assert.deepEqual(missingTargets, []);
 });
 
-test('spec and regulatory pages link to canonical drafts without inline rendering them', () => {
+test('spec and regulatory pages render their canonical drafts inline via MarkdownDoc', () => {
   const pages = [
     {
       content: read(['app', 'protocol', 'spec', 'page.jsx']),
-      artifact: '/projects/loop-protocol/SPECIFICATION.md',
+      filePath: 'projects/loop-protocol/SPECIFICATION.md',
     },
     {
       content: read(['app', 'docs', 'regulatory-alignment', 'page.jsx']),
-      artifact: '/projects/loop-protocol/docs/regulatory-alignment-roadmap.md',
+      filePath: 'projects/loop-protocol/docs/regulatory-alignment-roadmap.md',
     },
   ];
 
-  for (const { content, artifact } of pages) {
-    assert.ok(!content.includes('MarkdownDoc'));
-    assert.ok(content.includes('Canonical draft artifact'));
-    assert.ok(content.includes('The protocol repository owns this draft.'));
-    assert.ok(content.includes('not evidence of implementation,'));
-    assert.ok(content.includes('economic backing, governance operation,'));
-    assert.ok(content.includes(`href="${artifact}"`));
+  for (const { content, filePath } of pages) {
+    assert.ok(content.includes('MarkdownDoc'));
+    assert.ok(content.includes(`filePath="${filePath}"`));
   }
 });
 

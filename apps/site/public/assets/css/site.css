@@ -3079,7 +3079,7 @@ a.card h4 {
   background: rgba(11, 27, 43, 0.12);
 }
 
-.hero-visual {
+.hero-section .hero-visual {
   position: absolute;
   inset: 0;
   overflow: hidden;
@@ -3194,8 +3194,8 @@ a.card h4 {
 }
 
 /* Additional flowing elements */
-.hero-visual::before,
-.hero-visual::after {
+.hero-section .hero-visual::before,
+.hero-section .hero-visual::after {
   content: '';
   position: absolute;
   border-radius: 50%;
@@ -3203,7 +3203,7 @@ a.card h4 {
   animation: blobFloat 20s ease-in-out infinite;
 }
 
-.hero-visual::before {
+.hero-section .hero-visual::before {
   width: 500px;
   height: 500px;
   right: 5%;
@@ -3212,7 +3212,7 @@ a.card h4 {
   animation-delay: -5s;
 }
 
-.hero-visual::after {
+.hero-section .hero-visual::after {
   width: 450px;
   height: 450px;
   right: 20%;

@@ -7,6 +7,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.4] - 2026-07-18
+
+### Fixed
+- Restored inline rendering (via `MarkdownDoc`) of the protocol spec and
+  regulatory-alignment roadmap on their site pages. A prior release had
+  replaced this with a link-out to the raw file and added a test asserting
+  the link-out was correct; git history confirms both pages rendered inline
+  before that change, matching every other doc-mirroring page on the site,
+  so this was a regression rather than a deliberate design choice. The test
+  now asserts the correct (inline) behavior.
+- Fixed a duplicate `.hero-visual` CSS selector: a legacy rule (used by the
+  static `loop-protocol` mirror's "loop sculpture" widget) was being
+  silently overridden by a newer homepage-specific rule with conflicting
+  `position`/`overflow` values, since both shared the same class name. The
+  newer rule is now scoped to `.hero-section .hero-visual`.
+- `app/docs/dpia-lite/page.jsx` asserted unqualified "GDPR alignment" with
+  no nearby qualifier, unlike every other regulation mention on the site.
+  Reworded to state it's a draft discussion aid, not an assessed or
+  certified claim.
+
 ## [0.3.3] - 2026-07-18
 
 ### Added

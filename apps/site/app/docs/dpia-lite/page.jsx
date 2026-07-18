@@ -10,8 +10,9 @@ export default function DpiaLitePage() {
         <h2>DPIA Lite</h2>
         <p>
           Data Protection Impact Assessment (DPIA) lite screening for localLOOP lab deployments.
-          Covers the personal data minimisation approach, GDPR alignment, and risk assessment
-          applicable to controlled lab-scale operations. Cities and operators running a LOOP node
+          Covers the personal data minimisation approach and risk assessment applicable to
+          controlled lab-scale operations; it is a draft discussion aid, not an independently
+          assessed or certified claim of GDPR alignment. Cities and operators running a LOOP node
           should review this document alongside their own DPA requirements.
         </p>
         <div className="cta-row">
