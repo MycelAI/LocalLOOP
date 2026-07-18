@@ -30,7 +30,7 @@ test('critical routes expose one main, a page footer, and an activating skip lin
   }
 });
 
-test('key concepts resolve every tab panel and support roving focus with a persistent pause', async ({ page }) => {
+test('key concepts resolve every tab panel and support roving focus', async ({ page }) => {
   await page.goto('/');
   const tabs = page.getByRole('tab');
   await expect(tabs).toHaveCount(6);
@@ -41,18 +41,34 @@ test('key concepts resolve every tab panel and support roving focus with a persi
   await tabs.first().press('ArrowRight');
   await expect(tabs.nth(1)).toBeFocused();
   await expect(tabs.nth(1)).toHaveAttribute('aria-selected', 'true');
-  const pause = page.locator('.kc-pause');
-  await pause.click();
-  await expect(pause).toHaveAccessibleName('Resume rotation');
-  await expect(pause).toHaveAttribute('aria-pressed', 'true');
 });
 
-test('reduced motion holds the selected concept past a test-friendly rotation interval', async ({ page }) => {
-  await page.addInitScript(() => { window.__LOCALLOOP_CONCEPT_INTERVAL_MS = 40; });
+test('key concepts scroll-links the active tab to scroll position on desktop', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('/');
+  const wrapper = page.locator('.kc-scroll-wrapper');
+  const initial = await page.getByRole('tab', { selected: true }).getAttribute('id');
+
+  // Scroll to the middle of the tall wrapper — the active tab should advance
+  // without ever calling preventDefault on the scroll (a plain mouse-wheel
+  // scroll drives this, not a click).
+  const box = await wrapper.boundingBox();
+  await page.mouse.move(720, 450);
+  const steps = Math.ceil((box.height) / 300);
+  for (let i = 0; i < steps; i += 1) {
+    await page.mouse.wheel(0, 300);
+    await page.waitForTimeout(30);
+  }
+  await expect(page.getByRole('tab', { selected: true })).not.toHaveAttribute('id', initial || '');
+});
+
+test('reduced motion disables scroll-linked pinning for key concepts', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/');
+  await expect(page.locator('.kc-sticky')).toHaveCSS('position', 'static');
   const initial = await page.getByRole('tab', { selected: true }).getAttribute('id');
-  await page.waitForTimeout(180);
+  await page.mouse.wheel(0, 2000);
+  await page.waitForTimeout(100);
   await expect(page.getByRole('tab', { selected: true })).toHaveAttribute('id', initial || '');
 });
 

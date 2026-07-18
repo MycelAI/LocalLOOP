@@ -2230,52 +2230,76 @@ a.card h4 {
   text-underline-offset: 3px;
 }
 
-/* --- Tab bar --- */
+/* --- Scroll-linked wrapper ---
+   A tall spacer (N x viewport height) holds a sticky-pinned display; scrolling
+   through it advances the active tab (see KeyConceptsShowcase.jsx). Scroll
+   physics are never intercepted — only read via a passive listener — so this
+   never breaks wheel/trackpad momentum, keyboard paging, or screen readers.
+   Collapses to normal flow below (tablet/mobile and reduced-motion rules). */
+.kc-scroll-wrapper {
+  position: relative;
+  height: calc(var(--kc-steps, 6) * 100dvh);
+}
+
+.kc-sticky {
+  position: sticky;
+  top: 0;
+  height: 100dvh;
+  display: flex;
+  align-items: center;
+}
+
+.kc-showcase {
+  width: 100%;
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  height: min(640px, 78dvh);
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 28px;
+}
+
+/* --- Tab rail (vertical) --- */
 .kc-tabs {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
   gap: 4px;
-  padding: 6px;
+  padding: 8px;
   background: rgba(255, 255, 255, 0.75);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border: 1px solid rgba(11, 27, 43, 0.09);
   border-radius: 18px;
-  margin-bottom: 16px;
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-
-.kc-tabs::-webkit-scrollbar {
-  display: none;
+  height: fit-content;
+  align-self: center;
 }
 
 .kc-tab {
   position: relative;
-  flex: 1;
-  min-width: 0;
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 6px;
-  padding: 9px 14px;
+  gap: 10px;
+  padding: 12px 16px;
   border: none;
   border-radius: 12px;
   background: transparent;
   color: var(--ink-soft);
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   font-weight: 500;
   cursor: pointer;
-  transition: color 150ms ease, background 150ms ease;
-  white-space: nowrap;
-  overflow: hidden;
+  transition: color 200ms ease, background 200ms ease;
+  text-align: left;
+  width: 100%;
 }
 
 .kc-tab-num {
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.68rem;
+  font-size: 0.7rem;
   opacity: 0.5;
-  transition: opacity 150ms ease;
+  transition: opacity 200ms ease;
 }
 
 .kc-tab-name {
@@ -2297,100 +2321,58 @@ a.card h4 {
   color: var(--accent-2);
 }
 
-/* Progress bar at bottom of active tab */
-.kc-tab-bar {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 2px;
-  width: 0;
-  border-radius: 1px;
-  background: var(--accent-2);
-  animation: kcBarFill 6s linear forwards;
-}
-
-.kc-showcase[data-paused="true"] .kc-tab-bar {
-  animation-play-state: paused;
-}
-
-@keyframes kcBarFill {
-  to { width: 100%; }
-}
-
-/* --- Main Panel --- */
+/* --- Main panel: crossfading faces --- */
 .kc-panel {
-  display: grid;
-  grid-template-columns: 3fr 2fr;
+  position: relative;
   border-radius: 28px;
   overflow: hidden;
   box-shadow:
     0 2px 4px rgba(11, 27, 43, 0.04),
     0 8px 24px rgba(11, 27, 43, 0.1),
     0 32px 64px rgba(11, 27, 43, 0.12);
-  min-height: 460px;
-  animation: kcPanelIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.92);
 }
 
-.kc-panel[hidden] { display: none; }
-
-@keyframes kcPanelIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px) scale(0.99);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
+.kc-panel-face {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 450ms ease, visibility 0s linear 450ms;
 }
 
-/* Left: illustration */
+.kc-panel-face.is-active {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 450ms ease, visibility 0s linear 0s;
+  z-index: 1;
+}
+
+/* Left: illustration, filling its area (no letterboxing) */
 .kc-panel-media {
   position: relative;
-  background: #f8f9fa;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   overflow: hidden;
-  padding: 32px;
 }
 
 .kc-panel-img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   display: block;
-  border-radius: 8px;
-  animation: kcImgIn 0.55s 0.05s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-@keyframes kcImgIn {
-  from {
-    opacity: 0;
-    transform: scale(1.04) translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
-}
-
-/* Subtle gradient vignette on right edge to blend into dark content panel */
-.kc-panel-shimmer {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, transparent 70%, rgba(15, 23, 42, 0.08) 100%);
-  pointer-events: none;
 }
 
 /* Right: content */
 .kc-panel-content {
-  background: var(--ink);
+  background: rgba(255, 255, 255, 0.96);
   padding: 48px 44px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 0;
+  overflow-y: auto;
 }
 
 .kc-meta-row {
@@ -2398,7 +2380,6 @@ a.card h4 {
   align-items: center;
   gap: 12px;
   margin-bottom: 20px;
-  animation: kcContentIn 0.4s 0.08s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .kc-panel-num {
@@ -2415,8 +2396,8 @@ a.card h4 {
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.35);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--ink-soft);
+  border: 1px solid rgba(11, 27, 43, 0.12);
   padding: 4px 10px;
   border-radius: 999px;
 }
@@ -2425,11 +2406,10 @@ a.card h4 {
   font-family: 'Fraunces', serif;
   font-size: clamp(1.75rem, 2.5vw, 2.25rem);
   font-weight: 700;
-  color: #fff;
+  color: var(--ink);
   margin: 0 0 6px;
   line-height: 1.1;
   letter-spacing: -0.02em;
-  animation: kcContentIn 0.4s 0.13s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .kc-panel-subtitle {
@@ -2438,24 +2418,22 @@ a.card h4 {
   color: var(--accent-2);
   margin: 0 0 20px;
   letter-spacing: 0.01em;
-  animation: kcContentIn 0.4s 0.18s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .kc-panel-desc {
   font-size: 0.95rem;
-  color: rgba(255, 255, 255, 0.65);
+  color: var(--ink-soft);
   line-height: 1.8;
   margin: 0 0 32px;
-  max-width: 38ch;
-  animation: kcContentIn 0.4s 0.23s cubic-bezier(0.16, 1, 0.3, 1) both;
+  max-width: 42ch;
 }
 
 .kc-panel-cta {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(13, 148, 136, 0.15);
-  border: 1px solid rgba(13, 148, 136, 0.35);
+  background: rgba(13, 148, 136, 0.1);
+  border: 1px solid rgba(13, 148, 136, 0.3);
   color: var(--accent-2);
   padding: 12px 22px;
   border-radius: 12px;
@@ -2465,7 +2443,6 @@ a.card h4 {
   text-decoration: none;
   width: fit-content;
   transition: background 180ms ease, border-color 180ms ease, color 180ms ease, transform 180ms ease;
-  animation: kcContentIn 0.4s 0.28s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .kc-panel-cta:hover {
@@ -2481,17 +2458,6 @@ a.card h4 {
 
 .kc-panel-cta:hover svg {
   transform: translateX(3px);
-}
-
-@keyframes kcContentIn {
-  from {
-    opacity: 0;
-    transform: translateY(14px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 /* --- Navigation dots (mobile) --- */
@@ -2604,24 +2570,71 @@ a.card h4 {
   }
 }
 
-/* --- Key Concepts Showcase — Tablet --- */
+/* --- Key Concepts Showcase — Tablet ---
+   Below this width the scroll-linked pin collapses to normal flow: no tall
+   spacer, no sticky, tabs become a horizontal scroll strip above a
+   normal-height panel that swaps faces by display instead of crossfading. */
 @media (max-width: 900px) {
-  .kc-panel {
+  .kc-scroll-wrapper {
+    height: auto;
+  }
+
+  .kc-sticky {
+    position: static;
+    height: auto;
+    padding: 0;
+  }
+
+  .kc-showcase {
+    height: auto;
     grid-template-columns: 1fr;
-    min-height: auto;
+    padding: 0 var(--gutter);
+  }
+
+  .kc-tabs {
+    flex-direction: row;
+    overflow-x: auto;
+    scrollbar-width: none;
+    height: auto;
+    margin-bottom: 16px;
+  }
+
+  .kc-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .kc-tab {
+    flex: 1;
+    min-width: 0;
+    justify-content: center;
+    white-space: nowrap;
+  }
+
+  .kc-panel {
+    height: auto;
+    min-height: 460px;
+  }
+
+  .kc-panel-face {
+    position: relative;
+    inset: auto;
+    display: none;
+    grid-template-columns: 1fr;
+    opacity: 1;
+    visibility: visible;
+    transition: none;
+  }
+
+  .kc-panel-face.is-active {
+    display: grid;
   }
 
   .kc-panel-media {
     aspect-ratio: 16 / 9;
-    padding: 20px;
   }
 
   .kc-panel-content {
     padding: 36px 32px;
-  }
-
-  .kc-panel-shimmer {
-    background: linear-gradient(180deg, transparent 70%, rgba(15, 23, 42, 0.08) 100%);
   }
 
   .kc-panel-desc {
@@ -2649,7 +2662,6 @@ a.card h4 {
     padding: 8px 10px;
     font-size: 0.75rem;
     border-radius: 10px;
-    flex: none;
   }
 
   .kc-tab-num {
@@ -2658,10 +2670,6 @@ a.card h4 {
 
   .kc-panel {
     border-radius: 20px;
-  }
-
-  .kc-panel-media {
-    padding: 16px;
   }
 
   .kc-panel-content {
@@ -2677,21 +2685,19 @@ a.card h4 {
   }
 }
 
-/* --- Reduced motion --- */
+/* --- Reduced motion: no scroll-linked pinning, no crossfade --- */
 @media (prefers-reduced-motion: reduce) {
-  .kc-panel,
-  .kc-panel-img,
-  .kc-meta-row,
-  .kc-panel-name,
-  .kc-panel-subtitle,
-  .kc-panel-desc,
-  .kc-panel-cta {
-    animation: none;
+  .kc-scroll-wrapper {
+    height: auto;
   }
 
-  .kc-tab-bar {
-    animation: none;
-    width: 100%;
+  .kc-sticky {
+    position: static;
+    height: auto;
+  }
+
+  .kc-panel-face {
+    transition: none;
   }
 }
 
@@ -3738,8 +3744,7 @@ a.card h4 {
   font-family: inherit;
 }
 .demo-filter-btn,
-.demo-tab-btn,
-.kc-pause { min-height: 44px; min-width: 44px; }
+.demo-tab-btn { min-height: 44px; min-width: 44px; }
 
 .demo-filter-btn:hover { border-color: var(--accent); color: var(--accent); }
 .demo-filter-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
@@ -3767,17 +3772,6 @@ a.card h4 {
 
 .demo-tab-btn:hover { color: var(--ink); }
 .demo-tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 600; }
-
-.kc-pause {
-  margin: 12px 0 0;
-  padding: 8px 12px;
-  border: 1px solid var(--ink-soft);
-  border-radius: 999px;
-  background: transparent;
-  color: var(--ink);
-  font: inherit;
-  cursor: pointer;
-}
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

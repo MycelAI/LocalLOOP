@@ -7,6 +7,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-07-18
+
+### Changed
+- Redesigned the homepage "Key Concepts" showcase:
+  - Tab rail moved from a horizontal strip above the panel to a vertical
+    list on the left, with the illustration and description together on
+    the right.
+  - Illustrations now fill their frame edge-to-edge (`object-fit: cover`,
+    no padding) instead of being letterboxed inside a padded, light-gray
+    box.
+  - The description panel is no longer dark — recolored to match the
+    site's light theme.
+  - Replaced five separately-staggered entrance animations per tab switch
+    with a single crossfade transition.
+  - Removed the manual "Pause rotation" control and the timer-based
+    auto-rotation it paused.
+  - Scrolling now drives which concept is shown: the section pins in place
+    (`position: sticky`) while you scroll through all six, then releases
+    to continue scrolling normally. Implemented by reading scroll position
+    passively (never intercepting wheel/scroll events), so trackpad
+    momentum, keyboard paging, and screen readers all behave normally.
+    Collapses to a normal (non-pinned, click-only) layout on narrow
+    viewports and under `prefers-reduced-motion: reduce`.
+
 ## [0.3.4] - 2026-07-18
 
 ### Fixed

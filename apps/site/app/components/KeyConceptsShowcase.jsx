@@ -64,39 +64,89 @@ const CONCEPTS = [
   },
 ];
 
-const DEFAULT_INTERVAL_MS = 6000;
-
+/**
+ * Scroll-linked step section: a tall wrapper (N × viewport height) holds a
+ * sticky-pinned tab/panel display. Scrolling through the wrapper advances the
+ * active tab; scroll physics are never intercepted (no preventDefault/wheel
+ * handling), only read via a passive scroll listener, so trackpad/wheel
+ * momentum, keyboard paging, and screen readers all behave normally.
+ *
+ * The tall-wrapper/sticky mechanism is opt-out by construction rather than by
+ * a JS branch: under `prefers-reduced-motion: reduce` or on narrow viewports,
+ * CSS collapses the wrapper back to `height: auto` and the sticky panel back
+ * to `position: static` (see site.css). With no extra scroll distance, the
+ * progress calculation below naturally no-ops and `active` is then driven
+ * only by clicking/keying a tab, which always works regardless of mode.
+ */
 export function KeyConceptsShowcase() {
   const [active, setActive] = useState(0);
-  const [userPaused, setUserPaused] = useState(false);
-  const [focusPaused, setFocusPaused] = useState(false);
-  const [hoverPaused, setHoverPaused] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
-  const [motionPreferenceChecked, setMotionPreferenceChecked] = useState(false);
+  // Mirrors the `@media (max-width: 900px)` breakpoint in site.css that
+  // collapses the sticky/tall-wrapper mechanism. Driven explicitly by a media
+  // query rather than inferred from measured scroll distance: a narrow-viewport
+  // wrapper can still be a few pixels taller than the viewport (content isn't
+  // pixel-perfect to 100dvh), which would otherwise leave a tiny but real
+  // scrollable range that made the active tab twitchy near the top of the
+  // section instead of reliably resting on the first concept.
+  const [scrollJackEnabled, setScrollJackEnabled] = useState(false);
   const tabRefs = useRef([]);
+  const wrapperRef = useRef(null);
   const instanceId = useId();
-  const paused = userPaused || focusPaused || hoverPaused || reducedMotion || !motionPreferenceChecked;
+  // While a click/key-triggered scroll is animating toward a target step, the
+  // passive scroll listener must not fight it with intermediate positions.
+  const programmaticScrollUntil = useRef(0);
 
   useEffect(() => {
-    const media = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const update = () => setReducedMotion(media.matches);
+    const reduceMotionMedia = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const desktopMedia = window.matchMedia('(min-width: 901px)');
+    const update = () => {
+      setReducedMotion(reduceMotionMedia.matches);
+      setScrollJackEnabled(desktopMedia.matches && !reduceMotionMedia.matches);
+    };
     update();
-    setMotionPreferenceChecked(true);
-    media.addEventListener('change', update);
-    return () => media.removeEventListener('change', update);
+    reduceMotionMedia.addEventListener('change', update);
+    desktopMedia.addEventListener('change', update);
+    return () => {
+      reduceMotionMedia.removeEventListener('change', update);
+      desktopMedia.removeEventListener('change', update);
+    };
   }, []);
 
   useEffect(() => {
-    if (paused) return;
-    const interval = Number(window.__LOCALLOOP_CONCEPT_INTERVAL_MS) || DEFAULT_INTERVAL_MS;
-    const id = setInterval(() => {
-      setActive(prev => (prev + 1) % CONCEPTS.length);
-    }, interval);
-    return () => clearInterval(id);
-  }, [paused]);
+    function onScroll() {
+      if (!scrollJackEnabled) return;
+      if (Date.now() < programmaticScrollUntil.current) return;
+      const el = wrapperRef.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const scrollable = rect.height - window.innerHeight;
+      if (scrollable <= 0) return;
+      const progress = Math.min(1, Math.max(0, -rect.top / scrollable));
+      const index = Math.min(CONCEPTS.length - 1, Math.floor(progress * CONCEPTS.length));
+      setActive(index);
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [scrollJackEnabled]);
 
   const activate = (index, focus = false) => {
+    const el = wrapperRef.current;
+    const rect = el?.getBoundingClientRect();
+    const scrollable = rect ? rect.height - window.innerHeight : 0;
+    // Set active immediately for instant feedback and a correct aria-selected
+    // state; also sync scroll position (when scroll-jacking applies) so
+    // subsequent scrolling continues from the right place. Scroll position
+    // remains the source of truth once the user scrolls again — the lock
+    // above just keeps the smooth-scroll animation from being overridden by
+    // its own intermediate positions.
     setActive(index);
+    if (scrollJackEnabled && rect && scrollable > 0) {
+      programmaticScrollUntil.current = Date.now() + 700;
+      const absoluteTop = rect.top + window.scrollY;
+      const targetProgress = (index + 0.5) / CONCEPTS.length;
+      window.scrollTo({ top: absoluteTop + targetProgress * scrollable, behavior: 'smooth' });
+    }
     if (focus) tabRefs.current[index]?.focus();
   };
 
@@ -113,96 +163,81 @@ export function KeyConceptsShowcase() {
   };
 
   return (
-    <div
-      className="kc-showcase"
-      data-paused={String(paused)}
-      onMouseEnter={() => setHoverPaused(true)}
-      onMouseLeave={() => setHoverPaused(false)}
-      onFocusCapture={() => setFocusPaused(true)}
-      onBlurCapture={(event) => {
-        if (!event.currentTarget.contains(event.relatedTarget)) setFocusPaused(false);
-      }}
-    >
-      <div className="kc-tabs" role="tablist" aria-label="Key concepts">
-        {CONCEPTS.map((concept, i) => (
-          <button
-            key={concept.slug}
-            ref={(node) => { tabRefs.current[i] = node; }}
-            className={`kc-tab${active === i ? ' is-active' : ''}`}
-            id={`${instanceId}-tab-${concept.slug}`}
-            role="tab"
-            aria-selected={active === i}
-            aria-controls={`${instanceId}-panel-${concept.slug}`}
-            tabIndex={active === i ? 0 : -1}
-            onClick={() => activate(i)}
-            onKeyDown={(event) => onTabKeyDown(event, i)}
-            type="button"
-          >
-            <span className="kc-tab-num">{concept.num}</span>
-            <span className="kc-tab-name">{concept.name}</span>
-            {active === i && (
-              <span key={`bar-${i}`} className="kc-tab-bar" aria-hidden="true" />
-            )}
-          </button>
-        ))}
-      </div>
-
-      <button
-        className="kc-pause"
-        type="button"
-        aria-pressed={userPaused}
-        onClick={() => setUserPaused((value) => !value)}
-      >
-        {userPaused ? 'Resume rotation' : 'Pause rotation'}
-      </button>
-
-      {CONCEPTS.map((c, i) => (
-      <div
-        className="kc-panel"
-        key={c.slug}
-        id={`${instanceId}-panel-${c.slug}`}
-        role="tabpanel"
-        aria-labelledby={`${instanceId}-tab-${c.slug}`}
-        tabIndex={0}
-        hidden={active !== i}
-      >
-        <div className="kc-panel-media">
-          <img
-            src={c.image}
-            alt={`${c.name} — ${c.fullName}`}
-            className="kc-panel-img"
-          />
-          <div className="kc-panel-shimmer" aria-hidden="true" />
-        </div>
-
-        <div className="kc-panel-content">
-          <div className="kc-meta-row">
-            <span className="kc-panel-num">{c.num}</span>
-            <span className="kc-panel-tag">Core concept</span>
+    <div className="kc-scroll-wrapper" ref={wrapperRef} style={{ '--kc-steps': CONCEPTS.length }}>
+      <div className="kc-sticky">
+        <div className="kc-showcase">
+          <div className="kc-tabs" role="tablist" aria-label="Key concepts" aria-orientation="vertical">
+            {CONCEPTS.map((concept, i) => (
+              <button
+                key={concept.slug}
+                ref={(node) => { tabRefs.current[i] = node; }}
+                className={`kc-tab${active === i ? ' is-active' : ''}`}
+                id={`${instanceId}-tab-${concept.slug}`}
+                role="tab"
+                aria-selected={active === i}
+                aria-controls={`${instanceId}-panel-${concept.slug}`}
+                tabIndex={active === i ? 0 : -1}
+                onClick={() => activate(i)}
+                onKeyDown={(event) => onTabKeyDown(event, i)}
+                type="button"
+              >
+                <span className="kc-tab-num">{concept.num}</span>
+                <span className="kc-tab-name">{concept.name}</span>
+              </button>
+            ))}
           </div>
-          <h3 className="kc-panel-name">{c.name}</h3>
-          <p className="kc-panel-subtitle">{c.fullName}</p>
-          <p className="kc-panel-desc">{c.desc}</p>
-          <a href={c.href} className="kc-panel-cta">
-            {c.cta}
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </a>
-        </div>
-      </div>
-      ))}
 
-      <div className="kc-nav-dots" aria-hidden="true">
-        {CONCEPTS.map((concept, i) => (
-          <button
-            key={concept.slug}
-            className={`kc-dot${active === i ? ' is-active' : ''}`}
-            onClick={() => activate(i)}
-            tabIndex={-1}
-            type="button"
-          />
-        ))}
+          <div className="kc-panel">
+            {CONCEPTS.map((c, i) => (
+              <div
+                className={`kc-panel-face${active === i ? ' is-active' : ''}`}
+                key={c.slug}
+                id={`${instanceId}-panel-${c.slug}`}
+                role="tabpanel"
+                aria-labelledby={`${instanceId}-tab-${c.slug}`}
+                tabIndex={0}
+                inert={active !== i ? '' : undefined}
+              >
+                <div className="kc-panel-media">
+                  <img
+                    src={c.image}
+                    alt={`${c.name} — ${c.fullName}`}
+                    className="kc-panel-img"
+                    loading={i === 0 ? 'eager' : 'lazy'}
+                  />
+                </div>
+
+                <div className="kc-panel-content">
+                  <div className="kc-meta-row">
+                    <span className="kc-panel-num">{c.num}</span>
+                    <span className="kc-panel-tag">Core concept</span>
+                  </div>
+                  <h3 className="kc-panel-name">{c.name}</h3>
+                  <p className="kc-panel-subtitle">{c.fullName}</p>
+                  <p className="kc-panel-desc">{c.desc}</p>
+                  <a href={c.href} className="kc-panel-cta">
+                    {c.cta}
+                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                      <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="kc-nav-dots" aria-hidden="true">
+            {CONCEPTS.map((concept, i) => (
+              <button
+                key={concept.slug}
+                className={`kc-dot${active === i ? ' is-active' : ''}`}
+                onClick={() => activate(i)}
+                tabIndex={-1}
+                type="button"
+              />
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
