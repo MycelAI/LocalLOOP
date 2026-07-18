@@ -1,4 +1,11 @@
 import MarkdownDoc from '@/app/components/docs/MarkdownDoc'
+import { createMetadata } from '@/app/config/metadata'
+
+export const metadata = createMetadata({
+  title: 'Protocol changelog',
+  description: 'Review draft localLOOP protocol changes, release notes, and planned roadmap items.',
+  path: '/protocol/changelog',
+});
 
 export default function ProtocolChangelogPage() {
   return (

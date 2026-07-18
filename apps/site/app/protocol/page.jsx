@@ -1,3 +1,7 @@
+import { createMetadata } from '@/app/config/metadata';
+
+export const metadata = createMetadata({ title: 'Protocol', path: '/protocol' });
+
 export default function ProtocolPage() {
   return (
     <div className="content-stack">

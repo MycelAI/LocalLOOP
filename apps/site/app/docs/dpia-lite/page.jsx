@@ -1,4 +1,7 @@
 import MarkdownDoc from '@/app/components/docs/MarkdownDoc'
+import { createMetadata } from '@/app/config/metadata';
+
+export const metadata = createMetadata({ title: 'DPIA lite', path: '/docs/dpia-lite' });
 
 export default function DpiaLitePage() {
   return (

@@ -19,7 +19,8 @@ export function ContentLayout({
   return (
     <>
       <SiteHeader subtitle={subtitle} />
-      <main className="content-main">
+      <main id="main-content" className="content-main" tabIndex={-1}>
+        <h1 className="visually-hidden">{subtitle}</h1>
         {showSidebar ? (
           <div className="content-layout">
             <Sidebar section={section} />

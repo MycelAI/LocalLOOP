@@ -1,3 +1,7 @@
+import { createMetadata } from '@/app/config/metadata';
+
+export const metadata = createMetadata({ title: 'Lab API documentation', path: '/docs/api' });
+
 export default function ApiDocsPage() {
   return (
     <div className="content-stack">

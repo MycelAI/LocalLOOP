@@ -6,6 +6,7 @@ export default function NotFound() {
     <>
       <SiteHeader />
 
+      <main id="main-content" tabIndex={-1}>
       <section className="not-found-hero">
         <div className="not-found-bg" aria-hidden="true">
           <div className="hero-gradient"></div>
@@ -48,6 +49,7 @@ export default function NotFound() {
         </div>
       </section>
 
+      </main>
       <SiteFooter />
     </>
   );

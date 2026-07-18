@@ -1,4 +1,11 @@
 import MarkdownDoc from '@/app/components/docs/MarkdownDoc'
+import { createMetadata } from '@/app/config/metadata'
+
+export const metadata = createMetadata({
+  title: 'Project hub',
+  description: 'Browse localLOOP project references, protocol assets, governance documents, and contribution resources.',
+  path: '/projects',
+});
 
 export default function ProjectsPage() {
   return (

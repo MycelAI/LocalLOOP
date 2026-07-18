@@ -1,10 +1,7 @@
 import MarkdownDoc from '@/app/components/docs/MarkdownDoc'
+import { createMetadata } from '@/app/config/metadata';
 
-export const metadata = {
-  alternates: {
-    canonical: '/platform/loopcoin',
-  },
-};
+export const metadata = createMetadata({ title: 'LoopCoin', path: '/platform/loopcoin' });
 
 export default function LoopCoinPage() {
   return (
@@ -12,10 +9,9 @@ export default function LoopCoinPage() {
       <div className="content-panel">
         <h2>LoopCoin</h2>
         <p>
-          LoopCoin (LC) is a node-issued local currency used to settle material and product
-          transfers between federation peers. Each node issues its own LoopCoin with configurable
-          expiry and decay rules, keeping value circulating locally while enabling inter-node
-          clearing. This is an early-stage lab concept with no public pilots yet.
+          LoopCoin (LC) is a draft data model for lab discussions of node-issued value, transfer,
+          expiry, decay, and potential settlement flows. It does not operate a currency, process
+          payments, or demonstrate cross-node clearing.
         </p>
         <div className="cta-row">
           <a className="button secondary" href="/platform/loopsignal">
@@ -30,7 +26,7 @@ export default function LoopCoinPage() {
       <div className="content-panel">
         <h3>Scope & boundaries</h3>
         <div className="table-list">
-          <div><span>In scope</span><div>Node-issued currency configuration, peer-to-peer transfers, and inter-node settlement batching.</div></div>
+          <div><span>In scope</span><div>Draft configuration, transfer, and settlement-batch fields for lab examples.</div></div>
           <div><span>Out of scope</span><div>Fiat on/off ramps, external exchange listings, or legally regulated financial instruments.</div></div>
           <div><span>Status</span><div>Lab-demo concept only — no public pilots or deployments yet.</div></div>
         </div>
@@ -39,11 +35,11 @@ export default function LoopCoinPage() {
       <div className="content-panel">
         <h3>How it works</h3>
         <div className="table-list">
-          <div><span>Issuance</span><div>Each city node issues its own LoopCoin (e.g., LC-MUC for Munich). The node defines exchange rate, expiry window (1–12 months), and optional decay rate after expiry.</div></div>
-          <div><span>Local bonus</span><div>Nodes may apply a local spending bonus (up to 50%) to incentivise circulation within their own community before value overflows to neighbours.</div></div>
-          <div><span>Transfers</span><div>Peer-to-peer LoopCoinTransfer payloads record sender, recipient, amount, currency code, and optional material reference.</div></div>
-          <div><span>Inter-node settlement</span><div>InterNodeSettlement batches cross-node transfers, applies export and import penalties derived from LoopSignals, and records the clearing method (gross, netting, or clearing).</div></div>
-          <div><span>Expiry & decay</span><div>Unspent LoopCoin expires after the configured window and decays at the node-defined rate — ensuring value stays in motion and does not accumulate indefinitely.</div></div>
+          <div><span>Issuance</span><div>Lab examples can describe a hypothetical node currency code, exchange rate, expiry window, and decay rate.</div></div>
+          <div><span>Local bonus</span><div>A draft field can model a local-spending incentive; it does not demonstrate circulation or overflow behaviour.</div></div>
+          <div><span>Transfers</span><div>LoopCoinTransfer is a draft payload shape for proposed sender, recipient, amount, currency code, and material-reference fields.</div></div>
+          <div><span>Inter-node settlement</span><div>InterNodeSettlement is a draft batch record with example fees and clearing-method fields; no settlement is executed or verified.</div></div>
+          <div><span>Expiry & decay</span><div>Lab scenarios can include expiry and decay parameters; they do not ensure any economic or operational outcome.</div></div>
         </div>
       </div>
 
@@ -69,7 +65,7 @@ export default function LoopCoinPage() {
               <i className="ph-thin ph-arrows-left-right"></i>
             </span>
             <h4>InterNodeSettlement</h4>
-            <p>Batch of cross-node transfers with fees (export penalty, import penalty, distance cost) and settlement method.</p>
+            <p>Draft batch payload containing example transfer, fee, and settlement-method fields.</p>
           </div>
         </div>
       </div>
@@ -82,7 +78,7 @@ export default function LoopCoinPage() {
               <i className="ph-thin ph-scroll"></i>
             </span>
             <h4>Specification</h4>
-            <p>LoopCoin schema and settlement rules are defined in the protocol spec.</p>
+            <p>Draft LoopCoin fields and proposed settlement rules are documented in the protocol spec.</p>
             <a href="/protocol/spec">Read the spec</a>
           </div>
           <div className="card has-icon">
@@ -98,7 +94,7 @@ export default function LoopCoinPage() {
               <i className="ph-thin ph-coins"></i>
             </span>
             <h4>Settlement</h4>
-            <p>LoopCost formula governs penalties applied during inter-node clearing.</p>
+            <p>Lab examples may reference the draft LoopCost formula when comparing scenario inputs.</p>
             <a href="/platform/loopcost">LoopCost →</a>
           </div>
         </div>

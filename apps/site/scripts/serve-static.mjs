@@ -28,21 +28,20 @@ const mimeTypes = {
 
 function resolvePathname(requestPath) {
   const normalized = requestPath.replace(/\0/g, '');
-  const candidates = [];
+  const candidates = [normalized];
 
   if (normalized.endsWith('/')) {
-    candidates.push(`${normalized}index.html`);
-  }
-
-  candidates.push(normalized);
-
-  if (!path.extname(normalized)) {
+    candidates.unshift(`${normalized}index.html`);
+  } else {
+    // Exported App Router pages are directories even when the final segment has a dot.
+    // Probe a real file first, then its directory index (for example CODE_OF_CONDUCT.md).
     candidates.push(`${normalized}/index.html`);
   }
 
   for (const candidate of candidates) {
-    const candidatePath = path.normalize(path.join(root, candidate));
-    if (!candidatePath.startsWith(root)) {
+    const candidatePath = path.resolve(root, `.${candidate}`);
+    const relative = path.relative(root, candidatePath);
+    if (relative.startsWith(`..${path.sep}`) || path.isAbsolute(relative)) {
       return null;
     }
     if (fs.existsSync(candidatePath) && fs.statSync(candidatePath).isFile()) {
@@ -75,7 +74,7 @@ const server = http.createServer((req, res) => {
   stream.pipe(res);
 });
 
-server.listen(port, () => {
+server.listen(port, '127.0.0.1', () => {
   console.log(`Static server running at http://127.0.0.1:${port}`);
 });
 

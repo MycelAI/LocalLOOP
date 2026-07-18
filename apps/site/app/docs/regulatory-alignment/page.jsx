@@ -1,4 +1,6 @@
-import MarkdownDoc from '@/app/components/docs/MarkdownDoc'
+import { createMetadata } from '@/app/config/metadata';
+
+export const metadata = createMetadata({ title: 'Regulatory research', path: '/docs/regulatory-alignment' });
 
 export default function RegulatoryAlignmentPage() {
   return (
@@ -6,9 +8,9 @@ export default function RegulatoryAlignmentPage() {
       <div className="content-panel">        <h2>Regulatory Alignment</h2>
         <p>
           localLOOP is still lab-demo infrastructure, but the protocol now documents how
-          it can evolve toward DPP, battery, packaging, waste-traceability, and German
-          circular-economy data expectations building on the v0.2.0 DPP-compatible baseline.
-          The new ProductDNA schema provides product-level DPP alignment (ESPR Art. 9-10).
+          it can be evaluated against DPP, battery, packaging, waste-traceability, and German
+          circular-economy data expectations. The v0.2.0 draft includes product-passport-style fields
+          for research discussion; it does not claim DPP or ESPR alignment.
         </p>
         <div className="cta-row">
           <a className="button secondary" href="/protocol/spec">
@@ -22,8 +24,8 @@ export default function RegulatoryAlignmentPage() {
         <div className="table-list">
           <div><span>Data minimization</span><div>Minimal interop payloads now explicitly reject personal contact fields.</div></div>
           <div><span>Forward compatibility</span><div>Receivers can accept additive `0.1.x` payloads and preserve unknown fields.</div></div>
-          <div><span>DPP-ready hooks</span><div>`passport`, `classification`, and `traceability` blocks create a non-breaking upgrade path.</div></div>
-          <div><span>ProductDNA</span><div>Product-level DPP entity with ESPR-aligned passport fields, referencing MaterialDNA composition.</div></div>
+          <div><span>Passport research fields</span><div>`passport`, `classification`, and `traceability` blocks are draft discussion fields, not readiness or an upgrade guarantee.</div></div>
+          <div><span>ProductDNA</span><div>Draft product-identity fields can reference MaterialDNA composition; no ESPR alignment is claimed.</div></div>
         </div>
       </div>
 
@@ -35,7 +37,17 @@ export default function RegulatoryAlignmentPage() {
         </p>
       </div>
       <div className="content-panel">
-        <MarkdownDoc filePath="projects/loop-protocol/docs/regulatory-alignment-roadmap.md" />
+        <h3>Canonical draft artifact</h3>
+        <p>
+          The protocol repository owns this draft. Its normative and proposed language
+          describes a model for discussion; it is not evidence of implementation,
+          deployment, certification, compliance, economic backing, governance operation,
+          or outcomes.
+        </p>
+        <p>
+          Readers who choose to inspect it can open the{' '}
+          <a href="/projects/loop-protocol/docs/regulatory-alignment-roadmap.md">canonical draft artifact</a>.
+        </p>
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { navigationSections } from '../config/siteRoutes.js';
 
@@ -32,9 +33,18 @@ const matchesPath = (pathname, prefixes) => {
 
 const DROPDOWN_CLOSE_DELAY_MS = 200;
 
+function NavigationLink({ href, children, ...props }) {
+  if (href.startsWith('/')) {
+    return <Link href={href} {...props}>{children}</Link>;
+  }
+
+  return <a href={href} {...props}>{children}</a>;
+}
+
 export function SiteHeader({ subtitle = '' }) {
   const pathname = usePathname();
   const headerRef = useRef(null);
+  const menuToggleRef = useRef(null);
   const closeTimeoutRef = useRef(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openMobileSection, setOpenMobileSection] = useState(null);
@@ -69,8 +79,10 @@ export function SiteHeader({ subtitle = '' }) {
   useEffect(() => {
     const handleKey = (event) => {
       if (event.key === 'Escape') {
+        const wasOpen = mobileOpen;
         setMobileOpen(false);
         setOpenMobileSection(null);
+        if (wasOpen) requestAnimationFrame(() => menuToggleRef.current?.focus());
       }
     };
 
@@ -90,7 +102,7 @@ export function SiteHeader({ subtitle = '' }) {
       document.removeEventListener('keydown', handleKey);
       document.removeEventListener('click', handleClick);
     };
-  }, []);
+  }, [mobileOpen]);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(min-width: 961px)');
@@ -125,7 +137,7 @@ export function SiteHeader({ subtitle = '' }) {
   return (
     <header ref={headerRef} className="site-header" data-scrolled={scrolled} data-nav-subtitle={subtitle || undefined}>
       <nav className="nav-container" aria-label="Primary">
-        <a href="/" className="nav-brand">
+        <Link href="/" className="nav-brand">
           <img
             src="/assets/local-loop-logo.png"
             alt="localLOOP"
@@ -139,11 +151,12 @@ export function SiteHeader({ subtitle = '' }) {
             </span>
             <span className="nav-subtitle">{subtitle}</span>
           </span>
-        </a>
+        </Link>
 
         <div className="nav-controls">
           <button
             className="nav-toggle"
+            ref={menuToggleRef}
             type="button"
             aria-controls="site-nav-links"
             aria-expanded={mobileOpen}
@@ -178,7 +191,7 @@ export function SiteHeader({ subtitle = '' }) {
                   onMouseLeave={handleNavGroupLeave}
                 >
                   <div className="nav-item">
-                    <a
+                    <NavigationLink
                       href={section.href}
                       className={`nav-section-link${sectionActive ? ' active' : ''}${section.isCta ? ' nav-cta' : ''}`}
                       data-nav-section={section.key}
@@ -186,7 +199,7 @@ export function SiteHeader({ subtitle = '' }) {
                     >
                       <span>{section.label}</span>
                       <span className="nav-link-caret" aria-hidden="true"></span>
-                    </a>
+                    </NavigationLink>
 
                     <button
                       className={`nav-group-toggle${mobileSectionOpen ? ' is-open' : ''}`}
@@ -210,14 +223,14 @@ export function SiteHeader({ subtitle = '' }) {
                             {group.items.map((item) => {
                               const itemActive = pathnameNormalized === normalizePath(item.href);
                               return (
-                                <a
+                                <NavigationLink
                                   key={item.href}
                                   href={item.href}
                                   className={itemActive ? 'active' : ''}
                                   aria-current={itemActive ? 'page' : undefined}
                                 >
                                   {item.label}
-                                </a>
+                                </NavigationLink>
                               );
                             })}
                           </div>
@@ -225,14 +238,14 @@ export function SiteHeader({ subtitle = '' }) {
                       : section.items.map((item) => {
                           const itemActive = pathnameNormalized === normalizePath(item.href);
                           return (
-                            <a
+                            <NavigationLink
                               key={item.href}
                               href={item.href}
                               className={itemActive ? 'active' : ''}
                               aria-current={itemActive ? 'page' : undefined}
                             >
                               {item.label}
-                            </a>
+                            </NavigationLink>
                           );
                         })}
                   </div>

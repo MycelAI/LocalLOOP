@@ -1,3 +1,7 @@
+import { createMetadata } from '@/app/config/metadata';
+
+export const metadata = createMetadata({ title: 'Governance', path: '/governance' });
+
 export default function GovernancePage() {
   return (
     <div className="content-stack">

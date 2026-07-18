@@ -1,8 +1,6 @@
-export const metadata = {
-  alternates: {
-    canonical: '/platform/city-portals',
-  },
-};
+import { createMetadata } from '@/app/config/metadata';
+
+export const metadata = createMetadata({ title: 'City portal concepts', path: '/platform/city-portals' });
 
 export default function CityPortalsPage() {
   return (
@@ -11,11 +9,11 @@ export default function CityPortalsPage() {
         <h2>City Portals</h2>
         <div className="status-notice">
           <strong>No active deployments.</strong> City portals are in the design and concept phase.
-          This page describes what a live city portal will include once controlled pilots launch.
+          This page describes illustrative portal patterns for future research discussions.
         </div>
         <p>
-          Each city portal will surface local circular economy initiatives, verified partners,
-          and material flow metrics — giving cities a dedicated hub within the LOOP network.
+          A future implementation could present local initiatives, partner information, and material-flow
+          metrics; this site does not verify or operate those data sources.
         </p>
         <div className="cta-row">
           <a className="button primary" href="/platform/demo-city">View DEMO City</a>
@@ -27,7 +25,7 @@ export default function CityPortalsPage() {
         <h3>What to expect</h3>
         <div className="table-list">
           <div><span>Profiles</span><div>City goals and program details</div></div>
-          <div><span>Partners</span><div>Verified operators and suppliers</div></div>
+          <div><span>Partners</span><div>Illustrative operator and supplier information</div></div>
           <div><span>Metrics</span><div>Impact and material flow tracking</div></div>
         </div>
       </div>
@@ -48,7 +46,7 @@ export default function CityPortalsPage() {
               <i className="ph-thin ph-compass"></i>
             </span>
             <h4>Future cities</h4>
-            <p>City subdomains will launch as controlled demos mature.</p>
+            <p>Future city participation is exploratory; no launch or deployment is scheduled here.</p>
             <a href="/interest">Express interest</a>
           </div>
         </div>

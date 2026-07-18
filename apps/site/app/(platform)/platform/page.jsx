@@ -1,8 +1,6 @@
-export const metadata = {
-  alternates: {
-    canonical: '/platform',
-  },
-};
+import { createMetadata } from '@/app/config/metadata';
+
+export const metadata = createMetadata({ title: 'Platform concepts', path: '/platform' });
 
 export default function PlatformPage() {
   return (
@@ -17,7 +15,7 @@ export default function PlatformPage() {
         <div className="status-notice">
           <strong>Early-stage research.</strong> All components are lab-demo concepts.
           There are no active city deployments or public pilots yet.
-          <a href="/interest">Register interest</a> to be considered for future controlled pilots.
+          <a href="/interest">Express interest</a> for possible future research updates.
         </div>
       </div>
 
@@ -36,7 +34,7 @@ export default function PlatformPage() {
               <i className="ph-thin ph-cube"></i>
             </span>
             <h4>ProductDNA</h4>
-            <p>Digital passport layer for finished products, aligned with EU DPP requirements.</p>
+            <p>Draft product-identity fields for discussing product-passport interoperability; not an EU DPP compliance claim.</p>
           </a>
         </div>
       </div>
@@ -49,21 +47,21 @@ export default function PlatformPage() {
               <i className="ph-thin ph-coins"></i>
             </span>
             <h4>LoopCoin</h4>
-            <p>Node-issued local currency with expiry and decay rules, used to settle material and product transfers between federation peers.</p>
+            <p>Draft node-issued value and settlement data fields for controlled lab scenarios.</p>
           </a>
           <a className="card has-icon" href="/platform/loopsignal">
             <span className="card-icon" aria-hidden="true">
               <i className="ph-thin ph-broadcast"></i>
             </span>
             <h4>LoopSignal</h4>
-            <p>Community preference signal expressing demand or surplus intent for material categories, informing routing and matching across the federation.</p>
+            <p>Draft preference-signal data for exploring routing and matching scenarios.</p>
           </a>
           <a className="card has-icon" href="/platform/loopcost">
             <span className="card-icon" aria-hidden="true">
               <i className="ph-thin ph-calculator"></i>
             </span>
             <h4>LoopCost</h4>
-            <p>Total routing cost for any transfer: base price plus export and import penalties from LoopSignals plus distance cost — keeping local exchanges cheapest.</p>
+            <p>Draft routing-cost formula combining a stated price, illustrative penalties, and distance inputs; it does not guarantee local cost outcomes.</p>
           </a>
         </div>
       </div>
@@ -76,14 +74,14 @@ export default function PlatformPage() {
               <i className="ph-thin ph-city"></i>
             </span>
             <h4>City Portals</h4>
-            <p>City landing pages showcasing local initiatives, partners, and impact metrics.</p>
+            <p>Concept sketches for how a city could present local initiatives and example metrics.</p>
           </a>
           <a className="card has-icon" href="/platform/demo-city">
             <span className="card-icon" aria-hidden="true">
               <i className="ph-thin ph-compass"></i>
             </span>
             <h4>DEMO City</h4>
-            <p>Sample city portal illustrating the future localLOOP city portal experience.</p>
+            <p>Read-only sample portal showing illustrative lab data and interface patterns.</p>
           </a>
         </div>
       </div>

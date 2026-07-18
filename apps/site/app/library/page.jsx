@@ -1,3 +1,7 @@
+import { createMetadata } from '@/app/config/metadata';
+
+export const metadata = createMetadata({ title: 'Library', path: '/library' });
+
 export default function LibraryPage() {
   return (
     <div className="content-stack">

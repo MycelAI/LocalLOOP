@@ -1,8 +1,10 @@
 import Script from 'next/script';
+import { JsonLd } from './components/JsonLd';
+import { RouteScripts } from './components/RouteScripts';
+import { SITE_URL, websiteJsonLd } from './config/metadata';
 
 export const metadata = {
-  title: 'localLOOP | Circular Economy Infrastructure for Cities',
-  description: 'localLOOP documentation hub for LOOP.',
+  metadataBase: new URL(SITE_URL),
 };
 
 export const viewport = {
@@ -27,12 +29,12 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body>
+        <a className="skip-link" href="#main-content">Skip to main content</a>
         {children}
+        <JsonLd data={websiteJsonLd()} />
         <Script src="/assets/js/config.js" strategy="beforeInteractive" />
         <Script src="/assets/js/main.js" strategy="afterInteractive" />
-        <Script src="/assets/js/interest.js" strategy="afterInteractive" />
-        <Script src="/assets/js/metrics.js" strategy="afterInteractive" />
-        <Script src="/assets/js/demo-city.js" strategy="afterInteractive" />
+        <RouteScripts />
       </body>
     </html>
   );

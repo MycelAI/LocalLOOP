@@ -1,10 +1,8 @@
 import MarkdownDoc from '@/app/components/docs/MarkdownDoc'
+import { MaturityStatus } from '@/app/components/MaturityStatus'
+import { createMetadata } from '@/app/config/metadata'
 
-export const metadata = {
-  alternates: {
-    canonical: '/platform/materialdna',
-  },
-};
+export const metadata = createMetadata({ title: 'MaterialDNA', path: '/platform/materialdna' });
 
 export default function MaterialDNAPage() {
   return (
@@ -12,9 +10,10 @@ export default function MaterialDNAPage() {
       <div className="content-panel">        <h2>MaterialDNA</h2>
         <p>
           MaterialDNA is the identification layer for tracking raw and processed materials
-          across city loops. It provides stable, verifiable identifiers and provenance metadata
-          to support traceability and matching. This is an early concept with no public pilots yet.
+          across city loops. It proposes identifier and provenance fields for discussing traceability
+          and matching in lab examples; those fields are not independently verified or persistent records.
         </p>
+        <MaturityStatus />
         <div className="cta-row">
           <a className="button secondary" href="/platform/city-portals">
             City portals
@@ -34,22 +33,22 @@ export default function MaterialDNAPage() {
       <div className="content-panel">
         <h3>Why cities adopt MaterialDNA</h3>
         <div className="table-list">
-          <div><span>Traceability</span><div>Verify that recycled materials came from specific sources — demolition sites, collection campaigns, industrial by-products — with a permanent audit trail</div></div>
-          <div><span>Circular procurement</span><div>Prove local sourcing for public procurement policies and qualify for circular economy incentive programmes</div></div>
-          <div><span>EPR compliance</span><div>Meet Extended Producer Responsibility reporting requirements with verifiable material flow records</div></div>
+          <div><span>Traceability research</span><div>Explore how source, collection, and by-product metadata could support traceability; records are not a permanent audit trail.</div></div>
+          <div><span>Circular procurement</span><div>Assess whether shared metadata could inform local procurement workflows; it does not prove sourcing or eligibility.</div></div>
+          <div><span>Reporting research</span><div>Draft fields may help teams discuss reporting needs; they do not establish EPR compliance.</div></div>
           <div><span>Inter-city matching</span><div>Discover and offer surplus materials to neighbouring regions using shared, compatible identifiers</div></div>
-          <div><span>Fraud prevention</span><div>Prevent downcycling and greenwashing by attaching verifiable quality and certification metadata to every batch</div></div>
+          <div><span>Evidence fields</span><div>Draft quality and certification references can support review workflows; they do not prevent fraud or validate claims.</div></div>
         </div>
       </div>
 
       <div className="content-panel">
         <h3>What we aim to enable</h3>
         <p>
-          A common, verifiable identity for materials to support traceability, provenance,
-          and matching across local loops.
+          A draft material-identity model for discussing traceability, provenance, and matching
+          across local loops.
         </p>
         <div className="table-list">
-          <div><span>Identity</span><div>Persistent IDs for raw and processed materials</div></div>
+          <div><span>Identity</span><div>Example identifiers for raw and processed material records</div></div>
           <div><span>Metadata</span><div>Category, quantity, quality, condition, and lifecycle stage</div></div>
           <div><span>Provenance</span><div>Origin city, batch references, and certifications</div></div>
           <div><span>Interoperability</span><div>Shared schemas across city nodes, supporting Offer/Match/Transfer flows</div></div>

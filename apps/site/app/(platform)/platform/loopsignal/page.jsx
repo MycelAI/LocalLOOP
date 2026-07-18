@@ -1,10 +1,7 @@
 import MarkdownDoc from '@/app/components/docs/MarkdownDoc'
+import { createMetadata } from '@/app/config/metadata';
 
-export const metadata = {
-  alternates: {
-    canonical: '/platform/loopsignal',
-  },
-};
+export const metadata = createMetadata({ title: 'LoopSignal', path: '/platform/loopsignal' });
 
 export default function LoopSignalPage() {
   return (
@@ -12,11 +9,9 @@ export default function LoopSignalPage() {
       <div className="content-panel">
         <h2>LoopSignal</h2>
         <p>
-          LoopSignal is a community preference signal that expresses demand or surplus intent
-          for specific material categories. Each city node publishes its own signal configuration
-          through a local governance process. LoopSignals inform routing and matching across the
-          federation, helping nodes prioritise the right resources for the right places.
-          This is an early-stage lab concept with no public pilots yet.
+          LoopSignal is a draft preference-signal model for lab discussions of demand or surplus intent
+          by material category. It can be used in examples of routing and matching, but it does not
+          collect community input, govern a node, or determine operational priorities.
         </p>
         <div className="cta-row">
           <a className="button secondary" href="/platform/loopcoin">
@@ -31,7 +26,7 @@ export default function LoopSignalPage() {
       <div className="content-panel">
         <h3>Scope & boundaries</h3>
         <div className="table-list">
-          <div><span>In scope</span><div>Node-level signal configuration, community voting on signal changes, and federation-aware routing weights.</div></div>
+          <div><span>In scope</span><div>Draft signal configuration, proposed voting fields, and scenario routing weights.</div></div>
           <div><span>Out of scope</span><div>Individual user preference tracking, binding regulatory commitments, or financial instruments.</div></div>
           <div><span>Status</span><div>Lab-demo concept only — no public pilots or deployments yet.</div></div>
         </div>
@@ -40,11 +35,11 @@ export default function LoopSignalPage() {
       <div className="content-panel">
         <h3>How it works</h3>
         <div className="table-list">
-          <div><span>Signal values</span><div>Each signal is a number from 0.0 to 1.0 representing the node's preference weight for a material category (e.g., 0.8 for plastic-pet means high local demand).</div></div>
+          <div><span>Signal values</span><div>Lab examples use a 0.0–1.0 value to represent an illustrative scenario input, not measured demand or surplus.</div></div>
           <div><span>Material categories</span><div>Signals cover 30+ standardised categories: plastics (PET, HDPE, PVC, mixed), metals (steel, aluminium, copper), organics, glass, paper, cardboard, textiles, and e-waste.</div></div>
-          <div><span>Governance</span><div>Signal changes go through a SignalProposal and LoopVote process. Results are recorded with turnout and approval percentages and published as LoopSignalConfig payloads.</div></div>
-          <div><span>Routing effect</span><div>High signals for a category lower the effective import penalty for that material, attracting offers from neighbouring nodes. Low signals raise the export penalty, keeping surplus local.</div></div>
-          <div><span>Validity window</span><div>Each LoopSignalConfig carries valid_from and valid_until timestamps, so routing decisions always use the current approved signal set.</div></div>
+          <div><span>Governance</span><div>Draft SignalProposal, LoopVote, and LoopSignalConfig payloads include fields that could support a future governance process; no approval or publication process is running here.</div></div>
+          <div><span>Routing effect</span><div>Examples may use values as inputs to a draft penalty calculation; they do not predict offers, routing, or locality.</div></div>
+          <div><span>Validity window</span><div>Draft payloads include valid_from and valid_until fields; they do not ensure that a routing system uses current or approved values.</div></div>
         </div>
       </div>
 
@@ -83,7 +78,7 @@ export default function LoopSignalPage() {
               <i className="ph-thin ph-scroll"></i>
             </span>
             <h4>Specification</h4>
-            <p>LoopSignal schema and governance rules are defined in the protocol spec.</p>
+            <p>Draft LoopSignal fields and proposed governance rules are documented in the protocol spec.</p>
             <a href="/protocol/spec">Read the spec</a>
           </div>
           <div className="card has-icon">
@@ -99,7 +94,7 @@ export default function LoopSignalPage() {
               <i className="ph-thin ph-calculator"></i>
             </span>
             <h4>Effect on routing</h4>
-            <p>LoopSignals feed directly into the LoopCost penalty formula.</p>
+            <p>Lab examples may use LoopSignal values as inputs to a draft LoopCost calculation.</p>
             <a href="/platform/loopcost">LoopCost →</a>
           </div>
         </div>

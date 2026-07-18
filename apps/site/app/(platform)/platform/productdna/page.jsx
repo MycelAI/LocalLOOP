@@ -1,10 +1,8 @@
 import MarkdownDoc from '@/app/components/docs/MarkdownDoc'
+import { MaturityStatus } from '@/app/components/MaturityStatus'
+import { createMetadata } from '@/app/config/metadata'
 
-export const metadata = {
-  alternates: {
-    canonical: '/platform/productdna',
-  },
-};
+export const metadata = createMetadata({ title: 'ProductDNA', path: '/platform/productdna' });
 
 export default function ProductDNAPage() {
   return (
@@ -12,9 +10,10 @@ export default function ProductDNAPage() {
       <div className="content-panel">        <h2>ProductDNA</h2>
         <p>
           ProductDNA is the product-level identity layer for the localLOOP platform. It references
-          constituent MaterialDNA entries and aligns with EU Digital Product Passport requirements
-          under ESPR Art. 9-10. This is an early-stage lab concept with no public pilots yet.
+          constituent MaterialDNA entries and explores fields that may be relevant to EU Digital
+          Product Passport discussions. This is an early-stage lab concept, not a DPP-ready system.
         </p>
+        <MaturityStatus />
         <div className="cta-row">
           <a className="button secondary" href="/platform/materialdna">
             MaterialDNA
@@ -25,7 +24,7 @@ export default function ProductDNAPage() {
       <div className="content-panel">
         <h3>Scope & boundaries</h3>
         <div className="table-list">
-          <div><span>In scope</span><div>Stable product identifiers, DPP passport fields, material composition links, and lifecycle stage.</div></div>
+          <div><span>In scope</span><div>Draft product identifiers, passport-style fields, material-composition links, and lifecycle stage.</div></div>
           <div><span>Out of scope</span><div>Live inventory tracking, financial settlement, or verified carbon accounting.</div></div>
           <div><span>Status</span><div>Lab-demo concept only — no public pilots or deployments yet.</div></div>
         </div>
@@ -34,23 +33,23 @@ export default function ProductDNAPage() {
       <div className="content-panel">
         <h3>Why cities adopt ProductDNA</h3>
         <div className="table-list">
-          <div><span>EU DPP readiness</span><div>Future-proof your city's product data infrastructure ahead of ESPR Art. 9-10 Digital Product Passport mandates coming into force from 2026 onwards</div></div>
-          <div><span>Circular procurement</span><div>Verify product condition, material composition, and lifecycle stage to meet circular public procurement requirements</div></div>
-          <div><span>Reuse marketplaces</span><div>Enable inter-city product exchanges for furniture, equipment, and refurbished goods with verified provenance data</div></div>
-          <div><span>Fraud prevention</span><div>Prevent false sustainability claims by attaching verifiable certifications and conformity evidence to every product record</div></div>
-          <div><span>Data sovereignty</span><div>Passport data stays under city control — third parties can be granted scoped read access without handing over raw records</div></div>
+          <div><span>DPP research</span><div>Explore data fields that may be relevant to ESPR Art. 9-10; no readiness, mandate coverage, or compliance outcome is claimed.</div></div>
+          <div><span>Circular procurement</span><div>Use lab examples to discuss product condition, composition, and lifecycle fields; they do not verify procurement requirements.</div></div>
+          <div><span>Reuse scenarios</span><div>Model potential exchange scenarios for research; provenance data is illustrative and not independently verified.</div></div>
+          <div><span>Evidence fields</span><div>References to certifications can support review; they do not prevent false claims or establish conformity.</div></div>
+          <div><span>Data control</span><div>Data-control patterns are under exploration; deployments must define their own access, retention, and governance controls.</div></div>
         </div>
       </div>
 
       <div className="content-panel">
         <h3>What we aim to enable</h3>
         <p>
-          A DPP-aligned digital passport for finished products, linking provenance metadata
-          and material composition to support traceability across circular economy loops.
+          A draft product-identity model with example passport-style fields, provenance metadata,
+          material composition references, and lifecycle information.
         </p>
         <div className="table-list">
-          <div><span>Identity</span><div>Persistent product IDs referencing constituent MaterialDNA entries via material_ids</div></div>
-          <div><span>DPP fields</span><div>ESPR Art. 9-10 aligned passport fields, certifications, and regulatory metadata</div></div>
+          <div><span>Identity</span><div>Example product identifiers referencing constituent MaterialDNA entries via material_ids</div></div>
+          <div><span>Passport fields</span><div>Draft fields for discussing product, certification, and regulatory metadata; no ESPR alignment is claimed.</div></div>
           <div><span>Lifecycle stage</span><div>Condition, repair history, and end-of-life indicators</div></div>
           <div><span>Interoperability</span><div>Compatible with Offer/Match/Transfer flows across city nodes</div></div>
         </div>
@@ -71,7 +70,7 @@ export default function ProductDNAPage() {
               <i className="ph-thin ph-clipboard-text"></i>
             </span>
             <h4>Provenance & DPP</h4>
-            <p>Origin, passport fields, certifications, and ESPR-aligned metadata.</p>
+            <p>Example origin, passport-style, certification, and regulatory metadata fields.</p>
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">

@@ -1,4 +1,10 @@
-import MarkdownDoc from '@/app/components/docs/MarkdownDoc'
+import { createMetadata } from '@/app/config/metadata'
+
+export const metadata = createMetadata({
+  title: 'Protocol specification',
+  description: 'Read the localLOOP draft protocol specification, data contracts, and implementation requirements.',
+  path: '/protocol/spec',
+});
 
 export default function ProtocolSpecPage() {
   return (
@@ -21,7 +27,17 @@ export default function ProtocolSpecPage() {
         </div>
       </div>
       <div className="content-panel">
-        <MarkdownDoc filePath="projects/loop-protocol/SPECIFICATION.md" />
+        <h3>Canonical draft artifact</h3>
+        <p>
+          The protocol repository owns this draft. Its normative and proposed language
+          describes a model for discussion; it is not evidence of implementation,
+          deployment, certification, compliance, economic backing, governance operation,
+          or outcomes.
+        </p>
+        <p>
+          Readers who choose to inspect it can open the{' '}
+          <a href="/projects/loop-protocol/SPECIFICATION.md">canonical draft artifact</a>.
+        </p>
       </div>
     </div>
   )

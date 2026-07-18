@@ -1,11 +1,17 @@
+import { MaturityStatus } from '@/app/components/MaturityStatus';
+import { createMetadata } from '@/app/config/metadata';
+
+export const metadata = createMetadata({ title: 'Expression of interest', path: '/interest' });
+
 export default function InterestPage() {
   return (
     <div className="content-stack">
       <div className="content-panel">        <h2>Expression of Interest</h2>
         <p>
-          Submissions are public so collaborators can see who is exploring the protocol.
-          Email is optional and shown only if you opt in.
+          Interest is a public, consent-based registry for future lab or research updates, not an
+          application for a pilot or deployment. Email is optional and shown only if you opt in.
         </p>
+        <MaturityStatus>Do not submit sensitive information. You can request access or deletion through the published contact channel.</MaturityStatus>
         <div className="cta-row">
           <a className="button primary" href="/protocol">Review the protocol</a>
           <a className="button secondary" href="/projects">Project hub</a>
@@ -18,22 +24,22 @@ export default function InterestPage() {
       <div className="content-panel">
         <h3>Why we collect this</h3>
         <p>
-          Early signal from cities, labs, and operators helps us prioritize the roadmap
-          and identify partners for the first controlled pilots.
+          Early signal from cities, labs, and operators may inform research priorities and future
+          outreach. It does not select participants or guarantee a response.
         </p>
         <div className="table-list">
-          <div><span>Transparency</span><div>Public list of interested parties — see who else is exploring LOOP</div></div>
+          <div><span>Public listing</span><div>Only fields covered by your consent may appear in the public interest list.</div></div>
           <div><span>Momentum</span><div>Helps align research, demos, and funding towards the right use cases</div></div>
-          <div><span>Pilot selection</span><div>Interest registrations inform which cities are considered for the first lab pilots</div></div>
+          <div><span>Follow-up</span><div>Submissions may inform future research outreach; they do not select participants.</div></div>
         </div>
       </div>
 
       <div className="content-panel">
         <h3>What happens next</h3>
         <div className="table-list">
-          <div><span>After submission</span><div>Your entry appears in the public interest list immediately</div></div>
-          <div><span>Follow-up</span><div>For city and operator enquiries, we aim to respond within two weeks to discuss pilot scope</div></div>
-          <div><span>Pilot timeline</span><div>First controlled lab pilots are planned for late 2026 — interest registrations open now</div></div>
+          <div><span>After submission</span><div>Your status message confirms the result. Public-list visibility depends on the service response and consent.</div></div>
+          <div><span>Privacy & retention</span><div>Do not submit sensitive information. Contact us to request access or deletion.</div></div>
+          <div><span>Public consent</span><div>Consent is required before sending a public interest entry. Email remains private unless you opt in.</div></div>
         </div>
         <p style={{marginTop: '14px', fontSize: '0.9rem', color: 'var(--ink-soft)'}}>
           Prefer a direct conversation? Reach out at{' '}
@@ -95,7 +101,7 @@ export default function InterestPage() {
               <div className="field">
                 <button className="button primary" type="submit">Submit interest</button>
               </div>
-              <div className="notice" data-interest-status>Ready for your submission.</div>
+              <div className="notice" data-interest-status role="status" aria-live="polite">Ready for your submission.</div>
             </form>
           </div>
           <div className="card">

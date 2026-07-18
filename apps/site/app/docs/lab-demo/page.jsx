@@ -1,3 +1,7 @@
+import { createMetadata } from '@/app/config/metadata';
+
+export const metadata = createMetadata({ title: 'Lab demo', path: '/docs/lab-demo' });
+
 export default function LabDemoPage() {
   return (
     <div className="content-stack">

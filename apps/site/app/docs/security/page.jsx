@@ -1,4 +1,7 @@
 import MarkdownDoc from '@/app/components/docs/MarkdownDoc'
+import { createMetadata } from '@/app/config/metadata';
+
+export const metadata = createMetadata({ title: 'Security guide', path: '/docs/security' });
 
 export default function SecurityGuidePage() {
   return (

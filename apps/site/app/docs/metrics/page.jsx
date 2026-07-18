@@ -1,3 +1,7 @@
+import { createMetadata } from '@/app/config/metadata';
+
+export const metadata = createMetadata({ title: 'Lab metrics', path: '/docs/metrics' });
+
 export default function MetricsPage() {
   return (
     <div className="content-stack">
@@ -14,7 +18,7 @@ export default function MetricsPage() {
 
       <div className="content-panel">
         <h3>Live counters</h3>
-        <div data-metrics-panel className="metrics-panel"></div>
+        <div data-metrics-panel className="metrics-panel" role="status" aria-live="polite">Loading lab metrics…</div>
       </div>
     </div>
   );

@@ -7,6 +7,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-07-18
+
+### Changed
+- Protocol specification and regulatory research now link to their repository-owned canonical draft artifacts instead of rendering the drafts inline, with a visible lab-only scope boundary.
+- Reframed site-owned platform, DPP, routing, and demo claims as lab-only exploratory material; added a reusable visible lab-status treatment.
+- DEMO City is now read-only in the public site. Public material registration was removed; write-capable evaluation is directed to the controlled local lab guide.
+- Interest submission now communicates public consent, privacy/deletion guidance, disables the submit control while sending, and never renders raw server errors.
+- A successful interest submission now confirms receipt only; public-list visibility remains dependent on consent and service processing.
+- Added canonical-route coverage for section hubs and key lab/docs routes; legacy aliases now carry canonical noindex metadata plus a safe client-side redirect and fallback link for static hosting.
+
+### Accessibility
+- Added skip-to-main behavior, global visible focus and target treatment, one main landmark per primary template, keyboard tabs, pause controls, reduced-motion handling, and mobile-menu Escape focus return.
+- Added deterministic browser coverage for landmark/heading/skip behavior, tabs, mobile focus return, reduced motion, aliases, and read-only demo interactions.
+
+### Fixed
+- Route-scoped feature scripts now load only for interest, metrics, and DEMO City routes, with abort/stream/timer/listener cleanup, script removal, and feature-global teardown on client navigation.
+- Added reusable canonical, Open Graph, Twitter, and JSON-LD metadata primitives using `https://localloop.urbnia.com` as the canonical base.
+
 ## [0.2.8] - 2026-05-27
 
 ### Added
@@ -23,6 +41,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - DEMO City E2E test selector updated to match new page content (`/no public deployment/i` replacing stale `/no active deployments yet/i`)
 
 ## [0.2.6] - 2026-05-26
+
+> Historical release note: the following described the lab demo at that release. The current public DEMO City route is read-only and does not create records or perform settlement.
 
 ### Added
 - `/platform/demo-city` fully wired city portal with live backend data:

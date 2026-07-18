@@ -4,6 +4,15 @@
  */
 
 const BASE = 'https://localloop.urbnia.com';
+import { schemas } from './schemas.js';
+import { examples } from './examples.js';
+
+export const nonCanonicalAliases = ['/engage', '/contribute/CODE_OF_CONDUCT.md'];
+
+const documentationRoutes = [
+  '/docs/threat-model',
+  '/docs/dpia-lite',
+];
 
 export const navigationSections = [
   {
@@ -61,6 +70,8 @@ export const navigationSections = [
           { href: '/docs/api', label: 'API docs' },
           { href: '/docs/metrics', label: 'Metrics' },
           { href: '/docs/regulatory-alignment', label: 'Regulatory alignment' },
+          { href: '/docs/threat-model', label: 'Threat model' },
+          { href: '/docs/dpia-lite', label: 'DPIA lite' },
         ],
       },
       {
@@ -100,7 +111,7 @@ export const navigationSections = [
 ];
 
 /** Collect all canonical paths from navigation (section hrefs + all item hrefs). */
-function getCanonicalPaths() {
+export function getCanonicalPaths() {
   const paths = new Set(['/']);
   for (const section of navigationSections) {
     if (section.href) paths.add(section.href);
@@ -113,6 +124,10 @@ function getCanonicalPaths() {
       }
     }
   }
+  documentationRoutes.forEach((path) => paths.add(path));
+  schemas.forEach(({ slug }) => paths.add(`/library/schemas/${slug}`));
+  examples.forEach(({ slug }) => paths.add(`/library/examples/${slug}`));
+  nonCanonicalAliases.forEach((path) => paths.delete(path));
   return [...paths].sort((a, b) => a.localeCompare(b));
 }
 

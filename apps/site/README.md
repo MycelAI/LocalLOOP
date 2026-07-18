@@ -23,8 +23,8 @@ This repository is the source for **[localloop.urbnia.com](https://localloop.urb
 It does three things:
 
 1. **Is the home of LOOP** — spec, changelog, schemas, JSON-LD contexts, and examples for the LOOP protocol, MaterialDNA, ProductDNA, and governance RFCs
-2. **Runs the platform** — MaterialDNA, ProductDNA, city portals, implementation guides, regulatory alignment, and the full governance framework
-3. **Collects interest** — a public expression-of-interest form backed by the [localloop-backend](https://github.com/local-loop-io/localloop-backend) API
+2. **Documents lab concepts** — MaterialDNA, ProductDNA, city-portal concepts, implementation notes, regulatory research, and governance drafts
+3. **Collects consent-based interest** — a public expression-of-interest form backed by the [localloop-backend](https://github.com/local-loop-io/localloop-backend) API; do not submit sensitive information
 
 ---
 
@@ -36,7 +36,7 @@ It does three things:
 | **Protocol** | `/protocol` | Spec, changelog, security policy |
 | **Platform** | `/platform` | Platform hub |
 | └ MaterialDNA | `/platform/materialdna` | Material identity layer |
-| └ ProductDNA | `/platform/productdna` | Product digital passport (ESPR Art. 9-10) |
+| └ ProductDNA | `/platform/productdna` | Draft product-identity and passport-style fields for research (not ESPR-aligned) |
 | └ City Portals | `/platform/city-portals` | City landing pages |
 | └ DEMO City | `/platform/demo-city` | Sample city portal |
 | **Library** | `/library` | Schemas and payload examples |
@@ -54,7 +54,7 @@ It does three things:
 | Runtime | Bun |
 | Styling | Vanilla CSS (custom design system) |
 | Testing | Playwright (E2E) + Node smoke tests |
-| Deploy | GitHub Pages via Actions |
+| Deploy | Docker + Traefik on VPS |
 | Protocol artifacts | Mirrored from `loop-protocol` into `public/projects/loop-protocol/` |
 
 ---
@@ -68,11 +68,11 @@ bun install
 # Start dev server (http://localhost:3000)
 bun run dev
 
-# Type-check
-bun run typecheck
-
 # Static export → out/
 bun run build
+
+# Domain policy checks
+bun run check:domains
 ```
 
 ---
@@ -87,7 +87,7 @@ bun run test
 bun run test:e2e
 
 # Single spec
-bunx playwright test tests/e2e/platform.spec.ts
+bunx playwright test tests/e2e/accessibility.spec.ts
 ```
 
 ---
@@ -98,7 +98,7 @@ bunx playwright test tests/e2e/platform.spec.ts
 app/
   (platform)/         # Platform section — MaterialDNA, ProductDNA, cities
   (engage)/           # Interest form, contribute, projects
-  docs/               # 9 guides + reference pages
+  docs/               # Guides + reference pages
   governance/         # RFC guide, template, smart contracts
   library/            # Schemas + examples
   protocol/           # Spec, changelog, security
@@ -132,7 +132,7 @@ The `Domain Consistency` CI workflow validates that all internal links respect t
 1. Fork and clone
 2. `bun install && bun run dev`
 3. Follow the route + sidebar pattern in `app/config/`
-4. Add a Playwright spec in `tests/e2e/` for any new page
+4. Add a Playwright spec in `tests/e2e/` for any new interactive or critical page
 5. Open a PR — CI runs build + E2E before merge
 
 For org-level context, domain policy, and agents guidance see [`AGENTS.md`](../AGENTS.md) in the monorepo root.
@@ -150,6 +150,6 @@ For org-level context, domain policy, and agents guidance see [`AGENTS.md`](../A
 
 <div align="center">
 
-Built with [Next.js](https://nextjs.org) · Deployed on [GitHub Pages](https://pages.github.com) · Part of the [localLOOP](https://localloop.urbnia.com) project
+Built with [Next.js](https://nextjs.org) · Deployed with Docker + Traefik · Part of the [localLOOP](https://localloop.urbnia.com) project
 
 </div>

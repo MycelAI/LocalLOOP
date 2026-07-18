@@ -3,13 +3,21 @@ import { SiteFooter } from './components/SiteFooter';
 import { Card } from './components/ui/Card';
 import { CardGrid } from './components/ui/CardGrid';
 import { KeyConceptsShowcase } from './components/KeyConceptsShowcase';
+import { MaturityStatus } from './components/MaturityStatus';
+import { createMetadata } from './config/metadata';
+
+export const metadata = createMetadata({
+  title: 'Lab-only interoperability research',
+  description: 'Explore localLOOP lab documentation, draft schemas, and evidence-qualified demonstrations.',
+  path: '/',
+});
 
 export default function HomePage() {
   return (
     <>
       <SiteHeader />
 
-      {/* Hero Section - Centered, Modern */}
+      <main id="main-content" tabIndex={-1}>
       <section className="hero-section">
         <div className="hero-bg" aria-hidden="true">
           <div className="hero-gradient"></div>
@@ -25,10 +33,10 @@ export default function HomePage() {
             <span className="hero-title-accent">Infrastructure for Cities</span>
           </h1>
           <p className="hero-description">
-            An open protocol for cities to discover, exchange, and trace material and product flows
-            across city boundaries — keeping circular value local while meeting emerging EU data
-            and product passport requirements.
+            An exploratory protocol and lab documentation set for discussing material and product
+            flow interoperability across city boundaries. It is not a deployed service or a compliance solution.
           </p>
+          <MaturityStatus className="hero-maturity">Draft schemas and controlled demonstrations only; no public pilots or production guarantees.</MaturityStatus>
           <div className="hero-actions">
             <a className="button primary" href="/protocol">
               <i className="ph-bold ph-book-open" aria-hidden="true"></i>
@@ -139,11 +147,7 @@ export default function HomePage() {
               <i className="ph-bold ph-buildings" aria-hidden="true"></i>
             </div>
             <h3>Cities & Municipalities</h3>
-            <p>
-              Prepare your infrastructure for EU Digital Product Passport mandates, circular
-              procurement, and waste traceability obligations (DIWASS, PPWR, Battery Passport)
-              — using open standards that stay under municipal control.
-            </p>
+            <p>Explore draft data fields and interoperability questions relevant to circular procurement and product-passport research.</p>
             <a href="/platform/city-portals">City portals →</a>
           </div>
           <div className="concept-card">
@@ -219,7 +223,7 @@ export default function HomePage() {
           <Card
             icon="buildings"
             title="City Portals"
-            description="Explore how city portals will surface local material flows and initiatives (lab concept, no live deployments yet)."
+            description="Explore illustrative city-portal patterns for local material flows and initiatives (lab concept, no live deployments)."
             href="/platform/city-portals"
           />
           <Card
@@ -237,7 +241,7 @@ export default function HomePage() {
           <h2>Ready to shape the circular economy?</h2>
           <p>
             Whether you represent a city, a research lab, or a circular economy operator —
-            register your interest to help define the first controlled pilots.
+            register interest to be contacted about future research or lab-demonstration discussions.
           </p>
           <div className="cta-row">
             <a className="button primary" href="/interest">
@@ -250,6 +254,7 @@ export default function HomePage() {
         </div>
       </section>
 
+      </main>
       <SiteFooter />
     </>
   );

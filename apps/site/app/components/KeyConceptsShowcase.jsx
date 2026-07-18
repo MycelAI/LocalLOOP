@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useEffect, useId, useRef, useState } from 'react';
 
 const CONCEPTS = [
   {
@@ -18,7 +18,7 @@ const CONCEPTS = [
     name: 'MaterialDNA',
     fullName: 'Material Identity & Digital Passport',
     image: '/assets/images/localloop-02-materialdna-material-identity-16x9.png',
-    desc: 'A unique digital identity for physical materials. MaterialDNA captures a material\'s composition, origin, quality metrics, and chain of custody — enabling trusted exchanges and full lifecycle tracking from source to reuse. Think of it as a passport for materials in the circular economy.',
+    desc: 'A draft identity model for physical materials. Lab examples can include composition, origin, quality, and chain-of-custody fields to discuss traceability; the data is not independently verified or a permanent lifecycle record.',
     href: '/platform/materialdna',
     cta: 'Explore MaterialDNA',
   },
@@ -26,9 +26,9 @@ const CONCEPTS = [
     slug: 'productdna',
     num: '03',
     name: 'ProductDNA',
-    fullName: 'DPP-Aligned Product Passport',
+    fullName: 'Draft Product Identity Model',
     image: '/assets/images/localloop-03-productdna-product-passport-16x9.png',
-    desc: 'A DPP-aligned identity for finished products. ProductDNA captures product category, condition, manufacturer, lifecycle stage, and references to constituent MaterialDNA entries — enabling product-level reuse, trading, and EU Digital Product Passport compliance (ESPR Art. 9–10).',
+    desc: 'A draft product-identity model for lab exploration. It includes product category, condition, manufacturer, lifecycle stage, and references to constituent MaterialDNA entries; it does not demonstrate Digital Product Passport compliance or deployment readiness.',
     href: '/platform/productdna',
     cta: 'Explore ProductDNA',
   },
@@ -38,7 +38,7 @@ const CONCEPTS = [
     name: 'LoopCoin',
     fullName: 'Local Settlement Currency',
     image: '/assets/images/localloop-04-loopcoin-local-settlement-16x9.png',
-    desc: 'A node-issued local currency used to settle material and product transfers between federation peers. LoopCoin carries expiry and decay rules defined by each node, keeping value circulating locally while enabling inter-node clearing.',
+    desc: 'A draft node-issued value model for lab scenarios. Its example transfer, expiry, decay, and clearing fields do not operate a currency or demonstrate settlement between peers.',
     href: '/platform/loopcoin',
     cta: 'Explore LoopCoin',
   },
@@ -48,7 +48,7 @@ const CONCEPTS = [
     name: 'LoopSignal',
     fullName: 'Community Preference Signal',
     image: '/assets/images/localloop-05-loopsignal-community-preference-16x9.png',
-    desc: 'A community preference signal that expresses demand or surplus intent for specific material categories. LoopSignals inform routing and matching across the federation, helping nodes prioritise the right resources for the right places at the right time.',
+    desc: 'A draft preference-signal model for lab scenarios. It can be used as an illustrative routing input, but it does not collect community preferences or determine operational priorities.',
     href: '/platform/loopsignal',
     cta: 'Explore LoopSignal',
   },
@@ -58,42 +58,84 @@ const CONCEPTS = [
     name: 'LoopCost',
     fullName: 'Routing Cost Function',
     image: '/assets/images/localloop-06-loopcost-routing-cost-16x9.png',
-    desc: 'The total routing cost for any material or product transfer: base price plus export and import penalties derived from LoopSignals, plus distance cost. LoopCost ensures local exchanges are always cheaper than cross-boundary ones, keeping circular value close to its source.',
+    desc: 'A draft routing-cost model: base price plus export and import penalties derived from LoopSignals, plus distance cost. Its parameters can be explored in lab examples; outcomes such as local pricing or savings are not guaranteed.',
     href: '/platform/loopcost',
     cta: 'Explore LoopCost',
   },
 ];
 
-const INTERVAL_MS = 6000;
+const DEFAULT_INTERVAL_MS = 6000;
 
 export function KeyConceptsShowcase() {
   const [active, setActive] = useState(0);
-  const [paused, setPaused] = useState(false);
+  const [userPaused, setUserPaused] = useState(false);
+  const [focusPaused, setFocusPaused] = useState(false);
+  const [hoverPaused, setHoverPaused] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(false);
+  const [motionPreferenceChecked, setMotionPreferenceChecked] = useState(false);
+  const tabRefs = useRef([]);
+  const instanceId = useId();
+  const paused = userPaused || focusPaused || hoverPaused || reducedMotion || !motionPreferenceChecked;
+
+  useEffect(() => {
+    const media = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const update = () => setReducedMotion(media.matches);
+    update();
+    setMotionPreferenceChecked(true);
+    media.addEventListener('change', update);
+    return () => media.removeEventListener('change', update);
+  }, []);
 
   useEffect(() => {
     if (paused) return;
+    const interval = Number(window.__LOCALLOOP_CONCEPT_INTERVAL_MS) || DEFAULT_INTERVAL_MS;
     const id = setInterval(() => {
       setActive(prev => (prev + 1) % CONCEPTS.length);
-    }, INTERVAL_MS);
+    }, interval);
     return () => clearInterval(id);
-  }, [paused, active]);
+  }, [paused]);
 
-  const c = CONCEPTS[active];
+  const activate = (index, focus = false) => {
+    setActive(index);
+    if (focus) tabRefs.current[index]?.focus();
+  };
+
+  const onTabKeyDown = (event, index) => {
+    const keys = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 };
+    if (Object.hasOwn(keys, event.key)) {
+      event.preventDefault();
+      activate((index + keys[event.key] + CONCEPTS.length) % CONCEPTS.length, true);
+    } else if (event.key === 'Home') {
+      event.preventDefault(); activate(0, true);
+    } else if (event.key === 'End') {
+      event.preventDefault(); activate(CONCEPTS.length - 1, true);
+    }
+  };
 
   return (
     <div
       className="kc-showcase"
       data-paused={String(paused)}
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
+      onMouseEnter={() => setHoverPaused(true)}
+      onMouseLeave={() => setHoverPaused(false)}
+      onFocusCapture={() => setFocusPaused(true)}
+      onBlurCapture={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget)) setFocusPaused(false);
+      }}
     >
-      <nav className="kc-tabs" aria-label="Key concepts navigation">
+      <div className="kc-tabs" role="tablist" aria-label="Key concepts">
         {CONCEPTS.map((concept, i) => (
           <button
             key={concept.slug}
+            ref={(node) => { tabRefs.current[i] = node; }}
             className={`kc-tab${active === i ? ' is-active' : ''}`}
-            onClick={() => setActive(i)}
-            aria-current={active === i ? 'true' : undefined}
+            id={`${instanceId}-tab-${concept.slug}`}
+            role="tab"
+            aria-selected={active === i}
+            aria-controls={`${instanceId}-panel-${concept.slug}`}
+            tabIndex={active === i ? 0 : -1}
+            onClick={() => activate(i)}
+            onKeyDown={(event) => onTabKeyDown(event, i)}
             type="button"
           >
             <span className="kc-tab-num">{concept.num}</span>
@@ -103,9 +145,27 @@ export function KeyConceptsShowcase() {
             )}
           </button>
         ))}
-      </nav>
+      </div>
 
-      <div className="kc-panel" key={active} aria-live="polite">
+      <button
+        className="kc-pause"
+        type="button"
+        aria-pressed={userPaused}
+        onClick={() => setUserPaused((value) => !value)}
+      >
+        {userPaused ? 'Resume rotation' : 'Pause rotation'}
+      </button>
+
+      {CONCEPTS.map((c, i) => (
+      <div
+        className="kc-panel"
+        key={c.slug}
+        id={`${instanceId}-panel-${c.slug}`}
+        role="tabpanel"
+        aria-labelledby={`${instanceId}-tab-${c.slug}`}
+        tabIndex={0}
+        hidden={active !== i}
+      >
         <div className="kc-panel-media">
           <img
             src={c.image}
@@ -131,13 +191,14 @@ export function KeyConceptsShowcase() {
           </a>
         </div>
       </div>
+      ))}
 
       <div className="kc-nav-dots" aria-hidden="true">
         {CONCEPTS.map((concept, i) => (
           <button
             key={concept.slug}
             className={`kc-dot${active === i ? ' is-active' : ''}`}
-            onClick={() => setActive(i)}
+            onClick={() => activate(i)}
             tabIndex={-1}
             type="button"
           />

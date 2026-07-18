@@ -1,4 +1,11 @@
 import MarkdownDoc from '@/app/components/docs/MarkdownDoc'
+import { createMetadata } from '@/app/config/metadata'
+
+export const metadata = createMetadata({
+  title: 'Contribute',
+  description: 'Find localLOOP contribution guidance, collaboration standards, and draft project resources.',
+  path: '/contribute',
+});
 
 export default function ContributePage() {
   return (

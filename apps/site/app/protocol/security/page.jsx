@@ -1,4 +1,11 @@
 import MarkdownDoc from '@/app/components/docs/MarkdownDoc'
+import { createMetadata } from '@/app/config/metadata'
+
+export const metadata = createMetadata({
+  title: 'Protocol security',
+  description: 'Read the localLOOP security policy, disclosure guidance, and evolving operator guardrails.',
+  path: '/protocol/security',
+});
 
 export default function ProtocolSecurityPage() {
   return (

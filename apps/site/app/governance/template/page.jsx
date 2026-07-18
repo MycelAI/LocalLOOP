@@ -1,4 +1,11 @@
 import MarkdownDoc from '@/app/components/docs/MarkdownDoc'
+import { createMetadata } from '@/app/config/metadata'
+
+export const metadata = createMetadata({
+  title: 'RFC template',
+  description: 'Use the localLOOP draft RFC template to frame a protocol or governance proposal.',
+  path: '/governance/template',
+});
 
 export default function RfcTemplatePage() {
   return (

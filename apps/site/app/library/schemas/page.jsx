@@ -1,3 +1,7 @@
+import { createMetadata } from '@/app/config/metadata';
+
+export const metadata = createMetadata({ title: 'Schemas', path: '/library/schemas' });
+
 export default function SchemasPage() {
   return (
     <div className="content-stack">
@@ -35,7 +39,7 @@ export default function SchemasPage() {
               <i className="ph-thin ph-fingerprint"></i>
             </span>
             <h4>MaterialDNA</h4>
-            <p>Material identity, provenance, and DPP-ready extension hooks.</p>
+            <p>Material identity, provenance, and draft extension fields for research discussion.</p>
             <a href="/library/schemas/material-dna">Open schema</a>
           </div>
           <div className="card has-icon">
@@ -43,7 +47,7 @@ export default function SchemasPage() {
               <i className="ph-thin ph-cube"></i>
             </span>
             <h4>ProductDNA</h4>
-            <p>Product identity, condition, lifecycle, and DPP-aligned passport fields (ESPR Art. 9-10).</p>
+            <p>Product identity, condition, lifecycle, and draft passport-style fields for research discussion; no ESPR alignment is claimed.</p>
             <a href="/library/schemas/product-dna">Open schema</a>
           </div>
           <div className="card has-icon">

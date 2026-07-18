@@ -1,8 +1,7 @@
-export const metadata = {
-  alternates: {
-    canonical: '/platform/demo-city',
-  },
-};
+import { MaturityStatus } from '@/app/components/MaturityStatus';
+import { createMetadata } from '@/app/config/metadata';
+
+export const metadata = createMetadata({ title: 'DEMO City', path: '/platform/demo-city' });
 
 export default function DemoCityPage() {
   return (
@@ -18,17 +17,17 @@ export default function DemoCityPage() {
           <span className="demo-badge">Lab Demo</span>
         </div>
         <p>
-          A live demonstration of a localLOOP city node. Material registry, active offers,
-          matches, and transfers are fetched in real time from the lab API. The register form
-          writes to the live backend. This is a controlled lab environment — no real logistics
-          or financial settlement takes place.
+          A read-only demonstration of a localLOOP lab node. Material registry, offers,
+          matches, and transfers are example lab data fetched from the API. This is not a
+          public deployment, logistics system, or financial-settlement service.
         </p>
+        <MaturityStatus>Read-only lab evidence only. Availability and displayed data may change without notice.</MaturityStatus>
         <div className="status-notice">
-          <strong>No public deployment.</strong> This demo shows what a city portal will look like
-          when a real node is operating. Data is seeded lab data.
+          <strong>No public deployment.</strong> This demo illustrates a possible city-portal interface
+          with seeded lab data; it does not predict a live-node experience.
           <a href="/interest">Register city interest</a>
         </div>
-        <div data-demo-heartbeat className="demo-heartbeat">
+        <div data-demo-heartbeat className="demo-heartbeat" role="status" aria-live="polite">
           Checking node status…
         </div>
       </div>
@@ -48,11 +47,11 @@ export default function DemoCityPage() {
       <div className="content-panel">
         <h3>Material registry</h3>
         <p>Live MaterialDNA records from the lab API. Filter by city node.</p>
-        <div className="demo-filter-row">
-          <button className="demo-filter-btn active" data-demo-filter="all">All cities</button>
-          <button className="demo-filter-btn" data-demo-filter="munich">Munich</button>
-          <button className="demo-filter-btn" data-demo-filter="berlin">Berlin</button>
-          <button className="demo-filter-btn" data-demo-filter="demo">DEMO nodes</button>
+        <div className="demo-filter-row" role="group" aria-label="Filter material registry by city">
+          <button className="demo-filter-btn active" data-demo-filter="all" aria-pressed="true">All cities</button>
+          <button className="demo-filter-btn" data-demo-filter="munich" aria-pressed="false">Munich</button>
+          <button className="demo-filter-btn" data-demo-filter="berlin" aria-pressed="false">Berlin</button>
+          <button className="demo-filter-btn" data-demo-filter="demo" aria-pressed="false">DEMO nodes</button>
         </div>
         <div data-demo-materials>
           <div className="notice">Loading material registry…</div>
@@ -63,77 +62,28 @@ export default function DemoCityPage() {
       <div className="content-panel">
         <h3>Protocol flows</h3>
         <p>Offers, matches, and transfers from the live lab backend.</p>
-        <div className="demo-tab-row">
-          <button className="demo-tab-btn" data-demo-tab="offers">Offers</button>
-          <button className="demo-tab-btn" data-demo-tab="matches">Matches</button>
-          <button className="demo-tab-btn" data-demo-tab="transfers">Transfers</button>
+        <div className="demo-tab-row" role="tablist" aria-label="Protocol flow data">
+          <button className="demo-tab-btn" id="demo-tab-offers" role="tab" data-demo-tab="offers" aria-controls="demo-panel-offers" aria-selected="true">Offers</button>
+          <button className="demo-tab-btn" id="demo-tab-matches" role="tab" data-demo-tab="matches" aria-controls="demo-panel-matches" aria-selected="false" tabIndex={-1}>Matches</button>
+          <button className="demo-tab-btn" id="demo-tab-transfers" role="tab" data-demo-tab="transfers" aria-controls="demo-panel-transfers" aria-selected="false" tabIndex={-1}>Transfers</button>
         </div>
-        <div data-panel="offers">
+        <div id="demo-panel-offers" data-panel="offers" role="tabpanel" aria-labelledby="demo-tab-offers" tabIndex={0}>
           <div data-demo-offers><div className="notice">Loading offers…</div></div>
         </div>
-        <div data-panel="matches" hidden>
+        <div id="demo-panel-matches" data-panel="matches" role="tabpanel" aria-labelledby="demo-tab-matches" tabIndex={0} hidden>
           <div data-demo-matches><div className="notice">Loading matches…</div></div>
         </div>
-        <div data-panel="transfers" hidden>
+        <div id="demo-panel-transfers" data-panel="transfers" role="tabpanel" aria-labelledby="demo-tab-transfers" tabIndex={0} hidden>
           <div data-demo-transfers><div className="notice">Loading transfers…</div></div>
         </div>
       </div>
 
-      {/* Register Material */}
       <div className="content-panel">
-        <h3>Register a material</h3>
+        <h3>Read-only demonstration</h3>
         <p>
-          Submit a MaterialDNA record to the live lab API. The entry will appear in the
-          material registry above and emit a <code>material.created</code> event in the stream.
+          Public material registration is disabled to avoid creating persistent lab records from this site.
+          Use the <a href="/docs/lab-demo">local lab demo guide</a> to evaluate write-capable flows in a controlled environment.
         </p>
-        <form className="interest-form" data-demo-register>
-          <div className="field">
-            <label htmlFor="demo-category">Category</label>
-            <select id="demo-category" name="category">
-              <option value="plastic-pet">Plastic PET</option>
-              <option value="plastic-hdpe">Plastic HDPE</option>
-              <option value="plastic-mixed">Plastic Mixed</option>
-              <option value="metal-steel">Metal Steel</option>
-              <option value="metal-aluminum">Metal Aluminium</option>
-              <option value="organic-food">Organic Food</option>
-              <option value="organic-wood">Organic Wood</option>
-              <option value="glass-clear">Glass Clear</option>
-              <option value="paper-clean">Paper Clean</option>
-              <option value="cardboard">Cardboard</option>
-              <option value="textile-cotton">Textile Cotton</option>
-              <option value="ewaste-mixed">E-Waste Mixed</option>
-            </select>
-          </div>
-          <div className="field" style={{display:'grid', gridTemplateColumns:'2fr 1fr', gap:'10px'}}>
-            <div>
-              <label htmlFor="demo-quantity">Quantity</label>
-              <input id="demo-quantity" name="quantity" type="number" min="0.01" max="1000000" step="0.01" defaultValue="100" required />
-            </div>
-            <div>
-              <label htmlFor="demo-unit">Unit</label>
-              <select id="demo-unit" name="unit">
-                <option value="kg">kg</option>
-                <option value="t">t</option>
-                <option value="l">l</option>
-                <option value="piece">piece</option>
-              </select>
-            </div>
-          </div>
-          <div className="field">
-            <label htmlFor="demo-city">City</label>
-            <input id="demo-city" name="city" type="text" defaultValue="DEMO City" maxLength={80} />
-          </div>
-          <div className="field">
-            <button className="button primary" type="submit">Register material</button>
-          </div>
-          <div
-            data-demo-register-status
-            className="notice"
-            hidden
-            aria-live="polite"
-          >
-          </div>
-        </form>
       </div>
 
       {/* Live Event Stream */}
@@ -143,8 +93,8 @@ export default function DemoCityPage() {
           <span className="demo-stream-dot demo-stream-dot-live" style={{marginLeft:'10px', display:'inline-block', verticalAlign:'middle'}}></span>
         </h3>
         <p>
-          Server-Sent Events from <code>/api/v1/stream</code>. New material registrations,
-          offer publications, matches, and transfers appear here in real time.
+          Server-Sent Events from <code>/api/v1/stream</code>. This read-only display may show
+          example lab events; it is not operational monitoring evidence.
         </p>
         <div className="demo-stream" data-demo-stream>
           <div className="demo-stream-idle">Connecting to event stream…</div>
@@ -156,8 +106,9 @@ export default function DemoCityPage() {
         <h3>LoopSignal configuration</h3>
         <p>
           Signal values used in this demo node (<code>demo.loop</code>). Values are from the
-          example LoopSignalConfig payload and are illustrative — a real node would publish
-          community-voted signals via the governance process.
+          example LoopSignalConfig payload and are illustrative. A production governance model
+          would need to define how community-voted signals are proposed, approved, and published;
+          this demo does not establish that process.
         </p>
         <div className="demo-signal-list">
           {[
@@ -180,21 +131,21 @@ export default function DemoCityPage() {
           ))}
         </div>
         <p style={{marginTop:'12px', fontSize:'0.85rem', color:'var(--ink-soft)'}}>
-          Higher values signal local demand — import penalties drop, attracting offers from
-          neighbouring nodes. Lower values keep surplus in circulation locally.
+          Higher values may lower a modelled import penalty; they do not guarantee demand,
+          routing, locality, or settlement outcomes.
           See <a href="/platform/loopsignal">LoopSignal</a> and <a href="/platform/loopcost">LoopCost</a>.
         </p>
       </div>
 
       {/* Node info */}
       <div className="content-panel">
-        <h3>Node capabilities</h3>
+        <h3>Illustrative node configuration</h3>
         <div className="table-list">
-          <div><span>Node ID</span><div><code>demo.loop</code></div></div>
-          <div><span>Protocol version</span><div>v0.2.0</div></div>
-          <div><span>Currency</span><div>LC-DEMO (LoopCoin, backed by EUR, 6-month expiry)</div></div>
-          <div><span>Capabilities</span><div>material-registry · loopcoin · loopsignal · federation</div></div>
-          <div><span>Lab API</span><div><a href="https://loop-api.urbnia.com/docs" target="_blank" rel="noopener noreferrer">loop-api.urbnia.com/docs</a></div></div>
+          <div><span>Example node ID</span><div><code>demo.loop</code></div></div>
+          <div><span>Example payload version</span><div>v0.2.0</div></div>
+          <div><span>Value model</span><div>LC-DEMO — illustrative draft fields only; no backing, currency operation, or settlement is provided.</div></div>
+          <div><span>Example capability labels</span><div>material-registry · loopcoin · loopsignal · federation</div></div>
+          <div><span>Referenced lab API</span><div><a href="https://loop-api.urbnia.com/docs" target="_blank" rel="noopener noreferrer">loop-api.urbnia.com/docs</a></div></div>
           <div><span>Status</span><div>Lab demo only — no real logistics or settlement</div></div>
         </div>
         <div className="cta-row" style={{marginTop:'16px'}}>

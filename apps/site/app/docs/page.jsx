@@ -1,3 +1,7 @@
+import { createMetadata } from '@/app/config/metadata';
+
+export const metadata = createMetadata({ title: 'Documentation', path: '/docs' });
+
 export default function DocsPage() {
   return (
     <div className="content-stack">

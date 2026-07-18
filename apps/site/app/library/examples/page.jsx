@@ -1,3 +1,7 @@
+import { createMetadata } from '@/app/config/metadata';
+
+export const metadata = createMetadata({ title: 'Examples', path: '/library/examples' });
+
 export default function ExamplesPage() {
   return (
     <div className="content-stack">
@@ -21,7 +25,7 @@ export default function ExamplesPage() {
       <div className="content-panel">
         <h3>Current baseline</h3>
         <div className="table-list">
-          <div><span>Registration</span><div>Material and product onboarding with traceability-ready fields</div></div>
+          <div><span>Registration</span><div>Material and product onboarding with draft traceability fields</div></div>
           <div><span>Interop flow</span><div>Offer, match, transfer for both materials and products</div></div>
           <div><span>Federation</span><div>Handshake request and response examples</div></div>
         </div>

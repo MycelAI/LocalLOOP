@@ -31,6 +31,12 @@ test.beforeEach(async ({ page }) => {
             is_demo: true,
             created_at: '2025-01-01T00:00:00Z',
           },
+          {
+            name: 'Private Contact Cooperative',
+            city: 'Testville',
+            country: 'US',
+            message: 'This entry did not authorize contact details.',
+          },
         ],
       }),
     });
@@ -41,9 +47,13 @@ test('interest page loads list and form', async ({ page }) => {
   await page.goto('/interest/');
 
   await expect(page.getByRole('heading', { name: /Expression of Interest/i })).toBeVisible();
-  await expect(page.locator('.interest-card')).toHaveCount(1);
+  await expect(page.locator('.interest-card')).toHaveCount(2);
   await expect(page.locator('.interest-badge')).toHaveText('DEMO');
   await expect(page.getByText('Test Cooperative')).toBeVisible();
+  await expect(page.getByText('Website: https://example.com')).toBeVisible();
+  await expect(page.getByText('Email: hello@example.com')).toBeVisible();
+  await expect(page.locator('.interest-card').filter({ hasText: 'Private Contact Cooperative' })).not.toContainText('Email:');
+  await expect(page.locator('.interest-card a')).toHaveCount(0);
 });
 
 test('interest form submits with required fields', async ({ page }) => {
@@ -53,5 +63,7 @@ test('interest form submits with required fields', async ({ page }) => {
   await page.getByLabel('I agree my submission is listed publicly').check();
   await page.getByRole('button', { name: /Submit interest/i }).click();
 
-  await expect(page.locator('[data-interest-status]')).toHaveText(/Thanks for your interest/i);
+  await expect(page.locator('[data-interest-status]')).toHaveText(
+    'Submission received. Public-list visibility depends on consent and service processing.',
+  );
 });
