@@ -116,13 +116,13 @@
 
 .skip-link:focus { transform: translateY(0); }
 
-:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+:where(a, button, input, select, textarea, [tabindex]):not([tabindex="-1"]):focus-visible {
   outline: 3px solid var(--accent);
   outline-offset: 3px;
 }
 
 #main-content:target,
-#main-content:focus {
+#main-content:focus-visible {
   outline: 3px solid var(--accent);
   outline-offset: -3px;
 }
@@ -1268,15 +1268,9 @@ header[data-site-header] .nav-controls {
   border-radius: var(--radius-md);
   border: 1px solid rgba(11, 27, 43, 0.1);
   box-shadow: 0 12px 24px var(--shadow-soft);
-  transition: transform 0.2s ease, border-color 0.2s ease;
   backdrop-filter: blur(6px);
   text-decoration: none;
   color: var(--ink);
-}
-
-.card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(224, 108, 71, 0.4);
 }
 
 .card h4 {
@@ -2127,6 +2121,7 @@ a.card h4 {
 .card:hover {
   transform: translateY(-6px);
   box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15);
+  border-color: rgba(234, 88, 12, 0.4);
 }
 
 /* Quick Start Section */

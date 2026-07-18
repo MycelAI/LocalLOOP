@@ -7,9 +7,10 @@ import { MaturityStatus } from './components/MaturityStatus';
 import { createMetadata } from './config/metadata';
 
 export const metadata = createMetadata({
-  title: 'Lab-only interoperability research',
+  title: 'Circular Economy Infrastructure for Cities',
   description: 'Explore localLOOP lab documentation, draft schemas, and evidence-qualified demonstrations.',
   path: '/',
+  brandFirst: true,
 });
 
 export default function HomePage() {
@@ -33,10 +34,10 @@ export default function HomePage() {
             <span className="hero-title-accent">Infrastructure for Cities</span>
           </h1>
           <p className="hero-description">
-            An exploratory protocol and lab documentation set for discussing material and product
-            flow interoperability across city boundaries. It is not a deployed service or a compliance solution.
+            An open protocol for cities to discover, exchange, and trace material and product
+            flows across city boundaries.
           </p>
-          <MaturityStatus className="hero-maturity">Draft schemas and controlled demonstrations only; no public pilots or production guarantees.</MaturityStatus>
+          <MaturityStatus className="hero-maturity">Lab demo only — draft schemas and controlled demonstrations, no public pilots or production deployments.</MaturityStatus>
           <div className="hero-actions">
             <a className="button primary" href="/protocol">
               <i className="ph-bold ph-book-open" aria-hidden="true"></i>

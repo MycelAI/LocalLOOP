@@ -7,6 +7,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.2] - 2026-07-18
+
+### Changed
+- Homepage title now reads "localLOOP | Circular Economy Infrastructure for
+  Cities" (brand-first, matching common homepage convention) instead of
+  "Lab-only interoperability research | localLOOP".
+- Homepage hero copy simplified to one confident, factual sentence plus a
+  single maturity caveat, replacing three stacked disclaimer clauses. Also
+  drops an unearned "meeting emerging EU data and product passport
+  requirements" claim reintroduced by an earlier edit, which the project's
+  own Claims Policy prohibits without evidence.
+
+### Fixed
+- The global `:focus-visible` outline no longer matches `tabindex="-1"`
+  elements (e.g. the `#main-content` skip-link target), which some browsers
+  were treating as "always show a ring" even for ordinary mouse clicks —
+  visible as an unexpected orange box around the page content. The
+  `#main-content` highlight itself now uses `:focus-visible` instead of
+  `:focus`, so it still appears for real keyboard/skip-link use.
+- Removed a duplicate, conflicting `.card`/`.card:hover` rule block (a
+  leftover from an earlier edit that was never removed) that fought the
+  later "Enhanced card hover" rules over `transform` and `transition` timing,
+  causing the jerky/jumpy card hover animation. Also fixed a stray hardcoded
+  hover border color that didn't match the actual `--accent` variable.
+
 ## [0.3.1] - 2026-07-18
 
 ### Removed

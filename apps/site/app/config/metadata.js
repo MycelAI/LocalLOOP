@@ -3,9 +3,13 @@ export const SITE_URL = 'https://localloop.urbnia.com';
 const defaultDescription =
   'localLOOP is an early-stage, lab-only documentation hub for exploratory circular-economy interoperability work.';
 
-export function createMetadata({ title, description = defaultDescription, path = '/' } = {}) {
+export function createMetadata({ title, description = defaultDescription, path = '/', brandFirst = false } = {}) {
   const canonicalPath = path === '/' ? '/' : path.replace(/\/$/, '');
-  const fullTitle = title ? `${title} | localLOOP` : 'localLOOP | Lab-only interoperability research';
+  const fullTitle = !title
+    ? 'localLOOP | Lab-only interoperability research'
+    : brandFirst
+      ? `localLOOP | ${title}`
+      : `${title} | localLOOP`;
 
   return {
     title: fullTitle,
