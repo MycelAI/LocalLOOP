@@ -13,7 +13,8 @@ See `profile/README.md` for the public landing page content.
 ## How to update
 
 1. Edit `profile/README.md`.
-2. Keep claims aligned with the content policy in `AGENTS.md`.
+2. Keep the early-stage, low-TRL, lab-demo-only posture and no-public-pilots-or-deployments wording.
+3. Run `bash scripts/check-policy.sh` before opening a PR.
 
 ## Links
 
