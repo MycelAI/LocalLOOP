@@ -7,6 +7,33 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.3] - 2026-07-18
+
+### Changed
+- Key Concepts active tab: replaced the solid near-black fill with a soft
+  teal tint matching the CTA button's existing style — the previous fill
+  read as too heavy against the section's light theme.
+- Key Concepts side-by-side card (>=1200px): the card's height is now
+  media's own natural (aspect-ratio-derived) height, not an independent
+  value — this is a structural fix, not a tuning pass. Media's width was
+  the deterministic input (unchanged from 0.4.2's fix), but the showcase
+  height was still a separately-guessed value, which meant the true-16:9
+  image either came up shorter than the card (a visible gap above/below
+  it) or the card had to guess a height matching neither element well.
+  Now the card is exactly as tall as the image wants: zero gap, and,
+  since media's true 16:9 shape is never touched, zero crop either.
+- The text column's typography is now fluid instead of fixed: it uses CSS
+  container query units (cqh) to scale headline/subtitle/description/CTA
+  to whatever height the image dictates at the current viewport width,
+  within a legible minimum. This is what makes the height-matching above
+  possible without the text column needing (and not getting) a guaranteed
+  minimum height of its own — previously, giving text a fixed floor is
+  what forced choosing between cropping the image or leaving a gap.
+- The side-by-side tier's lower boundary moved from 1300px to 1200px
+  (media/content columns re-tuned for the new width formula); the
+  narrow-desktop stacked tier (image above text) now covers 901-1199px
+  instead of 901-1299px, with its own crop behavior unchanged from 0.4.1.
+
 ## [0.4.2] - 2026-07-18
 
 ### Fixed
