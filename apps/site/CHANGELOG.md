@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.3] - 2026-07-18
+
+### Added
+- `<MaturityStatus />` to the LoopCoin, LoopSignal, and City Portals pages,
+  which were missing it despite every comparable platform page (MaterialDNA,
+  ProductDNA, LoopCost) carrying it.
+
+### Fixed
+- The mirrored protocol markdown files (spec, regulatory-alignment roadmap,
+  etc.) served as `application/octet-stream`, which forces a browser
+  download instead of displaying the content. Now served as `text/plain`.
+  (The pages themselves still deliberately link out rather than render this
+  content inline — that's an intentional, test-enforced design choice, not a
+  bug — but the link now actually shows you the content when you follow it.)
+
 ## [0.3.2] - 2026-07-18
 
 ### Changed

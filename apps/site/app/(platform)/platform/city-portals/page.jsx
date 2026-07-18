@@ -1,3 +1,4 @@
+import { MaturityStatus } from '@/app/components/MaturityStatus';
 import { createMetadata } from '@/app/config/metadata';
 
 export const metadata = createMetadata({ title: 'City portal concepts', path: '/platform/city-portals' });
@@ -11,6 +12,7 @@ export default function CityPortalsPage() {
           <strong>No active deployments.</strong> City portals are in the design and concept phase.
           This page describes illustrative portal patterns for future research discussions.
         </div>
+        <MaturityStatus />
         <p>
           A future implementation could present local initiatives, partner information, and material-flow
           metrics; this site does not verify or operate those data sources.

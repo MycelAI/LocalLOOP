@@ -1,4 +1,5 @@
 import MarkdownDoc from '@/app/components/docs/MarkdownDoc'
+import { MaturityStatus } from '@/app/components/MaturityStatus';
 import { createMetadata } from '@/app/config/metadata';
 
 export const metadata = createMetadata({ title: 'LoopSignal', path: '/platform/loopsignal' });
@@ -13,6 +14,7 @@ export default function LoopSignalPage() {
           by material category. It can be used in examples of routing and matching, but it does not
           collect community input, govern a node, or determine operational priorities.
         </p>
+        <MaturityStatus />
         <div className="cta-row">
           <a className="button secondary" href="/platform/loopcoin">
             LoopCoin

@@ -1,4 +1,5 @@
 import MarkdownDoc from '@/app/components/docs/MarkdownDoc'
+import { MaturityStatus } from '@/app/components/MaturityStatus';
 import { createMetadata } from '@/app/config/metadata';
 
 export const metadata = createMetadata({ title: 'LoopCoin', path: '/platform/loopcoin' });
@@ -13,6 +14,7 @@ export default function LoopCoinPage() {
           expiry, decay, and potential settlement flows. It does not operate a currency, process
           payments, or demonstrate cross-node clearing.
         </p>
+        <MaturityStatus />
         <div className="cta-row">
           <a className="button secondary" href="/platform/loopsignal">
             LoopSignal
