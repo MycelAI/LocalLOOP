@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.1] - 2026-07-18
+
+### Removed
+- Deprecated GitHub Pages deployment workflow (`.github/workflows/pages.yml`).
+  The site has been hosted at `https://localloop.urbnia.com` via Docker +
+  Traefik for some time; the Pages workflow kept redeploying a stale mirror to
+  `local-loop-io.github.io`, a domain this project's own `DOMAIN-POLICY.md`
+  explicitly disallows. GitHub Pages is also disabled at the repo settings
+  level so the stale mirror stops being served.
+
 ## [0.3.0] - 2026-07-18
 
 ### Changed
