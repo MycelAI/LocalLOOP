@@ -62,6 +62,39 @@ test('key concepts scroll-links the active tab to scroll position on desktop', a
   await expect(page.getByRole('tab', { selected: true })).not.toHaveAttribute('id', initial || '');
 });
 
+test('key concepts traverses all 6 tabs before the next section becomes visible', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('/');
+  const wrapper = page.locator('.kc-scroll-wrapper');
+  const box = await wrapper.boundingBox();
+  const nextHeading = page.getByRole('heading', { name: 'How LOOP Works' });
+
+  await page.mouse.move(720, 450);
+  const seen = new Set();
+  // Extra viewport's worth of ticks beyond the wrapper's own height: the
+  // pinned section releases at the wrapper's bottom edge, and the next
+  // heading only scrolls into view after that release plus normal flow.
+  const steps = Math.ceil((box.height + 900) / 120);
+  let nextHeadingScrolledIntoView = false;
+  for (let i = 0; i < steps; i += 1) {
+    await page.mouse.wheel(0, 120);
+    await page.waitForTimeout(15);
+    const selected = await page.getByRole('tab', { selected: true }).getAttribute('id');
+    seen.add(selected);
+    const headingBox = await nextHeading.boundingBox();
+    if (headingBox && headingBox.y < 900 && headingBox.y + headingBox.height > 0) {
+      nextHeadingScrolledIntoView = true;
+      break;
+    }
+  }
+
+  // All 6 tabs must have been active at some point before "How LOOP Works"
+  // scrolls into view — the whole point of pinning the section is that the
+  // user scrolls through every concept before moving on.
+  expect(seen.size).toBe(6);
+  expect(nextHeadingScrolledIntoView).toBe(true);
+});
+
 test('key concepts content never overflows the panel at common desktop widths', async ({ page }) => {
   // Regression test: at ~1024px width the description column used to
   // compress enough that the CTA button rendered ~200px below the visible
@@ -79,6 +112,27 @@ test('key concepts content never overflows the panel at common desktop widths', 
   }
 });
 
+test('key concepts media never overlaps the content column at wide desktop widths', async ({ page }) => {
+  // Regression test: the media panel's width used to be derived from
+  // height:100% + aspect-ratio, which grid's column-track intrinsic-sizing
+  // pass can't resolve (height is indeterminate at that point), so the
+  // "auto" track was sized far too narrow while the element itself still
+  // rendered at its full aspect-ratio width — overflowing straight over the
+  // content column and hiding the left portion of every line of text. Check
+  // the actual worst-offender width (1440) plus neighbors across the wide
+  // (side-by-side) tier.
+  for (const width of [1300, 1366, 1440, 1680, 1920]) {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto('/');
+    const media = page.locator('.kc-panel-face.is-active .kc-panel-media');
+    const content = page.locator('.kc-panel-face.is-active .kc-panel-content');
+    const mediaBox = await media.boundingBox();
+    const contentBox = await content.boundingBox();
+    expect(mediaBox.x + mediaBox.width).toBeLessThanOrEqual(contentBox.x + 1);
+    expect(contentBox.width).toBeGreaterThanOrEqual(339);
+  }
+});
+
 test('reduced motion disables scroll-linked pinning for key concepts', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/');
@@ -87,6 +141,33 @@ test('reduced motion disables scroll-linked pinning for key concepts', async ({ 
   await page.mouse.wheel(0, 2000);
   await page.waitForTimeout(100);
   await expect(page.getByRole('tab', { selected: true })).toHaveAttribute('id', initial || '');
+});
+
+test('key concepts mobile tab strip starts at the first tab and stays legible', async ({ page }) => {
+  // Regression test: the base .kc-tabs rule sets justify-content:center for
+  // the vertical desktop list, which never overflows. Once the mobile tier
+  // switched tabs to natural width (so overflow-x:auto has something to
+  // scroll), that same centering pushed the overflowing row so its start
+  // bled into negative offsets a scrollLeft:0 container can never reach —
+  // the first (active) tab rendered partly off-screen with no way back to
+  // it. Separately, tab labels must not overlap each other (an earlier,
+  // now-fixed variant of this bug forced all 6 tabs to equally shrink,
+  // which left no room for "MaterialDNA"-length labels and let the text
+  // spill into neighboring tabs instead of wrapping or scrolling).
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/');
+  const tabsContainer = page.locator('.kc-tabs');
+  const firstTab = page.locator('.kc-tab').first();
+  const containerBox = await tabsContainer.boundingBox();
+  const firstTabBox = await firstTab.boundingBox();
+  expect(firstTabBox.x).toBeGreaterThanOrEqual(containerBox.x - 1);
+
+  const tabs = page.locator('.kc-tab');
+  const count = await tabs.count();
+  const boxes = await Promise.all(Array.from({ length: count }, (_, i) => tabs.nth(i).boundingBox()));
+  for (let i = 1; i < boxes.length; i += 1) {
+    expect(boxes[i].x).toBeGreaterThanOrEqual(boxes[i - 1].x + boxes[i - 1].width - 1);
+  }
 });
 
 test('mobile escape closes the menu and returns focus to its trigger', async ({ page }) => {

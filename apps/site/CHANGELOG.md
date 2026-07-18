@@ -7,6 +7,41 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.2] - 2026-07-18
+
+### Fixed
+- Key Concepts media panel could overflow horizontally past its grid
+  column and paint over the content column at wide desktop widths
+  (confirmed at 1440px, where the description text was cut off behind
+  the illustration). Root cause: the media box's width was derived from
+  `height: 100%` + `aspect-ratio`, which grid's column-track
+  intrinsic-sizing pass can't resolve (the row height is indeterminate
+  at that point), so the "auto" track was sized far too narrow while the
+  element itself rendered at its full aspect-ratio width. Fixed by
+  giving the media panel an explicit, viewport-driven width (matching
+  the grid track exactly) and deriving height from that instead —
+  removing the circularity rather than just shrinking its symptom.
+- The narrow-desktop stacked tier (901-1299px) could still overflow its
+  panel at shorter viewport heights (confirmed at 1200x768 and
+  1299x768): fixed by letting the media panel shrink first via
+  `flex-shrink` instead of the content column absorbing the deficit as
+  an internal scrollbar.
+- Mobile (<=900px) tab strip: the base vertical-list rule's
+  `justify-content: center` pushed the horizontally-overflowing tab row
+  so its start bled into negative offsets a `scrollLeft: 0` container
+  could never reach, leaving the first ("LOOP") tab partly off-screen
+  with no way to scroll back to it. Separately, forcing all 6 tabs to
+  equally shrink (`flex: 1`) left no room for longer labels like
+  "MaterialDNA", so their text spilled into neighboring tabs instead of
+  scrolling. Fixed by sizing tabs to their natural width and left-aligning
+  the (now genuinely scrollable) strip.
+- Trimmed remaining sub-10px vertical overflow in the content column
+  across the wide-tier width range.
+- Added e2e regression tests for the horizontal media/content overlap,
+  the mobile tab strip's start position and label legibility, and the
+  requirement that scrolling must surface all 6 concepts before the
+  next homepage section comes into view.
+
 ## [0.4.1] - 2026-07-18
 
 ### Fixed

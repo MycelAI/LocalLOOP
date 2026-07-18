@@ -2182,14 +2182,17 @@ a.card h4 {
 
 .kc-section {
   padding: 48px var(--gutter) 64px;
-  max-width: var(--page-max);
-  margin: 0 auto;
+  /* No max-width here: the showcase sets its own, deliberately wider,
+     max-width below so it can use more of the available window instead of
+     being capped at the same measure as body text. The header keeps a
+     readable line length via its own max-width instead. */
 }
 
 /* --- Header --- */
 .kc-header {
+  max-width: 640px;
+  margin: 0 auto 40px;
   text-align: center;
-  margin-bottom: 40px;
 }
 
 .kc-eyebrow {
@@ -2238,12 +2241,12 @@ a.card h4 {
    Collapses to normal flow below (tablet/mobile and reduced-motion rules). */
 .kc-scroll-wrapper {
   position: relative;
-  /* Less than a full viewport height per step: 6 x 100dvh (5400px on a
-     900px-tall screen) took an uncomfortable number of scroll gestures to
-     get through and felt unresponsive/stuck. 65dvh per step still gives
-     each concept a deliberate, readable dwell time without demanding that
-     much cumulative scrolling. */
-  height: calc(var(--kc-steps, 6) * 65dvh);
+  /* 100dvh/step (5400px on a 900px-tall screen) felt like too much
+     cumulative scrolling; 65dvh/step then overcorrected and blew through
+     all 6 concepts almost immediately. 85dvh/step is the middle ground:
+     enough dwell time per concept to actually register as a deliberate
+     step, without demanding an uncomfortable number of scroll gestures. */
+  height: calc(var(--kc-steps, 6) * 85dvh);
 }
 
 .kc-sticky {
@@ -2256,12 +2259,23 @@ a.card h4 {
 
 .kc-showcase {
   width: 100%;
-  max-width: var(--page-max);
+  /* Deliberately wider than the site's normal content measure (--page-max):
+     this is an immersive scroll-pinned section, not body text, and capping
+     it the same way left ~330px of unused window on each side at 1440px
+     wide. */
+  max-width: min(1680px, 96vw);
   margin: 0 auto;
   padding: 0 var(--gutter);
-  height: min(640px, 82dvh);
+  /* At >=1300px the media/content panel is side-by-side and the media
+     column's width is derived from this height via aspect-ratio, so this
+     value is chosen to keep that math fitting comfortably down to a
+     1300px-wide viewport (see .kc-panel-media below). Below 1300px the
+     panel switches to stacked media-over-content instead (a real 16:9
+     image doesn't have room to sit beside a readable text column much
+     narrower than that), with its own height further down. */
+  height: clamp(380px, 30vw, 480px);
   display: grid;
-  grid-template-columns: clamp(160px, 18vw, 220px) 1fr;
+  grid-template-columns: clamp(180px, 16vw, 220px) 1fr;
   gap: clamp(16px, 2vw, 28px);
 }
 
@@ -2343,11 +2357,14 @@ a.card h4 {
   position: absolute;
   inset: 0;
   display: grid;
-  /* Content never gets narrower than 300px regardless of how the 3:2 split
-     would otherwise resolve — at ~1000-1300px viewport widths, a bare `2fr`
-     could compress the description column enough that its text overflowed
-     the panel's fixed height instead of fitting or scrolling. */
-  grid-template-columns: minmax(0, 3fr) minmax(300px, 2fr);
+  /* The media column is sized to its own aspect-ratio-derived width (see
+     .kc-panel-media), not an arbitrary fraction of the panel — a fixed
+     fr-split doesn't know or care what the image's real proportions are,
+     which is exactly what let the previous 3fr/2fr version crop the source
+     16:9 images into a near-square box. Content gets whatever's left,
+     within a comfortable, never-too-narrow range. */
+  grid-template-columns: clamp(380px, calc(74vw - 578px), 845px) minmax(340px, 480px);
+  justify-content: center;
   opacity: 0;
   visibility: hidden;
   transition: opacity 450ms ease, visibility 0s linear 450ms;
@@ -2364,6 +2381,23 @@ a.card h4 {
 .kc-panel-media {
   position: relative;
   overflow: hidden;
+  align-self: center;
+  /* Width is an explicit viewport-driven value, NOT height:100% + aspect-ratio
+     (that combination made the grid track's own intrinsic-sizing pass unable
+     to resolve a preferred width — height:100% is indeterminate until the
+     row height is known, so the "auto" column track fell back to whatever
+     the content column's minmax(340,480) didn't claim, while the element
+     itself still rendered at its full aspect-ratio-derived width from the
+     *actual* row height, overflowing straight past its own track into the
+     content column. Making width the definite, explicit input and deriving
+     height from *that* via aspect-ratio removes the circularity entirely —
+     the grid-template-columns track below uses this exact same formula, so
+     the element can never exceed the column that was sized for it). Values
+     solved so a minmax(340px, 480px) content column always keeps its full
+     range at every width from the 1300px tier boundary up to the 1680px
+     showcase cap. */
+  width: clamp(380px, calc(74vw - 578px), 845px);
+  aspect-ratio: 16 / 9;
 }
 
 .kc-panel-img {
@@ -2376,7 +2410,7 @@ a.card h4 {
 /* Right: content */
 .kc-panel-content {
   background: rgba(255, 255, 255, 0.96);
-  padding: clamp(28px, 4vw, 48px) clamp(24px, 3.5vw, 44px);
+  padding: clamp(14px, 2vw, 28px) clamp(24px, 3.5vw, 44px);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -2395,7 +2429,7 @@ a.card h4 {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 20px;
+  margin-bottom: 6px;
 }
 
 .kc-panel-num {
@@ -2423,7 +2457,7 @@ a.card h4 {
   font-size: clamp(1.75rem, 2.5vw, 2.25rem);
   font-weight: 700;
   color: var(--ink);
-  margin: 0 0 6px;
+  margin: 0 0 4px;
   line-height: 1.1;
   letter-spacing: -0.02em;
 }
@@ -2432,15 +2466,15 @@ a.card h4 {
   font-size: 0.85rem;
   font-weight: 600;
   color: var(--accent-2);
-  margin: 0 0 20px;
+  margin: 0 0 8px;
   letter-spacing: 0.01em;
 }
 
 .kc-panel-desc {
   font-size: 0.95rem;
   color: var(--ink-soft);
-  line-height: 1.8;
-  margin: 0 0 32px;
+  line-height: 1.45;
+  margin: 0 0 14px;
   max-width: 42ch;
 }
 
@@ -2451,7 +2485,7 @@ a.card h4 {
   background: rgba(13, 148, 136, 0.1);
   border: 1px solid rgba(13, 148, 136, 0.3);
   color: var(--accent-2);
-  padding: 12px 22px;
+  padding: 10px 20px;
   border-radius: 12px;
   font-family: 'Space Grotesk', sans-serif;
   font-weight: 600;
@@ -2586,6 +2620,48 @@ a.card h4 {
   }
 }
 
+/* --- Key Concepts Showcase — Narrow desktop (901-1299px) ---
+   A true 16:9 image doesn't have room to sit beside a readable text column
+   once the viewport is much narrower than ~1300px — side-by-side at this
+   width is exactly what previously forced the media column into a
+   near-square box and cropped the source images. Stack media above content
+   instead: media keeps its full, uncropped 16:9 shape at the column's full
+   width, and content gets that same full width for text, which needs far
+   fewer wrapped lines than the squeezed side-by-side column did. The
+   sticky/scroll-linked pin stays active in this tier (only the panel's
+   internal arrangement changes); it only fully collapses below 900px. */
+@media (max-width: 1299px) and (min-width: 901px) {
+  .kc-showcase {
+    height: min(800px, 92dvh);
+  }
+
+  .kc-panel-face {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  /* Natural (aspect-ratio-derived) height is the max, not a fixed size: on
+     short viewports (e.g. 1200x768) the natural 16:9 height plus the
+     content's own min-content height don't both fit in the showcase's
+     height budget. flex-shrink lets the media give up space first — a
+     slightly tighter crop reads far better than the content column
+     growing an internal scrollbar. */
+  .kc-panel-media {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    max-height: 45%;
+    flex-shrink: 1;
+    flex-grow: 0;
+  }
+
+  .kc-panel-content {
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+}
+
 /* --- Key Concepts Showcase — Tablet ---
    Below this width the scroll-linked pin collapses to normal flow: no tall
    spacer, no sticky, tabs become a horizontal scroll strip above a
@@ -2609,6 +2685,13 @@ a.card h4 {
 
   .kc-tabs {
     flex-direction: row;
+    /* The base rule's justify-content:center (meant for the vertical
+       desktop list, which never overflows) pushes overflowing row content
+       so its start bleeds into negative offsets a scrollLeft:0 container
+       can never reach — the first tab renders partly off-screen with no
+       way to scroll back to it. flex-start keeps overflow entirely on the
+       end side, where overflow-x:auto can actually reach it. */
+    justify-content: flex-start;
     overflow-x: auto;
     scrollbar-width: none;
     height: auto;
@@ -2620,8 +2703,16 @@ a.card h4 {
   }
 
   .kc-tab {
-    flex: 1;
-    min-width: 0;
+    /* flex:1 forced all 6 tabs to equally shrink to fit the viewport
+       (basis 0%, so nothing could ever overflow the flex line, and
+       overflow-x:auto on .kc-tabs never got a chance to activate) — at
+       narrow widths each tab has far less room than its own text needs,
+       and with no overflow:hidden on the button, the text spilled into
+       neighboring tabs instead of wrapping. Sizing to natural content
+       width and letting the strip actually scroll is what ".kc-tabs"'s
+       own overflow-x:auto was there for. */
+    flex: 0 0 auto;
+    width: auto;
     justify-content: center;
     white-space: nowrap;
   }
@@ -2646,6 +2737,7 @@ a.card h4 {
   }
 
   .kc-panel-media {
+    width: 100%;
     aspect-ratio: 16 / 9;
   }
 
