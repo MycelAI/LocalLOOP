@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.4] - 2026-07-19
+
+### Fixed
+- Resynced the docs-hub mirror of the LOOP protocol `openapi.json` with the
+  canonical loop-protocol contract (v0.2.0, including the Core-DP tagged
+  components and node-signature security schemes). Future drift is gated by
+  localloop-backend's three-way conformance check (backend ↔ loop-protocol ↔
+  this mirror).
+
 ## [0.4.3] - 2026-07-18
 
 ### Changed
