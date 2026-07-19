@@ -170,6 +170,8 @@ test('public demo remains read-only and unsafe claims do not return', () => {
   assert.ok(!demoPage.includes('backed by EUR, 6-month expiry'));
   assert.ok(!demoPage.includes('a real node would publish'));
   assert.ok(!demoScript.includes("method: 'POST'"));
+  assert.ok(demoScript.includes('const REFRESH_INTERVAL_MS = 5 * 60 * 1000'));
+  assert.ok(demoScript.includes('API request limit reached'));
   assert.ok(!platformCopy.includes('always cheaper'));
   assert.ok(!platformCopy.includes('fraud prevention'));
   assert.ok(!platformCopy.includes('dpp readiness'));

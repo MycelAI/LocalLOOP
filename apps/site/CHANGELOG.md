@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.5] - 2026-07-19
+
+### Fixed
+- DEMO City no longer exhausts the public API allowance through 30-second
+  refreshes. Refreshes now run every five minutes, and a `429` response is
+  labelled as an API request-limit pause rather than a backend outage.
+- Browser tests now exercise the canonical API origin and cover the
+  rate-limited DEMO City state.
+
 ## [0.4.4] - 2026-07-19
 
 ### Fixed
@@ -345,7 +354,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-[Unreleased]: https://github.com/local-loop-io/localloop-site/compare/v0.2.8...HEAD
+[Unreleased]: https://github.com/local-loop-io/localloop-site/compare/v0.4.5...HEAD
+[0.4.5]: https://github.com/local-loop-io/localloop-site/compare/v0.4.4...v0.4.5
 [0.2.8]: https://github.com/local-loop-io/localloop-site/compare/v0.2.7...v0.2.8
 [0.2.7]: https://github.com/local-loop-io/localloop-site/compare/v0.2.6...v0.2.7
 [0.2.6]: https://github.com/local-loop-io/localloop-site/compare/v0.2.5...v0.2.6
