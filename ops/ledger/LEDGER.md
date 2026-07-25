@@ -171,3 +171,56 @@ _None yet._
 | **Status** | DONE |
 | **Note** |  |
 
+
+## Cycle 008 — DONE
+| Item | README health redis/no-store docs |
+| Repos | localloop-backend |
+| SHA | 91685dcf7f054e562760f672a0dda394fdc6e20e |
+| Tag | agent-cycle-008 |
+| Status | DONE |
+
+## Cycle 009 — DONE
+| Item | CORS Idempotency-Key |
+| Repos | localloop-backend |
+| SHA | f74f7156fb2074bee246d12f01e603588c8fa742 |
+| Tag | agent-cycle-009 |
+| Status | DONE |
+
+## Cycle 010 — DONE
+| Item | health package version |
+| Repos | localloop-backend |
+| SHA | c8736ebcf44c395184cd3554b2d7f0e8cfa33386 |
+| Tag | agent-cycle-010 |
+| Status | DONE |
+
+## Cycle 011 — DONE
+| Item | privacy+metrics no-store |
+| Repos | localloop-backend |
+| SHA | 6cd3b3750ba57425d1089d000ffc6296f2858523 |
+| Tag | agent-cycle-011 |
+| Status | DONE |
+
+## Cycle 012 — DONE
+| Item | auth status no-store |
+| Repos | localloop-backend |
+| SHA | fc6daced0de22de505acc76cededc82846ce69af |
+| Tag | agent-cycle-012 |
+| Status | DONE |
+
+## Cycle 014 — BLOCKED
+| Item | cities Cache-Control via addHook |
+| Status | BLOCKED |
+| Root cause | Patch did not insert Cache-Control string; unit test failed; no ship |
+
+## Cycle 017 — BLOCKED
+| Item | node/info setPublicShortCache |
+| Status | BLOCKED |
+| Root cause | Regex injection failed; setPublicShortCache not present; retried as 022 |
+
+## Cycle 021 — DONE
+| Item | cities setNoStore (retry 014) |
+| Repos | localloop-backend |
+| SHA | bf33ce7e17d5841f3d533b0572f9ca7795b35915 |
+| Tag | agent-cycle-021 |
+| Status | DONE |
+
