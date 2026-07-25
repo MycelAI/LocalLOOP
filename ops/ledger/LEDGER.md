@@ -24,3 +24,19 @@ _None yet._
 | **Status** | DONE |
 | **Next candidate** | Site nginx security headers |
 
+
+## Cycle 002 — DONE
+
+| Field | Value |
+|-------|-------|
+| **Item** | Baseline nginx security headers on static site |
+| **Hypothesis** | Live site lacked nosniff/frame-options/referrer/permissions headers |
+| **Repos touched** | `localloop-site` |
+| **Diff summary** | `nginx.conf` security headers; smoke test; CHANGELOG (PR also landed pending openapi-mirror commits from branch base) |
+| **Verification** | `evidence/cycles/002/tests.txt` 21 pass; deploy shows live headers |
+| **Deploy order** | site only |
+| **Deploy result** | success; headers live; API health ok |
+| **Commit SHA** | localloop-site `4d1d92ae964a130908b1a9003777be6913e906eb` (PR #73) |
+| **Tag** | `agent-cycle-002` |
+| **Status** | DONE |
+
