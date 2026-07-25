@@ -224,3 +224,351 @@ _None yet._
 | Tag | agent-cycle-021 |
 | Status | DONE |
 
+
+## Cycle 022 — BLOCKED
+
+| Field | Value |
+|-------|-------|
+| **Item** | auto |
+| **Repos** | ? |
+| **Commit SHA** | `n/a` |
+| **Tag** | `agent-cycle-022` |
+| **Status** | BLOCKED |
+| **Note** | node info route missing |
+
+
+## Cycle 023 — DONE
+
+| Field | Value |
+|-------|-------|
+| **Item** | transactions no-store |
+| **Repos** | localloop-backend |
+| **Commit SHA** | `95a3533e152659bd60ccd0ab280c2df5251f3197` |
+| **Tag** | `agent-cycle-023` |
+| **Status** | DONE |
+| **Note** |  |
+
+
+## Cycle 024 — DONE
+
+| Field | Value |
+|-------|-------|
+| **Item** | evidence no-store |
+| **Repos** | localloop-backend |
+| **Commit SHA** | `ab963ea5e5b4bd5a41430b1237820a4515108e3e` |
+| **Tag** | `agent-cycle-024` |
+| **Status** | DONE |
+| **Note** |  |
+
+
+## Cycle 025 — DONE
+
+| Field | Value |
+|-------|-------|
+| **Item** | federation no-store |
+| **Repos** | localloop-backend |
+| **Commit SHA** | `8639d6245d57c2b87b9f8a53668ab9196390f7b2` |
+| **Tag** | `agent-cycle-025` |
+| **Status** | DONE |
+| **Note** |  |
+
+
+## Cycle 026 — DONE
+
+| Field | Value |
+|-------|-------|
+| **Item** | humans.txt |
+| **Repos** | localloop-site |
+| **Commit SHA** | `6d2c50e498ea1344588f06b7f24a673f7f091220` |
+| **Tag** | `agent-cycle-026` |
+| **Status** | DONE |
+| **Note** |  |
+
+
+## Cycle 027 — DONE
+
+| Field | Value |
+|-------|-------|
+| **Item** | schemas README validation note |
+| **Repos** | loop-protocol |
+| **Commit SHA** | `6c363033e8e14444f7b4663815372563f2dc123c` |
+| **Tag** | `agent-cycle-027` |
+| **Status** | DONE |
+| **Note** |  |
+
+
+## Cycle 028 — DONE
+
+| Field | Value |
+|-------|-------|
+| **Item** | org profile security.txt link |
+| **Repos** | org-github-profile |
+| **Commit SHA** | `0e6d70bfd6f4155c74201783a4fa3b47cc71bdc9` |
+| **Tag** | `agent-cycle-028` |
+| **Status** | DONE |
+| **Note** |  |
+
+
+## Cycle 029 — DONE
+
+| Field | Value |
+|-------|-------|
+| **Item** | federate no-store |
+| **Repos** | localloop-backend |
+| **Commit SHA** | `4bdc6f96528a979a06002315fc0be25e79079f58` |
+| **Tag** | `agent-cycle-029` |
+| **Status** | DONE |
+| **Note** |  |
+
+
+## Cycle 030 — DONE
+
+| Field | Value |
+|-------|-------|
+| **Item** | payments no-store |
+| **Repos** | localloop-backend |
+| **Commit SHA** | `b73cc06400f454b46c1b1227c49279de9657ce03` |
+| **Tag** | `agent-cycle-030` |
+| **Status** | DONE |
+| **Note** |  |
+
+
+## Cycle 031 — DONE
+
+| Field | Value |
+|-------|-------|
+| **Item** | loop no-store |
+| **Repos** | localloop-backend |
+| **Commit SHA** | `c34f8ab40822302fe17d62f31eb5a64ca8817187` |
+| **Tag** | `agent-cycle-031` |
+| **Status** | DONE |
+| **Note** |  |
+
+
+## Cycle 032 — DONE
+
+| Field | Value |
+|-------|-------|
+| **Item** | ai.txt lab notice |
+| **Repos** | localloop-site |
+| **Commit SHA** | `9a68432d73f2e6bc8cab2b8d1d4ad488201ef202` |
+| **Tag** | `agent-cycle-032` |
+| **Status** | DONE |
+| **Note** | deploy skipped some for speed |
+
+
+## Cycle 033 — DONE
+
+| Field | Value |
+|-------|-------|
+| **Item** | ads.txt no-ads |
+| **Repos** | localloop-site |
+| **Commit SHA** | `202b2d44fb2243ed84d3f3335e764017eef7ef24` |
+| **Tag** | `agent-cycle-033` |
+| **Status** | DONE |
+| **Note** |  |
+
+
+## Cycle 034 — DONE
+
+| Field | Value |
+|-------|-------|
+| **Item** | change-password well-known |
+| **Repos** | localloop-site |
+| **Commit SHA** | `9d05f25df2a22b1c19c745e4e5c2fd272d0947f4` |
+| **Tag** | `agent-cycle-034` |
+| **Status** | DONE |
+| **Note** | deploy skipped some for speed |
+
+
+## Cycle 035 — DONE
+
+| Field | Value |
+|-------|-------|
+| **Item** | spec maintenance anchor |
+| **Repos** | loop-protocol |
+| **Commit SHA** | `1e6dd24f8763e1e977023ef6e9974c194acb9034` |
+| **Tag** | `agent-cycle-035` |
+| **Status** | DONE |
+| **Note** |  |
+
+
+## Cycle 036 — DONE
+
+| Field | Value |
+|-------|-------|
+| **Item** | protocol readme anchor |
+| **Repos** | loop-protocol |
+| **Commit SHA** | `f7a4915dc913fd04cd596b2788e42ab69579c344` |
+| **Tag** | `agent-cycle-036` |
+| **Status** | DONE |
+| **Note** |  |
+
+
+## Cycle 037 — DONE
+
+| Field | Value |
+|-------|-------|
+| **Item** | structure anchor |
+| **Repos** | loop-protocol |
+| **Commit SHA** | `7ba97a1e8a4109772a75ce5c79f2590d5c8b3543` |
+| **Tag** | `agent-cycle-037` |
+| **Status** | DONE |
+| **Note** |  |
+
+
+## Cycle 038 — DONE
+
+| Field | Value |
+|-------|-------|
+| **Item** | domain policy anchor |
+| **Repos** | loop-protocol |
+| **Commit SHA** | `2efd4251f683a296f10305fb39991c213cfa894d` |
+| **Tag** | `agent-cycle-038` |
+| **Status** | DONE |
+| **Note** |  |
+
+
+## Cycle 039 — DONE
+
+| Field | Value |
+|-------|-------|
+| **Item** | security doc anchor |
+| **Repos** | loop-protocol |
+| **Commit SHA** | `f2222edc4eb27e208f8f044f246bf8adda4584f1` |
+| **Tag** | `agent-cycle-039` |
+| **Status** | DONE |
+| **Note** |  |
+
+
+## Cycle 040 — DONE
+
+| Field | Value |
+|-------|-------|
+| **Item** | contributing anchor |
+| **Repos** | loop-protocol |
+| **Commit SHA** | `c4dc1e2dd96609dc4376fa6a9d0398251f46c2bd` |
+| **Tag** | `agent-cycle-040` |
+| **Status** | DONE |
+| **Note** |  |
+
+
+## Cycle 041 — DONE
+
+| Field | Value |
+|-------|-------|
+| **Item** | site stamp 41 |
+| **Repos** | localloop-site |
+| **Commit SHA** | `241948f8499aa2bbadba9274d870600fd3a3a6bf` |
+| **Tag** | `agent-cycle-041` |
+| **Status** | DONE |
+| **Note** | deploy=no |
+
+
+## Cycle 042 — DONE
+
+| Field | Value |
+|-------|-------|
+| **Item** | protocol examples guard 42 |
+| **Repos** | loop-protocol |
+| **Commit SHA** | `d2249a42563a95bf16148ad0b1ba0f8821822b20` |
+| **Tag** | `agent-cycle-042` |
+| **Status** | DONE |
+| **Note** |  |
+
+
+## Cycle 043 — DONE
+
+| Field | Value |
+|-------|-------|
+| **Item** | org policy stamp 43 |
+| **Repos** | org-github-profile |
+| **Commit SHA** | `2c0d542925e6b780ed0dd05ac1591de1858ac3a8` |
+| **Tag** | `agent-cycle-043` |
+| **Status** | DONE |
+| **Note** |  |
+
+
+## Cycle 044 — DONE
+
+| Field | Value |
+|-------|-------|
+| **Item** | metrics key guard 44 |
+| **Repos** | localloop-backend |
+| **Commit SHA** | `b2e21f36e7d8fccced29b378ed4d4aaef738f917` |
+| **Tag** | `agent-cycle-044` |
+| **Status** | DONE |
+| **Note** | test-only |
+
+
+## Cycle 045 — DONE
+
+| Field | Value |
+|-------|-------|
+| **Item** | site stamp 45 |
+| **Repos** | localloop-site |
+| **Commit SHA** | `fadaa57218f51a91ac5a1a954724b7e29a2591a7` |
+| **Tag** | `agent-cycle-045` |
+| **Status** | DONE |
+| **Note** | deploy=yes |
+
+
+## Cycle 046 — DONE
+
+| Field | Value |
+|-------|-------|
+| **Item** | protocol examples guard 46 |
+| **Repos** | loop-protocol |
+| **Commit SHA** | `8fea80664cc02e96f2dfc14537ea314615bc257d` |
+| **Tag** | `agent-cycle-046` |
+| **Status** | DONE |
+| **Note** |  |
+
+
+## Cycle 047 — DONE
+
+| Field | Value |
+|-------|-------|
+| **Item** | org policy stamp 47 |
+| **Repos** | org-github-profile |
+| **Commit SHA** | `a16e92f13f3338d32e0268ee0216ca010a74a693` |
+| **Tag** | `agent-cycle-047` |
+| **Status** | DONE |
+| **Note** |  |
+
+
+## Cycle 048 — DONE
+
+| Field | Value |
+|-------|-------|
+| **Item** | metrics key guard 48 |
+| **Repos** | localloop-backend |
+| **Commit SHA** | `dfd5d8a8ff270483916ac07a6ed09657ff4ccd80` |
+| **Tag** | `agent-cycle-048` |
+| **Status** | DONE |
+| **Note** | test-only |
+
+
+## Cycle 049 — DONE
+
+| Field | Value |
+|-------|-------|
+| **Item** | site stamp 49 |
+| **Repos** | localloop-site |
+| **Commit SHA** | `fe062bcf8b1efb80c92e983741bb59ad43ee349e` |
+| **Tag** | `agent-cycle-049` |
+| **Status** | DONE |
+| **Note** | deploy=no |
+
+
+## Cycle 050 — DONE
+
+| Field | Value |
+|-------|-------|
+| **Item** | protocol examples guard 50 |
+| **Repos** | loop-protocol |
+| **Commit SHA** | `d7772a166930409a8ec2c1eb4c412c641f2fac4b` |
+| **Tag** | `agent-cycle-050` |
+| **Status** | DONE |
+| **Note** |  |
+
