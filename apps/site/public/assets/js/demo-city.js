@@ -4,6 +4,9 @@
   const featureToken = document.currentScript?.dataset.localLoopFeatureToken || null;
   const featureTokens = window.__LOCALLOOP_FEATURE_TOKENS = window.__LOCALLOOP_FEATURE_TOKENS || {};
   if (featureTokens[NAME] !== featureToken) return;
+  // A visit loads five read-only API resources (plus the material table).
+  // Keep the refresh cadence comfortably below the public API's shared limit.
+  const REFRESH_INTERVAL_MS = 5 * 60 * 1000;
   let activeCleanup = () => {};
 
   features[NAME] = {
@@ -32,7 +35,15 @@
       const tabBtns = [...root.querySelectorAll('[data-demo-tab]')];
       const on = (node, event, listener) => { node.addEventListener(event, listener); listeners.push(() => node.removeEventListener(event, listener)); };
       const esc = (value) => String(value ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
-      const request = (path) => fetch(`${apiBase}${path}`, { signal: controller.signal });
+      const request = async (path) => {
+        const response = await fetch(`${apiBase}${path}`, { signal: controller.signal });
+        if (response.status === 429) {
+          const error = new Error('rate limited');
+          error.name = 'RateLimitError';
+          throw error;
+        }
+        return response;
+      };
       const notice = (element, message) => { if (!disposed && element) element.innerHTML = `<div class="notice">${message}</div>`; };
       const fmtDate = (iso) => { try { return iso ? new Date(iso).toLocaleString(undefined, { dateStyle: 'short', timeStyle: 'short' }) : '—'; } catch { return esc(iso); } };
       const statusBadge = (status) => `<span class="demo-status demo-status-${['open', 'proposed', 'accepted', 'completed', 'scheduled', 'cancelled', 'rejected'].includes(status) ? status : 'unknown'}">${esc(status || 'unknown')}</span>`;
@@ -50,7 +61,13 @@
           heartbeatEl.innerHTML = `<span class="demo-status-dot demo-status-dot-live"></span>Node online &nbsp;·&nbsp; DB: ${esc(data.db)} &nbsp;·&nbsp; Uptime: ${Math.round(Number(data.uptime) / 3600)}h`;
           heartbeatEl.className = 'demo-heartbeat demo-heartbeat-live';
         } catch (error) {
-          if (!disposed && error.name !== 'AbortError' && heartbeatEl) { heartbeatEl.innerHTML = '<span class="demo-status-dot demo-status-dot-offline"></span> Backend unreachable'; heartbeatEl.className = 'demo-heartbeat demo-heartbeat-offline'; }
+          if (disposed || error.name === 'AbortError' || !heartbeatEl) return;
+          if (error.name === 'RateLimitError') {
+            heartbeatEl.innerHTML = '<span class="demo-status-dot demo-status-dot-offline"></span> Demo refresh paused — API request limit reached. Retrying in a few minutes.';
+          } else {
+            heartbeatEl.innerHTML = '<span class="demo-status-dot demo-status-dot-offline"></span> Backend unreachable';
+          }
+          heartbeatEl.className = 'demo-heartbeat demo-heartbeat-offline';
         }
       };
       const loadStats = async () => {
@@ -97,7 +114,7 @@
       tabBtns.forEach((button, index) => on(button, 'keydown', (event) => { const delta = ['ArrowRight', 'ArrowDown'].includes(event.key) ? 1 : ['ArrowLeft', 'ArrowUp'].includes(event.key) ? -1 : 0; if (delta) { event.preventDefault(); activateTab(tabBtns[(index + delta + tabBtns.length) % tabBtns.length].dataset.demoTab, true); } else if (event.key === 'Home') { event.preventDefault(); activateTab(tabBtns[0].dataset.demoTab, true); } else if (event.key === 'End') { event.preventDefault(); activateTab(tabBtns.at(-1).dataset.demoTab, true); } }));
       filterBtns.forEach((button) => on(button, 'click', () => { currentFilter = button.dataset.demoFilter; filterBtns.forEach((item) => { const selected = item === button; item.classList.toggle('active', selected); item.setAttribute('aria-pressed', String(selected)); }); loadMaterials(); }));
       loadHeartbeat(); loadStats(); loadMaterials(); loadOffers(); loadMatches(); loadTransfers(); connectStream(); if (tabBtns[0]) activateTab(tabBtns[0].dataset.demoTab);
-      refreshTimer = setInterval(() => { loadHeartbeat(); loadStats(); loadMaterials(); }, 30000);
+      refreshTimer = setInterval(() => { loadHeartbeat(); loadStats(); loadMaterials(); }, REFRESH_INTERVAL_MS);
       root.dataset.demoReady = 'true';
       activeCleanup = () => { disposed = true; root.removeAttribute('data-demo-ready'); controller.abort(); if (refreshTimer) clearInterval(refreshTimer); stream?.close(); listeners.splice(0).forEach((remove) => remove()); activeCleanup = () => {}; };
     },

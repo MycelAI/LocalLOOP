@@ -170,6 +170,8 @@ test('public demo remains read-only and unsafe claims do not return', () => {
   assert.ok(!demoPage.includes('backed by EUR, 6-month expiry'));
   assert.ok(!demoPage.includes('a real node would publish'));
   assert.ok(!demoScript.includes("method: 'POST'"));
+  assert.ok(demoScript.includes('const REFRESH_INTERVAL_MS = 5 * 60 * 1000'));
+  assert.ok(demoScript.includes('API request limit reached'));
   assert.ok(!platformCopy.includes('always cheaper'));
   assert.ok(!platformCopy.includes('fraud prevention'));
   assert.ok(!platformCopy.includes('dpp readiness'));
@@ -272,3 +274,16 @@ test('every canonical filesystem page owns title and correct canonical path meta
   assert.ok(rootLayout.includes('metadataBase'));
   assert.ok(!rootLayout.includes('createMetadata'));
 });
+
+test('nginx static server declares baseline security headers', () => {
+  const conf = read(['nginx.conf']);
+  assert.ok(conf.includes('X-Content-Type-Options'));
+  assert.ok(conf.includes('nosniff'));
+  assert.ok(conf.includes('X-Frame-Options'));
+  assert.ok(conf.includes('SAMEORIGIN'));
+  assert.ok(conf.includes('Referrer-Policy'));
+  assert.ok(conf.includes('strict-origin-when-cross-origin'));
+  assert.ok(conf.includes('Permissions-Policy'));
+  assert.ok(conf.includes('camera=()'));
+});
+
