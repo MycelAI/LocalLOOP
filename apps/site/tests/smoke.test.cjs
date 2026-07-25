@@ -347,3 +347,9 @@ test('agent stamp cycle 053 exists', () => {
   assert.ok(content.includes('lab-demo-only'));
 });
 
+test('agent stamp cycle 057 exists', () => {
+  const content = read(['public', 'agent-stamps', 'cycle-057.txt']);
+  assert.ok(content.includes('agent-cycle-057'));
+  assert.ok(content.includes('lab-demo-only'));
+});
+
