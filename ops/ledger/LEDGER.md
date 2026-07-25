@@ -68,3 +68,34 @@ _None yet._
 | **Tag** | `agent-cycle-004` |
 | **Status** | DONE |
 
+
+## Cycle 005 — DONE
+| Field | Value |
+|-------|-------|
+| **Item** | `Cache-Control: no-store` on GET /health |
+| **Repos** | localloop-backend |
+| **SHA** | a0f1ef64015104b92625cb1fc4e0c4a91ace4f5c |
+| **Tag** | agent-cycle-005 |
+| **Deploy** | live header confirmed |
+| **Status** | DONE |
+
+## Cycle 006 — DONE
+| Field | Value |
+|-------|-------|
+| **Item** | Metrics always emit known keys at 0 |
+| **Repos** | localloop-backend |
+| **SHA** | 7ee4fe1d4baca6c9fe601fc200c5c2c50ba65b92 |
+| **Tag** | agent-cycle-006 |
+| **Note** | Live still empty until cycle 007 schema fix |
+| **Status** | DONE |
+
+## Cycle 007 — DONE
+| Field | Value |
+|-------|-------|
+| **Item** | Metrics schema additionalProperties so Fastify does not strip counters |
+| **Repos** | localloop-backend |
+| **SHA** | 036a1bd1446f5470f4280954229c9954d804bfb8 |
+| **Tag** | agent-cycle-007 |
+| **Deploy** | live metrics has 12 keys |
+| **Status** | DONE |
+

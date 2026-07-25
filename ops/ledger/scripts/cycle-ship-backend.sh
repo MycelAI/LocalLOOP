@@ -14,7 +14,7 @@ git checkout main
 git pull --ff-only origin main
 SHA=$(git rev-parse HEAD)
 git tag -f -a "agent-cycle-${CYCLE}" -m "agent-cycle-${CYCLE}" "$SHA"
-git push -f origin "agent/cycle-${CYCLE}" 2>/dev/null || git push origin "agent/cycle-${CYCLE}"
+git push origin "refs/tags/agent-cycle-${CYCLE}" --force
 if [[ "$DEPLOY" == "yes" ]]; then
   sudo docker compose up -d --build --no-deps api
   for i in $(seq 1 20); do
