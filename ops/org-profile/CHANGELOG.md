@@ -10,6 +10,9 @@ Changelog tracking begins at 0.2.1; earlier tags predate this file.
 ## [Unreleased]
 
 ### Changed
+- Policy check stamp cycle 067.
+
+### Changed
 - Policy check stamp cycle 063.
 
 ### Changed
