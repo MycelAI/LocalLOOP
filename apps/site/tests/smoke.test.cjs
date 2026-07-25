@@ -294,3 +294,10 @@ test('security.txt is published under .well-known', () => {
   assert.ok(content.includes('Contact: mailto:dev@mycel-ai.de'));
   assert.ok(content.includes('localloop.urbnia.com'));
 });
+
+
+test('robots.txt allows crawl and points at sitemap', () => {
+  const content = read(['public', 'robots.txt']);
+  assert.ok(content.includes('Allow: /'));
+  assert.ok(content.includes('sitemap.xml'));
+});
