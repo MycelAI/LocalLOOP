@@ -99,3 +99,75 @@ _None yet._
 | **Deploy** | live metrics has 12 keys |
 | **Status** | DONE |
 
+
+## Cycle 013 — DONE
+
+| Field | Value |
+|-------|-------|
+| **Item** | Dockerfile COPY --chown for faster rebuilds |
+| **Repos** | localloop-backend |
+| **Commit SHA** | `b1467bca9b242ad63947155788d61d2e5cd8cc1a` |
+| **Tag** | `agent-cycle-013` |
+| **Status** | DONE |
+| **Note** |  |
+
+
+## Cycle 015 — DONE
+
+| Field | Value |
+|-------|-------|
+| **Item** | Interest Cache-Control no-store |
+| **Repos** | localloop-backend |
+| **Commit SHA** | `0b1f2543efa19f5f6090bfb73e8dec8e328ee217` |
+| **Tag** | `agent-cycle-015` |
+| **Status** | DONE |
+| **Note** |  |
+
+
+## Cycle 016 — DONE
+
+| Field | Value |
+|-------|-------|
+| **Item** | Shared httpCache helpers |
+| **Repos** | localloop-backend |
+| **Commit SHA** | `240346022ebd7103ea0222668ae47d6661edc318` |
+| **Tag** | `agent-cycle-016` |
+| **Status** | DONE |
+| **Note** | no runtime deploy |
+
+
+## Cycle 018 — DONE
+
+| Field | Value |
+|-------|-------|
+| **Item** | signals short public cache |
+| **Repos** | localloop-backend |
+| **Commit SHA** | `c7c13343593b717dd9018c8224dc7b6ceaa4a053` |
+| **Tag** | `agent-cycle-018` |
+| **Status** | DONE |
+| **Note** |  |
+
+
+## Cycle 019 — DONE
+
+| Field | Value |
+|-------|-------|
+| **Item** | Publish security.txt |
+| **Repos** | localloop-site |
+| **Commit SHA** | `5e49158676c585277b59bd58124c2478cbf1214c` |
+| **Tag** | `agent-cycle-019` |
+| **Status** | DONE |
+| **Note** |  |
+
+
+## Cycle 020 — DONE
+
+| Field | Value |
+|-------|-------|
+| **Item** | robots.txt |
+| **Repos** | localloop-site |
+| **Commit SHA** | `e7ce5356596bdd109f09de31fc4e1c20a1d35704` |
+| **Tag** | `agent-cycle-020` |
+| **Status** | DONE |
+| **Note** |  |
+
