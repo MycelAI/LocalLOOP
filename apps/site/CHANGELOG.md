@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+- Resynced docs-hub protocol mirror markdown after loop-protocol agent-cycle
+  documentation anchors (residual-protocol-mirror).
+
 ### Added
 - Agent cycle stamp 097 (agent cycle 097).
 
