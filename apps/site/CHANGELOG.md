@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Agent cycle stamp 041 (agent cycle 041).
+
+### Added
 - change-password well-known (agent cycle 034).
 
 ### Added

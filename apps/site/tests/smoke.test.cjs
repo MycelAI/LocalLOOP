@@ -323,3 +323,9 @@ test('change-password well-known points at security guide', () => {
   assert.ok(content.includes('/docs/security'));
 });
 
+test('agent stamp cycle 041 exists', () => {
+  const content = read(['public', 'agent-stamps', 'cycle-041.txt']);
+  assert.ok(content.includes('agent-cycle-041'));
+  assert.ok(content.includes('lab-demo-only'));
+});
+
