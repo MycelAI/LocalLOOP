@@ -313,3 +313,8 @@ test('ai.txt documents lab-demo posture', () => {
   assert.ok(content.includes('Lab demo')); assert.ok(content.includes('dev@mycel-ai.de'));
 });
 
+test('ads.txt declares no ads', () => {
+  const content = read(['public', 'ads.txt']);
+  assert.ok(content.includes('No ads'));
+});
+

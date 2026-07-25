@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- ads.txt no-ads (agent cycle 033).
+
+### Added
 - ai.txt lab notice (agent cycle 032).
 
 ### Added
