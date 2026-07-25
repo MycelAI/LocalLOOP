@@ -9,6 +9,9 @@ Changelog tracking begins at 0.2.1; earlier tags predate this file.
 
 ## [Unreleased]
 
+### Changed
+- Policy check stamp cycle 043.
+
 ### Added
 - Profile links to site security.txt (agent cycle 028).
 
