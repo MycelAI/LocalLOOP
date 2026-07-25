@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- `humans.txt` lab contact card (agent cycle 026).
+
+### Added
 - Root `robots.txt` with sitemap pointer (agent cycle 020).
 
 ### Added

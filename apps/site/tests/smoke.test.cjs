@@ -301,3 +301,10 @@ test('robots.txt allows crawl and points at sitemap', () => {
   assert.ok(content.includes('Allow: /'));
   assert.ok(content.includes('sitemap.xml'));
 });
+
+test('humans.txt exists with lab-demo posture', () => {
+  const content = read(['public', 'humans.txt']);
+  assert.ok(content.includes('Lab demo only'));
+  assert.ok(content.includes('localloop.urbnia.com'));
+});
+
