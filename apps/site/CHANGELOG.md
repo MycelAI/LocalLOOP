@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- Published `/.well-known/security.txt` for vulnerability contact (agent cycle 019).
+
 ### Security
 - Static nginx now emits baseline security headers (`X-Content-Type-Options`,
   `X-Frame-Options`, `Referrer-Policy`, `Permissions-Policy`) on HTML and

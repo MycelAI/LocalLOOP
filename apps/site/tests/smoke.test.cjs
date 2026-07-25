@@ -287,3 +287,10 @@ test('nginx static server declares baseline security headers', () => {
   assert.ok(conf.includes('camera=()'));
 });
 
+
+
+test('security.txt is published under .well-known', () => {
+  const content = read(['public', '.well-known', 'security.txt']);
+  assert.ok(content.includes('Contact: mailto:dev@mycel-ai.de'));
+  assert.ok(content.includes('localloop.urbnia.com'));
+});
