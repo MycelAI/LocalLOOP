@@ -96,3 +96,7 @@ For exact protocol versions and release status, see the [canonical specification
   note      = {Lab demo only. No public pilots or deployments.}
 }
 ```
+
+## Security contact
+
+Vulnerability reports: see `https://localloop.urbnia.com/.well-known/security.txt` (agent-cycle-028).

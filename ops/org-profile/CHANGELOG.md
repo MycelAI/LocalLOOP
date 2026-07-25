@@ -9,6 +9,9 @@ Changelog tracking begins at 0.2.1; earlier tags predate this file.
 
 ## [Unreleased]
 
+### Added
+- Profile links to site security.txt (agent cycle 028).
+
 ## [0.2.1] - 2026-07-18
 
 ### Changed
