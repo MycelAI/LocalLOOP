@@ -1,0 +1,14 @@
+bun test v1.3.14 (0d9b296a)
+
+tests/interest.routes.test.ts:
+(pass) interest routes > lists public interests [132.23ms]
+(pass) interest routes > rejects invalid interest submission [30.04ms]
+(pass) interest routes > accepts valid interest submission [19.47ms]
+
+tests/interest.privacy.test.ts:
+(pass) interest list email privacy > redacts email on search when shareEmail was revoked after MV refresh [122.34ms]
+
+ 4 pass
+ 0 fail
+ 9 expect() calls
+Ran 4 tests across 2 files. [643.00ms]

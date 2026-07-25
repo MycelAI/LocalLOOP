@@ -40,3 +40,31 @@ _None yet._
 | **Tag** | `agent-cycle-002` |
 | **Status** | DONE |
 
+
+## Cycle 003 — DONE
+
+| Field | Value |
+|-------|-------|
+| **Item** | Interest search redacts email from live `share_email` (not stale MV) |
+| **Hypothesis** | Search MV email lags after share_email revoke → privacy leak |
+| **Repos touched** | `localloop-backend` |
+| **Diff summary** | `listInterests` search JOIN interests + CASE; privacy DB test; CHANGELOG |
+| **Verification** | 176 tests; privacy test pass; live search Curl user email=null |
+| **Deploy** | api rebuilt; health ok |
+| **Commit SHA** | `6c01cf5568894c66eab8b2053da4795948c6952f` PR#47 |
+| **Tag** | `agent-cycle-003` |
+| **Status** | DONE |
+
+## Cycle 004 — DONE
+
+| Field | Value |
+|-------|-------|
+| **Item** | Privacy test fixture typechecks under tsc |
+| **Hypothesis** | Cycle 003 test failed tsc (missing consentPublic / null types) |
+| **Repos touched** | `localloop-backend` |
+| **Diff summary** | `tests/interest.privacy.test.ts` consentPublic; CHANGELOG |
+| **Verification** | tsc clean; privacy test pass; live health ok (no runtime deploy) |
+| **Commit SHA** | `1dd5be1d9cad610de6c51396e3d7bc2dc8a005d4` PR#48 |
+| **Tag** | `agent-cycle-004` |
+| **Status** | DONE |
+

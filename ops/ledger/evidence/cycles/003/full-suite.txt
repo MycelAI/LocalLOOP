@@ -1,0 +1,17 @@
+tests/interest.privacy.test.ts(36,7): error TS2322: Type 'null' is not assignable to type 'string | undefined'.
+tests/interest.privacy.test.ts(39,7): error TS2322: Type 'null' is not assignable to type 'string | undefined'.
+tests/transactions.routes.test.ts:
+(pass) transaction identity mapping > derives id and status per @type [0.04ms]
+(pass) POST /api/v1/transaction > creates a MaterialTransaction and answers with TransactionStatus JSON-LD [104.67ms]
+(pass) POST /api/v1/transaction > records a Settlement as a completed transaction [107.30ms]
+(pass) POST /api/v1/transaction > rejects duplicates with the spec CONFLICT envelope [109.39ms]
+(pass) POST /api/v1/transaction > rejects payloads that violate the canonical transaction schema [96.16ms]
+(pass) POST /api/v1/transaction Idempotency-Key handling > answers a key reused with a different body with the Core-DP conflict body (not a 500) [127.54ms]
+(pass) POST /api/v1/transaction Idempotency-Key handling > replays the cached TransactionStatus for a repeated key with the same body [117.13ms]
+(pass) GET /api/v1/transaction/:id > resolves the settlement_url of a stored transaction [91.51ms]
+(pass) GET /api/v1/transaction/:id > returns the spec NOT_FOUND envelope for unknown transactions [99.03ms]
+
+ 176 pass
+ 0 fail
+ 428 expect() calls
+Ran 176 tests across 32 files. [39.45s]
