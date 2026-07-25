@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- change-password well-known (agent cycle 034).
+
+### Added
 - ads.txt no-ads (agent cycle 033).
 
 ### Added

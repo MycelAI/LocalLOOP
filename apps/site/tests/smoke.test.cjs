@@ -318,3 +318,8 @@ test('ads.txt declares no ads', () => {
   assert.ok(content.includes('No ads'));
 });
 
+test('change-password well-known points at security guide', () => {
+  const content = read(['public', '.well-known', 'change-password']);
+  assert.ok(content.includes('/docs/security'));
+});
+
