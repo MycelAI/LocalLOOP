@@ -177,3 +177,13 @@ Smoke site: `curl -fsSIL https://localloop.urbnia.com/`
 | localloop-agent | main | (see git) | bookkeeping only |
 
 Live probe at bootstrap: `GET https://loop-api.urbnia.com/health` → `{"status":"ok","db":"ok"}`; site `/` → 200.
+
+## Final version set after 100 cycles + residual
+
+| Repo | Branch | SHA |
+|------|--------|-----|
+| localloop-backend | main | `69afb143102fbd34889fdf7a5ad22a597794d21a` |
+| localloop-site | main | `388cc9265d8850c32cffe6524315124da42a183c` |
+| loop-protocol | main | `066dc41772b88c3ab5efac237ce21ffbc3d118bf` |
+| org-github-profile | main | `ee59cce5b788198773b7c4d322fe9f220c50a24f` |
+| localloop-agent | main | `a09e86ccb9eaac05e49c1ed19e013b19606aba5d` |
