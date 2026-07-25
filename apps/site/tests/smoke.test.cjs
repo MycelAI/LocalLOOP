@@ -308,3 +308,8 @@ test('humans.txt exists with lab-demo posture', () => {
   assert.ok(content.includes('localloop.urbnia.com'));
 });
 
+test('ai.txt documents lab-demo posture', () => {
+  const content = read(['public', 'ai.txt']);
+  assert.ok(content.includes('Lab demo')); assert.ok(content.includes('dev@mycel-ai.de'));
+});
+

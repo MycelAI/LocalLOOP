@@ -1,0 +1,3 @@
+User-Agent: *
+# Lab demo documentation site for localLOOP / LOOP protocol.
+# No public pilots. Contact: dev@mycel-ai.de
