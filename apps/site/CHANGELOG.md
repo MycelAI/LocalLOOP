@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Agent cycle stamp 077 (agent cycle 077).
+
+### Added
 - Agent cycle stamp 073 (agent cycle 073).
 
 ### Added
