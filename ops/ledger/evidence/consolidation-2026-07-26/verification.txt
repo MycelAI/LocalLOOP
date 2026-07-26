@@ -1,0 +1,31 @@
+reverified_at=2026-07-26T09:11:38+00:00
+kind=estate_consolidation_and_domain_guard_fix
+
+== loop-protocol ==
+command=bun run test; bash scripts/check-domains.sh
+schemas README ok
+$ node scripts/check-agent-markers.js
+agent markers ok (7 anchors)
+test_exit=0
+Domain check passed.
+domains_exit=0
+
+== localloop-site ==
+command=bun run test; node scripts/check-domains.cjs; bun run build
+ℹ tests 28
+ℹ pass 28
+ℹ fail 0
+Domain check passed (7 patterns).
+domains_exit=0
+build_exit=0
+
+== org-github-profile ==
+policy_exit=0
+security pointer ok
+secptr_exit=0
+
+== localloop-backend (unchanged; regression check) ==
+ 0 fail
+ 467 expect() calls
+Ran 186 tests across 40 files. [38.72s]
+typecheck_exit=0

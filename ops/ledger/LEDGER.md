@@ -1678,3 +1678,45 @@ Statuses after skeptic remediation: DONE only when a **fresh** per-cycle re-veri
 | **Status** | BLOCKED |
 | **Root cause** | padding/insufficient evidence |
 | **Quality class** | low-padding |
+
+## Post-cycle remediation — 2026-07-26 — DONE
+
+| Field | Value |
+|-------|-------|
+| **Item** | Estate-wide consolidation of per-cycle padding guards; two false-pass test defects |
+| **Repos touched** | `loop-protocol`, `localloop-site`, `org-github-profile`, `localloop-agent` |
+| **Verification** | `evidence/consolidation-2026-07-26/verification.txt`; `evidence/consolidation-2026-07-26/live.txt` |
+| **Deploy result** | `localloop-site` rebuilt and redeployed (Docker + Traefik); backend unchanged, no redeploy |
+| **Commit SHA** | loop-protocol `3dd2d05`; localloop-site `be54166`; org-github-profile `37a1027` |
+| **CI** | Validate Schemas, Domain Consistency, Profile Policy Check — all success |
+| **Status** | DONE |
+| **Quality class** | high |
+
+### What was removed
+- `loop-protocol`: 21 `check-cycle-NNN.js` guards → one data-driven
+  `check-agent-markers.js`. Cycles 035-040 and 027 pinned a doc anchor to a file
+  and are preserved as a marker table; 042-098 only re-asserted `examples/` was
+  non-empty, already covered more strictly by `validate-schemas.js`.
+- `org-github-profile`: 15 byte-identical `check-cycle-NNN.sh` guards, fully
+  subsumed by `check-policy.sh`.
+- `localloop-site`: 15 near-identical `agent stamp cycle NNN exists` tests → one
+  data-driven test over `public/agent-stamps/`, which now also covers stamps
+  added later.
+
+### Two false-pass defects found and fixed
+1. **`npm test` in `loop-protocol` never ran the validation script** where `npm`
+   is aliased to `bun`: bare `npm test` dispatches to Bun's built-in test runner
+   (0 test files, exit 1). Docs and CI now use the unambiguous `npm run test`,
+   and `check-schemas-readme.js` enforces it in command blocks.
+2. **Both domain checks could pass vacuously.** `rg` was invoked with no path
+   argument, so with a non-TTY stdin it searched empty stdin instead of the
+   working tree. In `localloop-site` this made local and CI disagree for weeks —
+   local passed having scanned nothing, CI (no `rg`) took the grep branch and
+   failed. The site scan is now a deterministic Node walk; the protocol script
+   passes an explicit path. Both were negative-tested against injected domains.
+
+### Note on the 69 BLOCKED cycles
+All 97 LEDGER-claimed commit SHAs were verified to exist and be reachable from
+`origin/main` in their stated repo. BLOCKED reflects evidence quality and change
+value, not undelivered work — the commits landed; the guards they added were the
+padding removed above.
