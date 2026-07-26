@@ -10,49 +10,15 @@ Changelog tracking begins at 0.2.1; earlier tags predate this file.
 ## [Unreleased]
 
 ### Changed
-- Policy check stamp cycle 099.
+- Removed the 15 per-cycle `scripts/check-cycle-NNN.sh` guards (cycles 043-099).
+  All 15 were byte-identical apart from the cycle number and only asserted that
+  `profile/README.md` exists and mentions "lab" or "localLOOP" — already covered
+  far more strictly by `check-policy.sh`, which enforces the full lab-only
+  posture strapline set and the non-canonical-domain and regulatory-claim bans.
 
-### Changed
-- Policy check stamp cycle 095.
-
-### Changed
-- Policy check stamp cycle 091.
-
-### Changed
-- Policy check stamp cycle 087.
-
-### Changed
-- Policy check stamp cycle 083.
-
-### Changed
-- Policy check stamp cycle 079.
-
-### Changed
-- Policy check stamp cycle 075.
-
-### Changed
-- Policy check stamp cycle 071.
-
-### Changed
-- Policy check stamp cycle 067.
-
-### Changed
-- Policy check stamp cycle 063.
-
-### Changed
-- Policy check stamp cycle 059.
-
-### Changed
-- Policy check stamp cycle 055.
-
-### Changed
-- Policy check stamp cycle 051.
-
-### Changed
-- Policy check stamp cycle 047.
-
-### Changed
-- Policy check stamp cycle 043.
+### Added
+- `check-security-pointer.sh` now runs in the policy-check workflow; previously
+  it existed but was never executed by CI.
 
 ### Added
 - Profile links to site security.txt (agent cycle 028).
