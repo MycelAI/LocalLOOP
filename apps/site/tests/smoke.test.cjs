@@ -323,93 +323,32 @@ test('change-password well-known points at security guide', () => {
   assert.ok(content.includes('/docs/security'));
 });
 
-test('agent stamp cycle 041 exists', () => {
-  const content = read(['public', 'agent-stamps', 'cycle-041.txt']);
-  assert.ok(content.includes('agent-cycle-041'));
-  assert.ok(content.includes('lab-demo-only'));
-});
+// Agent cycle stamps. Previously one near-identical test per cycle; now
+// data-driven so the coverage is the directory itself. EXPECTED_STAMP_CYCLES
+// pins the stamps that must not disappear, while the loop validates every stamp
+// present — including ones added later, which the old per-cycle tests missed.
+const EXPECTED_STAMP_CYCLES = [
+  '041', '045', '049', '053', '057', '061', '065', '069',
+  '073', '077', '081', '085', '089', '093', '097',
+];
 
-test('agent stamp cycle 045 exists', () => {
-  const content = read(['public', 'agent-stamps', 'cycle-045.txt']);
-  assert.ok(content.includes('agent-cycle-045'));
-  assert.ok(content.includes('lab-demo-only'));
-});
+test('agent stamps are present and well formed', () => {
+  const stampsDir = path.join(process.cwd(), 'public', 'agent-stamps');
+  const files = fs.readdirSync(stampsDir).filter((name) => name.endsWith('.txt')).sort();
 
-test('agent stamp cycle 049 exists', () => {
-  const content = read(['public', 'agent-stamps', 'cycle-049.txt']);
-  assert.ok(content.includes('agent-cycle-049'));
-  assert.ok(content.includes('lab-demo-only'));
-});
+  for (const cycle of EXPECTED_STAMP_CYCLES) {
+    assert.ok(files.includes(`cycle-${cycle}.txt`), `missing stamp for cycle ${cycle}`);
+  }
 
-test('agent stamp cycle 053 exists', () => {
-  const content = read(['public', 'agent-stamps', 'cycle-053.txt']);
-  assert.ok(content.includes('agent-cycle-053'));
-  assert.ok(content.includes('lab-demo-only'));
-});
-
-test('agent stamp cycle 057 exists', () => {
-  const content = read(['public', 'agent-stamps', 'cycle-057.txt']);
-  assert.ok(content.includes('agent-cycle-057'));
-  assert.ok(content.includes('lab-demo-only'));
-});
-
-test('agent stamp cycle 061 exists', () => {
-  const content = read(['public', 'agent-stamps', 'cycle-061.txt']);
-  assert.ok(content.includes('agent-cycle-061'));
-  assert.ok(content.includes('lab-demo-only'));
-});
-
-test('agent stamp cycle 065 exists', () => {
-  const content = read(['public', 'agent-stamps', 'cycle-065.txt']);
-  assert.ok(content.includes('agent-cycle-065'));
-  assert.ok(content.includes('lab-demo-only'));
-});
-
-test('agent stamp cycle 069 exists', () => {
-  const content = read(['public', 'agent-stamps', 'cycle-069.txt']);
-  assert.ok(content.includes('agent-cycle-069'));
-  assert.ok(content.includes('lab-demo-only'));
-});
-
-test('agent stamp cycle 073 exists', () => {
-  const content = read(['public', 'agent-stamps', 'cycle-073.txt']);
-  assert.ok(content.includes('agent-cycle-073'));
-  assert.ok(content.includes('lab-demo-only'));
-});
-
-test('agent stamp cycle 077 exists', () => {
-  const content = read(['public', 'agent-stamps', 'cycle-077.txt']);
-  assert.ok(content.includes('agent-cycle-077'));
-  assert.ok(content.includes('lab-demo-only'));
-});
-
-test('agent stamp cycle 081 exists', () => {
-  const content = read(['public', 'agent-stamps', 'cycle-081.txt']);
-  assert.ok(content.includes('agent-cycle-081'));
-  assert.ok(content.includes('lab-demo-only'));
-});
-
-test('agent stamp cycle 085 exists', () => {
-  const content = read(['public', 'agent-stamps', 'cycle-085.txt']);
-  assert.ok(content.includes('agent-cycle-085'));
-  assert.ok(content.includes('lab-demo-only'));
-});
-
-test('agent stamp cycle 089 exists', () => {
-  const content = read(['public', 'agent-stamps', 'cycle-089.txt']);
-  assert.ok(content.includes('agent-cycle-089'));
-  assert.ok(content.includes('lab-demo-only'));
-});
-
-test('agent stamp cycle 093 exists', () => {
-  const content = read(['public', 'agent-stamps', 'cycle-093.txt']);
-  assert.ok(content.includes('agent-cycle-093'));
-  assert.ok(content.includes('lab-demo-only'));
-});
-
-test('agent stamp cycle 097 exists', () => {
-  const content = read(['public', 'agent-stamps', 'cycle-097.txt']);
-  assert.ok(content.includes('agent-cycle-097'));
-  assert.ok(content.includes('lab-demo-only'));
+  for (const file of files) {
+    const match = /^cycle-(\d+)\.txt$/.exec(file);
+    assert.ok(match, `unexpected file in agent-stamps: ${file}`);
+    const content = read(['public', 'agent-stamps', file]);
+    assert.ok(
+      content.includes(`agent-cycle-${match[1]}`),
+      `${file} is missing its agent-cycle-${match[1]} marker`,
+    );
+    assert.ok(content.includes('lab-demo-only'), `${file} is missing the lab-demo-only posture`);
+  }
 });
 

@@ -7,54 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- Collapsed the 15 near-identical `agent stamp cycle NNN exists` smoke tests into
+  one data-driven test that validates every file in `public/agent-stamps/`.
+  Coverage is now the directory itself, so stamps added later are checked too —
+  the per-cycle tests only ever covered the 15 cycles hard-coded at the time.
+
 ### Fixed
-- Resynced docs-hub protocol mirror markdown after loop-protocol agent-cycle
-  documentation anchors (residual-protocol-mirror).
+- Resynced the docs-hub protocol mirror. Beyond the loop-protocol documentation
+  anchors, the mirror was missing several protocol docs entirely: the governance
+  set (`GOVERNANCE.md`, `CLAIMS-AND-MATURITY.md`, `RELEASE-CHECKLIST.md`),
+  `backup-restore-runbook.md`, and `docs/audit/`.
 
 ### Added
-- Agent cycle stamp 097 (agent cycle 097).
-
-### Added
-- Agent cycle stamp 093 (agent cycle 093).
-
-### Added
-- Agent cycle stamp 089 (agent cycle 089).
-
-### Added
-- Agent cycle stamp 085 (agent cycle 085).
-
-### Added
-- Agent cycle stamp 081 (agent cycle 081).
-
-### Added
-- Agent cycle stamp 077 (agent cycle 077).
-
-### Added
-- Agent cycle stamp 073 (agent cycle 073).
-
-### Added
-- Agent cycle stamp 069 (agent cycle 069).
-
-### Added
-- Agent cycle stamp 065 (agent cycle 065).
-
-### Added
-- Agent cycle stamp 061 (agent cycle 061).
-
-### Added
-- Agent cycle stamp 057 (agent cycle 057).
-
-### Added
-- Agent cycle stamp 053 (agent cycle 053).
-
-### Added
-- Agent cycle stamp 049 (agent cycle 049).
-
-### Added
-- Agent cycle stamp 045 (agent cycle 045).
-
-### Added
-- Agent cycle stamp 041 (agent cycle 041).
+- Agent cycle stamps 041-097 (agent cycles 041, 045, 049, 053, 057, 061, 065,
+  069, 073, 077, 081, 085, 089, 093, 097).
 
 ### Added
 - change-password well-known (agent cycle 034).
