@@ -14,6 +14,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   the per-cycle tests only ever covered the 15 cycles hard-coded at the time.
 
 ### Fixed
+- `check:domains` reported a vacuous pass locally while failing in CI. The script
+  chose ripgrep when available and grep otherwise, and the two branches were not
+  equivalent: ripgrep was invoked with no path argument, so under `execSync`
+  (stdin is a pipe) it searched empty stdin instead of the working tree. CI has
+  no ripgrep, fell through to the grep branch, scanned properly, and failed on a
+  historical `CHANGELOG.md` entry. The scan is now a deterministic Node walk, so
+  local and CI agree; the repo's own changelog is exempt as a record *about* the
+  policy, while mirrored changelogs under `public/` are still scanned.
+
+### Fixed
 - Resynced the docs-hub protocol mirror. Beyond the loop-protocol documentation
   anchors, the mirror was missing several protocol docs entirely: the governance
   set (`GOVERNANCE.md`, `CLAIMS-AND-MATURITY.md`, `RELEASE-CHECKLIST.md`),

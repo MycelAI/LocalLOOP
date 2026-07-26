@@ -1,5 +1,13 @@
 #!/usr/bin/env node
-const { execSync } = require('node:child_process');
+const fs = require('node:fs');
+const path = require('node:path');
+
+// Scan is implemented in Node rather than shelling out to rg/grep. The previous
+// version picked rg when available and grep otherwise, and the two disagreed:
+// rg was invoked with no path argument, so under execSync (stdin is a pipe) it
+// searched empty stdin instead of the working tree and reported a pass. CI has
+// no rg, fell through to grep, scanned properly, and failed. Doing the walk here
+// keeps local and CI results identical.
 
 const banned = [
   'local-loop-io.github.io',
@@ -11,42 +19,59 @@ const banned = [
   'materialdna.eu',
 ];
 
-const pattern = banned
-  .map((d) => d.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'))
-  .join('|');
+const SKIP_DIRS = new Set(['node_modules', 'out', '.next', '.git', 'test-results', 'playwright-report']);
 
-const rg = `rg -n "(${pattern})" --hidden --glob '!node_modules/**' --glob '!out/**' --glob '!.next/**' --glob '!.git/**' --glob '!scripts/check-domains.cjs' --glob '!DOMAIN-POLICY.md'`;
-const grep = `grep -RIn --exclude-dir=node_modules --exclude-dir=out --exclude-dir=.next --exclude-dir=.git --exclude=DOMAIN-POLICY.md --exclude=check-domains.cjs -E "(${pattern})" .`;
+// Documents that must be able to name a disallowed domain in order to describe
+// it. DOMAIN-POLICY.md is skipped by basename because the policy is also
+// mirrored under public/projects/; the rest are anchored to repo-relative paths
+// so that a mirrored public/**/CHANGELOG.md is still scanned.
+const SKIP_BASENAMES = new Set(['DOMAIN-POLICY.md']);
+const SKIP_PATHS = new Set([path.join('scripts', 'check-domains.cjs'), 'CHANGELOG.md']);
 
-const hasRg = (() => {
-  try {
-    execSync('rg --version', { stdio: 'ignore' });
-    return true;
-  } catch {
-    return false;
-  }
-})();
+const pattern = new RegExp(
+  `(${banned.map((d) => d.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})`,
+);
 
-const cmd = hasRg ? rg : grep;
+const root = path.resolve(__dirname, '..');
+const findings = [];
 
-try {
-  const output = execSync(cmd, { stdio: 'pipe' }).toString().trim();
-  if (output) {
-    console.error('Banned domains found:');
-    console.error(output);
-    process.exit(1);
+const isBinary = (buf) => buf.includes(0);
+
+const walk = (dir) => {
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const full = path.join(dir, entry.name);
+    const rel = path.relative(root, full);
+
+    if (entry.isDirectory()) {
+      if (SKIP_DIRS.has(entry.name)) continue;
+      walk(full);
+      continue;
+    }
+    if (!entry.isFile()) continue;
+    if (SKIP_BASENAMES.has(entry.name) || SKIP_PATHS.has(rel)) continue;
+
+    const buf = fs.readFileSync(full);
+    if (isBinary(buf)) continue;
+
+    buf
+      .toString('utf8')
+      .split('\n')
+      .forEach((line, index) => {
+        if (pattern.test(line)) {
+          findings.push(`${rel}:${index + 1}: ${line.trim()}`);
+        }
+      });
   }
-  console.log('Domain check passed.');
-} catch (err) {
-  if (err.status === 1 && err.stdout && err.stdout.toString().trim()) {
-    console.error('Banned domains found:');
-    console.error(err.stdout.toString());
-    process.exit(1);
+};
+
+walk(root);
+
+if (findings.length > 0) {
+  console.error('Banned domains found:');
+  for (const finding of findings) {
+    console.error(finding);
   }
-  if (err.status === 1) {
-    console.log('Domain check passed.');
-    process.exit(0);
-  }
-  console.error(err.message || err);
   process.exit(1);
 }
+
+console.log(`Domain check passed (${banned.length} patterns).`);
