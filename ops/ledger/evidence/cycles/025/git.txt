@@ -1,0 +1,26 @@
+# Cycle 025 evidence (reconstructed 2026-07-25T23:57:52.761230+00:00)
+status=DONE
+quality=medium
+
+## localloop-backend
+sha=8639d6245d57c2b87b9f8a53668ab9196390f7b2
+source=tag:agent-cycle-025
+subject=fix(federation): Cache-Control no-store (#64)
+diff:
+CHANGELOG.md                   | 3 +++; src/routes/federation.ts       | 3 +++; tests/federation.cache.test.ts | 9 +++++++++; 3 files changed, 15 insertions(+)
+commit 8639d6245d57c2b87b9f8a53668ab9196390f7b2
+Author:     Alphin Tom <alpha912@users.noreply.github.com>
+AuthorDate: Sun Jul 26 01:31:02 2026 +0200
+Commit:     GitHub <noreply@github.com>
+CommitDate: Sun Jul 26 01:31:02 2026 +0200
+
+    fix(federation): Cache-Control no-store (#64)
+    
+    Refs: agent-cycle-025
+    
+    Co-authored-by: localLOOP Agent <dev@mycel-ai.de>
+
+ CHANGELOG.md                   | 3 +++
+ src/routes/federation.ts       | 3 +++
+ tests/federation.cache.test.ts | 9 +++++++++
+ 3 files changed, 15 insertions(+)

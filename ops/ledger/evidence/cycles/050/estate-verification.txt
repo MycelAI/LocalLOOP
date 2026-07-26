@@ -1,0 +1,7 @@
+cycle=050
+estate_backend_tests=../../final-repo-tests/backend.txt
+estate_site_tests=../../final-repo-tests/site.txt
+estate_protocol_tests=../../final-repo-tests/protocol.txt
+estate_live_smoke=../../live-smoke/final.txt
+playwright_baselines=../../playwright/baselines/
+playwright_report=../../playwright/baselines/crawl-report.json

@@ -1,0 +1,47 @@
+$ bun run validate:schemas && bun run check:schemas-readme && bun run check:cycle-035 && bun run check:cycle-036 && bun run check:cycle-037 && bun run check:cycle-038 && bun run check:cycle-039 && bun run check:cycle-040 && bun run check:cycle-042 && bun run check:cycle-046 && bun run check:cycle-050 && bun run check:cycle-054 && bun run check:cycle-058 && bun run check:cycle-062 && bun run check:cycle-066 && bun run check:cycle-070 && bun run check:cycle-074 && bun run check:cycle-078 && bun run check:cycle-082 && bun run check:cycle-086 && bun run check:cycle-090 && bun run check:cycle-094 && bun run check:cycle-098
+$ node scripts/validate-schemas.js
+Validated 15 example file(s), 46 JSON artifact(s), and Core-DP profile vectors against 20 schema(s).
+$ node scripts/check-schemas-readme.js
+schemas README ok
+$ node scripts/check-cycle-035.js
+ok agent-cycle-035
+$ node scripts/check-cycle-036.js
+ok agent-cycle-036
+$ node scripts/check-cycle-037.js
+ok agent-cycle-037
+$ node scripts/check-cycle-038.js
+ok agent-cycle-038
+$ node scripts/check-cycle-039.js
+ok agent-cycle-039
+$ node scripts/check-cycle-040.js
+ok agent-cycle-040
+$ node scripts/check-cycle-042.js
+examples ok 15 cycle 42
+$ node scripts/check-cycle-046.js
+examples ok 15 cycle 46
+$ node scripts/check-cycle-050.js
+examples ok 15 cycle 50
+$ node scripts/check-cycle-054.js
+examples ok 15 cycle 54
+$ node scripts/check-cycle-058.js
+examples ok 15 cycle 58
+$ node scripts/check-cycle-062.js
+examples ok 15 cycle 62
+$ node scripts/check-cycle-066.js
+examples ok 15 cycle 66
+$ node scripts/check-cycle-070.js
+examples ok 15 cycle 70
+$ node scripts/check-cycle-074.js
+examples ok 15 cycle 74
+$ node scripts/check-cycle-078.js
+examples ok 15 cycle 78
+$ node scripts/check-cycle-082.js
+examples ok 15 cycle 82
+$ node scripts/check-cycle-086.js
+examples ok 15 cycle 86
+$ node scripts/check-cycle-090.js
+examples ok 15 cycle 90
+$ node scripts/check-cycle-094.js
+examples ok 15 cycle 94
+$ node scripts/check-cycle-098.js
+examples ok 15 cycle 98

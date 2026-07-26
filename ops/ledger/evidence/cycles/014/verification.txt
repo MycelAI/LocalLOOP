@@ -1,0 +1,7 @@
+cycle=014
+status=BLOCKED
+evidence=git.txt (commit/tag reconstruction)
+live_snapshot=live.txt (estate health at reconstruction)
+deploy=none
+plans=../../plans/cycle-014.md
+note=Patch did not land Cache-Control; unit test failed; retried as 021

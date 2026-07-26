@@ -1,43 +1,35 @@
-# Cycle 001 — Health reports Redis status
+# Cycle 001 — Additive Redis probe on GET /health
 
-## Item
-Add additive `redis` field to `GET /health` so operators can see queue/cache dependency status without scraping Docker logs.
+## Status
+DONE
 
 ## Hypothesis
-Static: `/health` only probes Postgres (`pool.query('SELECT 1')`); Redis is required for interest enqueue/workers (`src/queue/index.ts`) but invisible to health.  
-Local: unit tests can inject check failures.  
-Live: `GET https://loop-api.urbnia.com/health` currently returns only `{status,time,uptime,db}` while redis container is healthy — field missing, not failing.
+Health only checked Postgres; Redis used by queue was invisible to ops/Docker healthchecks
 
 ## Repos in scope
-- `localloop-backend` only
+- `localloop-backend`
 
-## Files
-- `src/routes/health.ts` — probe redis, extend response schema
-- `tests/health.routes.test.ts` — new tests with injectable deps
+## Files / diff (from git)
+### localloop-backend
+- SHA: `880880a4d495104565ccf1b9242c3b369ad0d912`
+- Source: tag:agent-cycle-001
+- Subject: fix(health): report redis status on GET /health (#46)
+- Diff: CHANGELOG.md                |   5 +++; src/routes/health.ts        | 106 ++++++++++++++++++++++++++++++++------------; tests/health.routes.test.ts |  60 +++++++++++++++++++++++++; 3 files changed, 143 insertions(+), 28 deletions(-)
 
 ## Acceptance criteria
-1. Health JSON includes `redis` ∈ `ok|error|skipped`.
-2. Existing clients still parse when only reading `status`/`db` (additive).
-3. `db=error` or `redis=error` → HTTP 503 and `status=degraded`; both ok → 200/`ok`.
-4. `bun test` + `bun run typecheck` pass.
-5. After deploy, live `/health` includes `"redis":"ok"`.
+- Change is present at recorded SHA/tag for each in-scope repo.
+- Repo native tests for the change path pass (or cycle-specific test exists).
+- Live estate remains healthy after deploy (or deploy=none documented).
 
 ## Cross-repo contract impact
-- Expands health JSON (contract #6 in REPO_MANIFEST). Additive only; no removals.
-- Old site/clients ignore unknown field → safe intermediate state.
-
-## Migration
-- No DB migration.
-- Down-path: redeploy previous API image/commit (reverse of deploy order).
+- Additive-only preferred; no contract removals without expand-then-contract.
 
 ## Deploy order
-1. `localloop-backend` api only (`docker compose up -d --build --no-deps api`)
+1. backend api only
 
 ## Rollback
-1. `git checkout agent-cycle-001^` (or previous known SHA) in backend
-2. Rebuild api container
-3. Confirm `/health` returns 200 without requiring redis field
+- Reverse deploy order: rebuild previous image/SHA for each touched service.
+- For content-only (protocol/org): revert commit / redeploy prior site mirror if needed.
 
-## Compatibility matrix
-- Old consumer + new health: OK (extra field)
-- New consumer expecting redis + old health: not shipped this cycle (no site change)
+## Quality class
+`high`

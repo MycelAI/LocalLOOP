@@ -1,0 +1,26 @@
+# Cycle 028 evidence (reconstructed 2026-07-25T23:57:53.006397+00:00)
+status=DONE
+quality=medium
+
+## org-github-profile
+sha=0e6d70bfd6f4155c74201783a4fa3b47cc71bdc9
+source=tag:agent-cycle-028
+subject=docs(profile): link security.txt (#8)
+diff:
+CHANGELOG.md                      | 3 +++; profile/README.md                 | 4 ++++; scripts/check-security-pointer.sh | 4 ++++; 3 files changed, 11 insertions(+)
+commit 0e6d70bfd6f4155c74201783a4fa3b47cc71bdc9
+Author:     Alphin Tom <alpha912@users.noreply.github.com>
+AuthorDate: Sun Jul 26 01:31:57 2026 +0200
+Commit:     GitHub <noreply@github.com>
+CommitDate: Sun Jul 26 01:31:57 2026 +0200
+
+    docs(profile): link security.txt (#8)
+    
+    Refs: agent-cycle-028
+    
+    Co-authored-by: localLOOP Agent <dev@mycel-ai.de>
+
+ CHANGELOG.md                      | 3 +++
+ profile/README.md                 | 4 ++++
+ scripts/check-security-pointer.sh | 4 ++++
+ 3 files changed, 11 insertions(+)

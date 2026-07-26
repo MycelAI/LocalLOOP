@@ -1,0 +1,31 @@
+=== live smoke 2026-07-25T23:58:57Z ===
+{
+    "status": "ok",
+    "time": "2026-07-25T23:58:57.576Z",
+    "uptime": 457.77624521399997,
+    "db": "ok",
+    "redis": "ok",
+    "version": "0.4.4"
+}
+HTTP/2 200 
+cache-control: no-store
+version 0.4.4 keys 12
+HTTP/2 200 
+permissions-policy: camera=(), microphone=(), geolocation=()
+referrer-policy: strict-origin-when-cross-origin
+x-content-type-options: nosniff
+x-frame-options: SAMEORIGIN
+site 200 /
+site 200 /docs/
+site 200 /protocol/
+site 200 /interest/
+site 200 /platform/demo-city/
+site 200 /.well-known/security.txt
+site 200 /robots.txt
+NAMES                             STATUS
+localloop-site-site-1             Up 7 minutes
+localloop-backend-api-1           Up 7 minutes (healthy)
+localloop-backend-redis-1         Up 5 days (healthy)
+localloop-backend-minio-proxy-1   Up 5 days (healthy)
+localloop-backend-minio-1         Up 5 days (healthy)
+localloop-backend-postgres-1      Up 5 days (healthy)

@@ -1,3 +1,36 @@
-# Cycle 097 — site cycle stamp 97
+# Cycle 097 — Cycle 097 automation item: chore(site): agent stamp 97 (#94)
 
-Site.
+## Status
+DONE
+
+## Hypothesis
+Bulk automation cycle: intended as estate hygiene stamp or regression guard. Not a fresh explore→select highest-value defect (see Deviations).
+
+## Repos in scope
+- `localloop-site`
+
+## Files / diff (from git)
+### localloop-site
+- SHA: `0092e4997d7e19214a3c071f2e7deb0722faa892`
+- Source: tag:agent-cycle-097
+- Subject: chore(site): agent stamp 97 (#94)
+- Diff: CHANGELOG.md                      | 3 +++; public/agent-stamps/cycle-097.txt | 2 ++; tests/smoke.test.cjs              | 6 ++++++; 3 files changed, 11 insertions(+)
+
+## Acceptance criteria
+- Change is present at recorded SHA/tag for each in-scope repo.
+- Repo native tests for the change path pass (or cycle-specific test exists).
+- Live estate remains healthy after deploy (or deploy=none documented).
+
+## Cross-repo contract impact
+- Additive-only preferred; no contract removals without expand-then-contract.
+- No API/schema contract change expected (hygiene/stamp cycle).
+
+## Deploy order
+1. see per-repo tags
+
+## Rollback
+- Reverse deploy order: rebuild previous image/SHA for each touched service.
+- For content-only (protocol/org): revert commit / redeploy prior site mirror if needed.
+
+## Quality class
+`low-padding`

@@ -1,0 +1,7 @@
+cycle=004
+status=DONE
+evidence=git.txt (commit/tag reconstruction)
+live_snapshot=live.txt (estate health at reconstruction)
+deploy=none (test-only)
+plans=../../plans/cycle-004.md
+note=

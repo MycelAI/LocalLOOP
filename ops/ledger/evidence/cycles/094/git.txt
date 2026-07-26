@@ -1,0 +1,26 @@
+# Cycle 094 evidence (reconstructed 2026-07-25T23:57:58.376433+00:00)
+status=DONE
+quality=low-padding
+
+## loop-protocol
+sha=257380786be22d11f8f4baf267ce479d6cc147be
+source=tag:agent-cycle-094
+subject=test(protocol): examples guard 94 (#36)
+diff:
+CHANGELOG.md               |  3 +++; package.json               |  5 +++--; scripts/check-cycle-094.js | 10 ++++++++++; 3 files changed, 16 insertions(+), 2 deletions(-)
+commit 257380786be22d11f8f4baf267ce479d6cc147be
+Author:     Alphin Tom <alpha912@users.noreply.github.com>
+AuthorDate: Sun Jul 26 01:45:58 2026 +0200
+Commit:     GitHub <noreply@github.com>
+CommitDate: Sun Jul 26 01:45:58 2026 +0200
+
+    test(protocol): examples guard 94 (#36)
+    
+    Refs: agent-cycle-094
+    
+    Co-authored-by: localLOOP Agent <dev@mycel-ai.de>
+
+ CHANGELOG.md               |  3 +++
+ package.json               |  5 +++--
+ scripts/check-cycle-094.js | 10 ++++++++++
+ 3 files changed, 16 insertions(+), 2 deletions(-)

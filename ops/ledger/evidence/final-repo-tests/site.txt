@@ -1,0 +1,55 @@
+$ node --test tests/smoke.test.cjs
+(node:1206276) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/alphin/code/local-loop-io/localloop-site/app/config/siteRoutes.js is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/alphin/code/local-loop-io/localloop-site/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ interest page wires interest form hooks (5.270348ms)
+✔ markdown doc component exists (0.363138ms)
+✔ react site header preserves subtitle rendering (0.372882ms)
+✔ public projects directory exists (0.193336ms)
+✔ metrics page wires live metrics panel (0.589939ms)
+✔ api docs page links to the live docs instead of embedding an iframe (0.509098ms)
+✔ federation docs page renders handshake guide (0.53877ms)
+✔ versioned protocol schema aliases exist (0.266906ms)
+✔ all MarkdownDoc filePaths referenced by the site exist in the mirror (16.901068ms)
+✔ spec and regulatory pages render their canonical drafts inline via MarkdownDoc (0.3647ms)
+✔ protocol mirror includes required v0.2.0 contract assets (0.240339ms)
+✔ aggregate docs script prefers a local source checkout when available (0.296777ms)
+✔ canonical route inventory includes hidden docs and generated library details (15.424644ms)
+✔ public demo remains read-only and unsafe claims do not return (0.506625ms)
+✔ interest success copy does not claim immediate public listing (0.319808ms)
+✔ root layout and feature scripts provide the accessibility and route-scoping primitives (0.162653ms)
+✔ claim audit and route metadata guards reject known unsupported live claims (3.001757ms)
+✔ feature scripts have an idempotent cleanup contract (0.390115ms)
+✔ feature scripts reject stale evaluation-time tokens before registration (0.221223ms)
+✔ every canonical filesystem page owns title and correct canonical path metadata (3.646752ms)
+✔ nginx static server declares baseline security headers (0.300752ms)
+✔ security.txt is published under .well-known (0.32802ms)
+✔ robots.txt allows crawl and points at sitemap (0.23374ms)
+✔ humans.txt exists with lab-demo posture (0.219651ms)
+✔ ai.txt documents lab-demo posture (0.297328ms)
+✔ ads.txt declares no ads (0.245137ms)
+✔ change-password well-known points at security guide (0.314481ms)
+✔ agent stamp cycle 041 exists (0.240419ms)
+✔ agent stamp cycle 045 exists (0.230315ms)
+✔ agent stamp cycle 049 exists (0.272715ms)
+✔ agent stamp cycle 053 exists (0.300502ms)
+✔ agent stamp cycle 057 exists (0.264333ms)
+✔ agent stamp cycle 061 exists (0.237986ms)
+✔ agent stamp cycle 065 exists (0.236383ms)
+✔ agent stamp cycle 069 exists (0.275558ms)
+✔ agent stamp cycle 073 exists (0.228393ms)
+✔ agent stamp cycle 077 exists (0.234872ms)
+✔ agent stamp cycle 081 exists (0.219701ms)
+✔ agent stamp cycle 085 exists (0.245027ms)
+✔ agent stamp cycle 089 exists (0.267256ms)
+✔ agent stamp cycle 093 exists (0.378008ms)
+✔ agent stamp cycle 097 exists (0.319628ms)
+ℹ tests 42
+ℹ suites 0
+ℹ pass 42
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 116.263435

@@ -1,0 +1,26 @@
+# Cycle 029 evidence (reconstructed 2026-07-25T23:57:53.076104+00:00)
+status=DONE
+quality=medium
+
+## localloop-backend
+sha=4bdc6f96528a979a06002315fc0be25e79079f58
+source=tag:agent-cycle-029
+subject=fix(federate): Cache-Control no-store (#65)
+diff:
+CHANGELOG.md                 | 3 +++; src/routes/federate.ts       | 3 +++; tests/federate.cache.test.ts | 9 +++++++++; 3 files changed, 15 insertions(+)
+commit 4bdc6f96528a979a06002315fc0be25e79079f58
+Author:     Alphin Tom <alpha912@users.noreply.github.com>
+AuthorDate: Sun Jul 26 01:32:10 2026 +0200
+Commit:     GitHub <noreply@github.com>
+CommitDate: Sun Jul 26 01:32:10 2026 +0200
+
+    fix(federate): Cache-Control no-store (#65)
+    
+    Refs: agent-cycle-029
+    
+    Co-authored-by: localLOOP Agent <dev@mycel-ai.de>
+
+ CHANGELOG.md                 | 3 +++
+ src/routes/federate.ts       | 3 +++
+ tests/federate.cache.test.ts | 9 +++++++++
+ 3 files changed, 15 insertions(+)

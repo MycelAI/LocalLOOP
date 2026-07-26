@@ -1,0 +1,27 @@
+# Cycle 007 evidence (reconstructed 2026-07-25T23:57:51.292240+00:00)
+status=DONE
+quality=high
+
+## localloop-backend
+sha=036a1bd1446f5470f4280954229c9954d804bfb8
+source=tag:agent-cycle-007
+subject=fix(metrics): allow additionalProperties on metrics object (#51)
+diff:
+CHANGELOG.md          | 4 ++++; src/routes/metrics.ts | 2 +-; 2 files changed, 5 insertions(+), 1 deletion(-)
+commit 036a1bd1446f5470f4280954229c9954d804bfb8
+Author:     Alphin Tom <alpha912@users.noreply.github.com>
+AuthorDate: Sun Jul 26 01:19:52 2026 +0200
+Commit:     GitHub <noreply@github.com>
+CommitDate: Sun Jul 26 01:19:52 2026 +0200
+
+    fix(metrics): allow additionalProperties on metrics object (#51)
+    
+    Fastify response serialization was stripping all counter keys to {}.
+    
+    Refs: agent-cycle-007
+    
+    Co-authored-by: localLOOP Agent <dev@mycel-ai.de>
+
+ CHANGELOG.md          | 4 ++++
+ src/routes/metrics.ts | 2 +-
+ 2 files changed, 5 insertions(+), 1 deletion(-)

@@ -1,0 +1,26 @@
+# Cycle 010 evidence (reconstructed 2026-07-25T23:57:51.516221+00:00)
+status=DONE
+quality=high
+
+## localloop-backend
+sha=c8736ebcf44c395184cd3554b2d7f0e8cfa33386
+source=tag:agent-cycle-010
+subject=feat(health): include package version in /health (#54)
+diff:
+CHANGELOG.md                |  3 +++; src/routes/health.ts        | 15 +++++++++++++++; tests/health.routes.test.ts |  2 ++; 3 files changed, 20 insertions(+)
+commit c8736ebcf44c395184cd3554b2d7f0e8cfa33386
+Author:     Alphin Tom <alpha912@users.noreply.github.com>
+AuthorDate: Sun Jul 26 01:21:50 2026 +0200
+Commit:     GitHub <noreply@github.com>
+CommitDate: Sun Jul 26 01:21:50 2026 +0200
+
+    feat(health): include package version in /health (#54)
+    
+    Refs: agent-cycle-010
+    
+    Co-authored-by: localLOOP Agent <dev@mycel-ai.de>
+
+ CHANGELOG.md                |  3 +++
+ src/routes/health.ts        | 15 +++++++++++++++
+ tests/health.routes.test.ts |  2 ++
+ 3 files changed, 20 insertions(+)

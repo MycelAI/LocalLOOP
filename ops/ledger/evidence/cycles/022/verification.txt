@@ -1,0 +1,7 @@
+cycle=022
+status=BLOCKED
+evidence=git.txt (commit/tag reconstruction)
+live_snapshot=live.txt (estate health at reconstruction)
+deploy=none
+plans=../../plans/cycle-022.md
+note=node info route path not found under expected string in loop.ts

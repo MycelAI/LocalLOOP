@@ -1,0 +1,275 @@
+=== typecheck 2026-07-25T23:58:12Z ===
+$ tsc --noEmit
+=== bun test ===
+bun test v1.3.14 (0d9b296a)
+
+tests/interest.cache.headers.test.ts:
+(pass) interest routes Cache-Control > returns Cache-Control: no-store on GET /api/interest [112.04ms]
+
+tests/health.routes.test.ts:
+(pass) GET /health > returns 200 with db and redis ok [5.74ms]
+(pass) GET /health > treats redis skipped as healthy when db is ok [3.22ms]
+(pass) GET /health > returns 503 when database probe fails [3.07ms]
+(pass) GET /health > returns 503 when redis probe fails [2.49ms]
+
+tests/dockerfile.chown.test.ts:
+(pass) Dockerfile ownership > copies src as app via --chown and drops full-tree chown after src [1.18ms]
+
+tests/federation.registry.test.ts:
+(pass) federation registry helpers > appends the API prefix when PUBLIC_BASE_URL is a site origin [0.14ms]
+(pass) federation registry helpers > preserves already-prefixed API roots [0.03ms]
+
+tests/interest.auth.test.ts:
+(pass) interest auth guard > rejects writes without API key when enabled [19.55ms]
+(pass) interest auth guard > accepts writes with API key when enabled [21.97ms]
+
+tests/materialSearch.protocol.test.ts:
+(pass) POST /api/v1/material/search (protocol contract) > serves the SPEC §8.1 example request shape [675.64ms]
+(pass) POST /api/v1/material/search (protocol contract) > rejects max_loop_cost honestly (LoopCost needs pricing materials do not carry) [672.66ms]
+(pass) POST /api/v1/material/search (protocol contract) > rejects shapes that belong to neither contract [799.04ms]
+(pass) POST /api/v1/material/search (protocol contract) > still routes Core-DP requests (limit) to the Core-DP handler [711.38ms]
+(pass) searchLoopMaterialsProtocol (DB) > filters by exact category and trailing-glob category [19.35ms]
+(pass) searchLoopMaterialsProtocol (DB) > filters by min_quantity [6.89ms]
+(pass) searchLoopMaterialsProtocol (DB) > filters by radius_km around the node location and excludes location-less records [34.40ms]
+
+tests/metrics.version.test.ts:
+(pass) metrics version > includes package version [5.03ms]
+
+tests/auth.routes.test.ts:
+(pass) auth status routes > reports auth as disabled by default [7.57ms]
+(pass) auth status cache > sends Cache-Control no-store [1.80ms]
+
+tests/utility.routes.test.ts:
+(pass) utility routes > returns metrics snapshot [3.32ms]
+(pass) utility routes > returns privacy notice [2.31ms]
+
+tests/schemas.sync.test.ts:
+(pass) schema sync (loop-protocol -> localloop-backend) > backend schema copies match the canonical loop-protocol source [29.79ms]
+
+tests/interest.routes.test.ts:
+(pass) interest routes > lists public interests [14.46ms]
+(pass) interest routes > rejects invalid interest submission [15.12ms]
+(pass) interest routes > accepts valid interest submission [13.10ms]
+
+tests/loop.stream.test.ts:
+(pass) loop stream > adds CORS headers for allowed origins [0.48ms]
+(pass) loop stream > rejects new connections when max clients reached [0.21ms]
+
+tests/cors.test.ts:
+(pass) cors headers > includes x-api-key in allowed headers for preflight [1481.89ms]
+(pass) CORS allowed headers > allows Idempotency-Key for browser write retries [0.11ms]
+
+tests/config.security.test.ts:
+(pass) production config security checks > rejects known development default secrets in production [4.24ms]
+(pass) production config security checks > rejects empty DATABASE_URL password in production [2.11ms]
+(pass) production config security checks > rejects malformed DATABASE_URL in production [2.16ms]
+(pass) production config security checks > rejects REDIS_URL without password in production [2.70ms]
+(pass) production config security checks > allows strong secrets in production [2.14ms]
+(pass) production config security checks > does not fail on non-production NODE_ENV values [1.85ms]
+
+tests/metrics.keys.test.ts:
+(pass) metrics snapshot keys > always exposes the full known key set including zeros via the HTTP route [3.48ms]
+
+tests/envelope.test.ts:
+(pass) Core-DP signed envelope > round-trips sign + verify for a trusted active key [3.57ms]
+(pass) Core-DP signed envelope > produces a canonical signing input that excludes replay_window_seconds and signature [0.32ms]
+(pass) Core-DP signed envelope > fails verification when the body is tampered with after signing [0.41ms]
+(pass) Core-DP signed envelope > fails verification for a wrong/untrusted key_id [0.22ms]
+(pass) Core-DP signed envelope > fails verification for a revoked key [0.30ms]
+(pass) Core-DP signed envelope > fails validateReplayWindow for an expired message (now after expires_at) [0.13ms]
+(pass) Core-DP signed envelope > fails validateReplayWindow when now is before created_at [0.08ms]
+(pass) Core-DP signed envelope > fails validateReplayWindow when replay_window_seconds is outside [60, 900] [0.08ms]
+(pass) Core-DP signed envelope > createEnvelope rejects an out-of-range replay_window_seconds [0.06ms]
+(pass) Core-DP signed envelope > fails verification when signature.key_id does not match sender.key_id (guard, not just an untrusted lookup) [0.19ms]
+(pass) Core-DP signed envelope > fails verification for an unsupported signature.alg [0.18ms]
+(pass) Core-DP signed envelope > fails verification for a wrong node_id even when the key_id legitimately exists under a different node [0.21ms]
+(pass) Core-DP signed envelope > fails verification for a non-revoked key outside its [valid_from, valid_until) window [0.21ms]
+(pass) Core-DP signed envelope > accepts a "rotated" (not just "active") key that is still inside its validity window [0.28ms]
+(pass) Core-DP signed envelope > fails verification when the trusted public key JWK is malformed [0.24ms]
+(pass) Core-DP signed envelope > fails verification when a created_at/valid_from/valid_until lacks a UTC/offset designator [0.21ms]
+(pass) Core-DP signed envelope > createEnvelope rejects a created_at lacking a UTC/offset designator [0.06ms]
+(pass) Core-DP signed envelope > validateReplayWindow rejects a created_at/expires_at lacking a UTC/offset designator [0.11ms]
+(pass) Core-DP signed envelope > accepts a spec-valid envelope whose actual window is shorter than the declared replay_window_seconds [0.10ms]
+(pass) Core-DP signed envelope > rejects an envelope whose actual window exceeds the declared replay_window_seconds [0.14ms]
+(pass) Core-DP signed envelope > rejects at the exact expiry boundary (evaluation_time === expires_at) [0.12ms]
+(pass) Core-DP signed envelope > accepts at the exact creation boundary (evaluation_time === created_at) [0.08ms]
+(pass) Core-DP signed envelope > createEnvelope generates msg_/idem_ prefixed ids matching the schema patterns [0.07ms]
+
+tests/loop.stateMachine.test.ts:
+(pass) loop state machine (db-backed) > reserves the offer when an active match is created [15.27ms]
+(pass) loop state machine (db-backed) > rejects a second match on an already-reserved offer [18.71ms]
+(pass) loop state machine (db-backed) > rejects matching a withdrawn offer [10.34ms]
+(pass) loop state machine (db-backed) > rejects a second transfer on the same match [20.47ms]
+(pass) loop state machine (db-backed) > rejects an offer whose quantity exceeds the material [6.36ms]
+(pass) loop state machine (db-backed) > lets exactly one of two concurrent matches win [17.90ms]
+
+tests/interest.privacy.test.ts:
+(pass) interest list email privacy > redacts email on search when shareEmail was revoked after MV refresh [136.86ms]
+
+tests/federate.routes.test.ts:
+(pass) POST /api/v1/federate/announce > accepts a spec §8.2 MaterialAnnouncement with §9.2 node headers [16.81ms]
+(pass) POST /api/v1/federate/announce > rejects requests without §9.2 node headers [13.90ms]
+(pass) POST /api/v1/federate/announce > rejects stale X-Timestamp values (±5 minute tolerance) [11.83ms]
+(pass) POST /api/v1/federate/announce > rejects malformed X-Timestamp values [13.09ms]
+(pass) POST /api/v1/federate/offer > accepts an inbound MaterialOffer for a locally hosted material [12.53ms]
+(pass) POST /api/v1/federate/offer > returns NOT_FOUND for offers targeting materials not hosted here [16.43ms]
+(pass) POST /api/v1/federate/offer > rejects expired offers [18.07ms]
+(pass) POST /api/v1/federate/offer > rejects wrong @type values [17.45ms]
+
+tests/payments.routes.test.ts:
+(pass) payment routes > blocks intent when payments are disabled [14.31ms]
+(pass) payment routes > accepts valid payment intent when enabled [14.29ms]
+(pass) payment routes > rejects invalid payment intent [18.86ms]
+(pass) payment routes > accepts webhook payload when enabled [16.21ms]
+
+tests/queue.test.ts:
+(pass) queue handlers > ignores unrelated jobs [4.18ms]
+(pass) queue handlers > flags invalid interest payloads [0.10ms]
+(pass) queue handlers > logs interest events [0.16ms]
+
+tests/specErrorEnvelope.test.ts:
+(pass) specErrorCodeForStatus > maps canonical statuses to their §8.3 codes [0.09ms]
+(pass) specErrorCodeForStatus > falls back to the nearest canonical code for statuses outside the §8.3 set [0.06ms]
+(pass) §8.3 envelope on legacy lab routes > returns NOT_FOUND envelope for a missing loop entity [602.89ms]
+(pass) §8.3 envelope on legacy lab routes > returns CONFLICT envelope on a duplicate write [633.17ms]
+(pass) §8.3 envelope on legacy lab routes > returns INVALID_REQUEST envelope for an offer referencing an unknown material [634.49ms]
+(pass) §8.3 envelope on legacy lab routes > returns INVALID_REQUEST envelope for invalid city filters [13.92ms]
+(pass) §8.3 envelope on legacy lab routes > returns NOT_FOUND envelope for an unknown city slug [18.58ms]
+(pass) §8.3 envelope on legacy lab routes > returns INVALID_REQUEST envelope with validation details for invalid interest submissions [14.98ms]
+(pass) §8.3 envelope on global handlers > returns NOT_FOUND envelope for unmatched routes [1578.81ms]
+(pass) §8.3 envelope on global handlers > returns INVALID_REQUEST envelope for Fastify schema-validation rejections [1574.38ms]
+
+tests/interest.stream.test.ts:
+(pass) interest stream > adds CORS headers for allowed origins [0.53ms]
+(pass) interest stream > rejects new connections when max clients reached [0.22ms]
+
+tests/readme.health.test.ts:
+(pass) README health docs > documents redis probe and no-store posture on /health [0.17ms]
+
+tests/cities.cache.headers.test.ts:
+(pass) city routes Cache-Control > returns Cache-Control: no-store on GET /api/cities [20.32ms]
+
+tests/federation.routes.test.ts:
+(pass) federation routes > lists lab nodes [35.31ms]
+(pass) federation routes > returns local node info [36.18ms]
+(pass) federation routes > accepts handshake payloads [34.30ms]
+(pass) federation routes > rejects malformed handshake payloads [46.91ms]
+
+tests/loop.routes.test.ts:
+(pass) loop routes > creates material, offer, match, and transfer [639.76ms]
+(pass) loop routes > records material status updates [628.37ms]
+(pass) loop routes > rejects offers for unknown materials [633.46ms]
+(pass) loop routes > fails fast on invalid payloads [598.79ms]
+(pass) loop routes > rejects status updates for unknown materials [616.14ms]
+(pass) loop routes > lists loop events [613.64ms]
+(pass) loop routes > relays loop events [595.54ms]
+(pass) loop routes > rejects unsupported relay event types [634.23ms]
+(pass) loop routes > rejects unsupported relay entity types [590.84ms]
+(pass) loop routes > rejects prototype-pollution style relay entity names [608.95ms]
+(pass) loop routes > accepts the canonical linked-data content type [671.45ms]
+(pass) loop routes > rejects personal contact data in minimal interop payloads [647.16ms]
+(pass) loop routes > accepts additive patch-line schema versions [578.35ms]
+(pass) loop routes > maps duplicate writes to conflicts [563.85ms]
+(pass) loop routes > creates product, offer, match, and transfer with product_id [548.13ms]
+(pass) loop routes > rejects offers for unknown products [581.80ms]
+(pass) loop routes > rejects product with invalid payload [600.00ms]
+(pass) loop routes > maps duplicate product writes to conflicts [594.46ms]
+(pass) loop routes > maps an invalid-state match to 400 [637.45ms]
+(pass) loop routes > maps a duplicate active match to 409 [607.49ms]
+(pass) loop routes > maps a duplicate transfer to 409 [620.28ms]
+(pass) loop routes > maps an over-quantity offer to 400 [597.71ms]
+(pass) loop routes > maps a not-found state error to 404 [681.31ms]
+(pass) loop routes > retrieves a material by id as the canonical MaterialDNA document [644.93ms]
+(pass) loop routes > returns 404 for unknown material id [749.20ms]
+(pass) loop routes > lists materials [838.74ms]
+(pass) loop routes > retrieves a product by id as the canonical ProductDNA document [884.35ms]
+(pass) loop routes > returns 404 for unknown product id [751.02ms]
+(pass) loop routes > lists products [718.07ms]
+(pass) loop routes > retrieves an offer by id [710.65ms]
+(pass) loop routes > returns 404 for unknown offer id [774.53ms]
+(pass) loop routes > lists offers [615.79ms]
+(pass) loop routes > retrieves a match by id [573.24ms]
+(pass) loop routes > returns 404 for unknown match id [585.16ms]
+(pass) loop routes > lists matches [575.30ms]
+(pass) loop routes > retrieves a transfer by id [649.23ms]
+(pass) loop routes > returns 404 for unknown transfer id [591.76ms]
+(pass) loop routes > lists transfers [577.28ms]
+
+tests/conformance.test.ts:
+(pass) spec conformance gate (backend <-> loop-protocol <-> docs hub) > passes with no drift and a fully implemented spec route surface [2251.60ms]
+
+tests/signals.routes.test.ts:
+(pass) GET /api/v1/signals > publishes the node LoopSignal configuration (SPEC §8.1) [4.34ms]
+(pass) GET /api/v1/signals > returns a spec error envelope when no configuration is published [1.93ms]
+
+tests/loop.search.test.ts:
+(pass) Core-DP local search > filters by category_prefix and returns deterministic record hashes/provenance [13.41ms]
+(pass) Core-DP local search > paginates with an opaque cursor in updated_at_asc,id_asc order with no gaps or dupes [11.92ms]
+(pass) Core-DP local search > applies the quantity_min filter [4.90ms]
+(pass) Core-DP local search > treats id_prefix and category_prefix LIKE metacharacters as literal text [9.64ms]
+(pass) Core-DP local search > rejects the condition filter on materials under strict_filtering [0.31ms]
+(pass) Core-DP local search > supports the condition filter on products [6.87ms]
+
+tests/cities.routes.test.ts:
+(pass) city routes > lists cities [13.43ms]
+(pass) city routes > returns geojson list [12.65ms]
+(pass) city routes > rejects invalid bbox query [9.27ms]
+
+tests/specResponses.test.ts:
+(pass) canonical schema conformance of protocol responses > GET /api/v1/node/info validates against node-info.schema.json [40.24ms]
+(pass) canonical schema conformance of protocol responses > GET /api/v1/signals validates against loopsignal.schema.json [4.82ms]
+(pass) canonical schema conformance of protocol responses > POST /api/v1/transaction responds with a valid TransactionStatus [110.37ms]
+(pass) canonical schema conformance of protocol responses > GET /api/v1/material/:id validates against material-dna.schema.json [635.78ms]
+(pass) canonical schema conformance of protocol responses > GET /api/v1/product/:id validates against product-dna.schema.json [609.00ms]
+
+tests/apiKey.routes.test.ts:
+(pass) api key guard on write routes > blocks loop writes without api key [597.02ms]
+(pass) api key guard on write routes > blocks federation handshake without api key [21.21ms]
+(pass) api key guard on write routes > blocks payment intent without api key [15.14ms]
+(pass) api key guard on write routes > allows payment intent with api key [22.60ms]
+
+tests/idempotency.test.ts:
+(pass) REST idempotency (Idempotency-Key) > runs the handler once and replays the cached response for a repeated key+body [3.26ms]
+(pass) REST idempotency (Idempotency-Key) > throws a conflict CoreDpError when the same key is reused with a different body [2.74ms]
+(pass) REST idempotency (Idempotency-Key) > treats a cache row past the retention window as expired, not a conflict [2.29ms]
+(pass) REST idempotency (Idempotency-Key) > passes through directly (runs every time) when no key is supplied [0.18ms]
+
+tests/httpCache.test.ts:
+(pass) httpCache helpers > sets public max-age and no-store headers [0.14ms]
+
+tests/evidence.test.ts:
+(pass) Core-DP append-only evidence log > records a registered evidence entry when a material is created [3.62ms]
+(pass) Core-DP append-only evidence log > fetches a single entry by event_id [1.72ms]
+(pass) Core-DP append-only evidence log > returns undefined for an unknown event_id [0.49ms]
+(pass) Core-DP append-only evidence log > paginates by sequence with a cursor, oldest first [5.75ms]
+(pass) Core-DP append-only evidence log > enforces append-only at the database level (blocks UPDATE and DELETE) [14.24ms]
+
+tests/validation.test.ts:
+(pass) validateInterest > accepts a valid payload [2.15ms]
+(pass) validateInterest > rejects missing consent [0.40ms]
+(pass) validateInterest > rejects honeypot [0.09ms]
+
+tests/apiKey.test.ts:
+(pass) api key guard > allows requests when disabled [0.07ms]
+(pass) api key guard > rejects requests without a key when enabled [0.10ms]
+(pass) api key guard > accepts requests with a valid x-api-key [0.28ms]
+(pass) api key guard > accepts requests with a valid bearer token [0.07ms]
+
+tests/signals.cache.headers.test.ts:
+(pass) signals routes Cache-Control > returns public short cache on GET /api/v1/signals [5.99ms]
+
+tests/transactions.routes.test.ts:
+(pass) transaction identity mapping > derives id and status per @type [0.06ms]
+(pass) POST /api/v1/transaction > creates a MaterialTransaction and answers with TransactionStatus JSON-LD [96.16ms]
+(pass) POST /api/v1/transaction > records a Settlement as a completed transaction [85.97ms]
+(pass) POST /api/v1/transaction > rejects duplicates with the spec CONFLICT envelope [92.74ms]
+(pass) POST /api/v1/transaction > rejects payloads that violate the canonical transaction schema [79.06ms]
+(pass) POST /api/v1/transaction Idempotency-Key handling > answers a key reused with a different body with the Core-DP conflict body (not a 500) [88.89ms]
+(pass) POST /api/v1/transaction Idempotency-Key handling > replays the cached TransactionStatus for a repeated key with the same body [92.00ms]
+(pass) GET /api/v1/transaction/:id > resolves the settlement_url of a stored transaction [77.49ms]
+(pass) GET /api/v1/transaction/:id > returns the spec NOT_FOUND envelope for unknown transactions [80.36ms]
+
+ 186 pass
+ 0 fail
+ 467 expect() calls
+Ran 186 tests across 40 files. [40.47s]

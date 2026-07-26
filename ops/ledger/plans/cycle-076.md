@@ -1,3 +1,36 @@
-# Cycle 076 — metric keys regression guard 76
+# Cycle 076 — Cycle 076 automation item: test(metrics): key guard cycle 76 (#76)
 
-Backend.
+## Status
+DONE
+
+## Hypothesis
+Bulk automation cycle: intended as estate hygiene stamp or regression guard. Not a fresh explore→select highest-value defect (see Deviations).
+
+## Repos in scope
+- `localloop-backend`
+
+## Files / diff (from git)
+### localloop-backend
+- SHA: `1f1cfe96cb8a34081560af5f72f57c5cf7a4caf8`
+- Source: tag:agent-cycle-076
+- Subject: test(metrics): key guard cycle 76 (#76)
+- Diff: CHANGELOG.md                  | 3 +++; tests/metrics.keys.76.test.ts | 9 +++++++++; 2 files changed, 12 insertions(+)
+
+## Acceptance criteria
+- Change is present at recorded SHA/tag for each in-scope repo.
+- Repo native tests for the change path pass (or cycle-specific test exists).
+- Live estate remains healthy after deploy (or deploy=none documented).
+
+## Cross-repo contract impact
+- Additive-only preferred; no contract removals without expand-then-contract.
+- No API/schema contract change expected (hygiene/stamp cycle).
+
+## Deploy order
+1. see per-repo tags
+
+## Rollback
+- Reverse deploy order: rebuild previous image/SHA for each touched service.
+- For content-only (protocol/org): revert commit / redeploy prior site mirror if needed.
+
+## Quality class
+`low-padding`

@@ -1,0 +1,41 @@
+# Cycle 002 evidence (reconstructed 2026-07-25T23:57:50.893259+00:00)
+status=DONE
+quality=high
+
+## localloop-site
+sha=4d1d92ae964a130908b1a9003777be6913e906eb
+source=tag:agent-cycle-002
+subject=fix(security): nginx security headers (agent-cycle-002) (#73)
+diff:
+CHANGELOG.md                               | 26 +++++++++-; nginx.conf                                 | 15 ++++++; package.json                               |  2 +-; public/assets/js/demo-city.js              | 23 +++++++--; public/projects/loop-protocol/openapi.json | 82 +++++++++++++++++++++++++++++-; tests/e2e/demo-city.spec.ts                | 36 ++++++++++++-; tests/smoke.test.cjs                       | 15 ++++++; 7 files changed, 191 insertions(+), 8 deletions(-)
+commit 4d1d92ae964a130908b1a9003777be6913e906eb
+Author:     Alphin Tom <alpha912@users.noreply.github.com>
+AuthorDate: Sun Jul 26 01:14:08 2026 +0200
+Commit:     GitHub <noreply@github.com>
+CommitDate: Sun Jul 26 01:14:08 2026 +0200
+
+    fix(security): nginx security headers (agent-cycle-002) (#73)
+    
+    * Release 0.4.4: resync protocol openapi.json mirror to canonical contract
+    
+    * Release v0.4.5: stabilize DEMO City refresh
+    
+    * fix(security): add baseline nginx security headers
+    
+    Emit nosniff, SAMEORIGIN frame options, strict-origin referrer policy, and
+    a restrictive Permissions-Policy on the static docs hub.
+    
+    Refs: agent-cycle-002
+    
+    ---------
+    
+    Co-authored-by: localLOOP Agent <dev@mycel-ai.de>
+
+ CHANGELOG.md                               | 26 +++++++++-
+ nginx.conf                                 | 15 ++++++
+ package.json                               |  2 +-
+ public/assets/js/demo-city.js              | 23 +++++++--
+ public/projects/loop-protocol/openapi.json | 82 +++++++++++++++++++++++++++++-
+ tests/e2e/demo-city.spec.ts                | 36 ++++++++++++-
+ tests/smoke.test.cjs                       | 15 ++++++
+ 7 files changed, 191 insertions(+), 8 deletions(-)

@@ -1,103 +1,103 @@
-cycle	status
-001	DONE
-002	DONE
-003	DONE
-004	DONE
-005	DONE
-006	DONE
-007	DONE
-008	DONE
-009	DONE
-010	DONE
-011	DONE
-012	DONE
-013	DONE
-014	BLOCKED
-015	DONE
-016	DONE
-017	BLOCKED
-018	DONE
-019	DONE
-020	DONE
-021	DONE
-022	BLOCKED
-023	DONE
-024	DONE
-025	DONE
-026	DONE
-027	DONE
-028	DONE
-029	DONE
-030	DONE
-031	DONE
-032	DONE
-033	DONE
-034	DONE
-035	DONE
-036	DONE
-037	DONE
-038	DONE
-039	DONE
-040	DONE
-041	DONE
-042	DONE
-043	DONE
-044	DONE
-045	DONE
-046	DONE
-047	DONE
-048	DONE
-049	DONE
-050	DONE
-051	DONE
-052	DONE
-053	DONE
-054	DONE
-055	DONE
-056	DONE
-057	DONE
-058	DONE
-059	DONE
-060	DONE
-061	DONE
-062	DONE
-063	DONE
-064	DONE
-065	DONE
-066	DONE
-067	DONE
-068	DONE
-069	DONE
-070	DONE
-071	DONE
-072	DONE
-073	DONE
-074	DONE
-075	DONE
-076	DONE
-077	DONE
-078	DONE
-079	DONE
-080	DONE
-081	DONE
-082	DONE
-083	DONE
-084	DONE
-085	DONE
-086	DONE
-087	DONE
-088	DONE
-089	DONE
-090	DONE
-091	DONE
-092	DONE
-093	DONE
-094	DONE
-095	DONE
-096	DONE
-097	DONE
-098	DONE
-099	DONE
-100	DONE
+cycle	status	quality	repos
+001	DONE	high	localloop-backend
+002	DONE	high	localloop-site
+003	DONE	high	localloop-backend
+004	DONE	high	localloop-backend
+005	DONE	high	localloop-backend
+006	DONE	high	localloop-backend
+007	DONE	high	localloop-backend
+008	DONE	medium	localloop-backend
+009	DONE	high	localloop-backend
+010	DONE	high	localloop-backend
+011	DONE	medium	localloop-backend
+012	DONE	medium	localloop-backend
+013	DONE	high	localloop-backend
+014	BLOCKED	blocked	
+015	DONE	medium	localloop-backend
+016	DONE	medium	localloop-backend
+017	BLOCKED	blocked	
+018	DONE	medium	localloop-backend
+019	DONE	high	localloop-site
+020	DONE	medium	localloop-site
+021	DONE	medium	localloop-backend
+022	BLOCKED	blocked	
+023	DONE	medium	localloop-backend
+024	DONE	medium	localloop-backend
+025	DONE	medium	localloop-backend
+026	DONE	medium	localloop-site
+027	DONE	medium	loop-protocol
+028	DONE	medium	org-github-profile
+029	DONE	medium	localloop-backend
+030	DONE	medium	localloop-backend
+031	DONE	medium	localloop-backend
+032	DONE	medium	localloop-site
+033	DONE	medium	localloop-site
+034	DONE	medium	localloop-site
+035	DONE	low-padding	loop-protocol
+036	DONE	low-padding	loop-protocol
+037	DONE	low-padding	loop-protocol
+038	DONE	low-padding	loop-protocol
+039	DONE	low-padding	loop-protocol
+040	DONE	low-padding	loop-protocol
+041	DONE	low-padding	localloop-site
+042	DONE	low-padding	loop-protocol
+043	DONE	low-padding	org-github-profile
+044	DONE	low-padding	localloop-backend
+045	DONE	low-padding	localloop-site
+046	DONE	low-padding	loop-protocol
+047	DONE	low-padding	org-github-profile
+048	DONE	low-padding	localloop-backend
+049	DONE	low-padding	localloop-site
+050	DONE	low-padding	loop-protocol
+051	DONE	low-padding	org-github-profile
+052	DONE	low-padding	localloop-backend
+053	DONE	low-padding	localloop-site
+054	DONE	low-padding	loop-protocol
+055	DONE	low-padding	org-github-profile
+056	DONE	low-padding	localloop-backend
+057	DONE	low-padding	localloop-site
+058	DONE	low-padding	loop-protocol
+059	DONE	low-padding	org-github-profile
+060	DONE	low-padding	localloop-backend
+061	DONE	low-padding	localloop-site
+062	DONE	low-padding	loop-protocol
+063	DONE	low-padding	org-github-profile
+064	DONE	low-padding	localloop-backend
+065	DONE	low-padding	localloop-site
+066	DONE	low-padding	loop-protocol
+067	DONE	low-padding	org-github-profile
+068	DONE	low-padding	localloop-backend
+069	DONE	low-padding	localloop-site
+070	DONE	low-padding	loop-protocol
+071	DONE	low-padding	org-github-profile
+072	DONE	low-padding	localloop-backend
+073	DONE	low-padding	localloop-site
+074	DONE	low-padding	loop-protocol
+075	DONE	low-padding	org-github-profile
+076	DONE	low-padding	localloop-backend
+077	DONE	low-padding	localloop-site
+078	DONE	low-padding	loop-protocol
+079	DONE	low-padding	org-github-profile
+080	DONE	low-padding	localloop-backend
+081	DONE	low-padding	localloop-site
+082	DONE	low-padding	loop-protocol
+083	DONE	low-padding	org-github-profile
+084	DONE	low-padding	localloop-backend
+085	DONE	low-padding	localloop-site
+086	DONE	low-padding	loop-protocol
+087	DONE	low-padding	org-github-profile
+088	DONE	low-padding	localloop-backend
+089	DONE	low-padding	localloop-site
+090	DONE	low-padding	loop-protocol
+091	DONE	low-padding	org-github-profile
+092	DONE	low-padding	localloop-backend
+093	DONE	low-padding	localloop-site
+094	DONE	low-padding	loop-protocol
+095	DONE	low-padding	org-github-profile
+096	DONE	low-padding	localloop-backend
+097	DONE	low-padding	localloop-site
+098	DONE	low-padding	loop-protocol
+099	DONE	low-padding	org-github-profile
+100	DONE	low-padding	localloop-backend
 
 DONE=97 BLOCKED=3 TOTAL=100

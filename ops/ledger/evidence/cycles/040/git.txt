@@ -1,0 +1,27 @@
+# Cycle 040 evidence (reconstructed 2026-07-25T23:57:54.010930+00:00)
+status=DONE
+quality=low-padding
+
+## loop-protocol
+sha=c4dc1e2dd96609dc4376fa6a9d0398251f46c2bd
+source=tag:agent-cycle-040
+subject=docs: contributing anchor (#22)
+diff:
+CHANGELOG.md               | 3 +++; CONTRIBUTING.md            | 2 ++; package.json               | 5 +++--; scripts/check-cycle-040.js | 8 ++++++++; 4 files changed, 16 insertions(+), 2 deletions(-)
+commit c4dc1e2dd96609dc4376fa6a9d0398251f46c2bd
+Author:     Alphin Tom <alpha912@users.noreply.github.com>
+AuthorDate: Sun Jul 26 01:34:42 2026 +0200
+Commit:     GitHub <noreply@github.com>
+CommitDate: Sun Jul 26 01:34:42 2026 +0200
+
+    docs: contributing anchor (#22)
+    
+    Refs: agent-cycle-040
+    
+    Co-authored-by: localLOOP Agent <dev@mycel-ai.de>
+
+ CHANGELOG.md               | 3 +++
+ CONTRIBUTING.md            | 2 ++
+ package.json               | 5 +++--
+ scripts/check-cycle-040.js | 8 ++++++++
+ 4 files changed, 16 insertions(+), 2 deletions(-)

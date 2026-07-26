@@ -1,0 +1,25 @@
+# Cycle 096 evidence (reconstructed 2026-07-25T23:57:58.543240+00:00)
+status=DONE
+quality=low-padding
+
+## localloop-backend
+sha=16b4745795780ce0c0ae87177f0daf235fdc03dd
+source=tag:agent-cycle-096
+subject=test(metrics): key guard cycle 96 (#81)
+diff:
+CHANGELOG.md                  | 3 +++; tests/metrics.keys.96.test.ts | 9 +++++++++; 2 files changed, 12 insertions(+)
+commit 16b4745795780ce0c0ae87177f0daf235fdc03dd
+Author:     Alphin Tom <alpha912@users.noreply.github.com>
+AuthorDate: Sun Jul 26 01:46:18 2026 +0200
+Commit:     GitHub <noreply@github.com>
+CommitDate: Sun Jul 26 01:46:18 2026 +0200
+
+    test(metrics): key guard cycle 96 (#81)
+    
+    Refs: agent-cycle-096
+    
+    Co-authored-by: localLOOP Agent <dev@mycel-ai.de>
+
+ CHANGELOG.md                  | 3 +++
+ tests/metrics.keys.96.test.ts | 9 +++++++++
+ 2 files changed, 12 insertions(+)

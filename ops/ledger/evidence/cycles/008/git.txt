@@ -1,0 +1,26 @@
+# Cycle 008 evidence (reconstructed 2026-07-25T23:57:51.367696+00:00)
+status=DONE
+quality=medium
+
+## localloop-backend
+sha=91685dcf7f054e562760f672a0dda394fdc6e20e
+source=tag:agent-cycle-008
+subject=docs(health): document redis probe and no-store (#52)
+diff:
+CHANGELOG.md                |  3 +++; README.md                   |  2 +-; tests/readme.health.test.ts | 12 ++++++++++++; 3 files changed, 16 insertions(+), 1 deletion(-)
+commit 91685dcf7f054e562760f672a0dda394fdc6e20e
+Author:     Alphin Tom <alpha912@users.noreply.github.com>
+AuthorDate: Sun Jul 26 01:20:37 2026 +0200
+Commit:     GitHub <noreply@github.com>
+CommitDate: Sun Jul 26 01:20:37 2026 +0200
+
+    docs(health): document redis probe and no-store (#52)
+    
+    Refs: agent-cycle-008
+    
+    Co-authored-by: localLOOP Agent <dev@mycel-ai.de>
+
+ CHANGELOG.md                |  3 +++
+ README.md                   |  2 +-
+ tests/readme.health.test.ts | 12 ++++++++++++
+ 3 files changed, 16 insertions(+), 1 deletion(-)

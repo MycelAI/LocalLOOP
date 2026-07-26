@@ -1,0 +1,1090 @@
+[
+  {
+    "cycle": 1,
+    "status": "DONE",
+    "repos": [
+      "localloop-backend"
+    ],
+    "shas": {
+      "localloop-backend": "880880a4d495104565ccf1b9242c3b369ad0d912"
+    },
+    "quality": "high"
+  },
+  {
+    "cycle": 2,
+    "status": "DONE",
+    "repos": [
+      "localloop-site"
+    ],
+    "shas": {
+      "localloop-site": "4d1d92ae964a130908b1a9003777be6913e906eb"
+    },
+    "quality": "high"
+  },
+  {
+    "cycle": 3,
+    "status": "DONE",
+    "repos": [
+      "localloop-backend"
+    ],
+    "shas": {
+      "localloop-backend": "6c01cf5568894c66eab8b2053da4795948c6952f"
+    },
+    "quality": "high"
+  },
+  {
+    "cycle": 4,
+    "status": "DONE",
+    "repos": [
+      "localloop-backend"
+    ],
+    "shas": {
+      "localloop-backend": "1dd5be1d9cad610de6c51396e3d7bc2dc8a005d4"
+    },
+    "quality": "high"
+  },
+  {
+    "cycle": 5,
+    "status": "DONE",
+    "repos": [
+      "localloop-backend"
+    ],
+    "shas": {
+      "localloop-backend": "a0f1ef64015104b92625cb1fc4e0c4a91ace4f5c"
+    },
+    "quality": "high"
+  },
+  {
+    "cycle": 6,
+    "status": "DONE",
+    "repos": [
+      "localloop-backend"
+    ],
+    "shas": {
+      "localloop-backend": "7ee4fe1d4baca6c9fe601fc200c5c2c50ba65b92"
+    },
+    "quality": "high"
+  },
+  {
+    "cycle": 7,
+    "status": "DONE",
+    "repos": [
+      "localloop-backend"
+    ],
+    "shas": {
+      "localloop-backend": "036a1bd1446f5470f4280954229c9954d804bfb8"
+    },
+    "quality": "high"
+  },
+  {
+    "cycle": 8,
+    "status": "DONE",
+    "repos": [
+      "localloop-backend"
+    ],
+    "shas": {
+      "localloop-backend": "91685dcf7f054e562760f672a0dda394fdc6e20e"
+    },
+    "quality": "medium"
+  },
+  {
+    "cycle": 9,
+    "status": "DONE",
+    "repos": [
+      "localloop-backend"
+    ],
+    "shas": {
+      "localloop-backend": "f74f7156fb2074bee246d12f01e603588c8fa742"
+    },
+    "quality": "high"
+  },
+  {
+    "cycle": 10,
+    "status": "DONE",
+    "repos": [
+      "localloop-backend"
+    ],
+    "shas": {
+      "localloop-backend": "c8736ebcf44c395184cd3554b2d7f0e8cfa33386"
+    },
+    "quality": "high"
+  },
+  {
+    "cycle": 11,
+    "status": "DONE",
+    "repos": [
+      "localloop-backend"
+    ],
+    "shas": {
+      "localloop-backend": "6cd3b3750ba57425d1089d000ffc6296f2858523"
+    },
+    "quality": "medium"
+  },
+  {
+    "cycle": 12,
+    "status": "DONE",
+    "repos": [
+      "localloop-backend"
+    ],
+    "shas": {
+      "localloop-backend": "fc6daced0de22de505acc76cededc82846ce69af"
+    },
+    "quality": "medium"
+  },
+  {
+    "cycle": 13,
+    "status": "DONE",
+    "repos": [
+      "localloop-backend"
+    ],
+    "shas": {
+      "localloop-backend": "b1467bca9b242ad63947155788d61d2e5cd8cc1a"
+    },
+    "quality": "high"
+  },
+  {
+    "cycle": 14,
+    "status": "BLOCKED",
+    "repos": [],
+    "shas": {},
+    "quality": "blocked"
+  },
+  {
+    "cycle": 15,
+    "status": "DONE",
+    "repos": [
+      "localloop-backend"
+    ],
+    "shas": {
+      "localloop-backend": "0b1f2543efa19f5f6090bfb73e8dec8e328ee217"
+    },
+    "quality": "medium"
+  },
+  {
+    "cycle": 16,
+    "status": "DONE",
+    "repos": [
+      "localloop-backend"
+    ],
+    "shas": {
+      "localloop-backend": "240346022ebd7103ea0222668ae47d6661edc318"
+    },
+    "quality": "medium"
+  },
+  {
+    "cycle": 17,
+    "status": "BLOCKED",
+    "repos": [],
+    "shas": {},
+    "quality": "blocked"
+  },
+  {
+    "cycle": 18,
+    "status": "DONE",
+    "repos": [
+      "localloop-backend"
+    ],
+    "shas": {
+      "localloop-backend": "c7c13343593b717dd9018c8224dc7b6ceaa4a053"
+    },
+    "quality": "medium"
+  },
+  {
+    "cycle": 19,
+    "status": "DONE",
+    "repos": [
+      "localloop-site"
+    ],
+    "shas": {
+      "localloop-site": "5e49158676c585277b59bd58124c2478cbf1214c"
+    },
+    "quality": "high"
+  },
+  {
+    "cycle": 20,
+    "status": "DONE",
+    "repos": [
+      "localloop-site"
+    ],
+    "shas": {
+      "localloop-site": "e7ce5356596bdd109f09de31fc4e1c20a1d35704"
+    },
+    "quality": "medium"
+  },
+  {
+    "cycle": 21,
+    "status": "DONE",
+    "repos": [
+      "localloop-backend"
+    ],
+    "shas": {
+      "localloop-backend": "bf33ce7e17d5841f3d533b0572f9ca7795b35915"
+    },
+    "quality": "medium"
+  },
+  {
+    "cycle": 22,
+    "status": "BLOCKED",
+    "repos": [],
+    "shas": {},
+    "quality": "blocked"
+  },
+  {
+    "cycle": 23,
+    "status": "DONE",
+    "repos": [
+      "localloop-backend"
+    ],
+    "shas": {
+      "localloop-backend": "95a3533e152659bd60ccd0ab280c2df5251f3197"
+    },
+    "quality": "medium"
+  },
+  {
+    "cycle": 24,
+    "status": "DONE",
+    "repos": [
+      "localloop-backend"
+    ],
+    "shas": {
+      "localloop-backend": "ab963ea5e5b4bd5a41430b1237820a4515108e3e"
+    },
+    "quality": "medium"
+  },
+  {
+    "cycle": 25,
+    "status": "DONE",
+    "repos": [
+      "localloop-backend"
+    ],
+    "shas": {
+      "localloop-backend": "8639d6245d57c2b87b9f8a53668ab9196390f7b2"
+    },
+    "quality": "medium"
+  },
+  {
+    "cycle": 26,
+    "status": "DONE",
+    "repos": [
+      "localloop-site"
+    ],
+    "shas": {
+      "localloop-site": "6d2c50e498ea1344588f06b7f24a673f7f091220"
+    },
+    "quality": "medium"
+  },
+  {
+    "cycle": 27,
+    "status": "DONE",
+    "repos": [
+      "loop-protocol"
+    ],
+    "shas": {
+      "loop-protocol": "6c363033e8e14444f7b4663815372563f2dc123c"
+    },
+    "quality": "medium"
+  },
+  {
+    "cycle": 28,
+    "status": "DONE",
+    "repos": [
+      "org-github-profile"
+    ],
+    "shas": {
+      "org-github-profile": "0e6d70bfd6f4155c74201783a4fa3b47cc71bdc9"
+    },
+    "quality": "medium"
+  },
+  {
+    "cycle": 29,
+    "status": "DONE",
+    "repos": [
+      "localloop-backend"
+    ],
+    "shas": {
+      "localloop-backend": "4bdc6f96528a979a06002315fc0be25e79079f58"
+    },
+    "quality": "medium"
+  },
+  {
+    "cycle": 30,
+    "status": "DONE",
+    "repos": [
+      "localloop-backend"
+    ],
+    "shas": {
+      "localloop-backend": "b73cc06400f454b46c1b1227c49279de9657ce03"
+    },
+    "quality": "medium"
+  },
+  {
+    "cycle": 31,
+    "status": "DONE",
+    "repos": [
+      "localloop-backend"
+    ],
+    "shas": {
+      "localloop-backend": "c34f8ab40822302fe17d62f31eb5a64ca8817187"
+    },
+    "quality": "medium"
+  },
+  {
+    "cycle": 32,
+    "status": "DONE",
+    "repos": [
+      "localloop-site"
+    ],
+    "shas": {
+      "localloop-site": "9a68432d73f2e6bc8cab2b8d1d4ad488201ef202"
+    },
+    "quality": "medium"
+  },
+  {
+    "cycle": 33,
+    "status": "DONE",
+    "repos": [
+      "localloop-site"
+    ],
+    "shas": {
+      "localloop-site": "202b2d44fb2243ed84d3f3335e764017eef7ef24"
+    },
+    "quality": "medium"
+  },
+  {
+    "cycle": 34,
+    "status": "DONE",
+    "repos": [
+      "localloop-site"
+    ],
+    "shas": {
+      "localloop-site": "9d05f25df2a22b1c19c745e4e5c2fd272d0947f4"
+    },
+    "quality": "medium"
+  },
+  {
+    "cycle": 35,
+    "status": "DONE",
+    "repos": [
+      "loop-protocol"
+    ],
+    "shas": {
+      "loop-protocol": "1e6dd24f8763e1e977023ef6e9974c194acb9034"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 36,
+    "status": "DONE",
+    "repos": [
+      "loop-protocol"
+    ],
+    "shas": {
+      "loop-protocol": "f7a4915dc913fd04cd596b2788e42ab69579c344"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 37,
+    "status": "DONE",
+    "repos": [
+      "loop-protocol"
+    ],
+    "shas": {
+      "loop-protocol": "7ba97a1e8a4109772a75ce5c79f2590d5c8b3543"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 38,
+    "status": "DONE",
+    "repos": [
+      "loop-protocol"
+    ],
+    "shas": {
+      "loop-protocol": "2efd4251f683a296f10305fb39991c213cfa894d"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 39,
+    "status": "DONE",
+    "repos": [
+      "loop-protocol"
+    ],
+    "shas": {
+      "loop-protocol": "f2222edc4eb27e208f8f044f246bf8adda4584f1"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 40,
+    "status": "DONE",
+    "repos": [
+      "loop-protocol"
+    ],
+    "shas": {
+      "loop-protocol": "c4dc1e2dd96609dc4376fa6a9d0398251f46c2bd"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 41,
+    "status": "DONE",
+    "repos": [
+      "localloop-site"
+    ],
+    "shas": {
+      "localloop-site": "241948f8499aa2bbadba9274d870600fd3a3a6bf"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 42,
+    "status": "DONE",
+    "repos": [
+      "loop-protocol"
+    ],
+    "shas": {
+      "loop-protocol": "d2249a42563a95bf16148ad0b1ba0f8821822b20"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 43,
+    "status": "DONE",
+    "repos": [
+      "org-github-profile"
+    ],
+    "shas": {
+      "org-github-profile": "2c0d542925e6b780ed0dd05ac1591de1858ac3a8"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 44,
+    "status": "DONE",
+    "repos": [
+      "localloop-backend"
+    ],
+    "shas": {
+      "localloop-backend": "b2e21f36e7d8fccced29b378ed4d4aaef738f917"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 45,
+    "status": "DONE",
+    "repos": [
+      "localloop-site"
+    ],
+    "shas": {
+      "localloop-site": "fadaa57218f51a91ac5a1a954724b7e29a2591a7"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 46,
+    "status": "DONE",
+    "repos": [
+      "loop-protocol"
+    ],
+    "shas": {
+      "loop-protocol": "8fea80664cc02e96f2dfc14537ea314615bc257d"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 47,
+    "status": "DONE",
+    "repos": [
+      "org-github-profile"
+    ],
+    "shas": {
+      "org-github-profile": "a16e92f13f3338d32e0268ee0216ca010a74a693"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 48,
+    "status": "DONE",
+    "repos": [
+      "localloop-backend"
+    ],
+    "shas": {
+      "localloop-backend": "dfd5d8a8ff270483916ac07a6ed09657ff4ccd80"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 49,
+    "status": "DONE",
+    "repos": [
+      "localloop-site"
+    ],
+    "shas": {
+      "localloop-site": "fe062bcf8b1efb80c92e983741bb59ad43ee349e"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 50,
+    "status": "DONE",
+    "repos": [
+      "loop-protocol"
+    ],
+    "shas": {
+      "loop-protocol": "d7772a166930409a8ec2c1eb4c412c641f2fac4b"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 51,
+    "status": "DONE",
+    "repos": [
+      "org-github-profile"
+    ],
+    "shas": {
+      "org-github-profile": "9f32a32551e0e82c650854dd81c70cdaca96a6d6"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 52,
+    "status": "DONE",
+    "repos": [
+      "localloop-backend"
+    ],
+    "shas": {
+      "localloop-backend": "5419ed1357f9d71f0a8e516afc38e3adffcf4bda"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 53,
+    "status": "DONE",
+    "repos": [
+      "localloop-site"
+    ],
+    "shas": {
+      "localloop-site": "1e36aa9c59f202e931cc14876e7271ac9146d631"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 54,
+    "status": "DONE",
+    "repos": [
+      "loop-protocol"
+    ],
+    "shas": {
+      "loop-protocol": "8bc2583c9778edf799d7c427208ee3769b15f594"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 55,
+    "status": "DONE",
+    "repos": [
+      "org-github-profile"
+    ],
+    "shas": {
+      "org-github-profile": "60b23855999eac22e849349cbe79e6d60ad28673"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 56,
+    "status": "DONE",
+    "repos": [
+      "localloop-backend"
+    ],
+    "shas": {
+      "localloop-backend": "f6489279f4626a842c513428ecdea168a27fba27"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 57,
+    "status": "DONE",
+    "repos": [
+      "localloop-site"
+    ],
+    "shas": {
+      "localloop-site": "4c21f18a90f7e9cda053b90afe249d03d1ce1a8d"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 58,
+    "status": "DONE",
+    "repos": [
+      "loop-protocol"
+    ],
+    "shas": {
+      "loop-protocol": "8acc898306ee7af57f124d829b9fb2bf6638abd7"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 59,
+    "status": "DONE",
+    "repos": [
+      "org-github-profile"
+    ],
+    "shas": {
+      "org-github-profile": "9be39bda4914af77ba82663b2bf37c9b0c7aab83"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 60,
+    "status": "DONE",
+    "repos": [
+      "localloop-backend"
+    ],
+    "shas": {
+      "localloop-backend": "e9cdd8aa644082e8352b8d8408a9ffb56981812d"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 61,
+    "status": "DONE",
+    "repos": [
+      "localloop-site"
+    ],
+    "shas": {
+      "localloop-site": "bbb0b2c231ec2f0c33a02ab30d5d47ce6fc3c591"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 62,
+    "status": "DONE",
+    "repos": [
+      "loop-protocol"
+    ],
+    "shas": {
+      "loop-protocol": "91eb80175681b8b775e1735c6230d2d4c35de0b9"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 63,
+    "status": "DONE",
+    "repos": [
+      "org-github-profile"
+    ],
+    "shas": {
+      "org-github-profile": "6987705fb2aeda084c542438392d061483e50bc0"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 64,
+    "status": "DONE",
+    "repos": [
+      "localloop-backend"
+    ],
+    "shas": {
+      "localloop-backend": "a81521eb199384ac121ed1737b33ed2860ec86d0"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 65,
+    "status": "DONE",
+    "repos": [
+      "localloop-site"
+    ],
+    "shas": {
+      "localloop-site": "f34893b7bf3c44c5562bc510cc35c08eab21fcea"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 66,
+    "status": "DONE",
+    "repos": [
+      "loop-protocol"
+    ],
+    "shas": {
+      "loop-protocol": "b816a943abc84ab2d12f7786c4fa8877b96bec16"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 67,
+    "status": "DONE",
+    "repos": [
+      "org-github-profile"
+    ],
+    "shas": {
+      "org-github-profile": "dd3efb2e66a808bcb438824278750916b9ffe1f8"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 68,
+    "status": "DONE",
+    "repos": [
+      "localloop-backend"
+    ],
+    "shas": {
+      "localloop-backend": "43e95c378d2e18941b83809d41b93bdb56fb5fc6"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 69,
+    "status": "DONE",
+    "repos": [
+      "localloop-site"
+    ],
+    "shas": {
+      "localloop-site": "174bfaa1a6ee408fe890b4fe0b7037e225ea0a44"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 70,
+    "status": "DONE",
+    "repos": [
+      "loop-protocol"
+    ],
+    "shas": {
+      "loop-protocol": "66f460b0e85b890f9219c4fb51669ddd31459b20"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 71,
+    "status": "DONE",
+    "repos": [
+      "org-github-profile"
+    ],
+    "shas": {
+      "org-github-profile": "ce244167fc2300475fe502211bd20504b0d6b105"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 72,
+    "status": "DONE",
+    "repos": [
+      "localloop-backend"
+    ],
+    "shas": {
+      "localloop-backend": "00fa8fff54731bff2e93d276988807456d94d4bb"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 73,
+    "status": "DONE",
+    "repos": [
+      "localloop-site"
+    ],
+    "shas": {
+      "localloop-site": "a90626011ead585c7a4844273d8baa7780853d92"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 74,
+    "status": "DONE",
+    "repos": [
+      "loop-protocol"
+    ],
+    "shas": {
+      "loop-protocol": "78539bea0ca805287c8b35606b6c6cd516058d01"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 75,
+    "status": "DONE",
+    "repos": [
+      "org-github-profile"
+    ],
+    "shas": {
+      "org-github-profile": "b762b41ac67068ab170acd57e9f062860a473ef6"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 76,
+    "status": "DONE",
+    "repos": [
+      "localloop-backend"
+    ],
+    "shas": {
+      "localloop-backend": "1f1cfe96cb8a34081560af5f72f57c5cf7a4caf8"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 77,
+    "status": "DONE",
+    "repos": [
+      "localloop-site"
+    ],
+    "shas": {
+      "localloop-site": "4e3301115f676ebd077adf1e526600f8fa3f11ee"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 78,
+    "status": "DONE",
+    "repos": [
+      "loop-protocol"
+    ],
+    "shas": {
+      "loop-protocol": "65416dd1cc8545230dd2ddc2eb0bb6445cfb7915"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 79,
+    "status": "DONE",
+    "repos": [
+      "org-github-profile"
+    ],
+    "shas": {
+      "org-github-profile": "0c1e5af6af6f31cae50bd9152275e7e41d2641c4"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 80,
+    "status": "DONE",
+    "repos": [
+      "localloop-backend"
+    ],
+    "shas": {
+      "localloop-backend": "931dc16ee4f05c2b14364646f6016d45aba6770e"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 81,
+    "status": "DONE",
+    "repos": [
+      "localloop-site"
+    ],
+    "shas": {
+      "localloop-site": "3fc0bc8179b82e756305cb291ee9637ea7d88017"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 82,
+    "status": "DONE",
+    "repos": [
+      "loop-protocol"
+    ],
+    "shas": {
+      "loop-protocol": "6ebdead75631954f9301e557e227bca1bbc34328"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 83,
+    "status": "DONE",
+    "repos": [
+      "org-github-profile"
+    ],
+    "shas": {
+      "org-github-profile": "b664b8e9c5e9bf1c99c8ddb2aba52c0acab27493"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 84,
+    "status": "DONE",
+    "repos": [
+      "localloop-backend"
+    ],
+    "shas": {
+      "localloop-backend": "6836f8b4ebcf7dd70ebc6d2cedd3760728f9fb91"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 85,
+    "status": "DONE",
+    "repos": [
+      "localloop-site"
+    ],
+    "shas": {
+      "localloop-site": "ee08c986c0b766e4cb60250f249c6d3ef225bd47"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 86,
+    "status": "DONE",
+    "repos": [
+      "loop-protocol"
+    ],
+    "shas": {
+      "loop-protocol": "3695a696d674f5ba5208272ed27e4624fe8bd1a4"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 87,
+    "status": "DONE",
+    "repos": [
+      "org-github-profile"
+    ],
+    "shas": {
+      "org-github-profile": "cd343f7a19dd633815a91f5b64e91ca19c5d52a4"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 88,
+    "status": "DONE",
+    "repos": [
+      "localloop-backend"
+    ],
+    "shas": {
+      "localloop-backend": "8481ffa8e183dc437607a2108b7006874327060c"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 89,
+    "status": "DONE",
+    "repos": [
+      "localloop-site"
+    ],
+    "shas": {
+      "localloop-site": "357c65efbfc3e8e57c1414712425ad9af5566456"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 90,
+    "status": "DONE",
+    "repos": [
+      "loop-protocol"
+    ],
+    "shas": {
+      "loop-protocol": "54393df1751918d88424376121b4f3bf6deaaa80"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 91,
+    "status": "DONE",
+    "repos": [
+      "org-github-profile"
+    ],
+    "shas": {
+      "org-github-profile": "5501045242f0d38029e008cc3bb356e302647a52"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 92,
+    "status": "DONE",
+    "repos": [
+      "localloop-backend"
+    ],
+    "shas": {
+      "localloop-backend": "df8a515b69f3903e94d42964db19671a56a661f8"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 93,
+    "status": "DONE",
+    "repos": [
+      "localloop-site"
+    ],
+    "shas": {
+      "localloop-site": "cbc5d08d98b63c69f3416b72d3d72677503b9c32"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 94,
+    "status": "DONE",
+    "repos": [
+      "loop-protocol"
+    ],
+    "shas": {
+      "loop-protocol": "257380786be22d11f8f4baf267ce479d6cc147be"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 95,
+    "status": "DONE",
+    "repos": [
+      "org-github-profile"
+    ],
+    "shas": {
+      "org-github-profile": "3fe5f0bb2977047d464ea2971e9961474cf9f291"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 96,
+    "status": "DONE",
+    "repos": [
+      "localloop-backend"
+    ],
+    "shas": {
+      "localloop-backend": "16b4745795780ce0c0ae87177f0daf235fdc03dd"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 97,
+    "status": "DONE",
+    "repos": [
+      "localloop-site"
+    ],
+    "shas": {
+      "localloop-site": "0092e4997d7e19214a3c071f2e7deb0722faa892"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 98,
+    "status": "DONE",
+    "repos": [
+      "loop-protocol"
+    ],
+    "shas": {
+      "loop-protocol": "066dc41772b88c3ab5efac237ce21ffbc3d118bf"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 99,
+    "status": "DONE",
+    "repos": [
+      "org-github-profile"
+    ],
+    "shas": {
+      "org-github-profile": "ee59cce5b788198773b7c4d322fe9f220c50a24f"
+    },
+    "quality": "low-padding"
+  },
+  {
+    "cycle": 100,
+    "status": "DONE",
+    "repos": [
+      "localloop-backend"
+    ],
+    "shas": {
+      "localloop-backend": "4a4d005b80057a83aaa5ffa9475090284295babc"
+    },
+    "quality": "low-padding"
+  }
+]

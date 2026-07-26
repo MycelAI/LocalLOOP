@@ -1,3 +1,36 @@
-# Cycle 039 — security doc anchor
+# Cycle 039 — Cycle 039 automation item: docs: security doc anchor (#21)
 
-Protocol.
+## Status
+DONE
+
+## Hypothesis
+Bulk automation cycle: intended as estate hygiene stamp or regression guard. Not a fresh explore→select highest-value defect (see Deviations).
+
+## Repos in scope
+- `loop-protocol`
+
+## Files / diff (from git)
+### loop-protocol
+- SHA: `f2222edc4eb27e208f8f044f246bf8adda4584f1`
+- Source: tag:agent-cycle-039
+- Subject: docs: security doc anchor (#21)
+- Diff: CHANGELOG.md               | 3 +++; SECURITY.md                | 2 ++; package.json               | 5 +++--; scripts/check-cycle-039.js | 8 ++++++++; 4 files changed, 16 insertions(+), 2 deletions(-)
+
+## Acceptance criteria
+- Change is present at recorded SHA/tag for each in-scope repo.
+- Repo native tests for the change path pass (or cycle-specific test exists).
+- Live estate remains healthy after deploy (or deploy=none documented).
+
+## Cross-repo contract impact
+- Additive-only preferred; no contract removals without expand-then-contract.
+- No API/schema contract change expected (hygiene/stamp cycle).
+
+## Deploy order
+1. see per-repo tags
+
+## Rollback
+- Reverse deploy order: rebuild previous image/SHA for each touched service.
+- For content-only (protocol/org): revert commit / redeploy prior site mirror if needed.
+
+## Quality class
+`low-padding`

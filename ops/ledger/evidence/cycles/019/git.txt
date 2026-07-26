@@ -1,0 +1,26 @@
+# Cycle 019 evidence (reconstructed 2026-07-25T23:57:52.273492+00:00)
+status=DONE
+quality=high
+
+## localloop-site
+sha=5e49158676c585277b59bd58124c2478cbf1214c
+source=tag:agent-cycle-019
+subject=feat(security): add well-known security.txt (#74)
+diff:
+CHANGELOG.md                    | 3 +++; public/.well-known/security.txt | 5 +++++; tests/smoke.test.cjs            | 7 +++++++; 3 files changed, 15 insertions(+)
+commit 5e49158676c585277b59bd58124c2478cbf1214c
+Author:     Alphin Tom <alpha912@users.noreply.github.com>
+AuthorDate: Sun Jul 26 01:27:08 2026 +0200
+Commit:     GitHub <noreply@github.com>
+CommitDate: Sun Jul 26 01:27:08 2026 +0200
+
+    feat(security): add well-known security.txt (#74)
+    
+    Refs: agent-cycle-019
+    
+    Co-authored-by: localLOOP Agent <dev@mycel-ai.de>
+
+ CHANGELOG.md                    | 3 +++
+ public/.well-known/security.txt | 5 +++++
+ tests/smoke.test.cjs            | 7 +++++++
+ 3 files changed, 15 insertions(+)

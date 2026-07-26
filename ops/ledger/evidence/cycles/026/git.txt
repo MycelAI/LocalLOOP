@@ -1,0 +1,26 @@
+# Cycle 026 evidence (reconstructed 2026-07-25T23:57:52.836654+00:00)
+status=DONE
+quality=medium
+
+## localloop-site
+sha=6d2c50e498ea1344588f06b7f24a673f7f091220
+source=tag:agent-cycle-026
+subject=feat(site): add humans.txt (#76)
+diff:
+CHANGELOG.md         | 3 +++; public/humans.txt    | 9 +++++++++; tests/smoke.test.cjs | 7 +++++++; 3 files changed, 19 insertions(+)
+commit 6d2c50e498ea1344588f06b7f24a673f7f091220
+Author:     Alphin Tom <alpha912@users.noreply.github.com>
+AuthorDate: Sun Jul 26 01:31:19 2026 +0200
+Commit:     GitHub <noreply@github.com>
+CommitDate: Sun Jul 26 01:31:19 2026 +0200
+
+    feat(site): add humans.txt (#76)
+    
+    Refs: agent-cycle-026
+    
+    Co-authored-by: localLOOP Agent <dev@mycel-ai.de>
+
+ CHANGELOG.md         | 3 +++
+ public/humans.txt    | 9 +++++++++
+ tests/smoke.test.cjs | 7 +++++++
+ 3 files changed, 19 insertions(+)
