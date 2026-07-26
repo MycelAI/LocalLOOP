@@ -1,7 +1,37 @@
-reverified_at=2026-07-26T00:06:42.182424+00:00
-kind=transactions_nostore_src
+reverified_at=2026-07-26T00:13:04.149958+00:00
+kind=transactions_nostore_live
+note=GET unknown transaction still carries no-store from route plugin hook
+method=GET
+url=https://loop-api.urbnia.com/api/v1/transaction/nope
+HTTP 404
+cache-control: no-store
+selected_headers:
+  cache-control: no-store
+  content-type: application/json; charset=utf-8
+  x-ratelimit-limit: 600
+  x-request-id: req-4x
+body_prefix:
+{"error":{"code":"NOT_FOUND","message":"Transaction with ID nope not found","details":{"searched_id":"nope"}}}
 
-file=src/routes/transactions.ts
-has_setNoStore=True
+bun test command: bun test tests/transactions.routes.test.ts
+exit=0
+bun test v1.3.14 (0d9b296a)
+
+tests/transactions.routes.test.ts:
+(pass) transaction identity mapping > derives id and status per @type [0.74ms]
+(pass) POST /api/v1/transaction > creates a MaterialTransaction and answers with TransactionStatus JSON-LD [255.07ms]
+(pass) POST /api/v1/transaction > records a Settlement as a completed transaction [121.22ms]
+(pass) POST /api/v1/transaction > rejects duplicates with the spec CONFLICT envelope [103.79ms]
+(pass) POST /api/v1/transaction > rejects payloads that violate the canonical transaction schema [105.99ms]
+(pass) POST /api/v1/transaction Idempotency-Key handling > answers a key reused with a different body with the Core-DP conflict body (not a 500) [111.13ms]
+(pass) POST /api/v1/transaction Idempotency-Key handling > replays the cached TransactionStatus for a repeated key with the same body [112.91ms]
+(pass) GET /api/v1/transaction/:id > resolves the settlement_url of a stored transaction [87.24ms]
+(pass) GET /api/v1/transaction/:id > returns the spec NOT_FOUND envelope for unknown transactions [97.58ms]
+
+ 9 pass
+ 0 fail
+ 33 expect() calls
+Ran 9 tests across 1 file. [1225.00ms]
+
 
 ok=True

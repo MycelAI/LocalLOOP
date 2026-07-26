@@ -1,12 +1,15 @@
 {
-  "captured_at": "2026-07-26T00:06:42.194102+00:00",
+  "captured_at": "2026-07-26T00:13:04.149958+00:00",
   "cycle": 23,
-  "kind": "transactions_nostore_src",
+  "kind": "transactions_nostore_live",
+  "route": "https://loop-api.urbnia.com/api/v1/transaction/nope",
+  "route_status": 404,
+  "route_cache_control": "no-store",
   "health_http": 200,
   "health": {
     "status": "ok",
-    "time": "2026-07-26T00:06:42.193Z",
-    "uptime": 922.393638111,
+    "time": "2026-07-26T00:13:05.423Z",
+    "uptime": 1305.623673953,
     "db": "ok",
     "redis": "ok",
     "version": "0.4.4"

@@ -101,3 +101,7 @@ cycle	status	detail	quality
 100	BLOCKED	padding/insufficient evidence	low-padding
 
 DONE=31 BLOCKED=69 TOTAL=100
+
+=== done-evidence gate 2026-07-26T00:13:17Z ===
+DONE cycles checked: 31
+ALL DONE CYCLES PASS RUNTIME EVIDENCE GATE

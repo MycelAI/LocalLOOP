@@ -1,6 +1,6 @@
 status=DONE
-method=fresh_reverify
-kind=transactions_nostore_src
-reverified_at=2026-07-26T00:06:42.182700+00:00
+method=fresh_live_header_reverify
+kind=transactions_nostore_live
+reverified_at=2026-07-26T00:13:04.149958+00:00
 detail=reverify.txt
 ok=True

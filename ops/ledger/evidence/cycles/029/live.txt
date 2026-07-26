@@ -1,12 +1,15 @@
 {
-  "captured_at": "2026-07-26T00:06:42.466635+00:00",
+  "captured_at": "2026-07-26T00:13:05.450582+00:00",
   "cycle": 29,
-  "kind": "federate_nostore_src",
+  "kind": "federate_nostore_live",
+  "route": "https://loop-api.urbnia.com/api/v1/federate/announce",
+  "route_status": 400,
+  "route_cache_control": "no-store",
   "health_http": 200,
   "health": {
     "status": "ok",
-    "time": "2026-07-26T00:06:42.466Z",
-    "uptime": 922.666279821,
+    "time": "2026-07-26T00:13:05.474Z",
+    "uptime": 1305.674419829,
     "db": "ok",
     "redis": "ok",
     "version": "0.4.4"
