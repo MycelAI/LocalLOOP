@@ -1,65 +1,44 @@
-=== sample tags ===
--- agent-cycle-001 --
-54c151ad3d5d87fb1d0329cf7923b6ae4fa67f17
-  localloop-backend has tag
-agent-cycle-001
-  localloop-site missing tag
-agent-cycle-001
-  loop-protocol missing tag
-agent-cycle-001
-  org-github-profile missing tag
--- agent-cycle-010 --
-be299f890f210eede4aa7785f270dc451b6bed35
-  localloop-backend has tag
-agent-cycle-010
-  localloop-site missing tag
-agent-cycle-010
-  loop-protocol missing tag
-agent-cycle-010
-  org-github-profile missing tag
--- agent-cycle-025 --
-368022929fa71c93b84fd09bf6ff979f87497650
-  localloop-backend has tag
-agent-cycle-025
-  localloop-site missing tag
-agent-cycle-025
-  loop-protocol missing tag
-agent-cycle-025
-  org-github-profile missing tag
--- agent-cycle-050 --
-agent-cycle-050
-  localloop-backend missing tag
-agent-cycle-050
-  localloop-site missing tag
-94c43530fc77ac2934bcb2f682693bf32384d9e0
-  loop-protocol has tag
-agent-cycle-050
-  org-github-profile missing tag
--- agent-cycle-075 --
-agent-cycle-075
-  localloop-backend missing tag
-agent-cycle-075
-  localloop-site missing tag
-agent-cycle-075
-  loop-protocol missing tag
-7a0e6cbde3bdb59c86514a976b2f372aebe32de8
-  org-github-profile has tag
--- agent-cycle-100 --
-c82145697bda114d92d39641e7c23c2999e11aee
-  localloop-backend has tag
-agent-cycle-100
-  localloop-site missing tag
-agent-cycle-100
-  loop-protocol missing tag
-agent-cycle-100
-  org-github-profile missing tag
-4a4d005 test(metrics): key guard cycle 100 (#82)
-16b4745 test(metrics): key guard cycle 96 (#81)
-df8a515 test(metrics): key guard cycle 92 (#80)
-8481ffa test(metrics): key guard cycle 88 (#79)
-6836f8b test(metrics): key guard cycle 84 (#78)
-0092e49 chore(site): agent stamp 97 (#94)
-cbc5d08 chore(site): agent stamp 93 (#93)
-357c65e chore(site): agent stamp 89 (#92)
-ee08c98 chore(site): agent stamp 85 (#91)
-3fc0bc8 chore(site): agent stamp 81 (#90)
+=== sample tags 001 002 010 021 050 100 ===
+-- 001 --
+localloop-backend 880880a4d495104565ccf1b9242c3b369ad0d912
+localloop-site agent-cycle-001^{}
+loop-protocol agent-cycle-001^{}
+org-github-profile agent-cycle-001^{}
+deploy.txt estate-verification.txt git.txt live.txt tests.txt verification.txt 
+-- 002 --
+localloop-backend agent-cycle-002^{}
+localloop-site 4d1d92ae964a130908b1a9003777be6913e906eb
+loop-protocol agent-cycle-002^{}
+org-github-profile agent-cycle-002^{}
+deploy.txt estate-verification.txt git.txt live.txt tests.txt verification.txt 
+-- 010 --
+localloop-backend c8736ebcf44c395184cd3554b2d7f0e8cfa33386
+localloop-site agent-cycle-010^{}
+loop-protocol agent-cycle-010^{}
+org-github-profile agent-cycle-010^{}
+estate-verification.txt git.txt live.txt verification.txt 
+-- 021 --
+localloop-backend bf33ce7e17d5841f3d533b0572f9ca7795b35915
+localloop-site agent-cycle-021^{}
+loop-protocol agent-cycle-021^{}
+org-github-profile agent-cycle-021^{}
+estate-verification.txt git.txt live.txt verification.txt 
+-- 050 --
+localloop-backend agent-cycle-050^{}
+localloop-site agent-cycle-050^{}
+loop-protocol d7772a166930409a8ec2c1eb4c412c641f2fac4b
+org-github-profile agent-cycle-050^{}
+estate-verification.txt git.txt live.txt verification.txt 
+-- 100 --
+localloop-backend 4a4d005b80057a83aaa5ffa9475090284295babc
+localloop-site agent-cycle-100^{}
+loop-protocol agent-cycle-100^{}
+org-github-profile agent-cycle-100^{}
+estate-verification.txt git.txt live.txt verification.txt 
+=== honest tests still on main ===
+/home/alphin/code/local-loop-io/localloop-backend/tests/cities.cache.headers.test.ts
+/home/alphin/code/local-loop-io/localloop-backend/tests/interest.cache.headers.test.ts
+/home/alphin/code/local-loop-io/localloop-backend/tests/metrics.keys.test.ts
+/home/alphin/code/local-loop-io/localloop-backend/tests/signals.cache.headers.test.ts
+=== live ===
+{"status":"ok","time":"2026-07-26T00:01:40.055Z","uptime":620.256142719,"db":"ok","redis":"ok","version":"0.4.4"}
