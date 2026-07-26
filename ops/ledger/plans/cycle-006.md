@@ -33,3 +33,6 @@ Empty metrics object confused dashboards on quiet nodes
 
 ## Quality class
 `high`
+
+## Fresh re-verify
+Acceptance re-checked at skeptic remediation; see evidence/cycles/006/reverify.txt.

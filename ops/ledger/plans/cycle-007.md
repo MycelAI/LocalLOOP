@@ -33,3 +33,6 @@ Fastify stripped metric counters to {} without additionalProperties
 
 ## Quality class
 `high`
+
+## Fresh re-verify
+Acceptance re-checked at skeptic remediation; see evidence/cycles/007/reverify.txt.

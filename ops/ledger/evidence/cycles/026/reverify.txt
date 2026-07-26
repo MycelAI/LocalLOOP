@@ -1,0 +1,16 @@
+reverified_at=2026-07-26T00:06:42.224857+00:00
+kind=humans_txt
+
+HTTP 200
+/* TEAM */
+Org: Mycel UG (haftungsbeschränkt)
+Site: https://localloop.urbnia.com
+Contact: dev@mycel-ai.de
+
+/* SITE */
+Standards: HTML5, CSS3
+Components: Next.js static export
+Note: Lab demo only — no public pilots.
+
+
+ok=True

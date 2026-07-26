@@ -1,7 +1,6 @@
-cycle=006
 status=DONE
-evidence=git.txt (commit/tag reconstruction)
-live_snapshot=live.txt (estate health at reconstruction)
-deploy=backend api only
-plans=../../plans/cycle-006.md
-note=
+method=fresh_reverify
+kind=metrics_zeros
+reverified_at=2026-07-26T00:06:38.098469+00:00
+detail=reverify.txt
+ok=True

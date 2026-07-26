@@ -33,3 +33,6 @@ Browser write retries would fail preflight without Idempotency-Key allowed
 
 ## Quality class
 `high`
+
+## Fresh re-verify
+Acceptance re-checked at skeptic remediation; see evidence/cycles/009/reverify.txt.

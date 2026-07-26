@@ -33,3 +33,6 @@ Full-tree chown after src copy dominated image build time
 
 ## Quality class
 `high`
+
+## Fresh re-verify
+Acceptance re-checked at skeptic remediation; see evidence/cycles/013/reverify.txt.

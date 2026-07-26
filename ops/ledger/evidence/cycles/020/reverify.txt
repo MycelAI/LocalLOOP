@@ -1,0 +1,10 @@
+reverified_at=2026-07-26T00:06:41.829231+00:00
+kind=robots_txt
+
+HTTP 200
+User-agent: *
+Allow: /
+Sitemap: https://localloop.urbnia.com/sitemap.xml
+
+
+ok=True

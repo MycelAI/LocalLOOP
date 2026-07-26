@@ -1,0 +1,8 @@
+reverified_at=2026-07-26T00:06:42.533589+00:00
+kind=change_password_wellknown
+
+HTTP 200
+https://localloop.urbnia.com/docs/security/
+
+
+ok=True

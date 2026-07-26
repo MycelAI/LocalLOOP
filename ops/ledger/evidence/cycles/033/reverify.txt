@@ -1,0 +1,8 @@
+reverified_at=2026-07-26T00:06:42.510655+00:00
+kind=ads_txt
+
+HTTP 200
+# No ads. Lab demo documentation surface only.
+
+
+ok=True

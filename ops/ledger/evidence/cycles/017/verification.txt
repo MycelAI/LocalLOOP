@@ -1,7 +1,3 @@
-cycle=017
 status=BLOCKED
-evidence=git.txt (commit/tag reconstruction)
-live_snapshot=live.txt (estate health at reconstruction)
-deploy=none
-plans=../../plans/cycle-017.md
-note=Regex injection failed; route lives in federation.ts not loop.ts
+root_cause=Previously blocked; triple-check or patch failed.
+reclassified_at=2026-07-26T00:06:41.569330+00:00

@@ -1,13 +1,15 @@
 {
-  "captured_at": "2026-07-25T23:57:50.687327+00:00",
+  "captured_at": "2026-07-26T00:06:38.353887+00:00",
+  "cycle": 8,
+  "kind": "readme_health_docs",
+  "health_http": 200,
   "health": {
     "status": "ok",
-    "time": "2026-07-25T23:57:50.703Z",
-    "uptime": 390.903527128,
+    "time": "2026-07-26T00:06:38.353Z",
+    "uptime": 918.553346743,
     "db": "ok",
     "redis": "ok",
     "version": "0.4.4"
   },
-  "health_http": 200,
-  "site_http": 200
+  "reverify_ok": true
 }

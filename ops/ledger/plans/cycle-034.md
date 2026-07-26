@@ -33,3 +33,6 @@ Change selected in automated batch from prior residual/queue: feat(site): change
 
 ## Quality class
 `medium`
+
+## Fresh re-verify
+Acceptance re-checked at skeptic remediation; see evidence/cycles/034/reverify.txt.

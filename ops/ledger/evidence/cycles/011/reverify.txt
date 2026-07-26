@@ -1,0 +1,18 @@
+reverified_at=2026-07-26T00:06:40.626009+00:00
+kind=privacy_metrics_nostore
+
+privacy HTTP 200 cache-control=no-store
+metrics HTTP 200 cache-control=no-store
+bun test v1.3.14 (0d9b296a)
+
+tests/utility.routes.test.ts:
+(pass) utility routes > returns metrics snapshot [68.17ms]
+(pass) utility routes > returns privacy notice [4.67ms]
+
+ 2 pass
+ 0 fail
+ 8 expect() calls
+Ran 2 tests across 1 file. [160.00ms]
+
+
+ok=True

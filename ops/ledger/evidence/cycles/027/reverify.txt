@@ -1,0 +1,26 @@
+reverified_at=2026-07-26T00:06:42.245902+00:00
+kind=protocol_schemas_readme
+
+cel UG (haftungsbeschränkt). "LOOP Schemas." localLOOP, 2025-2026. https://github.com/local-loop-io/loop-protocol
+
+```bibtex
+@misc{localloop_protocol_schemas_2025,
+  author = {Mycel UG (haftungsbeschränkt)},
+  title = {LOOP Schemas},
+  year = {2025},
+  howpublished = {GitHub repository},
+  url = {https://github.com/local-loop-io/loop-protocol},
+  note = {Accessed 2025-12-19}
+}
+```
+
+## Validation
+
+Run `npm test` at the repository root to validate examples against these schemas (agent-cycle-027).
+
+schemas README ok
+npm notice run @local-loop/loop-protocol@0.3.0 check:schemas-readme
+npm notice run node scripts/check-schemas-readme.js
+
+
+ok=True

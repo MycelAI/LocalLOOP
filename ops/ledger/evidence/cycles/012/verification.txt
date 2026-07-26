@@ -1,7 +1,6 @@
-cycle=012
 status=DONE
-evidence=git.txt (commit/tag reconstruction)
-live_snapshot=live.txt (estate health at reconstruction)
-deploy=backend api only
-plans=../../plans/cycle-012.md
-note=
+method=fresh_reverify
+kind=auth_nostore
+reverified_at=2026-07-26T00:06:41.121855+00:00
+detail=reverify.txt
+ok=True

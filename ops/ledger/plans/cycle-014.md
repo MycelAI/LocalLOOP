@@ -29,3 +29,6 @@ City list could be cached
 
 ## Notes
 Patch did not land Cache-Control; unit test failed; retried as 021
+
+## Root cause (skeptic remediation)
+Bulk/padding or insufficient per-cycle triple-verify evidence; not DONE under criterion 4.

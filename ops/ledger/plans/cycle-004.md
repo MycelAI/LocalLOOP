@@ -33,3 +33,6 @@ Cycle 003 fixture failed tsc (missing consentPublic)
 
 ## Quality class
 `high`
+
+## Fresh re-verify
+Acceptance re-checked at skeptic remediation; see evidence/cycles/004/reverify.txt.

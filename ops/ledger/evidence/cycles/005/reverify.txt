@@ -1,0 +1,19 @@
+reverified_at=2026-07-26T00:06:37.667683+00:00
+kind=health_nostore
+
+HTTP 200 cache-control=no-store
+bun test v1.3.14 (0d9b296a)
+
+tests/health.routes.test.ts:
+(pass) GET /health > returns 200 with db and redis ok [57.97ms]
+(pass) GET /health > treats redis skipped as healthy when db is ok [4.05ms]
+(pass) GET /health > returns 503 when database probe fails [2.95ms]
+(pass) GET /health > returns 503 when redis probe fails [2.65ms]
+
+ 4 pass
+ 0 fail
+ 20 expect() calls
+Ran 4 tests across 1 file. [211.00ms]
+
+
+ok=True

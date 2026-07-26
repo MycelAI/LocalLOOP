@@ -1,0 +1,7 @@
+reverified_at=2026-07-26T00:06:42.477743+00:00
+kind=loop_nostore_src
+
+file=src/routes/loop.ts
+has_setNoStore=True
+
+ok=True

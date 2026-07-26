@@ -33,3 +33,6 @@ Health only checked Postgres; Redis used by queue was invisible to ops/Docker he
 
 ## Quality class
 `high`
+
+## Fresh re-verify
+Acceptance re-checked at skeptic remediation; see evidence/cycles/001/reverify.txt.

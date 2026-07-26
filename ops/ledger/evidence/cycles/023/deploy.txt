@@ -1,0 +1,3 @@
+deploy=historical_plus_live_feature_check
+live_reverified_at=2026-07-26T00:06:42.182822+00:00
+note=original per-cycle compose logs not retained; acceptance re-checked live/unit at skeptic remediation time

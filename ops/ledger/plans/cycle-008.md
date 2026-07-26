@@ -33,3 +33,6 @@ Public API table still described DB-only health
 
 ## Quality class
 `medium`
+
+## Fresh re-verify
+Acceptance re-checked at skeptic remediation; see evidence/cycles/008/reverify.txt.

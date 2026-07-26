@@ -33,3 +33,6 @@ No vulnerability contact published on site
 
 ## Quality class
 `high`
+
+## Fresh re-verify
+Acceptance re-checked at skeptic remediation; see evidence/cycles/019/reverify.txt.

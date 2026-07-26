@@ -1,0 +1,29 @@
+reverified_at=2026-07-26T00:06:33.734331+00:00
+kind=health_redis
+
+GET /health HTTP 200
+{
+  "status": "ok",
+  "time": "2026-07-26T00:06:33.748Z",
+  "uptime": 913.9489764189999,
+  "db": "ok",
+  "redis": "ok",
+  "version": "0.4.4"
+}
+
+bun test health.routes exit=0
+bun test v1.3.14 (0d9b296a)
+
+tests/health.routes.test.ts:
+(pass) GET /health > returns 200 with db and redis ok [60.16ms]
+(pass) GET /health > treats redis skipped as healthy when db is ok [4.43ms]
+(pass) GET /health > returns 503 when database probe fails [3.77ms]
+(pass) GET /health > returns 503 when redis probe fails [3.42ms]
+
+ 4 pass
+ 0 fail
+ 20 expect() calls
+Ran 4 tests across 1 file. [217.00ms]
+
+
+ok=True

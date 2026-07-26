@@ -33,3 +33,6 @@ Live site responses lacked nosniff/frame-options/referrer/permissions headers
 
 ## Quality class
 `high`
+
+## Fresh re-verify
+Acceptance re-checked at skeptic remediation; see evidence/cycles/002/reverify.txt.

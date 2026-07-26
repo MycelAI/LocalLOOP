@@ -33,3 +33,6 @@ Crawlers lacked explicit allow + sitemap
 
 ## Quality class
 `medium`
+
+## Fresh re-verify
+Acceptance re-checked at skeptic remediation; see evidence/cycles/020/reverify.txt.

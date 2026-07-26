@@ -33,3 +33,6 @@ Health responses could be cached by intermediaries, masking outages
 
 ## Quality class
 `high`
+
+## Fresh re-verify
+Acceptance re-checked at skeptic remediation; see evidence/cycles/005/reverify.txt.

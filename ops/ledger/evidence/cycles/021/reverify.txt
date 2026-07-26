@@ -1,0 +1,16 @@
+reverified_at=2026-07-26T00:06:41.847686+00:00
+kind=cities_nostore
+
+bun test v1.3.14 (0d9b296a)
+
+tests/cities.cache.headers.test.ts:
+(pass) city routes Cache-Control > returns Cache-Control: no-store on GET /api/cities [104.44ms]
+
+ 1 pass
+ 0 fail
+ 4 expect() calls
+Ran 1 test across 1 file. [270.00ms]
+
+live HTTP 200 cache-control=no-store
+
+ok=True

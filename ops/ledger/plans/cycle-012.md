@@ -33,3 +33,6 @@ Auth status could be cached while toggles change
 
 ## Quality class
 `medium`
+
+## Fresh re-verify
+Acceptance re-checked at skeptic remediation; see evidence/cycles/012/reverify.txt.

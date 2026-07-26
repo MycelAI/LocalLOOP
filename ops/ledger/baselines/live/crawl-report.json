@@ -1,6 +1,6 @@
 {
   "base": "https://localloop.urbnia.com",
-  "startedAt": "2026-07-25T23:59:28.248Z",
+  "startedAt": "2026-07-26T00:07:11.916Z",
   "routes": [
     {
       "route": "/",
@@ -27,18 +27,12 @@
       "route": "/interest/",
       "consoleErrors": [],
       "failed": [],
-      "status": null,
-      "screenshot": null,
-      "error": "TimeoutError: page.goto: Timeout 45000ms exceeded.\nCall log:\n  - navigating to \"https://localloop.urbnia.com/interest/\", waiting until \"networkidle\"\n"
+      "status": 200,
+      "screenshot": "/home/alphin/code/local-loop-io/localloop-agent/baselines/live/interest.png"
     },
     {
       "route": "/platform/demo-city/",
-      "consoleErrors": [
-        {
-          "url": "https://localloop.urbnia.com/platform/demo-city/",
-          "text": "Failed to load resource: net::ERR_NETWORK_CHANGED"
-        }
-      ],
+      "consoleErrors": [],
       "failed": [],
       "status": 200,
       "screenshot": "/home/alphin/code/local-loop-io/localloop-agent/baselines/live/platform_demo-city.png"
@@ -51,7 +45,10 @@
       "screenshot": "/home/alphin/code/local-loop-io/localloop-agent/baselines/live/docs_metrics.png"
     }
   ],
-  "endedAt": "2026-07-26T00:00:41.031Z",
-  "totalConsoleErrors": 1,
+  "notes": [
+    "waitUntil=domcontentloaded (networkidle hangs on SSE/polling pages)"
+  ],
+  "endedAt": "2026-07-26T00:07:24.794Z",
+  "totalConsoleErrors": 0,
   "totalFailedRequests": 0
 }

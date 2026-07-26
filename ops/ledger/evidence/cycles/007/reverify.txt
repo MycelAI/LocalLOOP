@@ -1,0 +1,40 @@
+reverified_at=2026-07-26T00:06:38.110833+00:00
+kind=metrics_additional_props
+
+HTTP 200
+{
+  "startedAt": "2026-07-25T23:51:20.490Z",
+  "uptimeSeconds": 917,
+  "metrics": {
+    "loop_material_created": 0,
+    "loop_product_created": 0,
+    "loop_material_status_updated": 0,
+    "loop_offer_created": 0,
+    "loop_match_created": 0,
+    "loop_transfer_created": 0,
+    "loop_transaction_created": 0,
+    "loop_event_emitted": 0,
+    "loop_event_relayed": 0,
+    "federation_handshake": 0,
+    "federation_announcement_received": 0,
+    "federation_offer_received": 0
+  },
+  "version": "0.4.4"
+}
+key_count=12
+bun test v1.3.14 (0d9b296a)
+
+tests/utility.routes.test.ts:
+(pass) utility routes > returns metrics snapshot [62.33ms]
+(pass) utility routes > returns privacy notice [3.72ms]
+
+tests/metrics.keys.test.ts:
+(pass) metrics snapshot keys > always exposes the full known key set including zeros via the HTTP route [4.11ms]
+
+ 3 pass
+ 0 fail
+ 16 expect() calls
+Ran 3 tests across 2 files. [169.00ms]
+
+
+ok=True

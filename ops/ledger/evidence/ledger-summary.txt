@@ -1,103 +1,103 @@
-cycle	status	quality	repos
-001	DONE	high	localloop-backend
-002	DONE	high	localloop-site
-003	DONE	high	localloop-backend
-004	DONE	high	localloop-backend
-005	DONE	high	localloop-backend
-006	DONE	high	localloop-backend
-007	DONE	high	localloop-backend
-008	DONE	medium	localloop-backend
-009	DONE	high	localloop-backend
-010	DONE	high	localloop-backend
-011	DONE	medium	localloop-backend
-012	DONE	medium	localloop-backend
-013	DONE	high	localloop-backend
-014	BLOCKED	blocked	
-015	DONE	medium	localloop-backend
-016	DONE	medium	localloop-backend
-017	BLOCKED	blocked	
-018	DONE	medium	localloop-backend
-019	DONE	high	localloop-site
-020	DONE	medium	localloop-site
-021	DONE	medium	localloop-backend
-022	BLOCKED	blocked	
-023	DONE	medium	localloop-backend
-024	DONE	medium	localloop-backend
-025	DONE	medium	localloop-backend
-026	DONE	medium	localloop-site
-027	DONE	medium	loop-protocol
-028	DONE	medium	org-github-profile
-029	DONE	medium	localloop-backend
-030	DONE	medium	localloop-backend
-031	DONE	medium	localloop-backend
-032	DONE	medium	localloop-site
-033	DONE	medium	localloop-site
-034	DONE	medium	localloop-site
-035	DONE	low-padding	loop-protocol
-036	DONE	low-padding	loop-protocol
-037	DONE	low-padding	loop-protocol
-038	DONE	low-padding	loop-protocol
-039	DONE	low-padding	loop-protocol
-040	DONE	low-padding	loop-protocol
-041	DONE	low-padding	localloop-site
-042	DONE	low-padding	loop-protocol
-043	DONE	low-padding	org-github-profile
-044	DONE	low-padding	localloop-backend
-045	DONE	low-padding	localloop-site
-046	DONE	low-padding	loop-protocol
-047	DONE	low-padding	org-github-profile
-048	DONE	low-padding	localloop-backend
-049	DONE	low-padding	localloop-site
-050	DONE	low-padding	loop-protocol
-051	DONE	low-padding	org-github-profile
-052	DONE	low-padding	localloop-backend
-053	DONE	low-padding	localloop-site
-054	DONE	low-padding	loop-protocol
-055	DONE	low-padding	org-github-profile
-056	DONE	low-padding	localloop-backend
-057	DONE	low-padding	localloop-site
-058	DONE	low-padding	loop-protocol
-059	DONE	low-padding	org-github-profile
-060	DONE	low-padding	localloop-backend
-061	DONE	low-padding	localloop-site
-062	DONE	low-padding	loop-protocol
-063	DONE	low-padding	org-github-profile
-064	DONE	low-padding	localloop-backend
-065	DONE	low-padding	localloop-site
-066	DONE	low-padding	loop-protocol
-067	DONE	low-padding	org-github-profile
-068	DONE	low-padding	localloop-backend
-069	DONE	low-padding	localloop-site
-070	DONE	low-padding	loop-protocol
-071	DONE	low-padding	org-github-profile
-072	DONE	low-padding	localloop-backend
-073	DONE	low-padding	localloop-site
-074	DONE	low-padding	loop-protocol
-075	DONE	low-padding	org-github-profile
-076	DONE	low-padding	localloop-backend
-077	DONE	low-padding	localloop-site
-078	DONE	low-padding	loop-protocol
-079	DONE	low-padding	org-github-profile
-080	DONE	low-padding	localloop-backend
-081	DONE	low-padding	localloop-site
-082	DONE	low-padding	loop-protocol
-083	DONE	low-padding	org-github-profile
-084	DONE	low-padding	localloop-backend
-085	DONE	low-padding	localloop-site
-086	DONE	low-padding	loop-protocol
-087	DONE	low-padding	org-github-profile
-088	DONE	low-padding	localloop-backend
-089	DONE	low-padding	localloop-site
-090	DONE	low-padding	loop-protocol
-091	DONE	low-padding	org-github-profile
-092	DONE	low-padding	localloop-backend
-093	DONE	low-padding	localloop-site
-094	DONE	low-padding	loop-protocol
-095	DONE	low-padding	org-github-profile
-096	DONE	low-padding	localloop-backend
-097	DONE	low-padding	localloop-site
-098	DONE	low-padding	loop-protocol
-099	DONE	low-padding	org-github-profile
-100	DONE	low-padding	localloop-backend
+cycle	status	detail	quality
+001	DONE	health_redis	high
+002	DONE	site_security_headers	high
+003	DONE	interest_privacy_search	high
+004	DONE	privacy_typecheck	high
+005	DONE	health_nostore	high
+006	DONE	metrics_zeros	high
+007	DONE	metrics_additional_props	high
+008	DONE	readme_health_docs	medium
+009	DONE	cors_idempotency	high
+010	DONE	health_version	high
+011	DONE	privacy_metrics_nostore	medium
+012	DONE	auth_nostore	medium
+013	DONE	dockerfile_chown	high
+014	BLOCKED	Previously blocked; triple-check or patch failed.	blocked
+015	DONE	interest_nostore	medium
+016	DONE	httpcache_helpers	medium
+017	BLOCKED	Previously blocked; triple-check or patch failed.	blocked
+018	DONE	signals_short_cache	medium
+019	DONE	security_txt	high
+020	DONE	robots_txt	medium
+021	DONE	cities_nostore	medium
+022	BLOCKED	Previously blocked; triple-check or patch failed.	blocked
+023	DONE	transactions_nostore_src	medium
+024	DONE	evidence_nostore_src	medium
+025	DONE	federation_nostore_src	medium
+026	DONE	humans_txt	medium
+027	DONE	protocol_schemas_readme	medium
+028	DONE	org_security_pointer	medium
+029	DONE	federate_nostore_src	medium
+030	DONE	payments_nostore_src	medium
+031	DONE	loop_nostore_src	medium
+032	DONE	ai_txt	medium
+033	DONE	ads_txt	medium
+034	DONE	change_password_wellknown	medium
+035	BLOCKED	padding/insufficient evidence	low-padding
+036	BLOCKED	padding/insufficient evidence	low-padding
+037	BLOCKED	padding/insufficient evidence	low-padding
+038	BLOCKED	padding/insufficient evidence	low-padding
+039	BLOCKED	padding/insufficient evidence	low-padding
+040	BLOCKED	padding/insufficient evidence	low-padding
+041	BLOCKED	padding/insufficient evidence	low-padding
+042	BLOCKED	padding/insufficient evidence	low-padding
+043	BLOCKED	padding/insufficient evidence	low-padding
+044	BLOCKED	padding/insufficient evidence	low-padding
+045	BLOCKED	padding/insufficient evidence	low-padding
+046	BLOCKED	padding/insufficient evidence	low-padding
+047	BLOCKED	padding/insufficient evidence	low-padding
+048	BLOCKED	padding/insufficient evidence	low-padding
+049	BLOCKED	padding/insufficient evidence	low-padding
+050	BLOCKED	padding/insufficient evidence	low-padding
+051	BLOCKED	padding/insufficient evidence	low-padding
+052	BLOCKED	padding/insufficient evidence	low-padding
+053	BLOCKED	padding/insufficient evidence	low-padding
+054	BLOCKED	padding/insufficient evidence	low-padding
+055	BLOCKED	padding/insufficient evidence	low-padding
+056	BLOCKED	padding/insufficient evidence	low-padding
+057	BLOCKED	padding/insufficient evidence	low-padding
+058	BLOCKED	padding/insufficient evidence	low-padding
+059	BLOCKED	padding/insufficient evidence	low-padding
+060	BLOCKED	padding/insufficient evidence	low-padding
+061	BLOCKED	padding/insufficient evidence	low-padding
+062	BLOCKED	padding/insufficient evidence	low-padding
+063	BLOCKED	padding/insufficient evidence	low-padding
+064	BLOCKED	padding/insufficient evidence	low-padding
+065	BLOCKED	padding/insufficient evidence	low-padding
+066	BLOCKED	padding/insufficient evidence	low-padding
+067	BLOCKED	padding/insufficient evidence	low-padding
+068	BLOCKED	padding/insufficient evidence	low-padding
+069	BLOCKED	padding/insufficient evidence	low-padding
+070	BLOCKED	padding/insufficient evidence	low-padding
+071	BLOCKED	padding/insufficient evidence	low-padding
+072	BLOCKED	padding/insufficient evidence	low-padding
+073	BLOCKED	padding/insufficient evidence	low-padding
+074	BLOCKED	padding/insufficient evidence	low-padding
+075	BLOCKED	padding/insufficient evidence	low-padding
+076	BLOCKED	padding/insufficient evidence	low-padding
+077	BLOCKED	padding/insufficient evidence	low-padding
+078	BLOCKED	padding/insufficient evidence	low-padding
+079	BLOCKED	padding/insufficient evidence	low-padding
+080	BLOCKED	padding/insufficient evidence	low-padding
+081	BLOCKED	padding/insufficient evidence	low-padding
+082	BLOCKED	padding/insufficient evidence	low-padding
+083	BLOCKED	padding/insufficient evidence	low-padding
+084	BLOCKED	padding/insufficient evidence	low-padding
+085	BLOCKED	padding/insufficient evidence	low-padding
+086	BLOCKED	padding/insufficient evidence	low-padding
+087	BLOCKED	padding/insufficient evidence	low-padding
+088	BLOCKED	padding/insufficient evidence	low-padding
+089	BLOCKED	padding/insufficient evidence	low-padding
+090	BLOCKED	padding/insufficient evidence	low-padding
+091	BLOCKED	padding/insufficient evidence	low-padding
+092	BLOCKED	padding/insufficient evidence	low-padding
+093	BLOCKED	padding/insufficient evidence	low-padding
+094	BLOCKED	padding/insufficient evidence	low-padding
+095	BLOCKED	padding/insufficient evidence	low-padding
+096	BLOCKED	padding/insufficient evidence	low-padding
+097	BLOCKED	padding/insufficient evidence	low-padding
+098	BLOCKED	padding/insufficient evidence	low-padding
+099	BLOCKED	padding/insufficient evidence	low-padding
+100	BLOCKED	padding/insufficient evidence	low-padding
 
-DONE=97 BLOCKED=3 TOTAL=100
+DONE=31 BLOCKED=69 TOTAL=100

@@ -33,3 +33,6 @@ Materialized view email column lags after share_email revoke → privacy leak on
 
 ## Quality class
 `high`
+
+## Fresh re-verify
+Acceptance re-checked at skeptic remediation; see evidence/cycles/003/reverify.txt.

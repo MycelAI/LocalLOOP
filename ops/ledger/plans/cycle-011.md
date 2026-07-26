@@ -33,3 +33,6 @@ Privacy notice and metrics could be cached stale
 
 ## Quality class
 `medium`
+
+## Fresh re-verify
+Acceptance re-checked at skeptic remediation; see evidence/cycles/011/reverify.txt.

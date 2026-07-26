@@ -1,0 +1,37 @@
+reverified_at=2026-07-26T00:06:34.146802+00:00
+kind=interest_privacy_search
+
+GET /api/interest?search=Curl HTTP 200
+{
+  "results": [
+    {
+      "id": 7,
+      "name": "Curl Test User",
+      "organization": "Test Org",
+      "role": "Research",
+      "country": "DE",
+      "city": "Berlin",
+      "website": null,
+      "email": null,
+      "message": "Testing from curl",
+      "is_demo": false,
+      "created_at": "2026-03-08T10:02:32.505Z"
+    }
+  ],
+  "total": 1
+}
+curl_user_emails=[None]
+
+bun test interest.privacy exit=0
+bun test v1.3.14 (0d9b296a)
+
+tests/interest.privacy.test.ts:
+(pass) interest list email privacy > redacts email on search when shareEmail was revoked after MV refresh [116.03ms]
+
+ 1 pass
+ 0 fail
+ 3 expect() calls
+Ran 1 test across 1 file. [247.00ms]
+
+
+ok=True

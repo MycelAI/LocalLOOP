@@ -33,3 +33,6 @@ LoopSignalConfig is stable enough for max-age=30
 
 ## Quality class
 `medium`
+
+## Fresh re-verify
+Acceptance re-checked at skeptic remediation; see evidence/cycles/018/reverify.txt.

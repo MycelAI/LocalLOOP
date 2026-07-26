@@ -1,7 +1,6 @@
-cycle=013
 status=DONE
-evidence=git.txt (commit/tag reconstruction)
-live_snapshot=live.txt (estate health at reconstruction)
-deploy=backend api only
-plans=../../plans/cycle-013.md
-note=
+method=fresh_reverify
+kind=dockerfile_chown
+reverified_at=2026-07-26T00:06:41.164454+00:00
+detail=reverify.txt
+ok=True

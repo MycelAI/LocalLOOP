@@ -1,7 +1,3 @@
-cycle=022
 status=BLOCKED
-evidence=git.txt (commit/tag reconstruction)
-live_snapshot=live.txt (estate health at reconstruction)
-deploy=none
-plans=../../plans/cycle-022.md
-note=node info route path not found under expected string in loop.ts
+root_cause=Previously blocked; triple-check or patch failed.
+reclassified_at=2026-07-26T00:06:42.182094+00:00

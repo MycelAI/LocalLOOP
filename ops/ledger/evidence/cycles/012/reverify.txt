@@ -1,0 +1,17 @@
+reverified_at=2026-07-26T00:06:40.828674+00:00
+kind=auth_nostore
+
+HTTP 200 cache-control=no-store
+bun test v1.3.14 (0d9b296a)
+
+tests/auth.routes.test.ts:
+(pass) auth status routes > reports auth as disabled by default [75.16ms]
+(pass) auth status cache > sends Cache-Control no-store [3.78ms]
+
+ 2 pass
+ 0 fail
+ 7 expect() calls
+Ran 2 tests across 1 file. [269.00ms]
+
+
+ok=True

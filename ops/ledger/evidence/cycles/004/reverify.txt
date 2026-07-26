@@ -1,0 +1,16 @@
+reverified_at=2026-07-26T00:06:34.434523+00:00
+kind=privacy_typecheck
+
+bun test v1.3.14 (0d9b296a)
+$ tsc --noEmit
+
+tests/interest.privacy.test.ts:
+(pass) interest list email privacy > redacts email on search when shareEmail was revoked after MV refresh [117.36ms]
+
+ 1 pass
+ 0 fail
+ 3 expect() calls
+Ran 1 test across 1 file. [240.00ms]
+
+
+ok=True

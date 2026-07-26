@@ -1,7 +1,7 @@
 # Cycle 047 — Cycle 047 automation item: chore(org): policy stamp 47 (#10)
 
 ## Status
-DONE
+BLOCKED
 
 ## Hypothesis
 Bulk automation cycle: intended as estate hygiene stamp or regression guard. Not a fresh explore→select highest-value defect (see Deviations).
@@ -34,3 +34,6 @@ Bulk automation cycle: intended as estate hygiene stamp or regression guard. Not
 
 ## Quality class
 `low-padding`
+
+## Root cause (skeptic remediation)
+Bulk/padding or insufficient per-cycle triple-verify evidence; not DONE under criterion 4.

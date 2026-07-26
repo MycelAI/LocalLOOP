@@ -1,7 +1,6 @@
-cycle=028
 status=DONE
-evidence=git.txt (commit/tag reconstruction)
-live_snapshot=live.txt (estate health at reconstruction)
-deploy=see per-repo tags
-plans=../../plans/cycle-028.md
-note=
+method=fresh_reverify
+kind=org_security_pointer
+reverified_at=2026-07-26T00:06:42.446959+00:00
+detail=reverify.txt
+ok=True

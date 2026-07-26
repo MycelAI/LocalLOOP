@@ -33,3 +33,6 @@ City routes still lacked no-store after 014 failed
 
 ## Quality class
 `medium`
+
+## Fresh re-verify
+Acceptance re-checked at skeptic remediation; see evidence/cycles/021/reverify.txt.

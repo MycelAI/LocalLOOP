@@ -29,3 +29,6 @@ Node info is stable enough for short public cache
 
 ## Notes
 Regex injection failed; route lives in federation.ts not loop.ts
+
+## Root cause (skeptic remediation)
+Bulk/padding or insufficient per-cycle triple-verify evidence; not DONE under criterion 4.

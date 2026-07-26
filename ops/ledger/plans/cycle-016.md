@@ -33,3 +33,6 @@ Repeated Cache-Control strings risk drift
 
 ## Quality class
 `medium`
+
+## Fresh re-verify
+Acceptance re-checked at skeptic remediation; see evidence/cycles/016/reverify.txt.

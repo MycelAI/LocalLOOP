@@ -1,0 +1,9 @@
+reverified_at=2026-07-26T00:06:42.205262+00:00
+kind=federation_nostore_src
+
+file=src/routes/federation.ts
+has_setNoStore=True
+live https://loop-api.urbnia.com/api/v1/node/info HTTP 200 cache-control=no-store
+cache-control=no-store
+
+ok=True

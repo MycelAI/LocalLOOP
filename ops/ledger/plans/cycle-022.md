@@ -29,3 +29,6 @@ Node info cache still missing after 017 failed
 
 ## Notes
 node info route path not found under expected string in loop.ts
+
+## Root cause (skeptic remediation)
+Bulk/padding or insufficient per-cycle triple-verify evidence; not DONE under criterion 4.

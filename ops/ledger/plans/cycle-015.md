@@ -33,3 +33,6 @@ Interest listings should never be cached
 
 ## Quality class
 `medium`
+
+## Fresh re-verify
+Acceptance re-checked at skeptic remediation; see evidence/cycles/015/reverify.txt.

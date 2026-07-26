@@ -1,7 +1,7 @@
 # Cycle 040 — Cycle 040 automation item: docs: contributing anchor (#22)
 
 ## Status
-DONE
+BLOCKED
 
 ## Hypothesis
 Bulk automation cycle: intended as estate hygiene stamp or regression guard. Not a fresh explore→select highest-value defect (see Deviations).
@@ -34,3 +34,6 @@ Bulk automation cycle: intended as estate hygiene stamp or regression guard. Not
 
 ## Quality class
 `low-padding`
+
+## Root cause (skeptic remediation)
+Bulk/padding or insufficient per-cycle triple-verify evidence; not DONE under criterion 4.
