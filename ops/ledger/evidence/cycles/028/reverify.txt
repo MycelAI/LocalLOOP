@@ -1,20 +1,15 @@
-reverified_at=2026-07-26T00:06:42.442156+00:00
+reverified_at=2026-07-26T08:37:25.874563+00:00
 kind=org_security_pointer
-
-    = {Mycel UG (haftungsbeschränkt)},
-  title     = {localLOOP - Local Optimization with Overflow Protocol},
-  year      = {2025},
-  publisher = {GitHub},
-  url       = {https://github.com/local-loop-io},
-  note      = {Lab demo only. No public pilots or deployments.}
-}
-```
-
-## Security contact
-
-Vulnerability reports: see `https://localloop.urbnia.com/.well-known/security.txt` (agent-cycle-028).
-
+command=bash scripts/check-security-pointer.sh && bash scripts/check-policy.sh
+exit=0
 security pointer ok
 
+GET https://localloop.urbnia.com/.well-known/security.txt HTTP 200
+Contact: mailto:dev@mycel-ai.de
+Preferred-Languages: en, de
+Canonical: https://localloop.urbnia.com/.well-known/security.txt
+Policy: https://localloop.urbnia.com/docs/security/
+# Lab demo surface only — no public pilots.
 
+profile_has_security_txt_link=True
 ok=True

@@ -1,12 +1,12 @@
 {
-  "captured_at": "2026-07-26T00:06:42.441908+00:00",
+  "captured_at": "2026-07-26T08:37:25.874563+00:00",
   "cycle": 27,
   "kind": "protocol_schemas_readme",
   "health_http": 200,
   "health": {
     "status": "ok",
-    "time": "2026-07-26T00:06:42.441Z",
-    "uptime": 922.641436784,
+    "time": "2026-07-26T08:37:26.646Z",
+    "uptime": 31566.846572957,
     "db": "ok",
     "redis": "ok",
     "version": "0.4.4"

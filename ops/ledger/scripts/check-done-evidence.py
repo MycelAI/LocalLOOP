@@ -101,9 +101,7 @@ def check_cycle(n: int) -> list[str]:
     if pure_source:
         errors.append("source-only reverify (has_setNoStore without runtime header/test proof)")
     elif not has_runtime:
-        # allow if reverify has substantial runtime elsewhere
-        if len(reverify) < 80 or SOURCE_ONLY.search(reverify):
-            errors.append("no runtime evidence (bun test / inject / live HTTP headers/body)")
+        errors.append("no runtime evidence (bun test / typecheck / inject / live HTTP headers/body / npm test exit)")
 
     return errors
 
