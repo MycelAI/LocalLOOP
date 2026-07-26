@@ -1,7 +1,7 @@
 cycle=032
-estate_backend_tests=../../final-repo-tests/backend.txt
-estate_site_tests=../../final-repo-tests/site.txt
-estate_protocol_tests=../../final-repo-tests/protocol.txt
-estate_live_smoke=../../live-smoke/final.txt
-playwright_baselines=../../playwright/baselines/
-playwright_report=../../playwright/baselines/crawl-report.json
+NOTE=This file is estate CONTEXT only, not a substitute for per-cycle gates.
+Per-cycle DONE requires reverify.txt (fresh acceptance check) and verification.txt status=DONE.
+BLOCKED cycles intentionally lack reverify.txt success.
+optional_backend_suite=../../final-repo-tests/backend.txt
+optional_live_smoke=../../live-smoke/final.txt
+optional_playwright=../../playwright/baselines/crawl-report.json
