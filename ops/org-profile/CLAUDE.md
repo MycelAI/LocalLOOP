@@ -5,7 +5,7 @@ Keep it in sync with AGENTS.md.
 
 ## Repos
 
-- `localloop.github.io` — GitHub Pages site (Next.js static export)
+- `localloop-site` — Public docs hub (Next.js static export)
 - `loop-protocol` — Spec, schemas, examples, RFCs, JSON‑LD context
 - `localloop-backend` — Bun + Fastify API + lab demo flows
 - `org-github-profile` — Org profile docs

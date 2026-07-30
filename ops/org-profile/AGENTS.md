@@ -6,8 +6,8 @@ or infrastructure change.
 
 ## Org Overview (Repos)
 
-- `localloop.github.io`  
-  Public GitHub Pages site (Next.js static export).  
+- `localloop-site`  
+  Public docs hub (Next.js static export).  
   Primary public domain: `https://localloop.urbnia.com`
 
 - `loop-protocol`  
@@ -67,7 +67,7 @@ See `.env.example` and `.env.docker.example`. Highlights:
 
 All repos enforce domain consistency:
 
-- Site: `localloop.github.io/scripts/check-domains.cjs`
+- Site: `localloop-site/scripts/check-domains.cjs`
 - Protocol: `loop-protocol/scripts/check-domains.sh`
 - Backend: `localloop-backend/scripts/check-domains.sh`
 
@@ -98,7 +98,7 @@ Artifacts:
 ### Site
 
 ```bash
-cd localloop.github.io
+cd localloop-site
 bun install
 bun run dev
 bun run build
@@ -110,7 +110,7 @@ bun run test
 ```bash
 cd localloop-backend
 bun install
-bun test
+bun run test
 bun run lab:demo
 bun run lab:federation
 ```
