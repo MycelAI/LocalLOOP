@@ -58,7 +58,7 @@ publish_versioned_schema_aliases() {
   rm -rf "$v011_dir" "$v020_dir" "$v1_dir"
   mkdir -p "$v011_dir" "$v020_dir" "$v1_dir"
 
-  for schema in material-dna product-dna offer match transfer material-status handshake loopcoin loopsignal node-info transaction; do
+  for schema in material-dna product-dna offer match transfer material-status handshake federate-accepted loopcoin loopsignal node-info transaction; do
     sync_file "$schemas_dir/${schema}.schema.json" "$v020_dir/${schema}.schema.json"
   done
 
