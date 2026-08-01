@@ -10,7 +10,8 @@ export const metadata = createMetadata({
 export default function ProtocolSpecPage() {
   return (
     <div className="content-stack">
-      <div className="content-panel">        <h2>Specification v0.2.0</h2>
+      <div className="content-panel">
+        <h2 className="hub-heading">Specification v0.2.0</h2>
         <p>
           The normative requirements and API contracts that define interoperable
           localLOOP implementations. No public pilots or deployments yet.

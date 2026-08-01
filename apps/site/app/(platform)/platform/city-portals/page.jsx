@@ -7,7 +7,7 @@ export default function CityPortalsPage() {
   return (
     <div className="content-stack">
       <div className="content-panel">
-        <h2>City Portals</h2>
+        <h2 className="hub-heading">City Portals</h2>
         <div className="status-notice">
           <strong>No active deployments.</strong> City portals are in the design and concept phase.
           This page describes illustrative portal patterns for future research discussions.
@@ -37,7 +37,7 @@ export default function CityPortalsPage() {
         <div className="grid">
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
-              <i className="ph-thin ph-city"></i>
+              <i className="ph-bold ph-city"></i>
             </span>
             <h4>DEMO City</h4>
             <p>Sample portal to illustrate a future city experience.</p>
@@ -45,7 +45,7 @@ export default function CityPortalsPage() {
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
-              <i className="ph-thin ph-compass"></i>
+              <i className="ph-bold ph-compass"></i>
             </span>
             <h4>Future cities</h4>
             <p>Future city participation is exploratory; no launch or deployment is scheduled here.</p>

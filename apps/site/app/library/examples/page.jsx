@@ -5,7 +5,8 @@ export const metadata = createMetadata({ title: 'Examples', path: '/library/exam
 export default function ExamplesPage() {
   return (
     <div className="content-stack">
-      <div className="content-panel">        <h2>Examples</h2>
+      <div className="content-panel">
+        <h2 className="hub-heading">Examples</h2>
         <p>
           These examples demonstrate the current baseline interop sequence for both
           materials and products, plus the handshake and status-update payloads used
@@ -36,7 +37,7 @@ export default function ExamplesPage() {
         <div className="grid">
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
-              <i className="ph-thin ph-fingerprint"></i>
+              <i className="ph-bold ph-fingerprint"></i>
             </span>
             <h4>Material Registration</h4>
             <p>MaterialDNA example with additive passport and traceability fields.</p>
@@ -44,7 +45,7 @@ export default function ExamplesPage() {
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
-              <i className="ph-thin ph-package"></i>
+              <i className="ph-bold ph-package"></i>
             </span>
             <h4>Offer</h4>
             <p>Offer payload for a registered material batch.</p>
@@ -52,7 +53,7 @@ export default function ExamplesPage() {
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
-              <i className="ph-thin ph-handshake"></i>
+              <i className="ph-bold ph-handshake"></i>
             </span>
             <h4>Match</h4>
             <p>Accepted match for a material and offer pairing.</p>
@@ -60,7 +61,7 @@ export default function ExamplesPage() {
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
-              <i className="ph-thin ph-truck"></i>
+              <i className="ph-bold ph-truck"></i>
             </span>
             <h4>Transfer</h4>
             <p>Transfer payload for handoff and receipt tracking.</p>
@@ -68,7 +69,7 @@ export default function ExamplesPage() {
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
-              <i className="ph-thin ph-list-checks"></i>
+              <i className="ph-bold ph-list-checks"></i>
             </span>
             <h4>Material Status</h4>
             <p>Status-update payload for reservation and withdrawal events.</p>
@@ -76,7 +77,7 @@ export default function ExamplesPage() {
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
-              <i className="ph-thin ph-plugs-connected"></i>
+              <i className="ph-bold ph-plugs-connected"></i>
             </span>
             <h4>Handshake Request</h4>
             <p>Lab-only node handshake request payload.</p>
@@ -84,7 +85,7 @@ export default function ExamplesPage() {
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
-              <i className="ph-thin ph-check-circle"></i>
+              <i className="ph-bold ph-check-circle"></i>
             </span>
             <h4>Handshake Response</h4>
             <p>Lab-only handshake acceptance payload.</p>
@@ -92,7 +93,7 @@ export default function ExamplesPage() {
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
-              <i className="ph-thin ph-compass-rose"></i>
+              <i className="ph-bold ph-compass-rose"></i>
             </span>
             <h4>Complete Flow</h4>
             <p>Multi-step reference bundle across older and current artifacts.</p>
@@ -100,7 +101,7 @@ export default function ExamplesPage() {
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
-              <i className="ph-thin ph-cube"></i>
+              <i className="ph-bold ph-cube"></i>
             </span>
             <h4>Product Registration</h4>
             <p>ProductDNA registration for office furniture reuse with DPP passport.</p>
@@ -108,7 +109,7 @@ export default function ExamplesPage() {
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
-              <i className="ph-thin ph-arrows-left-right"></i>
+              <i className="ph-bold ph-arrows-left-right"></i>
             </span>
             <h4>Product Offer Flow</h4>
             <p>Complete Offer → Match → Transfer flow using product_id.</p>

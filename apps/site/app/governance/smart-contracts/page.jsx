@@ -10,7 +10,8 @@ export const metadata = createMetadata({
 export default function SmartContractsPage() {
   return (
     <div className="content-stack">
-      <div className="content-panel">        <h2>Smart Contract RFC</h2>
+      <div className="content-panel">
+        <h2 className="hub-heading">Smart Contract RFC</h2>
         <p>
           Draft RFC describing how smart contracts could automate settlement flows.
         </p>

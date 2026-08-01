@@ -17,28 +17,28 @@ export default function ProtocolPage() {
         <div className="grid">
           <a className="card has-icon" href="/protocol/spec">
             <span className="card-icon" aria-hidden="true">
-              <i className="ph-thin ph-scroll"></i>
+              <i className="ph-bold ph-scroll"></i>
             </span>
             <h4>Specification v0.2.0</h4>
             <p>Normative requirements, API endpoints, and federation flows.</p>
           </a>
           <a className="card has-icon" href="/protocol/changelog">
             <span className="card-icon" aria-hidden="true">
-              <i className="ph-thin ph-archive-box"></i>
+              <i className="ph-bold ph-archive-box"></i>
             </span>
             <h4>Changelog</h4>
             <p>Track released changes and planned updates.</p>
           </a>
           <a className="card has-icon" href="/protocol/security">
             <span className="card-icon" aria-hidden="true">
-              <i className="ph-thin ph-shield-check"></i>
+              <i className="ph-bold ph-shield-check"></i>
             </span>
             <h4>Security Policy</h4>
             <p>Disclosure process, cryptography, and operator requirements.</p>
           </a>
           <a className="card has-icon card-ref" href="/docs/regulatory-alignment">
             <span className="card-icon" aria-hidden="true">
-              <i className="ph-thin ph-scales"></i>
+              <i className="ph-bold ph-scales"></i>
             </span>
             <h4>Compatibility Roadmap</h4>
             <p>Long-horizon plan for DPP, waste, packaging, and battery alignment.</p>

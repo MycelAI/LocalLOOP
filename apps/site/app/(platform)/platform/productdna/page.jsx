@@ -7,7 +7,8 @@ export const metadata = createMetadata({ title: 'ProductDNA', path: '/platform/p
 export default function ProductDNAPage() {
   return (
     <div className="content-stack">
-      <div className="content-panel">        <h2>ProductDNA</h2>
+      <div className="content-panel">
+        <h2 className="hub-heading">ProductDNA</h2>
         <p>
           ProductDNA is the product-level identity layer for the localLOOP platform. It references
           constituent MaterialDNA entries and explores fields that may be relevant to EU Digital
@@ -60,21 +61,21 @@ export default function ProductDNAPage() {
         <div className="grid">
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
-              <i className="ph-thin ph-cube"></i>
+              <i className="ph-bold ph-cube"></i>
             </span>
             <h4>ProductDNA schema</h4>
             <p>Product ID, category, condition, lifecycle stage, and material composition links.</p>
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
-              <i className="ph-thin ph-clipboard-text"></i>
+              <i className="ph-bold ph-clipboard-text"></i>
             </span>
             <h4>Provenance & DPP</h4>
             <p>Example origin, passport-style, certification, and regulatory metadata fields.</p>
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
-              <i className="ph-thin ph-recycle"></i>
+              <i className="ph-bold ph-recycle"></i>
             </span>
             <h4>Lifecycle stage</h4>
             <p>Condition tracking, repair records, and end-of-life routing signals.</p>
@@ -87,7 +88,7 @@ export default function ProductDNAPage() {
         <div className="grid">
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
-              <i className="ph-thin ph-scroll"></i>
+              <i className="ph-bold ph-scroll"></i>
             </span>
             <h4>Specification</h4>
             <p>Draft schemas are available in the LOOP repository.</p>
@@ -95,7 +96,7 @@ export default function ProductDNAPage() {
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
-              <i className="ph-thin ph-map-pin"></i>
+              <i className="ph-bold ph-map-pin"></i>
             </span>
             <h4>Status</h4>
             <p>No public pilots or deployments yet.</p>
@@ -103,7 +104,7 @@ export default function ProductDNAPage() {
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
-              <i className="ph-thin ph-plug"></i>
+              <i className="ph-bold ph-plug"></i>
             </span>
             <h4>Integration</h4>
             <p>Implementation guidance will be published as the spec matures.</p>

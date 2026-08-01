@@ -20,7 +20,8 @@ export default async function ExamplePage({ params }) {
   if (!example) notFound()
   return (
     <div className="content-stack">
-      <div className="content-panel">        <h2>{example.title}</h2>
+      <div className="content-panel">
+        <h2 className="hub-heading">{example.title}</h2>
       </div>
       <div className="content-panel">
         <MarkdownDoc filePath={example.file} />

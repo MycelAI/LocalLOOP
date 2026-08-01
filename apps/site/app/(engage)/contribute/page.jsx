@@ -10,7 +10,8 @@ export const metadata = createMetadata({
 export default function ContributePage() {
   return (
     <div className="content-stack">
-      <div className="content-panel">        <h2>Help shape the localLOOP platform.</h2>
+      <div className="content-panel">
+        <h2 className="hub-heading">Help shape the localLOOP platform.</h2>
         <p>
           Contributions are welcome across specs, schemas, docs, and tooling.
           This project is early-stage, so feedback is especially valuable.
@@ -23,8 +24,14 @@ export default function ContributePage() {
       <div className="content-panel">
         <h3>Community standards</h3>
         <div className="table-list">
-          <div><span>Code of conduct</span><div>Shared expectations for collaboration</div></div>
-          <div><span>License</span><div>MIT licensed, open collaboration</div></div>
+          <div>
+            <span><a href="/contribute/CODE_OF_CONDUCT.md">Code of conduct</a></span>
+            <div>Shared expectations for collaboration</div>
+          </div>
+          <div>
+            <span>License</span>
+            <div>MIT licensed, open collaboration</div>
+          </div>
         </div>
       </div>
       <div className="content-panel">

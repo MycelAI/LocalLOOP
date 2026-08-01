@@ -31,7 +31,70 @@ const matchesPath = (pathname, prefixes) => {
   });
 };
 
-const DROPDOWN_CLOSE_DELAY_MS = 200;
+const DROPDOWN_CLOSE_DELAY_MS = 280;
+const VIEWPORT_EDGE_PAD = 20;
+const VIEWPORT_COMFORT_PAD = 72;
+
+const count_section_items = (section) => {
+  if (section.groups) {
+    return section.groups.reduce((sum, group) => sum + group.items.length, 0);
+  }
+
+  return section.items?.length ?? 0;
+};
+
+const menu_column_count = (item_count) => {
+  if (item_count <= 1) return 1;
+  if (item_count === 2) return 2;
+  if (item_count === 3) return 3;
+  if (item_count === 4) return 2;
+  if (item_count >= 10) return 4;
+  return 3;
+};
+
+const clear_mega_position = (menu) => {
+  if (!menu) return;
+  menu.style.left = '';
+  menu.style.right = '';
+};
+
+const clamp_mega_menu_to_viewport = (group_el) => {
+  const menu = group_el?.querySelector('.nav-menu--mega');
+  if (!menu || window.matchMedia('(max-width: 1119px)').matches) {
+    return;
+  }
+
+  clear_mega_position(menu);
+
+  const prefer_end = group_el.classList.contains('nav-group--align-end');
+  menu.style.left = prefer_end ? 'auto' : '0';
+  menu.style.right = prefer_end ? '0' : 'auto';
+
+  const group_rect = group_el.getBoundingClientRect();
+  const menu_rect = menu.getBoundingClientRect();
+  const menu_width = Math.max(menu_rect.width, menu.scrollWidth, 1);
+  const viewport_w = document.documentElement.clientWidth || window.innerWidth;
+  const max_right = viewport_w - VIEWPORT_EDGE_PAD;
+  const min_left = VIEWPORT_EDGE_PAD;
+
+  let left = prefer_end ? group_rect.right - menu_width : group_rect.left;
+
+  // If a start-aligned panel would sit too close to / past the right edge,
+  // flip it to the trigger's end so Platform/Library stay on-screen.
+  if (!prefer_end && left + menu_width > viewport_w - VIEWPORT_COMFORT_PAD) {
+    left = group_rect.right - menu_width;
+  }
+
+  if (left + menu_width > max_right) {
+    left = max_right - menu_width;
+  }
+  if (left < min_left) {
+    left = min_left;
+  }
+
+  menu.style.left = `${Math.round(left - group_rect.left)}px`;
+  menu.style.right = 'auto';
+};
 
 function NavigationLink({ href, children, ...props }) {
   if (href.startsWith('/')) {
@@ -39,6 +102,26 @@ function NavigationLink({ href, children, ...props }) {
   }
 
   return <a href={href} {...props}>{children}</a>;
+}
+
+function NavMenuCard({ item, active }) {
+  return (
+    <NavigationLink
+      href={item.href}
+      className={`nav-menu-card${active ? ' active' : ''}`}
+      aria-current={active ? 'page' : undefined}
+    >
+      <span className="nav-menu-card-icon" aria-hidden="true">
+        <i className={`ph-bold ${item.icon || 'ph-arrow-right'}`}></i>
+      </span>
+      <span className="nav-menu-card-body">
+        <span className="nav-menu-card-title">{item.label}</span>
+        {item.description ? (
+          <span className="nav-menu-card-desc">{item.description}</span>
+        ) : null}
+      </span>
+    </NavigationLink>
+  );
 }
 
 export function SiteHeader({ subtitle = '' }) {
@@ -59,17 +142,43 @@ export function SiteHeader({ subtitle = '' }) {
     }
   };
 
-  const handleNavGroupEnter = (key) => {
+  const handleNavGroupEnter = (key, event) => {
     clearCloseTimeout();
     setHoverGroupKey(key);
+    const group_el = event?.currentTarget;
+    if (!group_el) return;
+
+    // Open immediately for measurement (React state lags one frame).
+    group_el.setAttribute('data-dropdown-open', 'true');
+    requestAnimationFrame(() => {
+      clamp_mega_menu_to_viewport(group_el);
+      requestAnimationFrame(() => clamp_mega_menu_to_viewport(group_el));
+    });
   };
 
-  const handleNavGroupLeave = () => {
+  const handleNavGroupLeave = (event) => {
+    const group_el = event?.currentTarget;
     closeTimeoutRef.current = setTimeout(() => {
+      clear_mega_position(group_el?.querySelector('.nav-menu--mega'));
+      group_el?.removeAttribute('data-dropdown-open');
       setHoverGroupKey(null);
       closeTimeoutRef.current = null;
     }, DROPDOWN_CLOSE_DELAY_MS);
   };
+
+  useEffect(() => {
+    if (!hoverGroupKey || !headerRef.current) return undefined;
+
+    const group_el = headerRef.current.querySelector(
+      `[data-nav-section="${hoverGroupKey}"]`
+    )?.closest('.nav-group');
+
+    const on_resize = () => clamp_mega_menu_to_viewport(group_el);
+    window.addEventListener('resize', on_resize);
+    on_resize();
+
+    return () => window.removeEventListener('resize', on_resize);
+  }, [hoverGroupKey]);
 
   useEffect(() => {
     setMobileOpen(false);
@@ -82,6 +191,7 @@ export function SiteHeader({ subtitle = '' }) {
         const wasOpen = mobileOpen;
         setMobileOpen(false);
         setOpenMobileSection(null);
+        setHoverGroupKey(null);
         if (wasOpen) requestAnimationFrame(() => menuToggleRef.current?.focus());
       }
     };
@@ -93,6 +203,7 @@ export function SiteHeader({ subtitle = '' }) {
 
       setMobileOpen(false);
       setOpenMobileSection(null);
+      setHoverGroupKey(null);
     };
 
     document.addEventListener('keydown', handleKey);
@@ -105,7 +216,7 @@ export function SiteHeader({ subtitle = '' }) {
   }, [mobileOpen]);
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia('(min-width: 961px)');
+    const mediaQuery = window.matchMedia('(min-width: 1120px)');
 
     const handleChange = (event) => {
       if (event.matches) {
@@ -180,6 +291,8 @@ export function SiteHeader({ subtitle = '' }) {
                 const sectionActive = matchesPath(pathname, section.matchPrefixes);
                 const mobileSectionOpen = openMobileSection === section.key;
                 const exactSectionMatch = pathnameNormalized === normalizePath(section.href);
+                const item_count = count_section_items(section);
+                const cols = menu_column_count(item_count);
 
                 return (
                 <div
@@ -187,8 +300,9 @@ export function SiteHeader({ subtitle = '' }) {
                   className={`nav-group${section.align === 'end' ? ' nav-group--align-end' : ''}`}
                   data-mobile-open={mobileSectionOpen}
                   data-dropdown-open={hoverGroupKey === section.key}
-                  onMouseEnter={() => handleNavGroupEnter(section.key)}
-                  onMouseLeave={handleNavGroupLeave}
+                  onMouseEnter={(event) => handleNavGroupEnter(section.key, event)}
+                  onMouseLeave={(event) => handleNavGroupLeave(event)}
+                  onFocusCapture={(event) => handleNavGroupEnter(section.key, event)}
                 >
                   <div className="nav-item">
                     <NavigationLink
@@ -215,39 +329,44 @@ export function SiteHeader({ subtitle = '' }) {
                     </button>
                   </div>
 
-                  <div className="nav-menu" id={`nav-menu-${section.key}`}>
+                  <div
+                    className="nav-menu nav-menu--mega"
+                    id={`nav-menu-${section.key}`}
+                    data-cols={cols}
+                    data-section={section.key}
+                  >
                     {section.groups
                       ? section.groups.map((group) => (
                           <div key={group.label} className="nav-menu-group">
-                            <span className="nav-menu-group-label" aria-hidden="true">{group.label}</span>
-                            {group.items.map((item) => {
+                            <span className="nav-menu-group-label">{group.label}</span>
+                            <div className="nav-menu-grid">
+                              {group.items.map((item) => {
+                                const itemActive = pathnameNormalized === normalizePath(item.href);
+                                return (
+                                  <NavMenuCard
+                                    key={item.href}
+                                    item={item}
+                                    active={itemActive}
+                                  />
+                                );
+                              })}
+                            </div>
+                          </div>
+                        ))
+                      : (
+                          <div className="nav-menu-grid">
+                            {section.items.map((item) => {
                               const itemActive = pathnameNormalized === normalizePath(item.href);
                               return (
-                                <NavigationLink
+                                <NavMenuCard
                                   key={item.href}
-                                  href={item.href}
-                                  className={itemActive ? 'active' : ''}
-                                  aria-current={itemActive ? 'page' : undefined}
-                                >
-                                  {item.label}
-                                </NavigationLink>
+                                  item={item}
+                                  active={itemActive}
+                                />
                               );
                             })}
                           </div>
-                        ))
-                      : section.items.map((item) => {
-                          const itemActive = pathnameNormalized === normalizePath(item.href);
-                          return (
-                            <NavigationLink
-                              key={item.href}
-                              href={item.href}
-                              className={itemActive ? 'active' : ''}
-                              aria-current={itemActive ? 'page' : undefined}
-                            >
-                              {item.label}
-                            </NavigationLink>
-                          );
-                        })}
+                        )}
                   </div>
                 </div>
                 );

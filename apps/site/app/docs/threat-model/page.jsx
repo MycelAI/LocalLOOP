@@ -7,7 +7,7 @@ export default function ThreatModelPage() {
   return (
     <div className="content-stack">
       <div className="content-panel">
-        <h2>Threat Model</h2>
+        <h2 className="hub-heading">Threat Model</h2>
         <p>
           STRIDE-lite threat assessment for the localLOOP lab infrastructure. Covers the key
           threat categories relevant to federated node communication, material data handling,

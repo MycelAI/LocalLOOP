@@ -6,7 +6,8 @@ export const metadata = createMetadata({ title: 'Federation handshake', path: '/
 export default function FederationPage() {
   return (
     <div className="content-stack">
-      <div className="content-panel">        <h2>Federation Handshake</h2>
+      <div className="content-panel">
+        <h2 className="hub-heading">Federation Handshake</h2>
         <p>
           The lab handshake introduces two nodes and registers them in the demo
           registry. This is not a production federation protocol.

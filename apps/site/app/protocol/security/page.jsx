@@ -10,7 +10,8 @@ export const metadata = createMetadata({
 export default function ProtocolSecurityPage() {
   return (
     <div className="content-stack">
-      <div className="content-panel">        <h2>Security Policy</h2>
+      <div className="content-panel">
+        <h2 className="hub-heading">Security Policy</h2>
         <p>
           Follow the security policy for responsible disclosure and operator guidance.
           Implementation guidance will evolve as the protocol matures.

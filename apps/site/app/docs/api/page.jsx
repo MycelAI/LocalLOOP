@@ -5,7 +5,8 @@ export const metadata = createMetadata({ title: 'Lab API documentation', path: '
 export default function ApiDocsPage() {
   return (
     <div className="content-stack">
-      <div className="content-panel">        <h2>API Docs</h2>
+      <div className="content-panel">
+        <h2 className="hub-heading">API Docs</h2>
         <p>
           The live backend serves Redoc with headers that block cross-origin framing, so this
           page links directly to the lab API docs. The normative protocol contract lives in the

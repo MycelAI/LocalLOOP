@@ -6,7 +6,8 @@ export const metadata = createMetadata({ title: 'Secure coding', path: '/docs/se
 export default function SecureCodingPage() {
   return (
     <div className="content-stack">
-      <div className="content-panel">        <h2>Secure Coding</h2>
+      <div className="content-panel">
+        <h2 className="hub-heading">Secure Coding</h2>
         <p>
           Guardrails for building secure integrations and services in the localLOOP
           ecosystem.

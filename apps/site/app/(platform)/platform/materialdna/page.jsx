@@ -7,7 +7,8 @@ export const metadata = createMetadata({ title: 'MaterialDNA', path: '/platform/
 export default function MaterialDNAPage() {
   return (
     <div className="content-stack">
-      <div className="content-panel">        <h2>MaterialDNA</h2>
+      <div className="content-panel">
+        <h2 className="hub-heading">MaterialDNA</h2>
         <p>
           MaterialDNA is the identification layer for tracking raw and processed materials
           across city loops. It proposes identifier and provenance fields for discussing traceability
@@ -60,21 +61,21 @@ export default function MaterialDNAPage() {
         <div className="grid">
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
-              <i className="ph-thin ph-fingerprint"></i>
+              <i className="ph-bold ph-fingerprint"></i>
             </span>
             <h4>MaterialDNA schema</h4>
             <p>Material ID, category, quantity, quality, and batch references.</p>
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
-              <i className="ph-thin ph-clipboard-text"></i>
+              <i className="ph-bold ph-clipboard-text"></i>
             </span>
             <h4>Provenance</h4>
             <p>Origin city, certifications, and audit trail fields.</p>
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
-              <i className="ph-thin ph-timer"></i>
+              <i className="ph-bold ph-timer"></i>
             </span>
             <h4>Availability</h4>
             <p>Time windows and status fields for matching logic.</p>
@@ -87,7 +88,7 @@ export default function MaterialDNAPage() {
         <div className="grid">
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
-              <i className="ph-thin ph-scroll"></i>
+              <i className="ph-bold ph-scroll"></i>
             </span>
             <h4>Specification</h4>
             <p>Draft schemas are available in the LOOP repository.</p>
@@ -95,7 +96,7 @@ export default function MaterialDNAPage() {
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
-              <i className="ph-thin ph-map-pin"></i>
+              <i className="ph-bold ph-map-pin"></i>
             </span>
             <h4>Status</h4>
             <p>No public pilots or deployments yet.</p>
@@ -103,7 +104,7 @@ export default function MaterialDNAPage() {
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
-              <i className="ph-thin ph-plug"></i>
+              <i className="ph-bold ph-plug"></i>
             </span>
             <h4>Integration</h4>
             <p>Implementation guidance will be published as the spec matures.</p>

@@ -6,7 +6,8 @@ export const metadata = createMetadata({ title: 'Glossary', path: '/docs/glossar
 export default function GlossaryPage() {
   return (
     <div className="content-stack">
-      <div className="content-panel">        <h2>Glossary</h2>
+      <div className="content-panel">
+        <h2 className="hub-heading">Glossary</h2>
         <p>
           Reference terminology that appears across the specification and docs.
           Canonical definitions live in{' '}

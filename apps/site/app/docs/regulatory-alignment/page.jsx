@@ -6,7 +6,8 @@ export const metadata = createMetadata({ title: 'Regulatory research', path: '/d
 export default function RegulatoryAlignmentPage() {
   return (
     <div className="content-stack">
-      <div className="content-panel">        <h2>Regulatory Alignment</h2>
+      <div className="content-panel">
+        <h2 className="hub-heading">Regulatory Alignment</h2>
         <p>
           localLOOP is still lab-demo infrastructure, but the protocol now documents how
           it can be evaluated against DPP, battery, packaging, waste-traceability, and German

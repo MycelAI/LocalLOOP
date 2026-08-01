@@ -6,7 +6,8 @@ export const metadata = createMetadata({ title: 'FAQ', path: '/docs/faq' });
 export default function FaqPage() {
   return (
     <div className="content-stack">
-      <div className="content-panel">        <h2>FAQ</h2>
+      <div className="content-panel">
+        <h2 className="hub-heading">FAQ</h2>
         <p>
           This FAQ reflects the current early-stage status of localLOOP.
         </p>

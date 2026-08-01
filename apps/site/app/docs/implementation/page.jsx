@@ -6,7 +6,8 @@ export const metadata = createMetadata({ title: 'Implementation guide', path: '/
 export default function ImplementationPage() {
   return (
     <div className="content-stack">
-      <div className="content-panel">        <h2>Implementation Guide</h2>
+      <div className="content-panel">
+        <h2 className="hub-heading">Implementation Guide</h2>
         <p>
           Step-by-step guidance for operators and developers. No public deployments
           yet — this guide is a living draft.

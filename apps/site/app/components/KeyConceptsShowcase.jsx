@@ -208,12 +208,13 @@ export function KeyConceptsShowcase() {
                 </div>
 
                 <div className="kc-panel-content">
-                  <div className="kc-meta-row">
-                    <span className="kc-panel-num">{c.num}</span>
-                    <span className="kc-panel-tag">Core concept</span>
+                  <div className="kc-heading">
+                    <span className="kc-panel-num" aria-hidden="true">{c.num}</span>
+                    <div className="kc-heading-text">
+                      <h3 className="kc-panel-name">{c.name}</h3>
+                      <p className="kc-panel-subtitle">{c.fullName}</p>
+                    </div>
                   </div>
-                  <h3 className="kc-panel-name">{c.name}</h3>
-                  <p className="kc-panel-subtitle">{c.fullName}</p>
                   <p className="kc-panel-desc">{c.desc}</p>
                   <a href={c.href} className="kc-panel-cta">
                     {c.cta}

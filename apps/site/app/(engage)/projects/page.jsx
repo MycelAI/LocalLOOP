@@ -10,7 +10,8 @@ export const metadata = createMetadata({
 export default function ProjectsPage() {
   return (
     <div className="content-stack">
-      <div className="content-panel">        <h2>Repository references and living artifacts.</h2>
+      <div className="content-panel">
+        <h2 className="hub-heading">Repository references and living artifacts.</h2>
         <p>
           Direct access to protocol assets, governance docs, and contribution
           guidelines hosted in the protocol repository.
@@ -23,9 +24,18 @@ export default function ProjectsPage() {
       <div className="content-panel">
         <h3>Quick links</h3>
         <div className="table-list">
-          <div><span>Specification</span><div>Canonical protocol requirements</div></div>
-          <div><span>Security</span><div>Disclosure process and playbooks</div></div>
-          <div><span>RFCs</span><div>Governance documentation</div></div>
+          <div>
+            <span><a href="/protocol/spec">Specification</a></span>
+            <div>Canonical protocol requirements</div>
+          </div>
+          <div>
+            <span><a href="/protocol/security">Security</a></span>
+            <div>Disclosure process and playbooks</div>
+          </div>
+          <div>
+            <span><a href="/governance/rfcs">RFCs</a></span>
+            <div>Governance documentation</div>
+          </div>
         </div>
       </div>
 
@@ -34,7 +44,7 @@ export default function ProjectsPage() {
         <div className="grid">
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
-              <i className="ph-thin ph-scroll"></i>
+              <i className="ph-bold ph-scroll"></i>
             </span>
             <h4>Specification</h4>
             <p>Normative requirements and endpoint flows.</p>
@@ -42,7 +52,7 @@ export default function ProjectsPage() {
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
-              <i className="ph-thin ph-shield-check"></i>
+              <i className="ph-bold ph-shield-check"></i>
             </span>
             <h4>Security Policy</h4>
             <p>Disclosure and operator requirements.</p>
@@ -50,7 +60,7 @@ export default function ProjectsPage() {
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
-              <i className="ph-thin ph-git-pull-request"></i>
+              <i className="ph-bold ph-git-pull-request"></i>
             </span>
             <h4>Contribution Guide</h4>
             <p>How to contribute and collaborate.</p>
@@ -58,7 +68,7 @@ export default function ProjectsPage() {
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
-              <i className="ph-thin ph-handshake"></i>
+              <i className="ph-bold ph-handshake"></i>
             </span>
             <h4>Code of Conduct</h4>
             <p>Community expectations for collaboration.</p>

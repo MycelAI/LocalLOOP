@@ -10,7 +10,8 @@ export const metadata = createMetadata({
 export default function ProtocolChangelogPage() {
   return (
     <div className="content-stack">
-      <div className="content-panel">        <h2>Changelog</h2>
+      <div className="content-panel">
+        <h2 className="hub-heading">Changelog</h2>
         <p>
           The changelog captures updates to the protocol and planned roadmap items.
           The project is early-stage with no public pilots yet.

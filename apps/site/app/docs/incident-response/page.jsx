@@ -6,7 +6,8 @@ export const metadata = createMetadata({ title: 'Incident response', path: '/doc
 export default function IncidentResponsePage() {
   return (
     <div className="content-stack">
-      <div className="content-panel">        <h2>Incident Response</h2>
+      <div className="content-panel">
+        <h2 className="hub-heading">Incident Response</h2>
         <p>
           Response workflows for localLOOP operators and infrastructure teams.
         </p>

@@ -5,7 +5,8 @@ export const metadata = createMetadata({ title: 'Lab demo', path: '/docs/lab-dem
 export default function LabDemoPage() {
   return (
     <div className="content-stack">
-      <div className="content-panel">        <h2>Lab Demo</h2>
+      <div className="content-panel">
+        <h2 className="hub-heading">Lab Demo</h2>
         <p>
           This lab demo runs a full MaterialDNA/ProductDNA → Offer → Match → Transfer
           flow using the sandbox API. It is not a pilot or production deployment.

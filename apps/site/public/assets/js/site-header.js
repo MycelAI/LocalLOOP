@@ -162,7 +162,7 @@
         setMobileOpen(false);
       });
 
-      const mediaQuery = window.matchMedia('(min-width: 961px)');
+      const mediaQuery = window.matchMedia('(min-width: 1120px)');
       const handleViewportChange = (event) => {
         if (event.matches) {
           setMobileOpen(false);

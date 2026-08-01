@@ -45,7 +45,16 @@
         return response;
       };
       const notice = (element, message) => { if (!disposed && element) element.innerHTML = `<div class="notice">${message}</div>`; };
-      const fmtDate = (iso) => { try { return iso ? new Date(iso).toLocaleString(undefined, { dateStyle: 'short', timeStyle: 'short' }) : '—'; } catch { return esc(iso); } };
+      const fmtDate = (iso) => {
+        try {
+          if (!iso) return '—';
+          const date = new Date(iso);
+          if (Number.isNaN(date.getTime())) return esc(iso);
+          return date.toISOString().replace(/\.\d{3}Z$/, 'Z');
+        } catch {
+          return esc(iso);
+        }
+      };
       const statusBadge = (status) => `<span class="demo-status demo-status-${['open', 'proposed', 'accepted', 'completed', 'scheduled', 'cancelled', 'rejected'].includes(status) ? status : 'unknown'}">${esc(status || 'unknown')}</span>`;
       const rows = (data, type) => {
         if (type === 'materials') return data.slice(0, 25).map((item) => `<tr><td class="demo-id">${esc(item.id)}</td><td>${esc((item.category || '—').replace(/-/g, ' '))}</td><td>${esc(item.quantity_value)} <span class="demo-unit">${esc(item.quantity_unit)}</span></td><td>${esc(item.origin_city || '—')}</td><td>${fmtDate(item.created_at)}</td></tr>`).join('');

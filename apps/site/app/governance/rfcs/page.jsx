@@ -10,7 +10,8 @@ export const metadata = createMetadata({
 export default function RfcGuidePage() {
   return (
     <div className="content-stack">
-      <div className="content-panel">        <h2>RFC Guide</h2>
+      <div className="content-panel">
+        <h2 className="hub-heading">RFC Guide</h2>
         <p>
           RFCs document protocol proposals and decisions. Use the guide below to
           understand how changes are reviewed.

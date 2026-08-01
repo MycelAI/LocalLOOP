@@ -6,7 +6,8 @@ export const metadata = createMetadata({ title: 'Security guide', path: '/docs/s
 export default function SecurityGuidePage() {
   return (
     <div className="content-stack">
-      <div className="content-panel">        <h2>Security Guide</h2>
+      <div className="content-panel">
+        <h2 className="hub-heading">Security Guide</h2>
         <p>
           Practical guidance on securing localLOOP nodes and integrations.
         </p>

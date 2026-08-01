@@ -20,7 +20,8 @@ export default async function SchemaPage({ params }) {
   if (!schema) notFound()
   return (
     <div className="content-stack">
-      <div className="content-panel">        <h2>{schema.title}</h2>
+      <div className="content-panel">
+        <h2 className="hub-heading">{schema.title}</h2>
       </div>
       <div className="content-panel">
         <MarkdownDoc filePath={schema.file} />

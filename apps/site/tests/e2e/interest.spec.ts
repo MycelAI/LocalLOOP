@@ -48,8 +48,9 @@ test('interest page loads list and form', async ({ page }) => {
 
   await expect(page.getByRole('heading', { name: /Expression of Interest/i })).toBeVisible();
   await expect(page.locator('.interest-card')).toHaveCount(2);
-  await expect(page.locator('.interest-badge')).toHaveText('DEMO');
+  await expect(page.locator('.chip')).toHaveText('DEMO');
   await expect(page.getByText('Test Cooperative')).toBeVisible();
+  await expect(page.getByText('2025-01-01T00:00:00Z')).toBeVisible();
   await expect(page.getByText('Website: https://example.com')).toBeVisible();
   await expect(page.getByText('Email: hello@example.com')).toBeVisible();
   await expect(page.locator('.interest-card').filter({ hasText: 'Private Contact Cooperative' })).not.toContainText('Email:');

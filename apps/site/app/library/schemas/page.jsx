@@ -5,7 +5,8 @@ export const metadata = createMetadata({ title: 'Schemas', path: '/library/schem
 export default function SchemasPage() {
   return (
     <div className="content-stack">
-      <div className="content-panel">        <h2>Schemas</h2>
+      <div className="content-panel">
+        <h2 className="hub-heading">Schemas</h2>
         <p>
           Use these schemas to validate payloads and build interoperable lab
           implementations. The current baseline covers MaterialDNA, ProductDNA, Offer, Match,
@@ -36,7 +37,7 @@ export default function SchemasPage() {
         <div className="grid">
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
-              <i className="ph-thin ph-fingerprint"></i>
+              <i className="ph-bold ph-fingerprint"></i>
             </span>
             <h4>MaterialDNA</h4>
             <p>Material identity, provenance, and draft extension fields for research discussion.</p>
@@ -44,7 +45,7 @@ export default function SchemasPage() {
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
-              <i className="ph-thin ph-cube"></i>
+              <i className="ph-bold ph-cube"></i>
             </span>
             <h4>ProductDNA</h4>
             <p>Product identity, condition, lifecycle, and draft passport-style fields for research discussion; no ESPR alignment is claimed.</p>
@@ -52,7 +53,7 @@ export default function SchemasPage() {
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
-              <i className="ph-thin ph-package"></i>
+              <i className="ph-bold ph-package"></i>
             </span>
             <h4>Offer</h4>
             <p>Availability and routing offers for materials or products.</p>
@@ -60,7 +61,7 @@ export default function SchemasPage() {
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
-              <i className="ph-thin ph-handshake"></i>
+              <i className="ph-bold ph-handshake"></i>
             </span>
             <h4>Match</h4>
             <p>Agreement state between a material or product and an offer.</p>
@@ -68,7 +69,7 @@ export default function SchemasPage() {
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
-              <i className="ph-thin ph-truck"></i>
+              <i className="ph-bold ph-truck"></i>
             </span>
             <h4>Transfer</h4>
             <p>Handoff and receipt events for the physical move.</p>
@@ -76,7 +77,7 @@ export default function SchemasPage() {
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
-              <i className="ph-thin ph-list-checks"></i>
+              <i className="ph-bold ph-list-checks"></i>
             </span>
             <h4>Material Status</h4>
             <p>Status changes that keep a material record current.</p>
@@ -84,7 +85,7 @@ export default function SchemasPage() {
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
-              <i className="ph-thin ph-plugs-connected"></i>
+              <i className="ph-bold ph-plugs-connected"></i>
             </span>
             <h4>Handshake</h4>
             <p>Lab-only node discovery and handshake payloads.</p>
@@ -92,7 +93,7 @@ export default function SchemasPage() {
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
-              <i className="ph-thin ph-flask"></i>
+              <i className="ph-bold ph-flask"></i>
             </span>
             <h4>Exploratory schemas</h4>
             <p>LoopCoin, LoopSignal, transaction, and node-info drafts.</p>

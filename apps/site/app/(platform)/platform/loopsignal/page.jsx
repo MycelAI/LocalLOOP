@@ -8,7 +8,7 @@ export default function LoopSignalPage() {
   return (
     <div className="content-stack">
       <div className="content-panel">
-        <h2>LoopSignal</h2>
+        <h2 className="hub-heading">LoopSignal</h2>
         <p>
           LoopSignal is a draft preference-signal model for lab discussions of demand or surplus intent
           by material category. It can be used in examples of routing and matching, but it does not
@@ -50,21 +50,21 @@ export default function LoopSignalPage() {
         <div className="grid">
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
-              <i className="ph-thin ph-broadcast"></i>
+              <i className="ph-bold ph-broadcast"></i>
             </span>
             <h4>LoopSignalConfig</h4>
             <p>Node identifier, signal values by category, validity window, and governance vote reference.</p>
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
-              <i className="ph-thin ph-check-square"></i>
+              <i className="ph-bold ph-check-square"></i>
             </span>
             <h4>LoopVote</h4>
             <p>Vote ID, proposals (category, current/proposed value, rationale), voting period, and results (turnout, approval, status).</p>
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
-              <i className="ph-thin ph-pencil-line"></i>
+              <i className="ph-bold ph-pencil-line"></i>
             </span>
             <h4>SignalProposal</h4>
             <p>Proposed changes to signal values for one or more categories, with voting window and per-change rationale.</p>
@@ -77,7 +77,7 @@ export default function LoopSignalPage() {
         <div className="grid">
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
-              <i className="ph-thin ph-scroll"></i>
+              <i className="ph-bold ph-scroll"></i>
             </span>
             <h4>Specification</h4>
             <p>Draft LoopSignal fields and proposed governance rules are documented in the protocol spec.</p>
@@ -85,7 +85,7 @@ export default function LoopSignalPage() {
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
-              <i className="ph-thin ph-map-pin"></i>
+              <i className="ph-bold ph-map-pin"></i>
             </span>
             <h4>Status</h4>
             <p>No public pilots or deployments yet.</p>
@@ -93,7 +93,7 @@ export default function LoopSignalPage() {
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
-              <i className="ph-thin ph-calculator"></i>
+              <i className="ph-bold ph-calculator"></i>
             </span>
             <h4>Effect on routing</h4>
             <p>Lab examples may use LoopSignal values as inputs to a draft LoopCost calculation.</p>
