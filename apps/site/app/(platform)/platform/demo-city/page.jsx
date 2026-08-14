@@ -144,6 +144,39 @@ export default function DemoCityPage() {
         </p>
       </div>
 
+      {/* Regulatory extension scenarios */}
+      <div className="content-panel">
+        <h3>Regulatory extension scenarios</h3>
+        <p>
+          Two additional example flows in this lab dataset show how existing v0.2.0 optional
+          fields can carry regulation-adjacent context, per the{' '}
+          <a href="/docs/regulatory-alignment/">regulatory alignment roadmap</a>'s Horizon 3 scope.
+          Both are illustrative lab records only — neither is evidence of a live packaging-pool
+          operation, a municipal reuse-depot service, or regulatory conformance.
+        </p>
+        <div className="table-list">
+          <div>
+            <span>Reusable packaging</span>
+            <div>
+              A <code>ProductDNA</code> record (<code>product_category: packaging-reusable</code>)
+              moving between DEMO Munich and DEMO Berlin, with <code>passport.supported_regimes</code>{' '}
+              tagged <code>ppwr</code> and <code>traceability.batch_id</code> used as a pooling-cycle
+              identifier. PPWR's Article 12 data-carrier format is not yet adopted, so no specific
+              label or QR/data-carrier encoding is implied — see the{' '}
+              <a href="/docs/regulatory-alignment/">regulatory alignment roadmap</a>.
+            </div>
+          </div>
+          <div>
+            <span>Municipal reuse</span>
+            <div>
+              A city-run reuse-depot <code>ProductDNA</code> flow between the same two DEMO nodes,
+              illustrating municipal-node interoperability rather than any single EU passport
+              regime.
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Node info */}
       <div className="content-panel">
         <h3>Illustrative node configuration</h3>
