@@ -121,8 +121,16 @@
         const panelLoaders = { 'offer.created': loadOffers, 'match.created': loadMatches, 'transfer.created': loadTransfers };
         ['material.created', 'offer.created', 'match.created', 'transfer.created', 'material.status_updated'].forEach((eventName) => stream.addEventListener(eventName, (event) => { try { const data = JSON.parse(event.data); appendEntry({ event: eventName, entity_id: data.entity_id || data.id }); panelLoaders[eventName]?.(); } catch {} }));
         stream.onmessage = (event) => { try { const data = JSON.parse(event.data); if (data.type || data.event_type) appendEntry({ event: data.type || data.event_type, entity_id: data.entity_id || data.id }); } catch {} };
-        stream.onerror = () => { root.querySelector('.demo-stream-dot')?.classList.replace('demo-stream-dot-live', 'demo-stream-dot-offline'); };
-        stream.onopen = () => { root.querySelector('.demo-stream-dot')?.classList.replace('demo-stream-dot-offline', 'demo-stream-dot-live'); };
+        const setStreamStatus = (online) => {
+          const dot = root.querySelector('.demo-stream-dot');
+          if (!dot) return;
+          dot.classList.toggle('demo-stream-dot-live', online);
+          dot.classList.toggle('demo-stream-dot-offline', !online);
+          const label = dot.querySelector('[data-demo-stream-status-text]');
+          if (label) label.textContent = online ? 'Live' : 'Offline';
+        };
+        stream.onerror = () => setStreamStatus(false);
+        stream.onopen = () => setStreamStatus(true);
       };
       const activateTab = (target, focus) => {
         const index = tabBtns.findIndex((button) => button.dataset.demoTab === target); if (index < 0) return;

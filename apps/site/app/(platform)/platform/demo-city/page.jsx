@@ -90,7 +90,14 @@ export default function DemoCityPage() {
       <div className="content-panel">
         <h3>
           Live event stream
-          <span className="demo-stream-dot demo-stream-dot-live" style={{marginLeft:'10px', display:'inline-block', verticalAlign:'middle'}}></span>
+          <span
+            className="demo-stream-dot demo-stream-dot-live"
+            role="status"
+            aria-live="polite"
+            style={{marginLeft:'10px', display:'inline-block', verticalAlign:'middle'}}
+          >
+            <span className="visually-hidden" data-demo-stream-status-text>Live</span>
+          </span>
         </h3>
         <p>
           Server-Sent Events from <code>/api/v1/stream</code>. This read-only display may show
