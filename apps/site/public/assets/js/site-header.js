@@ -6,7 +6,7 @@
   const subtitle = host.dataset.siteSubtitle || '';
   const forcedSection = host.dataset.activeSection;
   const sectionOrder = [
-    { key: 'platform', prefixes: ['/', '/platform', '/materialdna', '/cities', '/demo-city'] },
+    { key: 'platform', prefixes: ['/', '/platform', '/platform/materialdna', '/platform/city-portals', '/platform/demo-city'] },
     { key: 'protocol', prefixes: ['/projects/loop-protocol', '/protocol'] },
     { key: 'library', prefixes: ['/library'] },
     { key: 'docs', prefixes: ['/docs'] },
@@ -38,17 +38,68 @@
       return currentPath === normalizedPrefix || currentPath.startsWith(`${normalizedPrefix}/`);
     });
 
-  fetch('/assets/partials/site-header.html')
-    .then((response) => {
+  const esc = (value) => String(value ?? '')
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+
+  // Renders the same flat-link .nav-group markup this file has always used;
+  // only the data backing it is shared now (public/assets/navigation.json,
+  // also imported by app/config/siteRoutes.js for SiteHeader.jsx) instead of
+  // being a second, hand-copied version of the nav that could silently drift
+  // from the React header — as it already had (stale hrefs, missing items).
+  const renderNavGroups = (sections) => sections.map((section) => {
+    const items = section.items || (section.groups || []).flatMap((group) => group.items);
+    const groupClass = section.align === 'end' ? 'nav-group nav-group--align-end' : 'nav-group';
+    const linkClass = section.isCta ? 'nav-section-link nav-cta' : 'nav-section-link';
+
+    return `
+      <div class="${groupClass}">
+        <div class="nav-item">
+          <a class="${linkClass}" data-nav-section="${esc(section.key)}" href="${esc(section.href)}">
+            <span>${esc(section.label)}</span>
+            <span class="nav-link-caret" aria-hidden="true"></span>
+          </a>
+          <button
+            class="nav-group-toggle"
+            type="button"
+            aria-label="Expand ${esc(section.label)} menu"
+            aria-controls="nav-menu-${esc(section.key)}"
+            aria-expanded="false"
+          >
+            <span class="nav-group-caret" aria-hidden="true"></span>
+          </button>
+        </div>
+        <div class="nav-menu" id="nav-menu-${esc(section.key)}">
+          ${items.map((item) => `<a href="${esc(item.href)}">${esc(item.label)}</a>`).join('')}
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  Promise.all([
+    fetch('/assets/partials/site-header.html').then((response) => {
       if (!response.ok) {
         throw new Error(`Failed to load site header (${response.status})`);
       }
 
       return response.text();
-    })
-    .then((markup) => {
+    }),
+    fetch('/assets/navigation.json').then((response) => {
+      if (!response.ok) {
+        throw new Error(`Failed to load site navigation (${response.status})`);
+      }
+
+      return response.json();
+    }),
+  ])
+    .then(([markup, navigationSections]) => {
       host.classList.add('site-header');
       host.innerHTML = markup;
+
+      const navLinksMount = host.querySelector('#site-nav-links');
+      if (navLinksMount) {
+        navLinksMount.innerHTML = renderNavGroups(navigationSections);
+      }
 
       const subtitleEl = host.querySelector('[data-nav-subtitle]');
       if (subtitleEl) {

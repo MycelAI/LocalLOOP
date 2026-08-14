@@ -15,10 +15,10 @@ export default function LoopCostPage() {
         </p>
         <MaturityStatus />
         <div className="cta-row">
-          <a className="button secondary" href="/platform/loopsignal">
+          <a className="button secondary" href="/platform/loopsignal/">
             LoopSignal
           </a>
-          <a className="button secondary" href="/platform/loopcoin">
+          <a className="button secondary" href="/platform/loopcoin/">
             LoopCoin
           </a>
         </div>
@@ -57,7 +57,7 @@ export default function LoopCostPage() {
             </span>
             <h4>LoopSignal feeds penalties</h4>
             <p>Lab scenarios may calculate illustrative penalties from draft LoopSignalConfig values for a material category.</p>
-            <a href="/platform/loopsignal">LoopSignal →</a>
+            <a href="/platform/loopsignal/">LoopSignal →</a>
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
@@ -65,7 +65,7 @@ export default function LoopCostPage() {
             </span>
             <h4>LoopCoin scenario fields</h4>
             <p>A lab scenario may denominate a calculated value in a draft LoopCoin field; no settlement or clearing operation is demonstrated.</p>
-            <a href="/platform/loopcoin">LoopCoin →</a>
+            <a href="/platform/loopcoin/">LoopCoin →</a>
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
@@ -73,7 +73,7 @@ export default function LoopCostPage() {
             </span>
             <h4>Spec reference</h4>
             <p>The formal LoopCost formula and penalty derivation rules are defined in SPECIFICATION.md §4.</p>
-            <a href="/protocol/spec">Protocol spec →</a>
+            <a href="/protocol/spec/">Protocol spec →</a>
           </div>
         </div>
       </div>
@@ -87,7 +87,7 @@ export default function LoopCostPage() {
             </span>
             <h4>Specification</h4>
             <p>LoopCost formula and penalty rules are defined in the protocol spec (§4).</p>
-            <a href="/protocol/spec">Read the spec</a>
+            <a href="/protocol/spec/">Read the spec</a>
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
@@ -95,7 +95,7 @@ export default function LoopCostPage() {
             </span>
             <h4>Status</h4>
             <p>Computed in lab demo flows. No public pilots or deployments yet.</p>
-            <a href="/interest">Register interest</a>
+            <a href="/interest/">Register interest</a>
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
@@ -103,7 +103,7 @@ export default function LoopCostPage() {
             </span>
             <h4>Lab demo</h4>
             <p>Lab examples may include a calculated LoopCost value alongside draft match and transfer payloads.</p>
-            <a href="/docs/lab-demo">Lab demo →</a>
+            <a href="/docs/lab-demo/">Lab demo →</a>
           </div>
         </div>
       </div>

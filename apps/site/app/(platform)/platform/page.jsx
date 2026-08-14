@@ -15,21 +15,21 @@ export default function PlatformPage() {
         <div className="status-notice">
           <strong>Early-stage research.</strong> All components are lab-demo concepts.
           There are no active city deployments or public pilots yet.
-          <a href="/interest">Express interest</a> for possible future research updates.
+          <a href="/interest/">Express interest</a> for possible future research updates.
         </div>
       </div>
 
       <div className="content-panel">
         <h3>Identity layers</h3>
         <div className="grid">
-          <a className="card has-icon" href="/platform/materialdna">
+          <a className="card has-icon" href="/platform/materialdna/">
             <span className="card-icon" aria-hidden="true">
               <i className="ph-bold ph-fingerprint"></i>
             </span>
             <h4>MaterialDNA</h4>
             <p>Identification layer for raw and processed materials across city loops.</p>
           </a>
-          <a className="card has-icon" href="/platform/productdna">
+          <a className="card has-icon" href="/platform/productdna/">
             <span className="card-icon" aria-hidden="true">
               <i className="ph-bold ph-cube"></i>
             </span>
@@ -42,21 +42,21 @@ export default function PlatformPage() {
       <div className="content-panel">
         <h3>Exchange mechanics</h3>
         <div className="grid">
-          <a className="card has-icon" href="/platform/loopcoin">
+          <a className="card has-icon" href="/platform/loopcoin/">
             <span className="card-icon" aria-hidden="true">
               <i className="ph-bold ph-coins"></i>
             </span>
             <h4>LoopCoin</h4>
             <p>Draft node-issued value and settlement data fields for controlled lab scenarios.</p>
           </a>
-          <a className="card has-icon" href="/platform/loopsignal">
+          <a className="card has-icon" href="/platform/loopsignal/">
             <span className="card-icon" aria-hidden="true">
               <i className="ph-bold ph-broadcast"></i>
             </span>
             <h4>LoopSignal</h4>
             <p>Draft preference-signal data for exploring routing and matching scenarios.</p>
           </a>
-          <a className="card has-icon" href="/platform/loopcost">
+          <a className="card has-icon" href="/platform/loopcost/">
             <span className="card-icon" aria-hidden="true">
               <i className="ph-bold ph-calculator"></i>
             </span>
@@ -69,14 +69,14 @@ export default function PlatformPage() {
       <div className="content-panel">
         <h3>City portals</h3>
         <div className="grid">
-          <a className="card has-icon" href="/platform/city-portals">
+          <a className="card has-icon" href="/platform/city-portals/">
             <span className="card-icon" aria-hidden="true">
               <i className="ph-bold ph-city"></i>
             </span>
             <h4>City Portals</h4>
             <p>Concept sketches for how a city could present local initiatives and example metrics.</p>
           </a>
-          <a className="card has-icon" href="/platform/demo-city">
+          <a className="card has-icon" href="/platform/demo-city/">
             <span className="card-icon" aria-hidden="true">
               <i className="ph-bold ph-compass"></i>
             </span>

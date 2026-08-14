@@ -12,7 +12,7 @@ export default function SecurityGuidePage() {
           Practical guidance on securing localLOOP nodes and integrations.
         </p>
         <div className="cta-row">
-          <a className="button secondary" href="/docs">Back to docs</a>
+          <a className="button secondary" href="/docs/">Back to docs</a>
         </div>
       </div>
       <div className="content-panel">

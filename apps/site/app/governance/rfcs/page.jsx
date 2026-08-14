@@ -17,7 +17,7 @@ export default function RfcGuidePage() {
           understand how changes are reviewed.
         </p>
         <div className="cta-row">
-          <a className="button secondary" href="/governance">Back to governance</a>
+          <a className="button secondary" href="/governance/">Back to governance</a>
         </div>
       </div>
       <div className="content-panel">

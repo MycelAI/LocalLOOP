@@ -216,8 +216,8 @@ test('claim audit and route metadata guards reject known unsupported live claims
   ].join('\n');
   assert.ok(metadata.includes('createAliasMetadata'));
   assert.ok(metadata.includes('index: false'));
-  assert.ok(aliases.includes('to="/interest"'));
-  assert.ok(aliases.includes('to="/contribute"'));
+  assert.ok(aliases.includes('to="/interest/"'));
+  assert.ok(aliases.includes('to="/contribute/"'));
 });
 
 test('feature scripts have an idempotent cleanup contract', () => {

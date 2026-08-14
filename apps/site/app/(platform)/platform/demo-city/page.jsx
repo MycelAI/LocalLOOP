@@ -25,7 +25,7 @@ export default function DemoCityPage() {
         <div className="status-notice">
           <strong>No public deployment.</strong> This demo illustrates a possible city-portal interface
           with seeded lab data; it does not predict a live-node experience.
-          <a href="/interest">Register city interest</a>
+          <a href="/interest/">Register city interest</a>
         </div>
         <div data-demo-heartbeat className="demo-heartbeat" role="status" aria-live="polite">
           Checking node status…
@@ -82,7 +82,7 @@ export default function DemoCityPage() {
         <h3>Read-only demonstration</h3>
         <p>
           Public material registration is disabled to avoid creating persistent lab records from this site.
-          Use the <a href="/docs/lab-demo">local lab demo guide</a> to evaluate write-capable flows in a controlled environment.
+          Use the <a href="/docs/lab-demo/">local lab demo guide</a> to evaluate write-capable flows in a controlled environment.
         </p>
       </div>
 
@@ -90,7 +90,14 @@ export default function DemoCityPage() {
       <div className="content-panel">
         <h3>
           Live event stream
-          <span className="demo-stream-dot demo-stream-dot-live" style={{marginLeft:'10px', display:'inline-block', verticalAlign:'middle'}}></span>
+          <span
+            className="demo-stream-dot demo-stream-dot-live"
+            role="status"
+            aria-live="polite"
+            style={{marginLeft:'10px', display:'inline-block', verticalAlign:'middle'}}
+          >
+            <span className="visually-hidden" data-demo-stream-status-text>Live</span>
+          </span>
         </h3>
         <p>
           Server-Sent Events from <code>/api/v1/stream</code>. This read-only display may show
@@ -133,7 +140,7 @@ export default function DemoCityPage() {
         <p style={{marginTop:'12px', fontSize:'0.85rem', color:'var(--ink-soft)'}}>
           Higher values may lower a modelled import penalty; they do not guarantee demand,
           routing, locality, or settlement outcomes.
-          See <a href="/platform/loopsignal">LoopSignal</a> and <a href="/platform/loopcost">LoopCost</a>.
+          See <a href="/platform/loopsignal/">LoopSignal</a> and <a href="/platform/loopcost/">LoopCost</a>.
         </p>
       </div>
 
@@ -149,9 +156,9 @@ export default function DemoCityPage() {
           <div><span>Status</span><div>Lab demo only — no real logistics or settlement</div></div>
         </div>
         <div className="cta-row" style={{marginTop:'16px'}}>
-          <a className="button secondary" href="/protocol/spec">Review the protocol</a>
-          <a className="button secondary" href="/platform/city-portals">City portals</a>
-          <a className="button primary" href="/interest">Register city interest</a>
+          <a className="button secondary" href="/protocol/spec/">Review the protocol</a>
+          <a className="button secondary" href="/platform/city-portals/">City portals</a>
+          <a className="button primary" href="/interest/">Register city interest</a>
         </div>
       </div>
 

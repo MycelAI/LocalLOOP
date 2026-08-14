@@ -17,7 +17,7 @@ export default function ProtocolChangelogPage() {
           The project is early-stage with no public pilots yet.
         </p>
         <div className="cta-row">
-          <a className="button secondary" href="/protocol">Back to overview</a>
+          <a className="button secondary" href="/protocol/">Back to overview</a>
         </div>
       </div>
       <div className="content-panel">

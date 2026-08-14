@@ -15,6 +15,7 @@
       const panel = document.querySelector('[data-metrics-panel]');
       if (!panel) return;
       const controller = new AbortController();
+      const REQUEST_TIMEOUT_MS = 10000;
       let disposed = false;
 
       const escapeHtml = (value) => String(value ?? '')
@@ -29,7 +30,7 @@
         const uptime = Number.isFinite(Number(payload.uptimeSeconds)) ? Math.round(Number(payload.uptimeSeconds)) : 0;
         panel.innerHTML = `${notice ? `<div class="notice">${escapeHtml(notice)}</div>` : ''}<div class="metrics-meta"><span>Started: ${started}</span><span>Uptime: ${uptime}s</span></div><div class="metrics-grid">${cards || '<div class="notice">No metrics yet.</div>'}</div>`;
       };
-      fetch(`${apiBase}/api/metrics`, { signal: controller.signal })
+      fetch(`${apiBase}/api/metrics`, { signal: AbortSignal.any([controller.signal, AbortSignal.timeout(REQUEST_TIMEOUT_MS)]) })
         .then((response) => response.ok ? response.json() : Promise.reject(new Error('metrics')))
         .then((data) => render(data))
         .catch((error) => { if (error.name !== 'AbortError') render(null, 'Metrics unavailable — connect the lab API to view live counts.'); });

@@ -35,8 +35,9 @@
       const tabBtns = [...root.querySelectorAll('[data-demo-tab]')];
       const on = (node, event, listener) => { node.addEventListener(event, listener); listeners.push(() => node.removeEventListener(event, listener)); };
       const esc = (value) => String(value ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+      const REQUEST_TIMEOUT_MS = 10000;
       const request = async (path) => {
-        const response = await fetch(`${apiBase}${path}`, { signal: controller.signal });
+        const response = await fetch(`${apiBase}${path}`, { signal: AbortSignal.any([controller.signal, AbortSignal.timeout(REQUEST_TIMEOUT_MS)]) });
         if (response.status === 429) {
           const error = new Error('rate limited');
           error.name = 'RateLimitError';
@@ -83,7 +84,11 @@
         try {
           const counts = await Promise.all(['/api/v1/material', '/api/v1/offer', '/api/v1/match', '/api/v1/transfer'].map((path) => request(path).then((response) => response.ok ? response.json() : []).then((data) => Array.isArray(data) ? data.length : 0)));
           if (!disposed && statsEl) statsEl.innerHTML = counts.map((count, index) => `<div class="demo-stat-card"><span class="demo-stat-value">${count}</span><span class="demo-stat-label">${['Materials', 'Offers', 'Matches', 'Transfers'][index]}</span></div>`).join('');
-        } catch (error) { if (error.name !== 'AbortError') notice(statsEl, 'Stats unavailable.'); }
+        } catch (error) {
+          if (error.name === 'AbortError') return;
+          if (error.name === 'RateLimitError') { notice(statsEl, 'Demo refresh paused — API request limit reached. Retrying in a few minutes.'); return; }
+          notice(statsEl, 'Stats unavailable.');
+        }
       };
       const loadCollection = async (type, path, element, headings) => {
         try {
@@ -92,7 +97,11 @@
           const filtered = type === 'materials' && currentFilter !== 'all' ? data.filter((item) => ((item.origin_city || item.current_city || '').toLowerCase()).includes(currentFilter === 'demo' ? 'demo' : currentFilter)) : data;
           if (!filtered.length) return notice(element, `No ${type} available.`);
           element.innerHTML = `<div class="demo-table-wrap"><table class="demo-table"><thead><tr>${headings.map((heading) => `<th>${heading}</th>`).join('')}</tr></thead><tbody>${rows(filtered, type)}</tbody></table></div>`;
-        } catch (error) { if (error.name !== 'AbortError') notice(element, `${type[0].toUpperCase()}${type.slice(1)} unavailable.`); }
+        } catch (error) {
+          if (error.name === 'AbortError') return;
+          if (error.name === 'RateLimitError') { notice(element, 'Demo refresh paused — API request limit reached. Retrying in a few minutes.'); return; }
+          notice(element, `${type[0].toUpperCase()}${type.slice(1)} unavailable.`);
+        }
       };
       const loadMaterials = () => loadCollection('materials', '/api/v1/material', materialsEl, ['Material ID', 'Category', 'Quantity', 'City', 'Registered']);
       const loadOffers = () => loadCollection('offers', '/api/v1/offer', offersEl, ['Offer ID', 'Material', 'Route', 'Quantity', 'Status', 'Until']);
@@ -109,9 +118,19 @@
       const connectStream = () => {
         if (!streamEl || !('EventSource' in window)) return;
         stream = new EventSource(`${apiBase}/api/v1/stream`);
-        ['material.created', 'offer.created', 'match.created', 'transfer.created', 'material.status_updated'].forEach((eventName) => stream.addEventListener(eventName, (event) => { try { const data = JSON.parse(event.data); appendEntry({ event: eventName, entity_id: data.entity_id || data.id }); } catch {} }));
+        const panelLoaders = { 'offer.created': loadOffers, 'match.created': loadMatches, 'transfer.created': loadTransfers };
+        ['material.created', 'offer.created', 'match.created', 'transfer.created', 'material.status_updated'].forEach((eventName) => stream.addEventListener(eventName, (event) => { try { const data = JSON.parse(event.data); appendEntry({ event: eventName, entity_id: data.entity_id || data.id }); panelLoaders[eventName]?.(); } catch {} }));
         stream.onmessage = (event) => { try { const data = JSON.parse(event.data); if (data.type || data.event_type) appendEntry({ event: data.type || data.event_type, entity_id: data.entity_id || data.id }); } catch {} };
-        stream.onerror = () => { streamEl.querySelector('.demo-stream-dot')?.classList.replace('demo-stream-dot-live', 'demo-stream-dot-offline'); };
+        const setStreamStatus = (online) => {
+          const dot = root.querySelector('.demo-stream-dot');
+          if (!dot) return;
+          dot.classList.toggle('demo-stream-dot-live', online);
+          dot.classList.toggle('demo-stream-dot-offline', !online);
+          const label = dot.querySelector('[data-demo-stream-status-text]');
+          if (label) label.textContent = online ? 'Live' : 'Offline';
+        };
+        stream.onerror = () => setStreamStatus(false);
+        stream.onopen = () => setStreamStatus(true);
       };
       const activateTab = (target, focus) => {
         const index = tabBtns.findIndex((button) => button.dataset.demoTab === target); if (index < 0) return;

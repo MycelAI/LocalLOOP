@@ -13,7 +13,7 @@ export default function FederationPage() {
           registry. This is not a production federation protocol.
         </p>
         <div className="cta-row">
-          <a className="button secondary" href="/docs/lab-demo">Lab demo</a>
+          <a className="button secondary" href="/docs/lab-demo/">Lab demo</a>
         </div>
       </div>
 

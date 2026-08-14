@@ -16,7 +16,7 @@ export default function MaterialDNAPage() {
         </p>
         <MaturityStatus />
         <div className="cta-row">
-          <a className="button secondary" href="/platform/city-portals">
+          <a className="button secondary" href="/platform/city-portals/">
             City portals
           </a>
         </div>
@@ -92,7 +92,7 @@ export default function MaterialDNAPage() {
             </span>
             <h4>Specification</h4>
             <p>Draft schemas are available in the LOOP repository.</p>
-            <a href="/library/schemas">Browse schemas</a>
+            <a href="/library/schemas/">Browse schemas</a>
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
@@ -100,7 +100,7 @@ export default function MaterialDNAPage() {
             </span>
             <h4>Status</h4>
             <p>No public pilots or deployments yet.</p>
-            <a href="/interest">Register interest</a>
+            <a href="/interest/">Register interest</a>
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
@@ -108,7 +108,7 @@ export default function MaterialDNAPage() {
             </span>
             <h4>Integration</h4>
             <p>Implementation guidance will be published as the spec matures.</p>
-            <a href="/docs/implementation">Read the guide</a>
+            <a href="/docs/implementation/">Read the guide</a>
           </div>
         </div>
       </div>

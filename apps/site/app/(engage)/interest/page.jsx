@@ -17,8 +17,8 @@ export default function InterestPage() {
           published contact channel.
         </MaturityStatus>
         <div className="cta-row">
-          <a className="button primary" href="/protocol">Review the protocol</a>
-          <a className="button secondary" href="/projects">Project hub</a>
+          <a className="button primary" href="/protocol/">Review the protocol</a>
+          <a className="button secondary" href="/projects/">Project hub</a>
         </div>
         <div className="status-banner" data-api-status>
           Checking backend status…

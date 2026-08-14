@@ -18,8 +18,8 @@ export default function CityPortalsPage() {
           metrics; this site does not verify or operate those data sources.
         </p>
         <div className="cta-row">
-          <a className="button primary" href="/platform/demo-city">View DEMO City</a>
-          <a className="button secondary" href="/interest">Register interest</a>
+          <a className="button primary" href="/platform/demo-city/">View DEMO City</a>
+          <a className="button secondary" href="/interest/">Register interest</a>
         </div>
       </div>
 
@@ -41,7 +41,7 @@ export default function CityPortalsPage() {
             </span>
             <h4>DEMO City</h4>
             <p>Sample portal to illustrate a future city experience.</p>
-            <a href="/platform/demo-city">Open demo portal</a>
+            <a href="/platform/demo-city/">Open demo portal</a>
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
@@ -49,7 +49,7 @@ export default function CityPortalsPage() {
             </span>
             <h4>Future cities</h4>
             <p>Future city participation is exploratory; no launch or deployment is scheduled here.</p>
-            <a href="/interest">Express interest</a>
+            <a href="/interest/">Express interest</a>
           </div>
         </div>
       </div>

@@ -14,8 +14,8 @@ export default function ThreatModelPage() {
           and API exposure in a controlled lab environment.
         </p>
         <div className="cta-row">
-          <a className="button secondary" href="/docs/security">Security overview</a>
-          <a className="button secondary" href="/docs">Back to docs</a>
+          <a className="button secondary" href="/docs/security/">Security overview</a>
+          <a className="button secondary" href="/docs/">Back to docs</a>
         </div>
       </div>
       <div className="content-panel">

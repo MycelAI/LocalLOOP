@@ -16,7 +16,7 @@ export default function RfcTemplatePage() {
           Use the template to structure proposals consistently across the protocol.
         </p>
         <div className="cta-row">
-          <a className="button secondary" href="/governance">Back to governance</a>
+          <a className="button secondary" href="/governance/">Back to governance</a>
         </div>
       </div>
       <div className="content-panel">

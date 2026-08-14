@@ -16,8 +16,8 @@ export default function DpiaLitePage() {
           should review this document alongside their own DPA requirements.
         </p>
         <div className="cta-row">
-          <a className="button secondary" href="/docs/regulatory-alignment">Regulatory alignment</a>
-          <a className="button secondary" href="/docs">Back to docs</a>
+          <a className="button secondary" href="/docs/regulatory-alignment/">Regulatory alignment</a>
+          <a className="button secondary" href="/docs/">Back to docs</a>
         </div>
       </div>
       <div className="content-panel">

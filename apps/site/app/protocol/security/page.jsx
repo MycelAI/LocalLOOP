@@ -17,7 +17,7 @@ export default function ProtocolSecurityPage() {
           Implementation guidance will evolve as the protocol matures.
         </p>
         <div className="cta-row">
-          <a className="button secondary" href="/docs/security">Security guide</a>
+          <a className="button secondary" href="/docs/security/">Security guide</a>
         </div>
       </div>
       <div className="content-panel">

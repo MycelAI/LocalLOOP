@@ -13,7 +13,7 @@ export default function ImplementationPage() {
           yet — this guide is a living draft.
         </p>
         <div className="cta-row">
-          <a className="button secondary" href="/docs">Back to docs</a>
+          <a className="button secondary" href="/docs/">Back to docs</a>
         </div>
       </div>
       <div className="content-panel">

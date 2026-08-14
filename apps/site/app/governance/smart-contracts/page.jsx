@@ -16,7 +16,7 @@ export default function SmartContractsPage() {
           Draft RFC describing how smart contracts could automate settlement flows.
         </p>
         <div className="cta-row">
-          <a className="button secondary" href="/governance">Back to governance</a>
+          <a className="button secondary" href="/governance/">Back to governance</a>
         </div>
       </div>
       <div className="content-panel">

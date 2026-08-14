@@ -114,8 +114,8 @@ for repo in "${REPOS[@]}"; do
       fi
     else
       if ! GIT_TERMINAL_PROMPT=0 git clone --depth 1 "https://github.com/${ORG}/${repo_trimmed}.git" "$WORK_DIR/$repo_trimmed" >"$clone_log" 2>&1; then
-        echo "Skipping $ORG/$repo_trimmed: DOCS_SYNC_TOKEN not set or repo inaccessible." >&2
-        continue
+        echo "Failed to clone $ORG/$repo_trimmed: DOCS_SYNC_TOKEN not set or repo inaccessible." >&2
+        exit 1
       fi
     fi
 

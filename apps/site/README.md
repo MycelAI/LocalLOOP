@@ -4,7 +4,6 @@
 
 **The official website of localLOOP and home of the LOOP protocol, MaterialDNA, ProductDNA, city portals, and governance.**
 
-[![Deploy](https://github.com/local-loop-io/localloop-site/actions/workflows/deploy.yml/badge.svg)](https://github.com/local-loop-io/localloop-site/actions/workflows/deploy.yml)
 [![Site](https://img.shields.io/badge/site-localloop.urbnia.com-4f46e5?logo=github)](https://localloop.urbnia.com)
 [![Protocol](https://img.shields.io/badge/protocol-loop--protocol-10b981?logo=github)](https://github.com/local-loop-io/loop-protocol)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
@@ -40,7 +39,7 @@ It does three things:
 | └ City Portals | `/platform/city-portals` | City landing pages |
 | └ DEMO City | `/platform/demo-city` | Sample city portal |
 | **Library** | `/library` | Schemas and payload examples |
-| **Docs** | `/docs` | 9 implementation + reference guides |
+| **Docs** | `/docs` | 13 implementation + reference guides |
 | **Governance** | `/governance` | RFC guide, template, smart contract RFC |
 | **Engage** | `/interest` | Expression of interest form |
 
@@ -109,12 +108,11 @@ app/
 
 public/
   projects/loop-protocol/   # Mirrored protocol artifacts (schemas, docs, contexts)
-  viewer.html               # Lightweight markdown + JSON viewer
   assets/                   # CSS, JS, fonts
 
 tests/
   e2e/                      # Playwright specs (one per key page)
-  smoke/                    # Node smoke tests
+  smoke.test.cjs            # Node smoke tests
 ```
 
 ---
@@ -135,7 +133,7 @@ The `Domain Consistency` CI workflow validates that all internal links respect t
 4. Add a Playwright spec in `tests/e2e/` for any new interactive or critical page
 5. Open a PR — CI runs build + E2E before merge
 
-For org-level context, domain policy, and agents guidance see [`AGENTS.md`](../AGENTS.md) in the monorepo root.
+For this repo's canonical-domain policy, see [`DOMAIN-POLICY.md`](DOMAIN-POLICY.md).
 
 ---
 

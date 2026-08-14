@@ -17,7 +17,7 @@ export default function ProtocolSpecPage() {
           localLOOP implementations. No public pilots or deployments yet.
         </p>
         <div className="cta-row">
-          <a className="button secondary" href="/docs/regulatory-alignment">Compatibility roadmap</a>
+          <a className="button secondary" href="/docs/regulatory-alignment/">Compatibility roadmap</a>
         </div>
       </div>
       <div className="content-panel">

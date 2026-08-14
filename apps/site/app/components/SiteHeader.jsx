@@ -251,7 +251,7 @@ export function SiteHeader({ subtitle = '' }) {
         <Link href="/" className="nav-brand">
           <img
             src="/assets/local-loop-logo.png"
-            alt="localLOOP"
+            alt=""
             className="nav-logo-img"
             width={32}
             height={32}
