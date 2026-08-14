@@ -140,6 +140,7 @@ for repo in "${REPOS[@]}"; do
   sync_dir "$SRC/schemas" "$DEST/schemas"
   sync_dir "$SRC/examples" "$DEST/examples"
   sync_dir "$SRC/rfcs" "$DEST/rfcs"
+  sync_dir "$SRC/profiles" "$DEST/profiles"
   publish_versioned_schema_aliases "$DEST/schemas"
 
 done
