@@ -30,7 +30,7 @@ test('desktop header links navigate and dropdowns stay aligned', async ({ page }
 
   await page.goto('/docs/implementation/');
   await expect(getSectionLink(page, 'Docs')).toHaveClass(/active/);
-  const activeDocsChild = page.locator('#nav-menu-docs a.active');
+  const activeDocsChild = page.locator('#nav-menu-docs a.active .nav-menu-card-title');
   await expect(activeDocsChild).toHaveText('Implementation');
 
   await getSectionLink(page, 'Governance').click();

@@ -173,16 +173,19 @@ test('reduced motion disables scroll-linked pinning for key concepts', async ({ 
 });
 
 test('key concepts mobile tab strip starts at the first tab and stays legible', async ({ page }) => {
-  // Regression test: the base .kc-tabs rule sets justify-content:center for
-  // the vertical desktop list, which never overflows. Once the mobile tier
-  // switched tabs to natural width (so overflow-x:auto has something to
-  // scroll), that same centering pushed the overflowing row so its start
-  // bled into negative offsets a scrollLeft:0 container can never reach —
-  // the first (active) tab rendered partly off-screen with no way back to
-  // it. Separately, tab labels must not overlap each other (an earlier,
-  // now-fixed variant of this bug forced all 6 tabs to equally shrink,
-  // which left no room for "MaterialDNA"-length labels and let the text
-  // spill into neighboring tabs instead of wrapping or scrolling).
+  // Regression test: the mobile tier deliberately lays .kc-tabs out as a
+  // CSS grid (3 columns at <=900px, 2 columns at <=600px, overflow:visible)
+  // instead of the old single-row overflow-x:auto strip, so tabs wrapping
+  // onto additional rows is intentional, not a bug. What must still hold:
+  // every tab renders fully inside the .kc-tabs container (nothing clipped
+  // or pushed outside its bounds), and tabs sharing the same row stay in
+  // left-to-right label order — comparing x-position across different rows
+  // isn't meaningful once the layout wraps, so ordering is only checked
+  // within a row (grouped by matching y). Separately, tab labels must not
+  // overlap each other (an earlier, now-fixed variant of this bug forced
+  // all 6 tabs to equally shrink, which left no room for
+  // "MaterialDNA"-length labels and let the text spill into neighboring
+  // tabs instead of wrapping or scrolling).
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/');
   const tabsContainer = page.locator('.kc-tabs');
@@ -194,8 +197,25 @@ test('key concepts mobile tab strip starts at the first tab and stays legible', 
   const tabs = page.locator('.kc-tab');
   const count = await tabs.count();
   const boxes = await Promise.all(Array.from({ length: count }, (_, i) => tabs.nth(i).boundingBox()));
-  for (let i = 1; i < boxes.length; i += 1) {
-    expect(boxes[i].x).toBeGreaterThanOrEqual(boxes[i - 1].x + boxes[i - 1].width - 1);
+
+  for (const box of boxes) {
+    expect(box.x).toBeGreaterThanOrEqual(containerBox.x - 1);
+    expect(box.x + box.width).toBeLessThanOrEqual(containerBox.x + containerBox.width + 1);
+  }
+
+  const rows = [];
+  for (const box of boxes) {
+    const row = rows.find((existing) => Math.abs(existing[0].y - box.y) < 1);
+    if (row) {
+      row.push(box);
+    } else {
+      rows.push([box]);
+    }
+  }
+  for (const row of rows) {
+    for (let i = 1; i < row.length; i += 1) {
+      expect(row[i].x).toBeGreaterThanOrEqual(row[i - 1].x + row[i - 1].width - 1);
+    }
   }
 });
 
