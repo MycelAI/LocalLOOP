@@ -83,17 +83,18 @@ For exact protocol versions and release status, see the [canonical specification
 
 ## Contact & citation
 
-**Mycel UG (haftungsbeschränkt)**
+**Alphin C. Tom** — Mycel UG (haftungsbeschränkt)
 [@alpha912](https://github.com/alpha912) / [dev@mycel-ai.de](mailto:dev@mycel-ai.de) / [mycel-ai.de](https://mycel-ai.de)
 
 ```bibtex
 @misc{localloop_org_2025,
-  author    = {Mycel UG (haftungsbeschränkt)},
-  title     = {localLOOP - Local Optimization with Overflow Protocol},
-  year      = {2025},
-  publisher = {GitHub},
-  url       = {https://github.com/local-loop-io},
-  note      = {Lab demo only. No public pilots or deployments.}
+  author       = {Alphin C. Tom},
+  organization = {Mycel},
+  title        = {localLOOP - Local Optimization with Overflow Protocol},
+  year         = {2025},
+  publisher    = {GitHub},
+  url          = {https://github.com/local-loop-io},
+  note         = {Lab demo only. No public pilots or deployments.}
 }
 ```
 
