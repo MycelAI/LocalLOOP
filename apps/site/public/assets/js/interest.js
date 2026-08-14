@@ -19,6 +19,8 @@
       const config = window.LOCALLOOP_CONFIG || {};
       const apiBase = config.apiBase || 'https://loop-api.urbnia.com';
       const controller = new AbortController();
+      const REQUEST_TIMEOUT_MS = 10000;
+      const withTimeout = () => AbortSignal.any([controller.signal, AbortSignal.timeout(REQUEST_TIMEOUT_MS)]);
       const listeners = [];
       let stream = null; let retryTimer = null; let disposed = false;
       const on = (node, event, listener) => { node?.addEventListener(event, listener); if (node) listeners.push(() => node.removeEventListener(event, listener)); };
@@ -48,8 +50,8 @@
           return `<div class="interest-card"><h4>${esc(entry.name || 'Anonymous')}${entry.is_demo ? '<span class="chip chip--warm chip--mono">DEMO</span>' : ''}${entry.organization ? ` • ${esc(entry.organization)}` : ''}${entry.role ? ` (${esc(entry.role)})` : ''}</h4>${details ? `<p>${details}</p>` : ''}${entry.message ? `<p>${esc(entry.message)}</p>` : ''}</div>`;
         }).join('')}`;
       };
-      const loadList = () => fetch(`${apiBase}/api/interest`, { signal: controller.signal }).then((response) => response.ok ? response.json() : Promise.reject(new Error('interest'))).then((data) => renderEntries(data.results?.length ? data.results : [], data.results?.length ? '' : 'No public expressions of interest yet.')).catch((error) => { if (error.name !== 'AbortError') renderEntries(demoEntries, 'Public list unavailable — showing demo entries.'); });
-      const updateStatus = () => { if (!apiStatusEl) return; apiStatusEl.textContent = 'Checking backend status…'; fetch(`${apiBase}/api/metrics`, { signal: controller.signal }).then((response) => response.ok ? response.json() : Promise.reject(new Error('status'))).then((data) => { if (!disposed) apiStatusEl.textContent = `Backend online${data?.uptimeSeconds ? ` · uptime ${Math.round(data.uptimeSeconds / 60)}m` : ''} · ${apiBase}`; }).catch((error) => { if (!disposed && error.name !== 'AbortError') apiStatusEl.textContent = 'Backend unavailable — showing demo data from this page.'; }); };
+      const loadList = () => fetch(`${apiBase}/api/interest`, { signal: withTimeout() }).then((response) => response.ok ? response.json() : Promise.reject(new Error('interest'))).then((data) => renderEntries(data.results?.length ? data.results : [], data.results?.length ? '' : 'No public expressions of interest yet.')).catch((error) => { if (error.name !== 'AbortError') renderEntries(demoEntries, 'Public list unavailable — showing demo entries.'); });
+      const updateStatus = () => { if (!apiStatusEl) return; apiStatusEl.textContent = 'Checking backend status…'; fetch(`${apiBase}/api/metrics`, { signal: withTimeout() }).then((response) => response.ok ? response.json() : Promise.reject(new Error('status'))).then((data) => { if (!disposed) apiStatusEl.textContent = `Backend online${data?.uptimeSeconds ? ` · uptime ${Math.round(data.uptimeSeconds / 60)}m` : ''} · ${apiBase}`; }).catch((error) => { if (!disposed && error.name !== 'AbortError') apiStatusEl.textContent = 'Backend unavailable — showing demo data from this page.'; }); };
       const disconnect = () => { stream?.close(); stream = null; if (retryTimer) clearTimeout(retryTimer); retryTimer = null; };
       const connect = () => { if (disposed || !listEl || !('EventSource' in window) || stream) return; stream = new EventSource(`${apiBase}/api/interest/stream`); stream.onmessage = loadList; stream.onerror = () => { stream?.close(); stream = null; if (!disposed && !retryTimer) retryTimer = setTimeout(() => { retryTimer = null; connect(); }, 5000); }; };
       if (form) on(form, 'submit', async (event) => {
@@ -76,7 +78,7 @@
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload),
-            signal: controller.signal,
+            signal: withTimeout(),
           });
           if (!response.ok) throw new Error('submit');
           form.reset();
