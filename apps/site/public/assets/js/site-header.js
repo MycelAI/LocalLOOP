@@ -6,7 +6,7 @@
   const subtitle = host.dataset.siteSubtitle || '';
   const forcedSection = host.dataset.activeSection;
   const sectionOrder = [
-    { key: 'platform', prefixes: ['/', '/platform', '/materialdna', '/cities', '/demo-city'] },
+    { key: 'platform', prefixes: ['/', '/platform', '/platform/materialdna', '/platform/city-portals', '/platform/demo-city'] },
     { key: 'protocol', prefixes: ['/projects/loop-protocol', '/protocol'] },
     { key: 'library', prefixes: ['/library'] },
     { key: 'docs', prefixes: ['/docs'] },
