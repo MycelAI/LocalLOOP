@@ -1,5 +1,47 @@
 # localLOOP Design Revamp Plan
 
+## Status (reconciled 2026-08-14)
+
+This plan was written before any of the work below started and was never
+updated as implementation diverged from it. Re-measured against the current
+codebase:
+
+- **Phase 1 (Foundation / DRY refactoring): Complete.** `Sidebar.jsx`,
+  `ContentLayout.jsx`, `Card.jsx`, and `CardGrid.jsx` all exist under
+  `app/components/`, all 6 original per-section sidebar components are gone,
+  and the nav/section config was extracted (as `app/config/siteRoutes.js` and
+  `app/config/sections.js` — the plan called the former `navigation.js`, but
+  the outcome is the same: a single config-driven source instead of 6
+  hardcoded components).
+- **Phases 2-4 (Homepage redesign, responsive enhancement, dynamic
+  enhancements): Descoped.** Design work continued after Phase 1 but took a
+  different direction than this plan's minimalist targets, rather than
+  following them — most visibly in the most recent redesign pass (`dc31557`),
+  which added substantially more CSS (an interactive Key Concepts showcase
+  with scroll-linked panels, a redesigned mobile tab grid, etc.) instead of
+  consolidating it. Concretely, as of this reconciliation:
+  - CSS is 5,188 lines, not the ~1,000-line target (grew from a pre-revamp
+    1,346; see Success Metrics below).
+  - There are 23 distinct breakpoint values in `site.css`, not the 6-value
+    scale this plan proposed.
+  - The homepage still ships 2 hero CTAs ("Read the Spec" / "Express
+    Interest"), not the single-CTA target.
+  - `Breadcrumb.jsx` and `MobileMenu.jsx` (the slide-in drawer) were never
+    built; mobile nav still uses the original toggle pattern.
+  - The `1920px` ultrawide breakpoint threshold from Phase 3 *did* ship (as a
+    raw `@media (min-width: 1920px)` query — the `--bp-*` custom-property
+    token scale this plan proposed was not adopted; breakpoints are still
+    hardcoded per rule, which is how there are 23 distinct values today).
+  - `StickyInterestCta.jsx`, which this plan's component diagram marked
+    "Keep", was later found to have zero importers anywhere in the app and
+    was removed as dead code rather than kept.
+
+  None of this is being treated as a to-do list to pick back up — it's
+  recorded here so the next reader doesn't mistake the numbers below for
+  live targets. The CSS/breakpoint consolidation Phases 2-4 describe would be
+  a large, visually-risky refactor that needs human design review before
+  anyone (human or agent) attempts it; it is intentionally not scheduled.
+
 ## Current State Analysis
 
 ### Visual Issues Identified
@@ -58,9 +100,9 @@ app/components/
 │   └── QuickStart.jsx         # Getting started section
 ├── navigation/
 │   ├── SiteHeader.jsx         # Refactored header
-│   ├── MobileMenu.jsx         # Mobile navigation drawer
-│   └── Breadcrumb.jsx         # Page breadcrumbs
-└── StickyInterestCta.jsx      # Keep (already isolated)
+│   ├── MobileMenu.jsx         # Mobile navigation drawer (not built — descoped, see Status)
+│   └── Breadcrumb.jsx         # Page breadcrumbs (not built — descoped, see Status)
+└── (StickyInterestCta.jsx removed 2026-08 — zero importers, dead code)
 ```
 
 ### Configuration Files
@@ -522,7 +564,7 @@ export function Breadcrumb({ items }) {
 
 ## Implementation Phases
 
-### Phase 1: Foundation (DRY Refactoring)
+### Phase 1: Foundation (DRY Refactoring) — ✅ Complete
 
 1. Create unified component structure
 2. Extract navigation config
@@ -547,7 +589,7 @@ export function Breadcrumb({ items }) {
 - `app/(engage)/components/EngageSidebar.jsx`
 - `app/(platform)/components/PlatformSidebar.jsx`
 
-### Phase 2: Homepage Redesign
+### Phase 2: Homepage Redesign — Descoped (see Status)
 
 1. Simplify hero section
 2. Create visual protocol explainer
@@ -559,7 +601,7 @@ export function Breadcrumb({ items }) {
 - `app/page.jsx` (major rewrite)
 - `public/assets/css/site.css` (hero styles)
 
-### Phase 3: Responsive Enhancement
+### Phase 3: Responsive Enhancement — Partially shipped, remainder descoped (see Status)
 
 1. Add ultrawide breakpoint
 2. Improve mobile navigation (drawer)
@@ -571,7 +613,7 @@ export function Breadcrumb({ items }) {
 - `app/components/SiteHeader.jsx`
 - `app/components/navigation/MobileMenu.jsx` (new)
 
-### Phase 4: Dynamic Enhancements
+### Phase 4: Dynamic Enhancements — Descoped (see Status)
 
 1. Add scroll-triggered animations
 2. Implement staggered card entrances
@@ -586,14 +628,19 @@ export function Breadcrumb({ items }) {
 
 ## Success Metrics
 
-| Metric | Current | Target |
-|--------|---------|--------|
-| Homepage cards | 14 | 3-4 |
-| Sidebar components | 6 | 1 |
-| CSS file size | 1,346 lines | ~1,000 lines |
-| Breakpoints | 2 | 6 |
-| Time to first meaningful paint | TBD | < 1.5s |
-| Lighthouse accessibility | TBD | > 95 |
+Original pre-revamp baseline vs. this plan's targets, plus what the codebase
+actually measures at as of the 2026-08-14 reconciliation above. See Status
+for why Phases 2-4's targets were abandoned rather than pursued further.
+
+| Metric | Pre-revamp | Target | Actual now | Status |
+|--------|------------|--------|------------|--------|
+| Sidebar components | 6 | 1 | 1 (`Sidebar.jsx`) | Met (Phase 1) |
+| CSS file size | 1,346 lines | ~1,000 lines | 5,188 lines | Reversed — descoped |
+| Breakpoints | 2 | 6 | 23 distinct values | Reversed — descoped |
+| Homepage hero CTAs | 2 | 1 | 2 | Not met — descoped |
+| Homepage cards | 14 | 3-4 | not re-measured | Descoped, not tracked |
+| Time to first meaningful paint | TBD | < 1.5s | not measured | Descoped, not tracked |
+| Lighthouse accessibility | TBD | > 95 | not measured | Descoped, not tracked |
 
 ---
 
