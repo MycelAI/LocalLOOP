@@ -71,4 +71,8 @@ if grep -n -Ei "$core_dp_shipping_pattern" "${content_files[@]}"; then
   fail=1
 fi
 
+if [ "$fail" -eq 0 ]; then
+  echo "policy check ok"
+fi
+
 exit "$fail"
