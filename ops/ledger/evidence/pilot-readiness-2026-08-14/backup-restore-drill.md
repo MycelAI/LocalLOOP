@@ -24,8 +24,32 @@ Section 3 and 4.3 of the runbook referenced a `minio` service and
 `minio` service exists — it was renamed to `seaweedfs` (S3-compatible,
 fronted by an nginx `storage-proxy`) at some prior point, and the runbook was
 never updated. Following the runbook literally would have failed at the
-object-storage backup step. **Fixed in the same PR as this evidence** —
-see `loop-protocol` PR touching `docs/backup-restore-runbook.md`.
+object-storage backup step. Fixed: `loop-protocol` PR #44.
+
+## Finding 2: the real automated backup script had the same bug — and it is worse there
+
+`localloop-backend/deploy/backup.sh` (the script actually run nightly by
+`localloop-backend-backup.timer` on a real VPS deployment, per
+`localloop-backend-backup.service`) had the identical stale `data/minio`
+reference at line 42 (`tar -czf ... data/minio`). Because the script runs
+under `set -euo pipefail` and the `tar` source directory doesn't exist, this
+line would **abort the entire script** with a non-zero exit — meaning the
+already-successful Postgres and Redis backups earlier in the same run would
+be written to disk but the script would never reach the manifest write, the
+`backups/latest` symlink update, or the retention-cleanup step. A nightly
+cron/timer failure like this is easy to miss silently (no alerting existed
+to catch it — see the alerting addition in this same evidence set). This is
+a materially worse instance of Finding 1: not a doc that could mislead a
+human, but a scheduled job that would have been silently broken on every
+real VPS deployment following this runbook. Fixed:
+`localloop-backend/deploy/backup.sh` (mkdir + tar paths corrected to
+`seaweedfs`), verified by actually running the corrected script end-to-end
+against the local stack (`BACKUP_ROOT=/tmp/backup-script-drill`,
+non-destructive scratch location): produced a 692,338-byte Postgres dump,
+3,101-byte Redis RDB, and 40,612-byte seaweedfs tar, all under a
+timestamped run directory with a correctly populated manifest and `latest`
+symlink — script exited 0 (`Backup complete`) where it previously would
+have aborted.
 
 ## Drill 1: Postgres
 
