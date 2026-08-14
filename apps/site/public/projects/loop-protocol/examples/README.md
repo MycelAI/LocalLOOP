@@ -20,7 +20,7 @@ This directory contains JSON examples that validate against the schemas in `sche
 - `15-product-offer-flow.json`: Complete Offer→Match→Transfer flow using product_id (v0.2.0).
 
 ## Validation
-Run `npm test` from the repository root to validate all examples.
+Run `npm run test` from the repository root to validate all examples.
 
 ## How to Cite
 
