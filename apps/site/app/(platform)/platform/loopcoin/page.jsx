@@ -16,10 +16,10 @@ export default function LoopCoinPage() {
         </p>
         <MaturityStatus />
         <div className="cta-row">
-          <a className="button secondary" href="/platform/loopsignal">
+          <a className="button secondary" href="/platform/loopsignal/">
             LoopSignal
           </a>
-          <a className="button secondary" href="/platform/loopcost">
+          <a className="button secondary" href="/platform/loopcost/">
             LoopCost
           </a>
         </div>
@@ -81,7 +81,7 @@ export default function LoopCoinPage() {
             </span>
             <h4>Specification</h4>
             <p>Draft LoopCoin fields and proposed settlement rules are documented in the protocol spec.</p>
-            <a href="/protocol/spec">Read the spec</a>
+            <a href="/protocol/spec/">Read the spec</a>
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
@@ -89,7 +89,7 @@ export default function LoopCoinPage() {
             </span>
             <h4>Status</h4>
             <p>No public pilots or deployments yet.</p>
-            <a href="/interest">Register interest</a>
+            <a href="/interest/">Register interest</a>
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
@@ -97,7 +97,7 @@ export default function LoopCoinPage() {
             </span>
             <h4>Settlement</h4>
             <p>Lab examples may reference the draft LoopCost formula when comparing scenario inputs.</p>
-            <a href="/platform/loopcost">LoopCost →</a>
+            <a href="/platform/loopcost/">LoopCost →</a>
           </div>
         </div>
       </div>

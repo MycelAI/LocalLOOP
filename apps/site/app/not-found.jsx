@@ -25,21 +25,21 @@ export default function NotFound() {
       <section className="section">
         <h2 className="section-title">Quick links</h2>
         <div className="quick-start">
-          <a href="/protocol" className="quick-start-card">
+          <a href="/protocol/" className="quick-start-card">
             <span className="card-icon" aria-hidden="true">
               <i className="ph-bold ph-book-open"></i>
             </span>
             <h3>Protocol</h3>
             <p>Specification, schemas, and changelog.</p>
           </a>
-          <a href="/docs" className="quick-start-card">
+          <a href="/docs/" className="quick-start-card">
             <span className="card-icon" aria-hidden="true">
               <i className="ph-bold ph-code"></i>
             </span>
             <h3>Docs</h3>
             <p>Implementation guides and operator playbooks.</p>
           </a>
-          <a href="/library" className="quick-start-card">
+          <a href="/library/" className="quick-start-card">
             <span className="card-icon" aria-hidden="true">
               <i className="ph-bold ph-books"></i>
             </span>

@@ -8,5 +8,5 @@ export const metadata = createAliasMetadata({
 });
 
 export default function EngageAliasPage() {
-  return <Redirect to="/interest" label="Continue to expression of interest" />;
+  return <Redirect to="/interest/" label="Continue to expression of interest" />;
 }

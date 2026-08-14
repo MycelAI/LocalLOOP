@@ -13,7 +13,7 @@ export default function SecureCodingPage() {
           ecosystem.
         </p>
         <div className="cta-row">
-          <a className="button secondary" href="/docs">Back to docs</a>
+          <a className="button secondary" href="/docs/">Back to docs</a>
         </div>
       </div>
       <div className="content-panel">

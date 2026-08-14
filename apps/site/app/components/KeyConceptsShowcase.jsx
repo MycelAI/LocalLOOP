@@ -9,7 +9,7 @@ const CONCEPTS = [
     fullName: 'Local Optimization with Overflow Protocol',
     image: '/assets/images/localloop-01-loop-protocol-overview-16x9.png',
     desc: 'An open, federated standard for tracking material and product flows between cities. LOOP enables municipalities to share surplus resources, coordinate circular economy initiatives, and maintain data sovereignty while participating in regional exchanges — built around MaterialDNA, ProductDNA, LoopCoin, and LoopSignal.',
-    href: '/protocol',
+    href: '/protocol/',
     cta: 'Read the spec',
   },
   {
@@ -19,7 +19,7 @@ const CONCEPTS = [
     fullName: 'Material Identity & Digital Passport',
     image: '/assets/images/localloop-02-materialdna-material-identity-16x9.png',
     desc: 'A draft identity model for physical materials. Lab examples can include composition, origin, quality, and chain-of-custody fields to discuss traceability; the data is not independently verified or a permanent lifecycle record.',
-    href: '/platform/materialdna',
+    href: '/platform/materialdna/',
     cta: 'Explore MaterialDNA',
   },
   {
@@ -29,7 +29,7 @@ const CONCEPTS = [
     fullName: 'Draft Product Identity Model',
     image: '/assets/images/localloop-03-productdna-product-passport-16x9.png',
     desc: 'A draft product-identity model for lab exploration. It includes product category, condition, manufacturer, lifecycle stage, and references to constituent MaterialDNA entries; it does not demonstrate Digital Product Passport compliance or deployment readiness.',
-    href: '/platform/productdna',
+    href: '/platform/productdna/',
     cta: 'Explore ProductDNA',
   },
   {
@@ -39,7 +39,7 @@ const CONCEPTS = [
     fullName: 'Local Settlement Currency',
     image: '/assets/images/localloop-04-loopcoin-local-settlement-16x9.png',
     desc: 'A draft node-issued value model for lab scenarios. Its example transfer, expiry, decay, and clearing fields do not operate a currency or demonstrate settlement between peers.',
-    href: '/platform/loopcoin',
+    href: '/platform/loopcoin/',
     cta: 'Explore LoopCoin',
   },
   {
@@ -49,7 +49,7 @@ const CONCEPTS = [
     fullName: 'Community Preference Signal',
     image: '/assets/images/localloop-05-loopsignal-community-preference-16x9.png',
     desc: 'A draft preference-signal model for lab scenarios. It can be used as an illustrative routing input, but it does not collect community preferences or determine operational priorities.',
-    href: '/platform/loopsignal',
+    href: '/platform/loopsignal/',
     cta: 'Explore LoopSignal',
   },
   {
@@ -59,7 +59,7 @@ const CONCEPTS = [
     fullName: 'Routing Cost Function',
     image: '/assets/images/localloop-06-loopcost-routing-cost-16x9.png',
     desc: 'A draft routing-cost model: base price plus export and import penalties derived from LoopSignals, plus distance cost. Its parameters can be explored in lab examples; outcomes such as local pricing or savings are not guaranteed.',
-    href: '/platform/loopcost',
+    href: '/platform/loopcost/',
     cta: 'Explore LoopCost',
   },
 ];

@@ -17,7 +17,7 @@ export default function ProjectsPage() {
           guidelines hosted in the protocol repository.
         </p>
         <div className="cta-row">
-          <a className="button secondary" href="/contribute">Contribution guide</a>
+          <a className="button secondary" href="/contribute/">Contribution guide</a>
         </div>
       </div>
 
@@ -25,15 +25,15 @@ export default function ProjectsPage() {
         <h3>Quick links</h3>
         <div className="table-list">
           <div>
-            <span><a href="/protocol/spec">Specification</a></span>
+            <span><a href="/protocol/spec/">Specification</a></span>
             <div>Canonical protocol requirements</div>
           </div>
           <div>
-            <span><a href="/protocol/security">Security</a></span>
+            <span><a href="/protocol/security/">Security</a></span>
             <div>Disclosure process and playbooks</div>
           </div>
           <div>
-            <span><a href="/governance/rfcs">RFCs</a></span>
+            <span><a href="/governance/rfcs/">RFCs</a></span>
             <div>Governance documentation</div>
           </div>
         </div>
@@ -48,7 +48,7 @@ export default function ProjectsPage() {
             </span>
             <h4>Specification</h4>
             <p>Normative requirements and endpoint flows.</p>
-            <a href="/protocol/spec">Open spec</a>
+            <a href="/protocol/spec/">Open spec</a>
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
@@ -56,7 +56,7 @@ export default function ProjectsPage() {
             </span>
             <h4>Security Policy</h4>
             <p>Disclosure and operator requirements.</p>
-            <a href="/protocol/security">Open policy</a>
+            <a href="/protocol/security/">Open policy</a>
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
@@ -64,7 +64,7 @@ export default function ProjectsPage() {
             </span>
             <h4>Contribution Guide</h4>
             <p>How to contribute and collaborate.</p>
-            <a href="/contribute">Open guide</a>
+            <a href="/contribute/">Open guide</a>
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
@@ -72,7 +72,7 @@ export default function ProjectsPage() {
             </span>
             <h4>Code of Conduct</h4>
             <p>Community expectations for collaboration.</p>
-            <a href="/contribute">Open policy</a>
+            <a href="/contribute/">Open policy</a>
           </div>
         </div>
       </div>

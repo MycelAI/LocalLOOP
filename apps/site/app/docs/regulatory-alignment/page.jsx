@@ -15,7 +15,7 @@ export default function RegulatoryAlignmentPage() {
           for research discussion; it does not claim DPP or ESPR alignment.
         </p>
         <div className="cta-row">
-          <a className="button secondary" href="/protocol/spec">
+          <a className="button secondary" href="/protocol/spec/">
             Review the spec
           </a>
         </div>

@@ -8,5 +8,5 @@ export const metadata = createAliasMetadata({
 });
 
 export default function CocRedirect() {
-  return <Redirect to="/contribute" label="Continue to contribution guidance" />;
+  return <Redirect to="/contribute/" label="Continue to contribution guidance" />;
 }

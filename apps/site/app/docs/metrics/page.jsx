@@ -12,8 +12,8 @@ export default function MetricsPage() {
           validate activity in a controlled environment.
         </p>
         <div className="cta-row">
-          <a className="button primary" href="/docs/lab-demo">Lab demo guide</a>
-          <a className="button secondary" href="/docs/api">API docs</a>
+          <a className="button primary" href="/docs/lab-demo/">Lab demo guide</a>
+          <a className="button secondary" href="/docs/api/">API docs</a>
         </div>
       </div>
 

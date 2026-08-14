@@ -39,11 +39,11 @@ export default function HomePage() {
           </p>
           <MaturityStatus className="hero-maturity">Lab demo only — draft schemas and controlled demonstrations, no public pilots or production deployments.</MaturityStatus>
           <div className="hero-actions">
-            <a className="button primary" href="/protocol">
+            <a className="button primary" href="/protocol/">
               <i className="ph-bold ph-book-open" aria-hidden="true"></i>
               Read the Spec
             </a>
-            <a className="button secondary" href="/interest">
+            <a className="button secondary" href="/interest/">
               <i className="ph-bold ph-hand-waving" aria-hidden="true"></i>
               Express Interest
             </a>
@@ -89,7 +89,7 @@ export default function HomePage() {
           <span className="kc-eyebrow">Core Building Blocks</span>
           <h2 className="kc-title">Key Concepts</h2>
           <p className="kc-header-note">
-            Definitions follow the <a href="/protocol/spec">LOOP Specification (§2 and §2.1)</a>.
+            Definitions follow the <a href="/protocol/spec/">LOOP Specification (§2 and §2.1)</a>.
           </p>
         </div>
         <KeyConceptsShowcase />
@@ -149,7 +149,7 @@ export default function HomePage() {
             </div>
             <h3>Cities & Municipalities</h3>
             <p>Explore draft data fields and interoperability questions relevant to circular procurement and product-passport research.</p>
-            <a href="/platform/city-portals">City portals →</a>
+            <a href="/platform/city-portals/">City portals →</a>
           </div>
           <div className="concept-card">
             <div className="concept-icon">
@@ -161,7 +161,7 @@ export default function HomePage() {
               and participate in federated exchanges between municipalities and circular
               economy platforms.
             </p>
-            <a href="/docs/implementation">Implementation guide →</a>
+            <a href="/docs/implementation/">Implementation guide →</a>
           </div>
           <div className="concept-card">
             <div className="concept-icon">
@@ -172,7 +172,7 @@ export default function HomePage() {
               Explore open schemas, contribute to the protocol specification, and test
               circular economy models using the lab API and validated example payloads.
             </p>
-            <a href="/library">Schema library →</a>
+            <a href="/library/">Schema library →</a>
           </div>
         </div>
       </section>
@@ -181,21 +181,21 @@ export default function HomePage() {
       <section className="section">
         <h2 className="section-title">Get Started</h2>
         <div className="quick-start">
-          <a href="/protocol" className="quick-start-card">
+          <a href="/protocol/" className="quick-start-card">
             <span className="card-icon" aria-hidden="true">
               <i className="ph-bold ph-book-open"></i>
             </span>
             <h3>Understand</h3>
             <p>Read the protocol specification and learn how LOOP enables circular economies.</p>
           </a>
-          <a href="/docs" className="quick-start-card">
+          <a href="/docs/" className="quick-start-card">
             <span className="card-icon" aria-hidden="true">
               <i className="ph-bold ph-code"></i>
             </span>
             <h3>Implement</h3>
             <p>Follow implementation guides, API docs, and integrate LOOP into your systems.</p>
           </a>
-          <a href="/interest" className="quick-start-card">
+          <a href="/interest/" className="quick-start-card">
             <span className="card-icon" aria-hidden="true">
               <i className="ph-bold ph-users"></i>
             </span>
@@ -245,10 +245,10 @@ export default function HomePage() {
             register interest to be contacted about future research or lab-demonstration discussions.
           </p>
           <div className="cta-row">
-            <a className="button primary" href="/interest">
+            <a className="button primary" href="/interest/">
               Register Interest
             </a>
-            <a className="button secondary" href="/platform/demo-city">
+            <a className="button secondary" href="/platform/demo-city/">
               Explore the demo
             </a>
           </div>

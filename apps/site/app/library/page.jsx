@@ -15,14 +15,14 @@ export default function LibraryPage() {
 
       <div className="content-panel">
         <div className="grid">
-          <a className="card has-icon" href="/library/schemas">
+          <a className="card has-icon" href="/library/schemas/">
             <span className="card-icon" aria-hidden="true">
               <i className="ph-bold ph-brackets-curly"></i>
             </span>
             <h4>Schemas</h4>
             <p>MaterialDNA, ProductDNA, Offer, Match, Transfer, and more.</p>
           </a>
-          <a className="card has-icon" href="/library/examples">
+          <a className="card has-icon" href="/library/examples/">
             <span className="card-icon" aria-hidden="true">
               <i className="ph-bold ph-file-code"></i>
             </span>

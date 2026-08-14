@@ -13,10 +13,10 @@ export default function ExamplesPage() {
           by the lab backend.
         </p>
         <div className="cta-row">
-          <a className="button primary" href="/library">Back to library</a>
+          <a className="button primary" href="/library/">Back to library</a>
           <a
             className="button secondary"
-            href="/library/examples"
+            href="/library/examples/"
           >
             Example README
           </a>
@@ -41,7 +41,7 @@ export default function ExamplesPage() {
             </span>
             <h4>Material Registration</h4>
             <p>MaterialDNA example with additive passport and traceability fields.</p>
-            <a href="/library/examples/material-registration">View example</a>
+            <a href="/library/examples/material-registration/">View example</a>
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
@@ -49,7 +49,7 @@ export default function ExamplesPage() {
             </span>
             <h4>Offer</h4>
             <p>Offer payload for a registered material batch.</p>
-            <a href="/library/examples/offer">View example</a>
+            <a href="/library/examples/offer/">View example</a>
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
@@ -57,7 +57,7 @@ export default function ExamplesPage() {
             </span>
             <h4>Match</h4>
             <p>Accepted match for a material and offer pairing.</p>
-            <a href="/library/examples/match">View example</a>
+            <a href="/library/examples/match/">View example</a>
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
@@ -65,7 +65,7 @@ export default function ExamplesPage() {
             </span>
             <h4>Transfer</h4>
             <p>Transfer payload for handoff and receipt tracking.</p>
-            <a href="/library/examples/transfer">View example</a>
+            <a href="/library/examples/transfer/">View example</a>
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
@@ -73,7 +73,7 @@ export default function ExamplesPage() {
             </span>
             <h4>Material Status</h4>
             <p>Status-update payload for reservation and withdrawal events.</p>
-            <a href="/library/examples/material-status">View example</a>
+            <a href="/library/examples/material-status/">View example</a>
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
@@ -81,7 +81,7 @@ export default function ExamplesPage() {
             </span>
             <h4>Handshake Request</h4>
             <p>Lab-only node handshake request payload.</p>
-            <a href="/library/examples/handshake-request">View example</a>
+            <a href="/library/examples/handshake-request/">View example</a>
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
@@ -89,7 +89,7 @@ export default function ExamplesPage() {
             </span>
             <h4>Handshake Response</h4>
             <p>Lab-only handshake acceptance payload.</p>
-            <a href="/library/examples/handshake-response">View example</a>
+            <a href="/library/examples/handshake-response/">View example</a>
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
@@ -97,7 +97,7 @@ export default function ExamplesPage() {
             </span>
             <h4>Complete Flow</h4>
             <p>Multi-step reference bundle across older and current artifacts.</p>
-            <a href="/library/examples/complete-flow">View example</a>
+            <a href="/library/examples/complete-flow/">View example</a>
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
@@ -105,7 +105,7 @@ export default function ExamplesPage() {
             </span>
             <h4>Product Registration</h4>
             <p>ProductDNA registration for office furniture reuse with DPP passport.</p>
-            <a href="/library/examples/product-registration">View example</a>
+            <a href="/library/examples/product-registration/">View example</a>
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
@@ -113,7 +113,7 @@ export default function ExamplesPage() {
             </span>
             <h4>Product Offer Flow</h4>
             <p>Complete Offer → Match → Transfer flow using product_id.</p>
-            <a href="/library/examples/product-offer-flow">View example</a>
+            <a href="/library/examples/product-offer-flow/">View example</a>
           </div>
         </div>
       </div>

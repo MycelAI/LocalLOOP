@@ -18,9 +18,9 @@ export function SiteFooter() {
           </span>
         </div>
         <nav className="footer-links" aria-label="Footer">
-          <a href="/protocol">Protocol</a>
-          <a href="/docs">Documentation</a>
-          <a href="/governance">Governance</a>
+          <a href="/protocol/">Protocol</a>
+          <a href="/docs/">Documentation</a>
+          <a href="/governance/">Governance</a>
           <a
             href="https://github.com/local-loop-io"
             target="_blank"

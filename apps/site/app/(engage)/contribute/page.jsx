@@ -17,7 +17,7 @@ export default function ContributePage() {
           This project is early-stage, so feedback is especially valuable.
         </p>
         <div className="cta-row">
-          <a className="button secondary" href="/projects">Project hub</a>
+          <a className="button secondary" href="/projects/">Project hub</a>
         </div>
       </div>
 
@@ -25,7 +25,7 @@ export default function ContributePage() {
         <h3>Community standards</h3>
         <div className="table-list">
           <div>
-            <span><a href="/contribute/CODE_OF_CONDUCT.md">Code of conduct</a></span>
+            <span><a href="/contribute/CODE_OF_CONDUCT.md/">Code of conduct</a></span>
             <div>Shared expectations for collaboration</div>
           </div>
           <div>
