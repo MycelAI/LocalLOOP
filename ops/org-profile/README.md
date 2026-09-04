@@ -7,8 +7,11 @@ See `profile/README.md` for the public landing page content.
 
 ## What is here
 
-- `profile/README.md`: org profile content.
-- `AGENTS.md`: org context, domains, and runbooks.
+- `profile/README.md`: org profile content (rendered at <https://github.com/local-loop-io>).
+- `AGENTS.md`, `CLAUDE.md`: org context, domains, and runbooks for contributors and agents.
+- `CODE_OF_CONDUCT.md`: organization-wide code of conduct.
+- `scripts/check-policy.sh`, `scripts/check-security-pointer.sh`: content-policy checks run by `.github/workflows/policy-check.yml`.
+- `CHANGELOG.md`: history of profile and policy changes.
 
 ## How to update
 
@@ -38,9 +41,9 @@ Alphin C. Tom. "localLOOP Organization Profile." localLOOP (Mycel),
   author = {Alphin C. Tom},
   organization = {Mycel},
   title = {localLOOP Organization Profile},
-  year = {2025},
+  year = {2026},
   howpublished = {GitHub repository},
   url = {https://github.com/local-loop-io/.github},
-  note = {Accessed 2026-01-16}
+  note = {Repository maintained by the author}
 }
 ```

@@ -31,8 +31,26 @@ assert_rejected_fixture "$core_dp_shipping_pattern" 'Core-DP has shipped'
 assert_rejected_fixture "$core_dp_shipping_pattern" 'Core-DP is production ready'
 assert_rejected_fixture "$core_dp_shipping_pattern" 'Core-DP will ship'
 
-if ! printf '%s\n' 'api.local-loop.io' | grep -q 'api\.local-loop\.io'; then
+# Non-canonical domains banned by loop-protocol/DOMAIN-POLICY.md (keep in sync
+# with loop-protocol/scripts/check-domains.sh). Only api.local-loop.io was
+# checked before; the org profile is the most-viewed page in the estate.
+banned_domains=(
+  "local-loop-io.github.io"
+  "loop-protocol.org"
+  "localloop.org"
+  "local-loop.io"
+  "api.local-loop.io"
+  "local-loop.eu"
+  "materialdna.eu"
+)
+banned_pattern=$(IFS='|'; echo "${banned_domains[*]//./\\.}")
+
+if ! printf '%s\n' 'api.local-loop.io' | grep -Eq "$banned_pattern"; then
   echo "Non-canonical domain pattern no longer matches its literal fixture." >&2
+  exit 2
+fi
+if ! printf '%s\n' 'local-loop-io.github.io' | grep -Eq "$banned_pattern"; then
+  echo "Non-canonical domain pattern no longer matches local-loop-io.github.io." >&2
   exit 2
 fi
 
@@ -41,8 +59,8 @@ if grep -n '/api/health' AGENTS.md CLAUDE.md "${content_files[@]}"; then
   fail=1
 fi
 
-if grep -n 'api\.local-loop\.io' AGENTS.md CLAUDE.md "${content_files[@]}" | grep -Evi 'not.*exist|does[[:space:]]+not[[:space:]]+exist'; then
-  echo "Found non-canonical api.local-loop.io wording." >&2
+if grep -n -E "$banned_pattern" AGENTS.md CLAUDE.md "${content_files[@]}" | grep -Evi 'not.*exist|does[[:space:]]+not[[:space:]]+exist'; then
+  echo "Found a non-canonical domain (see loop-protocol/DOMAIN-POLICY.md)." >&2
   fail=1
 fi
 

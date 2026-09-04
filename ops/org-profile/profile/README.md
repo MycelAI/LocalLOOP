@@ -54,6 +54,7 @@ For exact protocol versions and release status, see the [canonical specification
 | [**loop-protocol**](https://github.com/local-loop-io/loop-protocol) | Normative specification, JSON schemas, JSON-LD contexts, examples, and governance RFCs |
 | [**localloop.urbnia.com**](https://github.com/local-loop-io/localloop-site) | Official website - protocol spec, platform docs, schema library, guides, governance, interest registry |
 | [**localloop-backend**](https://github.com/local-loop-io/localloop-backend) | Lab REST API - interest registry, demo flows, SSE streams, federation handshake, city data |
+| [**.github**](https://github.com/local-loop-io/.github) | This organization profile and its content-policy checks |
 
 ---
 
@@ -91,7 +92,7 @@ For exact protocol versions and release status, see the [canonical specification
   author       = {Alphin C. Tom},
   organization = {Mycel},
   title        = {localLOOP - Local Optimization with Overflow Protocol},
-  year         = {2025},
+  year         = {2026},
   publisher    = {GitHub},
   url          = {https://github.com/local-loop-io},
   note         = {Lab demo only. No public pilots or deployments.}
@@ -100,4 +101,4 @@ For exact protocol versions and release status, see the [canonical specification
 
 ## Security contact
 
-Vulnerability reports: see `https://localloop.urbnia.com/.well-known/security.txt` (agent-cycle-028).
+Vulnerability reports: see `https://localloop.urbnia.com/.well-known/security.txt`.
