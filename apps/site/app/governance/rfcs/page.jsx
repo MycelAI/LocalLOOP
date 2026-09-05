@@ -11,7 +11,7 @@ export default function RfcGuidePage() {
   return (
     <div className="content-stack">
       <div className="content-panel">
-        <h2 className="hub-heading">RFC Guide</h2>
+        <h1 className="hub-heading">RFC Guide</h1>
         <p>
           RFCs document protocol proposals and decisions. Use the guide below to
           understand how changes are reviewed.
@@ -21,7 +21,7 @@ export default function RfcGuidePage() {
         </div>
       </div>
       <div className="content-panel">
-        <h3>What to include</h3>
+        <h2>What to include</h2>
         <div className="table-list">
           <div><span>Motivation</span><div>Problem statement and context</div></div>
           <div><span>Proposal</span><div>Specification changes and impacts</div></div>

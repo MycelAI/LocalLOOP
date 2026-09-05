@@ -14,7 +14,9 @@ export function Sidebar({ section }) {
   const config = sectionConfigs[section];
 
   if (!config) {
-    console.warn(`Sidebar: Unknown section "${section}"`);
+    if (process.env.NODE_ENV !== 'production') {
+      console.warn(`Sidebar: Unknown section "${section}"`);
+    }
     return null;
   }
 
@@ -36,8 +38,8 @@ export function Sidebar({ section }) {
         <div className="side-title">{config.title}</div>
       )}
 
-      {config.groups.map((group, groupIndex) => (
-        <div className="side-group" key={groupIndex}>
+      {config.groups.map((group) => (
+        <div className="side-group" key={group.links.map((link) => link.href).join('|')}>
           {group.links.map((link) => (
             <a
               key={link.href}

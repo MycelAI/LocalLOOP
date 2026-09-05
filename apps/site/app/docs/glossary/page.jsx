@@ -7,11 +7,11 @@ export default function GlossaryPage() {
   return (
     <div className="content-stack">
       <div className="content-panel">
-        <h2 className="hub-heading">Glossary</h2>
+        <h1 className="hub-heading">Glossary</h1>
         <p>
           Reference terminology that appears across the specification and docs.
           Canonical definitions live in{' '}
-          <a href="/protocol/spec/">SPECIFICATION.md §2 and §2.1</a>;
+          <a href="/protocol/spec/">SPECIFICATION.md §2 and §2.1</a>{';'}
           this page is a quick-reference derived from the spec.
         </p>
         <div className="cta-row">

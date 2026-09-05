@@ -23,7 +23,8 @@ export function RouteScripts() {
     let active = true;
     const initialized = new Map();
     const scripts = [];
-    const tokens = window.__LOCALLOOP_FEATURE_TOKENS = window.__LOCALLOOP_FEATURE_TOKENS || {};
+    window.__LOCALLOOP_FEATURE_TOKENS = window.__LOCALLOOP_FEATURE_TOKENS || {};
+    const tokens = window.__LOCALLOOP_FEATURE_TOKENS;
     const sequence = (window.__LOCALLOOP_FEATURE_SEQUENCE || 0) + 1;
     window.__LOCALLOOP_FEATURE_SEQUENCE = sequence;
 
@@ -81,7 +82,9 @@ export function RouteScripts() {
 
     return () => {
       active = false;
-      initialized.forEach((feature) => feature.cleanup?.());
+      initialized.forEach((feature) => {
+        feature.cleanup?.();
+      });
       scripts.forEach(({ name, token, script }) => {
         if (tokens[name] === token) delete tokens[name];
         clearFeature(name, token);

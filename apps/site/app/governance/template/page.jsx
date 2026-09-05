@@ -11,7 +11,7 @@ export default function RfcTemplatePage() {
   return (
     <div className="content-stack">
       <div className="content-panel">
-        <h2 className="hub-heading">RFC Template</h2>
+        <h1 className="hub-heading">RFC Template</h1>
         <p>
           Use the template to structure proposals consistently across the protocol.
         </p>
@@ -20,7 +20,7 @@ export default function RfcTemplatePage() {
         </div>
       </div>
       <div className="content-panel">
-        <h3>Template sections</h3>
+        <h2>Template sections</h2>
         <div className="table-list">
           <div><span>Summary</span><div>What changes and why</div></div>
           <div><span>Specification</span><div>API and schema updates</div></div>

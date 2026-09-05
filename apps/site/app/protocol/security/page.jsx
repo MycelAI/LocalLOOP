@@ -11,7 +11,7 @@ export default function ProtocolSecurityPage() {
   return (
     <div className="content-stack">
       <div className="content-panel">
-        <h2 className="hub-heading">Security Policy</h2>
+        <h1 className="hub-heading">Security Policy</h1>
         <p>
           Follow the security policy for responsible disclosure and operator guidance.
           Implementation guidance will evolve as the protocol matures.
@@ -21,7 +21,7 @@ export default function ProtocolSecurityPage() {
         </div>
       </div>
       <div className="content-panel">
-        <h3>Security playbooks</h3>
+        <h2>Security playbooks</h2>
         <div className="table-list">
           <div><span>Secure coding</span><div>Developer guardrails and best practices</div></div>
           <div><span>Incident response</span><div>Containment and recovery playbooks</div></div>

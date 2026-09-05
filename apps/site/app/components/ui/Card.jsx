@@ -34,7 +34,7 @@ export function Card({
   const content = (
     <>
       {icon && (
-        <span className="card-icon">
+        <span className="card-icon" aria-hidden="true">
           <i className={`ph-bold ph-${icon}`}></i>
         </span>
       )}
@@ -65,18 +65,4 @@ export function Card({
   }
 
   return <div className={cardClasses}>{content}</div>;
-}
-
-/**
- * Feature Card - prominent card for key features
- */
-export function FeatureCard(props) {
-  return <Card {...props} variant="feature" />;
-}
-
-/**
- * CTA Card - call-to-action card with emphasis
- */
-export function CTACard(props) {
-  return <Card {...props} variant="cta" />;
 }

@@ -7,7 +7,7 @@ export default function LoopCostPage() {
   return (
     <div className="content-stack">
       <div className="content-panel">
-        <h2 className="hub-heading">LoopCost</h2>
+        <h1 className="hub-heading">LoopCost</h1>
         <p>
           LoopCost is a draft formula for comparing material or product transfer scenarios. It combines
           a stated base price with illustrative export and import penalties and a distance input. It is a lab model whose parameters and results
@@ -25,7 +25,7 @@ export default function LoopCostPage() {
       </div>
 
       <div className="content-panel">
-        <h3>The formula</h3>
+        <h2>The formula</h2>
         <p>
           LoopCost is a computed value, not a standalone schema. It is calculated at routing
           time from three components:
@@ -39,7 +39,7 @@ export default function LoopCostPage() {
       </div>
 
       <div className="content-panel">
-        <h3>Why this matters</h3>
+        <h2>Why this matters</h2>
         <div className="table-list">
           <div><span>Local-first hypothesis</span><div>Lab scenarios can model zero intra-node penalties. Actual local prices, decisions, and environmental outcomes depend on node policy and real-world conditions.</div></div>
           <div><span>Policy exploration</span><div>Lab examples can associate penalties with locally chosen draft signal values. They do not demonstrate democratic approval, governance outcomes, or community control.</div></div>
@@ -49,13 +49,13 @@ export default function LoopCostPage() {
       </div>
 
       <div className="content-panel">
-        <h3>Relationship to other concepts</h3>
+        <h2>Relationship to other concepts</h2>
         <div className="grid">
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
               <i className="ph-bold ph-broadcast"></i>
             </span>
-            <h4>LoopSignal feeds penalties</h4>
+            <h3>LoopSignal feeds penalties</h3>
             <p>Lab scenarios may calculate illustrative penalties from draft LoopSignalConfig values for a material category.</p>
             <a href="/platform/loopsignal/">LoopSignal →</a>
           </div>
@@ -63,7 +63,7 @@ export default function LoopCostPage() {
             <span className="card-icon" aria-hidden="true">
               <i className="ph-bold ph-coins"></i>
             </span>
-            <h4>LoopCoin scenario fields</h4>
+            <h3>LoopCoin scenario fields</h3>
             <p>A lab scenario may denominate a calculated value in a draft LoopCoin field; no settlement or clearing operation is demonstrated.</p>
             <a href="/platform/loopcoin/">LoopCoin →</a>
           </div>
@@ -71,7 +71,7 @@ export default function LoopCostPage() {
             <span className="card-icon" aria-hidden="true">
               <i className="ph-bold ph-scroll"></i>
             </span>
-            <h4>Spec reference</h4>
+            <h3>Spec reference</h3>
             <p>The formal LoopCost formula and penalty derivation rules are defined in SPECIFICATION.md §4.</p>
             <a href="/protocol/spec/">Protocol spec →</a>
           </div>
@@ -79,13 +79,13 @@ export default function LoopCostPage() {
       </div>
 
       <div className="content-panel">
-        <h3>Current status</h3>
+        <h2>Current status</h2>
         <div className="grid">
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
               <i className="ph-bold ph-scroll"></i>
             </span>
-            <h4>Specification</h4>
+            <h3>Specification</h3>
             <p>LoopCost formula and penalty rules are defined in the protocol spec (§4).</p>
             <a href="/protocol/spec/">Read the spec</a>
           </div>
@@ -93,7 +93,7 @@ export default function LoopCostPage() {
             <span className="card-icon" aria-hidden="true">
               <i className="ph-bold ph-map-pin"></i>
             </span>
-            <h4>Status</h4>
+            <h3>Status</h3>
             <p>Computed in lab demo flows. No public pilots or deployments yet.</p>
             <a href="/interest/">Register interest</a>
           </div>
@@ -101,7 +101,7 @@ export default function LoopCostPage() {
             <span className="card-icon" aria-hidden="true">
               <i className="ph-bold ph-activity"></i>
             </span>
-            <h4>Lab demo</h4>
+            <h3>Lab demo</h3>
             <p>Lab examples may include a calculated LoopCost value alongside draft match and transfer payloads.</p>
             <a href="/docs/lab-demo/">Lab demo →</a>
           </div>

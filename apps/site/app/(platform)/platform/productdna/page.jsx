@@ -8,7 +8,7 @@ export default function ProductDNAPage() {
   return (
     <div className="content-stack">
       <div className="content-panel">
-        <h2 className="hub-heading">ProductDNA</h2>
+        <h1 className="hub-heading">ProductDNA</h1>
         <p>
           ProductDNA is the product-level identity layer for the localLOOP platform. It references
           constituent MaterialDNA entries and explores fields that may be relevant to EU Digital
@@ -23,7 +23,7 @@ export default function ProductDNAPage() {
       </div>
 
       <div className="content-panel">
-        <h3>Scope & boundaries</h3>
+        <h2>Scope & boundaries</h2>
         <div className="table-list">
           <div><span>In scope</span><div>Draft product identifiers, passport-style fields, material-composition links, and lifecycle stage.</div></div>
           <div><span>Out of scope</span><div>Live inventory tracking, financial settlement, or verified carbon accounting.</div></div>
@@ -32,7 +32,7 @@ export default function ProductDNAPage() {
       </div>
 
       <div className="content-panel">
-        <h3>Why cities adopt ProductDNA</h3>
+        <h2>Why cities adopt ProductDNA</h2>
         <div className="table-list">
           <div><span>DPP research</span><div>Explore data fields that may be relevant to ESPR Art. 9-10; no readiness, mandate coverage, or compliance outcome is claimed.</div></div>
           <div><span>Circular procurement</span><div>Use lab examples to discuss product condition, composition, and lifecycle fields; they do not verify procurement requirements.</div></div>
@@ -43,7 +43,7 @@ export default function ProductDNAPage() {
       </div>
 
       <div className="content-panel">
-        <h3>What we aim to enable</h3>
+        <h2>What we aim to enable</h2>
         <p>
           A draft product-identity model with example passport-style fields, provenance metadata,
           material composition references, and lifecycle information.
@@ -57,40 +57,40 @@ export default function ProductDNAPage() {
       </div>
 
       <div className="content-panel">
-        <h3>Data model snapshot</h3>
+        <h2>Data model snapshot</h2>
         <div className="grid">
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
               <i className="ph-bold ph-cube"></i>
             </span>
-            <h4>ProductDNA schema</h4>
+            <h3>ProductDNA schema</h3>
             <p>Product ID, category, condition, lifecycle stage, and material composition links.</p>
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
               <i className="ph-bold ph-clipboard-text"></i>
             </span>
-            <h4>Provenance & DPP</h4>
+            <h3>Provenance & DPP</h3>
             <p>Example origin, passport-style, certification, and regulatory metadata fields.</p>
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
               <i className="ph-bold ph-recycle"></i>
             </span>
-            <h4>Lifecycle stage</h4>
+            <h3>Lifecycle stage</h3>
             <p>Condition tracking, repair records, and end-of-life routing signals.</p>
           </div>
         </div>
       </div>
 
       <div className="content-panel">
-        <h3>Current status</h3>
+        <h2>Current status</h2>
         <div className="grid">
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
               <i className="ph-bold ph-scroll"></i>
             </span>
-            <h4>Specification</h4>
+            <h3>Specification</h3>
             <p>Draft schemas are available in the LOOP repository.</p>
             <a href="/library/schemas/">Browse schemas</a>
           </div>
@@ -98,7 +98,7 @@ export default function ProductDNAPage() {
             <span className="card-icon" aria-hidden="true">
               <i className="ph-bold ph-map-pin"></i>
             </span>
-            <h4>Status</h4>
+            <h3>Status</h3>
             <p>No public pilots or deployments yet.</p>
             <a href="/interest/">Register interest</a>
           </div>
@@ -106,7 +106,7 @@ export default function ProductDNAPage() {
             <span className="card-icon" aria-hidden="true">
               <i className="ph-bold ph-plug"></i>
             </span>
-            <h4>Integration</h4>
+            <h3>Integration</h3>
             <p>Implementation guidance will be published as the spec matures.</p>
             <a href="/docs/implementation/">Read the guide</a>
           </div>

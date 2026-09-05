@@ -1,8 +1,10 @@
-(function () {
+(() => {
   const NAME = 'metrics';
-  const features = window.LOCALLOOP_FEATURES = window.LOCALLOOP_FEATURES || {};
+  window.LOCALLOOP_FEATURES = window.LOCALLOOP_FEATURES || {};
+  const features = window.LOCALLOOP_FEATURES;
   const featureToken = document.currentScript?.dataset.localLoopFeatureToken || null;
-  const featureTokens = window.__LOCALLOOP_FEATURE_TOKENS = window.__LOCALLOOP_FEATURE_TOKENS || {};
+  window.__LOCALLOOP_FEATURE_TOKENS = window.__LOCALLOOP_FEATURE_TOKENS || {};
+  const featureTokens = window.__LOCALLOOP_FEATURE_TOKENS;
   if (featureTokens[NAME] !== featureToken) return;
   let activeCleanup = () => {};
 

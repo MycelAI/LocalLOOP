@@ -1,5 +1,5 @@
-import fs from 'fs'
-import path from 'path'
+import fs from 'node:fs'
+import path from 'node:path'
 import MarkdownRenderer from './MarkdownRenderer'
 
 export default function MarkdownDoc({ filePath }) {
@@ -12,7 +12,7 @@ export default function MarkdownDoc({ filePath }) {
   }
   if (filePath.endsWith('.json')) {
     try {
-      content = '```json\n' + JSON.stringify(JSON.parse(content), null, 2) + '\n```'
+      content = `\`\`\`json\n${JSON.stringify(JSON.parse(content), null, 2)}\n\`\`\``
     } catch {}
   }
   return <MarkdownRenderer content={content} />

@@ -40,10 +40,10 @@ export function getCanonicalPaths() {
       }
     }
   }
-  documentationRoutes.forEach((path) => paths.add(path));
-  schemas.forEach(({ slug }) => paths.add(`/library/schemas/${slug}`));
-  examples.forEach(({ slug }) => paths.add(`/library/examples/${slug}`));
-  nonCanonicalAliases.forEach((path) => paths.delete(path));
+  for (const path of documentationRoutes) paths.add(path);
+  for (const { slug } of schemas) paths.add(`/library/schemas/${slug}`);
+  for (const { slug } of examples) paths.add(`/library/examples/${slug}`);
+  for (const path of nonCanonicalAliases) paths.delete(path);
   return [...paths].sort((a, b) => a.localeCompare(b));
 }
 

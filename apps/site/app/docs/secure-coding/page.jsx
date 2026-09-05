@@ -7,7 +7,7 @@ export default function SecureCodingPage() {
   return (
     <div className="content-stack">
       <div className="content-panel">
-        <h2 className="hub-heading">Secure Coding</h2>
+        <h1 className="hub-heading">Secure Coding</h1>
         <p>
           Guardrails for building secure integrations and services in the localLOOP
           ecosystem.
@@ -17,7 +17,7 @@ export default function SecureCodingPage() {
         </div>
       </div>
       <div className="content-panel">
-        <h3>Focus areas</h3>
+        <h2>Focus areas</h2>
         <div className="table-list">
           <div><span>Data handling</span><div>Validation and sanitization</div></div>
           <div><span>Infrastructure</span><div>Credential and secret hygiene</div></div>

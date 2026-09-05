@@ -1,11 +1,12 @@
-(function () {
+(() => {
   const NAME = 'interest';
-  const features = window.LOCALLOOP_FEATURES = window.LOCALLOOP_FEATURES || {};
+  window.LOCALLOOP_FEATURES = window.LOCALLOOP_FEATURES || {};
+  const features = window.LOCALLOOP_FEATURES;
   const featureToken = document.currentScript?.dataset.localLoopFeatureToken || null;
-  const featureTokens = window.__LOCALLOOP_FEATURE_TOKENS = window.__LOCALLOOP_FEATURE_TOKENS || {};
+  window.__LOCALLOOP_FEATURE_TOKENS = window.__LOCALLOOP_FEATURE_TOKENS || {};
+  const featureTokens = window.__LOCALLOOP_FEATURE_TOKENS;
   if (featureTokens[NAME] !== featureToken) return;
   let activeCleanup = () => {};
-  const demoEntries = [{ name: 'Lucia Torres', organization: 'GreenLoop Collective', role: 'Partnerships', country: 'ES', city: 'Valencia', website: 'https://example.org/greenloop', message: 'Exploring circularity research for civic materials.', is_demo: true, created_at: '2025-12-12T09:00:00Z' }, { name: 'Jonas Becker', organization: 'CircularFoundry', role: 'Innovation Director', country: 'DE', city: 'Hamburg', website: 'https://example.org/circularfoundry', message: 'Interested in inter-city material exchange research.', is_demo: true, created_at: '2025-12-14T12:00:00Z' }];
 
   features[NAME] = {
     __localLoopToken: featureToken,
@@ -25,7 +26,7 @@
       let stream = null; let retryTimer = null; let disposed = false;
       const on = (node, event, listener) => { node?.addEventListener(event, listener); if (node) listeners.push(() => node.removeEventListener(event, listener)); };
       const esc = (value) => String(value ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
-      const format_iso = (value) => {
+      const formatIso = (value) => {
         const date = new Date(value);
         if (Number.isNaN(date.getTime())) return '';
         return date.toISOString().replace(/\.\d{3}Z$/, 'Z');
@@ -43,21 +44,21 @@
           const location = [entry.city, entry.country].filter(Boolean).map(esc).join(', ');
           const details = [
             location,
-            entry.created_at ? esc(format_iso(entry.created_at)) : '',
+            entry.created_at ? esc(formatIso(entry.created_at)) : '',
             entry.website ? `Website: ${esc(entry.website)}` : '',
             entry.email ? `Email: ${esc(entry.email)}` : '',
           ].filter(Boolean).join(' • ');
           return `<div class="interest-card"><h4>${esc(entry.name || 'Anonymous')}${entry.is_demo ? '<span class="chip chip--warm chip--mono">DEMO</span>' : ''}${entry.organization ? ` • ${esc(entry.organization)}` : ''}${entry.role ? ` (${esc(entry.role)})` : ''}</h4>${details ? `<p>${details}</p>` : ''}${entry.message ? `<p>${esc(entry.message)}</p>` : ''}</div>`;
         }).join('')}`;
       };
-      const loadList = () => fetch(`${apiBase}/api/interest`, { signal: withTimeout() }).then((response) => response.ok ? response.json() : Promise.reject(new Error('interest'))).then((data) => renderEntries(data.results?.length ? data.results : [], data.results?.length ? '' : 'No public expressions of interest yet.')).catch((error) => { if (error.name !== 'AbortError') renderEntries(demoEntries, 'Public list unavailable — showing demo entries.'); });
+      const loadList = () => fetch(`${apiBase}/api/interest`, { signal: withTimeout() }).then((response) => response.ok ? response.json() : Promise.reject(new Error('interest'))).then((data) => renderEntries(data.results?.length ? data.results : [], data.results?.length ? '' : 'No public expressions of interest yet.')).catch((error) => { if (error.name !== 'AbortError') renderEntries([], 'Public list unavailable right now — please try again later.'); });
       const updateStatus = () => { if (!apiStatusEl) return; apiStatusEl.textContent = 'Checking backend status…'; fetch(`${apiBase}/api/metrics`, { signal: withTimeout() }).then((response) => response.ok ? response.json() : Promise.reject(new Error('status'))).then((data) => { if (!disposed) apiStatusEl.textContent = `Backend online${data?.uptimeSeconds ? ` · uptime ${Math.round(data.uptimeSeconds / 60)}m` : ''} · ${apiBase}`; }).catch((error) => { if (!disposed && error.name !== 'AbortError') apiStatusEl.textContent = 'Backend unavailable — showing demo data from this page.'; }); };
       const disconnect = () => { stream?.close(); stream = null; if (retryTimer) clearTimeout(retryTimer); retryTimer = null; };
       const connect = () => { if (disposed || !listEl || !('EventSource' in window) || stream) return; stream = new EventSource(`${apiBase}/api/interest/stream`); stream.onmessage = loadList; stream.onerror = () => { stream?.close(); stream = null; if (!disposed && !retryTimer) retryTimer = setTimeout(() => { retryTimer = null; connect(); }, 5000); }; };
       if (form) on(form, 'submit', async (event) => {
         event.preventDefault();
         const button = form.querySelector('button[type="submit"]');
-        const idle_label = button?.textContent?.trim() || 'Submit interest';
+        const idleLabel = button?.textContent?.trim() || 'Submit interest';
         if (button) {
           button.disabled = true;
           button.classList.add('is-busy');
@@ -91,12 +92,12 @@
             button.disabled = false;
             button.classList.remove('is-busy');
             button.removeAttribute('aria-busy');
-            button.textContent = idle_label;
+            button.textContent = idleLabel;
           }
         }
       });
       updateStatus(); if (listEl) { loadList(); connect(); }
-      activeCleanup = () => { disposed = true; controller.abort(); disconnect(); listeners.splice(0).forEach((remove) => remove()); activeCleanup = () => {}; };
+      activeCleanup = () => { disposed = true; controller.abort(); disconnect(); for (const remove of listeners.splice(0)) remove(); activeCleanup = () => {}; };
     },
     cleanup() { activeCleanup(); },
   };

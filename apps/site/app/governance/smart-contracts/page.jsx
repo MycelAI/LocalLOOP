@@ -11,7 +11,7 @@ export default function SmartContractsPage() {
   return (
     <div className="content-stack">
       <div className="content-panel">
-        <h2 className="hub-heading">Smart Contract RFC</h2>
+        <h1 className="hub-heading">Smart Contract RFC</h1>
         <p>
           Draft RFC describing how smart contracts could automate settlement flows.
         </p>
@@ -20,7 +20,7 @@ export default function SmartContractsPage() {
         </div>
       </div>
       <div className="content-panel">
-        <h3>Draft scope</h3>
+        <h2>Draft scope</h2>
         <div className="table-list">
           <div><span>Automation</span><div>Settlement and escrow flows</div></div>
           <div><span>Interoperability</span><div>Optional integration points</div></div>

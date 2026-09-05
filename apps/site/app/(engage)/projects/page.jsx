@@ -11,7 +11,7 @@ export default function ProjectsPage() {
   return (
     <div className="content-stack">
       <div className="content-panel">
-        <h2 className="hub-heading">Repository references and living artifacts.</h2>
+        <h1 className="hub-heading">Repository references and living artifacts</h1>
         <p>
           Direct access to protocol assets, governance docs, and contribution
           guidelines hosted in the protocol repository.
@@ -22,7 +22,7 @@ export default function ProjectsPage() {
       </div>
 
       <div className="content-panel">
-        <h3>Quick links</h3>
+        <h2>Quick links</h2>
         <div className="table-list">
           <div>
             <span><a href="/protocol/spec/">Specification</a></span>
@@ -40,13 +40,13 @@ export default function ProjectsPage() {
       </div>
 
       <div className="content-panel">
-        <h3>Project resources</h3>
+        <h2>Project resources</h2>
         <div className="grid">
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
               <i className="ph-bold ph-scroll"></i>
             </span>
-            <h4>Specification</h4>
+            <h3>Specification</h3>
             <p>Normative requirements and endpoint flows.</p>
             <a href="/protocol/spec/">Open spec</a>
           </div>
@@ -54,7 +54,7 @@ export default function ProjectsPage() {
             <span className="card-icon" aria-hidden="true">
               <i className="ph-bold ph-shield-check"></i>
             </span>
-            <h4>Security Policy</h4>
+            <h3>Security Policy</h3>
             <p>Disclosure and operator requirements.</p>
             <a href="/protocol/security/">Open policy</a>
           </div>
@@ -62,7 +62,7 @@ export default function ProjectsPage() {
             <span className="card-icon" aria-hidden="true">
               <i className="ph-bold ph-git-pull-request"></i>
             </span>
-            <h4>Contribution Guide</h4>
+            <h3>Contribution Guide</h3>
             <p>How to contribute and collaborate.</p>
             <a href="/contribute/">Open guide</a>
           </div>
@@ -70,9 +70,9 @@ export default function ProjectsPage() {
             <span className="card-icon" aria-hidden="true">
               <i className="ph-bold ph-handshake"></i>
             </span>
-            <h4>Code of Conduct</h4>
+            <h3>Code of Conduct</h3>
             <p>Community expectations for collaboration.</p>
-            <a href="/contribute/">Open policy</a>
+            <a href="/contribute/CODE_OF_CONDUCT.md/">Open policy</a>
           </div>
         </div>
       </div>

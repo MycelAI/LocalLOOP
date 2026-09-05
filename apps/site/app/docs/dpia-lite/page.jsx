@@ -7,7 +7,7 @@ export default function DpiaLitePage() {
   return (
     <div className="content-stack">
       <div className="content-panel">
-        <h2 className="hub-heading">DPIA Lite</h2>
+        <h1 className="hub-heading">DPIA Lite</h1>
         <p>
           Data Protection Impact Assessment (DPIA) lite screening for localLOOP lab deployments.
           Covers the personal data minimisation approach and risk assessment applicable to
@@ -21,7 +21,7 @@ export default function DpiaLitePage() {
         </div>
       </div>
       <div className="content-panel">
-        <h3>Scope</h3>
+        <h2>Scope</h2>
         <div className="table-list">
           <div><span>Framework</span><div>GDPR Art. 35 — Data Protection Impact Assessment screening</div></div>
           <div><span>Environment</span><div>Lab-only; no personal data in protocol payloads by design</div></div>

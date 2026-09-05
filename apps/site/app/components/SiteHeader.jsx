@@ -35,7 +35,7 @@ const DROPDOWN_CLOSE_DELAY_MS = 280;
 const VIEWPORT_EDGE_PAD = 20;
 const VIEWPORT_COMFORT_PAD = 72;
 
-const count_section_items = (section) => {
+const countSectionItems = (section) => {
   if (section.groups) {
     return section.groups.reduce((sum, group) => sum + group.items.length, 0);
   }
@@ -43,12 +43,12 @@ const count_section_items = (section) => {
   return section.items?.length ?? 0;
 };
 
-const menu_column_count = (item_count) => {
-  if (item_count <= 1) return 1;
-  if (item_count === 2) return 2;
-  if (item_count === 3) return 3;
-  if (item_count === 4) return 2;
-  if (item_count >= 10) return 4;
+const menuColumnCount = (itemCount) => {
+  if (itemCount <= 1) return 1;
+  if (itemCount === 2) return 2;
+  if (itemCount === 3) return 3;
+  if (itemCount === 4) return 2;
+  if (itemCount >= 10) return 4;
   return 3;
 };
 
@@ -58,30 +58,30 @@ const clear_mega_position = (menu) => {
   menu.style.right = '';
 };
 
-const clamp_mega_menu_to_viewport = (group_el) => {
-  const menu = group_el?.querySelector('.nav-menu--mega');
+const clampMegaMenuToViewport = (groupEl) => {
+  const menu = groupEl?.querySelector('.nav-menu--mega');
   if (!menu || window.matchMedia('(max-width: 1119px)').matches) {
     return;
   }
 
   clear_mega_position(menu);
 
-  const prefer_end = group_el.classList.contains('nav-group--align-end');
-  menu.style.left = prefer_end ? 'auto' : '0';
-  menu.style.right = prefer_end ? '0' : 'auto';
+  const preferEnd = groupEl.classList.contains('nav-group--align-end');
+  menu.style.left = preferEnd ? 'auto' : '0';
+  menu.style.right = preferEnd ? '0' : 'auto';
 
-  const group_rect = group_el.getBoundingClientRect();
+  const group_rect = groupEl.getBoundingClientRect();
   const menu_rect = menu.getBoundingClientRect();
   const menu_width = Math.max(menu_rect.width, menu.scrollWidth, 1);
   const viewport_w = document.documentElement.clientWidth || window.innerWidth;
   const max_right = viewport_w - VIEWPORT_EDGE_PAD;
   const min_left = VIEWPORT_EDGE_PAD;
 
-  let left = prefer_end ? group_rect.right - menu_width : group_rect.left;
+  let left = preferEnd ? group_rect.right - menu_width : group_rect.left;
 
   // If a start-aligned panel would sit too close to / past the right edge,
   // flip it to the trigger's end so Platform/Library stay on-screen.
-  if (!prefer_end && left + menu_width > viewport_w - VIEWPORT_COMFORT_PAD) {
+  if (!preferEnd && left + menu_width > viewport_w - VIEWPORT_COMFORT_PAD) {
     left = group_rect.right - menu_width;
   }
 
@@ -145,22 +145,22 @@ export function SiteHeader({ subtitle = '' }) {
   const handleNavGroupEnter = (key, event) => {
     clearCloseTimeout();
     setHoverGroupKey(key);
-    const group_el = event?.currentTarget;
-    if (!group_el) return;
+    const groupEl = event?.currentTarget;
+    if (!groupEl) return;
 
     // Open immediately for measurement (React state lags one frame).
-    group_el.setAttribute('data-dropdown-open', 'true');
+    groupEl.setAttribute('data-dropdown-open', 'true');
     requestAnimationFrame(() => {
-      clamp_mega_menu_to_viewport(group_el);
-      requestAnimationFrame(() => clamp_mega_menu_to_viewport(group_el));
+      clampMegaMenuToViewport(groupEl);
+      requestAnimationFrame(() => clampMegaMenuToViewport(groupEl));
     });
   };
 
   const handleNavGroupLeave = (event) => {
-    const group_el = event?.currentTarget;
+    const groupEl = event?.currentTarget;
     closeTimeoutRef.current = setTimeout(() => {
-      clear_mega_position(group_el?.querySelector('.nav-menu--mega'));
-      group_el?.removeAttribute('data-dropdown-open');
+      clear_mega_position(groupEl?.querySelector('.nav-menu--mega'));
+      groupEl?.removeAttribute('data-dropdown-open');
       setHoverGroupKey(null);
       closeTimeoutRef.current = null;
     }, DROPDOWN_CLOSE_DELAY_MS);
@@ -169,11 +169,11 @@ export function SiteHeader({ subtitle = '' }) {
   useEffect(() => {
     if (!hoverGroupKey || !headerRef.current) return undefined;
 
-    const group_el = headerRef.current.querySelector(
+    const groupEl = headerRef.current.querySelector(
       `[data-nav-section="${hoverGroupKey}"]`
     )?.closest('.nav-group');
 
-    const on_resize = () => clamp_mega_menu_to_viewport(group_el);
+    const on_resize = () => clampMegaMenuToViewport(groupEl);
     window.addEventListener('resize', on_resize);
     on_resize();
 
@@ -291,8 +291,8 @@ export function SiteHeader({ subtitle = '' }) {
                 const sectionActive = matchesPath(pathname, section.matchPrefixes);
                 const mobileSectionOpen = openMobileSection === section.key;
                 const exactSectionMatch = pathnameNormalized === normalizePath(section.href);
-                const item_count = count_section_items(section);
-                const cols = menu_column_count(item_count);
+                const itemCount = countSectionItems(section);
+                const cols = menuColumnCount(itemCount);
 
                 return (
                 <div

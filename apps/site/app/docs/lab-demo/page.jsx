@@ -6,7 +6,7 @@ export default function LabDemoPage() {
   return (
     <div className="content-stack">
       <div className="content-panel">
-        <h2 className="hub-heading">Lab Demo</h2>
+        <h1 className="hub-heading">Lab Demo</h1>
         <p>
           This lab demo runs a full MaterialDNA/ProductDNA → Offer → Match → Transfer
           flow using the sandbox API. It is not a pilot or production deployment.
@@ -18,7 +18,7 @@ export default function LabDemoPage() {
       </div>
 
       <div className="content-panel">
-        <h3>Run the demo locally</h3>
+        <h2>Run the demo locally</h2>
         <ol className="table-list">
           <li>
             <span>Start infrastructure</span>
@@ -39,18 +39,18 @@ docker compose --env-file .env.docker up -d
 bun run lab:demo`}</code></pre>
         </div>
         <div className="table-list">
-          <div><span>Events stream</span><div>`/api/v1/stream` (SSE)</div></div>
-          <div><span>Event log</span><div>`/api/v1/events`</div></div>
-          <div><span>Metrics</span><div>`/api/metrics`</div></div>
-          <div><span>Privacy notice</span><div>`/api/privacy`</div></div>
+          <div><span>Events stream</span><div><code>/api/v1/stream</code> (SSE)</div></div>
+          <div><span>Event log</span><div><code>/api/v1/events</code></div></div>
+          <div><span>Metrics</span><div><code>/api/metrics</code></div></div>
+          <div><span>Privacy notice</span><div><code>/api/privacy</code></div></div>
         </div>
       </div>
 
       <div className="content-panel">
-        <h3>Optional API key protection</h3>
+        <h2>Optional API key protection</h2>
         <p>
-          If you enable API key protection, write endpoints require an `x-api-key`
-          header (or `Authorization: Bearer &lt;key&gt;`). This is optional and
+          If you enable API key protection, write endpoints require an <code>x-api-key</code>
+          header (or <code>Authorization: Bearer &lt;key&gt;</code>). This is optional and
           disabled by default.
         </p>
         <div className="code-block">
@@ -59,7 +59,7 @@ bun run lab:demo`}</code></pre>
       </div>
 
       <div className="content-panel">
-        <h3>Federation relay demo (two nodes)</h3>
+        <h2>Federation relay demo (two nodes)</h2>
         <p>
           Spins up two local node instances and relays events to demonstrate
           lab-only federation messaging. Nodes share a single lab database for
@@ -69,13 +69,13 @@ bun run lab:demo`}</code></pre>
           <pre><code>{`bun run lab:federation`}</code></pre>
         </div>
         <div className="table-list">
-          <div><span>Relay endpoint</span><div>`/api/v1/relay`</div></div>
-          <div><span>Events stream</span><div>`/api/v1/stream` (SSE)</div></div>
+          <div><span>Relay endpoint</span><div><code>/api/v1/relay</code></div></div>
+          <div><span>Events stream</span><div><code>/api/v1/stream</code> (SSE)</div></div>
         </div>
       </div>
 
       <div className="content-panel">
-        <h3>Interop flow snapshot</h3>
+        <h2>Interop flow snapshot</h2>
         <p>Conceptual view of the four-step lab flow.</p>
         <div className="media-card">
           <img src="/assets/images/lab-demo-flow.svg" alt="Lab demo flow snapshot" />
@@ -83,7 +83,7 @@ bun run lab:demo`}</code></pre>
       </div>
 
       <div className="content-panel">
-        <h3>Event timeline preview</h3>
+        <h2>Event timeline preview</h2>
         <p>Sample output from the lab simulation script.</p>
         <div className="media-card">
           <img src="/assets/images/lab-demo-events.svg" alt="Lab demo event timeline" />

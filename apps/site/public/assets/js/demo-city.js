@@ -1,8 +1,10 @@
-(function () {
+(() => {
   const NAME = 'demo-city';
-  const features = window.LOCALLOOP_FEATURES = window.LOCALLOOP_FEATURES || {};
+  window.LOCALLOOP_FEATURES = window.LOCALLOOP_FEATURES || {};
+  const features = window.LOCALLOOP_FEATURES;
   const featureToken = document.currentScript?.dataset.localLoopFeatureToken || null;
-  const featureTokens = window.__LOCALLOOP_FEATURE_TOKENS = window.__LOCALLOOP_FEATURE_TOKENS || {};
+  window.__LOCALLOOP_FEATURE_TOKENS = window.__LOCALLOOP_FEATURE_TOKENS || {};
+  const featureTokens = window.__LOCALLOOP_FEATURE_TOKENS;
   if (featureTokens[NAME] !== featureToken) return;
   // A visit loads five read-only API resources (plus the material table).
   // Keep the refresh cadence comfortably below the public API's shared limit.
@@ -119,7 +121,7 @@
         if (!streamEl || !('EventSource' in window)) return;
         stream = new EventSource(`${apiBase}/api/v1/stream`);
         const panelLoaders = { 'offer.created': loadOffers, 'match.created': loadMatches, 'transfer.created': loadTransfers };
-        ['material.created', 'offer.created', 'match.created', 'transfer.created', 'material.status_updated'].forEach((eventName) => stream.addEventListener(eventName, (event) => { try { const data = JSON.parse(event.data); appendEntry({ event: eventName, entity_id: data.entity_id || data.id }); panelLoaders[eventName]?.(); } catch {} }));
+        ['material.created', 'offer.created', 'match.created', 'transfer.created', 'material.status_updated'].forEach((eventName) => { stream.addEventListener(eventName, (event) => { try { const data = JSON.parse(event.data); appendEntry({ event: eventName, entity_id: data.entity_id || data.id }); panelLoaders[eventName]?.(); } catch {} }); });
         stream.onmessage = (event) => { try { const data = JSON.parse(event.data); if (data.type || data.event_type) appendEntry({ event: data.type || data.event_type, entity_id: data.entity_id || data.id }); } catch {} };
         const setStreamStatus = (online) => {
           const dot = root.querySelector('.demo-stream-dot');
@@ -138,13 +140,13 @@
         root.querySelectorAll('[data-panel]').forEach((panel) => { panel.hidden = panel.dataset.panel !== target; });
         if (focus) tabBtns[index].focus();
       };
-      tabBtns.forEach((button, index) => on(button, 'click', () => activateTab(button.dataset.demoTab)));
-      tabBtns.forEach((button, index) => on(button, 'keydown', (event) => { const delta = ['ArrowRight', 'ArrowDown'].includes(event.key) ? 1 : ['ArrowLeft', 'ArrowUp'].includes(event.key) ? -1 : 0; if (delta) { event.preventDefault(); activateTab(tabBtns[(index + delta + tabBtns.length) % tabBtns.length].dataset.demoTab, true); } else if (event.key === 'Home') { event.preventDefault(); activateTab(tabBtns[0].dataset.demoTab, true); } else if (event.key === 'End') { event.preventDefault(); activateTab(tabBtns.at(-1).dataset.demoTab, true); } }));
-      filterBtns.forEach((button) => on(button, 'click', () => { currentFilter = button.dataset.demoFilter; filterBtns.forEach((item) => { const selected = item === button; item.classList.toggle('active', selected); item.setAttribute('aria-pressed', String(selected)); }); loadMaterials(); }));
+      tabBtns.forEach((button) => { on(button, 'click', () => activateTab(button.dataset.demoTab)); });
+      tabBtns.forEach((button, index) => { on(button, 'keydown', (event) => { const delta = ['ArrowRight', 'ArrowDown'].includes(event.key) ? 1 : ['ArrowLeft', 'ArrowUp'].includes(event.key) ? -1 : 0; if (delta) { event.preventDefault(); activateTab(tabBtns[(index + delta + tabBtns.length) % tabBtns.length].dataset.demoTab, true); } else if (event.key === 'Home') { event.preventDefault(); activateTab(tabBtns[0].dataset.demoTab, true); } else if (event.key === 'End') { event.preventDefault(); activateTab(tabBtns.at(-1).dataset.demoTab, true); } }); });
+      filterBtns.forEach((button) => { on(button, 'click', () => { currentFilter = button.dataset.demoFilter; filterBtns.forEach((item) => { const selected = item === button; item.classList.toggle('active', selected); item.setAttribute('aria-pressed', String(selected)); }); loadMaterials(); }); });
       loadHeartbeat(); loadStats(); loadMaterials(); loadOffers(); loadMatches(); loadTransfers(); connectStream(); if (tabBtns[0]) activateTab(tabBtns[0].dataset.demoTab);
       refreshTimer = setInterval(() => { loadHeartbeat(); loadStats(); loadMaterials(); }, REFRESH_INTERVAL_MS);
       root.dataset.demoReady = 'true';
-      activeCleanup = () => { disposed = true; root.removeAttribute('data-demo-ready'); controller.abort(); if (refreshTimer) clearInterval(refreshTimer); stream?.close(); listeners.splice(0).forEach((remove) => remove()); activeCleanup = () => {}; };
+      activeCleanup = () => { disposed = true; root.removeAttribute('data-demo-ready'); controller.abort(); if (refreshTimer) clearInterval(refreshTimer); stream?.close(); for (const remove of listeners.splice(0)) remove(); activeCleanup = () => {}; };
     },
     cleanup() { activeCleanup(); },
   };

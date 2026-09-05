@@ -7,7 +7,7 @@ export default function CityPortalsPage() {
   return (
     <div className="content-stack">
       <div className="content-panel">
-        <h2 className="hub-heading">City Portals</h2>
+        <h1 className="hub-heading">City Portals</h1>
         <div className="status-notice">
           <strong>No active deployments.</strong> City portals are in the design and concept phase.
           This page describes illustrative portal patterns for future research discussions.
@@ -24,7 +24,7 @@ export default function CityPortalsPage() {
       </div>
 
       <div className="content-panel">
-        <h3>What to expect</h3>
+        <h2>What to expect</h2>
         <div className="table-list">
           <div><span>Profiles</span><div>City goals and program details</div></div>
           <div><span>Partners</span><div>Illustrative operator and supplier information</div></div>
@@ -33,13 +33,13 @@ export default function CityPortalsPage() {
       </div>
 
       <div className="content-panel">
-        <h3>Available portals</h3>
+        <h2>Available portals</h2>
         <div className="grid">
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
               <i className="ph-bold ph-city"></i>
             </span>
-            <h4>DEMO City</h4>
+            <h3>DEMO City</h3>
             <p>Sample portal to illustrate a future city experience.</p>
             <a href="/platform/demo-city/">Open demo portal</a>
           </div>
@@ -47,7 +47,7 @@ export default function CityPortalsPage() {
             <span className="card-icon" aria-hidden="true">
               <i className="ph-bold ph-compass"></i>
             </span>
-            <h4>Future cities</h4>
+            <h3>Future cities</h3>
             <p>Future city participation is exploratory; no launch or deployment is scheduled here.</p>
             <a href="/interest/">Express interest</a>
           </div>

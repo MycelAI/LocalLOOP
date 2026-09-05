@@ -7,7 +7,7 @@ export default function SecurityGuidePage() {
   return (
     <div className="content-stack">
       <div className="content-panel">
-        <h2 className="hub-heading">Security Guide</h2>
+        <h1 className="hub-heading">Security Guide</h1>
         <p>
           Practical guidance on securing localLOOP nodes and integrations.
         </p>
@@ -16,7 +16,7 @@ export default function SecurityGuidePage() {
         </div>
       </div>
       <div className="content-panel">
-        <h3>Included topics</h3>
+        <h2>Included topics</h2>
         <div className="table-list">
           <div><span>Threat model</span><div>Key risks and mitigations</div></div>
           <div><span>Operational control</span><div>Logging, access, and response</div></div>

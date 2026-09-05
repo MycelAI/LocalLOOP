@@ -7,7 +7,7 @@ export default function FederationPage() {
   return (
     <div className="content-stack">
       <div className="content-panel">
-        <h2 className="hub-heading">Federation Handshake</h2>
+        <h1 className="hub-heading">Federation Handshake</h1>
         <p>
           The lab handshake introduces two nodes and registers them in the demo
           registry. This is not a production federation protocol.
@@ -18,16 +18,16 @@ export default function FederationPage() {
       </div>
 
       <div className="content-panel">
-        <h3>Endpoints (lab)</h3>
+        <h2>Endpoints (lab)</h2>
         <div className="table-list">
-          <div><span>Node info</span><div>`/api/v1/node/info`</div></div>
-          <div><span>Handshake</span><div>`/api/v1/federation/handshake`</div></div>
-          <div><span>Registry</span><div>`/api/v1/federation/nodes`</div></div>
+          <div><span>Node info</span><div><code>/api/v1/node/info</code></div></div>
+          <div><span>Handshake</span><div><code>/api/v1/federation/handshake</code></div></div>
+          <div><span>Registry</span><div><code>/api/v1/federation/nodes</code></div></div>
         </div>
       </div>
 
       <div className="content-panel">
-        <h3>Sample handshake</h3>
+        <h2>Sample handshake</h2>
         <div className="code-block">
           <pre><code>{`{
   "@context": "https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",

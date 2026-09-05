@@ -11,7 +11,7 @@ export default function ProtocolSpecPage() {
   return (
     <div className="content-stack">
       <div className="content-panel">
-        <h2 className="hub-heading">Specification v0.2.0</h2>
+        <h1 className="hub-heading">Specification v0.2.0</h1>
         <p>
           The normative requirements and API contracts that define interoperable
           localLOOP implementations. No public pilots or deployments yet.
@@ -21,7 +21,7 @@ export default function ProtocolSpecPage() {
         </div>
       </div>
       <div className="content-panel">
-        <h3>Included in this spec</h3>
+        <h2>Included in this spec</h2>
         <div className="table-list">
           <div><span>Endpoints</span><div>Core federation and data flows</div></div>
           <div><span>Compliance</span><div>Minimum operational requirements</div></div>

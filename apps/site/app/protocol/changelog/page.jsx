@@ -11,7 +11,7 @@ export default function ProtocolChangelogPage() {
   return (
     <div className="content-stack">
       <div className="content-panel">
-        <h2 className="hub-heading">Changelog</h2>
+        <h1 className="hub-heading">Changelog</h1>
         <p>
           The changelog captures updates to the protocol and planned roadmap items.
           The project is early-stage with no public pilots yet.
@@ -21,7 +21,7 @@ export default function ProtocolChangelogPage() {
         </div>
       </div>
       <div className="content-panel">
-        <h3>How updates ship</h3>
+        <h2>How updates ship</h2>
         <p>Changes follow the RFC process and are communicated in releases.</p>
         <div className="table-list">
           <div><span>RFC review</span><div>Proposals are reviewed before adoption</div></div>

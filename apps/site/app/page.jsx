@@ -50,20 +50,18 @@ export default function HomePage() {
           </div>
           <div className="hero-stats">
             <div className="hero-stat">
-              <span className="hero-stat-value">11</span>
+              <span className="hero-stat-value">12</span>
               <span className="hero-stat-label">Unified Schemas</span>
             </div>
             <div className="hero-stat-divider"></div>
             <div className="hero-stat">
-              <span className="hero-stat-value">v0.2</span>
-              <span className="hero-stat-label">Protocol Version</span>
+              <span className="hero-stat-value">v0.2.0</span>
+              <span className="hero-stat-label">Spec Version</span>
             </div>
             <div className="hero-stat-divider"></div>
             <div className="hero-stat">
-              <span className="hero-stat-value" data-api-status-indicator>
-                <i className="ph-fill ph-circle"></i>
-              </span>
-              <span className="hero-stat-label">Lab Demo</span>
+              <span className="hero-stat-value">Lab</span>
+              <span className="hero-stat-label">Demo only</span>
             </div>
           </div>
         </div>
@@ -101,37 +99,37 @@ export default function HomePage() {
         <div className="flow-explainer">
           <div className="flow-step">
             <div className="flow-step-icon">
-              <i className="ph-bold ph-fingerprint"></i>
+              <i className="ph-bold ph-fingerprint" aria-hidden="true"></i>
             </div>
             <span className="flow-step-title">Register</span>
             <span className="flow-step-desc">Tag materials or products</span>
           </div>
           <span className="flow-arrow" aria-hidden="true">
-            <i className="ph-bold ph-arrow-right"></i>
+            <i className="ph-bold ph-arrow-right" aria-hidden="true"></i>
           </span>
           <div className="flow-step">
             <div className="flow-step-icon">
-              <i className="ph-bold ph-tag"></i>
+              <i className="ph-bold ph-tag" aria-hidden="true"></i>
             </div>
             <span className="flow-step-title">Offer</span>
             <span className="flow-step-desc">List available resources</span>
           </div>
           <span className="flow-arrow" aria-hidden="true">
-            <i className="ph-bold ph-arrow-right"></i>
+            <i className="ph-bold ph-arrow-right" aria-hidden="true"></i>
           </span>
           <div className="flow-step">
             <div className="flow-step-icon">
-              <i className="ph-bold ph-handshake"></i>
+              <i className="ph-bold ph-handshake" aria-hidden="true"></i>
             </div>
             <span className="flow-step-title">Match</span>
             <span className="flow-step-desc">Find circular opportunities</span>
           </div>
           <span className="flow-arrow" aria-hidden="true">
-            <i className="ph-bold ph-arrow-right"></i>
+            <i className="ph-bold ph-arrow-right" aria-hidden="true"></i>
           </span>
           <div className="flow-step">
             <div className="flow-step-icon">
-              <i className="ph-bold ph-recycle"></i>
+              <i className="ph-bold ph-recycle" aria-hidden="true"></i>
             </div>
             <span className="flow-step-title">Transfer</span>
             <span className="flow-step-desc">Complete the loop</span>
@@ -200,7 +198,7 @@ export default function HomePage() {
               <i className="ph-bold ph-users"></i>
             </span>
             <h3>Participate</h3>
-            <p>Express interest, join the community, and help shape the future of circular economy.</p>
+            <p>Express interest, join the community, and help shape the future of the circular economy.</p>
           </a>
         </div>
       </section>
@@ -213,25 +211,25 @@ export default function HomePage() {
             icon="scroll"
             title="Protocol Spec"
             description="Full specification, schemas, and security requirements."
-            href="/protocol/spec"
+            href="/protocol/spec/"
           />
           <Card
             icon="books"
             title="Schema Library"
             description="JSON-LD contexts, JSON Schemas, and example payloads."
-            href="/library"
+            href="/library/"
           />
           <Card
             icon="buildings"
             title="City Portals"
             description="Explore illustrative city-portal patterns for local material flows and initiatives (lab concept, no live deployments)."
-            href="/platform/city-portals"
+            href="/platform/city-portals/"
           />
           <Card
             icon="gavel"
             title="Governance"
             description="RFC process, decision-making, and community proposals."
-            href="/governance"
+            href="/governance/"
           />
         </CardGrid>
       </section>

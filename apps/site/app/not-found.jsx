@@ -1,5 +1,15 @@
 import { SiteHeader } from './components/SiteHeader';
 import { SiteFooter } from './components/SiteFooter';
+import { createMetadata } from './config/metadata';
+
+export const metadata = {
+  ...createMetadata({
+    title: 'Page not found',
+    description: 'The requested path does not exist in the localLOOP documentation hub.',
+    path: '/404',
+  }),
+  robots: { index: false, follow: true },
+};
 
 export default function NotFound() {
   return (

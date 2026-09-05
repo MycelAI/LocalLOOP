@@ -6,7 +6,7 @@ export default function LibraryPage() {
   return (
     <div className="content-stack">
       <div className="content-panel">
-        <h2 className="hub-heading">Library</h2>
+        <h1 className="hub-heading">Library</h1>
         <p>
           Browse the schema library and validated example payloads used by implementers
           and node operators. Early concept stage.
@@ -19,14 +19,14 @@ export default function LibraryPage() {
             <span className="card-icon" aria-hidden="true">
               <i className="ph-bold ph-brackets-curly"></i>
             </span>
-            <h4>Schemas</h4>
+            <h3>Schemas</h3>
             <p>MaterialDNA, ProductDNA, Offer, Match, Transfer, and more.</p>
           </a>
           <a className="card has-icon" href="/library/examples/">
             <span className="card-icon" aria-hidden="true">
               <i className="ph-bold ph-file-code"></i>
             </span>
-            <h4>Examples</h4>
+            <h3>Examples</h3>
             <p>Validated payload flows and transactions.</p>
           </a>
         </div>

@@ -12,12 +12,11 @@ export function Redirect({ to, label = 'Continue' }) {
     window.location.replace(target);
   }, [to]);
 
-  const href = to.startsWith('/') ? to : to;
   return (
     <div className="content-stack">
       <div className="content-panel">
         <p>Redirecting…</p>
-        <a href={href} className="button primary">
+        <a href={to} className="button primary">
           {label}
         </a>
       </div>

@@ -8,7 +8,7 @@ export default function LoopCoinPage() {
   return (
     <div className="content-stack">
       <div className="content-panel">
-        <h2 className="hub-heading">LoopCoin</h2>
+        <h1 className="hub-heading">LoopCoin</h1>
         <p>
           LoopCoin (LC) is a draft data model for lab discussions of node-issued value, transfer,
           expiry, decay, and potential settlement flows. It does not operate a currency, process
@@ -26,7 +26,7 @@ export default function LoopCoinPage() {
       </div>
 
       <div className="content-panel">
-        <h3>Scope & boundaries</h3>
+        <h2>Scope & boundaries</h2>
         <div className="table-list">
           <div><span>In scope</span><div>Draft configuration, transfer, and settlement-batch fields for lab examples.</div></div>
           <div><span>Out of scope</span><div>Fiat on/off ramps, external exchange listings, or legally regulated financial instruments.</div></div>
@@ -35,7 +35,7 @@ export default function LoopCoinPage() {
       </div>
 
       <div className="content-panel">
-        <h3>How it works</h3>
+        <h2>How it works</h2>
         <div className="table-list">
           <div><span>Issuance</span><div>Lab examples can describe a hypothetical node currency code, exchange rate, expiry window, and decay rate.</div></div>
           <div><span>Local bonus</span><div>A draft field can model a local-spending incentive; it does not demonstrate circulation or overflow behaviour.</div></div>
@@ -46,40 +46,40 @@ export default function LoopCoinPage() {
       </div>
 
       <div className="content-panel">
-        <h3>Data model snapshot</h3>
+        <h2>Data model snapshot</h2>
         <div className="grid">
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
               <i className="ph-bold ph-sliders"></i>
             </span>
-            <h4>LoopCoinConfig</h4>
+            <h3>LoopCoinConfig</h3>
             <p>Issuer, currency code, backing currency, exchange rate, expiry months, decay rate, and reserve ratio.</p>
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
               <i className="ph-bold ph-arrow-right"></i>
             </span>
-            <h4>LoopCoinTransfer</h4>
+            <h3>LoopCoinTransfer</h3>
             <p>Sender, recipient, amount, currency, optional material reference, timestamp, and digital signature.</p>
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
               <i className="ph-bold ph-arrows-left-right"></i>
             </span>
-            <h4>InterNodeSettlement</h4>
+            <h3>InterNodeSettlement</h3>
             <p>Draft batch payload containing example transfer, fee, and settlement-method fields.</p>
           </div>
         </div>
       </div>
 
       <div className="content-panel">
-        <h3>Current status</h3>
+        <h2>Current status</h2>
         <div className="grid">
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
               <i className="ph-bold ph-scroll"></i>
             </span>
-            <h4>Specification</h4>
+            <h3>Specification</h3>
             <p>Draft LoopCoin fields and proposed settlement rules are documented in the protocol spec.</p>
             <a href="/protocol/spec/">Read the spec</a>
           </div>
@@ -87,7 +87,7 @@ export default function LoopCoinPage() {
             <span className="card-icon" aria-hidden="true">
               <i className="ph-bold ph-map-pin"></i>
             </span>
-            <h4>Status</h4>
+            <h3>Status</h3>
             <p>No public pilots or deployments yet.</p>
             <a href="/interest/">Register interest</a>
           </div>
@@ -95,7 +95,7 @@ export default function LoopCoinPage() {
             <span className="card-icon" aria-hidden="true">
               <i className="ph-bold ph-coins"></i>
             </span>
-            <h4>Settlement</h4>
+            <h3>Settlement</h3>
             <p>Lab examples may reference the draft LoopCost formula when comparing scenario inputs.</p>
             <a href="/platform/loopcost/">LoopCost →</a>
           </div>

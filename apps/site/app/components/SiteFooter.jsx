@@ -21,6 +21,8 @@ export function SiteFooter() {
           <a href="/protocol/">Protocol</a>
           <a href="/docs/">Documentation</a>
           <a href="/governance/">Governance</a>
+          <a href="/docs/dpia-lite/">Privacy &amp; data handling</a>
+          <a href="mailto:dev@mycel-ai.de">Contact</a>
           <a
             href="https://github.com/local-loop-io"
             target="_blank"

@@ -7,7 +7,7 @@ export default function InterestPage() {
   return (
     <div className="content-stack">
       <div className="content-panel">
-        <h2 className="hub-heading">Expression of Interest</h2>
+        <h1 className="hub-heading">Expression of Interest</h1>
         <p>
           Interest is a public, consent-based registry for future lab or research updates, not an
           application for a pilot or deployment. Email is optional and shown only if you opt in.
@@ -26,7 +26,7 @@ export default function InterestPage() {
       </div>
 
       <div className="content-panel">
-        <h3>Why we collect this</h3>
+        <h2>Why we collect this</h2>
         <p>
           Early signal from cities, labs, and operators may inform research priorities and future
           outreach. It does not select participants or guarantee a response.
@@ -48,7 +48,7 @@ export default function InterestPage() {
       </div>
 
       <div className="content-panel">
-        <h3>What happens next</h3>
+        <h2>What happens next</h2>
         <div className="table-list">
           <div>
             <span>After submission</span>
@@ -59,7 +59,13 @@ export default function InterestPage() {
           </div>
           <div>
             <span>Privacy & retention</span>
-            <div>Do not submit sensitive information. Contact us to request access or deletion.</div>
+            <div>
+              Do not submit sensitive information. Submissions are stored by Mycel UG
+              (haftungsbeschränkt) for the lab registry only and removed on request — see the{' '}
+              <a href="/docs/dpia-lite/">data-protection assessment</a> for what is collected, why,
+              and for how long. Request access or deletion via{' '}
+              <a href="mailto:dev@mycel-ai.de">dev@mycel-ai.de</a>.
+            </div>
           </div>
           <div>
             <span>Public consent</span>
@@ -76,10 +82,10 @@ export default function InterestPage() {
       </div>
 
       <div className="content-panel">
-        <h3>Submit your interest</h3>
+        <h2>Submit your interest</h2>
         <div className="interest-wrapper">
           <div className="interest-pane">
-            <h4>Submission form</h4>
+            <h3>Submission form</h3>
             <p>
               Submissions are public so collaborators can see who is exploring the protocol.
               Email is optional and shown only if you opt in.
@@ -123,7 +129,9 @@ export default function InterestPage() {
               </div>
               <div className="field inline">
                 <input id="consentPublic" name="consentPublic" type="checkbox" required />
-                <label htmlFor="consentPublic">I agree my submission is listed publicly</label>
+                <label htmlFor="consentPublic">
+                  I agree my submission is listed publicly (see <a href="/docs/dpia-lite/">privacy &amp; retention</a>)
+                </label>
               </div>
               <input
                 className="visually-hidden"
@@ -142,7 +150,7 @@ export default function InterestPage() {
             </form>
           </div>
           <div className="interest-pane">
-            <h4>Public interest list</h4>
+            <h3>Public interest list</h3>
             <div className="interest-list" data-interest-list></div>
           </div>
         </div>

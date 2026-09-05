@@ -21,7 +21,7 @@ export default async function ExamplePage({ params }) {
   return (
     <div className="content-stack">
       <div className="content-panel">
-        <h2 className="hub-heading">{example.title}</h2>
+        <h1 className="hub-heading">{example.title}</h1>
       </div>
       <div className="content-panel">
         <MarkdownDoc filePath={example.file} />

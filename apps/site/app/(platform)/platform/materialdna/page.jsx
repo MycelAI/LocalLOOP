@@ -8,7 +8,7 @@ export default function MaterialDNAPage() {
   return (
     <div className="content-stack">
       <div className="content-panel">
-        <h2 className="hub-heading">MaterialDNA</h2>
+        <h1 className="hub-heading">MaterialDNA</h1>
         <p>
           MaterialDNA is the identification layer for tracking raw and processed materials
           across city loops. It proposes identifier and provenance fields for discussing traceability
@@ -23,7 +23,7 @@ export default function MaterialDNAPage() {
       </div>
 
       <div className="content-panel">
-        <h3>Scope & boundaries</h3>
+        <h2>Scope & boundaries</h2>
         <div className="table-list">
           <div><span>In scope</span><div>Stable material identifiers, provenance metadata, batch references, and additive compatibility signals.</div></div>
           <div><span>Out of scope</span><div>Live asset tracking, financial settlement, or verified carbon accounting.</div></div>
@@ -32,7 +32,7 @@ export default function MaterialDNAPage() {
       </div>
 
       <div className="content-panel">
-        <h3>Why cities adopt MaterialDNA</h3>
+        <h2>Why cities adopt MaterialDNA</h2>
         <div className="table-list">
           <div><span>Traceability research</span><div>Explore how source, collection, and by-product metadata could support traceability; records are not a permanent audit trail.</div></div>
           <div><span>Circular procurement</span><div>Assess whether shared metadata could inform local procurement workflows; it does not prove sourcing or eligibility.</div></div>
@@ -43,7 +43,7 @@ export default function MaterialDNAPage() {
       </div>
 
       <div className="content-panel">
-        <h3>What we aim to enable</h3>
+        <h2>What we aim to enable</h2>
         <p>
           A draft material-identity model for discussing traceability, provenance, and matching
           across local loops.
@@ -57,40 +57,40 @@ export default function MaterialDNAPage() {
       </div>
 
       <div className="content-panel">
-        <h3>Data model snapshot</h3>
+        <h2>Data model snapshot</h2>
         <div className="grid">
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
               <i className="ph-bold ph-fingerprint"></i>
             </span>
-            <h4>MaterialDNA schema</h4>
+            <h3>MaterialDNA schema</h3>
             <p>Material ID, category, quantity, quality, and batch references.</p>
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
               <i className="ph-bold ph-clipboard-text"></i>
             </span>
-            <h4>Provenance</h4>
+            <h3>Provenance</h3>
             <p>Origin city, certifications, and audit trail fields.</p>
           </div>
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
               <i className="ph-bold ph-timer"></i>
             </span>
-            <h4>Availability</h4>
+            <h3>Availability</h3>
             <p>Time windows and status fields for matching logic.</p>
           </div>
         </div>
       </div>
 
       <div className="content-panel">
-        <h3>Current status</h3>
+        <h2>Current status</h2>
         <div className="grid">
           <div className="card has-icon">
             <span className="card-icon" aria-hidden="true">
               <i className="ph-bold ph-scroll"></i>
             </span>
-            <h4>Specification</h4>
+            <h3>Specification</h3>
             <p>Draft schemas are available in the LOOP repository.</p>
             <a href="/library/schemas/">Browse schemas</a>
           </div>
@@ -98,7 +98,7 @@ export default function MaterialDNAPage() {
             <span className="card-icon" aria-hidden="true">
               <i className="ph-bold ph-map-pin"></i>
             </span>
-            <h4>Status</h4>
+            <h3>Status</h3>
             <p>No public pilots or deployments yet.</p>
             <a href="/interest/">Register interest</a>
           </div>
@@ -106,7 +106,7 @@ export default function MaterialDNAPage() {
             <span className="card-icon" aria-hidden="true">
               <i className="ph-bold ph-plug"></i>
             </span>
-            <h4>Integration</h4>
+            <h3>Integration</h3>
             <p>Implementation guidance will be published as the spec matures.</p>
             <a href="/docs/implementation/">Read the guide</a>
           </div>

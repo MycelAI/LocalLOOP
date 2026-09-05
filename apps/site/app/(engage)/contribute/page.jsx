@@ -11,7 +11,7 @@ export default function ContributePage() {
   return (
     <div className="content-stack">
       <div className="content-panel">
-        <h2 className="hub-heading">Help shape the localLOOP platform.</h2>
+        <h1 className="hub-heading">Help shape the localLOOP platform.</h1>
         <p>
           Contributions are welcome across specs, schemas, docs, and tooling.
           This project is early-stage, so feedback is especially valuable.
@@ -22,7 +22,7 @@ export default function ContributePage() {
       </div>
 
       <div className="content-panel">
-        <h3>Community standards</h3>
+        <h2>Community standards</h2>
         <div className="table-list">
           <div>
             <span><a href="/contribute/CODE_OF_CONDUCT.md/">Code of conduct</a></span>

@@ -6,7 +6,7 @@ export default function MetricsPage() {
   return (
     <div className="content-stack">
       <div className="content-panel">
-        <h2 className="hub-heading">Metrics</h2>
+        <h1 className="hub-heading">Metrics</h1>
         <p>
           Live counters from the LOOP lab API. This is a demo-grade snapshot to
           validate activity in a controlled environment.
@@ -18,7 +18,7 @@ export default function MetricsPage() {
       </div>
 
       <div className="content-panel">
-        <h3>Live counters</h3>
+        <h2>Live counters</h2>
         <div data-metrics-panel className="metrics-panel" role="status" aria-live="polite">Loading lab metrics…</div>
       </div>
     </div>

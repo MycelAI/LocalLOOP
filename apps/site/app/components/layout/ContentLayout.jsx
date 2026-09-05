@@ -6,7 +6,8 @@ import { Sidebar } from './Sidebar';
  * Unified ContentLayout component - replaces 6 duplicate layout patterns
  *
  * @param {string} section - Section key for sidebar (docs, protocol, governance, library, platform, engage)
- * @param {string} subtitle - Header subtitle text
+ * @param {string} subtitle - Header subtitle text (the section name). Each page renders its
+ *   own title as the document's single <h1 className="hub-heading">.
  * @param {boolean} showSidebar - Whether to show sidebar (default: true)
  * @param {React.ReactNode} children - Page content
  */
@@ -20,7 +21,6 @@ export function ContentLayout({
     <>
       <SiteHeader subtitle={subtitle} />
       <main id="main-content" className="content-main" tabIndex={-1}>
-        <h1 className="visually-hidden">{subtitle}</h1>
         {showSidebar ? (
           <div className="content-layout">
             <Sidebar section={section} />
@@ -66,25 +66,9 @@ export function GovernanceLayout({ children }) {
   );
 }
 
-export function LibraryLayout({ children }) {
-  return (
-    <ContentLayout section="library" subtitle="Library">
-      {children}
-    </ContentLayout>
-  );
-}
-
 export function PlatformLayout({ children }) {
   return (
     <ContentLayout section="platform" subtitle="Platform">
-      {children}
-    </ContentLayout>
-  );
-}
-
-export function EngageLayout({ children }) {
-  return (
-    <ContentLayout section="engage" subtitle="Engage">
       {children}
     </ContentLayout>
   );

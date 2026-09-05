@@ -7,7 +7,7 @@ export default function FaqPage() {
   return (
     <div className="content-stack">
       <div className="content-panel">
-        <h2 className="hub-heading">FAQ</h2>
+        <h1 className="hub-heading">FAQ</h1>
         <p>
           This FAQ reflects the current early-stage status of localLOOP.
         </p>
@@ -16,7 +16,7 @@ export default function FaqPage() {
         </div>
       </div>
       <div className="content-panel">
-        <h3>Need more help?</h3>
+        <h2>Need more help?</h2>
         <p>Use the interest form to ask about lab demos, interoperability work, or partnerships.</p>
         <div className="cta-row">
           <a className="button primary" href="/interest/">Express interest</a>

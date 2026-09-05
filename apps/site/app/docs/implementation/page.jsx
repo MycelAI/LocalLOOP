@@ -7,7 +7,7 @@ export default function ImplementationPage() {
   return (
     <div className="content-stack">
       <div className="content-panel">
-        <h2 className="hub-heading">Implementation Guide</h2>
+        <h1 className="hub-heading">Implementation Guide</h1>
         <p>
           Step-by-step guidance for operators and developers. No public deployments
           yet — this guide is a living draft.
@@ -17,7 +17,7 @@ export default function ImplementationPage() {
         </div>
       </div>
       <div className="content-panel">
-        <h3>Key topics</h3>
+        <h2>Key topics</h2>
         <div className="table-list">
           <div><span>Node setup</span><div>Required services and integration</div></div>
           <div><span>Data flows</span><div>Syncing, validation, and federation</div></div>

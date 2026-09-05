@@ -11,7 +11,7 @@ export default function DemoCityPage() {
       <div className="content-panel">
         <div className="demo-city-header">
           <div className="demo-city-identity">
-            <h2>DEMO City</h2>
+            <h1 className="hub-heading">DEMO City</h1>
             <span className="demo-node-id">demo.loop</span>
           </div>
           <span className="demo-badge">Lab Demo</span>
@@ -34,7 +34,7 @@ export default function DemoCityPage() {
 
       {/* Activity stats */}
       <div className="content-panel">
-        <h3>Node activity</h3>
+        <h2>Node activity</h2>
         <div className="demo-stats-grid" data-demo-stats>
           <div className="demo-stat-card"><span className="demo-stat-value">—</span><span className="demo-stat-label">Materials</span></div>
           <div className="demo-stat-card"><span className="demo-stat-value">—</span><span className="demo-stat-label">Offers</span></div>
@@ -45,13 +45,14 @@ export default function DemoCityPage() {
 
       {/* Material Registry */}
       <div className="content-panel">
-        <h3>Material registry</h3>
+        <h2>Material registry</h2>
         <p>Live MaterialDNA records from the lab API. Filter by city node.</p>
+        {/* biome-ignore lint/a11y/useSemanticElements: a fieldset would change the filter-row layout; role="group" conveys the same semantics */}
         <div className="demo-filter-row" role="group" aria-label="Filter material registry by city">
-          <button className="demo-filter-btn active" data-demo-filter="all" aria-pressed="true">All cities</button>
-          <button className="demo-filter-btn" data-demo-filter="munich" aria-pressed="false">Munich</button>
-          <button className="demo-filter-btn" data-demo-filter="berlin" aria-pressed="false">Berlin</button>
-          <button className="demo-filter-btn" data-demo-filter="demo" aria-pressed="false">DEMO nodes</button>
+          <button type="button" className="demo-filter-btn active" data-demo-filter="all" aria-pressed="true">All cities</button>
+          <button type="button" className="demo-filter-btn" data-demo-filter="munich" aria-pressed="false">Munich</button>
+          <button type="button" className="demo-filter-btn" data-demo-filter="berlin" aria-pressed="false">Berlin</button>
+          <button type="button" className="demo-filter-btn" data-demo-filter="demo" aria-pressed="false">DEMO nodes</button>
         </div>
         <div data-demo-materials>
           <div className="notice">Loading material registry…</div>
@@ -60,26 +61,29 @@ export default function DemoCityPage() {
 
       {/* Protocol Flows — tabbed */}
       <div className="content-panel">
-        <h3>Protocol flows</h3>
+        <h2>Protocol flows</h2>
         <p>Offers, matches, and transfers from the live lab backend.</p>
         <div className="demo-tab-row" role="tablist" aria-label="Protocol flow data">
-          <button className="demo-tab-btn" id="demo-tab-offers" role="tab" data-demo-tab="offers" aria-controls="demo-panel-offers" aria-selected="true">Offers</button>
-          <button className="demo-tab-btn" id="demo-tab-matches" role="tab" data-demo-tab="matches" aria-controls="demo-panel-matches" aria-selected="false" tabIndex={-1}>Matches</button>
-          <button className="demo-tab-btn" id="demo-tab-transfers" role="tab" data-demo-tab="transfers" aria-controls="demo-panel-transfers" aria-selected="false" tabIndex={-1}>Transfers</button>
+          <button type="button" className="demo-tab-btn" id="demo-tab-offers" role="tab" data-demo-tab="offers" aria-controls="demo-panel-offers" aria-selected="true">Offers</button>
+          <button type="button" className="demo-tab-btn" id="demo-tab-matches" role="tab" data-demo-tab="matches" aria-controls="demo-panel-matches" aria-selected="false" tabIndex={-1}>Matches</button>
+          <button type="button" className="demo-tab-btn" id="demo-tab-transfers" role="tab" data-demo-tab="transfers" aria-controls="demo-panel-transfers" aria-selected="false" tabIndex={-1}>Transfers</button>
         </div>
+        {/* biome-ignore lint/a11y/noNoninteractiveTabindex: tabpanels are focusable per the WAI-ARIA tabs pattern */}
         <div id="demo-panel-offers" data-panel="offers" role="tabpanel" aria-labelledby="demo-tab-offers" tabIndex={0}>
           <div data-demo-offers><div className="notice">Loading offers…</div></div>
         </div>
+        {/* biome-ignore lint/a11y/noNoninteractiveTabindex: tabpanels are focusable per the WAI-ARIA tabs pattern */}
         <div id="demo-panel-matches" data-panel="matches" role="tabpanel" aria-labelledby="demo-tab-matches" tabIndex={0} hidden>
           <div data-demo-matches><div className="notice">Loading matches…</div></div>
         </div>
+        {/* biome-ignore lint/a11y/noNoninteractiveTabindex: tabpanels are focusable per the WAI-ARIA tabs pattern */}
         <div id="demo-panel-transfers" data-panel="transfers" role="tabpanel" aria-labelledby="demo-tab-transfers" tabIndex={0} hidden>
           <div data-demo-transfers><div className="notice">Loading transfers…</div></div>
         </div>
       </div>
 
       <div className="content-panel">
-        <h3>Read-only demonstration</h3>
+        <h2>Read-only demonstration</h2>
         <p>
           Public material registration is disabled to avoid creating persistent lab records from this site.
           Use the <a href="/docs/lab-demo/">local lab demo guide</a> to evaluate write-capable flows in a controlled environment.
@@ -88,7 +92,7 @@ export default function DemoCityPage() {
 
       {/* Live Event Stream */}
       <div className="content-panel">
-        <h3>
+        <h2>
           Live event stream
           <span
             className="demo-stream-dot demo-stream-dot-live"
@@ -98,7 +102,7 @@ export default function DemoCityPage() {
           >
             <span className="visually-hidden" data-demo-stream-status-text>Live</span>
           </span>
-        </h3>
+        </h2>
         <p>
           Server-Sent Events from <code>/api/v1/stream</code>. This read-only display may show
           example lab events; it is not operational monitoring evidence.
@@ -110,7 +114,7 @@ export default function DemoCityPage() {
 
       {/* LoopSignal Config */}
       <div className="content-panel">
-        <h3>LoopSignal configuration</h3>
+        <h2>LoopSignal configuration</h2>
         <p>
           Signal values used in this demo node (<code>demo.loop</code>). Values are from the
           example LoopSignalConfig payload and are illustrative. A production governance model
@@ -146,7 +150,7 @@ export default function DemoCityPage() {
 
       {/* Regulatory extension scenarios */}
       <div className="content-panel">
-        <h3>Regulatory extension scenarios</h3>
+        <h2>Regulatory extension scenarios</h2>
         <p>
           Two additional example flows in this lab dataset show how existing v0.2.0 optional
           fields can carry regulation-adjacent context, per the{' '}
@@ -179,7 +183,7 @@ export default function DemoCityPage() {
 
       {/* Node info */}
       <div className="content-panel">
-        <h3>Illustrative node configuration</h3>
+        <h2>Illustrative node configuration</h2>
         <div className="table-list">
           <div><span>Example node ID</span><div><code>demo.loop</code></div></div>
           <div><span>Example payload version</span><div>v0.2.0</div></div>

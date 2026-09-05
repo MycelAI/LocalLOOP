@@ -1,17 +1,18 @@
-(function () {
+(() => {
   const host = document.querySelector('[data-site-header]');
 
   if (!host) return;
 
   const subtitle = host.dataset.siteSubtitle || '';
   const forcedSection = host.dataset.activeSection;
-  const sectionOrder = [
-    { key: 'platform', prefixes: ['/', '/platform', '/platform/materialdna', '/platform/city-portals', '/platform/demo-city'] },
-    { key: 'protocol', prefixes: ['/projects/loop-protocol', '/protocol'] },
-    { key: 'library', prefixes: ['/library'] },
-    { key: 'docs', prefixes: ['/docs'] },
-    { key: 'governance', prefixes: ['/governance'] },
-  ];
+  // Active-section matching uses each section's `matchPrefixes` from
+  // navigation.json (the same data app/config/siteRoutes.js gives the React
+  // header) instead of a second hand-maintained prefix list, which had
+  // already drifted (it mapped "/" to Platform and omitted the Engage section).
+  const sectionOrderFrom = (sections) => sections.map((section) => ({
+    key: section.key,
+    prefixes: section.matchPrefixes || [section.href],
+  }));
 
   const normalizePath = (value) => {
     if (!value) return '/';
@@ -112,7 +113,7 @@
 
       host.querySelectorAll('.nav-menu a[href]').forEach((link) => {
         const href = link.getAttribute('href');
-        if (!href || !href.startsWith('/')) return;
+        if (!href?.startsWith('/')) return;
 
         const target = normalizePath(href);
         if (target === currentPath) {
@@ -121,7 +122,7 @@
         }
       });
 
-      const activeSection = forcedSection || sectionOrder.find((section) => matchesPath(section.prefixes))?.key;
+      const activeSection = forcedSection || sectionOrderFrom(navigationSections).find((section) => matchesPath(section.prefixes))?.key;
       if (activeSection) {
         host.querySelectorAll('[data-nav-section]').forEach((link) => {
           if (link.getAttribute('data-nav-section') !== activeSection) return;
