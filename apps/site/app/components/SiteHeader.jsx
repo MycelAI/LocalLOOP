@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { navigationSections } from '../config/siteRoutes.js';
@@ -135,12 +135,12 @@ export function SiteHeader({ subtitle = '' }) {
   const [scrolled, setScrolled] = useState(false);
   const pathnameNormalized = normalizePath(pathname);
 
-  const clearCloseTimeout = () => {
+  const clearCloseTimeout = useCallback(() => {
     if (closeTimeoutRef.current) {
       clearTimeout(closeTimeoutRef.current);
       closeTimeoutRef.current = null;
     }
-  };
+  }, []);
 
   const handleNavGroupEnter = (key, event) => {
     clearCloseTimeout();
@@ -180,6 +180,9 @@ export function SiteHeader({ subtitle = '' }) {
     return () => window.removeEventListener('resize', on_resize);
   }, [hoverGroupKey]);
 
+  // Close any open menu when the route changes; the effect is keyed on the
+  // pathname on purpose even though it does not read it.
+  // biome-ignore lint/correctness/useExhaustiveDependencies: route-change trigger
   useEffect(() => {
     setMobileOpen(false);
     setOpenMobileSection(null);
@@ -234,9 +237,9 @@ export function SiteHeader({ subtitle = '' }) {
     return () => {
       mediaQuery.removeEventListener('change', handleChange);
     };
-  }, []);
+  }, [clearCloseTimeout]);
 
-  useEffect(() => () => clearCloseTimeout(), []);
+  useEffect(() => () => clearCloseTimeout(), [clearCloseTimeout]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -295,6 +298,7 @@ export function SiteHeader({ subtitle = '' }) {
                 const cols = menuColumnCount(itemCount);
 
                 return (
+                // biome-ignore lint/a11y/noStaticElementInteractions: hover-intent wrapper; the interactive controls are the link and toggle button inside it
                 <div
                   key={section.key}
                   className={`nav-group${section.align === 'end' ? ' nav-group--align-end' : ''}`}

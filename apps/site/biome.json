@@ -40,12 +40,6 @@
       },
       "performance": {
         "noImgElement": "off"
-      },
-      "correctness": {
-        "useExhaustiveDependencies": "warn"
-      },
-      "a11y": {
-        "noStaticElementInteractions": "warn"
       }
     }
   }

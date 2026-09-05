@@ -390,6 +390,10 @@ test('nginx serves the export 404, caches hashed assets, and sends HSTS + CSP', 
   assert.ok(headers.includes('Content-Security-Policy'));
   assert.ok(headers.includes("connect-src 'self' https://loop-api.urbnia.com"));
   assert.ok(!headers.includes('cdn.jsdelivr.net'), 'CSP must not need a CDN once fonts/icons are self-hosted');
+  assert.ok(!/script-src[^;]*'unsafe-inline'/.test(headers), 'script-src must use per-page hashes, not unsafe-inline');
+  assert.ok(headers.includes('$csp_script_hashes'));
+  const dockerfile = read(['Dockerfile']);
+  assert.ok(dockerfile.includes('generate-csp-hashes.mjs'), 'image build must generate the CSP hash map');
 });
 
 test('no page loads fonts or icons from third-party origins', () => {
@@ -401,7 +405,15 @@ test('no page loads fonts or icons from third-party origins', () => {
   assert.ok(fs.existsSync(path.join(process.cwd(), 'public', 'assets', 'icons', 'phosphor', 'bold', 'Phosphor-Bold.woff2')));
 });
 
-test('security.txt carries the mandatory Expires field', () => {
+test('security.txt carries the mandatory Expires field and is not about to lapse', () => {
   const txt = read(['public', '.well-known', 'security.txt']);
-  assert.match(txt, /^Expires: \d{4}-\d{2}-\d{2}T/m);
+  const match = txt.match(/^Expires: (\d{4}-\d{2}-\d{2}T[^\s]+)/m);
+  assert.ok(match, 'Expires field missing');
+  const expires = new Date(match[1]);
+  assert.ok(!Number.isNaN(expires.getTime()), 'Expires is not a valid timestamp');
+  const daysLeft = (expires.getTime() - Date.now()) / 86_400_000;
+  // RFC 9116 recommends under a year; fail 60 days ahead so the renewal is
+  // noticed by CI before scanners start rejecting the file.
+  assert.ok(daysLeft > 60, `security.txt Expires lapses in ${Math.floor(daysLeft)} days — renew it`);
+  assert.ok(daysLeft < 366, 'security.txt Expires must be less than a year out');
 });

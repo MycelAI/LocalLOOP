@@ -7,6 +7,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.3] - 2026-09-05
+
+### Changed
+- Content-Security-Policy no longer allows `'unsafe-inline'` scripts: the image
+  build generates an nginx `map` of per-page SHA-256 hashes for the inline
+  scripts Next.js's static export emits (`scripts/generate-csp-hashes.mjs`), so
+  each HTML response allows exactly its own bootstrap scripts. Styles keep
+  `'unsafe-inline'` because React style props and Mermaid's rendered SVG use
+  inline style attributes.
+- The two Biome rules left as warnings in 0.5.2 are fixed properly:
+  `RouteScripts` keys its effect on a memoised script list, `SiteHeader` makes
+  `clearCloseTimeout` stable with `useCallback` and lists it as a dependency, and
+  the two intentional exceptions (route-change reset effect, hover-intent
+  wrapper `<div>`) carry documented inline suppressions. Rules are back at
+  their default severity.
+- `next` 16.3.4 (supersedes Dependabot #107).
+- Smoke test fails 60 days before `security.txt`'s `Expires` lapses so renewal
+  is noticed in CI.
+- Protocol mirror re-synced for loop-protocol 0.5.2 (`transaction` evidence
+  subject type; pilot-readiness claim re-reviewed, expiry 2026-12-04).
+
 ## [0.5.2] - 2026-09-05
 
 ### Fixed
@@ -478,7 +499,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-[Unreleased]: https://github.com/local-loop-io/localloop-site/compare/v0.5.2...HEAD
+[Unreleased]: https://github.com/local-loop-io/localloop-site/compare/v0.5.3...HEAD
+[0.5.3]: https://github.com/local-loop-io/localloop-site/compare/v0.5.2...v0.5.3
 [0.5.2]: https://github.com/local-loop-io/localloop-site/compare/v0.5.1...v0.5.2
 [0.4.5]: https://github.com/local-loop-io/localloop-site/compare/v0.4.4...v0.4.5
 [0.2.8]: https://github.com/local-loop-io/localloop-site/compare/v0.2.7...v0.2.8

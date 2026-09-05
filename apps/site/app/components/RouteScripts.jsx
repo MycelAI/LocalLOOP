@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { usePathname } from 'next/navigation';
 
 const routeScripts = (pathname) => {
@@ -17,7 +17,7 @@ const normalizedPathname = (pathname) => {
 
 export function RouteScripts() {
   const pathname = usePathname() || '/';
-  const names = routeScripts(normalizedPathname(pathname));
+  const names = useMemo(() => routeScripts(normalizedPathname(pathname)), [pathname]);
 
   useEffect(() => {
     let active = true;
@@ -91,7 +91,7 @@ export function RouteScripts() {
         script.remove();
       });
     };
-  }, [pathname]);
+  }, [names]);
 
   return null;
 }
