@@ -10,6 +10,36 @@ Statuses after skeptic remediation: DONE only when a **fresh** per-cycle re-veri
 
 ---
 
+## Estate defect sweep — 2026-09-04/05 — DONE
+
+| Field | Value |
+|-------|-------|
+| **Item** | Full read-only audit of all four repos + workspace docs, then fix every confirmed defect (no new features) |
+| **Repos touched** | `loop-protocol` (v0.5.1), `localloop-backend` (v0.6.2), `localloop-site` (v0.5.2), `org-github-profile`, workspace `CLAUDE.md`/`AGENTS.md`, this ledger |
+| **Commit SHA** | loop-protocol `5a02fbb`; backend `18ae8db`; site `ec4d98c`; org `de4c107` (all direct to `main` per the user's instruction, no PRs) |
+| **Verification** | protocol: `npm run test` + 4 conformance harnesses green; backend: typecheck, Biome, 313/314 tests on a scratch `localloop_test` DB (the last one, the mirror-parity gate, went green after the site mirror re-sync), no-DB run reports 41 skipped instead of vacuous passes; site: Biome, TS typecheck, 33 smoke, 27 Playwright (static) + 28 Playwright against the nginx image; live checks after deploy recorded below |
+| **Deploy result** | `api` and `site` containers rebuilt 2026-09-05; `/health` reports 0.6.2, OpenAPI `info.version` 0.6.2 / `x-protocol-version` 0.2.0, HSTS + CSP served, export 404 served |
+| **Status** | DONE |
+| **Quality class** | high |
+
+### Highest-impact defects fixed
+- `deploy/backup.sh` ran `redis-cli SAVE` unauthenticated against the password-protected Valkey (NOAUTH, exit 0) — the nightly Redis dump was silently stale.
+- Idempotency cache keyed on `key` alone (route overwrite) and a pool-exhaustion path under concurrent keyed writes.
+- 0.6.1 turned duplicate-transfer 409s into 400s; its test stubbed a raw 23505 and could not see it.
+- SSE broadcasts could 500 a write request when one subscriber socket was dead.
+- `trustProxy: true` let clients pick their own `request.ip`.
+- Spec §8.1 lacked offer/match/transfer; three normative spec examples failed their own schemas; the pilot-readiness claim cited a matrix that lacked three of four endpoints.
+- Site: dead viewer links, nginx never served the export 404, literal backticks on four pages, section name as every page's h1, third-party font/icon requests, 12 MB of hero PNGs.
+- ~30 backend tests reported *pass* when no database was reachable.
+
+### Open items (carried)
+- **Periodic backup restore drill** — still open (from `evidence/pilot-readiness-2026-08-14/backup-restore-drill.md`); no schedule yet.
+- **Remote/offsite backups** — deferred by the user ("no remote backup server yet").
+- **Pilot-readiness claim** re-reviewed 2026-09-04, new expiry **2026-10-04** (`loop-protocol/docs/governance/pilot-readiness/PILOT-READINESS-CLAIM.md`).
+- Host-side `localloop-backend/.env` has an unauthenticated `REDIS_URL` (the compose `environment:` block overrides it for the container, so production is unaffected); host-run Redis-backed tests skip unless `REDIS_URL` with the password is exported.
+- Site Biome keeps `useExhaustiveDependencies` and `noStaticElementInteractions` as warnings on the existing header/route-script effects.
+- `security.txt` `Expires` set to 2027-09-04 — renew before then.
+
 ## Cycle 001 — DONE
 
 | Field | Value |

@@ -1,6 +1,6 @@
 # REPO_MANIFEST — localLOOP multi-repo estate
 
-Generated: 2026-07-25 (bootstrap). Update HEAD SHAs after each successful deploy cycle.
+Generated: 2026-07-25 (bootstrap); last refreshed 2026-09-05 (estate defect sweep). Update HEAD SHAs after each successful deploy cycle.
 
 Workspace root: `/home/alphin/code/local-loop-io/`
 
@@ -23,22 +23,22 @@ Canonical note: `api.local-loop.io` does **not** exist.
 |-------|-------|
 | **Name** | `localloop-backend` (`@local-loop/localloop-backend`) |
 | **Purpose** | Lab-only control-plane API: interest registry, LOOP protocol surface (materials/products/offers/matches/transfers/transactions/signals), federation, evidence, metrics |
-| **Language / framework** | TypeScript (ESM), Bun runtime, Fastify 5, Prisma 7 + `pg`, Zod, BullMQ + ioredis, better-auth (optional), MinIO/S3 |
-| **Version (package)** | `0.4.4` |
+| **Language / framework** | TypeScript (ESM), Bun runtime, Fastify 5, Prisma 7 + `pg`, Zod, BullMQ + ioredis, better-auth (optional); Biome lint. Object storage is SeaweedFS behind an nginx `storage-proxy` (S3-compatible, `MINIO_*` env names retained, unused by routes) |
+| **Version (package)** | `0.6.2` (2026-09-05) |
 | **Branch (bootstrap)** | `main` |
 | **HEAD SHA (bootstrap)** | `573917215e6b91f04129e44ec57590d234207678` |
 | **Remote** | `https://github.com/local-loop-io/localloop-backend.git` |
-| **Build** | `bun install`; `bun run prisma:generate`; Docker image from `Dockerfile` (`oven/bun:1.3.8`) |
-| **Test / typecheck** | `bun test`; `bun run typecheck`; `bun run check:schemas`; `bun run check:conformance` |
-| **Deploy target** | Docker Compose on VPS: service `api` (+ `postgres`, `redis`, `minio`, `minio-proxy`) via `docker-compose.yml` |
-| **VPS containers** | `localloop-backend-api-1`, `localloop-backend-postgres-1`, `localloop-backend-redis-1`, `localloop-backend-minio-1`, `localloop-backend-minio-proxy-1` |
+| **Build** | `bun install --frozen-lockfile`; `bun run prisma:generate`; Docker image from `Dockerfile` (`oven/bun:1.4.0`) |
+| **Test / typecheck** | `bun test` (DB-backed cases skip without Postgres; export a scratch `DATABASE_URL` on this host — the default `.env` is production); `bun run typecheck`; `bun run lint`; `bun run check:schemas`; `bun run check:conformance` |
+| **Deploy target** | Docker Compose on VPS: service `api` (+ `postgres`, `redis` [Valkey], `seaweedfs`, `storage-proxy`) via `docker-compose.yml` |
+| **VPS containers** | `localloop-backend-api-1`, `localloop-backend-postgres-1`, `localloop-backend-redis-1`, `localloop-backend-seaweedfs-1`, `localloop-backend-storage-proxy-1` |
 | **Traefik host** | `loop-api.urbnia.com` → container port `8088` |
 | **Published interfaces** | HTTP JSON / JSON-LD: `/health`, `/docs`, `/api/metrics`, `/api/privacy`, `/api/auth/status`, `/api/interest`, `/api/interest/stream`, `/api/cities*`, `/api/v1/*` (material, product, offer, match, transfer, transaction, signals, node/info, stream, relay, federate/*, federation/*, evidence, payments) |
 | **Schema ownership** | Postgres schema via Prisma (`prisma/`); Fastify route schemas; **mirrored copies** of loop-protocol JSON Schemas under `src/schemas/` (synced via `scripts/sync-schemas.ts`) |
 | **Consumers** | `localloop-site` (browser → public API for DEMO City, interest form, metrics panel); external lab clients; conformance scripts |
 | **Sibling dependencies** | **Reads** `loop-protocol` schemas (sibling path `../loop-protocol/schemas` + Core-DP profiles); OpenAPI three-way check also mirrors site `public/projects/loop-protocol/openapi.json` |
 | **Env contracts** | `DATABASE_URL`, `REDIS_URL`/`REDIS_PASSWORD`, MinIO keys, `PUBLIC_BASE_URL=https://loop-api.urbnia.com`, `ALLOWED_ORIGINS=https://localloop.urbnia.com`, optional `API_KEY`, `AUTH_ENABLED` |
-| **Co-deploy** | Deploy **with** its data plane (postgres/redis/minio). Independent of site image. Protocol is not a runtime container. |
+| **Co-deploy** | Deploy **with** its data plane (postgres/redis/seaweedfs). Independent of site image. Protocol is not a runtime container. |
 | **Independent?** | Runtime-independent of site; contract-coupled to protocol schemas and site CORS origin |
 
 ### 2. `localloop-site`
@@ -48,12 +48,12 @@ Canonical note: `api.local-loop.io` does **not** exist.
 | **Name** | `localloop-site` |
 | **Purpose** | Public docs hub, platform pages, protocol mirror, interest UX, DEMO City (static Next.js export served by nginx) |
 | **Language / framework** | Next.js 16 (App Router, `output: 'export'`, `trailingSlash: true`), React 19, Bun for build, nginx runtime |
-| **Version (package)** | `0.4.5` |
-| **Branch (bootstrap)** | `fix/openapi-mirror-sync` (not on `main` at bootstrap — do not discard) |
+| **Version (package)** | `0.5.2` (2026-09-05) |
+| **Branch (bootstrap)** | `fix/openapi-mirror-sync` at bootstrap (long since merged; `main` is the working branch) |
 | **HEAD SHA (bootstrap)** | `cf62c0b9e79331f83b5317d71d313ec5de8bc581` |
 | **Remote** | `https://github.com/local-loop-io/localloop-site.git` |
 | **Build** | `bun install --frozen-lockfile` → `bun run build` → static `out/` |
-| **Test** | `bun run test` (smoke); `bun run test:e2e` (Playwright after build); `bun run check:domains` |
+| **Test** | `bun run test` (smoke; rendered-output checks need `bun run build` first); `bun run lint`; `bun run typecheck`; `bun run test:e2e` (Playwright; set `PLAYWRIGHT_BASE_URL` to test the nginx image); `bun run check:domains` |
 | **Deploy target** | Docker Compose service `site` (`docker-compose.yml`); Traefik on `localloop.urbnia.com` |
 | **VPS container** | `localloop-site-site-1` |
 | **Published interfaces** | Static HTTP pages (`/`, `/protocol/*`, `/platform/*`, `/docs/*`, `/library/*`, `/governance/*`, `/interest/`, …); mirrored protocol assets under `/projects/loop-protocol/**` including JSON-LD contexts and `openapi.json` |
@@ -70,11 +70,11 @@ Canonical note: `api.local-loop.io` does **not** exist.
 | **Name** | `loop-protocol` (`@local-loop/loop-protocol`) |
 | **Purpose** | LOOP specification, JSON Schema, JSON-LD contexts, OpenAPI contract, Core-DP profile, examples, RFCs |
 | **Language / framework** | Spec/docs + JSON Schema; Node scripts (`ajv`) for validation; no runtime service |
-| **Version (package)** | `0.3.0` (OpenAPI info version `0.2.0`) |
+| **Version (package)** | `0.5.1` (2026-09-04; OpenAPI info version `0.2.0`, 14 paths) |
 | **Branch (bootstrap)** | `main` |
 | **HEAD SHA (bootstrap)** | `e130bd31bb824b101f240ccdf2ac0f13f9c6c3fc` |
 | **Remote** | `https://github.com/local-loop-io/loop-protocol.git` |
-| **Build / test** | `npm test` → `validate:schemas`; `npm run check:domains`; Core-DP conformance script |
+| **Build / test** | `npm run test` (never bare `npm test`: where `npm` is aliased to bun it runs Bun's test runner); `npm run check:domains`; `npm run conformance:*` |
 | **Deploy target** | **Not a VPS container.** Consumed as source of truth; mirrored into site `public/projects/loop-protocol/` and backend `src/schemas/` |
 | **Published interfaces** | Files: `schemas/*.schema.json`, `contexts/*.jsonld`, `openapi.json`, `SPECIFICATION.md`, profiles under `profiles/core-dp/` |
 | **Consumers** | `localloop-backend` (schema sync + conformance), `localloop-site` (static mirror + docs) |
@@ -187,3 +187,17 @@ Live probe at bootstrap: `GET https://loop-api.urbnia.com/health` → `{"status"
 | loop-protocol | main | `066dc41772b88c3ab5efac237ce21ffbc3d118bf` |
 | org-github-profile | main | `ee59cce5b788198773b7c4d322fe9f220c50a24f` |
 | localloop-agent | main | `a09e86ccb9eaac05e49c1ed19e013b19606aba5d` |
+
+## Version set after the 2026-09-04/05 estate defect sweep
+
+| Repo | Branch | Tag | SHA | Deployed |
+|------|--------|-----|-----|----------|
+| loop-protocol | main | `v0.5.1` | `5a02fbb` | content only (mirrored into site + backend) |
+| localloop-backend | main | `v0.6.2` | `18ae8db` | `localloop-backend-api-1` rebuilt 2026-09-05 (migrations 018, 019 applied on start) |
+| localloop-site | main | `v0.5.2` | `ec4d98c` | `localloop-site-site-1` rebuilt 2026-09-05 |
+| org-github-profile | main | — | `de4c107` | GitHub profile |
+| localloop-agent | main | — | (see git) | bookkeeping only |
+
+Also: the stranded `v0.6.1` backend release commit (it lived only on the merged
+`fix/loop-transfer-duplicate-state-error` branch) was merged into `main` with a
+`--no-ff` merge before v0.6.2, so all tags are reachable from `main`.
