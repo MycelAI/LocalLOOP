@@ -1,6 +1,6 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, type Page } from '@playwright/test';
 
-const getSectionLink = (page, label) =>
+const getSectionLink = (page: Page, label: string) =>
   page.locator('#site-nav-links .nav-section-link', { hasText: new RegExp(`^${label}$`) }).first();
 
 test('desktop header links navigate and dropdowns stay aligned', async ({ page }) => {

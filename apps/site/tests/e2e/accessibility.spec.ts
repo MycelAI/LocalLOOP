@@ -3,6 +3,14 @@ import { test, expect } from '@playwright/test';
 const criticalRoutes = ['/', '/interest/', '/platform/demo-city/', '/platform/materialdna/'];
 
 test.beforeEach(async ({ page }) => {
+  // config.js picks http://127.0.0.1:8088 for localhost hosts (where Playwright
+  // serves the build), so the public API base must be stubbed for the route
+  // mock below to ever match; otherwise the pages hit a dead local port and the
+  // mocks are inert.
+  await page.route('**/assets/js/config.js', (route) => route.fulfill({
+    contentType: 'application/javascript',
+    body: "window.LOCALLOOP_CONFIG = { apiBase: 'https://loop-api.urbnia.com' };",
+  }));
   await page.route('https://loop-api.urbnia.com/**', async (route) => {
     if (route.request().method() !== 'GET') {
       await route.fulfill({ status: 405, body: 'Public tests never write to the lab API.' });
@@ -52,7 +60,7 @@ test('key concepts scroll-links the active tab to scroll position on desktop', a
   // Scroll to the middle of the tall wrapper — the active tab should advance
   // without ever calling preventDefault on the scroll (a plain mouse-wheel
   // scroll drives this, not a click).
-  const box = await wrapper.boundingBox();
+  const box = (await wrapper.boundingBox())!;
   await page.mouse.move(720, 450);
   const steps = Math.ceil((box.height) / 300);
   for (let i = 0; i < steps; i += 1) {
@@ -66,7 +74,7 @@ test('key concepts traverses all 6 tabs before the next section becomes visible'
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto('/');
   const wrapper = page.locator('.kc-scroll-wrapper');
-  const box = await wrapper.boundingBox();
+  const box = (await wrapper.boundingBox())!;
   const nextHeading = page.getByRole('heading', { name: 'How LOOP Works' });
 
   await page.mouse.move(720, 450);
@@ -81,7 +89,7 @@ test('key concepts traverses all 6 tabs before the next section becomes visible'
     await page.waitForTimeout(15);
     const selected = await page.getByRole('tab', { selected: true }).getAttribute('id');
     seen.add(selected);
-    const headingBox = await nextHeading.boundingBox();
+    const headingBox = (await nextHeading.boundingBox())!;
     if (headingBox && headingBox.y < 900 && headingBox.y + headingBox.height > 0) {
       nextHeadingScrolledIntoView = true;
       break;
@@ -110,8 +118,8 @@ test('key concepts content never overflows the panel at common desktop widths', 
     await page.goto('/');
     const content = page.locator('.kc-panel-face.is-active .kc-panel-content');
     const cta = page.locator('.kc-panel-face.is-active .kc-panel-cta');
-    const contentBox = await content.boundingBox();
-    const ctaBox = await cta.boundingBox();
+    const contentBox = (await content.boundingBox())!;
+    const ctaBox = (await cta.boundingBox())!;
     expect(ctaBox.y + ctaBox.height).toBeLessThanOrEqual(contentBox.y + contentBox.height + 5);
   }
 });
@@ -134,8 +142,8 @@ test('key concepts media never overlaps the content column at wide desktop width
     await page.goto('/');
     const media = page.locator('.kc-panel-face.is-active .kc-panel-media');
     const content = page.locator('.kc-panel-face.is-active .kc-panel-content');
-    const mediaBox = await media.boundingBox();
-    const contentBox = await content.boundingBox();
+    const mediaBox = (await media.boundingBox())!;
+    const contentBox = (await content.boundingBox())!;
     expect(mediaBox.x + mediaBox.width).toBeLessThanOrEqual(contentBox.x + 1);
     expect(contentBox.width).toBeGreaterThanOrEqual(239);
   }
@@ -153,8 +161,8 @@ test('key concepts media keeps its true 16:9 ratio and the card never letterboxe
     await page.goto('/');
     const panel = page.locator('.kc-panel');
     const media = page.locator('.kc-panel-face.is-active .kc-panel-media');
-    const panelBox = await panel.boundingBox();
-    const mediaBox = await media.boundingBox();
+    const panelBox = (await panel.boundingBox())!;
+    const mediaBox = (await media.boundingBox())!;
     expect(mediaBox.width / mediaBox.height).toBeCloseTo(16 / 9, 1);
     if (width >= 1366) {
       expect(panelBox.height - mediaBox.height).toBeLessThanOrEqual(2);
@@ -190,20 +198,21 @@ test('key concepts mobile tab strip starts at the first tab and stays legible', 
   await page.goto('/');
   const tabsContainer = page.locator('.kc-tabs');
   const firstTab = page.locator('.kc-tab').first();
-  const containerBox = await tabsContainer.boundingBox();
-  const firstTabBox = await firstTab.boundingBox();
+  const containerBox = (await tabsContainer.boundingBox())!;
+  const firstTabBox = (await firstTab.boundingBox())!;
   expect(firstTabBox.x).toBeGreaterThanOrEqual(containerBox.x - 1);
 
   const tabs = page.locator('.kc-tab');
   const count = await tabs.count();
-  const boxes = await Promise.all(Array.from({ length: count }, (_, i) => tabs.nth(i).boundingBox()));
+  type Box = { x: number; y: number; width: number; height: number };
+  const boxes = (await Promise.all(Array.from({ length: count }, (_, i) => tabs.nth(i).boundingBox()))) as Box[];
 
   for (const box of boxes) {
     expect(box.x).toBeGreaterThanOrEqual(containerBox.x - 1);
     expect(box.x + box.width).toBeLessThanOrEqual(containerBox.x + containerBox.width + 1);
   }
 
-  const rows = [];
+  const rows: Box[][] = [];
   for (const box of boxes) {
     const row = rows.find((existing) => Math.abs(existing[0].y - box.y) < 1);
     if (row) {

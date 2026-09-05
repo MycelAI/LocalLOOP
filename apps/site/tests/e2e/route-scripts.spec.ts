@@ -18,13 +18,21 @@ test('demo feature cleans up and initializes once across header-driven client na
       }
       emit(type: string, data: unknown) {
         const event = { data: JSON.stringify(data) } as MessageEvent;
-        this.listeners.get(type)?.forEach((listener) => listener(event));
+        for (const listener of this.listeners.get(type) ?? []) listener(event);
       }
       close() { if (!this.isClosed) { this.isClosed = true; TestEventSource.closed += 1; } }
     }
     window.EventSource = TestEventSource as unknown as typeof EventSource;
     (window as typeof window & { testEventSource: typeof TestEventSource }).testEventSource = TestEventSource;
   });
+  // config.js picks http://127.0.0.1:8088 for localhost hosts (where Playwright
+  // serves the build), so the public API base must be stubbed for the route
+  // mock below to ever match; otherwise the pages hit a dead local port and the
+  // mocks are inert.
+  await page.route('**/assets/js/config.js', (route) => route.fulfill({
+    contentType: 'application/javascript',
+    body: "window.LOCALLOOP_CONFIG = { apiBase: 'https://loop-api.urbnia.com' };",
+  }));
   await page.route('https://loop-api.urbnia.com/**', (route) => route.fulfill({ status: 200, contentType: 'application/json', body: '[]' }));
 
   await page.goto('/platform/demo-city/');

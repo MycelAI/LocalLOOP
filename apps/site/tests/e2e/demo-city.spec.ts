@@ -1,12 +1,21 @@
 import { test, expect } from '@playwright/test';
 
+// Non-GET requests the page attempts against the public API are recorded here
+// and asserted empty after each test: a `throw` inside a route handler only
+// produces an unhandled rejection and cannot fail the test.
+let publicWrites: string[] = [];
+
 test.beforeEach(async ({ page }) => {
+  publicWrites = [];
   await page.route('**/assets/js/config.js', (route) => route.fulfill({
     contentType: 'application/javascript',
     body: "window.LOCALLOOP_CONFIG = { apiBase: 'https://loop-api.urbnia.com' };",
   }));
   await page.route('https://loop-api.urbnia.com/**', (route) => {
-    if (route.request().method() !== 'GET') throw new Error('DEMO City must not issue public writes');
+    if (route.request().method() !== 'GET') {
+      publicWrites.push(`${route.request().method()} ${route.request().url()}`);
+      return route.abort();
+    }
     const url = route.request().url();
     const body = url.endsWith('/health') ? { status: 'ok', db: 'ok', uptime: 60 } : [];
     return route.fulfill({
@@ -16,6 +25,10 @@ test.beforeEach(async ({ page }) => {
       body: JSON.stringify(body),
     });
   });
+});
+
+test.afterEach(() => {
+  expect(publicWrites).toEqual([]);
 });
 
 test('demo city page frames the sample portal', async ({ page }) => {
@@ -94,7 +107,7 @@ test('SSE created events refresh their matching panel and the stream indicator r
       }
       emit(type: string, data: unknown) {
         const event = { data: JSON.stringify(data) } as MessageEvent;
-        this.listeners.get(type)?.forEach((listener) => listener(event));
+        for (const listener of this.listeners.get(type) ?? []) listener(event);
       }
       close() {}
     }

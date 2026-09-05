@@ -7,6 +7,79 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.2] - 2026-09-05
+
+### Fixed
+- Six dead links on the protocol-mirror index page (`/projects/loop-protocol/`)
+  pointed at a `/viewer.html` that does not exist; they now open the rendered
+  pages or the plain-text mirror files, and the page is `noindex` (it is not
+  linked from the navigation or sitemap).
+- nginx never served the export's `404.html` (no `error_page` directive), so
+  unknown paths got nginx's bare default page.
+- Four docs pages rendered literal backticks around paths and endpoints (JSX
+  text is not Markdown); they are `<code>` elements now.
+- The 404 page had no `<title>`, description or canonical.
+- Homepage counted 11 schemas (there are 12) and labelled the spec version as a
+  protocol version; the schema library lists all 12 schemas (`federate-accepted`,
+  `node-info`, `transaction`, `loopsignal`, `loopcoin` were missing).
+- Every content page's `<h1>` was the section name ("Docs", "Protocol", …) and
+  the real page title an `<h2>`; the page title is the `<h1>` now, panel
+  headings follow as `<h2>`/`<h3>`, the hub cards no longer skip from `<h2>` to
+  `<h4>`, mirrored Markdown documents render their headings one level down so a
+  page keeps a single `<h1>`, and DEMO City (which had no `<h1>` at all) gets one.
+- The Key Concepts "LOOP" description read as a live capability claim ("an open,
+  federated standard… enables municipalities…"); it is hedged like its siblings,
+  in line with the lab-demo-only policy.
+- The interest page collected personal data with no linked notice; the consent
+  label, the "Privacy & retention" block and the footer now link the published
+  data-protection assessment and the contact address. On API failure the public
+  list no longer shows invented people — only the unavailability notice.
+- `public/.well-known/security.txt` lacked the mandatory `Expires` field
+  (RFC 9116); `/.well-known/change-password` is a 302 to the security page
+  instead of a text file.
+- The API docs page still described search, signals, transactions and the
+  federated announce/offer routes as future work; all are implemented.
+- Accessibility: decorative icons carry `aria-hidden`, the static maturity
+  banner no longer announces itself as a live region on every load, and the
+  `Card` icon is hidden from assistive tech like every hand-written equivalent.
+- Playwright: two specs mocked `https://loop-api.urbnia.com` while the page
+  under test called `http://127.0.0.1:8088` (the mocks never fired); the DEMO
+  City spec's read-only guarantee used a `throw` inside a route handler, which
+  cannot fail a test — writes are now collected and asserted empty.
+- Vanilla header script matched the active section against its own stale prefix
+  list; it uses `matchPrefixes` from `navigation.json` like the React header.
+- Duplicate top-level CSS rules merged (`.card`, `.hero-section .hero-visual`,
+  and the byte-identical second copies of `.notice-success`/`.notice-error`);
+  dead `main.js` global include and the never-updated homepage API status dot
+  removed; `Redirect` tautology, `MarkdownRenderer`'s obsolete `inline` prop,
+  `MermaidBlock` unhandled rejection, `console.warn` in production and a stray
+  `rel="noreferrer"` cleaned up; snake_case identifiers renamed.
+- Copy: "the circular economy"; heading without trailing period; Code of
+  Conduct card links to the Code of Conduct.
+
+### Changed
+- Fonts (Fraunces, Space Grotesk, IBM Plex Mono) and Phosphor icons are
+  self-hosted under `public/assets/` instead of loading from Google Fonts and
+  jsDelivr, so no visitor request leaves the origin except to the lab API —
+  consistent with the published DPIA.
+- nginx sends `Strict-Transport-Security` (Traefik did not) and a
+  `Content-Security-Policy` (self-only, plus the lab API for `connect-src`);
+  security headers live in one included file; `/_next/static/` is cached for a
+  year as immutable and `/assets/` for a week; directory redirects are relative
+  (`absolute_redirect off`) so they no longer name `http://` and drop the port
+  behind the proxy.
+- The six Key Concepts hero images are 1600px WebP (64–132 KB each instead of
+  1.7–2.3 MB PNGs) with explicit dimensions.
+- Biome (`bun run lint`) and a TypeScript 7 typecheck of the Playwright specs
+  (`bun run typecheck`) added and run in CI; CI now also runs on pushes to
+  `main`, not only on pull requests. Two rules (`useExhaustiveDependencies`,
+  `noStaticElementInteractions`) report as warnings on the existing header and
+  route-script effects rather than being rewritten in this pass.
+- Dockerfile on `oven/bun:1.4.0-alpine` and `nginx:1.28-alpine`.
+- Smoke tests assert against the built export (no literal backticks, exactly one
+  `<h1>` per page, 404 title) in addition to source greps; a CSP spec and a
+  no-third-party-request spec were added to the Playwright suite.
+
 ## [0.5.1] - 2026-08-21
 
 ### Changed
@@ -405,7 +478,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-[Unreleased]: https://github.com/local-loop-io/localloop-site/compare/v0.4.5...HEAD
+[Unreleased]: https://github.com/local-loop-io/localloop-site/compare/v0.5.2...HEAD
+[0.5.2]: https://github.com/local-loop-io/localloop-site/compare/v0.5.1...v0.5.2
 [0.4.5]: https://github.com/local-loop-io/localloop-site/compare/v0.4.4...v0.4.5
 [0.2.8]: https://github.com/local-loop-io/localloop-site/compare/v0.2.7...v0.2.8
 [0.2.7]: https://github.com/local-loop-io/localloop-site/compare/v0.2.6...v0.2.7

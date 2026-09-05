@@ -264,7 +264,7 @@ test('every canonical filesystem page owns title and correct canonical path meta
   for (const { filePath, route } of staticPages) {
     const content = fs.readFileSync(filePath, 'utf8');
     const calls = [...content.matchAll(/createMetadata\(\s*\{([\s\S]*?)\}\s*\)/g)].map((match) => match[1]);
-    const metadata = calls.find((call) => new RegExp(`path\\s*:\\s*['\"]${route.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}['\"]`).test(call));
+    const metadata = calls.find((call) => new RegExp(`path\\s*:\\s*['"]${route.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}['"]`).test(call));
     assert.ok(canonicalPaths.has(route), `canonical route inventory is missing ${route}`);
     assert.ok(metadata, `${route} must define its own createMetadata path in ${filePath}`);
     assert.match(metadata, /title\s*:/, `${route} is missing a metadata title`);
@@ -276,7 +276,7 @@ test('every canonical filesystem page owns title and correct canonical path meta
 });
 
 test('nginx static server declares baseline security headers', () => {
-  const conf = read(['nginx.conf']);
+  const conf = read(['security-headers.conf']);
   assert.ok(conf.includes('X-Content-Type-Options'));
   assert.ok(conf.includes('nosniff'));
   assert.ok(conf.includes('X-Frame-Options'));
@@ -318,9 +318,11 @@ test('ads.txt declares no ads', () => {
   assert.ok(content.includes('No ads'));
 });
 
-test('change-password well-known points at security guide', () => {
-  const content = read(['public', '.well-known', 'change-password']);
-  assert.ok(content.includes('/docs/security'));
+test('well-known change-password is an nginx redirect to the security page', () => {
+  const conf = read(['nginx.conf']);
+  assert.ok(conf.includes('location = /.well-known/change-password'));
+  assert.ok(conf.includes('return 302 /docs/security/'));
+  assert.ok(!fs.existsSync(path.join(process.cwd(), 'public', '.well-known', 'change-password')), 'static file would shadow the redirect');
 });
 
 // Agent cycle stamps. Previously one near-identical test per cycle; now
@@ -352,3 +354,54 @@ test('agent stamps are present and well formed', () => {
   }
 });
 
+
+const outDir = path.join(process.cwd(), 'out');
+const hasBuild = fs.existsSync(path.join(outDir, 'index.html'));
+
+test('built docs pages contain no literal backticks and exactly one h1', { skip: !hasBuild && 'run `bun run build` first' }, () => {
+  const pages = walk(outDir).filter((filePath) => filePath.endsWith('index.html'));
+  assert.ok(pages.length > 30, `expected a full export, found ${pages.length} pages`);
+  for (const filePath of pages) {
+    const html = fs.readFileSync(filePath, 'utf8');
+    const main = html.slice(html.indexOf('<main'), html.indexOf('</main>'));
+    const text = main.replace(/<script[\s\S]*?<\/script>/g, '').replace(/<pre[\s\S]*?<\/pre>/g, '').replace(/<code[\s\S]*?<\/code>/g, '').replace(/<[^>]+>/g, '');
+    assert.ok(!text.includes('`'), `${path.relative(outDir, filePath)} renders a literal backtick`);
+    // Alias routes (noindex) render only a client-side redirect and have no heading.
+    if (html.includes('name="robots" content="noindex')) continue;
+    const h1Count = (main.match(/<h1[\s>]/g) || []).length;
+    assert.equal(h1Count, 1, `${path.relative(outDir, filePath)} has ${h1Count} <h1> elements`);
+  }
+});
+
+test('built 404 page has a title and a canonical link', { skip: !hasBuild && 'run `bun run build` first' }, () => {
+  const html = fs.readFileSync(path.join(outDir, '404.html'), 'utf8');
+  assert.match(html, /<title>Page not found \| localLOOP<\/title>/);
+  assert.ok(html.includes('rel="canonical"'));
+  assert.ok(html.includes('noindex'));
+});
+
+test('nginx serves the export 404, caches hashed assets, and sends HSTS + CSP', () => {
+  const conf = read(['nginx.conf']);
+  const headers = read(['security-headers.conf']);
+  assert.ok(conf.includes('error_page 404 /404.html'));
+  assert.ok(conf.includes('/_next/static/'));
+  assert.ok(conf.includes('immutable'));
+  assert.ok(headers.includes('Strict-Transport-Security'));
+  assert.ok(headers.includes('Content-Security-Policy'));
+  assert.ok(headers.includes("connect-src 'self' https://loop-api.urbnia.com"));
+  assert.ok(!headers.includes('cdn.jsdelivr.net'), 'CSP must not need a CDN once fonts/icons are self-hosted');
+});
+
+test('no page loads fonts or icons from third-party origins', () => {
+  const layout = read(['app', 'layout.jsx']);
+  const css = read(['public', 'assets', 'css', 'site.css']);
+  assert.ok(!layout.includes('cdn.jsdelivr.net'));
+  assert.ok(!css.includes('fonts.googleapis.com'));
+  assert.ok(fs.existsSync(path.join(process.cwd(), 'public', 'assets', 'css', 'fonts.css')));
+  assert.ok(fs.existsSync(path.join(process.cwd(), 'public', 'assets', 'icons', 'phosphor', 'bold', 'Phosphor-Bold.woff2')));
+});
+
+test('security.txt carries the mandatory Expires field', () => {
+  const txt = read(['public', '.well-known', 'security.txt']);
+  assert.match(txt, /^Expires: \d{4}-\d{2}-\d{2}T/m);
+});

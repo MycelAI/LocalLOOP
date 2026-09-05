@@ -1,6 +1,14 @@
 import { test, expect } from '@playwright/test';
 
 test.beforeEach(async ({ page }) => {
+  // config.js selects the local dev API on localhost hosts; point the page at the
+  // production base (allowed by the nginx CSP connect-src) so the mocks below
+  // are what the page actually talks to.
+  await page.route('**/assets/js/config.js', (route) => route.fulfill({
+    contentType: 'application/javascript',
+    body: "window.LOCALLOOP_CONFIG = { apiBase: 'https://loop-api.urbnia.com' };",
+  }));
+  await page.route('**/api/metrics', (route) => route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ metrics: {}, uptimeSeconds: 60 }) }));
   await page.route('**/api/interest/stream', (route) => route.fulfill({ status: 200, body: '' }));
 
   await page.route('**/api/interest', async (route) => {
