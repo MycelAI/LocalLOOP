@@ -7,8 +7,8 @@ const CONCEPTS = [
     num: '01',
     name: 'LOOP',
     fullName: 'Local Optimization with Overflow Protocol',
-    image: '/assets/images/localloop-01-loop-protocol-overview-16x9.png',
-    desc: 'An open, federated standard for tracking material and product flows between cities. LOOP enables municipalities to share surplus resources, coordinate circular economy initiatives, and maintain data sovereignty while participating in regional exchanges — built around MaterialDNA, ProductDNA, LoopCoin, and LoopSignal.',
+    image: '/assets/images/localloop-01-loop-protocol-overview-16x9.webp',
+    desc: 'A draft, federated protocol for describing material and product flows between cities. It is intended to let municipalities share surplus resources and coordinate circular-economy initiatives while keeping data sovereignty; today it exists as schemas and a lab demo — no such exchange is operating. Built around MaterialDNA, ProductDNA, LoopCoin, and LoopSignal.',
     href: '/protocol/',
     cta: 'Read the spec',
   },
@@ -17,7 +17,7 @@ const CONCEPTS = [
     num: '02',
     name: 'MaterialDNA',
     fullName: 'Material Identity & Digital Passport',
-    image: '/assets/images/localloop-02-materialdna-material-identity-16x9.png',
+    image: '/assets/images/localloop-02-materialdna-material-identity-16x9.webp',
     desc: 'A draft identity model for physical materials. Lab examples can include composition, origin, quality, and chain-of-custody fields to discuss traceability; the data is not independently verified or a permanent lifecycle record.',
     href: '/platform/materialdna/',
     cta: 'Explore MaterialDNA',
@@ -27,7 +27,7 @@ const CONCEPTS = [
     num: '03',
     name: 'ProductDNA',
     fullName: 'Draft Product Identity Model',
-    image: '/assets/images/localloop-03-productdna-product-passport-16x9.png',
+    image: '/assets/images/localloop-03-productdna-product-passport-16x9.webp',
     desc: 'A draft product-identity model for lab exploration. It includes product category, condition, manufacturer, lifecycle stage, and references to constituent MaterialDNA entries; it does not demonstrate Digital Product Passport compliance or deployment readiness.',
     href: '/platform/productdna/',
     cta: 'Explore ProductDNA',
@@ -37,7 +37,7 @@ const CONCEPTS = [
     num: '04',
     name: 'LoopCoin',
     fullName: 'Local Settlement Currency',
-    image: '/assets/images/localloop-04-loopcoin-local-settlement-16x9.png',
+    image: '/assets/images/localloop-04-loopcoin-local-settlement-16x9.webp',
     desc: 'A draft node-issued value model for lab scenarios. Its example transfer, expiry, decay, and clearing fields do not operate a currency or demonstrate settlement between peers.',
     href: '/platform/loopcoin/',
     cta: 'Explore LoopCoin',
@@ -47,7 +47,7 @@ const CONCEPTS = [
     num: '05',
     name: 'LoopSignal',
     fullName: 'Community Preference Signal',
-    image: '/assets/images/localloop-05-loopsignal-community-preference-16x9.png',
+    image: '/assets/images/localloop-05-loopsignal-community-preference-16x9.webp',
     desc: 'A draft preference-signal model for lab scenarios. It can be used as an illustrative routing input, but it does not collect community preferences or determine operational priorities.',
     href: '/platform/loopsignal/',
     cta: 'Explore LoopSignal',
@@ -57,7 +57,7 @@ const CONCEPTS = [
     num: '06',
     name: 'LoopCost',
     fullName: 'Routing Cost Function',
-    image: '/assets/images/localloop-06-loopcost-routing-cost-16x9.png',
+    image: '/assets/images/localloop-06-loopcost-routing-cost-16x9.webp',
     desc: 'A draft routing-cost model: base price plus export and import penalties derived from LoopSignals, plus distance cost. Its parameters can be explored in lab examples; outcomes such as local pricing or savings are not guaranteed.',
     href: '/platform/loopcost/',
     cta: 'Explore LoopCost',
@@ -80,7 +80,9 @@ const CONCEPTS = [
  */
 export function KeyConceptsShowcase() {
   const [active, setActive] = useState(0);
-  const [reducedMotion, setReducedMotion] = useState(false);
+  // Tracked so the media-query listener has a state hook to write to; the
+  // pinning itself is disabled by CSS under prefers-reduced-motion.
+  const [, setReducedMotion] = useState(false);
   // Mirrors the `@media (max-width: 900px)` breakpoint in site.css that
   // collapses the sticky/tall-wrapper mechanism. Driven explicitly by a media
   // query rather than inferred from measured scroll distance: a narrow-viewport
@@ -195,6 +197,7 @@ export function KeyConceptsShowcase() {
                 id={`${instanceId}-panel-${c.slug}`}
                 role="tabpanel"
                 aria-labelledby={`${instanceId}-tab-${c.slug}`}
+                // biome-ignore lint/a11y/noNoninteractiveTabindex: tabpanels are focusable per the WAI-ARIA tabs pattern
                 tabIndex={0}
                 inert={active !== i ? '' : undefined}
               >
@@ -203,7 +206,10 @@ export function KeyConceptsShowcase() {
                     src={c.image}
                     alt={`${c.name} — ${c.fullName}`}
                     className="kc-panel-img"
+                    width={1600}
+                    height={900}
                     loading={i === 0 ? 'eager' : 'lazy'}
+                    decoding="async"
                   />
                 </div>
 
