@@ -32,13 +32,30 @@ Statuses after skeptic remediation: DONE only when a **fresh** per-cycle re-veri
 - Site: dead viewer links, nginx never served the export 404, literal backticks on four pages, section name as every page's h1, third-party font/icon requests, 12 MB of hero PNGs.
 - ~30 backend tests reported *pass* when no database was reachable.
 
+### Follow-up 2026-09-05 (same sweep, second pass) — DONE
+- Backup + health-check systemd timers installed from the fixed unit files (path
+  substituted by `deploy/setup.sh` logic) and enabled; both services run once
+  successfully (see journal); the backup verifies the authenticated Valkey `SAVE`.
+- Host `.env`: `REDIS_URL` now carries the password; `MINIO_*` renamed to
+  `STORAGE_*` (backup kept as `.env.bak-<timestamp>` next to it).
+- Pilot-readiness claim re-reviewed with the addendum checklist recorded inline;
+  expiry 2026-12-04 (90-day default).
+- Site: the two Biome warnings fixed properly; `next` 16.3.4 (Dependabot #107
+  closed as superseded); script CSP uses per-page hashes instead of
+  `'unsafe-inline'`; `security.txt` renewal guarded by a smoke test (fails 60
+  days before `Expires`).
+- Backend: Valkey 9.0 (digest-pinned), `STORAGE_*` config with `MINIO_*`
+  fallback, transaction writes reach the evidence log (protocol 0.5.2 adds the
+  `transaction` subject type; migration 020), `004b_interest_demo.sql` with a
+  runner alias so the rename never re-runs.
+- Releases: loop-protocol v0.5.2, backend v0.6.4, site v0.5.3 — all deployed.
+
 ### Open items (carried)
-- **Periodic backup restore drill** — still open (from `evidence/pilot-readiness-2026-08-14/backup-restore-drill.md`); no schedule yet.
+- **Periodic backup restore drill** — the nightly backup timer now runs, but a scheduled *restore* test is still open (from `evidence/pilot-readiness-2026-08-14/backup-restore-drill.md`).
 - **Remote/offsite backups** — deferred by the user ("no remote backup server yet").
-- **Pilot-readiness claim** re-reviewed 2026-09-04, new expiry **2026-10-04** (`loop-protocol/docs/governance/pilot-readiness/PILOT-READINESS-CLAIM.md`).
-- Host-side `localloop-backend/.env` has an unauthenticated `REDIS_URL` (the compose `environment:` block overrides it for the container, so production is unaffected); host-run Redis-backed tests skip unless `REDIS_URL` with the password is exported.
-- Site Biome keeps `useExhaustiveDependencies` and `noStaticElementInteractions` as warnings on the existing header/route-script effects.
-- `security.txt` `Expires` set to 2027-09-04 — renew before then.
+- **Pilot-readiness claim** expires **2026-12-04**; re-review before then.
+- `security.txt` `Expires` 2027-09-04 — CI fails 60 days ahead as a reminder.
+- CSP `style-src` still needs `'unsafe-inline'` (React style props, Mermaid SVG).
 
 ## Cycle 001 — DONE
 
