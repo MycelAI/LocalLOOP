@@ -36,6 +36,9 @@ Statuses after skeptic remediation: DONE only when a **fresh** per-cycle re-veri
 - Backup + health-check systemd timers installed from the fixed unit files (path
   substituted by `deploy/setup.sh` logic) and enabled; both services run once
   successfully (see journal); the backup verifies the authenticated Valkey `SAVE`.
+  Gotcha found and fixed on the way: `ReadWritePaths=` is resolved before any
+  `Exec*` step, so the unit cannot create its own `backups/` dir (226/NAMESPACE);
+  `deploy/setup.sh` creates it. Next scheduled run: 2026-09-06 02:30 UTC.
 - Host `.env`: `REDIS_URL` now carries the password; `MINIO_*` renamed to
   `STORAGE_*` (backup kept as `.env.bak-<timestamp>` next to it).
 - Pilot-readiness claim re-reviewed with the addendum checklist recorded inline;
