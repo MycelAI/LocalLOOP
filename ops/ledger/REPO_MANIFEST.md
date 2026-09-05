@@ -24,7 +24,7 @@ Canonical note: `api.local-loop.io` does **not** exist.
 | **Name** | `localloop-backend` (`@local-loop/localloop-backend`) |
 | **Purpose** | Lab-only control-plane API: interest registry, LOOP protocol surface (materials/products/offers/matches/transfers/transactions/signals), federation, evidence, metrics |
 | **Language / framework** | TypeScript (ESM), Bun runtime, Fastify 5, Prisma 7 + `pg`, Zod, BullMQ + ioredis, better-auth (optional); Biome lint. Object storage is SeaweedFS behind an nginx `storage-proxy` (S3-compatible, `MINIO_*` env names retained, unused by routes) |
-| **Version (package)** | `0.6.2` (2026-09-05) |
+| **Version (package)** | `0.6.3` (2026-09-05) |
 | **Branch (bootstrap)** | `main` |
 | **HEAD SHA (bootstrap)** | `573917215e6b91f04129e44ec57590d234207678` |
 | **Remote** | `https://github.com/local-loop-io/localloop-backend.git` |
@@ -192,8 +192,8 @@ Live probe at bootstrap: `GET https://loop-api.urbnia.com/health` → `{"status"
 
 | Repo | Branch | Tag | SHA | Deployed |
 |------|--------|-----|-----|----------|
-| loop-protocol | main | `v0.5.1` | `5a02fbb` | content only (mirrored into site + backend) |
-| localloop-backend | main | `v0.6.2` | `18ae8db` | `localloop-backend-api-1` rebuilt 2026-09-05 (migrations 018, 019 applied on start) |
+| loop-protocol | main | `v0.5.1` | `4566417` (lockfile fix after the tag; tag at `5a02fbb`) | content only (mirrored into site + backend) |
+| localloop-backend | main | `v0.6.3` | `22275cd` | `localloop-backend-api-1` rebuilt 2026-09-05 (migrations 018, 019 applied on start at 0.6.2; 0.6.3 is the dependency-audit release) |
 | localloop-site | main | `v0.5.2` | `ec4d98c` | `localloop-site-site-1` rebuilt 2026-09-05 |
 | org-github-profile | main | — | `de4c107` | GitHub profile |
 | localloop-agent | main | — | (see git) | bookkeeping only |
