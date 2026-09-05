@@ -4,15 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>LOOP Project</title>
+    <meta name="robots" content="noindex, follow" />
+    <link rel="stylesheet" href="/assets/css/fonts.css" />
+    <link rel="stylesheet" href="/assets/icons/phosphor/bold/style.css" />
     <link rel="stylesheet" href="/assets/css/site.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/thin/style.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/bold/style.css"
-    />
   </head>
   <body>
     <header class="site-header" data-site-header data-site-subtitle="Protocol Repository" data-active-section="protocol"></header>
@@ -26,15 +21,15 @@
       <div class="hero-top">
         <div class="hero-wide-content">
           <div class="hero-kicker">Protocol Repository</div>
-          <h2>LOOP protocol reference artifacts.</h2>
+          <h1>LOOP protocol reference artifacts</h1>
           <p>
             The repository mirror for specifications, schemas, examples, and RFC guidance.
-            Use the viewer to inspect markdown and JSON payloads used across the localLOOP
-            protocol stack.
+            Files below are served as plain text; the rendered versions live under
+            <a href="/protocol/">Protocol</a> and <a href="/library/">Library</a>.
           </p>
           <div class="cta-row">
-            <a class="button primary" href="/viewer.html?path=projects/loop-protocol/SPECIFICATION.md&title=LOOP%20Protocol%20Specification">Open specification</a>
-            <a class="button secondary" href="/viewer.html?path=projects/loop-protocol/README.md&title=README">View README</a>
+            <a class="button primary" href="/protocol/spec/">Open specification</a>
+            <a class="button secondary" href="/projects/loop-protocol/README.md">View README</a>
           </div>
         </div>
         <div class="hero-visual" aria-hidden="true">
@@ -51,7 +46,7 @@
         </div>
         <div class="hero-panel">
           <h3>Schemas</h3>
-          <p>JSON schemas for MaterialDNA, LoopCoin, and LoopSignal.</p>
+          <p>JSON schemas for MaterialDNA, ProductDNA, Offer, Match, Transfer, and the node/transaction payloads.</p>
         </div>
         <div class="hero-panel">
           <h3>Examples</h3>
@@ -61,39 +56,39 @@
     </section>
 
     <section class="section">
-      <h3>Repository artifacts</h3>
+      <h2>Repository artifacts</h2>
       <div class="grid">
         <div class="card has-icon">
           <span class="card-icon" aria-hidden="true">
-            <i class="ph-thin ph-book-open-text"></i>
+            <i class="ph-bold ph-book-open-text"></i>
           </span>
           <h4>Core docs</h4>
           <p>README, security policy, and contribution guidance.</p>
-          <a href="/viewer.html?path=projects/loop-protocol/CONTRIBUTING.md&title=Contributing">Contributing</a>
+          <a href="/projects/loop-protocol/CONTRIBUTING.md">Contributing</a>
         </div>
         <div class="card has-icon">
           <span class="card-icon" aria-hidden="true">
-            <i class="ph-thin ph-notebook"></i>
+            <i class="ph-bold ph-notebook"></i>
           </span>
           <h4>Docs folder</h4>
           <p>Guides, glossary, FAQ, and runbooks.</p>
-          <a href="/viewer.html?path=projects/loop-protocol/docs/glossary.md&title=Glossary">Open glossary</a>
+          <a href="/docs/glossary/">Open glossary</a>
         </div>
         <div class="card has-icon">
           <span class="card-icon" aria-hidden="true">
-            <i class="ph-thin ph-brackets-curly"></i>
+            <i class="ph-bold ph-brackets-curly"></i>
           </span>
           <h4>Schemas</h4>
           <p>JSON schemas for every payload type.</p>
-          <a href="/viewer.html?path=projects/loop-protocol/schemas/README.md&title=Schema%20Library">Open schema library</a>
+          <a href="/library/schemas/">Open schema library</a>
         </div>
         <div class="card has-icon">
           <span class="card-icon" aria-hidden="true">
-            <i class="ph-thin ph-flow-arrow"></i>
+            <i class="ph-bold ph-flow-arrow"></i>
           </span>
           <h4>Examples</h4>
           <p>Validated examples used in tests.</p>
-          <a href="/viewer.html?path=projects/loop-protocol/examples/README.md&title=Examples">Open examples</a>
+          <a href="/library/examples/">Open examples</a>
         </div>
       </div>
     </section>
