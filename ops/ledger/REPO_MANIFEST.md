@@ -193,7 +193,7 @@ Live probe at bootstrap: `GET https://loop-api.urbnia.com/health` → `{"status"
 | Repo | Branch | Tag | SHA | Deployed |
 |------|--------|-----|-----|----------|
 | loop-protocol | main | `v0.5.1` | `4566417` (lockfile fix after the tag; tag at `5a02fbb`) | content only (mirrored into site + backend) |
-| localloop-backend | main | `v0.6.3` | `22275cd` | `localloop-backend-api-1` rebuilt 2026-09-05 (migrations 018, 019 applied on start at 0.6.2; 0.6.3 is the dependency-audit release) |
+| localloop-backend | main | `v0.6.3` | `d0cf099` (tag at `22275cd`; CI-skip fix after the tag) | `localloop-backend-api-1` rebuilt 2026-09-05 (migrations 018, 019 applied on start at 0.6.2; 0.6.3 is the dependency-audit release) |
 | localloop-site | main | `v0.5.2` | `ec4d98c` | `localloop-site-site-1` rebuilt 2026-09-05 |
 | org-github-profile | main | — | `de4c107` | GitHub profile |
 | localloop-agent | main | — | (see git) | bookkeeping only |

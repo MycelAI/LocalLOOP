@@ -16,7 +16,7 @@ Statuses after skeptic remediation: DONE only when a **fresh** per-cycle re-veri
 |-------|-------|
 | **Item** | Full read-only audit of all four repos + workspace docs, then fix every confirmed defect (no new features) |
 | **Repos touched** | `loop-protocol` (v0.5.1), `localloop-backend` (v0.6.2, then v0.6.3 for the dependency audit), `localloop-site` (v0.5.2), `org-github-profile`, workspace `CLAUDE.md`/`AGENTS.md`, this ledger |
-| **Commit SHA** | loop-protocol `4566417`; backend `22275cd`; site `ec4d98c`; org `de4c107` (all direct to `main` per the user's instruction, no PRs) |
+| **Commit SHA** | loop-protocol `4566417`; backend `d0cf099`; site `ec4d98c`; org `de4c107` (all direct to `main` per the user's instruction, no PRs) |
 | **Verification** | protocol: `npm run test` + 4 conformance harnesses green; backend: typecheck, Biome, 313/314 tests on a scratch `localloop_test` DB (the last one, the mirror-parity gate, went green after the site mirror re-sync), no-DB run reports 41 skipped instead of vacuous passes; site: Biome, TS typecheck, 33 smoke, 27 Playwright (static) + 28 Playwright against the nginx image; live checks after deploy recorded below |
 | **Deploy result** | `api` and `site` containers rebuilt 2026-09-05; `/health` reports 0.6.3, OpenAPI `x-protocol-version` 0.2.0, HSTS + CSP served, export 404 served. First CI runs after the push failed on the pre-existing `bun audit` / `npm audit` gates (fastify, fast-uri, mysql2, deepmerge-ts advisories); fixed in backend v0.6.3 and a loop-protocol lockfile commit. Fastify 5.12.1+ removed numeric hop-count `trustProxy`, so the `trustProxy: 1` from v0.6.2 was replaced by a trust function for the immediate peer |
 | **Status** | DONE |
