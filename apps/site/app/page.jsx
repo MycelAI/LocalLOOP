@@ -39,9 +39,9 @@ export default function HomePage() {
           </p>
           <MaturityStatus className="hero-maturity">Lab demo only — draft schemas and controlled demonstrations, no public pilots or production deployments.</MaturityStatus>
           <div className="hero-actions">
-            <a className="button primary" href="/protocol/">
-              <i className="ph-bold ph-book-open" aria-hidden="true"></i>
-              Read the Spec
+            <a className="button primary" href="/protocol/what-is-loop/">
+              <i className="ph-bold ph-lightbulb" aria-hidden="true"></i>
+              What is LOOP?
             </a>
             <a className="button secondary" href="/interest/">
               <i className="ph-bold ph-hand-waving" aria-hidden="true"></i>
