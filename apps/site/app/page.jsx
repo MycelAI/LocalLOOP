@@ -2,6 +2,7 @@ import { SiteHeader } from './components/SiteHeader';
 import { SiteFooter } from './components/SiteFooter';
 import { Card } from './components/ui/Card';
 import { CardGrid } from './components/ui/CardGrid';
+import { LoopHeroAnimation } from '@/app/components/LoopHeroAnimation';
 import { KeyConceptsShowcase } from './components/KeyConceptsShowcase';
 import { MaturityStatus } from './components/MaturityStatus';
 import { createMetadata } from './config/metadata';
@@ -22,7 +23,6 @@ export default function HomePage() {
       <section className="hero-section">
         <div className="hero-bg" aria-hidden="true">
           <div className="hero-gradient"></div>
-          <div className="hero-grid"></div>
         </div>
         <div className="hero-content">
           <div className="hero-badge">
@@ -64,20 +64,7 @@ export default function HomePage() {
               <span className="hero-stat-label">Demo only</span>
             </div>
           </div>
-        </div>
-        <div className="hero-visual">
-          <div className="hero-loop-icon">
-            <img
-              src="/assets/local-loop-logo.png"
-              alt=""
-              aria-hidden="true"
-              width={120}
-              height={120}
-            />
-          </div>
-          <div className="hero-orbit hero-orbit-1"></div>
-          <div className="hero-orbit hero-orbit-2"></div>
-          <div className="hero-orbit hero-orbit-3"></div>
+          <LoopHeroAnimation />
         </div>
       </section>
 
