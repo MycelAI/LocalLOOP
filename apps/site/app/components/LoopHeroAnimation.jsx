@@ -16,7 +16,6 @@ const TOTAL = CHAPTERS.length * CHAPTER_SECONDS;
 export function LoopHeroAnimation() {
   const mountRef = useRef(null);
   const engineRef = useRef(null);
-  const [ready, setReady] = useState(false);
   const [failed, setFailed] = useState(false);
   const [playing, setPlaying] = useState(false);
   const [chapter, setChapter] = useState(0);
@@ -50,8 +49,25 @@ export function LoopHeroAnimation() {
   }, []);
 
   useEffect(() => {
-    const mount = mountRef.current;
-    if (!mount) return;
+    const anchor = mountRef.current;
+    if (!anchor) return;
+
+    // The canvas is a background layer for the whole hero, so it is appended
+    // to the section rather than to this component's own box.
+    const section = anchor.closest('.hero-section');
+    const layer = document.createElement('div');
+    layer.className = 'hero-anim-layer';
+    (section || anchor).prepend(layer);
+
+    const credit = document.createElement('a');
+    credit.className = 'hero-anim-credit';
+    credit.href = 'https://www.openstreetmap.org/copyright';
+    credit.rel = 'noreferrer noopener';
+    credit.target = '_blank';
+    credit.textContent = '\u00a9 OpenStreetMap';
+    layer.appendChild(credit);
+
+    const mount = layer;
 
     let disposed = false;
     let cleanup = () => {};
@@ -124,13 +140,13 @@ export function LoopHeroAnimation() {
       const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       engine.playing = !reduced;
       setPlaying(engine.playing);
-      setReady(true);
 
       cleanup = () => {
         cancelAnimationFrame(raf);
         ro.disconnect();
         io.disconnect();
         stage.dispose();
+        layer.remove();
         delete window.__loopSeek;
         engineRef.current = null;
       };
@@ -146,17 +162,7 @@ export function LoopHeroAnimation() {
 
   if (failed) {
     return (
-      <figure className="loop-anim">
-        <div className="loop-anim-stage">
-          <img
-            alt=""
-            aria-hidden="true"
-            className="loop-anim-placeholder"
-            height={120}
-            src="/assets/local-loop-logo.png"
-            width={120}
-          />
-        </div>
+      <figure className="loop-anim" ref={mountRef}>
         <figcaption className="loop-anim-caption">
           <span className="loop-anim-copy">
             LOOP registers material and product identity, publishes community signals, prices a
@@ -169,20 +175,7 @@ export function LoopHeroAnimation() {
   }
 
   return (
-    <figure className="loop-anim">
-      <div className="loop-anim-stage" ref={mountRef}>
-        {!ready ? (
-          <img
-            alt=""
-            aria-hidden="true"
-            className="loop-anim-placeholder"
-            height={120}
-            src="/assets/local-loop-logo.png"
-            width={120}
-          />
-        ) : null}
-      </div>
-
+    <figure className="loop-anim" ref={mountRef}>
       <figcaption className="loop-anim-caption">
         <span className="loop-anim-step">
           {chapter + 1} / {CHAPTERS.length}
@@ -191,14 +184,6 @@ export function LoopHeroAnimation() {
           <strong>{active.name}</strong> {active.line}
         </span>
       </figcaption>
-
-      <p className="loop-anim-credit">
-        Illustrative scenario. Basemap &copy;{' '}
-        <a href="https://www.openstreetmap.org/copyright" rel="noreferrer noopener" target="_blank">
-          OpenStreetMap
-        </a>{' '}
-        contributors.
-      </p>
 
       <div className="loop-anim-controls">
         <button

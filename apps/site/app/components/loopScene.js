@@ -1,12 +1,6 @@
 import * as THREE from 'three';
 import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment.js';
 import { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeometry.js';
-import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
-import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
-import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
-import { OutputPass } from 'three/examples/jsm/postprocessing/OutputPass.js';
-import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js';
-import { VignetteShader } from 'three/examples/jsm/shaders/VignetteShader.js';
 
 const TEAL = 0x0d9488;
 const TEAL_DEEP = 0x0f766e;
@@ -75,6 +69,40 @@ function gradientTexture(stops) {
   return texture;
 }
 
+/** Ground alpha: a low base wash with soft openings over the cities that the
+ *  animation actually visits, so the map reads clearly where the action is
+ *  and fades to nothing elsewhere. */
+function mapAlphaTexture(focus) {
+  const size = 512;
+  const canvas = document.createElement('canvas');
+  canvas.width = size;
+  canvas.height = size;
+  const ctx = canvas.getContext('2d');
+
+  // global falloff so the sheet never ends on a hard edge
+  const base = ctx.createRadialGradient(size / 2, size / 2, size * 0.06, size / 2, size / 2, size / 2);
+  base.addColorStop(0, 'rgba(255,255,255,0.4)');
+  base.addColorStop(0.62, 'rgba(255,255,255,0.16)');
+  base.addColorStop(1, 'rgba(255,255,255,0)');
+  ctx.fillStyle = base;
+  ctx.fillRect(0, 0, size, size);
+
+  ctx.globalCompositeOperation = 'lighter';
+  for (const [dx, dy, strength, radius] of focus) {
+    const cx = size * (0.5 + dx / MAP_PX);
+    const cy = size * (0.5 + dy / MAP_PX);
+    const spot = ctx.createRadialGradient(cx, cy, 0, cx, cy, size * radius);
+    spot.addColorStop(0, `rgba(255,255,255,${strength})`);
+    spot.addColorStop(0.55, `rgba(255,255,255,${strength * 0.42})`);
+    spot.addColorStop(1, 'rgba(255,255,255,0)');
+    ctx.fillStyle = spot;
+    ctx.fillRect(0, 0, size, size);
+  }
+
+  const texture = new THREE.CanvasTexture(canvas);
+  return texture;
+}
+
 /** City name plate, drawn to a canvas and shown as a camera-facing sprite. */
 function labelTexture(text, accent) {
   const w = 512;
@@ -87,8 +115,11 @@ function labelTexture(text, accent) {
   ctx.font = '600 54px "Space Grotesk", system-ui, sans-serif';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
-  ctx.shadowColor = 'rgba(3, 12, 18, 0.9)';
-  ctx.shadowBlur = 14;
+  ctx.shadowColor = 'rgba(255, 255, 255, 0.95)';
+  ctx.shadowBlur = 12;
+  ctx.lineWidth = 8;
+  ctx.strokeStyle = 'rgba(255, 255, 255, 0.9)';
+  ctx.strokeText(text, w / 2, h / 2);
   ctx.fillStyle = accent;
   ctx.fillText(text, w / 2, h / 2);
   const texture = new THREE.CanvasTexture(canvas);
@@ -131,24 +162,24 @@ export function createLoopScene({ mount, chapterSeconds, chapterCount }) {
   const lowPower =
     (navigator.hardwareConcurrency || 8) <= 4 || (navigator.deviceMemory || 8) <= 4;
 
-  const renderer = new THREE.WebGLRenderer({ antialias: !lowPower, powerPreference: 'high-performance' });
+  const renderer = new THREE.WebGLRenderer({
+    alpha: true,
+    antialias: !lowPower,
+    powerPreference: 'high-performance',
+  });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, lowPower ? 1 : 1.5));
-  renderer.setClearColor(0x12263a, 1);
+  renderer.setClearColor(0x000000, 0);
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 0.98;
+  renderer.toneMappingExposure = 1.0;
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
   mount.appendChild(renderer.domElement);
 
   const scene = new THREE.Scene();
-  scene.background = keep(gradientTexture([
-    [0, '#12263a'],
-    [0.48, '#143040'],
-    [0.78, '#164450'],
-    [1, '#123240'],
-  ]));
-  scene.fog = new THREE.Fog(0x143a45, 8, 21);
+  // No background or fog: the canvas stays transparent so the page's own
+  // gradient shows through. Distance falloff comes from the ground alpha map.
+
   const camera = new THREE.PerspectiveCamera(34, 16 / 10, 0.1, 120);
 
   // Image-based lighting gives the surfaces something to reflect, which is most
@@ -161,9 +192,9 @@ export function createLoopScene({ mount, chapterSeconds, chapterCount }) {
   pmrem.dispose();
   keep(envRT);
 
-  scene.add(new THREE.AmbientLight(0x8fc6d6, 0.22));
+  scene.add(new THREE.AmbientLight(0xffffff, 0.75));
 
-  const key = new THREE.DirectionalLight(0xfff4e6, 1.75);
+  const key = new THREE.DirectionalLight(0xfff6ec, 2.2);
   key.position.set(5.5, 9, 5.5);
   key.castShadow = true;
   key.shadow.mapSize.set(lowPower ? 512 : 1024, lowPower ? 512 : 1024);
@@ -177,39 +208,29 @@ export function createLoopScene({ mount, chapterSeconds, chapterCount }) {
   key.shadow.radius = 3;
   scene.add(key);
 
-  const fill = new THREE.DirectionalLight(0x38bdf8, 0.6);
+  const fill = new THREE.DirectionalLight(0x9ad9ea, 0.5);
   fill.position.set(-6, 3.5, -4);
   scene.add(fill);
 
-  const rim = new THREE.DirectionalLight(WARM, 0.75);
+  const rim = new THREE.DirectionalLight(WARM, 0.45);
   rim.position.set(1.5, 2.4, -7.5);
   scene.add(rim);
 
-  // Gentle bloom lifts the emissive ring, route, and coin without blowing out
-  // the matte surfaces.
-  const composer = new EffectComposer(renderer);
-  composer.addPass(new RenderPass(scene, camera));
-  const bloom = new UnrealBloomPass(new THREE.Vector2(1, 1), 0.3, 0.45, 0.85);
-  if (!lowPower) composer.addPass(bloom);
-  const vignette = new ShaderPass(VignetteShader);
-  // VignetteShader mixes toward (1 - darkness); darkness must approach 1 to
-  // darken rather than wash the corners out.
-  vignette.uniforms.offset.value = 0.38;
-  vignette.uniforms.darkness.value = 1.0;
-  composer.addPass(vignette);
-  composer.addPass(new OutputPass());
-  keep(composer);
-
-  // --- ground -------------------------------------------------------------
   // Alpha falloff so the basemap dissolves into the backdrop instead of
   // ending on a hard rectangular edge.
-  const groundAlpha = keep(radialTexture('rgba(255,255,255,1)', 'rgba(255,255,255,0)'));
+  const groundAlpha = keep(mapAlphaTexture([
+    [CITY_PX.Munich[0], CITY_PX.Munich[1], 0.62, 0.16],
+    [CITY_PX.Berlin[0], CITY_PX.Berlin[1], 0.55, 0.15],
+    [CITY_PX.Vienna[0], CITY_PX.Vienna[1], 0.55, 0.15],
+    // the corridor the transfer actually travels
+    [(CITY_PX.Munich[0] + CITY_PX.Berlin[0]) / 2, (CITY_PX.Munich[1] + CITY_PX.Berlin[1]) / 2, 0.3, 0.16],
+  ]));
   const mapTex = keep(new THREE.TextureLoader().load('/assets/loop-basemap.webp'));
   mapTex.colorSpace = THREE.SRGBColorSpace;
   mapTex.anisotropy = renderer.capabilities.getMaxAnisotropy();
   const groundMat = keep(new THREE.MeshStandardMaterial({
     map: mapTex,
-    color: 0x9fc4d8,
+    color: 0xffffff,
     roughness: 0.95,
     metalness: 0,
     alphaMap: groundAlpha,
@@ -222,7 +243,7 @@ export function createLoopScene({ mount, chapterSeconds, chapterCount }) {
   ground.receiveShadow = true;
   scene.add(ground);
 
-  const shadowTex = keep(radialTexture('rgba(4,12,18,0.55)', 'rgba(4,12,18,0)'));
+  const shadowTex = keep(radialTexture('rgba(15,23,42,0.3)', 'rgba(15,23,42,0)'));
   const contactShadow = (radius) => {
     const mesh = new THREE.Mesh(
       keep(new THREE.PlaneGeometry(radius * 2, radius * 2)),
@@ -304,14 +325,14 @@ export function createLoopScene({ mount, chapterSeconds, chapterCount }) {
     for (const item of layout) {
       const geo = towerGeos[item.g];
       const tower = new THREE.Mesh(geo, keep(new THREE.MeshPhysicalMaterial({
-        color: 0xa9bcc8,
-        roughness: 0.52,
+        color: 0xf2f6f8,
+        roughness: 0.42,
         metalness: 0.04,
         clearcoat: 0.3,
         clearcoatRoughness: 0.4,
         emissive: 0xffffff,
         emissiveMap: keep(windowTexture()),
-        emissiveIntensity: 0.9,
+        emissiveIntensity: 0.35,
       })));
       geo.computeBoundingBox();
       tower.position.set(item.x, 0.09 + geo.boundingBox.max.y, item.z);
@@ -331,8 +352,8 @@ export function createLoopScene({ mount, chapterSeconds, chapterCount }) {
     halo.position.set(pos.x, 0.2, pos.z);
     halo.material.opacity = 0;
 
-    const label = nameSprite(CITY_NAMES[index], '#f2fbfa', 0.4);
-    label.position.set(pos.x, 0.1, pos.z + 0.78);
+    const label = nameSprite(CITY_NAMES[index], '#0f172a', 0.26);
+    label.position.set(pos.x, 0.1, pos.z + 0.55);
 
     return { group, halo, label, base: pos.clone() };
   });
@@ -350,8 +371,8 @@ export function createLoopScene({ mount, chapterSeconds, chapterCount }) {
     node.position.set(x, 0.03, z);
     node.rotation.y = Math.random() * Math.PI;
     scene.add(node);
-    const tag = nameSprite(name, '#8fc4c9', 0.19);
-    tag.position.set(x, 0.05, z + 0.4);
+    const tag = nameSprite(name, '#47657a', 0.14);
+    tag.position.set(x, 0.05, z + 0.3);
     tag.material.opacity = 0.6;
   }
 
@@ -482,15 +503,18 @@ export function createLoopScene({ mount, chapterSeconds, chapterCount }) {
   // --- camera choreography -----------------------------------------------
   // Framed so the three cities stay inside a 16:10 crop at every chapter.
   const SHOTS = [
-    { pos: new THREE.Vector3(0.25, 3.5, 7.0), look: new THREE.Vector3(0.3, 0.45, -0.8) },
-    { pos: new THREE.Vector3(0.4, 3.6, 6.8), look: new THREE.Vector3(0.25, 0.55, -0.8) },
-    { pos: new THREE.Vector3(0.55, 6.8, 5.0), look: new THREE.Vector3(0.5, 0.0, -1.5) },
-    { pos: new THREE.Vector3(0.6, 3.9, 7.1), look: new THREE.Vector3(0.5, 0.8, -1.5) },
-    { pos: new THREE.Vector3(1.3, 3.7, 6.9), look: new THREE.Vector3(0.55, 0.8, -1.4) },
+    // Framed wide, and offset so the network sits to the right of the hero
+    // copy rather than under it.
+    { pos: new THREE.Vector3(-1.5, 5.6, 11.4), look: new THREE.Vector3(-1.9, 0.4, -0.9) },
+    { pos: new THREE.Vector3(-1.35, 5.7, 11.2), look: new THREE.Vector3(-2.0, 0.5, -0.9) },
+    { pos: new THREE.Vector3(-1.2, 9.4, 9.2), look: new THREE.Vector3(-1.8, 0.0, -1.6) },
+    { pos: new THREE.Vector3(-1.1, 6.1, 11.8), look: new THREE.Vector3(-1.8, 0.7, -1.6) },
+    { pos: new THREE.Vector3(-0.5, 5.9, 11.6), look: new THREE.Vector3(-1.7, 0.7, -1.5) },
   ];
   const camPos = SHOTS[0].pos.clone();
   const camLook = SHOTS[0].look.clone();
   const tmp = new THREE.Vector3();
+  const lookTarget = new THREE.Vector3();
 
   function frame(time, immediate = false) {
     const t = ((time % total) + total) % total;
@@ -626,26 +650,37 @@ export function createLoopScene({ mount, chapterSeconds, chapterCount }) {
     // camera: ease toward the shot for this chapter, with a slow drift
     const shot = SHOTS[index];
     const drift = Math.sin(time * 0.25) * 0.55;
-    tmp.set(shot.pos.x + drift, shot.pos.y + Math.sin(time * 0.4) * 0.18, shot.pos.z);
+    // Shots are authored for a wide hero, with the network offset right of the
+    // copy. On a portrait hero that offset pushes it off-screen, so re-centre
+    // and pull back instead.
+    const wide = camera.aspect > 1.15;
+    const offX = wide ? 0 : 1.75;
+    const pull = wide ? 1 : 1.32;
+    tmp.set(
+      (shot.pos.x + drift + offX) * (wide ? 1 : 1.05),
+      shot.pos.y * pull + Math.sin(time * 0.4) * 0.18,
+      shot.pos.z * pull,
+    );
     camPos.lerp(tmp, immediate ? 1 : 0.035);
-    camLook.lerp(shot.look, immediate ? 1 : 0.05);
+    // Raising the look point renders the network lower in frame, clear of the
+    // stacked hero copy on portrait.
+    lookTarget.set(shot.look.x + offX, shot.look.y + (wide ? 0 : 1.5), shot.look.z);
+    camLook.lerp(lookTarget, immediate ? 1 : 0.05);
     camera.position.copy(camPos);
     camera.lookAt(camLook);
 
-    composer.render();
+    renderer.render(scene, camera);
     return index;
   }
 
   function resize() {
     const width = mount.clientWidth;
-    if (!width) return;
-    const height = width * (10 / 16);
+    const height = mount.clientHeight;
+    if (!width || !height) return;
     renderer.setSize(width, height, false);
-    composer.setSize(width, height);
-    if (!lowPower) bloom.setSize(width, height);
     renderer.domElement.style.width = '100%';
     renderer.domElement.style.height = '100%';
-    camera.aspect = 16 / 10;
+    camera.aspect = width / height;
     camera.updateProjectionMatrix();
   }
 
