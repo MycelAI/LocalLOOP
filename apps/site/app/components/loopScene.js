@@ -69,9 +69,8 @@ function mapAlphaTexture(focus) {
   // global falloff so the sheet never ends on a hard edge
   const base = ctx.createRadialGradient(size / 2, size / 2, size * 0.06, size / 2, size / 2, size / 2);
   base.addColorStop(0, 'rgba(255,255,255,1)');
-  base.addColorStop(0.36, 'rgba(255,255,255,0.97)');
-  base.addColorStop(0.66, 'rgba(255,255,255,0.78)');
-  base.addColorStop(0.86, 'rgba(255,255,255,0.36)');
+  base.addColorStop(0.55, 'rgba(255,255,255,1)');
+  base.addColorStop(0.82, 'rgba(255,255,255,0.82)');
   base.addColorStop(1, 'rgba(255,255,255,0)');
   ctx.fillStyle = base;
   ctx.fillRect(0, 0, size, size);
@@ -523,13 +522,14 @@ export function createLoopScene({ mount, chapterSeconds, chapterCount }) {
   // --- camera choreography -----------------------------------------------
   // Framed so the three cities stay inside a 16:10 crop at every chapter.
   const SHOTS = [
-    // Framed wide, and offset so the network sits to the right of the hero
-    // copy rather than under it.
-    { pos: new THREE.Vector3(-1.5, 5.6, 11.4), look: new THREE.Vector3(-1.9, 0.4, -0.9) },
-    { pos: new THREE.Vector3(-1.35, 5.7, 11.2), look: new THREE.Vector3(-2.0, 0.5, -0.9) },
-    { pos: new THREE.Vector3(-1.2, 9.4, 9.2), look: new THREE.Vector3(-1.8, 0.0, -1.6) },
-    { pos: new THREE.Vector3(-1.1, 6.1, 11.8), look: new THREE.Vector3(-1.8, 0.7, -1.6) },
-    { pos: new THREE.Vector3(-0.5, 5.9, 11.6), look: new THREE.Vector3(-1.7, 0.7, -1.5) },
+    // Offset so the network sits right of the hero copy, and pitched steeply
+    // enough that the top of frame lands well inside the plane -- a shallower
+    // camera shows the ground running out as a horizon line.
+    { pos: new THREE.Vector3(-1.5, 10.0, 7.4), look: new THREE.Vector3(-1.9, 0.2, -0.7) },
+    { pos: new THREE.Vector3(-1.35, 10.2, 7.2), look: new THREE.Vector3(-2.0, 0.3, -0.7) },
+    { pos: new THREE.Vector3(-1.2, 12.6, 5.6), look: new THREE.Vector3(-1.8, 0.0, -1.3) },
+    { pos: new THREE.Vector3(-1.1, 10.6, 7.8), look: new THREE.Vector3(-1.8, 0.4, -1.3) },
+    { pos: new THREE.Vector3(-0.5, 10.4, 7.6), look: new THREE.Vector3(-1.7, 0.4, -1.2) },
   ];
   const camPos = SHOTS[0].pos.clone();
   const camLook = SHOTS[0].look.clone();
@@ -684,7 +684,7 @@ export function createLoopScene({ mount, chapterSeconds, chapterCount }) {
     camPos.lerp(tmp, immediate ? 1 : 0.035);
     // Raising the look point renders the network lower in frame, clear of the
     // stacked hero copy on portrait.
-    lookTarget.set(shot.look.x + offX, shot.look.y + (wide ? 0 : 1.5), shot.look.z);
+    lookTarget.set(shot.look.x + offX, shot.look.y + (wide ? 0 : 3.4), shot.look.z);
     camLook.lerp(lookTarget, immediate ? 1 : 0.05);
     camera.position.copy(camPos);
     camera.lookAt(camLook);
