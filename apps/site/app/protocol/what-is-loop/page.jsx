@@ -164,6 +164,13 @@ const operatorDuties = [
   { icon: 'ph-list-checks', label: 'Immutable log', note: 'Registrations, settlements, signal changes, node interactions' },
 ];
 
+const layers = [
+  { name: 'The specification', note: 'Normative rules, endpoints, federation behaviour', owner: 'protocol', ownedBy: 'Shared' },
+  { name: 'Schemas and contexts', note: 'Machine-checkable field definitions', owner: 'protocol', ownedBy: 'Shared' },
+  { name: 'Node implementations', note: 'Any software that speaks the protocol', owner: 'city', ownedBy: 'Your choice' },
+  { name: 'This documentation hub', note: 'Mirrors the spec, schemas, and examples', owner: 'city', ownedBy: 'Your choice' },
+];
+
 const costFormula = [
   { op: '', name: 'Base price', expr: 'the offered price, in LoopCoin' },
   { op: '+', name: 'Export penalty', expr: 'BasePrice x OriginLoopSignal' },
@@ -309,116 +316,6 @@ const faqs = [
   },
 ];
 
-const TEAL = 'var(--accent-2, #0d9488)';
-const WARM = 'var(--accent-warm, #e06c47)';
-const INK = 'var(--ink, #0f172a)';
-const SOFT = 'var(--ink-soft, #475569)';
-
-function IslandsFigure() {
-  const left = [
-    [58, 62], [150, 44], [46, 150], [148, 142],
-  ];
-  const right = [
-    [318, 62], [410, 44], [306, 150], [408, 142],
-  ];
-  return (
-    <figure className="wil-figure">
-      <svg role="img" viewBox="0 0 480 210" aria-labelledby="wil-islands-title">
-        <title id="wil-islands-title">
-          Four city nodes shown isolated on the left and connected by a shared format on the right
-        </title>
-        <text x="100" y="20" textAnchor="middle" fill={SOFT} fontSize="11" letterSpacing="0.08em">
-          TODAY
-        </text>
-        <text x="360" y="20" textAnchor="middle" fill={SOFT} fontSize="11" letterSpacing="0.08em">
-          WITH A SHARED FORMAT
-        </text>
-        <line x1="240" y1="30" x2="240" y2="185" stroke={SOFT} strokeWidth="1" strokeDasharray="3 5" opacity="0.35" />
-        {left.map(([cx, cy]) => (
-          <g key={`l-${cx}-${cy}`}>
-            <circle cx={cx} cy={cy} r="21" fill="none" stroke={WARM} strokeWidth="1.6" opacity="0.75" />
-            <circle cx={cx} cy={cy} r="5" fill={WARM} opacity="0.55" />
-          </g>
-        ))}
-        <text x="100" y="196" textAnchor="middle" fill={SOFT} fontSize="10">
-          Only local flows are visible
-        </text>
-        {right.map(([cx, cy], i) =>
-          right.slice(i + 1).map(([nx, ny]) => (
-            <line
-              key={`e-${cx}-${cy}-${nx}-${ny}`}
-              x1={cx}
-              y1={cy}
-              x2={nx}
-              y2={ny}
-              stroke={TEAL}
-              strokeWidth="1.2"
-              opacity="0.4"
-            />
-          )),
-        )}
-        {right.map(([cx, cy]) => (
-          <g key={`r-${cx}-${cy}`}>
-            <circle cx={cx} cy={cy} r="21" fill="var(--surface, #ffffff)" stroke={TEAL} strokeWidth="1.8" />
-            <circle cx={cx} cy={cy} r="5" fill={TEAL} />
-          </g>
-        ))}
-        <text x="360" y="196" textAnchor="middle" fill={SOFT} fontSize="10">
-          Surplus and demand are legible
-        </text>
-      </svg>
-      <figcaption>
-        No central database appears on the right. Cities exchange directly, in a format both sides
-        already understand.
-      </figcaption>
-    </figure>
-  );
-}
-
-function LayerFigure() {
-  const layers = [
-    { y: 12, label: 'Specification', note: 'Normative rules, endpoints, federation', color: INK },
-    { y: 58, label: 'Schemas and contexts', note: 'Machine-checkable field definitions', color: TEAL },
-    { y: 104, label: 'Node implementations', note: 'Any software that speaks the protocol', color: WARM },
-    { y: 150, label: 'Documentation hub', note: 'This site: mirrors spec, schemas, examples', color: SOFT },
-  ];
-  return (
-    <figure className="wil-figure">
-      <svg role="img" viewBox="0 0 480 200" aria-labelledby="wil-layers-title">
-        <title id="wil-layers-title">
-          Four layers: specification, schemas, node implementations, and the documentation hub
-        </title>
-        {layers.map((layer) => (
-          <g key={layer.label}>
-            <rect
-              x="8"
-              y={layer.y}
-              width="464"
-              height="36"
-              rx="8"
-              fill="var(--surface, #ffffff)"
-              stroke={layer.color}
-              strokeWidth="1.4"
-              opacity="0.95"
-            />
-            <rect x="8" y={layer.y} width="4" height="36" rx="2" fill={layer.color} />
-            <text x="24" y={layer.y + 16} fill={INK} fontSize="12" fontWeight="600">
-              {layer.label}
-            </text>
-            <text x="24" y={layer.y + 29} fill={SOFT} fontSize="10">
-              {layer.note}
-            </text>
-          </g>
-        ))}
-      </svg>
-      <figcaption>
-        Each layer depends only on the one above it. A city could replace the bottom two entirely
-        and still interoperate.
-      </figcaption>
-    </figure>
-  );
-}
-
 export default function WhatIsLoopPage() {
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -515,7 +412,34 @@ export default function WhatIsLoopPage() {
           importing. The information exists on both sides. It has no shared shape, so nobody can
           act on it.
         </p>
-        <IslandsFigure />
+        <div className="wil-network">
+          <div className="wil-network-side">
+            <p className="wil-network-label">Today</p>
+            <div className="wil-network-row wil-network-row--isolated">
+              {[0, 1, 2, 3].map((n) => (
+                <span className="wil-node" key={n}>
+                  <i aria-hidden="true" className="ph-bold ph-buildings" />
+                </span>
+              ))}
+            </div>
+            <p className="wil-network-note">
+              Four neighbouring cities, four separate systems. Each sees only its own flows.
+            </p>
+          </div>
+          <div className="wil-network-side wil-network-side--linked">
+            <p className="wil-network-label">With a shared format</p>
+            <div className="wil-network-row wil-network-row--linked">
+              {[0, 1, 2, 3].map((n) => (
+                <span className="wil-node" key={n}>
+                  <i aria-hidden="true" className="ph-bold ph-buildings" />
+                </span>
+              ))}
+            </div>
+            <p className="wil-network-note">
+              The same four cities, exchanging directly. No central database appears here.
+            </p>
+          </div>
+        </div>
         <div className="wil-split">
           <div className="wil-panel wil-panel--warm">
             <p className="wil-panel-head">
@@ -876,7 +800,20 @@ export default function WhatIsLoopPage() {
           The word LOOP covers four distinct things: the written specification, the schemas that
           make it checkable, the software that implements it, and this documentation hub.
         </p>
-        <LayerFigure />
+        <ol className="wil-layers">
+          {layers.map((layer) => (
+            <li className="wil-layer" data-owner={layer.owner} key={layer.name}>
+              <span className="wil-layer-body">
+                <span className="wil-layer-name">{layer.name}</span>
+                <span className="wil-layer-note">{layer.note}</span>
+              </span>
+              <span className="wil-layer-owner">{layer.ownedBy}</span>
+            </li>
+          ))}
+        </ol>
+        <p className="wil-caption">
+          A city can replace the bottom two entirely and still interoperate.
+        </p>
         <p className="wil-lead">
           <i className="ph-bold ph-graph" aria-hidden="true" />
           <span>
