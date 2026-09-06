@@ -132,6 +132,45 @@ const nodeComponents = [
   { icon: 'ph-path', label: 'Routing calculator', note: 'Not implemented' },
 ];
 
+const wireFacts = [
+  { label: 'Payload', value: 'JSON-LD' },
+  { label: 'Transport', value: 'HTTPS / TLS 1.3' },
+  { label: 'Timestamps', value: 'ISO 8601 UTC' },
+  { label: 'Auth', value: 'Signed requests' },
+];
+
+const categories = [
+  'Plastics by polymer', 'Metals', 'Organics', 'Glass', 'Paper', 'Textiles', 'Electronics', 'Battery waste',
+];
+
+const nodeStack = [
+  { icon: 'ph-hard-drives', label: 'A modest server', note: 'A small VPS or bare-metal host is enough for lab volumes' },
+  { icon: 'ph-database', label: 'PostgreSQL-compatible database', note: 'Holds the registries and the evidence log' },
+  { icon: 'ph-lightning', label: 'Redis-compatible cache', note: 'Queues and short-lived state' },
+  { icon: 'ph-cloud-arrow-up', label: 'S3-compatible object store', note: 'Documents and attachments' },
+];
+
+const costLines = [
+  { label: 'Protocol and schemas', value: 'Free', tone: 'live', note: 'Open source and royalty-free' },
+  { label: 'Infrastructure', value: 'Scales', tone: 'soon', note: 'With material-flow volume and retention period' },
+  { label: 'Integration', value: 'Main cost', tone: 'pending', note: 'Depends on the ERP or waste system already in place' },
+];
+
+const operatorDuties = [
+  { icon: 'ph-map-pin', label: 'Data residency', note: 'Records stay in municipal infrastructure, under municipal jurisdiction' },
+  { icon: 'ph-lock-key', label: 'Transport security', note: 'Current TLS, with forward secrecy expected' },
+  { icon: 'ph-clock-countdown', label: 'Token expiry', note: 'Access tokens must expire; nodes sign their own requests' },
+  { icon: 'ph-gauge', label: 'Rate limits', note: 'Per-user, per-node, and per-search ceilings' },
+  { icon: 'ph-list-checks', label: 'Immutable log', note: 'Registrations, settlements, signal changes, node interactions' },
+];
+
+const costFormula = [
+  { op: '', name: 'Base price', expr: 'the offered price, in LoopCoin' },
+  { op: '+', name: 'Export penalty', expr: 'BasePrice x OriginLoopSignal' },
+  { op: '+', name: 'Import penalty', expr: 'BasePrice x DestinationLoopSignal' },
+  { op: '+', name: 'Distance cost', expr: 'Distance_km x 0.02 LC' },
+];
+
 const glossary = [
   ['LOOP', 'Short for Local Optimization with Overflow Protocol. An open, federated protocol for describing material and product flows between municipal nodes.'],
   ['Node', 'One autonomous LOOP implementation, typically run by a municipality.'],
@@ -499,11 +538,14 @@ export default function WhatIsLoopPage() {
             </p>
           </div>
         </div>
-        <p>
-          There is a second, more immediate reason. Between 2026 and 2027 a series of European
-          rules turn material and product information into something that has to be digital,
-          structured, and exchangeable. Cities will be asked for structured data whether or not
-          they have somewhere to put it.
+        <p className="wil-lead">
+          <i className="ph-bold ph-calendar-check" aria-hidden="true" />
+          <span>
+            There is a second, more immediate reason. Between 2026 and 2027 a series of European
+            rules turn material and product information into something that has to be digital,
+            structured, and exchangeable. Cities will be asked for structured data whether or not
+            they have somewhere to put it. <a href="#regulation">See the dates</a>.
+          </span>
         </p>
       </div>
 
@@ -580,10 +622,14 @@ export default function WhatIsLoopPage() {
             </li>
           ))}
         </ol>
-        <p>
-          Everything moves as JSON-LD over HTTPS, with timestamps in UTC. Nodes authenticate each
-          other with signed requests rather than shared passwords.
-        </p>
+        <div className="wil-specs">
+          {wireFacts.map((fact) => (
+            <div className="wil-spec" key={fact.label}>
+              <span className="wil-spec-label">{fact.label}</span>
+              <span className="wil-spec-value">{fact.value}</span>
+            </div>
+          ))}
+        </div>
       </div>
 
       <div className="content-panel">
@@ -619,13 +665,18 @@ export default function WhatIsLoopPage() {
           becomes a penalty on the calculated cost of moving the material across the boundary, in
           both directions equally.
         </p>
-        <div className="code-block">
-          <pre>
-            <code>{`LoopCost = BasePrice
-         + BasePrice x OriginLoopSignal      (export penalty)
-         + BasePrice x DestinationLoopSignal (import penalty)
-         + Distance_km x 0.02 LC             (distance)`}</code>
-          </pre>
+        <div className="wil-formula">
+          <p className="wil-formula-head">
+            <strong>LoopCost</strong>
+            <span>Total routing cost for one transfer</span>
+          </p>
+          {costFormula.map((line) => (
+            <p className="wil-formula-row" key={line.name}>
+              <span aria-hidden="true" className="wil-formula-op">{line.op}</span>
+              <span className="wil-formula-name">{line.name}</span>
+              <span className="wil-formula-expr">{line.expr}</span>
+            </p>
+          ))}
         </div>
         <p>
           A transfer inside one city incurs only the base price, so short local loops come out
@@ -661,10 +712,18 @@ export default function WhatIsLoopPage() {
         </p>
         <p>
           Categories are a fixed list rather than free text, which is what makes cross-city search
-          possible: plastics broken down by polymer, metals, organics, glass, paper, textiles, and
-          electronics including battery waste. A product record can point at
-          the material records it is composed of, so a desk references its steel and its particle
-          board without duplicating either.
+          possible.
+        </p>
+        <div className="wil-chips">
+          {categories.map((category) => (
+            <span className="chip chip--teal" key={category}>
+              {category}
+            </span>
+          ))}
+        </div>
+        <p>
+          A product record can point at the material records it is composed of, so a desk
+          references its steel and its particle board without duplicating either.
         </p>
         <div className="cta-row">
           <a className="button secondary" href="/library/schemas/">Published schemas</a>
@@ -695,7 +754,7 @@ export default function WhatIsLoopPage() {
           to do, not how to build it. Three of the six components it describes are built; the
           economic three are not.
         </p>
-        <div className="grid">
+        <div className="grid wil-grid-3">
           {nodeComponents.map((component) => (
             <div className="card has-icon" key={component.label}>
               <span className="card-icon" aria-hidden="true">
@@ -712,18 +771,45 @@ export default function WhatIsLoopPage() {
             </div>
           ))}
         </div>
-        <p>
-          In the lab configuration a node is a small server running a PostgreSQL-compatible
-          database, a Redis-compatible cache, and an S3-compatible object store, all as containers.
-          Infrastructure cost scales with material-flow volume and how long records must be
-          retained. The protocol and the schemas are open source and royalty-free.
-        </p>
-        <p>
-          The main cost is integration, not hosting. Connecting a node to an existing
-          enterprise resource planning or waste-management system is where the effort goes, and it
-          depends entirely on what a city already runs. The{' '}
-          <a href="/docs/implementation/">implementation guide</a> sets out a minimum viable
-          checklist.
+        <h3 className="wil-sub">What a lab node runs on</h3>
+        <ul className="wil-stack">
+          {nodeStack.map((item) => (
+            <li key={item.label}>
+              <span className="card-icon" aria-hidden="true">
+                <i className={`ph-bold ${item.icon}`} />
+              </span>
+              <span className="wil-stack-label">
+                {item.label}
+                <span className="wil-stack-note">{item.note}</span>
+              </span>
+              <span className="wil-tag wil-tag--draft">Container</span>
+            </li>
+          ))}
+        </ul>
+
+        <h3 className="wil-sub">Where the money goes</h3>
+        <ul className="wil-stack">
+          {costLines.map((line) => (
+            <li key={line.label}>
+              <span className="card-icon" aria-hidden="true">
+                <i className="ph-bold ph-currency-eur" />
+              </span>
+              <span className="wil-stack-label">
+                {line.label}
+                <span className="wil-stack-note">{line.note}</span>
+              </span>
+              <span className={`wil-tag wil-tag--${line.tone}`}>{line.value}</span>
+            </li>
+          ))}
+        </ul>
+        <p className="wil-lead">
+          <i className="ph-bold ph-wrench" aria-hidden="true" />
+          <span>
+            Integration, not hosting, is the line that varies. Connecting a node to an existing
+            enterprise resource planning or waste-management system depends entirely on what a
+            city already runs. The <a href="/docs/implementation/">implementation guide</a> sets
+            out a minimum viable checklist.
+          </span>
         </p>
       </div>
 
@@ -759,17 +845,28 @@ export default function WhatIsLoopPage() {
             </ul>
           </div>
         </div>
-        <p>
-          Residency follows the same logic. Each city holds its own records in its own
-          infrastructure, under its own jurisdiction. Federation exchanges agreed material-flow
-          metadata, not raw records. Nothing is pooled centrally because there is no centre.
-        </p>
-        <p>
-          Beyond that, nodes are expected to use current transport security, expire access tokens,
-          rate-limit, and keep an immutable log of registrations, settlements, signal changes, and
-          node interactions. A baseline data-protection assessment for the lab demonstration is
-          published at <a href="/docs/dpia-lite/">the DPIA Lite page</a>; any real deployment would
-          need its own.
+        <h3 className="wil-sub">What a node operator is expected to hold up</h3>
+        <ul className="wil-stack">
+          {operatorDuties.map((duty) => (
+            <li key={duty.label}>
+              <span className="card-icon" aria-hidden="true">
+                <i className={`ph-bold ${duty.icon}`} />
+              </span>
+              <span className="wil-stack-label">
+                {duty.label}
+                <span className="wil-stack-note">{duty.note}</span>
+              </span>
+            </li>
+          ))}
+        </ul>
+        <p className="wil-lead">
+          <i className="ph-bold ph-shield-check" aria-hidden="true" />
+          <span>
+            Federation exchanges agreed material-flow metadata, not raw records. Nothing is pooled
+            centrally because there is no centre. A baseline data-protection assessment for the lab
+            demonstration is published at <a href="/docs/dpia-lite/">the DPIA Lite page</a>; any
+            real deployment would need its own.
+          </span>
         </p>
       </div>
 
@@ -780,13 +877,14 @@ export default function WhatIsLoopPage() {
           make it checkable, the software that implements it, and this documentation hub.
         </p>
         <LayerFigure />
-        <p>
-          On the wire it uses ordinary web infrastructure. Requests carry JSON-LD over
-          transport-layer security, with timestamps in UTC. Nodes discover each other through a
-          registry of peers and sign requests with a node identifier, a signature, and a timestamp
-          that must be recent. Announcements propagate to peers with a limited hop count rather than
-          flooding the network, so a working node needs to know its immediate neighbours, not the
-          whole world.
+        <p className="wil-lead">
+          <i className="ph-bold ph-graph" aria-hidden="true" />
+          <span>
+            Nodes discover each other through a registry of peers and sign requests with a node
+            identifier, a signature, and a recent timestamp. Announcements propagate with a limited
+            hop count rather than flooding the network, so a working node needs to know its
+            immediate neighbours, not the whole world.
+          </span>
         </p>
       </div>
 
@@ -847,18 +945,29 @@ export default function WhatIsLoopPage() {
           </table>
         </div>
 
-        <p>
-          LOOP carries optional passport, classification, and traceability blocks alongside its core
-          fields. Those are draft discussion fields and extension points, designed to be extensible
-          toward passport-style requirements so that adopting one later is an addition rather than a
-          rebuild. They are not a readiness claim, and they do not mean LOOP implements any of these
-          regimes.
-        </p>
-        <p>
-          The EU registry that went live in July 2026 indexes identifiers and metadata only: the
-          passport content itself stays with whoever holds it. That decentralised,
-          reference-by-identifier shape is the same one LOOP arrived at independently.
-        </p>
+        <div className="wil-split">
+          <div className="wil-panel">
+            <p className="wil-panel-head">
+              <i className="ph-bold ph-puzzle-piece" aria-hidden="true" /> Extension points, not claims
+            </p>
+            <p>
+              LOOP carries optional passport, classification, and traceability blocks alongside its
+              core fields. They are draft discussion fields designed to be extensible toward
+              passport-style requirements, so adopting one later is an addition rather than a
+              rebuild. They are not a readiness claim.
+            </p>
+          </div>
+          <div className="wil-panel wil-panel--cool">
+            <p className="wil-panel-head">
+              <i className="ph-bold ph-arrows-in" aria-hidden="true" /> A converging design
+            </p>
+            <p>
+              The EU registry that went live in July 2026 indexes identifiers and metadata only:
+              passport content stays with whoever holds it. That decentralised,
+              reference-by-identifier shape is the one LOOP arrived at independently.
+            </p>
+          </div>
+        </div>
         <div className="wil-split">
           <div className="wil-panel wil-panel--warm">
             <p className="wil-panel-head">
@@ -931,14 +1040,18 @@ export default function WhatIsLoopPage() {
             </ul>
           </div>
         </div>
-        <p>
-          The smallest checkable profile covers exactly two nodes, registry and search, the
-          offer-to-transfer sequence, signed messages, an append-only evidence log, and error
-          handling. It is profile conformance, not full protocol conformance, and it says so. You
-          can watch the implemented flow run on the{' '}
-          <a href="/platform/demo-city/">demonstration city page</a>, which is read-only, or read
-          the <a href="/docs/lab-demo/">lab demo walkthrough</a>.
+        <p className="wil-lead">
+          <i className="ph-bold ph-flask" aria-hidden="true" />
+          <span>
+            The smallest checkable profile covers exactly two nodes, registry and search, the
+            offer-to-transfer sequence, signed messages, an append-only evidence log, and error
+            handling. It is profile conformance, not full protocol conformance, and it says so.
+          </span>
         </p>
+        <div className="cta-row">
+          <a className="button secondary" href="/platform/demo-city/">Watch the flow run</a>
+          <a className="button secondary" href="/docs/lab-demo/">Lab demo walkthrough</a>
+        </div>
       </div>
 
       <div className="content-panel">
@@ -973,9 +1086,12 @@ export default function WhatIsLoopPage() {
             </p>
           </div>
         </div>
-        <p>
-          Cities can shape the vocabulary while it is still soft. Tell us what would have to be
-          true for this to be worth running, and which existing systems it would need to talk to.
+        <p className="wil-lead">
+          <i className="ph-bold ph-megaphone" aria-hidden="true" />
+          <span>
+            Cities can shape the vocabulary while it is still soft. Tell us what would have to be
+            true for this to be worth running, and which existing systems it would need to talk to.
+          </span>
         </p>
         <div className="cta-row">
           <a className="button primary" href="/interest/">Register interest</a>
