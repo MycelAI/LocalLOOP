@@ -1,4 +1,5 @@
 import { Fragment } from 'react';
+import { LoopCostCalculator } from '@/app/components/LoopCostCalculator';
 import { JsonLd } from '@/app/components/JsonLd';
 import { MaturityStatus } from '@/app/components/MaturityStatus';
 import { SITE_URL, createMetadata } from '@/app/config/metadata';
@@ -171,12 +172,6 @@ const layers = [
   { name: 'This documentation hub', note: 'Mirrors the spec, schemas, and examples', owner: 'city', ownedBy: 'Your choice' },
 ];
 
-const costFormula = [
-  { op: '', name: 'Base price', expr: 'the offered price, in LoopCoin' },
-  { op: '+', name: 'Export penalty', expr: 'BasePrice x OriginLoopSignal' },
-  { op: '+', name: 'Import penalty', expr: 'BasePrice x DestinationLoopSignal' },
-  { op: '+', name: 'Distance cost', expr: 'Distance_km x 0.02 LC' },
-];
 
 const glossary = [
   ['LOOP', 'Short for Local Optimization with Overflow Protocol. An open, federated protocol for describing material and product flows between municipal nodes.'],
@@ -589,19 +584,12 @@ export default function WhatIsLoopPage() {
           becomes a penalty on the calculated cost of moving the material across the boundary, in
           both directions equally.
         </p>
-        <div className="wil-formula">
-          <p className="wil-formula-head">
-            <strong>LoopCost</strong>
-            <span>Total routing cost for one transfer</span>
-          </p>
-          {costFormula.map((line) => (
-            <p className="wil-formula-row" key={line.name}>
-              <span aria-hidden="true" className="wil-formula-op">{line.op}</span>
-              <span className="wil-formula-name">{line.name}</span>
-              <span className="wil-formula-expr">{line.expr}</span>
-            </p>
-          ))}
-        </div>
+        <h3 className="wil-sub">Try the model</h3>
+        <p>
+          Move the inputs and watch the cost change. A city that badly wants to keep a material
+          raises its own signal, which raises the penalty on sending it away.
+        </p>
+        <LoopCostCalculator />
         <p>
           A transfer inside one city incurs only the base price, so short local loops come out
           structurally cheaper than long ones, without anybody being forbidden from trading further
