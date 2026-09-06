@@ -81,8 +81,8 @@ function mapAlphaTexture(focus) {
 
   // global falloff so the sheet never ends on a hard edge
   const base = ctx.createRadialGradient(size / 2, size / 2, size * 0.06, size / 2, size / 2, size / 2);
-  base.addColorStop(0, 'rgba(255,255,255,0.4)');
-  base.addColorStop(0.62, 'rgba(255,255,255,0.16)');
+  base.addColorStop(0, 'rgba(255,255,255,0.82)');
+  base.addColorStop(0.6, 'rgba(255,255,255,0.46)');
   base.addColorStop(1, 'rgba(255,255,255,0)');
   ctx.fillStyle = base;
   ctx.fillRect(0, 0, size, size);
@@ -219,11 +219,11 @@ export function createLoopScene({ mount, chapterSeconds, chapterCount }) {
   // Alpha falloff so the basemap dissolves into the backdrop instead of
   // ending on a hard rectangular edge.
   const groundAlpha = keep(mapAlphaTexture([
-    [CITY_PX.Munich[0], CITY_PX.Munich[1], 0.62, 0.16],
-    [CITY_PX.Berlin[0], CITY_PX.Berlin[1], 0.55, 0.15],
-    [CITY_PX.Vienna[0], CITY_PX.Vienna[1], 0.55, 0.15],
+    [CITY_PX.Munich[0], CITY_PX.Munich[1], 0.95, 0.2],
+    [CITY_PX.Berlin[0], CITY_PX.Berlin[1], 0.85, 0.19],
+    [CITY_PX.Vienna[0], CITY_PX.Vienna[1], 0.85, 0.19],
     // the corridor the transfer actually travels
-    [(CITY_PX.Munich[0] + CITY_PX.Berlin[0]) / 2, (CITY_PX.Munich[1] + CITY_PX.Berlin[1]) / 2, 0.3, 0.16],
+    [(CITY_PX.Munich[0] + CITY_PX.Berlin[0]) / 2, (CITY_PX.Munich[1] + CITY_PX.Berlin[1]) / 2, 0.5, 0.2],
   ]));
   const mapTex = keep(new THREE.TextureLoader().load('/assets/loop-basemap.webp'));
   mapTex.colorSpace = THREE.SRGBColorSpace;

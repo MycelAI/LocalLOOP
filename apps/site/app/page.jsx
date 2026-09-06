@@ -4,7 +4,6 @@ import { Card } from './components/ui/Card';
 import { CardGrid } from './components/ui/CardGrid';
 import { LoopHeroAnimation } from '@/app/components/LoopHeroAnimation';
 import { KeyConceptsShowcase } from './components/KeyConceptsShowcase';
-import { MaturityStatus } from './components/MaturityStatus';
 import { createMetadata } from './config/metadata';
 
 export const metadata = createMetadata({
@@ -37,7 +36,6 @@ export default function HomePage() {
             An open protocol for cities to discover, exchange, and trace material and product
             flows across city boundaries.
           </p>
-          <MaturityStatus className="hero-maturity">Lab demo only — draft schemas and controlled demonstrations, no public pilots or production deployments.</MaturityStatus>
           <div className="hero-actions">
             <a className="button primary" href="/protocol/what-is-loop/">
               <i className="ph-bold ph-lightbulb" aria-hidden="true"></i>
