@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import { JsonLd } from '@/app/components/JsonLd';
 import { MaturityStatus } from '@/app/components/MaturityStatus';
 import { SITE_URL, createMetadata } from '@/app/config/metadata';
@@ -13,44 +14,47 @@ export const metadata = createMetadata({
   path: '/protocol/what-is-loop',
 });
 
-const sections = [
-  { id: 'why', label: 'Why this exists', icon: 'ph-warning-circle' },
-  { id: 'how-it-works', label: 'How LOOP works', icon: 'ph-flow-arrow' },
-  { id: 'concepts', label: 'The six core concepts', icon: 'ph-cube' },
-  { id: 'identifiers', label: 'What an identifier looks like', icon: 'ph-fingerprint' },
-  { id: 'glossary', label: 'Key terms', icon: 'ph-book-open' },
-  { id: 'node', label: 'What a node is', icon: 'ph-buildings' },
-  { id: 'data', label: 'Data, privacy, residency', icon: 'ph-lock-key' },
-  { id: 'architecture', label: 'How the pieces fit', icon: 'ph-stack' },
-  { id: 'regulation', label: 'LOOP and regulation', icon: 'ph-scales' },
-  { id: 'status', label: 'What exists today', icon: 'ph-flask' },
-  { id: 'governance', label: 'Governance and taking part', icon: 'ph-users-three' },
-  { id: 'faq', label: 'Questions cities ask', icon: 'ph-question' },
+const stats = [
+  { value: 'v0.2.0', label: 'Draft specification' },
+  { value: '4 steps', label: 'Core exchange flow' },
+  { value: '12', label: 'Published schemas' },
+  { value: 'Lab only', label: 'No public pilots' },
 ];
 
-const glossary = [
-  ['LOOP', 'Short for Local Optimization with Overflow Protocol. An open, federated protocol standard for describing material and product flows between autonomous municipal nodes.'],
-  ['Node', 'One autonomous LOOP implementation, typically run by a municipality. A node holds its own records and decides which peers it talks to.'],
-  ['Node operator', 'The municipality, cooperative, or authorised entity accountable for running a node, its data governance, its security configuration, and its federation decisions.'],
-  ['Federation', 'The peer-to-peer arrangement by which nodes discover each other and exchange material-flow metadata across boundaries, with no central authority in the middle.'],
-  ['MaterialDNA', 'The digital identity of a physical material or batch: composition, category, origin, quantity, quality, and chain of custody.'],
-  ['ProductDNA', 'The digital identity of a finished or semi-finished product. A product record may reference the material records it is made from.'],
-  ['Offer', 'A published statement that a given material or product is available, from one city to another, in a stated quantity, until a stated date.'],
-  ['Match', 'A proposed and then accepted pairing between an offer and a receiving party.'],
-  ['Transfer', 'The record of the material actually moving: scheduled, in transit, then completed or cancelled.'],
-  ['LoopCoin', 'A draft model for a node-issued local unit of account with expiry and decay properties. It is a design on paper; no currency is issued or settled.'],
-  ['LoopSignal', 'A draft model for a community preference value, between 0 and 1, expressing how strongly a city wants to retain or attract a material category.'],
-  ['LoopCost', 'A draft routing-cost formula combining a base price, an export penalty, an import penalty, and a distance cost.'],
-  ['Overflow', 'The routing idea the protocol is named after: what happens to surplus material when local demand is not sufficient to absorb it.'],
-  ['Settlement', 'The step that confirms a transfer and its payment. Modelled in the specification, not implemented.'],
-  ['Audit trail', 'The recorded sequence of registration, offer, match, and transfer events held by a node. Intended to support reporting and traceability evidence.'],
-  ['Evidence log', 'An append-only record of protocol events, each with a hash and a retention date. Append-only storage, not blockchain-style permanence.'],
-  ['Data residency', 'The property that a city keeps its own material and product records in its own infrastructure. Federation exchanges agreed metadata, not raw records.'],
-  ['Access-scope tier', 'One of public, operator, or regulator. A cumulative vocabulary describing who a given passport field is meant to be visible to.'],
-  ['Digital Product Passport', 'The EU concept, introduced by the Ecodesign for Sustainable Products Regulation, of a machine-readable record that travels with a product. Usually shortened to DPP.'],
-  ['Core-DP', 'The smallest machine-checkable LOOP profile: two lab nodes, registry and search, the offer-to-transfer sequence, signed messages, and an evidence log.'],
-  ['Profile', 'A document that narrows the protocol for one interoperability target without changing the base schemas.'],
-  ['RFC', 'Request for Comments. The written proposal format used to change the protocol in public.'],
+const sections = [
+  { id: 'why', label: 'Why this exists' },
+  { id: 'how-it-works', label: 'How LOOP works' },
+  { id: 'concepts', label: 'The six core concepts' },
+  { id: 'identifiers', label: 'Anatomy of an identifier' },
+  { id: 'glossary', label: 'Key terms' },
+  { id: 'node', label: 'What a node is' },
+  { id: 'data', label: 'Data, privacy, residency' },
+  { id: 'architecture', label: 'How the pieces fit' },
+  { id: 'regulation', label: 'LOOP and regulation' },
+  { id: 'status', label: 'What exists today' },
+  { id: 'governance', label: 'Governance' },
+  { id: 'faq', label: 'Questions cities ask' },
+];
+
+const flow = [
+  { icon: 'ph-fingerprint', title: 'Register', desc: 'Give the batch an identity' },
+  { icon: 'ph-tag', title: 'Offer', desc: 'Publish what is surplus' },
+  { icon: 'ph-handshake', title: 'Match', desc: 'Agree who receives it' },
+  { icon: 'ph-recycle', title: 'Transfer', desc: 'Record the movement' },
+];
+
+const lifecycle = [
+  { entity: 'Offer', states: [['open', 'open'], ['reserved', 'scheduled'], ['withdrawn', 'cancelled']], terminal: 'withdrawn' },
+  { entity: 'Match', states: [['proposed', 'proposed'], ['accepted', 'accepted'], ['rejected', 'cancelled'], ['expired', 'unknown']], terminal: 'rejected, expired' },
+  { entity: 'Transfer', states: [['scheduled', 'scheduled'], ['in transit', 'proposed'], ['completed', 'completed'], ['cancelled', 'cancelled']], terminal: 'completed, cancelled' },
+  { entity: 'Material status', states: [['available', 'open'], ['reserved', 'scheduled'], ['withdrawn', 'cancelled']], terminal: 'withdrawn' },
+];
+
+const invariants = [
+  'A match can only be created against an offer that is still open.',
+  'Only one active match may exist for an offer at any moment.',
+  'A transfer requires a match that has actually been accepted.',
+  'An offer can never promise more than the batch contains.',
 ];
 
 const concepts = [
@@ -59,49 +63,176 @@ const concepts = [
     role: 'Material identity',
     icon: 'ph-atom',
     href: '/platform/materialdna/',
-    body: 'The digital identity of a physical material or batch: what it is made of, its category, quantity, quality, where it came from, and every hand it has passed through. This is the primary record the whole flow revolves around.',
-    state: 'Implemented in the lab reference node.',
+    body: 'The digital identity of a physical material or batch: what it is made of, its category, quantity, quality, where it came from, and every hand it has passed through.',
+    tag: 'Implemented',
+    tone: 'live',
   },
   {
     name: 'ProductDNA',
     role: 'Product identity',
     icon: 'ph-package',
     href: '/platform/productdna/',
-    body: 'The same idea one layer up, for a finished or semi-finished product: category, condition, manufacturer, lifecycle stage, and a link to the material records it is composed of. A desk can point at its steel without duplicating it.',
-    state: 'Implemented in the lab reference node.',
-  },
-  {
-    name: 'LoopCoin',
-    role: 'Local unit of account',
-    icon: 'ph-coins',
-    href: '/platform/loopcoin/',
-    body: 'A design for a node-issued local unit with expiry and decay built in, so value circulates rather than accumulates. Each node would set its own backing, rate, and issuance ceiling.',
-    state: 'Design model only. Not implemented, and no value is issued or settled.',
-  },
-  {
-    name: 'LoopSignal',
-    role: 'Community preference',
-    icon: 'ph-broadcast',
-    href: '/platform/loopsignal/',
-    body: 'A number between zero and one per material category, expressing how strongly a community wants to keep or attract that material. Changes are capped per period and must apply equally to imports and exports.',
-    state: 'Design model only. No preferences are collected anywhere.',
-  },
-  {
-    name: 'LoopCost',
-    role: 'Routing metric',
-    icon: 'ph-path',
-    href: '/platform/loopcost/',
-    body: 'The figure derived from the signals: a base price plus an export penalty, an import penalty, and a distance component. Same-city transfers incur only the base price.',
-    state: 'Design model only. No routing decisions are computed from it.',
+    body: 'The same idea one layer up: category, condition, manufacturer, lifecycle stage, and a link to the material records a product is composed of.',
+    tag: 'Implemented',
+    tone: 'live',
   },
   {
     name: 'Node and federation',
     role: 'The network shape',
     icon: 'ph-share-network',
     href: '/docs/federation/',
-    body: 'One node per city, holding its own records, signing its own messages, and choosing its own peers. Announcements travel a limited number of hops rather than flooding the network.',
-    state: 'A two-node handshake and exchange runs in the lab demonstration.',
+    body: 'One node per city, holding its own records, signing its own messages, choosing its own peers. Announcements travel a limited number of hops.',
+    tag: 'Two-node demo',
+    tone: 'soon',
   },
+  {
+    name: 'LoopCoin',
+    role: 'Local unit of account',
+    icon: 'ph-coins',
+    href: '/platform/loopcoin/',
+    body: 'A design for a node-issued local unit with expiry and decay built in, so value circulates rather than accumulates.',
+    tag: 'Design only',
+    tone: 'draft',
+  },
+  {
+    name: 'LoopSignal',
+    role: 'Community preference',
+    icon: 'ph-broadcast',
+    href: '/platform/loopsignal/',
+    body: 'A number between zero and one per material category, expressing how strongly a community wants to keep or attract that material.',
+    tag: 'Design only',
+    tone: 'draft',
+  },
+  {
+    name: 'LoopCost',
+    role: 'Routing metric',
+    icon: 'ph-path',
+    href: '/platform/loopcost/',
+    body: 'The figure derived from those signals: a base price plus export and import penalties and a distance component.',
+    tag: 'Design only',
+    tone: 'draft',
+  },
+];
+
+const identifierParts = [
+  { value: 'MAT', label: 'Record type' },
+  { value: 'DE', label: 'Country' },
+  { value: 'MUC', label: 'City' },
+  { value: '2025', label: 'Year' },
+  { value: 'PLASTIC', label: 'Category' },
+  { value: 'B847F3', label: 'Unique suffix' },
+];
+
+const nodeComponents = [
+  { icon: 'ph-archive', label: 'Material registry', note: 'Implemented' },
+  { icon: 'ph-package', label: 'Product registry', note: 'Implemented' },
+  { icon: 'ph-arrows-left-right', label: 'Offer, match, transfer', note: 'Implemented' },
+  { icon: 'ph-coins', label: 'Currency engine', note: 'Not implemented' },
+  { icon: 'ph-broadcast', label: 'Signal governor', note: 'Not implemented' },
+  { icon: 'ph-path', label: 'Routing calculator', note: 'Not implemented' },
+];
+
+const glossary = [
+  ['LOOP', 'Short for Local Optimization with Overflow Protocol. An open, federated protocol for describing material and product flows between municipal nodes.'],
+  ['Node', 'One autonomous LOOP implementation, typically run by a municipality.'],
+  ['Node operator', 'The municipality, cooperative, or authorised entity accountable for running a node and its data governance.'],
+  ['Federation', 'The peer-to-peer arrangement by which nodes discover each other and exchange metadata, with no central authority.'],
+  ['MaterialDNA', 'The digital identity of a physical material or batch.'],
+  ['ProductDNA', 'The digital identity of a finished or semi-finished product.'],
+  ['Offer', 'A published statement that a material or product is available, in a stated quantity, until a stated date.'],
+  ['Match', 'A proposed and then accepted pairing between an offer and a receiving party.'],
+  ['Transfer', 'The record of the material actually moving: scheduled, in transit, then completed or cancelled.'],
+  ['LoopCoin', 'A draft model for a node-issued local unit of account with expiry and decay properties.'],
+  ['LoopSignal', 'A draft model for a community preference value between 0 and 1 for a material category.'],
+  ['LoopCost', 'A draft routing-cost formula combining base price, export and import penalties, and distance.'],
+  ['Overflow', 'The routing idea the protocol is named after: what happens to surplus when local demand cannot absorb it.'],
+  ['Settlement', 'The step confirming a transfer and its payment. Modelled in the specification, not implemented.'],
+  ['Audit trail', 'The recorded sequence of registration, offer, match, and transfer events held by a node.'],
+  ['Evidence log', 'An append-only record of protocol events, each with a hash and a retention date.'],
+  ['Data residency', 'The property that a city keeps its own records in its own infrastructure.'],
+  ['Access-scope tier', 'One of public, operator, or regulator: who a given passport field is meant to be visible to.'],
+  ['Digital Product Passport', 'The EU concept of a machine-readable record that travels with a product. Usually shortened to DPP.'],
+  ['Core-DP', 'The smallest machine-checkable LOOP profile: two lab nodes, registry and search, the offer-to-transfer sequence, and an evidence log.'],
+  ['Profile', 'A document narrowing the protocol for one interoperability target without changing the base schemas.'],
+  ['RFC', 'Request for Comments. The written proposal format used to change the protocol in public.'],
+];
+
+const timeline = [
+  { date: '21 May 2026', title: 'DIWASS is live', state: 'done', note: 'Cross-border waste shipment documents move electronically. Green-list paper allowed until 31 December 2026.' },
+  { date: '20 Jul 2026', title: 'EU DPP Registry live', state: 'done', note: 'Indexes identifiers and metadata only. Passport content stays with whoever holds it.' },
+  { date: '12 Aug 2026', title: 'PPWR applies', state: 'done', note: 'Packaging identification and conformity documentation. The harmonised data-carrier format is still unadopted.' },
+  { date: '27 Sep 2026', title: 'Green claims rules bind', state: 'done', note: 'Tightened substantiation for sustainability claims shown to consumers.' },
+  { date: '18 Feb 2027', title: 'Battery passports required', state: 'pending', note: 'EV, light means of transport, and industrial batteries above 2 kWh. Format and access acts are overdue.' },
+  { date: '2027 onward', title: 'First ESPR product groups', state: 'pending', note: 'No product-specific delegated act adopted yet. Iron and steel is furthest along.' },
+];
+
+const regulations = [
+  {
+    name: 'Waste Shipment and DIWASS',
+    ref: '(EU) 2024/1157',
+    date: 'Live since 21 May 2026',
+    tone: 'live',
+    action: 'Confirm contractors can file shipment documents electronically. Keep records at least five years.',
+    loop: 'Shipment document reference, facility and operator identifiers, retention date on the transfer record.',
+  },
+  {
+    name: 'Packaging and Packaging Waste',
+    ref: '(EU) 2025/40',
+    date: 'Applies since 12 Aug 2026',
+    tone: 'live',
+    action: 'Map packaging categories in procurement. Do not commit to a label format yet.',
+    loop: 'Packaging as a product record with pool and batch references that survive a reuse cycle.',
+  },
+  {
+    name: 'Green claims for consumers',
+    ref: 'Dir. (EU) 2024/825',
+    date: 'Binding 27 Sep 2026',
+    tone: 'live',
+    action: 'Review published circularity statistics against tightened substantiation rules.',
+    loop: 'Recorded data is kept separate from any environmental claim about it.',
+  },
+  {
+    name: 'Ecodesign and the DPP',
+    ref: '(EU) 2024/1781',
+    date: 'Delegated acts pending',
+    tone: 'pending',
+    action: 'Assess procurement volumes in the first-wave categories.',
+    loop: 'Optional passport, classification, and traceability blocks as extension points.',
+  },
+  {
+    name: 'Batteries Regulation',
+    ref: '(EU) 2023/1542',
+    date: '18 Feb 2027',
+    tone: 'soon',
+    action: 'Audit fleet and depot batteries now; treat exact data requirements as unconfirmed.',
+    loop: 'Battery category, passport identifier, backup copy location, due-diligence reference.',
+  },
+  {
+    name: 'German circular-economy policy',
+    ref: 'NKWS and KrWG',
+    date: 'Strategy since Dec 2024',
+    tone: 'draft',
+    action: 'Framing for municipal reuse and repair programmes and cross-boundary material data.',
+    loop: 'Municipal node interoperability and reusable material identity as design goals.',
+  },
+];
+
+const exists = [
+  'A versioned written specification, published schemas, and JSON-LD contexts.',
+  'Worked example payloads for every record type.',
+  'A reference backend implementing the specification endpoints.',
+  'A scripted lab demonstration of the register-to-transfer flow.',
+  'A two-node federation handshake and exchange.',
+  'Public governance, security, and data-protection documents.',
+];
+
+const doesNotExist = [
+  'Any public pilot or production deployment.',
+  'Any settlement, currency, or payment behaviour.',
+  'Collection of community preferences, or routing decided from them.',
+  'Generalised federation beyond two nodes.',
+  'Any certification, conformity assessment, or regulatory approval.',
+  'Blockchain-style permanence. The evidence log is append-only storage.',
 ];
 
 const faqs = [
@@ -139,56 +270,115 @@ const faqs = [
   },
 ];
 
-const regulations = [
-  {
-    name: 'Waste Shipment Regulation and DIWASS',
-    ref: 'Regulation (EU) 2024/1157',
-    applies: 'Electronic handling of cross-border waste shipment documents',
-    date: 'In force since 21 May 2026',
-    action: 'Confirm your waste contractors can submit and retrieve shipment documents electronically. Annex VII green-list shipments may still use paper until 31 December 2026. Records must be kept at least five years.',
-    loop: 'Transfer records carry a waste shipment document reference, facility and operator identifiers, and a retention date.',
-  },
-  {
-    name: 'Packaging and Packaging Waste Regulation',
-    ref: 'Regulation (EU) 2025/40',
-    applies: 'Packaging identification, substance limits, conformity documentation',
-    date: 'Applies since 12 August 2026',
-    action: 'Map which packaging categories appear in city procurement. Do not commit to a specific label or data-carrier format yet: the implementing act that defines it has not been adopted.',
-    loop: 'Packaging can be described as a product record with pool and batch references, so identifiers survive a reuse cycle.',
-  },
-  {
-    name: 'Green claims rules for consumers',
-    ref: 'Directive (EU) 2024/825',
-    applies: 'How sustainability claims may be presented',
-    date: 'Binding from 27 September 2026',
-    action: 'Review any published circularity or material-flow statistics against tightened substantiation rules before you put them in front of residents.',
-    loop: 'The protocol deliberately separates recorded data from any environmental claim about it. Metadata is not evidence of performance.',
-  },
-  {
-    name: 'Ecodesign Regulation and the Digital Product Passport',
-    ref: 'Regulation (EU) 2024/1781',
-    applies: 'Product passports, introduced product group by product group',
-    date: 'No product-specific delegated act adopted yet; iron and steel is furthest along',
-    action: 'Assess procurement volumes in the first-wave categories. The cross-sectoral DPP Registry went live on 20 July 2026 and indexes identifiers and metadata only.',
-    loop: 'Optional passport, classification, and traceability blocks exist as extension points. They are draft discussion fields, not a readiness claim.',
-  },
-  {
-    name: 'Batteries Regulation',
-    ref: 'Regulation (EU) 2023/1542',
-    applies: 'Digital passports for EV, light means of transport, and industrial batteries above 2 kWh',
-    date: '18 February 2027',
-    action: 'Audit fleet and depot batteries now. Treat the exact data requirements as unconfirmed: the acts defining passport format and access rights are overdue. The separate raw-materials due-diligence duty starts 18 August 2027.',
-    loop: 'Battery category, passport identifier, a backup copy location, and a due-diligence reference are all expressible fields.',
-  },
-  {
-    name: 'German circular-economy policy',
-    ref: 'NKWS and the Circular Economy Act',
-    applies: 'National strategy direction rather than a dated obligation',
-    date: 'Strategy adopted December 2024; amendment of the Act under discussion',
-    action: 'Useful framing for municipal reuse and repair programmes and for arguing the case for better cross-boundary material data.',
-    loop: 'Municipal node interoperability and reusable material identity are first-class design goals rather than add-ons.',
-  },
-];
+const TEAL = 'var(--accent-2, #0d9488)';
+const WARM = 'var(--accent-warm, #e06c47)';
+const INK = 'var(--ink, #0f172a)';
+const SOFT = 'var(--ink-soft, #475569)';
+
+function IslandsFigure() {
+  const left = [
+    [58, 62], [150, 44], [46, 150], [148, 142],
+  ];
+  const right = [
+    [318, 62], [410, 44], [306, 150], [408, 142],
+  ];
+  return (
+    <figure className="wil-figure">
+      <svg role="img" viewBox="0 0 480 210" aria-labelledby="wil-islands-title">
+        <title id="wil-islands-title">
+          Four city nodes shown isolated on the left and connected by a shared format on the right
+        </title>
+        <text x="100" y="20" textAnchor="middle" fill={SOFT} fontSize="11" letterSpacing="0.08em">
+          TODAY
+        </text>
+        <text x="360" y="20" textAnchor="middle" fill={SOFT} fontSize="11" letterSpacing="0.08em">
+          WITH A SHARED FORMAT
+        </text>
+        <line x1="240" y1="30" x2="240" y2="185" stroke={SOFT} strokeWidth="1" strokeDasharray="3 5" opacity="0.35" />
+        {left.map(([cx, cy]) => (
+          <g key={`l-${cx}-${cy}`}>
+            <circle cx={cx} cy={cy} r="21" fill="none" stroke={WARM} strokeWidth="1.6" opacity="0.75" />
+            <circle cx={cx} cy={cy} r="5" fill={WARM} opacity="0.55" />
+          </g>
+        ))}
+        <text x="100" y="196" textAnchor="middle" fill={SOFT} fontSize="10">
+          Only local flows are visible
+        </text>
+        {right.map(([cx, cy], i) =>
+          right.slice(i + 1).map(([nx, ny]) => (
+            <line
+              key={`e-${cx}-${cy}-${nx}-${ny}`}
+              x1={cx}
+              y1={cy}
+              x2={nx}
+              y2={ny}
+              stroke={TEAL}
+              strokeWidth="1.2"
+              opacity="0.4"
+            />
+          )),
+        )}
+        {right.map(([cx, cy]) => (
+          <g key={`r-${cx}-${cy}`}>
+            <circle cx={cx} cy={cy} r="21" fill="var(--surface, #ffffff)" stroke={TEAL} strokeWidth="1.8" />
+            <circle cx={cx} cy={cy} r="5" fill={TEAL} />
+          </g>
+        ))}
+        <text x="360" y="196" textAnchor="middle" fill={SOFT} fontSize="10">
+          Surplus and demand are legible
+        </text>
+      </svg>
+      <figcaption>
+        No central database appears on the right. Cities exchange directly, in a format both sides
+        already understand.
+      </figcaption>
+    </figure>
+  );
+}
+
+function LayerFigure() {
+  const layers = [
+    { y: 12, label: 'Specification', note: 'Normative rules, endpoints, federation', color: INK },
+    { y: 58, label: 'Schemas and contexts', note: 'Machine-checkable field definitions', color: TEAL },
+    { y: 104, label: 'Node implementations', note: 'Any software that speaks the protocol', color: WARM },
+    { y: 150, label: 'Documentation hub', note: 'This site: mirrors spec, schemas, examples', color: SOFT },
+  ];
+  return (
+    <figure className="wil-figure">
+      <svg role="img" viewBox="0 0 480 200" aria-labelledby="wil-layers-title">
+        <title id="wil-layers-title">
+          Four layers: specification, schemas, node implementations, and the documentation hub
+        </title>
+        {layers.map((layer) => (
+          <g key={layer.label}>
+            <rect
+              x="8"
+              y={layer.y}
+              width="464"
+              height="36"
+              rx="8"
+              fill="var(--surface, #ffffff)"
+              stroke={layer.color}
+              strokeWidth="1.4"
+              opacity="0.95"
+            />
+            <rect x="8" y={layer.y} width="4" height="36" rx="2" fill={layer.color} />
+            <text x="24" y={layer.y + 16} fill={INK} fontSize="12" fontWeight="600">
+              {layer.label}
+            </text>
+            <text x="24" y={layer.y + 29} fill={SOFT} fontSize="10">
+              {layer.note}
+            </text>
+          </g>
+        ))}
+      </svg>
+      <figcaption>
+        Each layer depends only on the one above it. A city could replace the bottom two entirely
+        and still interoperate.
+      </figcaption>
+    </figure>
+  );
+}
 
 export default function WhatIsLoopPage() {
   const jsonLd = {
@@ -232,23 +422,32 @@ export default function WhatIsLoopPage() {
       <JsonLd data={jsonLd} />
 
       <div className="content-panel">
+        <span className="chip chip--teal">Executive introduction</span>
         <h1 className="hub-heading">What is LOOP?</h1>
         <p>
           LOOP is an open, draft protocol that lets cities describe the materials and products
           they hold, publish what is surplus, and record transfers to other cities in one shared
-          machine-readable format. Each city keeps its own records in its own infrastructure.
-          The name stands for Local Optimization with Overflow Protocol.
+          machine-readable format. Each city keeps its own records in its own infrastructure. The
+          name stands for Local Optimization with Overflow Protocol.
         </p>
         <p>
-          This page is the executive version, written for people who have to make a decision
-          about circular-economy data infrastructure rather than implement one. It explains what
-          LOOP is, what it is not, and how it sits alongside the European and German rules that
-          are arriving between now and 2027.
+          Cities already hold the data. What they lack is a common way to express it, so surplus in
+          one district and demand in the next stay invisible to each other. LOOP supplies that
+          common expression, and nothing else: no platform to join, no operator in the middle, and
+          no obligation to move records off municipal infrastructure.
         </p>
+        <div className="wil-stats">
+          {stats.map((stat) => (
+            <div className="wil-stat" key={stat.label}>
+              <span className="wil-stat-value">{stat.value}</span>
+              <span className="wil-stat-label">{stat.label}</span>
+            </div>
+          ))}
+        </div>
         <MaturityStatus>
-          Everything described here exists as a specification, published schemas, and a
-          reference implementation running a scripted demonstration. There are no public
-          pilots, no deployments, and no compliance claims.
+          Everything described here exists as a specification, published schemas, and a reference
+          implementation running a scripted demonstration. There are no public pilots, no
+          deployments, and no compliance claims.
         </MaturityStatus>
         <div className="cta-row">
           <a className="button primary" href="/protocol/spec/">Read the specification</a>
@@ -258,46 +457,11 @@ export default function WhatIsLoopPage() {
       </div>
 
       <div className="content-panel">
-        <h2>LOOP in sixty seconds</h2>
-        <ul>
-          <li>
-            Every material batch and every product gets a durable identifier and a record
-            describing what it is, where it is, and how much of it there is.
-          </li>
-          <li>
-            A city publishes an offer against that record. Another city accepts it as a match.
-            The physical movement is recorded as a transfer. Four steps, and that is the whole
-            core flow.
-          </li>
-          <li>
-            Cities run their own nodes and federate directly with each other. There is no central
-            operator, no central database, and no company in the middle.
-          </li>
-          <li>
-            Records are plain JSON-LD sent over ordinary HTTPS, validated against published
-            schemas. No blockchain is required and none is used.
-          </li>
-          <li>
-            The protocol carries no personal data by design, which is both a privacy decision and
-            what makes cross-boundary exchange straightforward to reason about.
-          </li>
-          <li>
-            It is early. There is a written specification, published schemas, and a reference
-            implementation that runs a scripted lab demonstration. There are no public pilots and
-            no deployments.
-          </li>
-        </ul>
-      </div>
-
-      <div className="content-panel">
         <h2 className="section-title">On this page</h2>
-        <div className="grid">
+        <div className="wil-toc">
           {sections.map((section) => (
-            <a className="card has-icon" href={`#${section.id}`} key={section.id}>
-              <span aria-hidden="true" className="card-icon">
-                <i className={`ph-bold ${section.icon}`} />
-              </span>
-              <h3>{section.label}</h3>
+            <a href={`#${section.id}`} key={section.id}>
+              {section.label}
             </a>
           ))}
         </div>
@@ -306,24 +470,35 @@ export default function WhatIsLoopPage() {
       <div className="content-panel">
         <h2 id="why">Why this exists</h2>
         <p>
-          Material recovery today runs as a set of islands. A city knows, more or less, what
-          enters and leaves its own facilities. It usually has no practical way to know that the
-          district twenty kilometres away is landfilling exactly the feedstock its own processor
-          is importing. The information exists on both sides. It simply has no shared shape, so
-          nobody can act on it.
+          Material recovery today runs as a set of islands. A city knows, more or less, what enters
+          and leaves its own facilities. It usually has no practical way to know that the district
+          twenty kilometres away is landfilling exactly the feedstock its own processor is
+          importing. The information exists on both sides. It has no shared shape, so nobody can
+          act on it.
         </p>
-        <p>
-          The usual answer is a platform: one operator, one database, everyone joins. Cities are
-          rightly reluctant. It means handing operational data and pricing leverage to a third
-          party, and it means the value of the network is captured by whoever runs it.
-        </p>
-        <p>
-          LOOP takes the other route, the one email and the web took. Instead of a shared
-          platform, a shared format and a small set of endpoints. Any city that speaks the format
-          can exchange with any other. Nobody has to join anything, and no operator sits in the
-          middle. The design goals stated in the specification follow from that: preserve local
-          autonomy, keep routing transparent, and stay implementable in more than one way.
-        </p>
+        <IslandsFigure />
+        <div className="wil-split">
+          <div className="wil-panel wil-panel--warm">
+            <p className="wil-panel-head">
+              <i className="ph-bold ph-buildings" aria-hidden="true" /> The platform answer
+            </p>
+            <p>
+              One operator, one database, everyone joins. Cities are rightly reluctant: it hands
+              operational data and pricing leverage to a third party, and the value of the network
+              accrues to whoever runs it.
+            </p>
+          </div>
+          <div className="wil-panel wil-panel--cool">
+            <p className="wil-panel-head">
+              <i className="ph-bold ph-share-network" aria-hidden="true" /> The protocol answer
+            </p>
+            <p>
+              A shared format and a small set of endpoints, the route email and the web took. Any
+              city that speaks the format can exchange with any other. Nobody joins anything, and
+              no operator sits in the middle.
+            </p>
+          </div>
+        </div>
         <p>
           There is a second, more immediate reason. Between 2026 and 2027 a series of European
           rules turn material and product information into something that has to be digital,
@@ -336,55 +511,75 @@ export default function WhatIsLoopPage() {
         <h2 id="how-it-works">How LOOP works</h2>
         <p>
           The core of the protocol is four steps. The specification calls this the minimal
-          interoperability flow, and it is deliberately the smallest thing two nodes can do
-          together and still be useful.
+          interoperability flow: the smallest thing two nodes can do together and still be useful.
         </p>
-        <ol className="table-list">
-          <li>
-            <span>1. Register</span>
-            <div>
-              A node records a material batch or a product as a MaterialDNA or ProductDNA entry:
-              what it is, its category, quantity, quality, where it came from, where it is now,
-              and when it becomes available.
-            </div>
-          </li>
-          <li>
-            <span>2. Offer</span>
-            <div>
-              The node publishes an offer against that record, stating quantity, origin city,
-              destination city, and how long the offer stands.
-            </div>
-          </li>
-          <li>
-            <span>3. Match</span>
-            <div>
-              Another party proposes a match against an open offer. When the match is accepted,
-              the offer is reserved so the same batch cannot be promised twice.
-            </div>
-          </li>
-          <li>
-            <span>4. Transfer</span>
-            <div>
-              The physical handover is recorded and moves from scheduled to in transit to
-              completed. This is the record that carries shipment document references, route
-              information, and retention dates.
-            </div>
-          </li>
+        <div className="flow-explainer">
+          {flow.map((step, index) => (
+            <Fragment key={step.title}>
+              {index > 0 ? (
+                <span className="flow-arrow" aria-hidden="true">
+                  <i className="ph-bold ph-arrow-right" />
+                </span>
+              ) : null}
+              <div className="flow-step">
+                <div className="flow-step-icon">
+                  <i className={`ph-bold ${step.icon}`} aria-hidden="true" />
+                </div>
+                <span className="flow-step-title">{step.title}</span>
+                <span className="flow-step-desc">{step.desc}</span>
+              </div>
+            </Fragment>
+          ))}
+        </div>
+
+        <h3 className="wil-sub">Every record has a defined life</h3>
+        <p>
+          Each entity moves through a fixed set of states. Once something reaches a final state it
+          cannot quietly go backwards.
+        </p>
+        <div className="demo-table-wrap">
+          <table className="demo-table wil-table">
+            <thead>
+              <tr>
+                <th scope="col">Record</th>
+                <th scope="col">States</th>
+                <th scope="col">Final</th>
+              </tr>
+            </thead>
+            <tbody>
+              {lifecycle.map((row) => (
+                <tr key={row.entity}>
+                  <th className="wil-rowhead" scope="row">{row.entity}</th>
+                  <td data-label="States">
+                    <span className="wil-states">
+                      {row.states.map(([label, tone]) => (
+                        <span className={`demo-status demo-status-${tone}`} key={label}>
+                          {label}
+                        </span>
+                      ))}
+                    </span>
+                  </td>
+                  <td data-label="Final state">{row.terminal}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <h3 className="wil-sub">Four rules stop the obvious failure</h3>
+        <p>
+          These constraints stop the same skip of aluminium being sold to three neighbouring
+          districts at once. The reference implementation enforces them in the database rather than
+          by convention.
+        </p>
+        <ol className="wil-rules">
+          {invariants.map((rule, index) => (
+            <li key={rule}>
+              <span aria-hidden="true">{index + 1}</span>
+              <span>{rule}</span>
+            </li>
+          ))}
         </ol>
-        <p>
-          Each of those has a defined set of states and defined rules about which state can follow
-          which. An offer is open, then reserved or withdrawn. A match is proposed, then accepted
-          or rejected. A transfer is scheduled, in transit, then completed or cancelled. Once
-          something reaches a final state it cannot quietly go backwards.
-        </p>
-        <p>
-          The rules that connect them matter more than they look. A match can only be created
-          against an open offer. Only one active match may exist per offer. A transfer requires an
-          accepted match. An offer cannot promise more than the batch actually contains. Those
-          four constraints are what stop the same skip of aluminium being sold to three
-          neighbouring districts at once, and they are enforced in the reference implementation at
-          the database level rather than by convention.
-        </p>
         <p>
           Everything moves as JSON-LD over HTTPS, with timestamps in UTC. Nodes authenticate each
           other with signed requests rather than shared passwords.
@@ -394,25 +589,24 @@ export default function WhatIsLoopPage() {
       <div className="content-panel">
         <h2 id="concepts">The six core concepts</h2>
         <p>
-          The specification defines six named concepts. Two of them, MaterialDNA and ProductDNA,
-          are implemented and exercised in the lab demonstration. The other three, plus the metric
-          derived from them, are design models on paper. The distinction is worth holding onto
-          while reading anything else about LOOP.
+          The specification names six concepts. Two are implemented and exercised in the lab
+          demonstration; the economic three, and the metric derived from them, are design models on
+          paper. Each card below states which.
         </p>
-      </div>
-
-      <div className="content-panel">
-        <div className="grid">
+        <div className="concepts-grid">
           {concepts.map((concept) => (
-            <a className="card has-icon" href={concept.href} key={concept.name}>
-              <span aria-hidden="true" className="card-icon">
-                <i className={`ph-bold ${concept.icon}`} />
-              </span>
+            <div className="concept-card" key={concept.name}>
+              <div className="concept-icon">
+                <i className={`ph-bold ${concept.icon}`} aria-hidden="true" />
+              </div>
               <h3>{concept.name}</h3>
-              <p className="text-soft">{concept.role}</p>
+              <p className="wil-role">
+                <span>{concept.role}</span>
+                <span className={`wil-tag wil-tag--${concept.tone}`}>{concept.tag}</span>
+              </p>
               <p>{concept.body}</p>
-              <p className="text-soft">{concept.state}</p>
-            </a>
+              <a href={concept.href}>Explore {concept.name} →</a>
+            </div>
           ))}
         </div>
       </div>
@@ -420,67 +614,75 @@ export default function WhatIsLoopPage() {
       <div className="content-panel">
         <h3>How the economic concepts fit together, on paper</h3>
         <p>
-          LoopSignal is the input and LoopCost is the output. A city expresses, as a number
-          between zero and one, how strongly it wants to keep or attract a material category.
-          That number becomes a penalty on the calculated cost of moving that material across the
-          boundary, in both directions equally. The full formula adds a base price, an export
-          penalty, an import penalty, and a distance component.
+          LoopSignal is the input and LoopCost is the output. A city expresses, as a number between
+          zero and one, how strongly it wants to keep or attract a material category. That number
+          becomes a penalty on the calculated cost of moving the material across the boundary, in
+          both directions equally.
         </p>
+        <div className="code-block">
+          <pre>
+            <code>{`LoopCost = BasePrice
+         + BasePrice x OriginLoopSignal      (export penalty)
+         + BasePrice x DestinationLoopSignal (import penalty)
+         + Distance_km x 0.02 LC             (distance)`}</code>
+          </pre>
+        </div>
         <p>
-          The intended effect is that a transfer inside one city incurs only the base price, so
-          short local loops are structurally cheaper than long ones, without anybody being
-          forbidden from trading further afield when it genuinely makes sense. LoopCoin is the
-          proposed unit those figures would be denominated in, with expiry and decay built in to
-          discourage hoarding.
+          A transfer inside one city incurs only the base price, so short local loops come out
+          structurally cheaper than long ones, without anybody being forbidden from trading further
+          afield when it genuinely makes sense. LoopCoin is the proposed unit those figures would be
+          denominated in, with expiry and decay built in to discourage hoarding.
         </p>
         <div className="notice">
-          None of this is implemented. LoopCoin, LoopSignal, LoopCost, and settlement have no
-          route, no data model, and no running code. They are explicitly out of scope in the
-          current delivery profile. Treat them as published design intent, not as behaviour you
+          <strong>None of this is implemented.</strong> LoopCoin, LoopSignal, LoopCost, and
+          settlement have no route, no data model, and no running code, and they are out of scope in
+          the current delivery profile. Treat them as published design intent, not as behaviour you
           could rely on.
         </div>
       </div>
 
       <div className="content-panel">
-        <h2 id="identifiers">What an identifier actually looks like</h2>
+        <h2 id="identifiers">Anatomy of an identifier</h2>
         <p>
           Identifiers are readable on purpose. A material identifier encodes country, city, year,
-          category, and a unique suffix. A product identifier follows the same shape.
+          category, and a unique suffix; a product identifier follows the same shape with a
+          different prefix.
         </p>
-        <div className="code-block">
-          <pre>
-            <code>{`MAT-DE-MUC-2025-PLASTIC-B847F3
-PRD-DE-MUC-2025-DESK-F4A7B2`}</code>
-          </pre>
+        <div className="wil-id">
+          {identifierParts.map((part) => (
+            <div className="wil-id-part" key={part.label}>
+              <span className="wil-id-value">{part.value}</span>
+              <span className="wil-id-label">{part.label}</span>
+            </div>
+          ))}
         </div>
-        <p>
-          Categories are a fixed list rather than free text, which is the boring detail that makes
-          cross-city search work at all: plastics broken down by polymer, metals, organics, glass,
-          paper, textiles, and electronics including battery waste. A product record may point at
-          the material records it is composed of, so a desk can reference its steel and its
-          particle board without duplicating either.
+        <p className="text-soft">
+          A product record for a desk from the same city and year reads PRD-DE-MUC-2025-DESK-F4A7B2.
         </p>
         <p>
-          You can read the full field lists in the{' '}
-          <a href="/library/schemas/">published JSON schemas</a> or work through the{' '}
-          <a href="/library/examples/">worked example payloads</a>.
+          Categories are a fixed list rather than free text, which is what makes cross-city search
+          possible: plastics broken down by polymer, metals, organics, glass, paper, textiles, and
+          electronics including battery waste. A product record can point at
+          the material records it is composed of, so a desk references its steel and its particle
+          board without duplicating either.
         </p>
+        <div className="cta-row">
+          <a className="button secondary" href="/library/schemas/">Published schemas</a>
+          <a className="button secondary" href="/library/examples/">Worked examples</a>
+        </div>
       </div>
 
       <div className="content-panel">
         <h2 id="glossary">Key terms</h2>
-        <p>
-          Canonical definitions live in the specification. These are the short forms, in the order
-          you are likely to meet them.
-        </p>
-        <div className="table-list">
+        <p>Canonical definitions live in the specification. These are the short forms.</p>
+        <dl className="wil-glossary">
           {glossary.map(([term, definition]) => (
             <div key={term}>
-              <span>{term}</span>
-              <div>{definition}</div>
+              <dt>{term}</dt>
+              <dd>{definition}</dd>
             </div>
           ))}
-        </div>
+        </dl>
         <div className="cta-row">
           <a className="button secondary" href="/docs/glossary/">Full glossary</a>
         </div>
@@ -489,21 +691,37 @@ PRD-DE-MUC-2025-DESK-F4A7B2`}</code>
       <div className="content-panel">
         <h2 id="node">What a node is, and what running one involves</h2>
         <p>
-          A node is one city's LOOP implementation. The specification says what a node has to be
-          able to do, not how to build it: keep a registry of materials and one of products,
-          handle the offer-to-transfer sequence, and record what happened. The economic components
-          it also describes, currency and signals and routing, are the unimplemented part.
+          A node is one city's LOOP implementation. The specification says what a node must be able
+          to do, not how to build it. Three of the six components it describes are built; the
+          economic three are not.
         </p>
+        <div className="grid">
+          {nodeComponents.map((component) => (
+            <div className="card has-icon" key={component.label}>
+              <span className="card-icon" aria-hidden="true">
+                <i className={`ph-bold ${component.icon}`} />
+              </span>
+              <h3>{component.label}</h3>
+              <p>
+                <span
+                  className={`wil-tag wil-tag--${component.note === 'Implemented' ? 'live' : 'draft'}`}
+                >
+                  {component.note}
+                </span>
+              </p>
+            </div>
+          ))}
+        </div>
         <p>
           In the lab configuration a node is a small server running a PostgreSQL-compatible
-          database, a Redis-compatible cache, and an S3-compatible object store, all as
-          containers. Infrastructure cost scales with material-flow volume and how long records
-          must be retained. The protocol and the schemas are open source and royalty-free.
+          database, a Redis-compatible cache, and an S3-compatible object store, all as containers.
+          Infrastructure cost scales with material-flow volume and how long records must be
+          retained. The protocol and the schemas are open source and royalty-free.
         </p>
         <p>
-          The honest cost line is integration, not hosting. Connecting a node to an existing
+          The main cost is integration, not hosting. Connecting a node to an existing
           enterprise resource planning or waste-management system is where the effort goes, and it
-          depends entirely on what a given city already runs. The{' '}
+          depends entirely on what a city already runs. The{' '}
           <a href="/docs/implementation/">implementation guide</a> sets out a minimum viable
           checklist.
         </p>
@@ -512,75 +730,63 @@ PRD-DE-MUC-2025-DESK-F4A7B2`}</code>
       <div className="content-panel">
         <h2 id="data">Data, privacy, and residency</h2>
         <p>
-          The most consequential design decision in LOOP is what it refuses to carry. Protocol
-          payloads must not contain personal data. Node identifiers, city names, and organisation
-          identifiers are permitted. Names, email addresses, and phone numbers are not, and the
-          contact field in the material schema is explicitly reserved rather than usable.
+          The most consequential design decision in LOOP is what it refuses to carry. If personal
+          data is never in the shared payload, cross-boundary exchange does not become a
+          personal-data transfer question: the awkward part of the assessment disappears instead of
+          being managed.
         </p>
-        <p>
-          That is a deliberate structural choice rather than a policy promise. If personal data is
-          never in the shared payload, cross-boundary exchange does not become a personal-data
-          transfer question, and the awkward part of the assessment disappears instead of being
-          managed.
-        </p>
+        <div className="wil-split">
+          <div className="wil-panel wil-panel--cool">
+            <p className="wil-panel-head">
+              <i className="ph-bold ph-check-circle" aria-hidden="true" /> Permitted in payloads
+            </p>
+            <ul className="wil-marks wil-marks--yes">
+              <li><i className="ph-bold ph-check" aria-hidden="true" /><span>Node identifiers</span></li>
+              <li><i className="ph-bold ph-check" aria-hidden="true" /><span>City names</span></li>
+              <li><i className="ph-bold ph-check" aria-hidden="true" /><span>Organisation identifiers</span></li>
+              <li><i className="ph-bold ph-check" aria-hidden="true" /><span>Facility and operator references</span></li>
+            </ul>
+          </div>
+          <div className="wil-panel">
+            <p className="wil-panel-head">
+              <i className="ph-bold ph-prohibit" aria-hidden="true" /> Never in payloads
+            </p>
+            <ul className="wil-marks wil-marks--no">
+              <li><i className="ph-bold ph-x" aria-hidden="true" /><span>Personal names</span></li>
+              <li><i className="ph-bold ph-x" aria-hidden="true" /><span>Email addresses</span></li>
+              <li><i className="ph-bold ph-x" aria-hidden="true" /><span>Phone numbers</span></li>
+              <li><i className="ph-bold ph-x" aria-hidden="true" /><span>Any other personal data</span></li>
+            </ul>
+          </div>
+        </div>
         <p>
           Residency follows the same logic. Each city holds its own records in its own
           infrastructure, under its own jurisdiction. Federation exchanges agreed material-flow
           metadata, not raw records. Nothing is pooled centrally because there is no centre.
         </p>
         <p>
-          Beyond that, nodes are expected to use current transport security, to expire access
-          tokens, to rate-limit, and to keep an immutable log of registrations, settlements,
-          signal changes, and node interactions. A baseline data-protection assessment for the lab
-          demonstration is published at{' '}
-          <a href="/docs/dpia-lite/">the DPIA Lite page</a>; any real deployment would need its
-          own, based on its own configuration and national law.
+          Beyond that, nodes are expected to use current transport security, expire access tokens,
+          rate-limit, and keep an immutable log of registrations, settlements, signal changes, and
+          node interactions. A baseline data-protection assessment for the lab demonstration is
+          published at <a href="/docs/dpia-lite/">the DPIA Lite page</a>; any real deployment would
+          need its own.
         </p>
       </div>
 
       <div className="content-panel">
         <h2 id="architecture">How the pieces fit together</h2>
         <p>
-          The word LOOP gets used for four different things. Separating them makes the rest of the
-          documentation much easier to read.
+          The word LOOP covers four distinct things: the written specification, the schemas that
+          make it checkable, the software that implements it, and this documentation hub.
         </p>
-        <div className="table-list">
-          <div>
-            <span>The protocol</span>
-            <div>
-              The written specification: terminology, message formats, required endpoints,
-              federation rules, and security requirements. This is the normative document.
-            </div>
-          </div>
-          <div>
-            <span>The schemas</span>
-            <div>
-              Published JSON Schema and JSON-LD context files that make the specification
-              machine-checkable. Any implementation validates against these.
-            </div>
-          </div>
-          <div>
-            <span>A node</span>
-            <div>
-              Any software that implements the protocol. There is one reference backend, used to
-              run the lab demonstration; it is a reference, not the only permitted implementation.
-            </div>
-          </div>
-          <div>
-            <span>This documentation hub</span>
-            <div>
-              The public site you are reading, which mirrors the specification, the schemas, the
-              examples, and the governance documents.
-            </div>
-          </div>
-        </div>
+        <LayerFigure />
         <p>
-          On the wire it is unremarkable, which is the point. Requests carry JSON-LD, over
+          On the wire it uses ordinary web infrastructure. Requests carry JSON-LD over
           transport-layer security, with timestamps in UTC. Nodes discover each other through a
-          registry of peers and sign their requests with a node identifier, a signature, and a
-          timestamp that must be recent. Announcements propagate to peers with a limited hop count
-          rather than flooding the network. A working node needs to know its immediate neighbours,
-          not the whole world.
+          registry of peers and sign requests with a node identifier, a signature, and a timestamp
+          that must be recent. Announcements propagate to peers with a limited hop count rather than
+          flooding the network, so a working node needs to know its immediate neighbours, not the
+          whole world.
         </p>
       </div>
 
@@ -588,79 +794,104 @@ PRD-DE-MUC-2025-DESK-F4A7B2`}</code>
         <h2 id="regulation">LOOP and the regulatory landscape</h2>
         <div className="notice">
           <strong>Read this first.</strong> This section is informational and is not legal advice.
-          localLOOP is lab-demo software with no public pilots and no deployments, and nothing
-          here is a claim of compliance, certification, or regulatory readiness for LOOP or for
-          any city using it. Regulatory status is summarised as of {REGULATORY_STATUS_DATE}; the
-          maintained version, with sources, lives on the{' '}
+          localLOOP is lab-demo software with no public pilots and no deployments, and nothing here
+          is a claim of compliance, certification, or regulatory readiness for LOOP or for any city
+          using it. Regulatory status is summarised as of {REGULATORY_STATUS_DATE}; the maintained
+          version, with sources, lives on the{' '}
           <a href="/docs/regulatory-alignment/">regulatory alignment page</a>.
         </div>
         <p>
           European rules are moving material and product information from paper and spreadsheets
-          into structured, machine-readable records. Several of those rules are already operative.
-          The pattern is consistent: an identifier that travels with the thing, structured data
-          behind it, and an authority or counterparty able to look it up.
-        </p>
-        <p>
-          That is the same shape as a protocol record, which is why LOOP carries optional passport,
-          classification, and traceability blocks alongside its core fields. Those blocks are draft
-          discussion fields and extension points. They are designed to be extensible toward
-          passport-style requirements so that adopting one later is an addition rather than a
-          rebuild. They are not a readiness claim, and they do not mean LOOP implements any of
-          these regimes.
-        </p>
-        <p>
-          One structural detail is worth a city officer's attention. The EU registry that went live
-          in July 2026 indexes identifiers and metadata only: the passport content itself stays
-          with whoever holds it. That decentralised, reference-by-identifier shape is the same one
-          LOOP arrived at independently, which is a reasonable signal that node-held records are
-          not a fringe position.
+          into structured, machine-readable records. Several are already operative. The pattern is
+          consistent: an identifier that travels with the thing, structured data behind it, and an
+          authority or counterparty able to look it up.
         </p>
 
-        <h3>What applies, when, and what a city can do about it</h3>
-        {regulations.map((item) => (
-          <section key={item.ref}>
-            <h4 className="reg-name">
-              {item.name} <span className="text-soft">— {item.ref}</span>
-            </h4>
-            <div className="table-list">
-              <div>
-                <span>What applies</span>
-                <div>{item.applies}.</div>
-              </div>
-              <div>
-                <span>Timing</span>
-                <div>{item.date}</div>
-              </div>
-              <div>
-                <span>City action</span>
-                <div>{item.action}</div>
-              </div>
-              <div>
-                <span>Where LOOP could help</span>
-                <div>{item.loop}</div>
-              </div>
-            </div>
-          </section>
-        ))}
+        <h3 className="wil-sub">The dates that matter</h3>
+        <ul className="wil-timeline">
+          {timeline.map((entry) => (
+            <li data-state={entry.state} key={entry.title}>
+              <span className="wil-timeline-date">{entry.date}</span>
+              <span className="wil-timeline-title">{entry.title}</span>
+              <span className="wil-timeline-note">{entry.note}</span>
+            </li>
+          ))}
+        </ul>
 
-        <h3>Two cautions</h3>
+        <h3 className="wil-sub">What a city can do about each</h3>
+        <div className="demo-table-wrap">
+          <table className="demo-table wil-table">
+            <thead>
+              <tr>
+                <th scope="col">Regulation</th>
+                <th scope="col">Status</th>
+                <th scope="col">City action</th>
+                <th scope="col">Where LOOP could help</th>
+              </tr>
+            </thead>
+            <tbody>
+              {regulations.map((row) => (
+                <tr key={row.ref}>
+                  <th className="wil-rowhead" scope="row">
+                    {row.name}
+                    <span className="text-soft">{row.ref}</span>
+                  </th>
+                  <td data-label="Status">
+                    <span className={`wil-tag wil-tag--${row.tone}`}>{row.date}</span>
+                  </td>
+                  <td data-label="City action">{row.action}</td>
+                  <td data-label="Where LOOP could help">{row.loop}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
         <p>
-          First, several of the acts that would define exact data formats are late. The packaging
-          data-carrier format, and the battery passport format and access rules, are all still
-          unadopted at the time of writing. Any vendor telling you today exactly which fields you
-          will need is guessing. The defensible position is to keep your data structured and your
-          format commitments loose.
+          LOOP carries optional passport, classification, and traceability blocks alongside its core
+          fields. Those are draft discussion fields and extension points, designed to be extensible
+          toward passport-style requirements so that adopting one later is an addition rather than a
+          rebuild. They are not a readiness claim, and they do not mean LOOP implements any of these
+          regimes.
         </p>
         <p>
-          Second, the international framework that several passport-style field names draw on is
-          itself still pre-release. Any description of a LOOP field as aligned to it is directional
-          and not a conformance statement.
+          The EU registry that went live in July 2026 indexes identifiers and metadata only: the
+          passport content itself stays with whoever holds it. That decentralised,
+          reference-by-identifier shape is the same one LOOP arrived at independently.
         </p>
+        <div className="wil-split">
+          <div className="wil-panel wil-panel--warm">
+            <p className="wil-panel-head">
+              <i className="ph-bold ph-warning" aria-hidden="true" /> Caution one
+            </p>
+            <p>
+              Several acts that would define exact data formats are late. The packaging
+              data-carrier format, and the battery passport format and access rules, are all still
+              unadopted. Any vendor telling you today exactly which fields you will need is
+              guessing. Keep your data structured and your format commitments loose.
+            </p>
+          </div>
+          <div className="wil-panel wil-panel--warm">
+            <p className="wil-panel-head">
+              <i className="ph-bold ph-warning" aria-hidden="true" /> Caution two
+            </p>
+            <p>
+              The international framework that several passport-style field names draw on is itself
+              still pre-release. Any description of a LOOP field as aligned to it is directional,
+              not a conformance statement.
+            </p>
+          </div>
+        </div>
         <div className="cta-row">
           <a className="button secondary" href="/docs/regulatory-alignment/">
             Full roadmap with official sources
           </a>
-          <a className="button secondary" href="https://eur-lex.europa.eu/" rel="noreferrer noopener" target="_blank">
+          <a
+            className="button secondary"
+            href="https://eur-lex.europa.eu/"
+            rel="noreferrer noopener"
+            target="_blank"
+          >
             EUR-Lex
           </a>
         </div>
@@ -669,45 +900,42 @@ PRD-DE-MUC-2025-DESK-F4A7B2`}</code>
       <div className="content-panel">
         <h2 id="status">What exists today, and what does not</h2>
         <p>
-          Being precise about this is more useful to a decision-maker than enthusiasm would be.
+          The protocol is at an early stage. The line between what runs and what is still on paper
+          is drawn below.
         </p>
-        <div className="table-list">
-          <div>
-            <span>Exists</span>
-            <div>
-              A versioned written specification. Published JSON schemas and JSON-LD contexts.
-              Worked example payloads. A reference backend implementing the specification
-              endpoints. A scripted lab demonstration of the register-to-transfer flow and of a
-              two-node federation handshake. Public governance and security documents.
-            </div>
+        <div className="wil-split">
+          <div className="wil-panel wil-panel--cool">
+            <p className="wil-panel-head">
+              <i className="ph-bold ph-check-circle" aria-hidden="true" /> Exists today
+            </p>
+            <ul className="wil-marks wil-marks--yes">
+              {exists.map((item) => (
+                <li key={item}>
+                  <i className="ph-bold ph-check" aria-hidden="true" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
           </div>
-          <div>
-            <span>Scoped down deliberately</span>
-            <div>
-              The smallest checkable profile covers exactly two nodes, registry and search, the
-              offer-to-transfer sequence, signed messages, an append-only evidence log, and error
-              handling. It is profile conformance, not full protocol conformance, and it says so.
-            </div>
-          </div>
-          <div>
-            <span>Does not exist</span>
-            <div>
-              Any public pilot or deployment. Any settlement, currency, or payment behaviour.
-              Community preference collection or routing decisions made from it. Generalised
-              federation beyond two nodes. Any certification, conformity assessment, or
-              regulatory approval.
-            </div>
-          </div>
-          <div>
-            <span>Append-only, not immutable</span>
-            <div>
-              The evidence log is append-only storage with hashes and retention dates. It is not
-              blockchain-style permanence and is not described as such anywhere in the protocol.
-            </div>
+          <div className="wil-panel">
+            <p className="wil-panel-head">
+              <i className="ph-bold ph-prohibit" aria-hidden="true" /> Does not exist
+            </p>
+            <ul className="wil-marks wil-marks--no">
+              {doesNotExist.map((item) => (
+                <li key={item}>
+                  <i className="ph-bold ph-x" aria-hidden="true" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
         <p>
-          You can watch the implemented flow run on the{' '}
+          The smallest checkable profile covers exactly two nodes, registry and search, the
+          offer-to-transfer sequence, signed messages, an append-only evidence log, and error
+          handling. It is profile conformance, not full protocol conformance, and it says so. You
+          can watch the implemented flow run on the{' '}
           <a href="/platform/demo-city/">demonstration city page</a>, which is read-only, or read
           the <a href="/docs/lab-demo/">lab demo walkthrough</a>.
         </p>
@@ -718,29 +946,36 @@ PRD-DE-MUC-2025-DESK-F4A7B2`}</code>
         <p>
           Protocol changes go through a public Request for Comments process. Anyone can open a
           discussion and submit a proposal against a published template; substantial changes need
-          community review before adoption, and each proposal moves through documented states so
-          the reasoning stays on the record.
+          community review before adoption, and each proposal moves through documented states so the
+          reasoning stays on the record.
         </p>
+        <div className="wil-split">
+          <div className="wil-panel">
+            <p className="wil-panel-head">
+              <i className="ph-bold ph-git-branch" aria-hidden="true" /> Versioning is a policy
+            </p>
+            <p>
+              Minor versions are additive and must not remove or rename existing required fields.
+              Receivers accept additive versions and preserve fields they do not recognise. Payloads
+              written against the previous version stay valid. What you write today should not stop
+              parsing next year.
+            </p>
+          </div>
+          <div className="wil-panel">
+            <p className="wil-panel-head">
+              <i className="ph-bold ph-scales" aria-hidden="true" /> Candid about its limits
+            </p>
+            <p>
+              A public proposal records that the standing two-person review quorum is not currently
+              meetable with one active maintainer, and documents the narrower substitute rather than
+              quietly ignoring the rule. A published claims policy forbids asserting pilots,
+              deployments, or compliance without current evidence.
+            </p>
+          </div>
+        </div>
         <p>
-          Versioning is a written policy rather than a habit. Minor versions are additive and must
-          not remove or rename existing required fields. Receivers are expected to accept additive
-          versions and preserve fields they do not recognise. Payloads written against the previous
-          version remain valid against the current schemas. For a city, that is the property that
-          matters: what you write today should not stop parsing next year.
-        </p>
-        <p>
-          The project is candid about its own governance limits. A public proposal documents that
-          the standing two-person review quorum is not currently meetable with one active
-          maintainer, and records the narrower substitute in force instead of quietly ignoring the
-          rule. There is also a published claims policy that forbids asserting pilots,
-          deployments, compliance, or certification without current scoped evidence, which is the
-          reason this page reads the way it does.
-        </p>
-        <p>
-          The useful thing a city can do at this stage is tell us what would have to be true for
-          this to be worth running, and which of your existing systems it would have to talk to.
-          That input is more valuable now, while the vocabulary is still soft, than after it
-          hardens.
+          Cities can shape the vocabulary while it is still soft. Tell us what would have to be
+          true for this to be worth running, and which existing systems it would need to talk to.
         </p>
         <div className="cta-row">
           <a className="button primary" href="/interest/">Register interest</a>
@@ -751,46 +986,31 @@ PRD-DE-MUC-2025-DESK-F4A7B2`}</code>
 
       <div className="content-panel">
         <h2 id="faq">Questions cities ask</h2>
-        <div className="table-list">
+        <div className="wil-faq">
           {faqs.map((item) => (
-            <div key={item.q}>
-              <span>{item.q}</span>
-              <div>{item.a}</div>
-            </div>
+            <details key={item.q}>
+              <summary>{item.q}</summary>
+              <p className="wil-faq-body">{item.a}</p>
+            </details>
           ))}
         </div>
       </div>
 
       <div className="content-panel">
-        <h2 id="further-reading">Where to go next</h2>
-        <div className="grid">
-          <a className="card has-icon" href="/protocol/spec/">
-            <span aria-hidden="true" className="card-icon"><i className="ph-bold ph-scroll" /></span>
+        <h2 className="section-title">Where to go next</h2>
+        <div className="quick-start">
+          <a className="quick-start-card" href="/protocol/spec/">
+            <span className="card-icon" aria-hidden="true"><i className="ph-bold ph-scroll" /></span>
             <h3>The specification</h3>
             <p>Normative requirements, endpoints, and federation flows in full.</p>
           </a>
-          <a className="card has-icon" href="/docs/regulatory-alignment/">
-            <span aria-hidden="true" className="card-icon"><i className="ph-bold ph-scales" /></span>
+          <a className="quick-start-card" href="/docs/regulatory-alignment/">
+            <span className="card-icon" aria-hidden="true"><i className="ph-bold ph-scales" /></span>
             <h3>Regulatory alignment</h3>
             <p>The maintained regulation roadmap, with official sources and dates.</p>
           </a>
-          <a className="card has-icon" href="/library/schemas/">
-            <span aria-hidden="true" className="card-icon"><i className="ph-bold ph-brackets-curly" /></span>
-            <h3>Schemas and examples</h3>
-            <p>Every field of every record type, plus worked payloads.</p>
-          </a>
-          <a className="card has-icon" href="/docs/faq/">
-            <span aria-hidden="true" className="card-icon"><i className="ph-bold ph-question" /></span>
-            <h3>Full FAQ</h3>
-            <p>Including the decision-maker section on cost, privacy, and timing.</p>
-          </a>
-          <a className="card has-icon" href="/platform/demo-city/">
-            <span aria-hidden="true" className="card-icon"><i className="ph-bold ph-buildings" /></span>
-            <h3>Demonstration city</h3>
-            <p>A read-only view of the lab flow with seeded data.</p>
-          </a>
-          <a className="card has-icon" href="/interest/">
-            <span aria-hidden="true" className="card-icon"><i className="ph-bold ph-paper-plane-tilt" /></span>
+          <a className="quick-start-card" href="/interest/">
+            <span className="card-icon" aria-hidden="true"><i className="ph-bold ph-paper-plane-tilt" /></span>
             <h3>Register interest</h3>
             <p>Tell us what your city would need before this is worth running.</p>
           </a>
