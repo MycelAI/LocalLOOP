@@ -9,8 +9,8 @@ const CONCEPTS = [
     fullName: 'Local Optimization with Overflow Protocol',
     image: '/assets/images/localloop-01-loop-protocol-overview-16x9.webp',
     desc: 'A draft, federated protocol for describing material and product flows between cities. It is intended to let municipalities share surplus resources and coordinate circular-economy initiatives while keeping data sovereignty; today it exists as schemas and a lab demo — no such exchange is operating. Built around MaterialDNA, ProductDNA, LoopCoin, and LoopSignal.',
-    href: '/protocol/',
-    cta: 'Read the spec',
+    href: '/protocol/what-is-loop/',
+    cta: 'Learn more',
   },
   {
     slug: 'materialdna',
