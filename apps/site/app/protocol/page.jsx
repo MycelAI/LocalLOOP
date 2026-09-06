@@ -8,13 +8,21 @@ export default function ProtocolPage() {
       <div className="content-panel">
         <h1 className="hub-heading">Protocol</h1>
         <p>
-          Explore the specification, changelog, and security requirements that guide
-          implementations. This is an early, low-TRL concept with no public pilots yet.
+          New here? Start with What is LOOP, a plain-language introduction. Then explore the
+          specification, changelog, and security requirements that guide implementations. This
+          is an early, low-TRL concept with no public pilots yet.
         </p>
       </div>
 
       <div className="content-panel">
         <div className="grid">
+          <a className="card has-icon" href="/protocol/what-is-loop/">
+            <span className="card-icon" aria-hidden="true">
+              <i className="ph-bold ph-lightbulb"></i>
+            </span>
+            <h3>What is LOOP?</h3>
+            <p>Plain-language introduction for city leaders and stakeholders.</p>
+          </a>
           <a className="card has-icon" href="/protocol/spec/">
             <span className="card-icon" aria-hidden="true">
               <i className="ph-bold ph-scroll"></i>

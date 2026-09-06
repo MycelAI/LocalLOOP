@@ -45,6 +45,7 @@ export const sectionConfigs = {
       {
         label: 'Reference',
         links: [
+          { href: '/protocol/what-is-loop/', label: 'What is LOOP?' },
           { href: '/protocol/spec/', label: 'Specification' },
           { href: '/protocol/changelog/', label: 'Changelog' },
           { href: '/protocol/security/', label: 'Security Policy' },

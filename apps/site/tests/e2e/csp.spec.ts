@@ -4,7 +4,7 @@ import { test, expect } from '@playwright/test';
 // at a container built from the Dockerfile), where the Content-Security-Policy
 // header is actually sent. Against the plain static server it still verifies
 // that nothing on these pages is blocked or logs a CSP violation.
-const routes = ['/', '/interest/', '/platform/demo-city/', '/docs/', '/protocol/spec/', '/library/schemas/material-dna/', '/docs/metrics/'];
+const routes = ['/', '/interest/', '/platform/demo-city/', '/docs/', '/protocol/spec/', '/protocol/what-is-loop/', '/library/schemas/material-dna/', '/docs/metrics/'];
 
 test.beforeEach(async ({ page }) => {
   // In production the pages talk to https://loop-api.urbnia.com (allowed by

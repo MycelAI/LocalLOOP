@@ -8,6 +8,12 @@
     ],
     "items": [
       {
+        "href": "/protocol/what-is-loop",
+        "label": "What is LOOP?",
+        "icon": "ph-lightbulb",
+        "description": "Plain-language introduction for city leaders and stakeholders."
+      },
+      {
         "href": "/protocol/spec",
         "label": "Specification",
         "icon": "ph-file-text",
