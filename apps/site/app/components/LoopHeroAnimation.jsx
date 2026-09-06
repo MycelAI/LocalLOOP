@@ -76,16 +76,28 @@ export function LoopHeroAnimation() {
       let createLoopScene;
       try {
         ({ createLoopScene } = await import('./loopScene.js'));
-      } catch {
+      } catch (error) {
+        console.error('LOOP hero: scene module failed to load', error);
         if (!disposed) setFailed(true);
         return;
+      }
+      if (disposed) return;
+
+      // The city plates draw the Phosphor glyph and Space Grotesk into a
+      // canvas; without this they rasterise as fallback boxes.
+      if (document.fonts?.load) {
+        await Promise.all([
+          document.fonts.load('44px "Phosphor-Bold"'),
+          document.fonts.load('700 44px "Space Grotesk"'),
+        ]).catch(() => {});
       }
       if (disposed) return;
 
       let stage;
       try {
         stage = createLoopScene({ mount, chapterSeconds: CHAPTER_SECONDS, chapterCount: CHAPTERS.length });
-      } catch {
+      } catch (error) {
+        console.error('LOOP hero: scene failed to initialise', error);
         if (!disposed) setFailed(true);
         return;
       }

@@ -54,21 +54,6 @@ function radialTexture(inner, outer) {
   return texture;
 }
 
-/** Vertical gradient used for the backdrop so the stage has a designed sky. */
-function gradientTexture(stops) {
-  const canvas = document.createElement('canvas');
-  canvas.width = 4;
-  canvas.height = 256;
-  const ctx = canvas.getContext('2d');
-  const grad = ctx.createLinearGradient(0, 0, 0, 256);
-  for (const [offset, color] of stops) grad.addColorStop(offset, color);
-  ctx.fillStyle = grad;
-  ctx.fillRect(0, 0, 4, 256);
-  const texture = new THREE.CanvasTexture(canvas);
-  texture.colorSpace = THREE.SRGBColorSpace;
-  return texture;
-}
-
 /** Ground alpha: a low base wash with soft openings over the cities that the
  *  animation actually visits, so the map reads clearly where the action is
  *  and fades to nothing elsewhere. */
@@ -103,30 +88,8 @@ function mapAlphaTexture(focus) {
   return texture;
 }
 
-/** City name plate, drawn to a canvas and shown as a camera-facing sprite. */
-function labelTexture(text, accent) {
-  const w = 512;
-  const h = 128;
-  const canvas = document.createElement('canvas');
-  canvas.width = w;
-  canvas.height = h;
-  const ctx = canvas.getContext('2d');
-  ctx.clearRect(0, 0, w, h);
-  ctx.font = '600 54px "Space Grotesk", system-ui, sans-serif';
-  ctx.textAlign = 'center';
-  ctx.textBaseline = 'middle';
-  ctx.shadowColor = 'rgba(255, 255, 255, 0.95)';
-  ctx.shadowBlur = 12;
-  ctx.lineWidth = 8;
-  ctx.strokeStyle = 'rgba(255, 255, 255, 0.9)';
-  ctx.strokeText(text, w / 2, h / 2);
-  ctx.fillStyle = accent;
-  ctx.fillText(text, w / 2, h / 2);
-  const texture = new THREE.CanvasTexture(canvas);
-  texture.colorSpace = THREE.SRGBColorSpace;
-  return texture;
-}
-
+/** City name plate: a pill with the icon-pack buildings glyph and the name,
+ *  drawn to a canvas and shown as a camera-facing sprite. */
 /** Vertical window strips so a tower reads as a building, not a box. */
 function windowTexture() {
   const w = 64;
@@ -147,6 +110,57 @@ function windowTexture() {
   const texture = new THREE.CanvasTexture(canvas);
   texture.colorSpace = THREE.SRGBColorSpace;
   return texture;
+}
+
+const CITY_GLYPH = '\ue102'; // ph-buildings, from the bundled Phosphor set
+
+function labelTexture(text, variant) {
+  const label = text.toUpperCase();
+  const fontSize = 44;
+  const h = 104;
+  const padX = 30;
+  const gap = 16;
+
+  const measure = document.createElement('canvas').getContext('2d');
+  measure.font = `700 ${fontSize}px "Space Grotesk", system-ui, sans-serif`;
+  const textW = measure.measureText(label).width + label.length * 2.5;
+  measure.font = `${fontSize}px "Phosphor-Bold"`;
+  const iconW = measure.measureText(CITY_GLYPH).width || fontSize;
+  const w = Math.ceil(padX * 2 + iconW + gap + textW);
+
+  const canvas = document.createElement('canvas');
+  canvas.width = w;
+  canvas.height = h;
+  const ctx = canvas.getContext('2d');
+
+  const primary = variant === 'primary';
+  const r = h / 2;
+  ctx.beginPath();
+  ctx.moveTo(r, 6);
+  ctx.arcTo(w - 2, 6, w - 2, h - 6, r - 6);
+  ctx.arcTo(w - 2, h - 6, 2, h - 6, r - 6);
+  ctx.arcTo(2, h - 6, 2, 6, r - 6);
+  ctx.arcTo(2, 6, w - 2, 6, r - 6);
+  ctx.closePath();
+  ctx.shadowColor = 'rgba(15, 23, 42, 0.3)';
+  ctx.shadowBlur = 14;
+  ctx.shadowOffsetY = 3;
+  ctx.fillStyle = primary ? '#e06c47' : 'rgba(51, 74, 92, 0.82)';
+  ctx.fill();
+  ctx.shadowColor = 'transparent';
+
+  ctx.fillStyle = '#ffffff';
+  ctx.textBaseline = 'middle';
+  ctx.textAlign = 'left';
+  ctx.font = `${fontSize}px "Phosphor-Bold"`;
+  ctx.fillText(CITY_GLYPH, padX, h / 2 + 1);
+  ctx.font = `700 ${fontSize}px "Space Grotesk", system-ui, sans-serif`;
+  if ('letterSpacing' in ctx) ctx.letterSpacing = '2.5px';
+  ctx.fillText(label, padX + iconW + gap, h / 2 + 2);
+
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.colorSpace = THREE.SRGBColorSpace;
+  return { texture, aspect: w / h };
 }
 
 export function createLoopScene({ mount, chapterSeconds, chapterCount }) {
@@ -255,10 +269,12 @@ export function createLoopScene({ mount, chapterSeconds, chapterCount }) {
     return mesh;
   };
 
-  const nameSprite = (text, accent, scale) => {
+  const nameSprite = (text, variant, scale) => {
+    const plate = labelTexture(text, variant);
+    keep(plate.texture);
     const sprite = new THREE.Sprite(
       keep(new THREE.SpriteMaterial({
-        map: keep(labelTexture(text, accent)),
+        map: plate.texture,
         transparent: true,
         depthWrite: false,
         depthTest: false,
@@ -267,7 +283,7 @@ export function createLoopScene({ mount, chapterSeconds, chapterCount }) {
         fog: false,
       })),
     );
-    sprite.scale.set(scale * 4, scale, 1);
+    sprite.scale.set(scale * plate.aspect, scale, 1);
     // The basemap is a transparent mesh; without an explicit order the far
     // labels sort behind it and get painted over.
     sprite.renderOrder = 10;
@@ -352,8 +368,8 @@ export function createLoopScene({ mount, chapterSeconds, chapterCount }) {
     halo.position.set(pos.x, 0.2, pos.z);
     halo.material.opacity = 0;
 
-    const label = nameSprite(CITY_NAMES[index], '#0f172a', 0.26);
-    label.position.set(pos.x, 0.1, pos.z + 0.55);
+    const label = nameSprite(CITY_NAMES[index], 'primary', 0.3);
+    label.position.set(pos.x, 0.14, pos.z + 0.6);
 
     return { group, halo, label, base: pos.clone() };
   });
@@ -371,8 +387,8 @@ export function createLoopScene({ mount, chapterSeconds, chapterCount }) {
     node.position.set(x, 0.03, z);
     node.rotation.y = Math.random() * Math.PI;
     scene.add(node);
-    const tag = nameSprite(name, '#47657a', 0.14);
-    tag.position.set(x, 0.05, z + 0.3);
+    const tag = nameSprite(name, 'muted', 0.2);
+    tag.position.set(x, 0.09, z + 0.34);
     tag.material.opacity = 0.6;
   }
 
@@ -532,7 +548,7 @@ export function createLoopScene({ mount, chapterSeconds, chapterCount }) {
         (index === 2 && i < 2) ||
         (index >= 3 && i < 2);
       city.group.position.y = Math.sin(time * 0.8 + i * 2.2) * 0.02;
-      city.label.position.y = 0.1 + city.group.position.y;
+      city.label.position.y = 0.14 + city.group.position.y;
       const targetHalo = active ? 0.2 : 0.04;
       city.halo.material.opacity = lerp(city.halo.material.opacity, targetHalo, immediate ? 1 : 0.08);
     });
