@@ -100,7 +100,9 @@ export function LoopHeroAnimation() {
       let onScreen = true;
       const loop = (now) => {
         raf = requestAnimationFrame(loop);
-        const dt = Math.min((now - engine.last) / 1000, 0.05);
+        // Cap the step so a backgrounded tab cannot jump the timeline, but keep
+        // it loose enough that a slow device plays at close to real speed.
+        const dt = Math.min((now - engine.last) / 1000, 0.12);
         engine.last = now;
         if (!engine.playing || !onScreen) return;
         engine.time = (engine.time + dt) % TOTAL;
@@ -112,6 +114,13 @@ export function LoopHeroAnimation() {
       const io = new IntersectionObserver(([entry]) => { onScreen = entry.isIntersecting; }, { threshold: 0.05 });
       io.observe(mount);
 
+      if (window.location.search.includes('loopdebug')) {
+        window.__loopSeek = (index, progress) => {
+          engine.time = (index + progress) * CHAPTER_SECONDS;
+          stage.frame(engine.time, true);
+        };
+      }
+
       const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       engine.playing = !reduced;
       setPlaying(engine.playing);
@@ -122,6 +131,7 @@ export function LoopHeroAnimation() {
         ro.disconnect();
         io.disconnect();
         stage.dispose();
+        delete window.__loopSeek;
         engineRef.current = null;
       };
     })();
