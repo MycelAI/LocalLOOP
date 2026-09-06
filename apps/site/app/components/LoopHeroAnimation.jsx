@@ -192,6 +192,14 @@ export function LoopHeroAnimation() {
         </span>
       </figcaption>
 
+      <p className="loop-anim-credit">
+        Illustrative scenario. Basemap &copy;{' '}
+        <a href="https://www.openstreetmap.org/copyright" rel="noreferrer noopener" target="_blank">
+          OpenStreetMap
+        </a>{' '}
+        contributors.
+      </p>
+
       <div className="loop-anim-controls">
         <button
           aria-label={playing ? 'Pause the animation' : 'Play the animation'}

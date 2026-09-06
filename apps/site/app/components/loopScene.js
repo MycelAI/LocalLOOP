@@ -15,6 +15,28 @@ const GOLD = 0xd9a441;
 const INK = 0x334155;
 const SNOW = 0xf8fafc;
 
+// Web Mercator pixel offsets from Munich at zoom 6, matching
+// public/assets/loop-basemap.webp (a 1024px window centred on Munich).
+// Map data (c) OpenStreetMap contributors, ODbL.
+const MAP_PX = 1024;
+const WORLD_PER_PX = 0.011;
+const CITY_PX = {
+  Munich: [0, 0],
+  Berlin: [82.97, -312.9],
+  Vienna: [218.08, -4.99],
+  Milan: [-108.9, 177.6],
+  Zurich: [-138.4, 51.3],
+  Prague: [129.97, -134.92],
+  Lyon: [-307.03, 158.12],
+  Krakow: [380.61, -134.15],
+  Utrecht: [-294.03, -280.94],
+  Graz: [175.56, 71.85],
+};
+const at = (name) => {
+  const [dx, dy] = CITY_PX[name];
+  return [dx * WORLD_PER_PX, dy * WORLD_PER_PX];
+};
+
 const clamp01 = (v) => (v < 0 ? 0 : v > 1 ? 1 : v);
 const easeInOut = (t) => (t < 0.5 ? 2 * t * t : 1 - (-2 * t + 2) ** 2 / 2);
 const easeOut = (t) => 1 - (1 - t) ** 3;
@@ -53,31 +75,22 @@ function gradientTexture(stops) {
   return texture;
 }
 
-/** Faint concentric + radial grid, drawn once, used as the floor detail. */
-function gridTexture() {
-  const size = 1024;
+/** City name plate, drawn to a canvas and shown as a camera-facing sprite. */
+function labelTexture(text, accent) {
+  const w = 512;
+  const h = 128;
   const canvas = document.createElement('canvas');
-  canvas.width = size;
-  canvas.height = size;
+  canvas.width = w;
+  canvas.height = h;
   const ctx = canvas.getContext('2d');
-  const c = size / 2;
-  ctx.clearRect(0, 0, size, size);
-  ctx.strokeStyle = 'rgba(94, 234, 212, 0.5)';
-  ctx.lineWidth = 1.4;
-  for (let r = 120; r < c; r += 52) {
-    ctx.globalAlpha = 0.5 * (1 - r / c);
-    ctx.beginPath();
-    ctx.arc(c, c, r, 0, Math.PI * 2);
-    ctx.stroke();
-  }
-  ctx.globalAlpha = 0.28;
-  for (let i = 0; i < 18; i += 1) {
-    const a = (i / 18) * Math.PI * 2;
-    ctx.beginPath();
-    ctx.moveTo(c + Math.cos(a) * 126, c + Math.sin(a) * 126);
-    ctx.lineTo(c + Math.cos(a) * c, c + Math.sin(a) * c);
-    ctx.stroke();
-  }
+  ctx.clearRect(0, 0, w, h);
+  ctx.font = '600 54px "Space Grotesk", system-ui, sans-serif';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.shadowColor = 'rgba(3, 12, 18, 0.9)';
+  ctx.shadowBlur = 14;
+  ctx.fillStyle = accent;
+  ctx.fillText(text, w / 2, h / 2);
   const texture = new THREE.CanvasTexture(canvas);
   texture.colorSpace = THREE.SRGBColorSpace;
   return texture;
@@ -120,7 +133,7 @@ export function createLoopScene({ mount, chapterSeconds, chapterCount }) {
 
   const renderer = new THREE.WebGLRenderer({ antialias: !lowPower, powerPreference: 'high-performance' });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, lowPower ? 1 : 1.5));
-  renderer.setClearColor(0x0b1b2b, 1);
+  renderer.setClearColor(0x12263a, 1);
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 0.98;
@@ -130,12 +143,12 @@ export function createLoopScene({ mount, chapterSeconds, chapterCount }) {
 
   const scene = new THREE.Scene();
   scene.background = keep(gradientTexture([
-    [0, '#0a1622'],
-    [0.48, '#0f2733'],
-    [0.78, '#123a41'],
-    [1, '#0d2530'],
+    [0, '#12263a'],
+    [0.48, '#143040'],
+    [0.78, '#164450'],
+    [1, '#123240'],
   ]));
-  scene.fog = new THREE.Fog(0x0e2a33, 7.5, 17);
+  scene.fog = new THREE.Fog(0x143a45, 8, 21);
   const camera = new THREE.PerspectiveCamera(34, 16 / 10, 0.1, 120);
 
   // Image-based lighting gives the surfaces something to reflect, which is most
@@ -188,38 +201,26 @@ export function createLoopScene({ mount, chapterSeconds, chapterCount }) {
   keep(composer);
 
   // --- ground -------------------------------------------------------------
-  // Alpha falloff so the floor dissolves into the backdrop instead of ending
-  // on a hard disc edge.
+  // Alpha falloff so the basemap dissolves into the backdrop instead of
+  // ending on a hard rectangular edge.
   const groundAlpha = keep(radialTexture('rgba(255,255,255,1)', 'rgba(255,255,255,0)'));
-  const groundMat = keep(new THREE.MeshPhysicalMaterial({
-    color: 0x081720,
-    roughness: 0.74,
-    metalness: 0.04,
-    clearcoat: 0.12,
-    clearcoatRoughness: 0.8,
+  const mapTex = keep(new THREE.TextureLoader().load('/assets/loop-basemap.webp'));
+  mapTex.colorSpace = THREE.SRGBColorSpace;
+  mapTex.anisotropy = renderer.capabilities.getMaxAnisotropy();
+  const groundMat = keep(new THREE.MeshStandardMaterial({
+    map: mapTex,
+    color: 0x9fc4d8,
+    roughness: 0.95,
+    metalness: 0,
     alphaMap: groundAlpha,
     transparent: true,
-    envMapIntensity: 0.18,
+    envMapIntensity: 0.2,
   }));
-  const ground = new THREE.Mesh(keep(new THREE.CircleGeometry(9.5, 96)), groundMat);
+  const mapSize = MAP_PX * WORLD_PER_PX;
+  const ground = new THREE.Mesh(keep(new THREE.PlaneGeometry(mapSize, mapSize)), groundMat);
   ground.rotation.x = -Math.PI / 2;
   ground.receiveShadow = true;
   scene.add(ground);
-
-  const gridMesh = new THREE.Mesh(
-    keep(new THREE.CircleGeometry(8.2, 96)),
-    keep(new THREE.MeshBasicMaterial({
-      map: keep(gridTexture()),
-      alphaMap: groundAlpha,
-      transparent: true,
-      opacity: 0.3,
-      depthWrite: false,
-      blending: THREE.AdditiveBlending,
-    })),
-  );
-  gridMesh.rotation.x = -Math.PI / 2;
-  gridMesh.position.y = 0.006;
-  scene.add(gridMesh);
 
   const shadowTex = keep(radialTexture('rgba(4,12,18,0.55)', 'rgba(4,12,18,0)'));
   const contactShadow = (radius) => {
@@ -233,6 +234,26 @@ export function createLoopScene({ mount, chapterSeconds, chapterCount }) {
     return mesh;
   };
 
+  const nameSprite = (text, accent, scale) => {
+    const sprite = new THREE.Sprite(
+      keep(new THREE.SpriteMaterial({
+        map: keep(labelTexture(text, accent)),
+        transparent: true,
+        depthWrite: false,
+        depthTest: false,
+        // Names must stay crisp; fogging them at distance makes the far
+        // nodes unreadable.
+        fog: false,
+      })),
+    );
+    sprite.scale.set(scale * 4, scale, 1);
+    // The basemap is a transparent mesh; without an explicit order the far
+    // labels sort behind it and get painted over.
+    sprite.renderOrder = 10;
+    scene.add(sprite);
+    return sprite;
+  };
+
   const glowTex = keep(radialTexture('rgba(255,255,255,0.95)', 'rgba(255,255,255,0)'));
   const glowSprite = (color, scale) => {
     const sprite = new THREE.Sprite(
@@ -244,16 +265,16 @@ export function createLoopScene({ mount, chapterSeconds, chapterCount }) {
   };
 
   // --- cities -------------------------------------------------------------
-  const CITY_POS = [
-    new THREE.Vector3(-2.55, 0, 1.15),
-    new THREE.Vector3(2.55, 0, 1.0),
-    new THREE.Vector3(0.15, 0, -2.5),
-  ];
+  const CITY_NAMES = ['Munich', 'Berlin', 'Vienna'];
+  const CITY_POS = CITY_NAMES.map((name) => {
+    const [x, z] = at(name);
+    return new THREE.Vector3(x, 0, z);
+  });
 
-  const padGeo = keep(new THREE.CylinderGeometry(1.02, 1.08, 0.2, 6, 1));
-  const padTopGeo = keep(new THREE.CylinderGeometry(0.94, 0.98, 0.06, 6, 1));
-  const towerGeos = [0.34, 0.28, 0.22].map((w, i) =>
-    keep(new RoundedBoxGeometry(w, 0.55 + i * 0.28, w, 3, 0.05)),
+  const padGeo = keep(new THREE.CylinderGeometry(0.52, 0.56, 0.13, 6, 1));
+  const padTopGeo = keep(new THREE.CylinderGeometry(0.47, 0.5, 0.04, 6, 1));
+  const towerGeos = [0.18, 0.15, 0.12].map((w, i) =>
+    keep(new RoundedBoxGeometry(w, 0.34 + i * 0.16, w, 3, 0.03)),
   );
 
   const cities = CITY_POS.map((pos, index) => {
@@ -270,15 +291,15 @@ export function createLoopScene({ mount, chapterSeconds, chapterCount }) {
     const top = new THREE.Mesh(padTopGeo, keep(new THREE.MeshPhysicalMaterial({
       color: index === 2 ? 0x475569 : TEAL_DEEP, roughness: 0.6, metalness: 0.05,
     })));
-    top.position.y = 0.12;
+    top.position.y = 0.08;
     top.receiveShadow = true;
     group.add(top);
 
     // a small skyline rather than one box
     const layout = [
-      { g: 0, x: -0.24, z: -0.16 },
-      { g: 1, x: 0.16, z: 0.2 },
-      { g: 2, x: 0.3, z: -0.28 },
+      { g: 0, x: -0.13, z: -0.09 },
+      { g: 1, x: 0.09, z: 0.11 },
+      { g: 2, x: 0.16, z: -0.15 },
     ];
     for (const item of layout) {
       const geo = towerGeos[item.g];
@@ -293,7 +314,7 @@ export function createLoopScene({ mount, chapterSeconds, chapterCount }) {
         emissiveIntensity: 0.9,
       })));
       geo.computeBoundingBox();
-      tower.position.set(item.x, 0.15 + geo.boundingBox.max.y, item.z);
+      tower.position.set(item.x, 0.09 + geo.boundingBox.max.y, item.z);
       tower.castShadow = true;
       tower.receiveShadow = true;
       group.add(tower);
@@ -303,37 +324,42 @@ export function createLoopScene({ mount, chapterSeconds, chapterCount }) {
     group.rotation.y = Math.PI / 6 + index * 0.5;
     scene.add(group);
 
-    const shadow = contactShadow(1.7);
+    const shadow = contactShadow(1.0);
     shadow.position.set(pos.x, 0.012, pos.z);
 
-    const halo = glowSprite(index === 2 ? 0x64748b : TEAL, 3.2);
-    halo.position.set(pos.x, 0.35, pos.z);
+    const halo = glowSprite(index === 2 ? 0x94a3b8 : TEAL, 1.7);
+    halo.position.set(pos.x, 0.2, pos.z);
     halo.material.opacity = 0;
 
-    return { group, halo, base: pos.clone() };
+    const label = nameSprite(CITY_NAMES[index], '#f2fbfa', 0.4);
+    label.position.set(pos.x, 0.1, pos.z + 0.78);
+
+    return { group, halo, label, base: pos.clone() };
   });
 
   // A scatter of dim distant nodes so the three subjects sit in a network
   // rather than on an empty plane.
-  const farGeo = keep(new THREE.CylinderGeometry(0.3, 0.34, 0.08, 6));
+  const farGeo = keep(new THREE.CylinderGeometry(0.17, 0.2, 0.06, 6));
   const farMat = keep(new THREE.MeshStandardMaterial({
     color: 0x1f5560, roughness: 0.55, metalness: 0.15, emissive: 0x2dd4bf, emissiveIntensity: 0.85,
   }));
-  const FAR = [
-    [-5.6, -3.4], [-4.2, -5.2], [0.6, -6.0], [4.4, -4.6], [6.0, -1.6], [5.4, 3.4], [-5.8, 2.2],
-  ];
-  for (const [x, z] of FAR) {
+  const FAR = ['Milan', 'Zurich', 'Prague', 'Lyon', 'Krakow', 'Utrecht', 'Graz'];
+  for (const name of FAR) {
+    const [x, z] = at(name);
     const node = new THREE.Mesh(farGeo, farMat);
-    node.position.set(x, 0.04, z);
+    node.position.set(x, 0.03, z);
     node.rotation.y = Math.random() * Math.PI;
     scene.add(node);
+    const tag = nameSprite(name, '#8fc4c9', 0.19);
+    tag.position.set(x, 0.05, z + 0.4);
+    tag.material.opacity = 0.6;
   }
 
   // --- chapter props ------------------------------------------------------
-  const anchor = new THREE.Vector3(CITY_POS[0].x, 1.55, CITY_POS[0].z);
+  const anchor = new THREE.Vector3(CITY_POS[0].x, 0.92, CITY_POS[0].z);
 
   const batch = new THREE.Mesh(
-    keep(new THREE.IcosahedronGeometry(0.46, 1)),
+    keep(new THREE.IcosahedronGeometry(0.24, 1)),
     keep(new THREE.MeshPhysicalMaterial({
       color: WARM, roughness: 0.28, metalness: 0.12, clearcoat: 0.9, clearcoatRoughness: 0.18, flatShading: true,
     })),
@@ -343,7 +369,7 @@ export function createLoopScene({ mount, chapterSeconds, chapterCount }) {
   scene.add(batch);
 
   const core = new THREE.Mesh(
-    keep(new THREE.IcosahedronGeometry(0.3, 1)),
+    keep(new THREE.IcosahedronGeometry(0.16, 1)),
     keep(new THREE.MeshBasicMaterial({ color: 0xffd9c2, transparent: true })),
   );
   scene.add(core);
@@ -351,16 +377,16 @@ export function createLoopScene({ mount, chapterSeconds, chapterCount }) {
   // A second, counter-rotating ring reads as an identifier being bound to the
   // batch rather than a single decorative orbit.
   const idRing2 = new THREE.Mesh(
-    keep(new THREE.TorusGeometry(0.62, 0.014, 12, 72)),
+    keep(new THREE.TorusGeometry(0.33, 0.008, 12, 72)),
     keep(new THREE.MeshStandardMaterial({
       color: 0xfbbf9a, emissive: 0xfbbf9a, emissiveIntensity: 1.3, roughness: 0.35, transparent: true,
     })),
   );
   scene.add(idRing2);
-  const batchGlow = glowSprite(WARM, 1.7);
+  const batchGlow = glowSprite(WARM, 0.95);
 
   const idRing = new THREE.Mesh(
-    keep(new THREE.TorusGeometry(0.8, 0.022, 16, 96)),
+    keep(new THREE.TorusGeometry(0.42, 0.012, 16, 96)),
     keep(new THREE.MeshStandardMaterial({
       color: WARM, emissive: WARM, emissiveIntensity: 1.6, roughness: 0.3, transparent: true,
     })),
@@ -369,7 +395,7 @@ export function createLoopScene({ mount, chapterSeconds, chapterCount }) {
   scene.add(idRing);
 
   const product = new THREE.Mesh(
-    keep(new RoundedBoxGeometry(0.78, 0.78, 0.78, 4, 0.12)),
+    keep(new RoundedBoxGeometry(0.4, 0.4, 0.4, 4, 0.06)),
     keep(new THREE.MeshPhysicalMaterial({
       color: TEAL, roughness: 0.25, metalness: 0.15, clearcoat: 1, clearcoatRoughness: 0.15,
     })),
@@ -377,7 +403,7 @@ export function createLoopScene({ mount, chapterSeconds, chapterCount }) {
   product.castShadow = true;
   scene.add(product);
 
-  const partGeo = keep(new RoundedBoxGeometry(0.24, 0.24, 0.24, 3, 0.05));
+  const partGeo = keep(new RoundedBoxGeometry(0.13, 0.13, 0.13, 3, 0.03));
   const parts = [0, 1, 2, 3].map(() => {
     const part = new THREE.Mesh(partGeo, keep(new THREE.MeshPhysicalMaterial({
       color: WARM, roughness: 0.32, metalness: 0.1, clearcoat: 0.7,
@@ -390,7 +416,7 @@ export function createLoopScene({ mount, chapterSeconds, chapterCount }) {
   // Three staggered rings per city read as a repeating pulse; a single ring
   // just looked like a painted circle on the floor.
   const RINGS_PER_CITY = 3;
-  const signalGeo = keep(new THREE.RingGeometry(0.82, 1, 128));
+  const signalGeo = keep(new THREE.RingGeometry(0.88, 1, 128));
   const signals = [];
   for (let city = 0; city < 2; city += 1) {
     for (let n = 0; n < RINGS_PER_CITY; n += 1) {
@@ -409,12 +435,16 @@ export function createLoopScene({ mount, chapterSeconds, chapterCount }) {
   }
 
   const curve = new THREE.QuadraticBezierCurve3(
-    new THREE.Vector3(CITY_POS[0].x, 0.95, CITY_POS[0].z),
-    new THREE.Vector3(0, 4.5, 3.4),
-    new THREE.Vector3(CITY_POS[1].x, 0.95, CITY_POS[1].z),
+    new THREE.Vector3(CITY_POS[0].x, 0.42, CITY_POS[0].z),
+    new THREE.Vector3(
+      (CITY_POS[0].x + CITY_POS[1].x) / 2 + 0.35,
+      2.1,
+      (CITY_POS[0].z + CITY_POS[1].z) / 2 + 1.15,
+    ),
+    new THREE.Vector3(CITY_POS[1].x, 0.42, CITY_POS[1].z),
   );
   const route = new THREE.Mesh(
-    keep(new THREE.TubeGeometry(curve, 96, 0.028, 12, false)),
+    keep(new THREE.TubeGeometry(curve, 96, 0.016, 12, false)),
     keep(new THREE.MeshStandardMaterial({
       color: TEAL, emissive: TEAL, emissiveIntensity: 1.1, roughness: 0.4, transparent: true,
     })),
@@ -422,18 +452,18 @@ export function createLoopScene({ mount, chapterSeconds, chapterCount }) {
   scene.add(route);
 
   const cargo = new THREE.Mesh(
-    keep(new THREE.IcosahedronGeometry(0.26, 1)),
+    keep(new THREE.IcosahedronGeometry(0.14, 1)),
     keep(new THREE.MeshPhysicalMaterial({ color: WARM, roughness: 0.3, metalness: 0.1, clearcoat: 0.8, flatShading: true })),
   );
   cargo.castShadow = true;
   scene.add(cargo);
-  const cargoGlow = glowSprite(WARM, 1.05);
+  const cargoGlow = glowSprite(WARM, 0.6);
 
-  const trail = [0, 1, 2, 3, 4].map(() => glowSprite(WARM, 0.72));
-  const packets = [0, 1, 2].map(() => glowSprite(0x5eead4, 0.42));
+  const trail = [0, 1, 2, 3, 4].map(() => glowSprite(WARM, 0.42));
+  const packets = [0, 1, 2].map(() => glowSprite(0x5eead4, 0.26));
 
   const coin = new THREE.Mesh(
-    keep(new THREE.CylinderGeometry(0.3, 0.3, 0.075, 48, 1)),
+    keep(new THREE.CylinderGeometry(0.17, 0.17, 0.04, 48, 1)),
     keep(new THREE.MeshPhysicalMaterial({
       color: GOLD,
       roughness: 0.45,
@@ -447,16 +477,16 @@ export function createLoopScene({ mount, chapterSeconds, chapterCount }) {
   );
   coin.castShadow = true;
   scene.add(coin);
-  const coinGlow = glowSprite(GOLD, 1.15);
+  const coinGlow = glowSprite(GOLD, 0.68);
 
   // --- camera choreography -----------------------------------------------
   // Framed so the three cities stay inside a 16:10 crop at every chapter.
   const SHOTS = [
-    { pos: new THREE.Vector3(-0.6, 4.4, 11.0), look: new THREE.Vector3(-0.5, 1.1, 0.1) },
-    { pos: new THREE.Vector3(-0.4, 4.8, 10.8), look: new THREE.Vector3(-0.7, 1.3, 0.1) },
-    { pos: new THREE.Vector3(0, 9.4, 9.4), look: new THREE.Vector3(0, 0.0, -0.1) },
-    { pos: new THREE.Vector3(0, 5.4, 12.0), look: new THREE.Vector3(0, 1.5, 0.2) },
-    { pos: new THREE.Vector3(0.7, 4.9, 11.4), look: new THREE.Vector3(0.1, 1.4, 0.3) },
+    { pos: new THREE.Vector3(0.25, 3.5, 7.0), look: new THREE.Vector3(0.3, 0.45, -0.8) },
+    { pos: new THREE.Vector3(0.4, 3.6, 6.8), look: new THREE.Vector3(0.25, 0.55, -0.8) },
+    { pos: new THREE.Vector3(0.55, 6.8, 5.0), look: new THREE.Vector3(0.5, 0.0, -1.5) },
+    { pos: new THREE.Vector3(0.6, 3.9, 7.1), look: new THREE.Vector3(0.5, 0.8, -1.5) },
+    { pos: new THREE.Vector3(1.3, 3.7, 6.9), look: new THREE.Vector3(0.55, 0.8, -1.4) },
   ];
   const camPos = SHOTS[0].pos.clone();
   const camLook = SHOTS[0].look.clone();
@@ -477,7 +507,8 @@ export function createLoopScene({ mount, chapterSeconds, chapterCount }) {
         (index === 1 && i === 0) ||
         (index === 2 && i < 2) ||
         (index >= 3 && i < 2);
-      city.group.position.y = Math.sin(time * 0.8 + i * 2.2) * 0.04;
+      city.group.position.y = Math.sin(time * 0.8 + i * 2.2) * 0.02;
+      city.label.position.y = 0.1 + city.group.position.y;
       const targetHalo = active ? 0.2 : 0.04;
       city.halo.material.opacity = lerp(city.halo.material.opacity, targetHalo, immediate ? 1 : 0.08);
     });
@@ -537,7 +568,7 @@ export function createLoopScene({ mount, chapterSeconds, chapterCount }) {
       // City A holds the stronger preference: wider, brighter, faster pulses.
       const strength = item.city === 0 ? 1 : 0.52;
       const wave = (p * 2.1 + item.offset) % 1;
-      item.ring.scale.setScalar(0.4 + wave * 2.5 * strength);
+      item.ring.scale.setScalar(0.35 + wave * 1.9 * strength);
       item.ring.material.opacity =
         (1 - wave) ** 1.15 * (item.city === 0 ? 0.95 : 0.6) * edge;
     }
