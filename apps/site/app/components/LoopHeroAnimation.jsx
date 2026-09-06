@@ -12,11 +12,6 @@ const CHAPTERS = [
 const CHAPTER_SECONDS = 5;
 const TOTAL = CHAPTERS.length * CHAPTER_SECONDS;
 
-const clamp01 = (v) => (v < 0 ? 0 : v > 1 ? 1 : v);
-const easeInOut = (t) => (t < 0.5 ? 2 * t * t : 1 - (-2 * t + 2) ** 2 / 2);
-const easeOut = (t) => 1 - (1 - t) ** 3;
-// 0 -> 1 -> 0, used to fade a chapter's props in and back out
-const pulse = (t) => Math.sin(clamp01(t) * Math.PI);
 
 export function LoopHeroAnimation() {
   const mountRef = useRef(null);
@@ -62,242 +57,59 @@ export function LoopHeroAnimation() {
     let cleanup = () => {};
 
     (async () => {
-      let THREE;
+      let createLoopScene;
       try {
-        THREE = await import('three');
+        ({ createLoopScene } = await import('./loopScene.js'));
       } catch {
         if (!disposed) setFailed(true);
         return;
       }
       if (disposed) return;
 
-      let renderer;
+      let stage;
       try {
-        renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, powerPreference: 'low-power' });
+        stage = createLoopScene({ mount, chapterSeconds: CHAPTER_SECONDS, chapterCount: CHAPTERS.length });
       } catch {
         if (!disposed) setFailed(true);
         return;
       }
+      if (disposed) {
+        stage.dispose();
+        return;
+      }
 
-      const TEAL = 0x0d9488;
-      const WARM = 0xe06c47;
-      const INK = 0x334155;
-      const PAPER = 0xf1f5f9;
-
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-      renderer.setClearColor(0x000000, 0);
-      mount.appendChild(renderer.domElement);
-      renderer.domElement.setAttribute('role', 'img');
-      renderer.domElement.setAttribute(
+      stage.domElement.setAttribute('role', 'img');
+      stage.domElement.setAttribute(
         'aria-label',
         'Animated diagram of the LOOP protocol: material identity, product identity, community signals, routing cost, and settlement between three cities.',
       );
 
-      const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(38, 16 / 10, 0.1, 100);
-
-      scene.add(new THREE.AmbientLight(0xffffff, 1.5));
-      const key = new THREE.DirectionalLight(0xffffff, 2.1);
-      key.position.set(4, 7, 5);
-      scene.add(key);
-      const rim = new THREE.DirectionalLight(TEAL, 1.1);
-      rim.position.set(-5, 3, -4);
-      scene.add(rim);
-
-      const registry = [];
-      const track = (obj) => { registry.push(obj); return obj; };
-      const mat = (color, opts = {}) =>
-        track(new THREE.MeshStandardMaterial({ color, roughness: 0.55, metalness: 0.05, ...opts }));
-
-      // --- ground
-      const groundGeo = track(new THREE.CircleGeometry(5.2, 64));
-      const ground = new THREE.Mesh(groundGeo, mat(PAPER, { transparent: true, opacity: 0.5 }));
-      ground.rotation.x = -Math.PI / 2;
-      ground.position.y = -0.02;
-      scene.add(ground);
-
-      // --- three cities
-      const CITY_POS = [
-        new THREE.Vector3(-2.3, 0, 0.9),
-        new THREE.Vector3(2.3, 0, 0.9),
-        new THREE.Vector3(0, 0, -2.2),
-      ];
-      const padGeo = track(new THREE.CylinderGeometry(0.78, 0.85, 0.22, 6));
-      const towerGeo = track(new THREE.BoxGeometry(0.34, 0.62, 0.34));
-      const cities = CITY_POS.map((pos, i) => {
-        const group = new THREE.Group();
-        const pad = new THREE.Mesh(padGeo, mat(i === 2 ? INK : TEAL, { transparent: true, opacity: 0.85 }));
-        group.add(pad);
-        const tower = new THREE.Mesh(towerGeo, mat(0xffffff));
-        tower.position.y = 0.42;
-        group.add(tower);
-        group.position.copy(pos);
-        group.rotation.y = Math.PI / 6;
-        scene.add(group);
-        return group;
-      });
-
-      // --- chapter 1: material batch + identity ring
-      const material = new THREE.Mesh(track(new THREE.IcosahedronGeometry(0.42, 0)), mat(WARM));
-      material.position.set(CITY_POS[0].x, 1.05, CITY_POS[0].z);
-      scene.add(material);
-      const idRing = new THREE.Mesh(
-        track(new THREE.TorusGeometry(0.72, 0.035, 12, 48)),
-        mat(WARM, { transparent: true, opacity: 0.9 }),
-      );
-      idRing.position.copy(material.position);
-      idRing.rotation.x = Math.PI / 2;
-      scene.add(idRing);
-
-      // --- chapter 2: product assembled from parts
-      const product = new THREE.Mesh(track(new THREE.BoxGeometry(0.62, 0.62, 0.62)), mat(TEAL));
-      product.position.copy(material.position);
-      scene.add(product);
-      const partGeo = track(new THREE.BoxGeometry(0.2, 0.2, 0.2));
-      const parts = [0, 1, 2].map(() => {
-        const part = new THREE.Mesh(partGeo, mat(WARM));
-        scene.add(part);
-        return part;
-      });
-
-      // --- chapter 3: signal rings from two cities
-      const signalGeo = track(new THREE.TorusGeometry(1, 0.02, 8, 64));
-      const signals = [0, 1].map((i) => {
-        const ring = new THREE.Mesh(signalGeo, mat(i === 0 ? WARM : TEAL, { transparent: true }));
-        ring.rotation.x = -Math.PI / 2;
-        ring.position.set(CITY_POS[i].x, 0.16, CITY_POS[i].z);
-        scene.add(ring);
-        return ring;
-      });
-
-      // --- chapter 4 + 5: the route arc between city A and city B
-      const curve = new THREE.QuadraticBezierCurve3(
-        new THREE.Vector3(CITY_POS[0].x, 0.5, CITY_POS[0].z),
-        new THREE.Vector3(0, 2.6, 1.6),
-        new THREE.Vector3(CITY_POS[1].x, 0.5, CITY_POS[1].z),
-      );
-      const routeGeo = track(new THREE.TubeGeometry(curve, 64, 0.035, 8, false));
-      const route = new THREE.Mesh(routeGeo, mat(TEAL, { transparent: true }));
-      scene.add(route);
-      const cargo = new THREE.Mesh(track(new THREE.IcosahedronGeometry(0.24, 0)), mat(WARM));
-      scene.add(cargo);
-      const coin = new THREE.Mesh(track(new THREE.CylinderGeometry(0.26, 0.26, 0.07, 28)), mat(0xeab308));
-      scene.add(coin);
-
       const engine = { time: 0, playing: false, last: performance.now(), render: () => {} };
-
-      const frame = (time) => {
-        const t = time % TOTAL;
-        const idx = Math.min(Math.floor(t / CHAPTER_SECONDS), CHAPTERS.length - 1);
-        const p = (t - idx * CHAPTER_SECONDS) / CHAPTER_SECONDS;
-
-        cities.forEach((city, i) => {
-          const active = (idx === 0 && i === 0) || (idx === 3 && i < 2) || (idx === 4 && i < 2) || (idx === 2 && i < 2);
-          const target = active ? 1.12 : 1;
-          city.scale.setScalar(city.scale.x + (target - city.scale.x) * 0.12);
-          city.position.y = Math.sin(time * 0.9 + i * 2.1) * 0.03;
-        });
-
-        // 1. material identity
-        const mVis = idx === 0 ? pulse(p) : 0;
-        material.visible = mVis > 0.01 || idx === 1;
-        material.scale.setScalar(idx === 0 ? easeOut(clamp01(p * 2)) * 0.9 + 0.1 : Math.max(0, 1 - p * 3));
-        material.rotation.y = time * 0.8;
-        material.rotation.x = time * 0.35;
-        idRing.visible = idx === 0;
-        idRing.scale.setScalar(0.6 + easeOut(clamp01(p * 1.6)) * 0.5);
-        idRing.material.opacity = pulse(p) * 0.9;
-        idRing.rotation.z = time * 1.2;
-
-        // 2. product assembly
-        product.visible = idx === 1;
-        const assembled = easeInOut(clamp01((p - 0.12) / 0.55));
-        product.scale.setScalar(0.35 + assembled * 0.7);
-        product.rotation.y = time * 0.6;
-        parts.forEach((part, i) => {
-          part.visible = idx === 1 && assembled < 0.98;
-          const angle = time * 1.4 + (i * Math.PI * 2) / 3;
-          const radius = 1.35 * (1 - assembled);
-          part.position.set(
-            material.position.x + Math.cos(angle) * radius,
-            1.05 + Math.sin(angle * 1.3) * 0.28 * (1 - assembled),
-            material.position.z + Math.sin(angle) * radius,
-          );
-          part.rotation.set(time, time * 0.7, 0);
-          part.scale.setScalar(Math.max(0, 1.25 - assembled * 1.25));
-        });
-
-        // 3. community signals
-        signals.forEach((ring, i) => {
-          ring.visible = idx === 2;
-          const offset = i * 0.35;
-          const wave = ((p * 1.6 + offset) % 1);
-          const strength = i === 0 ? 1 : 0.62;
-          ring.scale.setScalar(0.25 + wave * 1.9 * strength);
-          ring.material.opacity = (1 - wave) * 0.85;
-        });
-
-        // 4. routing cost
-        route.visible = idx === 3 || idx === 4;
-        const draw = idx === 3 ? easeInOut(clamp01(p * 1.8)) : 1;
-        route.material.opacity = idx === 3 ? draw * 0.9 : 0.35;
-        cargo.visible = idx === 3 && p > 0.25;
-        if (cargo.visible) {
-          const along = easeInOut(clamp01((p - 0.25) / 0.7));
-          curve.getPointAt(along, cargo.position);
-          cargo.rotation.set(time * 1.2, time, 0);
-          cargo.scale.setScalar(0.9);
-        }
-
-        // 5. settlement returns
-        coin.visible = idx === 4;
-        if (coin.visible) {
-          const along = 1 - easeInOut(clamp01(p * 1.25));
-          curve.getPointAt(along, coin.position);
-          coin.rotation.set(Math.PI / 2, 0, time * 3);
-          coin.scale.setScalar(pulse(clamp01(p * 1.3)) * 0.4 + 0.7);
-        }
-
-        const orbit = time * 0.16;
-        camera.position.set(Math.sin(orbit) * 7.4, 4.3 + Math.sin(time * 0.4) * 0.25, Math.cos(orbit) * 7.4);
-        camera.lookAt(0, 0.5, 0);
-
-        renderer.render(scene, camera);
-        return idx;
-      };
-
-      engine.render = () => setChapter(frame(engine.time));
+      engine.render = () => setChapter(stage.frame(engine.time, true));
       engineRef.current = engine;
 
       const resize = () => {
-        const width = mount.clientWidth;
-        if (!width) return;
-        const height = width * (10 / 16);
-        renderer.setSize(width, height, false);
-        renderer.domElement.style.width = '100%';
-        renderer.domElement.style.height = '100%';
-        camera.aspect = 16 / 10;
-        camera.updateProjectionMatrix();
-        frame(engine.time);
+        stage.resize();
+        stage.frame(engine.time, true);
       };
       resize();
       const ro = new ResizeObserver(resize);
       ro.observe(mount);
 
       let raf = 0;
-      let visible = true;
+      let onScreen = true;
       const loop = (now) => {
         raf = requestAnimationFrame(loop);
         const dt = Math.min((now - engine.last) / 1000, 0.05);
         engine.last = now;
-        if (!engine.playing || !visible) return;
+        if (!engine.playing || !onScreen) return;
         engine.time = (engine.time + dt) % TOTAL;
-        const idx = frame(engine.time);
+        const idx = stage.frame(engine.time);
         setChapter((prev) => (prev === idx ? prev : idx));
       };
       raf = requestAnimationFrame(loop);
 
-      const io = new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; }, { threshold: 0.05 });
+      const io = new IntersectionObserver(([entry]) => { onScreen = entry.isIntersecting; }, { threshold: 0.05 });
       io.observe(mount);
 
       const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -309,9 +121,7 @@ export function LoopHeroAnimation() {
         cancelAnimationFrame(raf);
         ro.disconnect();
         io.disconnect();
-        for (const item of registry) item.dispose?.();
-        renderer.dispose();
-        renderer.domElement.remove();
+        stage.dispose();
         engineRef.current = null;
       };
     })();

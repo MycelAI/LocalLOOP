@@ -64,6 +64,8 @@ export default function HomePage() {
               <span className="hero-stat-label">Demo only</span>
             </div>
           </div>
+        </div>
+        <div className="hero-figure">
           <LoopHeroAnimation />
         </div>
       </section>
