@@ -13,18 +13,20 @@ const SNOW = 0xf8fafc;
 // public/assets/loop-basemap.webp (a 1024px window centred on Munich).
 // Map data (c) OpenStreetMap contributors, ODbL.
 const MAP_PX = 1024;
-const WORLD_PER_PX = 0.011;
+// Zoom 5 doubles the ground each pixel covers, so the plane spans twice the
+// world for the same texture size and reaches past the hero's edges.
+const WORLD_PER_PX = 0.022;
 const CITY_PX = {
   Munich: [0, 0],
-  Berlin: [82.97, -312.9],
-  Vienna: [218.08, -4.99],
-  Milan: [-108.9, 177.6],
-  Zurich: [-138.4, 51.3],
-  Prague: [129.97, -134.92],
-  Lyon: [-307.03, 158.12],
-  Krakow: [380.61, -134.15],
-  Utrecht: [-294.03, -280.94],
-  Graz: [175.56, 71.85],
+  Berlin: [41.48, -156.45],
+  Vienna: [109.04, -2.49],
+  Milan: [-54.43, 88.81],
+  Zurich: [-69.18, 25.66],
+  Prague: [64.99, -67.46],
+  Lyon: [-153.52, 79.06],
+  Krakow: [190.3, -67.07],
+  Utrecht: [-147.01, -140.47],
+  Graz: [87.78, 35.92],
 };
 const at = (name) => {
   const [dx, dy] = CITY_PX[name];
@@ -66,8 +68,10 @@ function mapAlphaTexture(focus) {
 
   // global falloff so the sheet never ends on a hard edge
   const base = ctx.createRadialGradient(size / 2, size / 2, size * 0.06, size / 2, size / 2, size / 2);
-  base.addColorStop(0, 'rgba(255,255,255,0.82)');
-  base.addColorStop(0.6, 'rgba(255,255,255,0.46)');
+  base.addColorStop(0, 'rgba(255,255,255,1)');
+  base.addColorStop(0.36, 'rgba(255,255,255,0.97)');
+  base.addColorStop(0.66, 'rgba(255,255,255,0.78)');
+  base.addColorStop(0.86, 'rgba(255,255,255,0.36)');
   base.addColorStop(1, 'rgba(255,255,255,0)');
   ctx.fillStyle = base;
   ctx.fillRect(0, 0, size, size);
@@ -233,11 +237,11 @@ export function createLoopScene({ mount, chapterSeconds, chapterCount }) {
   // Alpha falloff so the basemap dissolves into the backdrop instead of
   // ending on a hard rectangular edge.
   const groundAlpha = keep(mapAlphaTexture([
-    [CITY_PX.Munich[0], CITY_PX.Munich[1], 0.95, 0.2],
-    [CITY_PX.Berlin[0], CITY_PX.Berlin[1], 0.85, 0.19],
-    [CITY_PX.Vienna[0], CITY_PX.Vienna[1], 0.85, 0.19],
+    [CITY_PX.Munich[0], CITY_PX.Munich[1], 0.6, 0.13],
+    [CITY_PX.Berlin[0], CITY_PX.Berlin[1], 0.5, 0.12],
+    [CITY_PX.Vienna[0], CITY_PX.Vienna[1], 0.5, 0.12],
     // the corridor the transfer actually travels
-    [(CITY_PX.Munich[0] + CITY_PX.Berlin[0]) / 2, (CITY_PX.Munich[1] + CITY_PX.Berlin[1]) / 2, 0.5, 0.2],
+    [(CITY_PX.Munich[0] + CITY_PX.Berlin[0]) / 2, (CITY_PX.Munich[1] + CITY_PX.Berlin[1]) / 2, 0.3, 0.13],
   ]));
   const mapTex = keep(new THREE.TextureLoader().load('/assets/loop-basemap.webp'));
   mapTex.colorSpace = THREE.SRGBColorSpace;

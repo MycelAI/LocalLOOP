@@ -6133,14 +6133,15 @@ a.card h3:not(.card-title) {
   overflow: hidden;
   pointer-events: none;
   /* Fade the render out toward the page edges so it never ends on a seam. */
-  mask-image: radial-gradient(135% 118% at 62% 48%, #000 52%, transparent 94%);
+  /* Edge to edge: no mask, the ground's own alpha handles the falloff. */
   opacity: 1;
 }
 
 @media (max-width: 900px) {
+  /* The hero stacks tall on phones and the copy sits over the map, so the
+     layer drops back to stay legible. */
   .hero-anim-layer {
-    mask-image: radial-gradient(150% 95% at 50% 60%, #000 46%, transparent 90%);
-    opacity: 0.9;
+    opacity: 0.5;
   }
 }
 
@@ -6174,24 +6175,56 @@ a.card h3:not(.card-title) {
   margin-top: var(--space-8);
 }
 
-/* On a wide hero the transport sits in the map's bottom-right corner, just
-   above the basemap attribution. */
+/* On a wide hero the transport frames the map: the chapter line runs along
+   the bottom edge, the play and chapter controls sit vertically on the right. */
 @media (min-width: 901px) {
   .hero-figure {
     position: absolute;
-    right: var(--gutter);
-    bottom: var(--space-8);
-    width: min(430px, 40vw);
+    inset: 0;
+    width: auto;
     margin-top: 0;
+    pointer-events: none;
   }
 
   .hero-figure .loop-anim-caption {
-    justify-content: flex-end;
-    text-align: right;
+    position: absolute;
+    left: var(--gutter);
+    right: calc(var(--gutter) + 96px);
+    bottom: var(--space-6);
+    margin-top: 0;
+    min-height: 0;
+    align-items: baseline;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    pointer-events: auto;
+  }
+
+  .hero-figure .loop-anim-copy {
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .hero-figure .loop-anim-controls {
-    justify-content: flex-end;
+    position: absolute;
+    right: var(--gutter);
+    top: 50%;
+    transform: translateY(-50%);
+    flex-direction: column;
+    gap: var(--space-3);
+    margin-top: 0;
+    pointer-events: auto;
+  }
+
+  .hero-figure .loop-anim-dots {
+    flex-direction: column;
+    margin-left: 0;
+    margin-top: var(--space-1);
+  }
+
+  .hero-figure .loop-anim-dot {
+    width: 4px;
+    height: 22px;
   }
 }
 
