@@ -12,9 +12,9 @@ const SNOW = 0xf8fafc;
 // Web Mercator pixel offsets from Munich at zoom 6, matching
 // public/assets/loop-basemap.webp (a 1024px window centred on Munich).
 // Map data (c) OpenStreetMap contributors, ODbL.
-const MAP_PX = 1024;
-// Zoom 5 doubles the ground each pixel covers, so the plane spans twice the
-// world for the same texture size and reaches past the hero's edges.
+const MAP_PX = 2048;
+// A 2048px zoom-5 window: the plane spans ~45 world units, so even the top
+// corner rays -- the most oblique in the frustum -- land inside the sheet.
 const WORLD_PER_PX = 0.022;
 const CITY_PX = {
   Munich: [0, 0],
@@ -69,8 +69,8 @@ function mapAlphaTexture(focus) {
   // global falloff so the sheet never ends on a hard edge
   const base = ctx.createRadialGradient(size / 2, size / 2, size * 0.06, size / 2, size / 2, size / 2);
   base.addColorStop(0, 'rgba(255,255,255,1)');
-  base.addColorStop(0.55, 'rgba(255,255,255,1)');
-  base.addColorStop(0.82, 'rgba(255,255,255,0.82)');
+  base.addColorStop(0.78, 'rgba(255,255,255,1)');
+  base.addColorStop(0.93, 'rgba(255,255,255,0.85)');
   base.addColorStop(1, 'rgba(255,255,255,0)');
   ctx.fillStyle = base;
   ctx.fillRect(0, 0, size, size);
@@ -236,11 +236,11 @@ export function createLoopScene({ mount, chapterSeconds, chapterCount }) {
   // Alpha falloff so the basemap dissolves into the backdrop instead of
   // ending on a hard rectangular edge.
   const groundAlpha = keep(mapAlphaTexture([
-    [CITY_PX.Munich[0], CITY_PX.Munich[1], 0.6, 0.13],
-    [CITY_PX.Berlin[0], CITY_PX.Berlin[1], 0.5, 0.12],
-    [CITY_PX.Vienna[0], CITY_PX.Vienna[1], 0.5, 0.12],
+    [CITY_PX.Munich[0], CITY_PX.Munich[1], 0.5, 0.07],
+    [CITY_PX.Berlin[0], CITY_PX.Berlin[1], 0.42, 0.065],
+    [CITY_PX.Vienna[0], CITY_PX.Vienna[1], 0.42, 0.065],
     // the corridor the transfer actually travels
-    [(CITY_PX.Munich[0] + CITY_PX.Berlin[0]) / 2, (CITY_PX.Munich[1] + CITY_PX.Berlin[1]) / 2, 0.3, 0.13],
+    [(CITY_PX.Munich[0] + CITY_PX.Berlin[0]) / 2, (CITY_PX.Munich[1] + CITY_PX.Berlin[1]) / 2, 0.25, 0.07],
   ]));
   const mapTex = keep(new THREE.TextureLoader().load('/assets/loop-basemap.webp'));
   mapTex.colorSpace = THREE.SRGBColorSpace;
@@ -254,6 +254,24 @@ export function createLoopScene({ mount, chapterSeconds, chapterCount }) {
     transparent: true,
     envMapIntensity: 0.2,
   }));
+  // Beyond the map sheet on very wide heroes, a soft wash keeps the corners
+  // from cutting to page background on a hard diagonal.
+  const hazeAlpha = keep(radialTexture('rgba(255,255,255,0.85)', 'rgba(255,255,255,0)'));
+  const haze = new THREE.Mesh(
+    keep(new THREE.PlaneGeometry(150, 150)),
+    keep(new THREE.MeshBasicMaterial({
+      color: 0xe9f0f2,
+      alphaMap: hazeAlpha,
+      transparent: true,
+      opacity: 0.7,
+      depthWrite: false,
+    })),
+  );
+  haze.rotation.x = -Math.PI / 2;
+  haze.position.y = -0.05;
+  haze.renderOrder = -1;
+  scene.add(haze);
+
   const mapSize = MAP_PX * WORLD_PER_PX;
   const ground = new THREE.Mesh(keep(new THREE.PlaneGeometry(mapSize, mapSize)), groundMat);
   ground.rotation.x = -Math.PI / 2;
