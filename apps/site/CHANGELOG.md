@@ -7,6 +7,49 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.6.0] - 2026-09-07
+
+### Added
+- New page `/protocol/what-is-loop`: a plain-language white paper on LOOP for
+  city leaders and non-technical stakeholders. Covers the
+  register/offer/match/transfer flow and its cross-entity invariants, the six
+  core concepts with implemented and design-only clearly separated, identifier
+  anatomy, a 22-term glossary, node cost and operation, data minimisation and
+  residency, the regulatory landscape, current implementation status, and
+  governance. Registered in the header menu, protocol sidebar and hub.
+- First per-page structured data on the site: `TechArticle`, `FAQPage` and
+  `BreadcrumbList` JSON-LD on that page, with the FAQ blocks and the schema
+  built from one array so the two cannot drift.
+- An interactive LoopCost model on the same page. Four range inputs and a
+  same-city toggle drive the published formula, and the formula rows show
+  their running figures. It replaces the static formula rather than sitting
+  beside it, and its server-rendered default state is a readable table before
+  hydration.
+- A three.js motion graphic across the home hero: a looping five-chapter scene
+  covering MaterialDNA, ProductDNA, LoopSignal, LoopCost and LoopCoin, with
+  play/pause, restart and chapter controls. `three` is dynamically imported so
+  it code-splits out of the initial bundle; rendering stops when the hero
+  leaves the viewport, `prefers-reduced-motion` starts paused, and WebGL
+  failure falls back to a static mark.
+- A real OpenStreetMap basemap under that scene (`public/assets/loop-basemap.webp`,
+  baked from zoom-5 tiles because the CSP allows `img-src 'self' data:` only).
+  Munich anchors the scene origin and every node sits at its true Web Mercator
+  offset, so Berlin is north, Vienna east and Milan south-west at correct
+  bearings. Attributed in the map corner as ODbL requires.
+
+### Changed
+- The home hero's primary CTA and the key-concepts showcase CTA both read
+  "Read the spec" while linking to `/protocol/`, the section hub rather than
+  the specification. They now point at the new introduction.
+- The lab-only banner is removed from the home hero. The posture is still
+  carried by the hero stat strip, `humans.txt`, `ai.txt`, and the
+  `MaturityStatus` block on the protocol, platform and What is LOOP pages.
+
+### Removed
+- Dead hero decoration CSS (`.hero-visual`, `.hero-orbit*`, `.hero-loop-icon`
+  and their media-query variants), and the graph-paper grid from the landing
+  hero.
+
 ## [0.5.3] - 2026-09-05
 
 ### Changed
