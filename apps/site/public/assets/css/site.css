@@ -6188,14 +6188,11 @@ a.card h3:not(.card-title) {
 
   .hero-figure .loop-anim-caption {
     position: absolute;
-    left: var(--gutter);
-    right: calc(var(--gutter) + 96px);
+    right: calc(var(--gutter) + 92px);
     bottom: var(--space-6);
+    max-width: calc(100% - var(--gutter) * 2 - 120px);
     margin-top: 0;
-    min-height: 0;
-    align-items: baseline;
-    justify-content: flex-end;
-    text-align: right;
+    text-align: left;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -6231,11 +6228,17 @@ a.card h3:not(.card-title) {
 }
 
 .loop-anim-caption {
-  display: flex;
+  display: inline-flex;
   align-items: baseline;
   gap: var(--space-3);
   margin-top: var(--space-4);
-  min-height: 3.2em;
+  /* A chip keeps the line legible wherever it sits over the map. */
+  padding: 9px 18px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 6px 18px rgba(var(--ink-rgb), 0.1);
+  backdrop-filter: blur(6px);
   font-size: var(--text-sm);
   line-height: 1.55;
   color: var(--ink-soft);
