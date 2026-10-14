@@ -7,6 +7,41 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.6.1] - 2026-10-14
+
+### Changed
+- **Home is `https://loop.urbnia.com`.** Canonical URLs, sitemap,
+  `robots.txt`, `humans.txt`, `security.txt` and the API docs page point at the
+  new host.
+- The lab API is same-origin: nginx proxies `/api/*` to the backend container
+  (`localloop-backend-api-1:8088`) over the shared `proxy` network
+  (`api-proxy.conf`), the page scripts call `window.location.origin`, and the
+  CSP narrows to `connect-src 'self'`.
+- The site stack's Traefik labels 308-redirect `localloop.urbnia.com/*` to
+  `loop.urbnia.com/*` and `loop-api.urbnia.com/*` to `loop.urbnia.com/api/*`.
+- JSON-LD contexts (`*.jsonld`) are served as `application/ld+json` with
+  `Access-Control-Allow-Origin: *` instead of `application/octet-stream`, and
+  are gzip-compressed.
+- Source moved into the `MycelAI/LocalLOOP` monorepo (`apps/site`);
+  `scripts/aggregate-docs.sh` mirrors `protocol/` from the monorepo. Former tags
+  are prefixed (`site/v0.6.0`).
+
+### Security
+- `next` 16.3.8 (GHSA-vcvr-r3jv-pc5j, GHSA-cjq9-62q9-8jv4 and five lower
+  advisories; the static export does not run the affected server features, but
+  the build host did). Overrides `dompurify` ^3.4.16, `sharp` ^0.35.5,
+  `baseline-browser-mapping` ^2.11.0 and `source-map-js` ^1.2.2.
+- Known residual: `katex` 0.16.x via `mermaid` (GHSA-238p-pmpm-9mq7, low;
+  needs pre-existing prototype pollution). The fix is in `katex` 0.18.2, which
+  `mermaid` 11 does not accept yet.
+
+### Migration
+- JSON-LD context and schema `$id` IRIs intentionally stay on
+  `localloop.urbnia.com` and resolve through the redirect; no consumer change
+  is required.
+- Links and bookmarks to `localloop.urbnia.com` keep working through the 308
+  redirect; update them to `loop.urbnia.com`.
+
 ## [0.6.0] - 2026-09-07
 
 ### Added
@@ -542,7 +577,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-[Unreleased]: https://github.com/local-loop-io/localloop-site/compare/v0.5.3...HEAD
+[Unreleased]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.6.1...HEAD
+[0.6.1]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.6.0...site/v0.6.1
+[0.6.0]: https://github.com/local-loop-io/localloop-site/compare/v0.5.3...v0.6.0
 [0.5.3]: https://github.com/local-loop-io/localloop-site/compare/v0.5.2...v0.5.3
 [0.5.2]: https://github.com/local-loop-io/localloop-site/compare/v0.5.1...v0.5.2
 [0.4.5]: https://github.com/local-loop-io/localloop-site/compare/v0.4.4...v0.4.5
