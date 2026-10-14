@@ -7,6 +7,48 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.6.5] - 2026-10-14
+
+### Changed
+- **Served same-origin under `https://loop.urbnia.com/api/`.** The API no
+  longer has a public Traefik router; the site's nginx proxies `/api/*` to
+  `localloop-backend-api-1:8088` over the shared `proxy` network.
+  `loop-api.urbnia.com/*` 308-redirects to `loop.urbnia.com/api/*` (labels in
+  the site stack).
+- `GET /api/health`, `GET /api/docs` and `GET /api/openapi.json` answer as
+  aliases of the root routes so they work through the `/api/` proxy.
+- `PUBLIC_BASE_URL` defaults to `https://loop.urbnia.com` (was
+  `https://loop-api.urbnia.com`), so `GET /api/v1/node/info` advertises
+  `https://loop.urbnia.com/api/v1` as the node endpoint.
+- `ALLOWED_ORIGINS` defaults to
+  `https://loop.urbnia.com,https://localloop.urbnia.com`.
+- Source moved into the `MycelAI/LocalLOOP` monorepo (`apps/backend`); schema
+  sync and the conformance gate read `protocol/` and the site mirror from the
+  monorepo paths. Former tags are prefixed (`backend/v0.6.4`).
+
+### Fixed
+- `deploy/localloop-backend-backup.service` no longer tries to create the
+  backups directory itself (systemd resolves `ReadWritePaths=` before any
+  `Exec*` step, failing with `226/NAMESPACE`); `deploy/setup.sh` creates it.
+- Timestamped `.env.bak-*` / `.env.docker.bak-*` files written by the deploy
+  scripts are git-ignored; they contain live credentials.
+
+### Security
+- `bun audit` is clean again: `fastify` ^5.12.5 (GHSA-4mh8-r7rc-xpvc, HTTP/2
+  trailer DoS), override `fast-uri` ^4.1.5 (GHSA-hrr3-gc8f-f4qj,
+  GHSA-jvvf-x445-j334) and new override `ip-address` ^10.7.1 via
+  `@fastify/rate-limit` (GHSA-rpw4-54j3-4h4q, GHSA-2vr4-cq9g-pvrc,
+  GHSA-j6r3-76f7-8jcv, GHSA-h3mg-xc3c-68pw).
+
+### Migration
+- Deployments that set `PUBLIC_BASE_URL` or `ALLOWED_ORIGINS` explicitly are
+  unaffected. Deployments that relied on the defaults now advertise and allow
+  `loop.urbnia.com`; set the variables to keep the old values.
+- Clients calling `https://loop-api.urbnia.com/...` keep working through the
+  308 redirect, but should switch to `https://loop.urbnia.com/api/...`.
+  Federation peers that pinned the old node endpoint should re-read
+  `GET /api/v1/node/info`.
+
 ## [0.6.4] - 2026-09-05
 
 ### Changed
@@ -481,7 +523,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Lab demo scripts (seed + simulate + one-command runner).
 - Privacy notice endpoint and in-memory metrics snapshot.
 
-[Unreleased]: https://github.com/local-loop-io/localloop-backend/compare/v0.6.4...HEAD
+[Unreleased]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.6.5...HEAD
+[0.6.5]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.6.4...backend/v0.6.5
 [0.6.4]: https://github.com/local-loop-io/localloop-backend/compare/v0.6.3...v0.6.4
 [0.6.3]: https://github.com/local-loop-io/localloop-backend/compare/v0.6.2...v0.6.3
 [0.6.2]: https://github.com/local-loop-io/localloop-backend/compare/v0.6.1...v0.6.2
