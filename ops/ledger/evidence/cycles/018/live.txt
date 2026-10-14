@@ -1,0 +1,15 @@
+{
+  "captured_at": "2026-07-26T00:06:41.806289+00:00",
+  "cycle": 18,
+  "kind": "signals_short_cache",
+  "health_http": 200,
+  "health": {
+    "status": "ok",
+    "time": "2026-07-26T00:06:41.805Z",
+    "uptime": 922.005716398,
+    "db": "ok",
+    "redis": "ok",
+    "version": "0.4.4"
+  },
+  "reverify_ok": true
+}

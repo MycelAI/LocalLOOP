@@ -1,0 +1,26 @@
+# Cycle 006 evidence (reconstructed 2026-07-25T23:57:51.215446+00:00)
+status=DONE
+quality=high
+
+## localloop-backend
+sha=7ee4fe1d4baca6c9fe601fc200c5c2c50ba65b92
+source=tag:agent-cycle-006
+subject=feat(metrics): always emit known keys at zero (#50)
+diff:
+CHANGELOG.md                 |  4 ++++; src/metrics.ts               | 19 +++++++++++++++++--; tests/utility.routes.test.ts |  2 ++; 3 files changed, 23 insertions(+), 2 deletions(-)
+commit 7ee4fe1d4baca6c9fe601fc200c5c2c50ba65b92
+Author:     Alphin Tom <alpha912@users.noreply.github.com>
+AuthorDate: Sun Jul 26 01:19:00 2026 +0200
+Commit:     GitHub <noreply@github.com>
+CommitDate: Sun Jul 26 01:19:00 2026 +0200
+
+    feat(metrics): always emit known keys at zero (#50)
+    
+    Refs: agent-cycle-006
+    
+    Co-authored-by: localLOOP Agent <dev@mycel-ai.de>
+
+ CHANGELOG.md                 |  4 ++++
+ src/metrics.ts               | 19 +++++++++++++++++--
+ tests/utility.routes.test.ts |  2 ++
+ 3 files changed, 23 insertions(+), 2 deletions(-)

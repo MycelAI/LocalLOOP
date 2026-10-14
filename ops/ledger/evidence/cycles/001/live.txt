@@ -1,0 +1,15 @@
+{
+  "captured_at": "2026-07-26T00:06:33.991082+00:00",
+  "cycle": 1,
+  "kind": "health_redis",
+  "health_http": 200,
+  "health": {
+    "status": "ok",
+    "time": "2026-07-26T00:06:33.990Z",
+    "uptime": 914.1906081469999,
+    "db": "ok",
+    "redis": "ok",
+    "version": "0.4.4"
+  },
+  "reverify_ok": true
+}

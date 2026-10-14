@@ -1,0 +1,26 @@
+# Cycle 024 evidence (reconstructed 2026-07-25T23:57:52.686172+00:00)
+status=DONE
+quality=medium
+
+## localloop-backend
+sha=ab963ea5e5b4bd5a41430b1237820a4515108e3e
+source=tag:agent-cycle-024
+subject=fix(evidence): Cache-Control no-store (#63)
+diff:
+CHANGELOG.md                 | 3 +++; src/routes/evidence.ts       | 3 +++; tests/evidence.cache.test.ts | 9 +++++++++; 3 files changed, 15 insertions(+)
+commit ab963ea5e5b4bd5a41430b1237820a4515108e3e
+Author:     Alphin Tom <alpha912@users.noreply.github.com>
+AuthorDate: Sun Jul 26 01:30:42 2026 +0200
+Commit:     GitHub <noreply@github.com>
+CommitDate: Sun Jul 26 01:30:42 2026 +0200
+
+    fix(evidence): Cache-Control no-store (#63)
+    
+    Refs: agent-cycle-024
+    
+    Co-authored-by: localLOOP Agent <dev@mycel-ai.de>
+
+ CHANGELOG.md                 | 3 +++
+ src/routes/evidence.ts       | 3 +++
+ tests/evidence.cache.test.ts | 9 +++++++++
+ 3 files changed, 15 insertions(+)

@@ -1,0 +1,12 @@
+reverified_at=2026-07-26T00:06:41.806587+00:00
+kind=security_txt
+
+HTTP 200
+Contact: mailto:dev@mycel-ai.de
+Preferred-Languages: en, de
+Canonical: https://localloop.urbnia.com/.well-known/security.txt
+Policy: https://localloop.urbnia.com/docs/security/
+# Lab demo surface only — no public pilots.
+
+
+ok=True

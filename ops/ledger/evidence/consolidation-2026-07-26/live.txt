@@ -1,0 +1,28 @@
+captured_at=2026-07-26T09:12:42+00:00
+kind=live_smoke_post_deploy
+
+backend health:
+{"status":"ok","time":"2026-07-26T09:12:42.036Z","uptime":33682.237037972,"db":"ok","redis":"ok","version":"0.4.4"}
+backend health_http=200
+
+site routes:
+  /                                                          200
+  /protocol/                                                 200
+  /docs/security/                                            200
+  /.well-known/security.txt                                  200
+  /projects/loop-protocol/README.md                          200
+  /projects/loop-protocol/schemas/README.md                  200
+  /projects/loop-protocol/docs/governance/GOVERNANCE.md      200
+  /projects/loop-protocol/docs/backup-restore-runbook.md     200
+  /projects/loop-protocol/docs/audit/technical-debt.md       200
+  /agent-stamps/cycle-097.txt                                200
+
+served schemas README validation entrypoint:
+23:npm run test
+28:> Use `npm run test` rather than bare `npm test`. Where `npm` is aliased to
+validation_section_count=1
+
+CI verdicts (post-push):
+  local-loop-io/loop-protocol      Validate Schemas => success
+  local-loop-io/localloop-site     Domain Consistency => success
+  local-loop-io/.github            Profile Policy Check => success

@@ -1,0 +1,17 @@
+reverified_at=2026-07-26T00:06:38.354183+00:00
+kind=cors_idempotency
+
+bun test v1.3.14 (0d9b296a)
+
+tests/cors.test.ts:
+(pass) cors headers > includes x-api-key in allowed headers for preflight [1952.31ms]
+(pass) CORS allowed headers > allows Idempotency-Key for browser write retries [0.13ms]
+
+ 2 pass
+ 0 fail
+ 3 expect() calls
+Ran 2 tests across 1 file. [1.98s]
+
+source_has_Idempotency-Key=True
+
+ok=True

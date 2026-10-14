@@ -1,0 +1,43 @@
+reverified_at=2026-07-26T00:06:33.991437+00:00
+kind=site_security_headers
+
+GET site/ HTTP 200
+x-content-type-options: nosniff
+x-frame-options: SAMEORIGIN
+referrer-policy: strict-origin-when-cross-origin
+permissions-policy: camera=(), microphone=(), geolocation=()
+
+site smoke exit=0
+✔ nginx static server declares baseline security headers (0.109821ms)
+✔ security.txt is published under .well-known (0.057419ms)
+✔ robots.txt allows crawl and points at sitemap (0.044211ms)
+✔ humans.txt exists with lab-demo posture (0.045682ms)
+✔ ai.txt documents lab-demo posture (0.084796ms)
+✔ ads.txt declares no ads (0.133212ms)
+✔ change-password well-known points at security guide (0.08761ms)
+✔ agent stamp cycle 041 exists (0.057369ms)
+✔ agent stamp cycle 045 exists (0.08748ms)
+✔ agent stamp cycle 049 exists (0.158917ms)
+✔ agent stamp cycle 053 exists (0.158748ms)
+✔ agent stamp cycle 057 exists (0.084966ms)
+✔ agent stamp cycle 061 exists (0.080451ms)
+✔ agent stamp cycle 065 exists (0.107267ms)
+✔ agent stamp cycle 069 exists (0.104833ms)
+✔ agent stamp cycle 073 exists (0.146442ms)
+✔ agent stamp cycle 077 exists (0.110721ms)
+✔ agent stamp cycle 081 exists (0.054725ms)
+✔ agent stamp cycle 085 exists (0.048136ms)
+✔ agent stamp cycle 089 exists (0.09526ms)
+✔ agent stamp cycle 093 exists (0.167819ms)
+✔ agent stamp cycle 097 exists (0.111403ms)
+ℹ tests 42
+ℹ suites 0
+ℹ pass 42
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 99.9933
+
+
+ok=True

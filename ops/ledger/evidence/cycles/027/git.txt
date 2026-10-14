@@ -1,0 +1,27 @@
+# Cycle 027 evidence (reconstructed 2026-07-25T23:57:52.922730+00:00)
+status=DONE
+quality=medium
+
+## loop-protocol
+sha=6c363033e8e14444f7b4663815372563f2dc123c
+source=tag:agent-cycle-027
+subject=docs(schemas): document validation entrypoint (#16)
+diff:
+CHANGELOG.md                    | 3 +++; package.json                    | 3 ++-; schemas/README.md               | 4 ++++; scripts/check-schemas-readme.js | 8 ++++++++; 4 files changed, 17 insertions(+), 1 deletion(-)
+commit 6c363033e8e14444f7b4663815372563f2dc123c
+Author:     Alphin Tom <alpha912@users.noreply.github.com>
+AuthorDate: Sun Jul 26 01:31:47 2026 +0200
+Commit:     GitHub <noreply@github.com>
+CommitDate: Sun Jul 26 01:31:47 2026 +0200
+
+    docs(schemas): document validation entrypoint (#16)
+    
+    Refs: agent-cycle-027
+    
+    Co-authored-by: localLOOP Agent <dev@mycel-ai.de>
+
+ CHANGELOG.md                    | 3 +++
+ package.json                    | 3 ++-
+ schemas/README.md               | 4 ++++
+ scripts/check-schemas-readme.js | 8 ++++++++
+ 4 files changed, 17 insertions(+), 1 deletion(-)

@@ -1,0 +1,18 @@
+{
+  "captured_at": "2026-07-26T00:13:05.424596+00:00",
+  "cycle": 24,
+  "kind": "evidence_nostore_live",
+  "route": "https://loop-api.urbnia.com/api/v1/evidence",
+  "route_status": 200,
+  "route_cache_control": "no-store",
+  "health_http": 200,
+  "health": {
+    "status": "ok",
+    "time": "2026-07-26T00:13:05.449Z",
+    "uptime": 1305.649765551,
+    "db": "ok",
+    "redis": "ok",
+    "version": "0.4.4"
+  },
+  "reverify_ok": true
+}

@@ -1,0 +1,6 @@
+status=DONE
+method=fresh_reverify
+kind=privacy_metrics_nostore
+reverified_at=2026-07-26T00:06:40.816374+00:00
+detail=reverify.txt
+ok=True

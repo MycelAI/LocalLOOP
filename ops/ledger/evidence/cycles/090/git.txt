@@ -1,0 +1,26 @@
+# Cycle 090 evidence (reconstructed 2026-07-25T23:57:58.037964+00:00)
+status=DONE
+quality=low-padding
+
+## loop-protocol
+sha=54393df1751918d88424376121b4f3bf6deaaa80
+source=tag:agent-cycle-090
+subject=test(protocol): examples guard 90 (#35)
+diff:
+CHANGELOG.md               |  3 +++; package.json               |  5 +++--; scripts/check-cycle-090.js | 10 ++++++++++; 3 files changed, 16 insertions(+), 2 deletions(-)
+commit 54393df1751918d88424376121b4f3bf6deaaa80
+Author:     Alphin Tom <alpha912@users.noreply.github.com>
+AuthorDate: Sun Jul 26 01:45:16 2026 +0200
+Commit:     GitHub <noreply@github.com>
+CommitDate: Sun Jul 26 01:45:16 2026 +0200
+
+    test(protocol): examples guard 90 (#35)
+    
+    Refs: agent-cycle-090
+    
+    Co-authored-by: localLOOP Agent <dev@mycel-ai.de>
+
+ CHANGELOG.md               |  3 +++
+ package.json               |  5 +++--
+ scripts/check-cycle-090.js | 10 ++++++++++
+ 3 files changed, 16 insertions(+), 2 deletions(-)

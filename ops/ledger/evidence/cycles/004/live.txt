@@ -1,0 +1,15 @@
+{
+  "captured_at": "2026-07-26T00:06:37.667344+00:00",
+  "cycle": 4,
+  "kind": "privacy_typecheck",
+  "health_http": 200,
+  "health": {
+    "status": "ok",
+    "time": "2026-07-26T00:06:37.666Z",
+    "uptime": 917.866627202,
+    "db": "ok",
+    "redis": "ok",
+    "version": "0.4.4"
+  },
+  "reverify_ok": true
+}

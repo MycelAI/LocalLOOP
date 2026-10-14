@@ -1,0 +1,21 @@
+bun test v1.3.14 (0d9b296a)
+
+tests/interest.cache.headers.test.ts:
+(pass) interest routes Cache-Control > returns Cache-Control: no-store on GET /api/interest [113.53ms]
+
+tests/metrics.keys.test.ts:
+(pass) metrics snapshot keys > always exposes the full known key set including zeros via the HTTP route [4.44ms]
+
+tests/cities.cache.headers.test.ts:
+(pass) city routes Cache-Control > returns Cache-Control: no-store on GET /api/cities [24.90ms]
+
+tests/httpCache.test.ts:
+(pass) httpCache helpers > sets public max-age and no-store headers [3.43ms]
+
+tests/signals.cache.headers.test.ts:
+(pass) signals routes Cache-Control > returns public short cache on GET /api/v1/signals [5.35ms]
+
+ 5 pass
+ 0 fail
+ 20 expect() calls
+Ran 5 tests across 5 files. [384.00ms]

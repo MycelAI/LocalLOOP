@@ -1,0 +1,107 @@
+cycle	status	detail	quality
+001	DONE	health_redis	high
+002	DONE	site_security_headers	high
+003	DONE	interest_privacy_search	high
+004	DONE	privacy_typecheck	high
+005	DONE	health_nostore	high
+006	DONE	metrics_zeros	high
+007	DONE	metrics_additional_props	high
+008	DONE	readme_health_docs	medium
+009	DONE	cors_idempotency	high
+010	DONE	health_version	high
+011	DONE	privacy_metrics_nostore	medium
+012	DONE	auth_nostore	medium
+013	DONE	dockerfile_chown	high
+014	BLOCKED	Previously blocked; triple-check or patch failed.	blocked
+015	DONE	interest_nostore	medium
+016	DONE	httpcache_helpers	medium
+017	BLOCKED	Previously blocked; triple-check or patch failed.	blocked
+018	DONE	signals_short_cache	medium
+019	DONE	security_txt	high
+020	DONE	robots_txt	medium
+021	DONE	cities_nostore	medium
+022	BLOCKED	Previously blocked; triple-check or patch failed.	blocked
+023	DONE	transactions_nostore_src	medium
+024	DONE	evidence_nostore_src	medium
+025	DONE	federation_nostore_src	medium
+026	DONE	humans_txt	medium
+027	DONE	protocol_schemas_readme	medium
+028	DONE	org_security_pointer	medium
+029	DONE	federate_nostore_src	medium
+030	DONE	payments_nostore_src	medium
+031	DONE	loop_nostore_src	medium
+032	DONE	ai_txt	medium
+033	DONE	ads_txt	medium
+034	DONE	change_password_wellknown	medium
+035	BLOCKED	padding/insufficient evidence	low-padding
+036	BLOCKED	padding/insufficient evidence	low-padding
+037	BLOCKED	padding/insufficient evidence	low-padding
+038	BLOCKED	padding/insufficient evidence	low-padding
+039	BLOCKED	padding/insufficient evidence	low-padding
+040	BLOCKED	padding/insufficient evidence	low-padding
+041	BLOCKED	padding/insufficient evidence	low-padding
+042	BLOCKED	padding/insufficient evidence	low-padding
+043	BLOCKED	padding/insufficient evidence	low-padding
+044	BLOCKED	padding/insufficient evidence	low-padding
+045	BLOCKED	padding/insufficient evidence	low-padding
+046	BLOCKED	padding/insufficient evidence	low-padding
+047	BLOCKED	padding/insufficient evidence	low-padding
+048	BLOCKED	padding/insufficient evidence	low-padding
+049	BLOCKED	padding/insufficient evidence	low-padding
+050	BLOCKED	padding/insufficient evidence	low-padding
+051	BLOCKED	padding/insufficient evidence	low-padding
+052	BLOCKED	padding/insufficient evidence	low-padding
+053	BLOCKED	padding/insufficient evidence	low-padding
+054	BLOCKED	padding/insufficient evidence	low-padding
+055	BLOCKED	padding/insufficient evidence	low-padding
+056	BLOCKED	padding/insufficient evidence	low-padding
+057	BLOCKED	padding/insufficient evidence	low-padding
+058	BLOCKED	padding/insufficient evidence	low-padding
+059	BLOCKED	padding/insufficient evidence	low-padding
+060	BLOCKED	padding/insufficient evidence	low-padding
+061	BLOCKED	padding/insufficient evidence	low-padding
+062	BLOCKED	padding/insufficient evidence	low-padding
+063	BLOCKED	padding/insufficient evidence	low-padding
+064	BLOCKED	padding/insufficient evidence	low-padding
+065	BLOCKED	padding/insufficient evidence	low-padding
+066	BLOCKED	padding/insufficient evidence	low-padding
+067	BLOCKED	padding/insufficient evidence	low-padding
+068	BLOCKED	padding/insufficient evidence	low-padding
+069	BLOCKED	padding/insufficient evidence	low-padding
+070	BLOCKED	padding/insufficient evidence	low-padding
+071	BLOCKED	padding/insufficient evidence	low-padding
+072	BLOCKED	padding/insufficient evidence	low-padding
+073	BLOCKED	padding/insufficient evidence	low-padding
+074	BLOCKED	padding/insufficient evidence	low-padding
+075	BLOCKED	padding/insufficient evidence	low-padding
+076	BLOCKED	padding/insufficient evidence	low-padding
+077	BLOCKED	padding/insufficient evidence	low-padding
+078	BLOCKED	padding/insufficient evidence	low-padding
+079	BLOCKED	padding/insufficient evidence	low-padding
+080	BLOCKED	padding/insufficient evidence	low-padding
+081	BLOCKED	padding/insufficient evidence	low-padding
+082	BLOCKED	padding/insufficient evidence	low-padding
+083	BLOCKED	padding/insufficient evidence	low-padding
+084	BLOCKED	padding/insufficient evidence	low-padding
+085	BLOCKED	padding/insufficient evidence	low-padding
+086	BLOCKED	padding/insufficient evidence	low-padding
+087	BLOCKED	padding/insufficient evidence	low-padding
+088	BLOCKED	padding/insufficient evidence	low-padding
+089	BLOCKED	padding/insufficient evidence	low-padding
+090	BLOCKED	padding/insufficient evidence	low-padding
+091	BLOCKED	padding/insufficient evidence	low-padding
+092	BLOCKED	padding/insufficient evidence	low-padding
+093	BLOCKED	padding/insufficient evidence	low-padding
+094	BLOCKED	padding/insufficient evidence	low-padding
+095	BLOCKED	padding/insufficient evidence	low-padding
+096	BLOCKED	padding/insufficient evidence	low-padding
+097	BLOCKED	padding/insufficient evidence	low-padding
+098	BLOCKED	padding/insufficient evidence	low-padding
+099	BLOCKED	padding/insufficient evidence	low-padding
+100	BLOCKED	padding/insufficient evidence	low-padding
+
+DONE=31 BLOCKED=69 TOTAL=100
+
+=== done-evidence gate 2026-07-26T00:13:17Z ===
+DONE cycles checked: 31
+ALL DONE CYCLES PASS RUNTIME EVIDENCE GATE

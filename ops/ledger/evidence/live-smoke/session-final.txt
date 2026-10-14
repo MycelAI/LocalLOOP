@@ -1,0 +1,43 @@
+=== VP5 live smoke 2026-07-26T08:35:40Z ===
+{
+    "status": "ok",
+    "time": "2026-07-26T08:35:40.465Z",
+    "uptime": 31460.665681743,
+    "db": "ok",
+    "redis": "ok",
+    "version": "0.4.4"
+}
+HTTP/2 200 
+cache-control: no-store
+version 0.4.4 keys 12
+site 200 /
+site 200 /docs/
+site 200 /protocol/
+site 200 /interest/
+site 200 /platform/demo-city/
+site 200 /.well-known/security.txt
+site 200 /robots.txt
+HTTP/2 200 
+permissions-policy: camera=(), microphone=(), geolocation=()
+referrer-policy: strict-origin-when-cross-origin
+x-content-type-options: nosniff
+x-frame-options: SAMEORIGIN
+NAMES                             STATUS
+localloop-site-site-1             Up 9 hours
+localloop-backend-api-1           Up 9 hours (healthy)
+localloop-backend-redis-1         Up 5 days (healthy)
+localloop-backend-minio-proxy-1   Up 5 days (healthy)
+localloop-backend-minio-1         Up 5 days (healthy)
+localloop-backend-postgres-1      Up 5 days (healthy)
+--- baselines ---
+total 5104
+drwxrwxr-x 2 alphin alphin    4096 Jul 26 00:01 .
+drwxrwxr-x 3 alphin alphin    4096 Jul 25 23:58 ..
+-rw-rw-r-- 1 alphin alphin    1548 Jul 26 00:07 crawl-report.json
+-rw-rw-r-- 1 alphin alphin  464780 Jul 26 00:07 docs.png
+-rw-rw-r-- 1 alphin alphin  319840 Jul 26 00:07 docs_metrics.png
+-rw-rw-r-- 1 alphin alphin 2334022 Jul 26 00:07 home.png
+-rw-rw-r-- 1 alphin alphin  720750 Jul 26 00:07 interest.png
+-rw-rw-r-- 1 alphin alphin 1052509 Jul 26 00:07 platform_demo-city.png
+-rw-rw-r-- 1 alphin alphin  313610 Jul 26 00:07 protocol.png
+[('/', 200, True), ('/docs/', 200, True), ('/protocol/', 200, True), ('/interest/', 200, True), ('/platform/demo-city/', 200, True), ('/docs/metrics/', 200, True)]

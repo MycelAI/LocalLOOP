@@ -1,0 +1,26 @@
+=== site ===
+✔ ads.txt declares no ads (0.26285ms)
+✔ change-password well-known points at security guide (0.247249ms)
+✔ agent stamp cycle 041 exists (0.398427ms)
+✔ agent stamp cycle 045 exists (0.278371ms)
+✔ agent stamp cycle 049 exists (0.303456ms)
+✔ agent stamp cycle 053 exists (0.338554ms)
+✔ agent stamp cycle 057 exists (0.248051ms)
+✔ agent stamp cycle 061 exists (0.249723ms)
+✔ agent stamp cycle 065 exists (0.263292ms)
+✔ agent stamp cycle 069 exists (0.271352ms)
+✔ agent stamp cycle 073 exists (0.253517ms)
+✔ agent stamp cycle 077 exists (0.25563ms)
+✔ agent stamp cycle 081 exists (0.277341ms)
+✔ agent stamp cycle 085 exists (0.25523ms)
+✔ agent stamp cycle 089 exists (0.285321ms)
+✔ agent stamp cycle 093 exists (0.429478ms)
+✔ agent stamp cycle 097 exists (0.352824ms)
+ℹ tests 42
+ℹ suites 0
+ℹ pass 42
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 140.869672

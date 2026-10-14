@@ -1,0 +1,15 @@
+{
+  "captured_at": "2026-07-26T00:06:42.510302+00:00",
+  "cycle": 32,
+  "kind": "ai_txt",
+  "health_http": 200,
+  "health": {
+    "status": "ok",
+    "time": "2026-07-26T00:06:42.509Z",
+    "uptime": 922.709628364,
+    "db": "ok",
+    "redis": "ok",
+    "version": "0.4.4"
+  },
+  "reverify_ok": true
+}

@@ -1,0 +1,15 @@
+reverified_at=2026-07-26T00:06:41.538741+00:00
+kind=httpcache_helpers
+
+bun test v1.3.14 (0d9b296a)
+
+tests/httpCache.test.ts:
+(pass) httpCache helpers > sets public max-age and no-store headers [0.20ms]
+
+ 1 pass
+ 0 fail
+ 2 expect() calls
+Ran 1 test across 1 file. [12.00ms]
+
+
+ok=True

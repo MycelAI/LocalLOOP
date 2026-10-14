@@ -1,0 +1,31 @@
+reverified_at=2026-07-26T00:06:41.135401+00:00
+kind=dockerfile_chown
+
+Dockerfile excerpt:
+COPY prisma.config.ts ./
+RUN bun install --production
+RUN bun run prisma:generate
+RUN chown -R app:app /app
+
+COPY --chown=app:app src ./src
+COPY --chown=app:app .env.example ./
+
+USER app
+
+EXPOSE 8088
+
+HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 CMD bun -e "fetch('http://127.0.0.1:8088/health').then(r => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))"
+
+CMD ["bun", "run", "src/index.ts"]
+bun test v1.3.14 (0d9b296a)
+
+tests/dockerfile.chown.test.ts:
+(pass) Dockerfile ownership > copies src as app via --chown and drops full-tree chown after src [1.61ms]
+
+ 1 pass
+ 0 fail
+ 3 expect() calls
+Ran 1 test across 1 file. [22.00ms]
+
+
+ok=True

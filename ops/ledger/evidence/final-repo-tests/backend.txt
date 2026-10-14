@@ -1,0 +1,21 @@
+=== backend ===
+(pass) api key guard > accepts requests with a valid bearer token [0.07ms]
+
+tests/signals.cache.headers.test.ts:
+(pass) signals routes Cache-Control > returns public short cache on GET /api/v1/signals [3.30ms]
+
+tests/transactions.routes.test.ts:
+(pass) transaction identity mapping > derives id and status per @type [0.05ms]
+(pass) POST /api/v1/transaction > creates a MaterialTransaction and answers with TransactionStatus JSON-LD [96.01ms]
+(pass) POST /api/v1/transaction > records a Settlement as a completed transaction [93.98ms]
+(pass) POST /api/v1/transaction > rejects duplicates with the spec CONFLICT envelope [131.66ms]
+(pass) POST /api/v1/transaction > rejects payloads that violate the canonical transaction schema [110.24ms]
+(pass) POST /api/v1/transaction Idempotency-Key handling > answers a key reused with a different body with the Core-DP conflict body (not a 500) [117.18ms]
+(pass) POST /api/v1/transaction Idempotency-Key handling > replays the cached TransactionStatus for a repeated key with the same body [99.75ms]
+(pass) GET /api/v1/transaction/:id > resolves the settlement_url of a stored transaction [84.44ms]
+(pass) GET /api/v1/transaction/:id > returns the spec NOT_FOUND envelope for unknown transactions [87.97ms]
+
+ 186 pass
+ 0 fail
+ 467 expect() calls
+Ran 186 tests across 40 files. [38.71s]

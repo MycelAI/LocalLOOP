@@ -1,0 +1,10 @@
+reverified_at=2026-07-26T00:06:42.487692+00:00
+kind=ai_txt
+
+HTTP 200
+User-Agent: *
+# Lab demo documentation site for localLOOP / LOOP protocol.
+# No public pilots. Contact: dev@mycel-ai.de
+
+
+ok=True

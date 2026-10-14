@@ -1,0 +1,26 @@
+# Cycle 086 evidence (reconstructed 2026-07-25T23:57:57.732554+00:00)
+status=DONE
+quality=low-padding
+
+## loop-protocol
+sha=3695a696d674f5ba5208272ed27e4624fe8bd1a4
+source=tag:agent-cycle-086
+subject=test(protocol): examples guard 86 (#34)
+diff:
+CHANGELOG.md               |  3 +++; package.json               |  5 +++--; scripts/check-cycle-086.js | 10 ++++++++++; 3 files changed, 16 insertions(+), 2 deletions(-)
+commit 3695a696d674f5ba5208272ed27e4624fe8bd1a4
+Author:     Alphin Tom <alpha912@users.noreply.github.com>
+AuthorDate: Sun Jul 26 01:44:34 2026 +0200
+Commit:     GitHub <noreply@github.com>
+CommitDate: Sun Jul 26 01:44:34 2026 +0200
+
+    test(protocol): examples guard 86 (#34)
+    
+    Refs: agent-cycle-086
+    
+    Co-authored-by: localLOOP Agent <dev@mycel-ai.de>
+
+ CHANGELOG.md               |  3 +++
+ package.json               |  5 +++--
+ scripts/check-cycle-086.js | 10 ++++++++++
+ 3 files changed, 16 insertions(+), 2 deletions(-)

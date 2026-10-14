@@ -1,0 +1,23 @@
+=== live 2026-07-25T23:48:09Z ===
+{
+    "status": "ok",
+    "time": "2026-07-25T23:48:09.638Z",
+    "uptime": 913.369025325,
+    "db": "ok",
+    "redis": "ok",
+    "version": "0.4.4"
+}
+metrics_keys 12 version None
+site / 200
+site /docs/ 200
+site /protocol/ 200
+site /interest/ 200
+site /.well-known/security.txt 200
+site /robots.txt 200
+NAMES                             STATUS
+localloop-site-site-1             Up 3 minutes
+localloop-backend-api-1           Up 15 minutes (healthy)
+localloop-backend-redis-1         Up 5 days (healthy)
+localloop-backend-minio-proxy-1   Up 5 days (healthy)
+localloop-backend-minio-1         Up 5 days (healthy)
+localloop-backend-postgres-1      Up 5 days (healthy)

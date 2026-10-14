@@ -1,0 +1,11 @@
+=== VP6 policy scan 2026-07-26T08:35:41Z ===
+-- localloop-backend --
+no agent bookkeeping paths tracked
+-- localloop-site --
+no agent bookkeeping paths tracked
+-- loop-protocol --
+no agent bookkeeping paths tracked
+-- org-github-profile --
+no agent bookkeeping paths tracked
+force-push tags in agent ship scripts:
+/home/alphin/code/local-loop-io/localloop-agent/scripts/cycle-ship-backend.sh:17:# Immutable tag: create only if absent, or if already points at this SHA. Never force-push.

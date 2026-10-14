@@ -1,0 +1,13 @@
+reverified_at=2026-07-26T08:37:25.874563+00:00
+kind=protocol_schemas_readme
+command=npm run check:schemas-readme && npm run validate:schemas
+exit=0
+schemas README ok
+Validated 15 example file(s), 46 JSON artifact(s), and Core-DP profile vectors against 20 schema(s).
+npm notice run @local-loop/loop-protocol@0.3.0 check:schemas-readme
+npm notice run node scripts/check-schemas-readme.js
+npm notice run @local-loop/loop-protocol@0.3.0 validate:schemas
+npm notice run node scripts/validate-schemas.js
+
+readme_documents_npm_test=True
+ok=True

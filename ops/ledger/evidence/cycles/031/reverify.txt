@@ -1,0 +1,16 @@
+reverified_at=2026-07-26T00:13:05.495281+00:00
+kind=loop_nostore_live
+note=GET /api/v1/events public list
+method=GET
+url=https://loop-api.urbnia.com/api/v1/events
+HTTP 200
+cache-control: no-store
+selected_headers:
+  cache-control: no-store
+  content-type: application/json; charset=utf-8
+  x-ratelimit-limit: 600
+  x-request-id: req-55
+body_prefix:
+{"results":[{"id":2217,"event_type":"material.created","entity_type":"material","entity_id":"MAT-DE-MUC-2025-EVID-FD6FEAE4","payload":{"data":{"id":"MAT-DE-MUC-2025-EVID-FD6FEAE4","category":"plastic-pet","quantity":{"unit":"kg","value":100},"origin_city":"Munich","current_city":"Munich","available_from":"2025-06-01T10:00:00Z","schema_version":"0.1.1"},"type":"material.created","entity":"material"
+
+ok=True

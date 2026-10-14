@@ -1,0 +1,15 @@
+reverified_at=2026-07-26T00:06:38.313290+00:00
+kind=readme_health_docs
+
+bun test v1.3.14 (0d9b296a)
+
+tests/readme.health.test.ts:
+(pass) README health docs > documents redis probe and no-store posture on /health [1.22ms]
+
+ 1 pass
+ 0 fail
+ 3 expect() calls
+Ran 1 test across 1 file. [21.00ms]
+
+
+ok=True

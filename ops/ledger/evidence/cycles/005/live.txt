@@ -1,0 +1,15 @@
+{
+  "captured_at": "2026-07-26T00:06:37.925024+00:00",
+  "cycle": 5,
+  "kind": "health_nostore",
+  "health_http": 200,
+  "health": {
+    "status": "ok",
+    "time": "2026-07-26T00:06:37.924Z",
+    "uptime": 918.1244626390001,
+    "db": "ok",
+    "redis": "ok",
+    "version": "0.4.4"
+  },
+  "reverify_ok": true
+}

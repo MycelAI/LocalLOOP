@@ -1,0 +1,34 @@
+$ node --test tests/smoke.test.cjs
+(node:657614) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/alphin/code/local-loop-io/localloop-site/app/config/siteRoutes.js is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/alphin/code/local-loop-io/localloop-site/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ interest page wires interest form hooks (1.343182ms)
+✔ markdown doc component exists (0.414259ms)
+✔ react site header preserves subtitle rendering (0.406958ms)
+✔ public projects directory exists (0.222365ms)
+✔ metrics page wires live metrics panel (0.415819ms)
+✔ api docs page links to the live docs instead of embedding an iframe (0.486638ms)
+✔ federation docs page renders handshake guide (0.407007ms)
+✔ versioned protocol schema aliases exist (0.146501ms)
+✔ all MarkdownDoc filePaths referenced by the site exist in the mirror (17.089293ms)
+✔ spec and regulatory pages render their canonical drafts inline via MarkdownDoc (0.364158ms)
+✔ protocol mirror includes required v0.2.0 contract assets (0.264653ms)
+✔ aggregate docs script prefers a local source checkout when available (0.302445ms)
+✔ canonical route inventory includes hidden docs and generated library details (9.810122ms)
+✔ public demo remains read-only and unsafe claims do not return (0.505043ms)
+✔ interest success copy does not claim immediate public listing (0.235843ms)
+✔ root layout and feature scripts provide the accessibility and route-scoping primitives (0.173048ms)
+✔ claim audit and route metadata guards reject known unsupported live claims (3.569725ms)
+✔ feature scripts have an idempotent cleanup contract (0.465958ms)
+✔ feature scripts reject stale evaluation-time tokens before registration (0.23306ms)
+✔ every canonical filesystem page owns title and correct canonical path metadata (3.636286ms)
+✔ nginx static server declares baseline security headers (0.093649ms)
+ℹ tests 21
+ℹ suites 0
+ℹ pass 21
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 106.086706

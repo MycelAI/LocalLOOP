@@ -1,0 +1,16 @@
+reverified_at=2026-07-26T00:13:05.450582+00:00
+kind=federate_nostore_live
+note=POST announce (400 validation) still sets no-store
+method=POST
+url=https://loop-api.urbnia.com/api/v1/federate/announce
+HTTP 400
+cache-control: no-store
+selected_headers:
+  cache-control: no-store
+  content-type: application/json; charset=utf-8
+  x-ratelimit-limit: 20
+  x-request-id: req-51
+body_prefix:
+{"error":{"code":"INVALID_REQUEST","message":"body must have required property '@context'","details":{"validation":[{"instancePath":"","schemaPath":"#/required","keyword":"required","params":{"missingProperty":"@context"},"message":"must have required property '@context'"}]}}}
+
+ok=True

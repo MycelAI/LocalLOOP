@@ -1,0 +1,26 @@
+# Cycle 032 evidence (reconstructed 2026-07-25T23:57:53.303164+00:00)
+status=DONE
+quality=medium
+
+## localloop-site
+sha=9a68432d73f2e6bc8cab2b8d1d4ad488201ef202
+source=tag:agent-cycle-032
+subject=feat(site): ai.txt lab notice (#77)
+diff:
+CHANGELOG.md         | 3 +++; public/ai.txt        | 3 +++; tests/smoke.test.cjs | 5 +++++; 3 files changed, 11 insertions(+)
+commit 9a68432d73f2e6bc8cab2b8d1d4ad488201ef202
+Author:     Alphin Tom <alpha912@users.noreply.github.com>
+AuthorDate: Sun Jul 26 01:33:07 2026 +0200
+Commit:     GitHub <noreply@github.com>
+CommitDate: Sun Jul 26 01:33:07 2026 +0200
+
+    feat(site): ai.txt lab notice (#77)
+    
+    Refs: agent-cycle-032
+    
+    Co-authored-by: localLOOP Agent <dev@mycel-ai.de>
+
+ CHANGELOG.md         | 3 +++
+ public/ai.txt        | 3 +++
+ tests/smoke.test.cjs | 5 +++++
+ 3 files changed, 11 insertions(+)

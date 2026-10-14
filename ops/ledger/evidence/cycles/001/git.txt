@@ -1,0 +1,29 @@
+# Cycle 001 evidence (reconstructed 2026-07-25T23:57:50.816199+00:00)
+status=DONE
+quality=high
+
+## localloop-backend
+sha=880880a4d495104565ccf1b9242c3b369ad0d912
+source=tag:agent-cycle-001
+subject=fix(health): report redis status on GET /health (#46)
+diff:
+CHANGELOG.md                |   5 +++; src/routes/health.ts        | 106 ++++++++++++++++++++++++++++++++------------; tests/health.routes.test.ts |  60 +++++++++++++++++++++++++; 3 files changed, 143 insertions(+), 28 deletions(-)
+commit 880880a4d495104565ccf1b9242c3b369ad0d912
+Author:     Alphin Tom <alpha912@users.noreply.github.com>
+AuthorDate: Sun Jul 26 01:12:28 2026 +0200
+Commit:     GitHub <noreply@github.com>
+CommitDate: Sun Jul 26 01:12:28 2026 +0200
+
+    fix(health): report redis status on GET /health (#46)
+    
+    Additive redis probe (ok|error|skipped) so operators and Docker healthchecks
+    surface queue dependency failures. DB or redis error returns 503/degraded.
+    
+    Refs: agent-cycle-001
+    
+    Co-authored-by: localLOOP Agent <dev@mycel-ai.de>
+
+ CHANGELOG.md                |   5 +++
+ src/routes/health.ts        | 106 ++++++++++++++++++++++++++++++++------------
+ tests/health.routes.test.ts |  60 +++++++++++++++++++++++++
+ 3 files changed, 143 insertions(+), 28 deletions(-)

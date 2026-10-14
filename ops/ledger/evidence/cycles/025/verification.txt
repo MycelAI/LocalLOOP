@@ -1,0 +1,6 @@
+status=DONE
+method=fresh_reverify
+kind=federation_nostore_src
+reverified_at=2026-07-26T00:06:42.215002+00:00
+detail=reverify.txt
+ok=True

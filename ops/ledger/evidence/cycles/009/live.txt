@@ -1,0 +1,15 @@
+{
+  "captured_at": "2026-07-26T00:06:40.368698+00:00",
+  "cycle": 9,
+  "kind": "cors_idempotency",
+  "health_http": 200,
+  "health": {
+    "status": "ok",
+    "time": "2026-07-26T00:06:40.367Z",
+    "uptime": 920.567861395,
+    "db": "ok",
+    "redis": "ok",
+    "version": "0.4.4"
+  },
+  "reverify_ok": true
+}

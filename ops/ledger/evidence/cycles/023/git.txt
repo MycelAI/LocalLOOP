@@ -1,0 +1,26 @@
+# Cycle 023 evidence (reconstructed 2026-07-25T23:57:52.613935+00:00)
+status=DONE
+quality=medium
+
+## localloop-backend
+sha=95a3533e152659bd60ccd0ab280c2df5251f3197
+source=tag:agent-cycle-023
+subject=fix(transactions): Cache-Control no-store (#62)
+diff:
+CHANGELOG.md                     | 3 +++; src/routes/transactions.ts       | 3 +++; tests/transactions.cache.test.ts | 9 +++++++++; 3 files changed, 15 insertions(+)
+commit 95a3533e152659bd60ccd0ab280c2df5251f3197
+Author:     Alphin Tom <alpha912@users.noreply.github.com>
+AuthorDate: Sun Jul 26 01:30:22 2026 +0200
+Commit:     GitHub <noreply@github.com>
+CommitDate: Sun Jul 26 01:30:22 2026 +0200
+
+    fix(transactions): Cache-Control no-store (#62)
+    
+    Refs: agent-cycle-023
+    
+    Co-authored-by: localLOOP Agent <dev@mycel-ai.de>
+
+ CHANGELOG.md                     | 3 +++
+ src/routes/transactions.ts       | 3 +++
+ tests/transactions.cache.test.ts | 9 +++++++++
+ 3 files changed, 15 insertions(+)

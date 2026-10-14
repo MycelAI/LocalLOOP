@@ -1,0 +1,26 @@
+# Cycle 034 evidence (reconstructed 2026-07-25T23:57:53.478539+00:00)
+status=DONE
+quality=medium
+
+## localloop-site
+sha=9d05f25df2a22b1c19c745e4e5c2fd272d0947f4
+source=tag:agent-cycle-034
+subject=feat(site): change-password well-known (#79)
+diff:
+CHANGELOG.md                       | 3 +++; public/.well-known/change-password | 1 +; tests/smoke.test.cjs               | 5 +++++; 3 files changed, 9 insertions(+)
+commit 9d05f25df2a22b1c19c745e4e5c2fd272d0947f4
+Author:     Alphin Tom <alpha912@users.noreply.github.com>
+AuthorDate: Sun Jul 26 01:33:41 2026 +0200
+Commit:     GitHub <noreply@github.com>
+CommitDate: Sun Jul 26 01:33:41 2026 +0200
+
+    feat(site): change-password well-known (#79)
+    
+    Refs: agent-cycle-034
+    
+    Co-authored-by: localLOOP Agent <dev@mycel-ai.de>
+
+ CHANGELOG.md                       | 3 +++
+ public/.well-known/change-password | 1 +
+ tests/smoke.test.cjs               | 5 +++++
+ 3 files changed, 9 insertions(+)

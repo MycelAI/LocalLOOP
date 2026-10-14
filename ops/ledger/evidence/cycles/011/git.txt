@@ -1,0 +1,27 @@
+# Cycle 011 evidence (reconstructed 2026-07-25T23:57:51.593414+00:00)
+status=DONE
+quality=medium
+
+## localloop-backend
+sha=6cd3b3750ba57425d1089d000ffc6296f2858523
+source=tag:agent-cycle-011
+subject=fix(cache): no-store on privacy and metrics (#55)
+diff:
+CHANGELOG.md                 | 3 +++; src/routes/metrics.ts        | 6 +++++-; src/routes/privacy.ts        | 6 +++++-; tests/utility.routes.test.ts | 2 ++; 4 files changed, 15 insertions(+), 2 deletions(-)
+commit 6cd3b3750ba57425d1089d000ffc6296f2858523
+Author:     Alphin Tom <alpha912@users.noreply.github.com>
+AuthorDate: Sun Jul 26 01:22:45 2026 +0200
+Commit:     GitHub <noreply@github.com>
+CommitDate: Sun Jul 26 01:22:45 2026 +0200
+
+    fix(cache): no-store on privacy and metrics (#55)
+    
+    Refs: agent-cycle-011
+    
+    Co-authored-by: localLOOP Agent <dev@mycel-ai.de>
+
+ CHANGELOG.md                 | 3 +++
+ src/routes/metrics.ts        | 6 +++++-
+ src/routes/privacy.ts        | 6 +++++-
+ tests/utility.routes.test.ts | 2 ++
+ 4 files changed, 15 insertions(+), 2 deletions(-)

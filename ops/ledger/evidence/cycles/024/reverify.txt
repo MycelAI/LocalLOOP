@@ -1,0 +1,16 @@
+reverified_at=2026-07-26T00:13:05.424596+00:00
+kind=evidence_nostore_live
+note=GET /api/v1/evidence list
+method=GET
+url=https://loop-api.urbnia.com/api/v1/evidence
+HTTP 200
+cache-control: no-store
+selected_headers:
+  cache-control: no-store
+  content-type: application/json; charset=utf-8
+  x-ratelimit-limit: 600
+  x-request-id: req-4z
+body_prefix:
+{"results":[{"event_id":"evt_cb59073682837aa376dff87cc51fc904","sequence":1,"recorded_at":"2026-07-18T13:35:41.372Z","node_id":"lab-hub.loop","subject":{"type":"material","id":"MAT-DE-MUC-2025-PLASTIC-19563D1F"},"event_type":"registered","immutable":{"subject":{"id":"MAT-DE-MUC-2025-PLASTIC-19563D1F","type":"material"},"event_id":"evt_cb59073682837aa376dff87cc51fc904","sequence":1,"event_type":"re
+
+ok=True
