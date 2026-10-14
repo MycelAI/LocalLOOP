@@ -1,3 +1,7 @@
+# Pinned so the stack keeps its historical container/image names
+# (localloop-backend-*) now that it lives at apps/backend in the monorepo.
+name: localloop-backend
+
 # Docker's default json-file driver has no size/rotation limit, so container
 # logs grow unbounded on the host over time unless capped here explicitly.
 x-logging: &default-logging

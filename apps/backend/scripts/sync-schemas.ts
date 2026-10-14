@@ -1,14 +1,14 @@
 #!/usr/bin/env bun
-// Copies canonical schemas from the sibling loop-protocol repo into
-// src/schemas/, so localloop-backend never hand-maintains a drifted duplicate.
+// Copies canonical schemas from the monorepo's protocol/ tree into
+// src/schemas/, so the backend never hand-maintains a drifted duplicate.
 // `bun run sync:schemas` refreshes the copies; `bun run check:schemas` (used in
 // tests/CI) fails closed if the copies and the canonical source disagree.
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 
-const REPO_ROOT = join(import.meta.dirname, '..', '..');
-const SOURCE_BASE = join(REPO_ROOT, 'loop-protocol', 'schemas');
-const SOURCE_CORE_DP = join(REPO_ROOT, 'loop-protocol', 'profiles', 'core-dp', 'schemas');
+const PROTOCOL_ROOT = join(import.meta.dirname, '..', '..', '..', 'protocol');
+const SOURCE_BASE = join(PROTOCOL_ROOT, 'schemas');
+const SOURCE_CORE_DP = join(PROTOCOL_ROOT, 'profiles', 'core-dp', 'schemas');
 const DEST_BASE = join(import.meta.dirname, '..', 'src', 'schemas');
 const DEST_CORE_DP = join(DEST_BASE, 'core-dp');
 
@@ -52,10 +52,10 @@ function run(mode: Mode): boolean {
     // Only report success when the caller explicitly allows the skip, so a
     // misconfigured local checkout cannot pass the gate vacuously.
     if (process.env.SCHEMA_SYNC_ALLOW_MISSING === '1') {
-      console.log('[sync-schemas] SKIP: loop-protocol sibling checkout unavailable (SCHEMA_SYNC_ALLOW_MISSING=1).');
+      console.log('[sync-schemas] SKIP: protocol/ tree unavailable (SCHEMA_SYNC_ALLOW_MISSING=1).');
       return true;
     }
-    console.error(`[sync-schemas] loop-protocol sibling checkout not found at ${SOURCE_BASE}. Clone it next to this repo, or set SCHEMA_SYNC_ALLOW_MISSING=1 to skip.`);
+    console.error(`[sync-schemas] protocol schemas not found at ${SOURCE_BASE}. Run from a full LocalLOOP monorepo checkout, or set SCHEMA_SYNC_ALLOW_MISSING=1 to skip.`);
     return false;
   }
 

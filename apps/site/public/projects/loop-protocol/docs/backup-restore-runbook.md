@@ -20,7 +20,7 @@ This runbook covers backups for the localLOOP backend stack (Postgres, Redis, ob
 
 ### 1.1 Create a logical backup
 ```bash
-cd /root/code/local-loop-io/localloop-backend
+cd /home/alphin/code/MycelAI/localLOOP/apps/backend
 mkdir -p ./backups/postgres
 
 docker compose exec -T postgres \
@@ -38,7 +38,7 @@ pg_restore -l ./backups/postgres/localloop-YYYY-MM-DD.dump | head -n 20
 Redis uses RDB/AOF persistence. For a manual snapshot (ensure `./data/redis` is mounted as a volume):
 
 ```bash
-cd /root/code/local-loop-io/localloop-backend
+cd /home/alphin/code/MycelAI/localLOOP/apps/backend
 mkdir -p ./backups/redis
 
 docker compose exec -T redis redis-cli SAVE
@@ -54,7 +54,7 @@ fronted by the `storage-proxy` nginx service — service name in
 `docker-compose.yml` is `seaweedfs`, not `minio`).
 
 ```bash
-cd /root/code/local-loop-io/localloop-backend
+cd /home/alphin/code/MycelAI/localLOOP/apps/backend
 mkdir -p ./backups/seaweedfs
 
 tar -czf ./backups/seaweedfs/seaweedfs-data-$(date +%F).tar.gz ./data/seaweedfs
@@ -64,7 +64,7 @@ tar -czf ./backups/seaweedfs/seaweedfs-data-$(date +%F).tar.gz ./data/seaweedfs
 
 ### 4.1 Postgres Restore (logical dump)
 ```bash
-cd /root/code/local-loop-io/localloop-backend
+cd /home/alphin/code/MycelAI/localLOOP/apps/backend
 
 docker compose exec -T postgres \
   pg_restore -U "$POSTGRES_USER" -d "$POSTGRES_DB" --clean --if-exists \
@@ -73,7 +73,7 @@ docker compose exec -T postgres \
 
 ### 4.2 Redis Restore
 ```bash
-cd /root/code/local-loop-io/localloop-backend
+cd /home/alphin/code/MycelAI/localLOOP/apps/backend
 
 docker compose stop redis
 cp ./backups/redis/dump-YYYY-MM-DD.rdb ./data/redis/dump.rdb
@@ -82,7 +82,7 @@ docker compose start redis
 
 ### 4.3 Object Storage Restore (seaweedfs)
 ```bash
-cd /root/code/local-loop-io/localloop-backend
+cd /home/alphin/code/MycelAI/localLOOP/apps/backend
 
 docker compose stop seaweedfs
 rm -rf ./data/seaweedfs
@@ -106,7 +106,7 @@ The repo now includes:
 
 ### 6.1 Install the systemd units
 ```bash
-cd /root/code/local-loop-io/localloop-backend
+cd /home/alphin/code/MycelAI/localLOOP/apps/backend
 
 sudo cp deploy/localloop-backend-backup.service /etc/systemd/system/
 sudo cp deploy/localloop-backend-backup.timer /etc/systemd/system/
@@ -116,8 +116,8 @@ sudo systemctl enable --now localloop-backend-backup.timer
 
 ### 6.2 Run a manual backup job
 ```bash
-cd /root/code/local-loop-io/localloop-backend
-sudo PROJECT_DIR=/root/code/local-loop-io/localloop-backend deploy/backup.sh
+cd /home/alphin/code/MycelAI/localLOOP/apps/backend
+sudo PROJECT_DIR=/home/alphin/code/MycelAI/localLOOP/apps/backend deploy/backup.sh
 ```
 
 ### 6.3 Inspect timer status
@@ -132,7 +132,7 @@ The backup script writes timestamped directories under `./backups/` and updates 
 
 ### 7.1 Application rollback
 ```bash
-cd /root/code/local-loop-io/localloop-backend
+cd /home/alphin/code/MycelAI/localLOOP/apps/backend
 git fetch origin
 git checkout <previous-known-good-commit>
 bun install

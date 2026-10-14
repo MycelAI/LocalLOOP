@@ -103,7 +103,7 @@ readiness beyond this document's own claim:
   scoped, which is out of scope for this document and flagged here as an open
   question for whoever scopes an actual pilot agreement.
 - **Auth is not yet proven end-to-end.** See
-  [item 2 tracking](../../../../localloop-backend/docs/SPEC-COMPLIANCE.md) —
+  [item 2 tracking](../../../../apps/backend/docs/SPEC-COMPLIANCE.md) —
   `AUTH_ENABLED` (better-auth) is wired but had no runtime test coverage as
   of this document's last review; `API_KEY_ENABLED` is comprehensively
   tested. A pilot partner should be told which auth mode actually protects

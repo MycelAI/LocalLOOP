@@ -4,24 +4,24 @@
  *
  *   A. Backend schema copies must equal the canonical loop-protocol schemas
  *      (delegates to scripts/sync-schemas.ts --check).
- *   B. The docs-hub mirror (localloop-site/public/projects/loop-protocol) must
+ *   B. The docs-hub mirror (apps/site/public/projects/loop-protocol) must
  *      carry byte-identical copies of the canonical schemas/, contexts/,
  *      docs/, examples/, rfcs/, openapi.json, and SPECIFICATION.md. Skipped with a
  *      notice
- *      when the sibling site checkout is unavailable (e.g. backend-only CI).
+ *      when apps/site is unavailable.
  *   C. Every path+method in loop-protocol/openapi.json must be registered in
  *      the built Fastify app (spec-required endpoints may not drift).
  *
  * Exit code 1 when any check fails. Run via `bun run check:conformance`;
- * exercised in tests/conformance.test.ts and .github/workflows/protocol-parity.yml.
+ * exercised in tests/conformance.test.ts and the root .github/workflows/protocol-parity.yml.
  */
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 
 const BACKEND_ROOT = join(import.meta.dirname, '..');
-const REPO_ROOT = join(BACKEND_ROOT, '..');
-const PROTOCOL_ROOT = join(REPO_ROOT, 'loop-protocol');
-const SITE_MIRROR = join(REPO_ROOT, 'localloop-site', 'public', 'projects', 'loop-protocol');
+const REPO_ROOT = join(BACKEND_ROOT, '..', '..');
+const PROTOCOL_ROOT = join(REPO_ROOT, 'protocol');
+const SITE_MIRROR = join(REPO_ROOT, 'apps', 'site', 'public', 'projects', 'loop-protocol');
 
 let failures = 0;
 const ok = (msg: string) => console.log(`[conformance] OK: ${msg}`);
@@ -33,7 +33,7 @@ const fail = (msg: string) => {
 
 // --- Check A: backend schema copies ------------------------------------------
 if (!existsSync(PROTOCOL_ROOT)) {
-  skip('schema-copy check requires loop-protocol sibling checkout');
+  skip('schema-copy check requires the monorepo protocol/ tree');
 } else {
   const result = Bun.spawnSync(['bun', 'run', join(BACKEND_ROOT, 'scripts', 'sync-schemas.ts'), '--check']);
   process.stderr.write(result.stderr);
@@ -68,9 +68,9 @@ function compareFile(canonical: string, mirror: string, label: string) {
 }
 
 if (!existsSync(PROTOCOL_ROOT)) {
-  skip('loop-protocol sibling checkout unavailable');
+  skip('monorepo protocol/ tree unavailable');
 } else if (!existsSync(SITE_MIRROR)) {
-  skip('docs-hub mirror unavailable (localloop-site sibling checkout missing)');
+  skip('docs-hub mirror unavailable (apps/site missing)');
 } else {
   let checked = 0;
   for (const rel of ['openapi.json', 'SPECIFICATION.md']) {
@@ -92,7 +92,7 @@ if (!existsSync(PROTOCOL_ROOT)) {
 
 // --- Check C: spec route surface ----------------------------------------------
 if (!existsSync(PROTOCOL_ROOT)) {
-  skip('route-surface check requires loop-protocol sibling checkout');
+  skip('route-surface check requires the monorepo protocol/ tree');
 } else {
   const openapi = JSON.parse(readFileSync(join(PROTOCOL_ROOT, 'openapi.json'), 'utf8')) as {
     paths: Record<string, Record<string, unknown>>;

@@ -1,18 +1,13 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-ORG="${DOCS_ORG:-local-loop-io}"
 REPOS_INPUT="${DOCS_REPOS:-loop-protocol}"
 
 IFS=',' read -r -a REPOS <<< "$REPOS_INPUT"
 
-ROOT_DIR="$(pwd)"
-WORK_DIR="$(mktemp -d)"
-
-cleanup() {
-  rm -rf "$WORK_DIR"
-}
-trap cleanup EXIT
+# apps/site, regardless of the caller's working directory
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+MONOREPO_ROOT="$(cd "$ROOT_DIR/../.." && pwd)"
 
 sync_file() {
   local src="$1"
@@ -73,6 +68,15 @@ publish_versioned_schema_aliases() {
   rewrite_schema_id_version "$v1_dir" "v1"
 }
 
+# Mirrored repo name -> path of its source tree inside the LocalLOOP monorepo.
+# The mirror keeps its historical public URL (/projects/loop-protocol/...).
+monorepo_path() {
+  case "$1" in
+    loop-protocol) printf '%s\n' "$MONOREPO_ROOT/protocol" ;;
+    *) printf '%s\n' "$MONOREPO_ROOT/$1" ;;
+  esac
+}
+
 resolve_local_source() {
   local repo_name="$1"
   local configured_root="${DOCS_LOCAL_ROOT:-}"
@@ -86,7 +90,7 @@ resolve_local_source() {
     fi
   fi
 
-  candidate="$ROOT_DIR/../$repo_name"
+  candidate="$(monorepo_path "$repo_name")"
   if [[ -d "$candidate" && -f "$candidate/README.md" ]]; then
     printf '%s\n' "$candidate"
     return 0
@@ -101,26 +105,11 @@ for repo in "${REPOS[@]}"; do
     continue
   fi
 
-  if SRC="$(resolve_local_source "$repo_trimmed")"; then
-    echo "Syncing $ORG/$repo_trimmed from local source: $SRC"
-  else
-    echo "Syncing $ORG/$repo_trimmed from GitHub"
-    clone_log="$WORK_DIR/${repo_trimmed}.clone.log"
-    if [[ -n "${DOCS_SYNC_TOKEN:-}" ]]; then
-      clone_url="https://x-access-token:${DOCS_SYNC_TOKEN}@github.com/${ORG}/${repo_trimmed}.git"
-      if ! GIT_TERMINAL_PROMPT=0 git clone --depth 1 "$clone_url" "$WORK_DIR/$repo_trimmed" >"$clone_log" 2>&1; then
-        echo "Failed to clone $ORG/$repo_trimmed using DOCS_SYNC_TOKEN" >&2
-        exit 1
-      fi
-    else
-      if ! GIT_TERMINAL_PROMPT=0 git clone --depth 1 "https://github.com/${ORG}/${repo_trimmed}.git" "$WORK_DIR/$repo_trimmed" >"$clone_log" 2>&1; then
-        echo "Failed to clone $ORG/$repo_trimmed: DOCS_SYNC_TOKEN not set or repo inaccessible." >&2
-        exit 1
-      fi
-    fi
-
-    SRC="$WORK_DIR/$repo_trimmed"
+  if ! SRC="$(resolve_local_source "$repo_trimmed")"; then
+    echo "Cannot find the source for $repo_trimmed in the monorepo ($(monorepo_path "$repo_trimmed")) or DOCS_LOCAL_ROOT." >&2
+    exit 1
   fi
+  echo "Syncing $repo_trimmed from $SRC"
   DEST="$ROOT_DIR/public/projects/$repo_trimmed"
   mkdir -p "$DEST"
 

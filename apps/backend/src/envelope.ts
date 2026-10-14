@@ -5,7 +5,7 @@ import { CoreDpError, newCorrelationId, type CoreDpErrorCode } from './errors';
 /**
  * Core-DP signed message envelope (LAB ONLY).
  *
- * Mirrors ../../loop-protocol profiles/core-dp/schemas/envelope.schema.json and the
+ * Mirrors protocol/profiles/core-dp/schemas/envelope.schema.json (monorepo root) and the
  * canonical signing input documented in profiles/core-dp/README.md ("Signed Envelope"
  * section). This is not a production security claim — see that schema's description.
  */

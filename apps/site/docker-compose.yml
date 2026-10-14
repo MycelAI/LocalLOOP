@@ -1,3 +1,6 @@
+# Pinned so the container keeps its historical name (localloop-site-site-1).
+name: localloop-site
+
 services:
   site:
     build: .
