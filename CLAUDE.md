@@ -9,12 +9,12 @@ Home: **https://loop.urbnia.com** (site) with the API same-origin under **https:
 
 ## Tech Stack
 - Site: Next.js 16 (App Router), React 19, Playwright
-- Backend: Bun, Fastify 5, Prisma 7 + `pg`, PostgreSQL (PostGIS), Valkey 9 (Redis-compatible) + BullMQ/ioredis, SeaweedFS behind an nginx `storage-proxy` (S3-compatible, configured via `STORAGE_*`; no route uses the store yet)
+- Backend: Bun, Fastify 5, Prisma 7 + `pg`, PostgreSQL (PostGIS), Valkey 9 (Redis-compatible) + BullMQ/ioredis, SeaweedFS (S3 gateway `seaweedfs:8333`, host `127.0.0.1:9200`; configured via `STORAGE_*`; no route uses the store yet)
 - Protocol: JSON-LD + JSON Schema, AJV validation
 - Infrastructure: Docker + Traefik on the VPS; optional systemd + Nginx config
 
 ## Architecture
-- **Docs hub (`apps/site`)** serves static protocol docs, examples, and a public interest form. Static Next.js export served by nginx in Docker behind Traefik at `https://loop.urbnia.com`; the same nginx proxies `/api/*` to the backend container (`localloop-backend-api-1:8088`) over the shared `proxy` network.
+- **Docs hub (`apps/site`)** serves static protocol docs, examples, and a public interest form. Static Next.js export served by nginx in Docker behind Traefik at `https://loop.urbnia.com`. nginx only serves files; it does not proxy the API.
 - **Backend API (`apps/backend`)** handles interest submissions, lab demo flows, SSE streams, and metrics. It has no public Traefik router; it is reached only through the site's `/api/` proxy (`/health`, `/docs`, `/openapi.json` also answer under `/api/`).
 - **Protocol (`protocol/`)** is the source of truth for schemas, spec, and RFCs.
 
@@ -24,7 +24,8 @@ Home: **https://loop.urbnia.com** (site) with the API same-origin under **https:
   /src - server, routes, db, realtime, schemas (mirrored from protocol/)
   /prisma - schema + config
   /scripts - lab demo/federation scripts, sync-schemas, check-conformance
-  /deploy - systemd units, backup/healthcheck scripts, nginx examples
+  /deploy - systemd units, backup/healthcheck scripts, setup.sh
+  /vendor - pinned Redoc bundle for /api/docs
 /apps/site
   /app - Next.js pages/layouts
   /public - static assets + mirrored protocol docs (public/projects/loop-protocol)
@@ -57,7 +58,7 @@ Home: **https://loop.urbnia.com** (site) with the API same-origin under **https:
 bun install
 cp .env.example .env          # First time setup (production .env already present on the VPS)
 bun run prisma:generate       # Generate Prisma client
-docker compose up -d          # Postgres, Valkey, SeaweedFS + storage-proxy and the api container
+docker compose up -d          # Postgres, Valkey, SeaweedFS and the api container
 bun run dev                   # Start API server (port 8088)
 bun run typecheck             # TypeScript validation
 bun run lint                  # Biome
@@ -87,11 +88,11 @@ npm run test                  # Validate schemas with AJV
 ```
 
 ## Production (this host IS the live VPS)
-- This checkout runs on the production VPS. The `apps/site` stack serves `loop.urbnia.com` through the shared Traefik and proxies `/api/*` to the `apps/backend` stack. The site stack's labels also 308-redirect `localloop.urbnia.com/*` → `loop.urbnia.com/*` and `loop-api.urbnia.com/*` → `loop.urbnia.com/api/*`. Compose project names are pinned, so containers are `localloop-backend-{api,postgres,redis,seaweedfs,storage-proxy}-1` and `localloop-site-site-1`.
+- This checkout runs on the production VPS. The shared Traefik routes `loop.urbnia.com/api/*` to the `apps/backend` api container (router `localloop-api`, priority 100) and everything else on `loop.urbnia.com` to the `apps/site` nginx (router `localloop-site`); the site nginx answers `/api/*` with a JSON 503 only while the API router is absent. The site stack's labels also 308-redirect `localloop.urbnia.com/*` → `loop.urbnia.com/*` and `loop-api.urbnia.com/*` → `loop.urbnia.com/api/*`. Compose project names are pinned, so containers are `localloop-backend-{api,postgres,redis,seaweedfs}-1` and `localloop-site-site-1`.
 - `apps/backend/.env` and `.env.docker` hold production secrets (git-ignored). `apps/backend/data/` holds the live Postgres/Valkey/SeaweedFS data (root/container-owned); `apps/backend/backups/` holds nightly dumps.
 - `bun test` in `apps/backend` applies migrations to whatever `DATABASE_URL` points at — the default `.env` is **production**. Use a scratch DB (`localloop_test`) and an explicit `REDIS_URL` with the password.
 - systemd: `localloop-backend-backup.timer` (02:30 nightly) and `localloop-backend-healthcheck.timer` run `apps/backend/deploy/{backup.sh,healthcheck-alert.sh}` from this checkout.
-- Rebuild/redeploy: `cd apps/backend && docker compose up -d --build` (same for `apps/site`). Traefik router/middleware names (`localloop-site`, `localloop-legacy-site`, `localloop-legacy-api`, `localloop-legacy-*-redirect`) are global on this host — keep them unique. Redeploy the backend before the site when changing the proxy contract.
+- Rebuild/redeploy: `cd apps/backend && docker compose up -d --build` (same for `apps/site`). Traefik router/middleware/service names (`localloop-api` in the backend stack; `localloop-site`, `localloop-legacy-site`, `localloop-legacy-api`, `localloop-legacy-*-redirect` in the site stack) are global on this host — keep them unique. Each stack deploys independently; a site restart no longer interrupts the API.
 
 ## Environment Variables (Backend)
 Source of truth: `apps/backend/src/config.ts` (Zod schema) and `.env.example`
@@ -106,7 +107,7 @@ weak/default secrets, secrets under 16 characters, and an unauthenticated `REDIS
 | DB_POOL_SIZE | pg pool size | `10` |
 | REDIS_URL | Valkey/Redis connection string (compose service requires a password) | `redis://localhost:6381` |
 | REDIS_PASSWORD | Password the compose `redis` service starts with | (set in .env) |
-| STORAGE_ENDPOINT / STORAGE_PORT | SeaweedFS S3 host/port (host: `localhost:9200`; compose: `storage-proxy:9000`) | `localhost` / `9200` |
+| STORAGE_ENDPOINT / STORAGE_PORT | SeaweedFS S3 host/port (host: `localhost:9200`; compose: `seaweedfs:8333`) | `localhost` / `9200` |
 | STORAGE_ACCESS_KEY / STORAGE_SECRET_KEY / STORAGE_BUCKET | Object-storage credentials (unused by routes today; former `MINIO_*` names still accepted) | `localloop` / `localloop_dev_secret` / `localloop-assets` |
 | ALLOWED_ORIGINS | CORS allowlist (comma-separated) | `https://loop.urbnia.com` |
 | PUBLIC_BASE_URL | External base URL (node endpoint = this + `/api/v1`) | `https://loop.urbnia.com` |

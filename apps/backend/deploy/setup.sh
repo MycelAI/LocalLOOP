@@ -42,7 +42,7 @@ if [[ -f "src/index.ts" && "$(cd . && pwd -P)" == "$(cd "$INSTALL_DIR" && pwd -P
     echo "Running from $INSTALL_DIR itself; skipping file copy."
 elif [[ -f "src/index.ts" ]]; then
     echo "Copying application files..."
-    cp -r src deploy scripts storage-proxy package.json bun.lock prisma prisma.config.ts docker-compose.yml .env.example .env.docker.example "$INSTALL_DIR/"
+    cp -r src deploy scripts vendor package.json bun.lock prisma prisma.config.ts docker-compose.yml .env.example .env.docker.example "$INSTALL_DIR/"
     chmod +x "$INSTALL_DIR"/deploy/*.sh
 
     # Copy .env.example if .env doesn't exist

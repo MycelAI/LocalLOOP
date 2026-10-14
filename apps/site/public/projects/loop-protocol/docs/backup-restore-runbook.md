@@ -49,9 +49,10 @@ If AOF is enabled, also back up `appendonly.aof`.
 
 ## 3) Object Storage Backup (seaweedfs)
 
-Object storage data lives in `./data/seaweedfs` (SeaweedFS, S3-compatible,
-fronted by the `storage-proxy` nginx service — service name in
-`docker-compose.yml` is `seaweedfs`, not `minio`).
+Object storage data lives in `./data/seaweedfs` (SeaweedFS, S3-compatible;
+service name in `docker-compose.yml` is `seaweedfs`, not `minio`; its S3
+gateway is published on `127.0.0.1:9200`. The `storage-proxy` nginx front end
+was removed on 2026-10-14).
 
 ```bash
 cd /home/alphin/code/MycelAI/localLOOP/apps/backend
@@ -95,7 +96,7 @@ docker compose start seaweedfs
 ## 5) Verification Checklist
 - [ ] API health check: `curl -sf http://127.0.0.1:8088/health`
 - [ ] Interest list loads: `curl -sf http://127.0.0.1:8088/api/interest`
-- [ ] Object storage (seaweedfs) reachable via `storage-proxy` (if exposed)
+- [ ] Object storage (seaweedfs) S3 gateway reachable on `127.0.0.1:9200`
 
 ## 6) Scheduled Backup Automation
 

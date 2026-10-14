@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.8.0] - 2026-10-14
+
+### Changed
+- **nginx no longer proxies the API.** The shared Traefik routes
+  `https://loop.urbnia.com/api/*` to the backend directly (router
+  `localloop-api` in the backend stack); this container only serves the static
+  export. `api-proxy.conf` and the Docker DNS resolver setup are removed.
+- `/api/*` requests that still reach this nginx -- only while the API
+  container is stopped, restarting or unhealthy -- get a JSON 503 with
+  `Retry-After: 30` instead of the site's HTML 404 page.
+
+### Migration
+- Deploy backend 0.8.0 (which adds the `localloop-api` Traefik router) before
+  this release; with an older backend, `/api/*` would get the 503 fallback.
+
 ## [0.7.2] - 2026-10-14
 
 ### Changed
@@ -674,7 +689,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-[Unreleased]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.7.2...HEAD
+[Unreleased]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.8.0...HEAD
+[0.8.0]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.7.2...site/v0.8.0
 [0.7.2]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.7.1...site/v0.7.2
 [0.7.1]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.7.0...site/v0.7.1
 [0.7.0]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.6.2...site/v0.7.0

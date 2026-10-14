@@ -16,7 +16,7 @@ Backend service for the localLOOP lab demo — interest registry, city data, and
 ```bash
 bun install
 cp .env.example .env          # host-side values (localhost:55432 / :6381 / :9200); adjust as needed
-docker compose up -d          # start Postgres, Valkey, SeaweedFS + storage-proxy (and the api container)
+docker compose up -d          # start Postgres, Valkey, SeaweedFS (and the api container)
 bun run dev                   # API on :8088 (stop the compose `api` service first if it holds the port)
 bun run test                  # run all tests (--isolate; see CONTRIBUTING.md)
 bun run typecheck && bun run lint
@@ -29,7 +29,7 @@ bun run typecheck && bun run lint
 
 `.env.example` holds host-reachable addresses for running the API on the host;
 `.env.docker.example` holds the in-network service names (`postgres`, `redis`,
-`storage-proxy`) the compose `api` container uses. DB-backed tests apply
+`seaweedfs`) the compose `api` container uses. DB-backed tests apply
 migrations to whatever `DATABASE_URL` points at and report as *skipped* when no
 database is reachable.
 
@@ -187,8 +187,8 @@ src/
   realtime/        SSE stream handlers
   security/        API key middleware
 scripts/           lab demo + federation scripts
-deploy/            backup + health-check scripts, systemd units, legacy nginx example
-storage-proxy/     nginx config fronting SeaweedFS's S3 gateway
+deploy/            backup + health-check scripts, systemd units
+vendor/redoc/      pinned Redoc bundle served by /api/docs
 tests/             Bun test suite
 ```
 

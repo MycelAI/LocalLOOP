@@ -14,8 +14,8 @@ This monorepo holds the LOOP specification and schemas, the public documentation
 [![Status: lab demo only](https://img.shields.io/badge/status-lab%20demo%20only-c2410c)](#limitations-and-status)
 [![Spec v0.2.0](https://img.shields.io/badge/spec-v0.2.0-0d9488)](protocol/SPECIFICATION.md)
 [![protocol 0.6.0](https://img.shields.io/badge/protocol-0.6.0-475569)](protocol/CHANGELOG.md)
-[![backend 0.7.1](https://img.shields.io/badge/backend-0.7.1-475569)](apps/backend/CHANGELOG.md)
-[![site 0.7.2](https://img.shields.io/badge/site-0.7.2-475569)](apps/site/CHANGELOG.md)
+[![backend 0.8.0](https://img.shields.io/badge/backend-0.8.0-475569)](apps/backend/CHANGELOG.md)
+[![site 0.8.0](https://img.shields.io/badge/site-0.8.0-475569)](apps/site/CHANGELOG.md)
 [![Licences: MIT, CC BY-SA 4.0](https://img.shields.io/badge/licences-MIT%20%C2%B7%20CC%20BY--SA%204.0-1d4ed8)](#licensing)
 
 [**Live site**](https://loop.urbnia.com) ·
@@ -154,12 +154,13 @@ manager workspace. Per-tree details live in
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/diagrams/architecture-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="docs/assets/diagrams/architecture-light.svg">
-  <img alt="Architecture diagram. Runtime: browser to the shared Traefik, to the site's nginx, which serves the static export and proxies /api/* to the Bun and Fastify backend on port 8088; the backend uses PostgreSQL with PostGIS, Valkey and SeaweedFS behind a storage proxy. Former hostnames answer with 308 redirects. Build time: protocol/ is canonical; schemas are synced into the backend, artifacts are mirrored into the site, and a conformance check fails on drift." src="docs/assets/diagrams/architecture-light.svg">
+  <img alt="Architecture diagram. Runtime: browser to the shared Traefik, which routes /api/* to the Bun and Fastify backend on port 8088 and everything else to the site's nginx serving the static export; the backend uses PostgreSQL with PostGIS, Valkey and SeaweedFS. Former hostnames answer with 308 redirects. Build time: protocol/ is canonical; schemas are synced into the backend, artifacts are mirrored into the site, and a conformance check fails on drift." src="docs/assets/diagrams/architecture-light.svg">
 </picture>
 
-- **One origin.** `https://loop.urbnia.com` serves the static site; the same
-  nginx proxies `/api/*` to the backend container over the shared Docker
-  `proxy` network. The API has no public router of its own.
+- **One origin, two routers.** On `https://loop.urbnia.com` the shared Traefik
+  sends `/api/*` straight to the backend container and everything else to the
+  site's nginx, which only serves the static export. The two stacks deploy
+  independently.
 - **Former hostnames** `localloop.urbnia.com` and `loop-api.urbnia.com` only
   answer with 308 redirects to `loop.urbnia.com/*` and `loop.urbnia.com/api/*`.
 - **Protocol first.** `protocol/` is the source of truth; the backend and the
@@ -234,7 +235,7 @@ them (and an `api` container) on `127.0.0.1` ports 55432, 6381, 9200 and 8088
 
 ```bash
 cp .env.example .env          # host-side development values
-docker compose up -d          # postgres, redis (Valkey), seaweedfs, storage-proxy, api
+docker compose up -d          # postgres, redis (Valkey), seaweedfs, api
 bun run dev                   # API on :8088 (stop the compose api service first)
 bun run lab:demo              # migrate, seed and simulate the lab flow
 ```
@@ -333,9 +334,10 @@ containers keep their historical names.
 <summary>Routing and redeploy details</summary>
 
 - `https://loop.urbnia.com` → site container (Traefik router `localloop-site`).
-- `https://loop.urbnia.com/api/*` → the site's nginx proxies to
-  `localloop-backend-api-1:8088` over the shared `proxy` network; the API has
-  no public router of its own.
+- `https://loop.urbnia.com/api/*` → backend container
+  `localloop-backend-api-1:8088` (Traefik router `localloop-api`, labels in
+  `apps/backend/docker-compose.yml`). While that container is down the site's
+  nginx answers `/api/*` with a JSON 503.
 - `localloop.urbnia.com/*` and `loop-api.urbnia.com/*` → 308 redirects to
   `loop.urbnia.com/*` and `loop.urbnia.com/api/*` (labels in
   `apps/site/docker-compose.yml`).
@@ -345,7 +347,7 @@ cd apps/backend && docker compose up -d --build   # API + Postgres + Valkey + Se
 cd apps/site    && docker compose up -d --build   # static site (nginx)
 ```
 
-Redeploy the backend before the site when the proxy contract changes. Backend
+Each stack deploys on its own; restarting the site no longer interrupts the API. Backend
 secrets live in the git-ignored `apps/backend/.env` / `.env.docker`; data in
 `apps/backend/data/`, nightly dumps in `apps/backend/backups/`.
 

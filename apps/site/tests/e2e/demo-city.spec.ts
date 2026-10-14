@@ -3,7 +3,7 @@
 
 import { test, expect } from '@playwright/test';
 
-// The lab API is same-origin in production (nginx proxies /api/*).
+// The lab API is same-origin in production (Traefik routes /api/* to it).
 const isApi = (url: URL) => url.pathname.startsWith('/api/');
 
 // Non-GET requests the page attempts against the public API are recorded here

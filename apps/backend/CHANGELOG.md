@@ -7,6 +7,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.8.0] - 2026-10-14
+
+### Changed
+- **The API has its own Traefik router again.** `https://loop.urbnia.com/api/*`
+  is routed by the shared Traefik straight to this container (router and
+  service `localloop-api`, `Host(loop.urbnia.com) && PathPrefix(/api/)`,
+  priority 100) instead of through the site's nginx. Restarting the site no
+  longer interrupts the API, and requests skip one proxy hop. Traefik is the
+  single trusted hop (`trustProxy` hop 0), so per-client rate limits still see
+  the real client address.
+- **`storage-proxy` removed.** The nginx container in front of SeaweedFS added
+  nothing: the S3 gateway is now `seaweedfs:8333` inside the compose network
+  and is published directly on `127.0.0.1:9200`, the host address it always
+  had. `.env.docker.example` uses `STORAGE_ENDPOINT=seaweedfs` and
+  `STORAGE_PORT=8333`. No route uses object storage yet.
+- The unused bare-metal `deploy/nginx.conf` example is removed;
+  `deploy/setup.sh` copies `vendor/` (the pinned Redoc bundle) instead of the
+  removed `storage-proxy/` directory.
+
+### Migration
+- Deploy with `docker compose up -d --build --remove-orphans` so the old
+  `storage-proxy` container is removed. Postgres and Valkey are not recreated.
+- In `.env.docker`, set `STORAGE_ENDPOINT=seaweedfs` and `STORAGE_PORT=8333`.
+- The Traefik router name `localloop-api` must stay unique on the host.
+
 ## [0.7.1] - 2026-10-14
 
 ### Fixed
@@ -581,7 +606,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Lab demo scripts (seed + simulate + one-command runner).
 - Privacy notice endpoint and in-memory metrics snapshot.
 
-[Unreleased]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.7.1...HEAD
+[Unreleased]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.8.0...HEAD
+[0.8.0]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.7.1...backend/v0.8.0
 [0.7.1]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.7.0...backend/v0.7.1
 [0.7.0]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.6.6...backend/v0.7.0
 [0.6.6]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.6.5...backend/v0.6.6

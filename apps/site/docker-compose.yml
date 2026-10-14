@@ -16,7 +16,8 @@ services:
       - "traefik.enable=true"
       - "traefik.docker.network=proxy"
       - "traefik.http.services.localloop-site.loadbalancer.server.port=80"
-      # https://loop.urbnia.com — the home of localLOOP (site + /api/ proxy).
+      # https://loop.urbnia.com — the home of localLOOP (static site; /api/* is
+      # routed to the backend by the router in apps/backend/docker-compose.yml).
       - "traefik.http.routers.localloop-site.rule=Host(`loop.urbnia.com`)"
       - "traefik.http.routers.localloop-site.entrypoints=websecure"
       - "traefik.http.routers.localloop-site.tls.certresolver=letsencrypt"

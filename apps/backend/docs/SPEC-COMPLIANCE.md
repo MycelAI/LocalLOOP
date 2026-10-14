@@ -168,7 +168,7 @@ routes, not to be a standalone records-management product with
 redaction/export tooling.
 
 Object storage is provisioned but unused: `docker-compose.yml`'s `seaweedfs`
-and `storage-proxy` services expose an S3-compatible SeaweedFS gateway
+service exposes an S3-compatible SeaweedFS gateway
 (formerly MinIO), configured through `STORAGE_*` (the former `MINIO_*` names
 are still read as a deprecated fallback), and production config still
 requires a non-weak `STORAGE_SECRET_KEY`. No route, script, or test talks to

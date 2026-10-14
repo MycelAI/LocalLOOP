@@ -24,6 +24,11 @@ use the date the change landed on `main`.
 ## 2026-10-14
 
 ### Changed
+- Routing: the shared Traefik sends `loop.urbnia.com/api/*` straight to the
+  backend (router `localloop-api`) and everything else to the site's nginx,
+  which no longer proxies the API; the `storage-proxy` nginx in front of
+  SeaweedFS and the unused bare-metal nginx example are removed (backend
+  0.8.0, site 0.8.0). The architecture diagrams show the new routing.
 - **`loop.urbnia.com` and `loop.urbnia.com/api/` are the only canonical hosts,
   across every tree.** Protocol identifiers (JSON-LD contexts, `@vocab`, schema
   `$id`s, examples, conformance vectors) moved off `localloop.urbnia.com` in

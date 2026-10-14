@@ -35,16 +35,23 @@ services:
         condition: service_healthy
       redis:
         condition: service_healthy
-      storage-proxy:
+      seaweedfs:
         condition: service_healthy
     ports:
       - "127.0.0.1:8088:8088"
-    # No public Traefik router: https://loop.urbnia.com/api/* reaches this
-    # container through the site's nginx (apps/site/nginx.conf) over the shared
-    # `proxy` network, as localloop-backend-api-1:8088. The former API hostname is
-    # redirected there by the site stack's Traefik labels.
+    # https://loop.urbnia.com/api/* is routed here by the shared Traefik, ahead
+    # of the site router for the same host (longer rule, explicit priority).
+    # The site stack still owns the host's other routers and the 308 redirects
+    # for the former hostnames. Router/service names are global on this host.
     labels:
-      - "traefik.enable=false"
+      - "traefik.enable=true"
+      - "traefik.docker.network=proxy"
+      - "traefik.http.routers.localloop-api.rule=Host(`loop.urbnia.com`) && PathPrefix(`/api/`)"
+      - "traefik.http.routers.localloop-api.priority=100"
+      - "traefik.http.routers.localloop-api.entrypoints=websecure"
+      - "traefik.http.routers.localloop-api.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.localloop-api.service=localloop-api"
+      - "traefik.http.services.localloop-api.loadbalancer.server.port=8088"
     restart: unless-stopped
     networks:
       - default
@@ -120,38 +127,16 @@ services:
     image: chrislusf/seaweedfs:4.40@sha256:52194fba4fecd0083c842158b3a902ba6e04a63619b2b0efcd08007bdb6a4602
     security_opt:
       - no-new-privileges:true
+    # S3 gateway: seaweedfs:8333 inside the compose network, 127.0.0.1:9200 on
+    # the host (the host address the S3 endpoint has always used).
+    ports:
+      - "127.0.0.1:9200:8333"
     volumes:
       - ./data/seaweedfs:/data
     restart: unless-stopped
     logging: *default-logging
     healthcheck:
       test: ["CMD", "wget", "-qO-", "http://localhost:9333/cluster/status"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-
-  storage-proxy:
-    deploy:
-      resources:
-        limits:
-          cpus: '0.25'
-          memory: 128M
-        reservations:
-          memory: 64M
-    image: nginx:1.27-alpine
-    security_opt:
-      - no-new-privileges:true
-    depends_on:
-      seaweedfs:
-        condition: service_healthy
-    ports:
-      - "127.0.0.1:9200:9000"
-    volumes:
-      - ./storage-proxy/nginx.conf:/etc/nginx/nginx.conf:ro
-    restart: unless-stopped
-    logging: *default-logging
-    healthcheck:
-      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:9000/ >/dev/null 2>&1 || exit 1"]
       interval: 10s
       timeout: 5s
       retries: 5

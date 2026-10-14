@@ -10,8 +10,8 @@ const booleanFromEnv = (value: string | undefined, fallback: boolean) => {
 
 const isProduction = (process.env.NODE_ENV ?? '').toLowerCase() === 'production';
 
-// Object storage moved from MinIO to SeaweedFS (S3-compatible, behind the
-// compose `storage-proxy`). The configuration is named STORAGE_*; the former
+// Object storage moved from MinIO to SeaweedFS (S3-compatible; compose service
+// `seaweedfs`, S3 gateway on :8333, published on the host as 127.0.0.1:9200). The configuration is named STORAGE_*; the former
 // MINIO_* names are still read as a fallback so an existing .env keeps working,
 // and a startup warning points at the rename.
 const STORAGE_ENV_FALLBACKS: Record<string, string> = {
@@ -215,7 +215,7 @@ export const config = {
   runMigrations: booleanFromEnv(parsed.RUN_MIGRATIONS, true),
   refreshSearchOnWrite: booleanFromEnv(parsed.SEARCH_REFRESH_ON_WRITE, true),
   redisUrl: parsed.REDIS_URL,
-  /** SeaweedFS S3 gateway (via the compose storage-proxy). No route uses it yet. */
+  /** SeaweedFS S3 gateway (compose service `seaweedfs`). No route uses it yet. */
   storage: {
     endpoint: parsed.STORAGE_ENDPOINT,
     port: parsed.STORAGE_PORT,

@@ -42,8 +42,8 @@ type BuildOptions = {
 export async function buildServer(options: BuildOptions = {}) {
   const app = Fastify({
     logger: options.logger ?? true,
-    // Exactly one reverse-proxy hop (Traefik in Docker, or the legacy
-    // deploy/nginx.conf) sits in front of this process, and its address inside
+    // Exactly one reverse-proxy hop (the shared Traefik, which routes
+    // https://loop.urbnia.com/api/* here) sits in front of this process, and its address inside
     // the compose network is not stable, so trust only the immediate peer
     // (hop 0) rather than every X-Forwarded-For value a client cares to send —
     // with `true`, any caller could pick its own request.ip and sidestep the

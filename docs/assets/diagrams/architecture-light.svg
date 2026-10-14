@@ -4,7 +4,7 @@ SPDX-License-Identifier: MIT
 -->
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="t d">
   <title id="t">localLOOP architecture</title>
-  <desc id="d">Runtime: a browser reaches loop.urbnia.com through the host's shared Traefik, which routes to the site container's nginx. nginx serves the static Next.js export and proxies /api/* to the backend API container (Bun and Fastify on port 8088) over the shared Docker proxy network. The API uses PostgreSQL with PostGIS, Valkey, and SeaweedFS behind an nginx storage proxy. The former hostnames localloop.urbnia.com and loop-api.urbnia.com answer with 308 redirects at Traefik. Build time: protocol/ is canonical; its schemas are synced byte-identical into the backend and its artifacts are mirrored into the site, and a conformance check fails on any drift.</desc>
+  <desc id="d">Runtime: a browser reaches loop.urbnia.com through the host's shared Traefik. Traefik routes /api/* straight to the backend API container (Bun and Fastify on port 8088, router localloop-api) and everything else to the site container's nginx (router localloop-site), which serves the static Next.js export and answers /api/* with a JSON 503 only while the API is down. The API uses PostgreSQL with PostGIS, Valkey, and SeaweedFS. The former hostnames localloop.urbnia.com and loop-api.urbnia.com answer with 308 redirects at Traefik. Build time: protocol/ is canonical; its schemas are synced byte-identical into the backend and its artifacts are mirrored into the site, and a conformance check fails on any drift.</desc>
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
       <path d="M0 0L10 5L0 10z" fill="#64748b"/>
@@ -25,14 +25,14 @@ SPDX-License-Identifier: MIT
     <rect x="300" y="86" width="4" height="72" rx="2" fill="#1d4ed8"/>
     <text x="318" y="101" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#0f172a">Traefik</text>
     <text xml:space="preserve" x="318" y="123" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#475569">shared reverse proxy, TLS</text>
-    <text xml:space="preserve" x="318" y="142" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#475569">router: localloop-site</text>
+    <text xml:space="preserve" x="318" y="142" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#475569">routers: localloop-{site,api}</text>
   </g>
   <g>
     <rect x="590" y="74" width="290" height="96" rx="12" fill="#ffffff" stroke="#0d9488" stroke-width="1.5"/>
     <rect x="590" y="86" width="4" height="72" rx="2" fill="#0d9488"/>
     <text x="608" y="101" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#0f172a">Site · nginx</text>
     <text xml:space="preserve" x="608" y="123" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#475569">/      → static Next.js export</text>
-    <text xml:space="preserve" x="608" y="142" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#475569">/api/* → backend API (proxy)</text>
+    <text xml:space="preserve" x="608" y="142" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#475569">/api/* → 503 only if API is down</text>
   </g>
   <g>
     <rect x="300" y="222" width="230" height="96" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="6 5"/>
@@ -46,7 +46,7 @@ SPDX-License-Identifier: MIT
     <text x="608" y="249" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#0f172a">Backend API · Bun + Fastify 5</text>
     <text xml:space="preserve" x="608" y="271" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#475569">localloop-backend-api-1:8088</text>
     <text xml:space="preserve" x="608" y="290" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#475569">Docker network: proxy</text>
-    <text xml:space="preserve" x="608" y="309" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#475569">no public router of its own</text>
+    <text xml:space="preserve" x="608" y="309" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#475569">Traefik router: localloop-api</text>
   </g>
   <g>
     <rect x="940" y="74" width="220" height="76" rx="12" fill="#ffffff" stroke="#a16207" stroke-width="1.5"/>
@@ -64,7 +64,7 @@ SPDX-License-Identifier: MIT
     <rect x="940" y="262" width="220" height="96" rx="12" fill="#ffffff" stroke="#a16207" stroke-width="1.5"/>
     <rect x="940" y="274" width="4" height="72" rx="2" fill="#a16207"/>
     <text x="958" y="289" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#0f172a">SeaweedFS (S3)</text>
-    <text xml:space="preserve" x="958" y="311" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#475569">behind nginx storage-proxy</text>
+    <text xml:space="preserve" x="958" y="311" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#475569">S3 gateway :8333 (host :9200)</text>
     <text xml:space="preserve" x="958" y="330" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#475569">configured, unused by routes</text>
   </g>
   <g>
@@ -77,12 +77,12 @@ SPDX-License-Identifier: MIT
   <path d="M240 122H296" fill="none" stroke="#64748b" stroke-width="1.8" marker-end="url(#arrow)"/>
   <path d="M530 122H586" fill="none" stroke="#64748b" stroke-width="1.8" marker-end="url(#arrow)"/>
   <path d="M415 222V174" fill="none" stroke="#64748b" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#arrow)"/>
-  <path d="M735 170V218" fill="none" stroke="#64748b" stroke-width="1.8" marker-end="url(#arrow)"/>
-  <text x="745" y="199" text-anchor="start" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11.5" fill="#64748b">/api/*</text>
+  <path d="M530 150C562 150 556 262 586 262" fill="none" stroke="#64748b" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="540" y="214" text-anchor="start" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11.5" fill="#64748b">/api/*</text>
   <path d="M880 262C905 262 905 112 936 112" fill="none" stroke="#64748b" stroke-width="1.8" marker-end="url(#arrow)"/>
   <path d="M880 280C915 280 910 206 936 206" fill="none" stroke="#64748b" stroke-width="1.8" marker-end="url(#arrow)"/>
   <path d="M880 300C915 300 910 310 936 310" fill="none" stroke="#64748b" stroke-width="1.8" marker-end="url(#arrow)"/>
-  <text x="50" y="410" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#64748b">Compose projects are pinned (localloop-backend, localloop-site); the API is reachable only through the site's /api/ proxy.</text>
+  <text x="50" y="410" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#64748b">Compose projects are pinned (localloop-backend, localloop-site); Traefik routes /api/* to the API and the rest to the site, so the stacks deploy independently.</text>
   <rect x="20" y="462" width="1160" height="238" rx="18" fill="none" stroke="#e2e8f0" stroke-width="1.5"/>
   <text x="42" y="492" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="600" letter-spacing="1.5" fill="#64748b">BUILD TIME · PROTOCOL IS CANONICAL</text>
   <g>

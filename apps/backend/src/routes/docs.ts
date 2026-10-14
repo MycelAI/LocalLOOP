@@ -32,7 +32,7 @@ export const DOCS_CSP = [
 ].join('; ');
 
 // spec-url and the bundle path are relative so the page works at both /docs and
-// /api/docs (the public, same-origin path behind the site's nginx).
+// /api/docs (the public path, routed here by Traefik).
 const docsHtml = `<!doctype html>
 <html lang="en">
   <head>
