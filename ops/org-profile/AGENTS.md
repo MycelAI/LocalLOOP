@@ -8,7 +8,7 @@ or infrastructure change.
 
 - `localloop-site`  
   Public docs hub (Next.js static export).  
-  Primary public domain: `https://localloop.urbnia.com`
+  Primary public domain: `https://loop.urbnia.com`
 
 - `loop-protocol`  
   Protocol spec, schemas, examples, RFCs, and JSON‑LD context source of truth.
@@ -21,8 +21,8 @@ or infrastructure change.
 
 ## Live Domains / Endpoints
 
-- **Public site:** `https://localloop.urbnia.com`
-- **Backend API:** `https://loop-api.urbnia.com`
+- **Public site:** `https://loop.urbnia.com`
+- **Backend API:** `https://loop.urbnia.com/api`
 - **Note:** `api.local-loop.io` does **not** exist.
 
 ## VPS / Docker / Traefik
@@ -36,7 +36,7 @@ or infrastructure change.
 
 ## Backend Quick Reference
 
-- API base: `https://loop-api.urbnia.com`
+- API base: `https://loop.urbnia.com/api`
 - Health: `/health`
 - Metrics: `/api/metrics`
 - Interest list: `/api/interest`
@@ -49,7 +49,7 @@ or infrastructure change.
 
 See `.env.example` and `.env.docker.example`. Highlights:
 
-- `ALLOWED_ORIGINS` (default: `https://localloop.urbnia.com`)
+- `ALLOWED_ORIGINS` (default: `https://loop.urbnia.com`)
 - `RATE_LIMIT_MAX`, `RATE_LIMIT_WRITE_MAX`
 - `RATE_LIMIT_WINDOW`, `RATE_LIMIT_WRITE_WINDOW`
 - `SSE_KEEPALIVE_MS`, `SSE_MAX_CLIENTS`
@@ -59,9 +59,9 @@ See `.env.example` and `.env.docker.example`. Highlights:
 ## Protocol Contexts (JSON‑LD)
 
 - Preferred JSON‑LD context:
-  `https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld`
+  `https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld`
 - The v0.1.1 context remains valid for backward compatibility:
-  `https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld`
+  `https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld`
 
 ## CI / Domain Consistency
 
@@ -83,7 +83,7 @@ Use BrowserLab for smoke visual runs:
 
 ```bash
 cd /path/to/project
-browserlab run https://localloop.urbnia.com/
+browserlab run https://loop.urbnia.com/
 ```
 
 Artifacts:

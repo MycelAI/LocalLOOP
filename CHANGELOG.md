@@ -21,6 +21,43 @@ use the date the change landed on `main`.
 
 ## Unreleased
 
+## 2026-10-14
+
+### Changed
+- **`loop.urbnia.com` and `loop.urbnia.com/api/` are the only canonical hosts,
+  across every tree.** Protocol identifiers (JSON-LD contexts, `@vocab`, schema
+  `$id`s, examples, conformance vectors) moved off `localloop.urbnia.com` in
+  loop-protocol 0.6.0, backend 0.7.0 and site 0.7.0. The former hostnames only
+  308-redirect; `scripts/ci-local.sh domains` and the per-tree domain checks
+  reject them outside changelog history, the domain policies, the Traefik
+  redirect labels and descriptions of those redirects. Historical lab records
+  in production keep the IRIs they were registered with (covered by
+  append-only evidence hashes).
+- Copyright line unified as "2025-2026 Alphin Tom / Mycel UG
+  (haftungsbeschränkt)". The protocol licence split now covers every file
+  (code and machine-readable files MIT, prose CC BY-SA 4.0). The logo,
+  favicons, the localLOOP/LOOP names and the concept images are reserved
+  (`LicenseRef-Mycel-Brand`); `ops/ledger` is internal
+  (`LicenseRef-Mycel-Proprietary`). The site footer states this instead of
+  "All rights reserved".
+- `protocol/LICENSES/CC-BY-SA-4.0.txt` is the full legal code instead of a
+  summary, and the site mirror now includes `protocol/LICENSES/`.
+- Per-tree READMEs, changelog link references and protocol documentation now
+  point at the monorepo paths and at `loop.urbnia.com` instead of the archived
+  repositories and the former hostnames.
+- `https://loop.urbnia.com` is the home of localLOOP: the site serves the
+  documentation hub and proxies the API under `/api/` on the same origin.
+  `localloop.urbnia.com` and `loop-api.urbnia.com` now answer with 308
+  redirects. Protocol identifiers followed later the same day (see the first entry).
+- Consolidated the former `local-loop-io` repositories into this monorepo with
+  full history: `localloop-backend` → `apps/backend`, `localloop-site` →
+  `apps/site`, `loop-protocol` → `protocol`, `.github` → `ops/org-profile`,
+  and the local `localloop-agent` ledger → `ops/ledger`. Former tags carry a
+  tree prefix (`backend/v0.6.4`, `site/v0.6.0`, `protocol/v0.5.2`,
+  `org-profile/v0.2.1`); the original repositories are archived.
+- Cross-repository paths rewired for the monorepo layout; CI workflows moved
+  to the root `.github/` and are path-filtered per tree.
+
 ### Added
 - Root README rewritten: project overview, live screenshots, light and dark
   architecture diagram, requirements, verified per-tree quickstarts, examples,
@@ -45,39 +82,6 @@ use the date the change landed on `main`.
 - `scripts/ci-local.sh` gains `reuse` and `links` targets (both in the
   default run) and legal-copy drift checks in the backend and site targets.
 - This root changelog.
-
-### Changed
-- Copyright line unified as "2025-2026 Alphin Tom / Mycel UG
-  (haftungsbeschränkt)". The protocol licence split now covers every file
-  (code and machine-readable files MIT, prose CC BY-SA 4.0). The logo,
-  favicons, the localLOOP/LOOP names and the concept images are reserved
-  (`LicenseRef-Mycel-Brand`); `ops/ledger` is internal
-  (`LicenseRef-Mycel-Proprietary`). The site footer states this instead of
-  "All rights reserved".
-- `protocol/LICENSES/CC-BY-SA-4.0.txt` is the full legal code instead of a
-  summary, and the site mirror now includes `protocol/LICENSES/`.
-- Per-tree READMEs, changelog link references and protocol documentation now
-  point at the monorepo paths and at `loop.urbnia.com` instead of the archived
-  repositories and the former hostnames.
-
-## 2026-10-14
-
-### Changed
-- `https://loop.urbnia.com` is the home of localLOOP: the site serves the
-  documentation hub and proxies the API under `/api/` on the same origin.
-  `localloop.urbnia.com` and `loop-api.urbnia.com` now answer with 308
-  redirects. JSON-LD contexts and schema `$id`s keep their published
-  `localloop.urbnia.com` identifiers.
-- Consolidated the former `local-loop-io` repositories into this monorepo with
-  full history: `localloop-backend` → `apps/backend`, `localloop-site` →
-  `apps/site`, `loop-protocol` → `protocol`, `.github` → `ops/org-profile`,
-  and the local `localloop-agent` ledger → `ops/ledger`. Former tags carry a
-  tree prefix (`backend/v0.6.4`, `site/v0.6.0`, `protocol/v0.5.2`,
-  `org-profile/v0.2.1`); the original repositories are archived.
-- Cross-repository paths rewired for the monorepo layout; CI workflows moved
-  to the root `.github/` and are path-filtered per tree.
-
-### Added
 - `scripts/ci-local.sh`, the local gate covering every tree. GitHub Actions is
   disabled for this repository (organisation billing), so this script is the
   check to run before pushing.

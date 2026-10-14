@@ -11,6 +11,9 @@ from the git history and tag; this tree is historical (see `README.md`).
 ## [Unreleased]
 
 ### Changed
+- Profile, README and agent context files link to `https://loop.urbnia.com`
+  and `https://loop.urbnia.com/api/` instead of the former hostnames, which
+  only redirect.
 - Documentation: `README.md` opens with a note that this tree is the
   historical source of the archived organization profile; licensing metadata
   (SPDX headers, REUSE) and the code of conduct updated for the monorepo.

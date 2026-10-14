@@ -1,6 +1,6 @@
 <div align="center">
 
-[<img src="https://localloop.urbnia.com/assets/local-loop-logo.png" width="180" alt="localLOOP" />](https://localloop.urbnia.com)
+[<img src="https://loop.urbnia.com/assets/local-loop-logo.png" width="180" alt="localLOOP" />](https://loop.urbnia.com)
 
 # localLOOP
 
@@ -9,10 +9,10 @@
 Circular economy infrastructure for cities - federated, open, and sovereignty-preserving.
 Open research protocol for lab-only exploration.
 
-[![Spec](https://img.shields.io/badge/LOOP_spec-canonical_metadata-2563eb?style=flat-square)](https://localloop.urbnia.com/protocol/spec)
-[![Website](https://img.shields.io/badge/website-localloop.urbnia.com-16a34a?style=flat-square)](https://localloop.urbnia.com)
-[![API](https://img.shields.io/badge/lab_API-loop--api.urbnia.com-ea580c?style=flat-square)](https://loop-api.urbnia.com/docs)
-[![Status](https://img.shields.io/badge/status-lab_demo_only-f59e0b?style=flat-square)](https://localloop.urbnia.com/protocol/spec)
+[![Spec](https://img.shields.io/badge/LOOP_spec-canonical_metadata-2563eb?style=flat-square)](https://loop.urbnia.com/protocol/spec)
+[![Website](https://img.shields.io/badge/website-loop.urbnia.com-16a34a?style=flat-square)](https://loop.urbnia.com)
+[![API](https://img.shields.io/badge/lab_API-loop.urbnia.com%2Fapi-ea580c?style=flat-square)](https://loop.urbnia.com/api/docs)
+[![Status](https://img.shields.io/badge/status-lab_demo_only-f59e0b?style=flat-square)](https://loop.urbnia.com/protocol/spec)
 
 </div>
 
@@ -41,7 +41,7 @@ LOOP - *Local Optimization with Overflow Protocol* - defines how autonomous city
 | **Offer -> Match -> Transfer** | The minimal interop flow across federated nodes |
 | **Federation handshake** | How two LOOP nodes discover and register each other |
 
-For exact protocol versions and release status, see the [canonical specification](https://localloop.urbnia.com/protocol/spec) and [release metadata](https://github.com/local-loop-io/loop-protocol/releases).
+For exact protocol versions and release status, see the [canonical specification](https://loop.urbnia.com/protocol/spec) and [release metadata](https://github.com/local-loop-io/loop-protocol/releases).
 
 **vNext direction:** Core-DP implementer preview is a proposed working label for future protocol exploration, not a version commitment.
 
@@ -52,7 +52,7 @@ For exact protocol versions and release status, see the [canonical specification
 | Repo | What's inside |
 |:---|:---|
 | [**loop-protocol**](https://github.com/local-loop-io/loop-protocol) | Normative specification, JSON schemas, JSON-LD contexts, examples, and governance RFCs |
-| [**localloop.urbnia.com**](https://github.com/local-loop-io/localloop-site) | Official website - protocol spec, platform docs, schema library, guides, governance, interest registry |
+| [**loop.urbnia.com**](https://github.com/local-loop-io/localloop-site) | Official website - protocol spec, platform docs, schema library, guides, governance, interest registry |
 | [**localloop-backend**](https://github.com/local-loop-io/localloop-backend) | Lab REST API - interest registry, demo flows, SSE streams, federation handshake, city data |
 | [**.github**](https://github.com/local-loop-io/.github) | This organization profile and its content-policy checks |
 
@@ -62,23 +62,23 @@ For exact protocol versions and release status, see the [canonical specification
 
 | Goal | Go here |
 |:---|:---|
-| **Register your city's interest** | [localloop.urbnia.com/interest](https://localloop.urbnia.com/interest) |
-| Read the protocol spec | [localloop.urbnia.com/protocol/spec](https://localloop.urbnia.com/protocol/spec) |
-| Regulatory context and research notes | [localloop.urbnia.com/docs/regulatory-alignment](https://localloop.urbnia.com/docs/regulatory-alignment) |
-| Implementation guide (city decision-maker summary) | [localloop.urbnia.com/docs/implementation](https://localloop.urbnia.com/docs/implementation) |
-| Browse schemas & examples | [localloop.urbnia.com/library](https://localloop.urbnia.com/library) |
-| Understand MaterialDNA | [localloop.urbnia.com/platform/materialdna](https://localloop.urbnia.com/platform/materialdna) |
-| Understand ProductDNA | [localloop.urbnia.com/platform/productdna](https://localloop.urbnia.com/platform/productdna) |
-| Explore governance & RFCs | [localloop.urbnia.com/governance](https://localloop.urbnia.com/governance) |
-| Run the lab API | [loop-api.urbnia.com/docs](https://loop-api.urbnia.com/docs) |
+| **Register your city's interest** | [loop.urbnia.com/interest](https://loop.urbnia.com/interest) |
+| Read the protocol spec | [loop.urbnia.com/protocol/spec](https://loop.urbnia.com/protocol/spec) |
+| Regulatory context and research notes | [loop.urbnia.com/docs/regulatory-alignment](https://loop.urbnia.com/docs/regulatory-alignment) |
+| Implementation guide (city decision-maker summary) | [loop.urbnia.com/docs/implementation](https://loop.urbnia.com/docs/implementation) |
+| Browse schemas & examples | [loop.urbnia.com/library](https://loop.urbnia.com/library) |
+| Understand MaterialDNA | [loop.urbnia.com/platform/materialdna](https://loop.urbnia.com/platform/materialdna) |
+| Understand ProductDNA | [loop.urbnia.com/platform/productdna](https://loop.urbnia.com/platform/productdna) |
+| Explore governance & RFCs | [loop.urbnia.com/governance](https://loop.urbnia.com/governance) |
+| Run the lab API | [loop.urbnia.com/api/docs](https://loop.urbnia.com/api/docs) |
 
 ---
 
 ## Get involved
 
-**Read** the [specification](https://localloop.urbnia.com/protocol/spec) and [examples](https://github.com/local-loop-io/loop-protocol/tree/main/examples).
+**Read** the [specification](https://loop.urbnia.com/protocol/spec) and [examples](https://github.com/local-loop-io/loop-protocol/tree/main/examples).
 **Raise ideas** via issues or draft an RFC in the [protocol repo](https://github.com/local-loop-io/loop-protocol).
-**Express interest** if you represent a city, research group, or operator - [register here](https://localloop.urbnia.com/interest).
+**Express interest** if you represent a city, research group, or operator - [register here](https://loop.urbnia.com/interest).
 
 ---
 
@@ -101,4 +101,4 @@ For exact protocol versions and release status, see the [canonical specification
 
 ## Security contact
 
-Vulnerability reports: see `https://localloop.urbnia.com/.well-known/security.txt`.
+Vulnerability reports: see `https://loop.urbnia.com/.well-known/security.txt`.

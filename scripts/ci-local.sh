@@ -3,13 +3,13 @@
 # SPDX-License-Identifier: MIT
 
 # Fast local equivalent of the root CI workflows (no DB-backed backend tests,
-# no Playwright). Usage: scripts/ci-local.sh [backend|site|protocol|conformance|org-profile|reuse|links]...
+# no Playwright). Usage: scripts/ci-local.sh [backend|site|protocol|conformance|org-profile|reuse|links|domains]...
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 NPM="${NPM:-$(command -v /home/alphin/.volta/bin/npm || command -v npm)}"
 targets=("$@")
-[[ ${#targets[@]} -eq 0 ]] && targets=(protocol conformance backend site org-profile reuse links)
+[[ ${#targets[@]} -eq 0 ]] && targets=(protocol conformance backend site org-profile reuse links domains)
 
 step() { printf '\n==> %s\n' "$*"; }
 
@@ -59,6 +59,21 @@ for t in "${targets[@]}"; do
       step "org-profile: policy checks"
       bash scripts/check-policy.sh
       bash scripts/check-security-pointer.sh
+      ;;
+    domains)
+      cd "$ROOT"
+      step "domains: former hostnames appear only where allowed (repo-wide)"
+      # loop.urbnia.com and loop.urbnia.com/api/ are the only canonical hosts.
+      # Allowed: changelog history, internal ledger records, domain policies and
+      # checks, the Traefik redirect labels, and docs describing those redirects.
+      if git grep --untracked -n -E 'localloop\.urbnia\.com|loop-api\.urbnia\.com' -- . \
+          ':!*CHANGELOG.md' ':!ops/ledger' ':!*DOMAIN-POLICY.md' ':!*check-domains*' \
+          ':!apps/site/docker-compose.yml' ':!scripts/ci-local.sh' ':!CLAUDE.md' ':!AGENTS.md' \
+          ':!README.md' ':!SECURITY.md' ':!CONTRIBUTING.md' ':!docs/assets/diagrams'; then
+        echo "Former hostnames found: use https://loop.urbnia.com or https://loop.urbnia.com/api/" >&2
+        exit 1
+      fi
+      echo "former hostnames only in allowed places"
       ;;
     links)
       cd "$ROOT"

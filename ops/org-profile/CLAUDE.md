@@ -12,8 +12,8 @@ Keep it in sync with AGENTS.md.
 
 ## Live URLs
 
-- Public site: `https://localloop.urbnia.com`
-- Backend API: `https://loop-api.urbnia.com`
+- Public site: `https://loop.urbnia.com`
+- Backend API: `https://loop.urbnia.com/api`
 - `api.local-loop.io` does not exist
 
 ## VPS / Traefik
@@ -42,14 +42,14 @@ docker compose up -d --build
 
 Preferred `@context` value:
 
-`https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld`
+`https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld`
 
 The v0.1.1 context remains valid for backward compatibility.
 
 ## BrowserLab
 
 ```bash
-browserlab run https://localloop.urbnia.com/
+browserlab run https://loop.urbnia.com/
 ```
 
 Artifacts:

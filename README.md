@@ -13,9 +13,9 @@ This monorepo holds the LOOP specification and schemas, the public documentation
 
 [![Status: lab demo only](https://img.shields.io/badge/status-lab%20demo%20only-c2410c)](#limitations-and-status)
 [![Spec v0.2.0](https://img.shields.io/badge/spec-v0.2.0-0d9488)](protocol/SPECIFICATION.md)
-[![protocol 0.5.2](https://img.shields.io/badge/protocol-0.5.2-475569)](protocol/CHANGELOG.md)
-[![backend 0.6.6](https://img.shields.io/badge/backend-0.6.6-475569)](apps/backend/CHANGELOG.md)
-[![site 0.6.2](https://img.shields.io/badge/site-0.6.2-475569)](apps/site/CHANGELOG.md)
+[![protocol 0.6.0](https://img.shields.io/badge/protocol-0.6.0-475569)](protocol/CHANGELOG.md)
+[![backend 0.7.0](https://img.shields.io/badge/backend-0.7.0-475569)](apps/backend/CHANGELOG.md)
+[![site 0.7.0](https://img.shields.io/badge/site-0.7.0-475569)](apps/site/CHANGELOG.md)
 [![Licences: MIT, CC BY-SA 4.0](https://img.shields.io/badge/licences-MIT%20%C2%B7%20CC%20BY--SA%204.0-1d4ed8)](#licensing)
 
 [**Live site**](https://loop.urbnia.com) ·
@@ -275,7 +275,7 @@ database or Valkey probe fails.
 
 ```console
 $ curl -s https://loop.urbnia.com/api/v1/node/info
-{"@context":"https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
+{"@context":"https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
  "@type":"NodeInfo","id":"lab-hub.loop","name":"localLOOP Lab Hub","version":"0.6.4",
  "location":{"lat":48.1351,"lon":11.582,"city":"Munich","country":"DE"},
  "endpoint":"https://loop.urbnia.com/api/v1","capabilities":["material-registry","loopsignal"],
@@ -290,7 +290,7 @@ against [`offer.schema.json`](protocol/schemas/offer.schema.json):
 
 ```json
 {
-  "@context": "https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
+  "@context": "https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
   "@type": "Offer",
   "schema_version": "0.2.0",
   "id": "OFR-2F7A6B9C",
@@ -304,8 +304,8 @@ against [`offer.schema.json`](protocol/schemas/offer.schema.json):
 }
 ```
 
-JSON-LD contexts and schema `$id`s intentionally keep the published
-`localloop.urbnia.com` identifiers, which resolve through the redirect.
+JSON-LD contexts and schema `$id`s are published under
+`https://loop.urbnia.com/projects/loop-protocol/` (since protocol 0.6.0).
 More payloads: [`protocol/examples/`](protocol/examples/README.md). The full
 endpoint list is in [`apps/backend/README.md`](apps/backend/README.md#api).
 
@@ -316,7 +316,7 @@ endpoint list is in [`apps/backend/README.md`](apps/backend/README.md#api).
   protocol artifacts into `apps/site/public/projects/loop-protocol/`
   (`bash apps/site/scripts/aggregate-docs.sh`). The mirror keeps its public
   URL path, so JSON-LD contexts stay at
-  `https://localloop.urbnia.com/projects/loop-protocol/contexts/…` (served via
+  `https://loop.urbnia.com/projects/loop-protocol/contexts/…` (served via
   the redirect to `loop.urbnia.com`).
 - `bun run check:conformance` (in `apps/backend`) fails on any drift between
   the three, and on spec endpoints missing from the API.

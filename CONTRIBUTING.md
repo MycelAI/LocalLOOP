@@ -106,9 +106,11 @@ copies, and the site mirrors protocol artifacts under
 If you add RFC 2119 clauses to `protocol/SPECIFICATION.md`, re-pin
 `protocol/profiles/core-dp/requirements/spec-v0.2.0-normative-manifest.json`.
 
-Published JSON-LD context URLs and schema `$id`s intentionally keep the
-`localloop.urbnia.com` host. Don't change them without a protocol RFC. For all
-other content, use the domains allowed by each tree's `DOMAIN-POLICY.md`.
+Every URL and identifier uses `https://loop.urbnia.com` (site, JSON-LD
+contexts, schema `$id`s) and `https://loop.urbnia.com/api/` (API). The former
+hosts `localloop.urbnia.com` and `loop-api.urbnia.com` only redirect; the
+domain checks reject them outside changelog history and the redirect
+configuration. See each tree's `DOMAIN-POLICY.md`.
 
 ## Branches, commits and pull requests
 

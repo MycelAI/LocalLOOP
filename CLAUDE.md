@@ -108,7 +108,7 @@ weak/default secrets, secrets under 16 characters, and an unauthenticated `REDIS
 | REDIS_PASSWORD | Password the compose `redis` service starts with | (set in .env) |
 | STORAGE_ENDPOINT / STORAGE_PORT | SeaweedFS S3 host/port (host: `localhost:9200`; compose: `storage-proxy:9000`) | `localhost` / `9200` |
 | STORAGE_ACCESS_KEY / STORAGE_SECRET_KEY / STORAGE_BUCKET | Object-storage credentials (unused by routes today; former `MINIO_*` names still accepted) | `localloop` / `localloop_dev_secret` / `localloop-assets` |
-| ALLOWED_ORIGINS | CORS allowlist (comma-separated) | `https://loop.urbnia.com,https://localloop.urbnia.com` |
+| ALLOWED_ORIGINS | CORS allowlist (comma-separated) | `https://loop.urbnia.com` |
 | PUBLIC_BASE_URL | External base URL (node endpoint = this + `/api/v1`) | `https://loop.urbnia.com` |
 | PORT | Listen port | `8088` |
 | NODE_ID / NODE_NAME / NODE_CAPABILITIES / NODE_LAT / NODE_LON | Node identity for `GET /api/v1/node/info` | `lab-hub.loop` / … / `48.1351` / `11.582` |
@@ -136,10 +136,12 @@ Authoritative list: `apps/backend/README.md` and `apps/backend/docs/SPEC-COMPLIA
 ## Domain & Context Requirements
 - Home / site: `https://loop.urbnia.com`
 - Backend API: `https://loop.urbnia.com/api/` (same origin)
-- Former hostnames `localloop.urbnia.com` and `loop-api.urbnia.com` only redirect (308) — don't use them in new content, except for the protocol identifiers below.
-- JSON-LD contexts and schema `$id`s intentionally still use `localloop.urbnia.com` (published identifiers; they resolve via the redirect). Moving them to `loop.urbnia.com` is an open protocol-versioning decision.
-- JSON-LD context (v0.2.0): `https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld`
-- JSON-LD context (v0.1.1, still valid): `https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld`
+- `loop.urbnia.com` and `loop.urbnia.com/api/` are the only canonical hosts — everywhere, including protocol identifiers (since protocol 0.6.0, 2026-10-14).
+- Former hostnames `localloop.urbnia.com` and `loop-api.urbnia.com` only 308-redirect. Never use them in new content; the domain checks reject them everywhere except changelog history, `DOMAIN-POLICY.md` files, the Traefik redirect labels in `apps/site/docker-compose.yml`, and descriptions of those redirects.
+- JSON-LD `@vocab`/term namespace: `https://loop.urbnia.com/projects/loop-protocol/terms/`
+- JSON-LD context (v0.2.0): `https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld`
+- JSON-LD context (v0.1.1, still valid): `https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld`
+- Historical lab records in production (payloads registered before 2026-10-14) keep the old context IRIs: they are covered by append-only evidence hashes and must not be rewritten.
 - `local-loop-io.github.io` and `api.local-loop.io` do **not** exist (do not reference).
 - Public pages may still link to the archived (read-only, public) `github.com/local-loop-io/*` repos; this monorepo is private.
 

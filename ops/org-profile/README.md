@@ -24,12 +24,12 @@ See `profile/README.md` for the public landing page content.
 ## Links
 
 - Org profile: <https://github.com/local-loop-io>
-- Docs hub: <https://localloop.urbnia.com>
+- Docs hub: <https://loop.urbnia.com>
 
 ## Live endpoints
 
-- Public site: <https://localloop.urbnia.com>
-- Backend API: <https://loop-api.urbnia.com>
+- Public site: <https://loop.urbnia.com>
+- Backend API: <https://loop.urbnia.com/api>
 - Canonical note: `api.local-loop.io` does not exist.
 
 ## How to cite
