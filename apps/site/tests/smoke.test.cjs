@@ -328,6 +328,14 @@ test('well-known change-password is an nginx redirect to the security page', () 
   assert.ok(!fs.existsSync(path.join(process.cwd(), 'public', '.well-known', 'change-password')), 'static file would shadow the redirect');
 });
 
+test('nginx serves Core-DP profile schemas at their versioned $id paths', () => {
+  const conf = read(['nginx.conf']);
+  assert.ok(conf.includes('location ^~ /projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/'));
+  assert.ok(conf.includes('/projects/loop-protocol/profiles/core-dp/schemas/$1 last;'));
+  const envelope = JSON.parse(read(['public', 'projects', 'loop-protocol', 'profiles', 'core-dp', 'schemas', 'envelope.schema.json']));
+  assert.ok(envelope.$id.startsWith('https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/'));
+});
+
 test('nginx serves JSON-LD contexts as application/ld+json with CORS', () => {
   const conf = read(['nginx.conf']);
   const block = conf.slice(conf.indexOf('location ~* \\.jsonld$'));

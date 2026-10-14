@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.7.1] - 2026-10-14
+
+### Fixed
+- Core-DP profile schema `$id`s
+  (`/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/*`) resolve:
+  nginx serves them from the mirrored `profiles/core-dp/schemas/` files
+  instead of answering 404.
+
 ## [0.7.0] - 2026-10-14
 
 ### Changed
@@ -659,7 +667,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-[Unreleased]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.7.0...HEAD
+[Unreleased]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.7.1...HEAD
+[0.7.1]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.7.0...site/v0.7.1
 [0.7.0]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.6.2...site/v0.7.0
 [0.6.2]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.6.1...site/v0.6.2
 [0.6.1]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.6.0...site/v0.6.1
