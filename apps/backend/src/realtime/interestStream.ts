@@ -61,6 +61,11 @@ export function registerInterestStream(request: FastifyRequest, reply: FastifyRe
   // the handler's (undefined) return value nor log a "promise not fulfilled"
   // error for it.
   reply.hijack();
+  // The server's connectionTimeout (REQUEST_TIMEOUT_MS) is an absolute deadline
+  // under Bun, not an idle timer, so it cut every stream after 30 s even with
+  // keep-alives flowing. Streams are long-lived by design; dead peers are still
+  // dropped through the close/error handlers and failed keep-alive writes.
+  request.raw.socket?.setTimeout(0);
   reply.raw.writeHead(200, headers);
   reply.raw.write('\n');
 

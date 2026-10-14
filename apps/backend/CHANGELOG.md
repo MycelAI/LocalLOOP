@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.8.1] - 2026-10-14
+
+### Fixed
+- **SSE streams were cut after 30 seconds.** Under Bun, Fastify's
+  `connectionTimeout` (`REQUEST_TIMEOUT_MS`, 30 s) is an absolute deadline
+  rather than an idle timer, so `GET /api/v1/stream` and
+  `GET /api/interest/stream` were closed 30 s after opening even with
+  keep-alives flowing; browsers silently reconnected, leaving gaps in which
+  events were missed. Stream sockets now disable the timeout; dead peers are
+  still dropped through the close/error handlers and failed keep-alive writes.
+  A real-socket regression test covers both streams.
+
 ## [0.8.0] - 2026-10-14
 
 ### Changed
@@ -606,7 +618,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Lab demo scripts (seed + simulate + one-command runner).
 - Privacy notice endpoint and in-memory metrics snapshot.
 
-[Unreleased]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.8.0...HEAD
+[Unreleased]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.8.1...HEAD
+[0.8.1]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.8.0...backend/v0.8.1
 [0.8.0]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.7.1...backend/v0.8.0
 [0.7.1]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.7.0...backend/v0.7.1
 [0.7.0]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.6.6...backend/v0.7.0
