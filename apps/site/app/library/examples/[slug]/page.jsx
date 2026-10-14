@@ -1,0 +1,31 @@
+import { examples } from '@/app/config/examples'
+import MarkdownDoc from '@/app/components/docs/MarkdownDoc'
+import { notFound } from 'next/navigation'
+import { createMetadata } from '@/app/config/metadata'
+
+export function generateStaticParams() {
+  return examples.map(e => ({ slug: e.slug }))
+}
+
+export async function generateMetadata({ params }) {
+  const { slug } = await params
+  const example = examples.find(e => e.slug === slug)
+  if (!example) return {}
+  return createMetadata({ title: example.title, path: `/library/examples/${example.slug}` })
+}
+
+export default async function ExamplePage({ params }) {
+  const { slug } = await params
+  const example = examples.find(e => e.slug === slug)
+  if (!example) notFound()
+  return (
+    <div className="content-stack">
+      <div className="content-panel">
+        <h1 className="hub-heading">{example.title}</h1>
+      </div>
+      <div className="content-panel">
+        <MarkdownDoc filePath={example.file} />
+      </div>
+    </div>
+  )
+}

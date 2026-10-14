@@ -1,0 +1,33 @@
+<nav class="nav-container" aria-label="Primary">
+  <a href="/" class="nav-brand">
+    <img
+      src="/assets/local-loop-logo.png"
+      alt="localLOOP"
+      class="nav-logo-img"
+      width="32"
+      height="32"
+    />
+    <span class="nav-brand-copy">
+      <span class="nav-wordmark">local<span class="nav-wordmark-accent">LOOP</span></span>
+      <span class="nav-subtitle" data-nav-subtitle></span>
+    </span>
+  </a>
+
+  <div class="nav-controls">
+    <button
+      class="nav-toggle"
+      type="button"
+      aria-controls="site-nav-links"
+      aria-expanded="false"
+    >
+      <i class="ph-bold ph-list" aria-hidden="true"></i>
+      <span class="visually-hidden">Open menu</span>
+    </button>
+
+    <div class="nav-bar" data-open="false">
+      <!-- .nav-group entries are rendered by site-header.js from
+           /assets/navigation.json (shared with app/config/siteRoutes.js) -->
+      <div class="nav-links" id="site-nav-links" data-open="false"></div>
+    </div>
+  </div>
+</nav>

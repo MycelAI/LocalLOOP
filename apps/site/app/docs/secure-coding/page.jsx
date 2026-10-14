@@ -1,0 +1,31 @@
+import MarkdownDoc from '@/app/components/docs/MarkdownDoc'
+import { createMetadata } from '@/app/config/metadata';
+
+export const metadata = createMetadata({ title: 'Secure coding', path: '/docs/secure-coding' });
+
+export default function SecureCodingPage() {
+  return (
+    <div className="content-stack">
+      <div className="content-panel">
+        <h1 className="hub-heading">Secure Coding</h1>
+        <p>
+          Guardrails for building secure integrations and services in the localLOOP
+          ecosystem.
+        </p>
+        <div className="cta-row">
+          <a className="button secondary" href="/docs/">Back to docs</a>
+        </div>
+      </div>
+      <div className="content-panel">
+        <h2>Focus areas</h2>
+        <div className="table-list">
+          <div><span>Data handling</span><div>Validation and sanitization</div></div>
+          <div><span>Infrastructure</span><div>Credential and secret hygiene</div></div>
+        </div>
+      </div>
+      <div className="content-panel">
+        <MarkdownDoc filePath="projects/loop-protocol/docs/secure-coding.md" />
+      </div>
+    </div>
+  );
+}

@@ -1,0 +1,30 @@
+import MarkdownDoc from '@/app/components/docs/MarkdownDoc'
+import { createMetadata } from '@/app/config/metadata';
+
+export const metadata = createMetadata({ title: 'Incident response', path: '/docs/incident-response' });
+
+export default function IncidentResponsePage() {
+  return (
+    <div className="content-stack">
+      <div className="content-panel">
+        <h1 className="hub-heading">Incident Response</h1>
+        <p>
+          Response workflows for localLOOP operators and infrastructure teams.
+        </p>
+        <div className="cta-row">
+          <a className="button secondary" href="/docs/">Back to docs</a>
+        </div>
+      </div>
+      <div className="content-panel">
+        <h2>Playbook topics</h2>
+        <div className="table-list">
+          <div><span>Detection</span><div>Alerting and triage workflows</div></div>
+          <div><span>Recovery</span><div>Service restoration checklist</div></div>
+        </div>
+      </div>
+      <div className="content-panel">
+        <MarkdownDoc filePath="projects/loop-protocol/docs/incident-response.md" />
+      </div>
+    </div>
+  );
+}

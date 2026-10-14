@@ -1,0 +1,31 @@
+import MarkdownDoc from '@/app/components/docs/MarkdownDoc'
+import { createMetadata } from '@/app/config/metadata';
+
+export const metadata = createMetadata({ title: 'Implementation guide', path: '/docs/implementation' });
+
+export default function ImplementationPage() {
+  return (
+    <div className="content-stack">
+      <div className="content-panel">
+        <h1 className="hub-heading">Implementation Guide</h1>
+        <p>
+          Step-by-step guidance for operators and developers. No public deployments
+          yet — this guide is a living draft.
+        </p>
+        <div className="cta-row">
+          <a className="button secondary" href="/docs/">Back to docs</a>
+        </div>
+      </div>
+      <div className="content-panel">
+        <h2>Key topics</h2>
+        <div className="table-list">
+          <div><span>Node setup</span><div>Required services and integration</div></div>
+          <div><span>Data flows</span><div>Syncing, validation, and federation</div></div>
+        </div>
+      </div>
+      <div className="content-panel">
+        <MarkdownDoc filePath="projects/loop-protocol/docs/implementation-guide.md" />
+      </div>
+    </div>
+  );
+}

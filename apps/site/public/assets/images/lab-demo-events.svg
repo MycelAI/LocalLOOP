@@ -1,0 +1,16 @@
+<svg width="1200" height="360" viewBox="0 0 1200 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="360" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F6F2EA"/>
+      <stop offset="1" stop-color="#EEF5F2"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="360" rx="28" fill="url(#bg)"/>
+  <rect x="80" y="60" width="1040" height="240" rx="20" fill="#0B1B2B"/>
+  <text x="120" y="110" font-family="IBM Plex Mono, monospace" font-size="14" fill="#F6F2EA">2025-12-20T12:00:01Z — MaterialDNA registered (DE-MUC-2025-PLASTIC-...) </text>
+  <text x="120" y="145" font-family="IBM Plex Mono, monospace" font-size="14" fill="#F6F2EA">2025-12-20T12:00:06Z — Offer published (OFR-2F7A6B9C)</text>
+  <text x="120" y="180" font-family="IBM Plex Mono, monospace" font-size="14" fill="#F6F2EA">2025-12-20T12:00:12Z — Match accepted (MCH-9B3C8A12)</text>
+  <text x="120" y="215" font-family="IBM Plex Mono, monospace" font-size="14" fill="#F6F2EA">2025-12-20T12:00:20Z — Transfer completed (TRF-5D8A23F1)</text>
+  <text x="120" y="250" font-family="IBM Plex Mono, monospace" font-size="14" fill="#F6F2EA">2025-12-20T12:00:24Z — Event stream updated</text>
+  <text x="120" y="290" font-family="Space Grotesk, sans-serif" font-size="13" fill="#C4D4CE">Example output from lab simulation logs</text>
+</svg>

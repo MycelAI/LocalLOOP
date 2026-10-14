@@ -1,0 +1,90 @@
+import { createMetadata } from '@/app/config/metadata';
+
+export const metadata = createMetadata({ title: 'Platform concepts', path: '/platform' });
+
+export default function PlatformPage() {
+  return (
+    <div className="content-stack">
+      <div className="content-panel">
+        <h1 className="hub-heading">Platform</h1>
+        <p>
+          The localLOOP platform comprises five protocol concepts — two identity layers,
+          a local currency, a community signal mechanism, and a routing cost model — plus
+          city portals that surface local circular economy initiatives.
+        </p>
+        <div className="status-notice">
+          <strong>Early-stage research.</strong> All components are lab-demo concepts.
+          There are no active city deployments or public pilots yet.
+          <a href="/interest/">Express interest</a> for possible future research updates.
+        </div>
+      </div>
+
+      <div className="content-panel">
+        <h2>Identity layers</h2>
+        <div className="grid">
+          <a className="card has-icon" href="/platform/materialdna/">
+            <span className="card-icon" aria-hidden="true">
+              <i className="ph-bold ph-fingerprint"></i>
+            </span>
+            <h3>MaterialDNA</h3>
+            <p>Identification layer for raw and processed materials across city loops.</p>
+          </a>
+          <a className="card has-icon" href="/platform/productdna/">
+            <span className="card-icon" aria-hidden="true">
+              <i className="ph-bold ph-cube"></i>
+            </span>
+            <h3>ProductDNA</h3>
+            <p>Draft product-identity fields for discussing product-passport interoperability; not an EU DPP compliance claim.</p>
+          </a>
+        </div>
+      </div>
+
+      <div className="content-panel">
+        <h2>Exchange mechanics</h2>
+        <div className="grid">
+          <a className="card has-icon" href="/platform/loopcoin/">
+            <span className="card-icon" aria-hidden="true">
+              <i className="ph-bold ph-coins"></i>
+            </span>
+            <h3>LoopCoin</h3>
+            <p>Draft node-issued value and settlement data fields for controlled lab scenarios.</p>
+          </a>
+          <a className="card has-icon" href="/platform/loopsignal/">
+            <span className="card-icon" aria-hidden="true">
+              <i className="ph-bold ph-broadcast"></i>
+            </span>
+            <h3>LoopSignal</h3>
+            <p>Draft preference-signal data for exploring routing and matching scenarios.</p>
+          </a>
+          <a className="card has-icon" href="/platform/loopcost/">
+            <span className="card-icon" aria-hidden="true">
+              <i className="ph-bold ph-calculator"></i>
+            </span>
+            <h3>LoopCost</h3>
+            <p>Draft routing-cost formula combining a stated price, illustrative penalties, and distance inputs; it does not guarantee local cost outcomes.</p>
+          </a>
+        </div>
+      </div>
+
+      <div className="content-panel">
+        <h2>City portals</h2>
+        <div className="grid">
+          <a className="card has-icon" href="/platform/city-portals/">
+            <span className="card-icon" aria-hidden="true">
+              <i className="ph-bold ph-city"></i>
+            </span>
+            <h3>City Portals</h3>
+            <p>Concept sketches for how a city could present local initiatives and example metrics.</p>
+          </a>
+          <a className="card has-icon" href="/platform/demo-city/">
+            <span className="card-icon" aria-hidden="true">
+              <i className="ph-bold ph-compass"></i>
+            </span>
+            <h3>DEMO City</h3>
+            <p>Read-only sample portal showing illustrative lab data and interface patterns.</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}

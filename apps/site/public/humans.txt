@@ -1,0 +1,9 @@
+/* TEAM */
+Org: Mycel UG (haftungsbeschränkt)
+Site: https://localloop.urbnia.com
+Contact: dev@mycel-ai.de
+
+/* SITE */
+Standards: HTML5, CSS3
+Components: Next.js static export
+Note: Lab demo only — no public pilots.

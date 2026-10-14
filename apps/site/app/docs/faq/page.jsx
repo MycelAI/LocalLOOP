@@ -1,0 +1,30 @@
+import MarkdownDoc from '@/app/components/docs/MarkdownDoc'
+import { createMetadata } from '@/app/config/metadata';
+
+export const metadata = createMetadata({ title: 'FAQ', path: '/docs/faq' });
+
+export default function FaqPage() {
+  return (
+    <div className="content-stack">
+      <div className="content-panel">
+        <h1 className="hub-heading">FAQ</h1>
+        <p>
+          This FAQ reflects the current early-stage status of localLOOP.
+        </p>
+        <div className="cta-row">
+          <a className="button secondary" href="/docs/">Back to docs</a>
+        </div>
+      </div>
+      <div className="content-panel">
+        <h2>Need more help?</h2>
+        <p>Use the interest form to ask about lab demos, interoperability work, or partnerships.</p>
+        <div className="cta-row">
+          <a className="button primary" href="/interest/">Express interest</a>
+        </div>
+      </div>
+      <div className="content-panel">
+        <MarkdownDoc filePath="projects/loop-protocol/docs/faq.md" />
+      </div>
+    </div>
+  );
+}

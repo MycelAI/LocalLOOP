@@ -1,0 +1,36 @@
+import MarkdownDoc from '@/app/components/docs/MarkdownDoc'
+import { createMetadata } from '@/app/config/metadata'
+
+export const metadata = createMetadata({
+  title: 'Protocol specification',
+  description: 'Read the localLOOP draft protocol specification, data contracts, and implementation requirements.',
+  path: '/protocol/spec',
+});
+
+export default function ProtocolSpecPage() {
+  return (
+    <div className="content-stack">
+      <div className="content-panel">
+        <h1 className="hub-heading">Specification v0.2.0</h1>
+        <p>
+          The normative requirements and API contracts that define interoperable
+          localLOOP implementations. No public pilots or deployments yet.
+        </p>
+        <div className="cta-row">
+          <a className="button secondary" href="/docs/regulatory-alignment/">Compatibility roadmap</a>
+        </div>
+      </div>
+      <div className="content-panel">
+        <h2>Included in this spec</h2>
+        <div className="table-list">
+          <div><span>Endpoints</span><div>Core federation and data flows</div></div>
+          <div><span>Compliance</span><div>Minimum operational requirements</div></div>
+          <div><span>Security</span><div>Operator and developer guardrails</div></div>
+        </div>
+      </div>
+      <div className="content-panel">
+        <MarkdownDoc filePath="projects/loop-protocol/SPECIFICATION.md" />
+      </div>
+    </div>
+  )
+}

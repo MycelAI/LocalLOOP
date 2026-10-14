@@ -1,0 +1,31 @@
+import MarkdownDoc from '@/app/components/docs/MarkdownDoc'
+import { createMetadata } from '@/app/config/metadata';
+
+export const metadata = createMetadata({ title: 'Security guide', path: '/docs/security' });
+
+export default function SecurityGuidePage() {
+  return (
+    <div className="content-stack">
+      <div className="content-panel">
+        <h1 className="hub-heading">Security Guide</h1>
+        <p>
+          Practical guidance on securing localLOOP nodes and integrations.
+        </p>
+        <div className="cta-row">
+          <a className="button secondary" href="/docs/">Back to docs</a>
+        </div>
+      </div>
+      <div className="content-panel">
+        <h2>Included topics</h2>
+        <div className="table-list">
+          <div><span>Threat model</span><div>Key risks and mitigations</div></div>
+          <div><span>Operational control</span><div>Logging, access, and response</div></div>
+          <div><span>GDPR baseline</span><div>Data minimization and consent</div></div>
+        </div>
+      </div>
+      <div className="content-panel">
+        <MarkdownDoc filePath="projects/loop-protocol/docs/security-guide.md" />
+      </div>
+    </div>
+  );
+}

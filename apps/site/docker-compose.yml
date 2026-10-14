@@ -1,0 +1,17 @@
+services:
+  site:
+    build: .
+    restart: unless-stopped
+    networks:
+      - proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=proxy"
+      - "traefik.http.routers.localloop-site.rule=Host(`localloop.urbnia.com`)"
+      - "traefik.http.routers.localloop-site.entrypoints=websecure"
+      - "traefik.http.routers.localloop-site.tls.certresolver=letsencrypt"
+      - "traefik.http.services.localloop-site.loadbalancer.server.port=80"
+
+networks:
+  proxy:
+    external: true

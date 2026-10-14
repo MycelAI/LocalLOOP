@@ -1,0 +1,35 @@
+import MarkdownDoc from '@/app/components/docs/MarkdownDoc'
+import { createMetadata } from '@/app/config/metadata'
+
+export const metadata = createMetadata({
+  title: 'RFC template',
+  description: 'Use the localLOOP draft RFC template to frame a protocol or governance proposal.',
+  path: '/governance/template',
+});
+
+export default function RfcTemplatePage() {
+  return (
+    <div className="content-stack">
+      <div className="content-panel">
+        <h1 className="hub-heading">RFC Template</h1>
+        <p>
+          Use the template to structure proposals consistently across the protocol.
+        </p>
+        <div className="cta-row">
+          <a className="button secondary" href="/governance/">Back to governance</a>
+        </div>
+      </div>
+      <div className="content-panel">
+        <h2>Template sections</h2>
+        <div className="table-list">
+          <div><span>Summary</span><div>What changes and why</div></div>
+          <div><span>Specification</span><div>API and schema updates</div></div>
+          <div><span>Rollout</span><div>Migration and compatibility notes</div></div>
+        </div>
+      </div>
+      <div className="content-panel">
+        <MarkdownDoc filePath="projects/loop-protocol/rfcs/0000-template.md" />
+      </div>
+    </div>
+  );
+}

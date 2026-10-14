@@ -1,0 +1,13 @@
+LOOP — Dual License
+
+Copyright (c) 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+
+This repository uses a dual-license model:
+
+1. Code (schemas/, scripts/, examples/, CI config, package.json):
+   MIT License — see LICENSES/MIT.txt
+
+2. Specification prose (SPECIFICATION.md, docs/, rfcs/):
+   Creative Commons Attribution-ShareAlike 4.0 International — see LICENSES/CC-BY-SA-4.0.txt
+
+Full text of each license is in the LICENSES/ directory.

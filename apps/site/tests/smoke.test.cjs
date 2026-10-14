@@ -1,0 +1,419 @@
+const test = require('node:test');
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+
+const read = (segments) =>
+  fs.readFileSync(path.join(process.cwd(), ...segments), 'utf8');
+
+const walk = (dirPath) => {
+  const results = [];
+  for (const entry of fs.readdirSync(dirPath, { withFileTypes: true })) {
+    const fullPath = path.join(dirPath, entry.name);
+    if (entry.isDirectory()) {
+      results.push(...walk(fullPath));
+      continue;
+    }
+    results.push(fullPath);
+  }
+  return results;
+};
+
+test('interest page wires interest form hooks', () => {
+  const content = read(['app', '(engage)', 'interest', 'page.jsx']);
+  assert.ok(content.includes('data-interest-form'));
+  assert.ok(content.includes('data-interest-list'));
+  assert.ok(content.includes('data-interest-status'));
+});
+
+test('markdown doc component exists', () => {
+  const content = read(['app', 'components', 'docs', 'MarkdownDoc.jsx']);
+  assert.ok(content.includes('MarkdownRenderer'));
+  assert.ok(content.includes('filePath'));
+});
+
+test('react site header preserves subtitle rendering', () => {
+  const content = read(['app', 'components', 'SiteHeader.jsx']);
+  assert.ok(content.includes('className="nav-subtitle"'));
+  assert.ok(content.includes('{subtitle}'));
+});
+
+test('public projects directory exists', () => {
+  const projectsPath = path.join(process.cwd(), 'public', 'projects', 'loop-protocol');
+  assert.ok(fs.existsSync(projectsPath));
+});
+
+test('metrics page wires live metrics panel', () => {
+  const content = read(['app', 'docs', 'metrics', 'page.jsx']);
+  assert.ok(content.includes('data-metrics-panel'));
+});
+
+test('api docs page links to the live docs instead of embedding an iframe', () => {
+  const content = read(['app', 'docs', 'api', 'page.jsx']);
+  assert.ok(content.includes('Open live Redoc'));
+  assert.ok(content.includes('https://loop-api.urbnia.com/openapi.json'));
+  assert.ok(content.includes('https://localloop.urbnia.com/projects/loop-protocol/openapi.json'));
+});
+
+test('federation docs page renders handshake guide', () => {
+  const content = read(['app', 'docs', 'federation', 'page.jsx']);
+  assert.ok(content.includes('NodeHandshake'));
+});
+
+test('versioned protocol schema aliases exist', () => {
+  const schemaPath = path.join(
+    process.cwd(),
+    'public',
+    'projects',
+    'loop-protocol',
+    'schemas',
+    'v0.1.1',
+    'material-dna.schema.json',
+  );
+  assert.ok(fs.existsSync(schemaPath));
+
+  const productSchemaPath = path.join(
+    process.cwd(),
+    'public',
+    'projects',
+    'loop-protocol',
+    'schemas',
+    'v0.2.0',
+    'product-dna.schema.json',
+  );
+  assert.ok(fs.existsSync(productSchemaPath));
+});
+
+test('all MarkdownDoc filePaths referenced by the site exist in the mirror', () => {
+  const appFiles = walk(path.join(process.cwd(), 'app')).filter((filePath) => filePath.endsWith('.js') || filePath.endsWith('.jsx'));
+  const referencedTargets = new Set();
+
+  for (const filePath of appFiles) {
+    const content = fs.readFileSync(filePath, 'utf8');
+    for (const match of content.matchAll(/filePath="(projects\/loop-protocol\/[^"]+)"/g)) {
+      referencedTargets.add(match[1]);
+    }
+  }
+
+  const missingTargets = [...referencedTargets]
+    .filter((target) => !fs.existsSync(path.join(process.cwd(), 'public', target)))
+    .sort();
+
+  assert.deepEqual(missingTargets, []);
+});
+
+test('spec and regulatory pages render their canonical drafts inline via MarkdownDoc', () => {
+  const pages = [
+    {
+      content: read(['app', 'protocol', 'spec', 'page.jsx']),
+      filePath: 'projects/loop-protocol/SPECIFICATION.md',
+    },
+    {
+      content: read(['app', 'docs', 'regulatory-alignment', 'page.jsx']),
+      filePath: 'projects/loop-protocol/docs/regulatory-alignment-roadmap.md',
+    },
+  ];
+
+  for (const { content, filePath } of pages) {
+    assert.ok(content.includes('MarkdownDoc'));
+    assert.ok(content.includes(`filePath="${filePath}"`));
+  }
+});
+
+test('protocol mirror includes required v0.2.0 contract assets', () => {
+  const requiredFiles = [
+    ['public', 'projects', 'loop-protocol', 'openapi.json'],
+    ['public', 'projects', 'loop-protocol', 'DOMAIN-POLICY.md'],
+    ['public', 'projects', 'loop-protocol', 'contexts', 'loop-v0.2.0.jsonld'],
+    ['public', 'projects', 'loop-protocol', 'schemas', 'product-dna.schema.json'],
+    ['public', 'projects', 'loop-protocol', 'schemas', 'v0.2.0', 'product-dna.schema.json'],
+    ['public', 'projects', 'loop-protocol', 'examples', '14-product-reuse-registration.json'],
+    ['public', 'projects', 'loop-protocol', 'examples', '15-product-offer-flow.json'],
+  ];
+
+  for (const segments of requiredFiles) {
+    assert.ok(fs.existsSync(path.join(process.cwd(), ...segments)), segments.join('/'));
+  }
+});
+
+test('aggregate docs script prefers a local source checkout when available', () => {
+  const content = read(['scripts', 'aggregate-docs.sh']);
+  assert.ok(content.includes('resolve_local_source()'));
+  assert.ok(content.includes('DOCS_LOCAL_ROOT'));
+  assert.ok(content.includes('ROOT_DIR/../$repo_name'));
+  assert.ok(content.includes('from local source'));
+});
+
+test('canonical route inventory includes hidden docs and generated library details', async () => {
+  const routes = await import(path.join(process.cwd(), 'app', 'config', 'siteRoutes.js'));
+  const paths = routes.getCanonicalPaths();
+  for (const expected of [
+    '/docs/threat-model',
+    '/docs/dpia-lite',
+    '/library/schemas/material-dna',
+    '/library/examples/product-registration',
+  ]) assert.ok(paths.includes(expected), expected);
+  for (const alias of routes.nonCanonicalAliases) assert.ok(!paths.includes(alias), alias);
+});
+
+test('public demo remains read-only and unsafe claims do not return', () => {
+  const demoPage = read(['app', '(platform)', 'platform', 'demo-city', 'page.jsx']);
+  const demoScript = read(['public', 'assets', 'js', 'demo-city.js']);
+  const platformCopy = [
+    read(['app', '(platform)', 'platform', 'materialdna', 'page.jsx']),
+    read(['app', '(platform)', 'platform', 'productdna', 'page.jsx']),
+    read(['app', '(platform)', 'platform', 'loopcost', 'page.jsx']),
+  ].join('\n').toLowerCase();
+  assert.ok(demoPage.includes('Public material registration is disabled'));
+  assert.ok(demoPage.includes('no backing, currency operation, or settlement is provided'));
+  assert.ok(demoPage.includes('would need to define how community-voted signals are proposed, approved, and published'));
+  assert.ok(!demoPage.includes('backed by EUR, 6-month expiry'));
+  assert.ok(!demoPage.includes('a real node would publish'));
+  assert.ok(!demoScript.includes("method: 'POST'"));
+  assert.ok(demoScript.includes('const REFRESH_INTERVAL_MS = 5 * 60 * 1000'));
+  assert.ok(demoScript.includes('API request limit reached'));
+  assert.ok(!platformCopy.includes('always cheaper'));
+  assert.ok(!platformCopy.includes('fraud prevention'));
+  assert.ok(!platformCopy.includes('dpp readiness'));
+});
+
+test('interest success copy does not claim immediate public listing', () => {
+  const interest = read(['public', 'assets', 'js', 'interest.js']);
+  assert.ok(interest.includes('Submission received. Public-list visibility depends on consent and service processing.'));
+  assert.ok(!interest.includes('Your submission is now public.'));
+});
+
+test('root layout and feature scripts provide the accessibility and route-scoping primitives', () => {
+  const layout = read(['app', 'layout.jsx']);
+  const routeScripts = read(['app', 'components', 'RouteScripts.jsx']);
+  const concepts = read(['app', 'components', 'KeyConceptsShowcase.jsx']);
+  assert.ok(layout.includes('Skip to main content'));
+  assert.ok(routeScripts.includes("pathname === '/interest'"));
+  assert.ok(routeScripts.includes("pathname === '/platform/demo-city'"));
+  assert.ok(concepts.includes('role="tablist"'));
+  assert.ok(concepts.includes("prefers-reduced-motion"));
+});
+
+test('claim audit and route metadata guards reject known unsupported live claims', () => {
+  const appFiles = walk(path.join(process.cwd(), 'app'))
+    .filter((filePath) => /\.(js|jsx)$/.test(filePath))
+    .filter((filePath) => !filePath.includes(`${path.sep}public${path.sep}projects${path.sep}loop-protocol${path.sep}`));
+  const siteCopy = appFiles.map((filePath) => fs.readFileSync(filePath, 'utf8')).join('\n').toLowerCase();
+  for (const claim of [
+    'democratically approved loopsignal',
+    'verify that routing decisions are fair',
+    'clears net balances between nodes',
+    'keeping local exchanges cheapest',
+    'dpp-aligned digital passport',
+    'espr art. 9-10 aligned',
+    'stable, verifiable identifiers',
+  ]) assert.ok(!siteCopy.includes(claim), claim);
+
+  const metadata = read(['app', 'config', 'metadata.js']);
+  const aliases = [
+    read(['app', '(engage)', 'engage', 'page.jsx']),
+    read(['app', '(engage)', 'contribute', 'CODE_OF_CONDUCT.md', 'page.jsx']),
+  ].join('\n');
+  assert.ok(metadata.includes('createAliasMetadata'));
+  assert.ok(metadata.includes('index: false'));
+  assert.ok(aliases.includes('to="/interest/"'));
+  assert.ok(aliases.includes('to="/contribute/"'));
+});
+
+test('feature scripts have an idempotent cleanup contract', () => {
+  const loader = read(['app', 'components', 'RouteScripts.jsx']);
+  const demo = read(['public', 'assets', 'js', 'demo-city.js']);
+  const interest = read(['public', 'assets', 'js', 'interest.js']);
+  const metrics = read(['public', 'assets', 'js', 'metrics.js']);
+  assert.ok(loader.includes('feature.init()'));
+  assert.ok(loader.includes('cleanup?.()'));
+  assert.ok(loader.includes('script.remove()'));
+  assert.ok(loader.includes('delete features[name]'));
+  for (const script of [demo, interest, metrics]) {
+    assert.ok(script.includes('activeCleanup()'));
+    assert.ok(script.includes('controller.abort()'));
+  }
+  assert.ok(demo.includes('stream?.close()'));
+  assert.ok(demo.includes('clearInterval(refreshTimer)'));
+  assert.ok(interest.includes('clearTimeout(retryTimer)'));
+});
+
+test('feature scripts reject stale evaluation-time tokens before registration', () => {
+  for (const name of ['demo-city.js', 'interest.js', 'metrics.js']) {
+    const script = read(['public', 'assets', 'js', name]);
+    assert.ok(script.includes('const featureTokens = window.__LOCALLOOP_FEATURE_TOKENS'));
+    assert.ok(script.includes('if (featureTokens[NAME] !== featureToken) return;'));
+    assert.ok(script.indexOf('if (featureTokens[NAME] !== featureToken) return;') < script.indexOf('features[NAME] = {'));
+  }
+});
+
+test('every canonical filesystem page owns title and correct canonical path metadata', async () => {
+  const routes = await import(path.join(process.cwd(), 'app', 'config', 'siteRoutes.js'));
+  const staticPages = walk(path.join(process.cwd(), 'app'))
+    .filter((filePath) => filePath.endsWith(`${path.sep}page.jsx`))
+    .filter((filePath) => !filePath.includes(`${path.sep}[`))
+    .map((filePath) => {
+      const segments = path.relative(path.join(process.cwd(), 'app'), path.dirname(filePath))
+        .split(path.sep)
+        .filter((segment) => !/^\(.+\)$/.test(segment));
+      return { filePath, route: segments.length ? `/${segments.join('/')}` : '/' };
+    })
+    .filter(({ route }) => !routes.nonCanonicalAliases.includes(route));
+
+  const canonicalPaths = new Set(routes.getCanonicalPaths());
+  for (const { filePath, route } of staticPages) {
+    const content = fs.readFileSync(filePath, 'utf8');
+    const calls = [...content.matchAll(/createMetadata\(\s*\{([\s\S]*?)\}\s*\)/g)].map((match) => match[1]);
+    const metadata = calls.find((call) => new RegExp(`path\\s*:\\s*['"]${route.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}['"]`).test(call));
+    assert.ok(canonicalPaths.has(route), `canonical route inventory is missing ${route}`);
+    assert.ok(metadata, `${route} must define its own createMetadata path in ${filePath}`);
+    assert.match(metadata, /title\s*:/, `${route} is missing a metadata title`);
+  }
+
+  const rootLayout = read(['app', 'layout.jsx']);
+  assert.ok(rootLayout.includes('metadataBase'));
+  assert.ok(!rootLayout.includes('createMetadata'));
+});
+
+test('nginx static server declares baseline security headers', () => {
+  const conf = read(['security-headers.conf']);
+  assert.ok(conf.includes('X-Content-Type-Options'));
+  assert.ok(conf.includes('nosniff'));
+  assert.ok(conf.includes('X-Frame-Options'));
+  assert.ok(conf.includes('SAMEORIGIN'));
+  assert.ok(conf.includes('Referrer-Policy'));
+  assert.ok(conf.includes('strict-origin-when-cross-origin'));
+  assert.ok(conf.includes('Permissions-Policy'));
+  assert.ok(conf.includes('camera=()'));
+});
+
+
+
+test('security.txt is published under .well-known', () => {
+  const content = read(['public', '.well-known', 'security.txt']);
+  assert.ok(content.includes('Contact: mailto:dev@mycel-ai.de'));
+  assert.ok(content.includes('localloop.urbnia.com'));
+});
+
+
+test('robots.txt allows crawl and points at sitemap', () => {
+  const content = read(['public', 'robots.txt']);
+  assert.ok(content.includes('Allow: /'));
+  assert.ok(content.includes('sitemap.xml'));
+});
+
+test('humans.txt exists with lab-demo posture', () => {
+  const content = read(['public', 'humans.txt']);
+  assert.ok(content.includes('Lab demo only'));
+  assert.ok(content.includes('localloop.urbnia.com'));
+});
+
+test('ai.txt documents lab-demo posture', () => {
+  const content = read(['public', 'ai.txt']);
+  assert.ok(content.includes('Lab demo')); assert.ok(content.includes('dev@mycel-ai.de'));
+});
+
+test('ads.txt declares no ads', () => {
+  const content = read(['public', 'ads.txt']);
+  assert.ok(content.includes('No ads'));
+});
+
+test('well-known change-password is an nginx redirect to the security page', () => {
+  const conf = read(['nginx.conf']);
+  assert.ok(conf.includes('location = /.well-known/change-password'));
+  assert.ok(conf.includes('return 302 /docs/security/'));
+  assert.ok(!fs.existsSync(path.join(process.cwd(), 'public', '.well-known', 'change-password')), 'static file would shadow the redirect');
+});
+
+// Agent cycle stamps. Previously one near-identical test per cycle; now
+// data-driven so the coverage is the directory itself. EXPECTED_STAMP_CYCLES
+// pins the stamps that must not disappear, while the loop validates every stamp
+// present — including ones added later, which the old per-cycle tests missed.
+const EXPECTED_STAMP_CYCLES = [
+  '041', '045', '049', '053', '057', '061', '065', '069',
+  '073', '077', '081', '085', '089', '093', '097',
+];
+
+test('agent stamps are present and well formed', () => {
+  const stampsDir = path.join(process.cwd(), 'public', 'agent-stamps');
+  const files = fs.readdirSync(stampsDir).filter((name) => name.endsWith('.txt')).sort();
+
+  for (const cycle of EXPECTED_STAMP_CYCLES) {
+    assert.ok(files.includes(`cycle-${cycle}.txt`), `missing stamp for cycle ${cycle}`);
+  }
+
+  for (const file of files) {
+    const match = /^cycle-(\d+)\.txt$/.exec(file);
+    assert.ok(match, `unexpected file in agent-stamps: ${file}`);
+    const content = read(['public', 'agent-stamps', file]);
+    assert.ok(
+      content.includes(`agent-cycle-${match[1]}`),
+      `${file} is missing its agent-cycle-${match[1]} marker`,
+    );
+    assert.ok(content.includes('lab-demo-only'), `${file} is missing the lab-demo-only posture`);
+  }
+});
+
+
+const outDir = path.join(process.cwd(), 'out');
+const hasBuild = fs.existsSync(path.join(outDir, 'index.html'));
+
+test('built docs pages contain no literal backticks and exactly one h1', { skip: !hasBuild && 'run `bun run build` first' }, () => {
+  const pages = walk(outDir).filter((filePath) => filePath.endsWith('index.html'));
+  assert.ok(pages.length > 30, `expected a full export, found ${pages.length} pages`);
+  for (const filePath of pages) {
+    const html = fs.readFileSync(filePath, 'utf8');
+    const main = html.slice(html.indexOf('<main'), html.indexOf('</main>'));
+    const text = main.replace(/<script[\s\S]*?<\/script>/g, '').replace(/<pre[\s\S]*?<\/pre>/g, '').replace(/<code[\s\S]*?<\/code>/g, '').replace(/<[^>]+>/g, '');
+    assert.ok(!text.includes('`'), `${path.relative(outDir, filePath)} renders a literal backtick`);
+    // Alias routes (noindex) render only a client-side redirect and have no heading.
+    if (html.includes('name="robots" content="noindex')) continue;
+    const h1Count = (main.match(/<h1[\s>]/g) || []).length;
+    assert.equal(h1Count, 1, `${path.relative(outDir, filePath)} has ${h1Count} <h1> elements`);
+  }
+});
+
+test('built 404 page has a title and a canonical link', { skip: !hasBuild && 'run `bun run build` first' }, () => {
+  const html = fs.readFileSync(path.join(outDir, '404.html'), 'utf8');
+  assert.match(html, /<title>Page not found \| localLOOP<\/title>/);
+  assert.ok(html.includes('rel="canonical"'));
+  assert.ok(html.includes('noindex'));
+});
+
+test('nginx serves the export 404, caches hashed assets, and sends HSTS + CSP', () => {
+  const conf = read(['nginx.conf']);
+  const headers = read(['security-headers.conf']);
+  assert.ok(conf.includes('error_page 404 /404.html'));
+  assert.ok(conf.includes('/_next/static/'));
+  assert.ok(conf.includes('immutable'));
+  assert.ok(headers.includes('Strict-Transport-Security'));
+  assert.ok(headers.includes('Content-Security-Policy'));
+  assert.ok(headers.includes("connect-src 'self' https://loop-api.urbnia.com"));
+  assert.ok(!headers.includes('cdn.jsdelivr.net'), 'CSP must not need a CDN once fonts/icons are self-hosted');
+  assert.ok(!/script-src[^;]*'unsafe-inline'/.test(headers), 'script-src must use per-page hashes, not unsafe-inline');
+  assert.ok(headers.includes('$csp_script_hashes'));
+  const dockerfile = read(['Dockerfile']);
+  assert.ok(dockerfile.includes('generate-csp-hashes.mjs'), 'image build must generate the CSP hash map');
+});
+
+test('no page loads fonts or icons from third-party origins', () => {
+  const layout = read(['app', 'layout.jsx']);
+  const css = read(['public', 'assets', 'css', 'site.css']);
+  assert.ok(!layout.includes('cdn.jsdelivr.net'));
+  assert.ok(!css.includes('fonts.googleapis.com'));
+  assert.ok(fs.existsSync(path.join(process.cwd(), 'public', 'assets', 'css', 'fonts.css')));
+  assert.ok(fs.existsSync(path.join(process.cwd(), 'public', 'assets', 'icons', 'phosphor', 'bold', 'Phosphor-Bold.woff2')));
+});
+
+test('security.txt carries the mandatory Expires field and is not about to lapse', () => {
+  const txt = read(['public', '.well-known', 'security.txt']);
+  const match = txt.match(/^Expires: (\d{4}-\d{2}-\d{2}T[^\s]+)/m);
+  assert.ok(match, 'Expires field missing');
+  const expires = new Date(match[1]);
+  assert.ok(!Number.isNaN(expires.getTime()), 'Expires is not a valid timestamp');
+  const daysLeft = (expires.getTime() - Date.now()) / 86_400_000;
+  // RFC 9116 recommends under a year; fail 60 days ahead so the renewal is
+  // noticed by CI before scanners start rejecting the file.
+  assert.ok(daysLeft > 60, `security.txt Expires lapses in ${Math.floor(daysLeft)} days — renew it`);
+  assert.ok(daysLeft < 366, 'security.txt Expires must be less than a year out');
+});

@@ -1,0 +1,26 @@
+import { createMetadata } from '@/app/config/metadata';
+
+export const metadata = createMetadata({ title: 'Lab metrics', path: '/docs/metrics' });
+
+export default function MetricsPage() {
+  return (
+    <div className="content-stack">
+      <div className="content-panel">
+        <h1 className="hub-heading">Metrics</h1>
+        <p>
+          Live counters from the LOOP lab API. This is a demo-grade snapshot to
+          validate activity in a controlled environment.
+        </p>
+        <div className="cta-row">
+          <a className="button primary" href="/docs/lab-demo/">Lab demo guide</a>
+          <a className="button secondary" href="/docs/api/">API docs</a>
+        </div>
+      </div>
+
+      <div className="content-panel">
+        <h2>Live counters</h2>
+        <div data-metrics-panel className="metrics-panel" role="status" aria-live="polite">Loading lab metrics…</div>
+      </div>
+    </div>
+  );
+}

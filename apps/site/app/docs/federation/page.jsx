@@ -1,0 +1,49 @@
+import MarkdownDoc from '@/app/components/docs/MarkdownDoc'
+import { createMetadata } from '@/app/config/metadata';
+
+export const metadata = createMetadata({ title: 'Federation handshake', path: '/docs/federation' });
+
+export default function FederationPage() {
+  return (
+    <div className="content-stack">
+      <div className="content-panel">
+        <h1 className="hub-heading">Federation Handshake</h1>
+        <p>
+          The lab handshake introduces two nodes and registers them in the demo
+          registry. This is not a production federation protocol.
+        </p>
+        <div className="cta-row">
+          <a className="button secondary" href="/docs/lab-demo/">Lab demo</a>
+        </div>
+      </div>
+
+      <div className="content-panel">
+        <h2>Endpoints (lab)</h2>
+        <div className="table-list">
+          <div><span>Node info</span><div><code>/api/v1/node/info</code></div></div>
+          <div><span>Handshake</span><div><code>/api/v1/federation/handshake</code></div></div>
+          <div><span>Registry</span><div><code>/api/v1/federation/nodes</code></div></div>
+        </div>
+      </div>
+
+      <div className="content-panel">
+        <h2>Sample handshake</h2>
+        <div className="code-block">
+          <pre><code>{`{
+  "@context": "https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
+  "@type": "NodeHandshake",
+  "schema_version": "0.2.0",
+  "node_id": "munich.loop",
+  "name": "DEMO Munich Node",
+  "endpoint": "https://demo-munich.loop/api",
+  "capabilities": ["material-registry", "lab-relay"],
+  "timestamp": "2025-12-20T10:00:00Z"
+}`}</code></pre>
+        </div>
+      </div>
+      <div className="content-panel">
+        <MarkdownDoc filePath="projects/loop-protocol/docs/federation-handshake.md" />
+      </div>
+    </div>
+  );
+}

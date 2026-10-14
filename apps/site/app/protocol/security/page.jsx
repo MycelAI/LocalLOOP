@@ -1,0 +1,35 @@
+import MarkdownDoc from '@/app/components/docs/MarkdownDoc'
+import { createMetadata } from '@/app/config/metadata'
+
+export const metadata = createMetadata({
+  title: 'Protocol security',
+  description: 'Read the localLOOP security policy, disclosure guidance, and evolving operator guardrails.',
+  path: '/protocol/security',
+});
+
+export default function ProtocolSecurityPage() {
+  return (
+    <div className="content-stack">
+      <div className="content-panel">
+        <h1 className="hub-heading">Security Policy</h1>
+        <p>
+          Follow the security policy for responsible disclosure and operator guidance.
+          Implementation guidance will evolve as the protocol matures.
+        </p>
+        <div className="cta-row">
+          <a className="button secondary" href="/docs/security/">Security guide</a>
+        </div>
+      </div>
+      <div className="content-panel">
+        <h2>Security playbooks</h2>
+        <div className="table-list">
+          <div><span>Secure coding</span><div>Developer guardrails and best practices</div></div>
+          <div><span>Incident response</span><div>Containment and recovery playbooks</div></div>
+        </div>
+      </div>
+      <div className="content-panel">
+        <MarkdownDoc filePath="projects/loop-protocol/SECURITY.md" />
+      </div>
+    </div>
+  )
+}

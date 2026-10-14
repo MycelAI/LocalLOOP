@@ -1,0 +1,36 @@
+import MarkdownDoc from '@/app/components/docs/MarkdownDoc'
+import { createMetadata } from '@/app/config/metadata'
+
+export const metadata = createMetadata({
+  title: 'Protocol changelog',
+  description: 'Review draft localLOOP protocol changes, release notes, and planned roadmap items.',
+  path: '/protocol/changelog',
+});
+
+export default function ProtocolChangelogPage() {
+  return (
+    <div className="content-stack">
+      <div className="content-panel">
+        <h1 className="hub-heading">Changelog</h1>
+        <p>
+          The changelog captures updates to the protocol and planned roadmap items.
+          The project is early-stage with no public pilots yet.
+        </p>
+        <div className="cta-row">
+          <a className="button secondary" href="/protocol/">Back to overview</a>
+        </div>
+      </div>
+      <div className="content-panel">
+        <h2>How updates ship</h2>
+        <p>Changes follow the RFC process and are communicated in releases.</p>
+        <div className="table-list">
+          <div><span>RFC review</span><div>Proposals are reviewed before adoption</div></div>
+          <div><span>Versioning</span><div>Tracked by semantic changelog entries</div></div>
+        </div>
+      </div>
+      <div className="content-panel">
+        <MarkdownDoc filePath="projects/loop-protocol/CHANGELOG.md" />
+      </div>
+    </div>
+  )
+}

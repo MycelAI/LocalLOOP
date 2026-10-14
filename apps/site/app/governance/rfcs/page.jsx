@@ -1,0 +1,36 @@
+import MarkdownDoc from '@/app/components/docs/MarkdownDoc'
+import { createMetadata } from '@/app/config/metadata'
+
+export const metadata = createMetadata({
+  title: 'RFC guide',
+  description: 'Learn how localLOOP draft RFC proposals are structured, reviewed, and discussed.',
+  path: '/governance/rfcs',
+});
+
+export default function RfcGuidePage() {
+  return (
+    <div className="content-stack">
+      <div className="content-panel">
+        <h1 className="hub-heading">RFC Guide</h1>
+        <p>
+          RFCs document protocol proposals and decisions. Use the guide below to
+          understand how changes are reviewed.
+        </p>
+        <div className="cta-row">
+          <a className="button secondary" href="/governance/">Back to governance</a>
+        </div>
+      </div>
+      <div className="content-panel">
+        <h2>What to include</h2>
+        <div className="table-list">
+          <div><span>Motivation</span><div>Problem statement and context</div></div>
+          <div><span>Proposal</span><div>Specification changes and impacts</div></div>
+          <div><span>Review</span><div>Discussion and acceptance criteria</div></div>
+        </div>
+      </div>
+      <div className="content-panel">
+        <MarkdownDoc filePath="projects/loop-protocol/rfcs/README.md" />
+      </div>
+    </div>
+  );
+}
