@@ -7,6 +7,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.7.0] - 2026-10-14
+
+### Changed
+- **Protocol identifiers on `loop.urbnia.com`** (loop-protocol 0.6.0): the
+  mirrored contexts, schemas, examples, specification and conformance vectors
+  served under `/projects/loop-protocol/` use
+  `https://loop.urbnia.com/projects/loop-protocol/` throughout, including the
+  `@vocab` terms namespace.
+- Every page, script and README uses `loop.urbnia.com` and
+  `loop.urbnia.com/api/` only; `scripts/check-domains.cjs` rejects the former
+  hostnames outside the domain policy, changelog history and the Traefik
+  redirect labels in `docker-compose.yml` (which keep redirecting them).
+
+### Migration
+- Anything that fetched contexts or schemas from `localloop.urbnia.com` keeps
+  working through the 308 redirect but receives documents whose identifiers
+  are on `loop.urbnia.com`.
+
 ## [0.6.2] - 2026-10-14
 
 ### Added
@@ -641,7 +659,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-[Unreleased]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.6.2...HEAD
+[Unreleased]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.7.0...HEAD
+[0.7.0]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.6.2...site/v0.7.0
 [0.6.2]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.6.1...site/v0.6.2
 [0.6.1]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.6.0...site/v0.6.1
 [0.6.0]: https://github.com/local-loop-io/localloop-site/compare/v0.5.3...v0.6.0

@@ -33,7 +33,7 @@ export default function FederationPage() {
         <h2>Sample handshake</h2>
         <div className="code-block">
           <pre><code>{`{
-  "@context": "https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
+  "@context": "https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
   "@type": "NodeHandshake",
   "schema_version": "0.2.0",
   "node_id": "munich.loop",

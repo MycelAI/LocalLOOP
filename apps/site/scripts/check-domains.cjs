@@ -22,6 +22,13 @@ const banned = [
   'materialdna.eu',
 ];
 
+// Former hostnames: since 2026-10-14 they only 308-redirect to loop.urbnia.com
+// (and /api/). Only the Traefik redirect labels, the domain policy and
+// changelog history may still name them.
+const formerHosts = ['localloop.urbnia.com', 'loop-api.urbnia.com'];
+const FORMER_HOST_ALLOWED_BASENAMES = new Set(['CHANGELOG.md', 'DOMAIN-POLICY.md']);
+const FORMER_HOST_ALLOWED_PATHS = new Set(['docker-compose.yml']);
+
 const SKIP_DIRS = new Set(['node_modules', 'out', '.next', '.git', 'test-results', 'playwright-report']);
 
 // Documents that must be able to name a disallowed domain in order to describe
@@ -33,6 +40,10 @@ const SKIP_PATHS = new Set([path.join('scripts', 'check-domains.cjs'), 'CHANGELO
 
 const pattern = new RegExp(
   `(${banned.map((d) => d.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})`,
+);
+
+const formerPattern = new RegExp(
+  `(${formerHosts.map((d) => d.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})`,
 );
 
 const root = path.resolve(__dirname, '..');
@@ -55,12 +66,13 @@ const walk = (dir) => {
 
     const buf = fs.readFileSync(full);
     if (isBinary(buf)) continue;
+    const checkFormer = !FORMER_HOST_ALLOWED_BASENAMES.has(entry.name) && !FORMER_HOST_ALLOWED_PATHS.has(rel);
 
     buf
       .toString('utf8')
       .split('\n')
       .forEach((line, index) => {
-        if (pattern.test(line)) {
+        if (pattern.test(line) || (checkFormer && formerPattern.test(line))) {
           findings.push(`${rel}:${index + 1}: ${line.trim()}`);
         }
       });
@@ -77,4 +89,4 @@ if (findings.length > 0) {
   process.exit(1);
 }
 
-console.log(`Domain check passed (${banned.length} patterns).`);
+console.log(`Domain check passed (${banned.length + formerHosts.length} patterns).`);

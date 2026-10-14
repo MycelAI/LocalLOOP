@@ -17,7 +17,7 @@
 
 ## What this is
 
-This directory is the source for **[loop.urbnia.com](https://loop.urbnia.com)** (formerly localloop.urbnia.com, now redirected) — the official website of the localLOOP project and the canonical home for everything LOOP.
+This directory is the source for **[loop.urbnia.com](https://loop.urbnia.com)** (the former hostname redirects here; see [DOMAIN-POLICY.md](DOMAIN-POLICY.md)) — the official website of the localLOOP project and the canonical home for everything LOOP.
 
 It does three things:
 
@@ -126,7 +126,7 @@ bash apps/site/scripts/aggregate-docs.sh
 git status --short    # look for unexpected deletions (D) before committing
 ```
 
-The mirror keeps its public URL path, so JSON-LD contexts stay resolvable at `https://localloop.urbnia.com/projects/loop-protocol/contexts/…` (via the redirect to `loop.urbnia.com`). In `apps/backend`, `bun run check:conformance` fails if the mirror drifts from `protocol/`.
+The mirror keeps its public URL path, so JSON-LD contexts stay resolvable at `https://loop.urbnia.com/projects/loop-protocol/contexts/…` (via the redirect to `loop.urbnia.com`). In `apps/backend`, `bun run check:conformance` fails if the mirror drifts from `protocol/`.
 
 `bun run check:domains` (`scripts/check-domains.cjs`) enforces the canonical domain policy (`loop.urbnia.com`, API under `/api/`); see [`DOMAIN-POLICY.md`](DOMAIN-POLICY.md).
 
