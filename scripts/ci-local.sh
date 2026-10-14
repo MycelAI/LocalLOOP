@@ -26,6 +26,7 @@ for t in "${targets[@]}"; do
       git diff --exit-code -- apps/site/public/projects
       cd "$ROOT/apps/backend"
       [[ -d node_modules ]] || bun install --frozen-lockfile
+      bun run prisma:generate >/dev/null
       bun run check:conformance
       ;;
     backend)
