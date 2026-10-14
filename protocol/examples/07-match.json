@@ -1,0 +1,12 @@
+{
+  "@context": "https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
+  "@type": "Match",
+  "schema_version": "0.2.0",
+  "id": "MCH-9B3C8A12",
+  "material_id": "MAT-DE-MUC-2025-PLASTIC-B847F3",
+  "offer_id": "OFR-2F7A6B9C",
+  "from_city": "Munich",
+  "to_city": "Berlin",
+  "status": "accepted",
+  "matched_at": "2025-06-01T12:15:00Z"
+}

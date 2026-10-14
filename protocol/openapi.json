@@ -1,0 +1,534 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "LOOP Protocol API",
+    "version": "0.2.0",
+    "description": "Reference protocol contract for LOOP v0.2.0 plus explicitly tagged additive Core-DP lab components and endpoints. Core-DP additions are not a full LOOP conformance claim."
+  },
+  "servers": [
+    {
+      "url": "https://{node}",
+      "variables": {
+        "node": {
+          "default": "example.loop",
+          "description": "LOOP node host (e.g. munich.loop)"
+        }
+      }
+    }
+  ],
+  "tags": [
+    { "name": "Material" },
+    { "name": "Product" },
+    { "name": "Offer" },
+    { "name": "Match" },
+    { "name": "Transfer" },
+    { "name": "Node" },
+    { "name": "Signals" },
+    { "name": "Transactions" },
+    { "name": "Federation" },
+    {
+      "name": "Core-DP",
+      "description": "Lab-only applicability profile components; not full LOOP conformance and not production security certification."
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "BearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      },
+      "NodeSignature": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-Node-Signature",
+        "description": "Core-DP cross-node request signature. Valid only with X-Node-Key-Id and X-Node-Signature-Input-SHA256 in the same security requirement."
+      },
+      "NodeKeyId": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-Node-Key-Id",
+        "description": "Core-DP sender key id. Valid only with X-Node-Signature and X-Node-Signature-Input-SHA256 in the same security requirement."
+      },
+      "NodeSignatureInputSHA256": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-Node-Signature-Input-SHA256",
+        "description": "Core-DP canonical request signing input hash. Valid only with X-Node-Signature and X-Node-Key-Id in the same security requirement."
+      }
+    },
+    "schemas": {
+      "MaterialDNA": {
+        "$ref": "https://localloop.urbnia.com/projects/loop-protocol/schemas/v0.2.0/material-dna.schema.json"
+      },
+      "ProductDNA": {
+        "$ref": "https://localloop.urbnia.com/projects/loop-protocol/schemas/v0.2.0/product-dna.schema.json"
+      },
+      "Offer": {
+        "$ref": "https://localloop.urbnia.com/projects/loop-protocol/schemas/v0.2.0/offer.schema.json"
+      },
+      "Match": {
+        "$ref": "https://localloop.urbnia.com/projects/loop-protocol/schemas/v0.2.0/match.schema.json"
+      },
+      "Transfer": {
+        "$ref": "https://localloop.urbnia.com/projects/loop-protocol/schemas/v0.2.0/transfer.schema.json"
+      },
+      "NodeInfo": {
+        "$ref": "https://localloop.urbnia.com/projects/loop-protocol/schemas/v0.2.0/node-info.schema.json"
+      },
+      "LoopSignalConfig": {
+        "$ref": "https://localloop.urbnia.com/projects/loop-protocol/schemas/v0.2.0/loopsignal.schema.json"
+      },
+      "Transaction": {
+        "$ref": "https://localloop.urbnia.com/projects/loop-protocol/schemas/v0.2.0/transaction.schema.json"
+      },
+      "TransactionStatus": {
+        "type": "object",
+        "properties": {
+          "@context": { "type": "string" },
+          "@type": { "type": "string" },
+          "transaction_id": { "type": "string" },
+          "status": { "type": "string" },
+          "updated_at": { "type": "string", "format": "date-time" },
+          "settlement_url": { "type": "string" }
+        }
+      },
+      "MaterialSearchRequest": {
+        "type": "object",
+        "properties": {
+          "category": { "type": "string" },
+          "radius_km": { "type": "number" },
+          "min_quantity": { "type": "number" },
+          "max_loop_cost": { "type": "number" }
+        },
+        "additionalProperties": false
+      },
+      "MaterialSearchResponse": {
+        "type": "object",
+        "properties": {
+          "results": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/MaterialDNA" }
+          },
+          "total": { "type": "integer" },
+          "next": { "type": "string" }
+        }
+      },
+      "ProductSearchRequest": {
+        "$ref": "https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/search-contract.schema.json#/$defs/searchRequest"
+      },
+      "ProductSearchResponse": {
+        "$ref": "https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/search-contract.schema.json#/$defs/searchResponse"
+      },
+      "MaterialAnnouncement": {
+        "type": "object",
+        "properties": {
+          "@context": { "type": "string" },
+          "@type": { "type": "string" },
+          "material": { "type": "string" },
+          "origin": { "type": "string" },
+          "available": { "type": "boolean" }
+        },
+        "required": ["@context", "@type", "material", "origin", "available"]
+      },
+      "MaterialOffer": {
+        "type": "object",
+        "properties": {
+          "@context": { "type": "string" },
+          "@type": { "type": "string" },
+          "material": { "type": "string" },
+          "from": { "type": "string" },
+          "base_price": { "type": "number" },
+          "loop_cost": { "type": "number" },
+          "valid_until": { "type": "string", "format": "date-time" }
+        },
+        "required": ["@context", "@type", "material", "from", "base_price", "loop_cost", "valid_until"]
+      },
+      "FederateAcceptedResponse": {
+        "$ref": "https://localloop.urbnia.com/projects/loop-protocol/schemas/v0.2.0/federate-accepted.schema.json"
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "required": ["error"],
+        "properties": {
+          "error": {
+            "type": "object",
+            "required": ["code", "message"],
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "SPECIFICATION.md §8.3 error code",
+                "enum": ["INVALID_REQUEST", "UNAUTHORIZED", "FORBIDDEN", "NOT_FOUND", "CONFLICT", "INTERNAL_ERROR"]
+              },
+              "message": { "type": "string", "description": "Human-readable explanation" },
+              "details": { "type": "object", "description": "Optional structured context" }
+            }
+          }
+        }
+      },
+      "CreateAccepted": {
+        "type": "object",
+        "required": ["id", "created_at"],
+        "properties": {
+          "id": { "type": "string", "description": "Identifier of the created record (echoes the payload id)" },
+          "created_at": { "type": "string", "format": "date-time" }
+        }
+      },
+      "CoreDpEnvelope": {
+        "description": "Lab-only Core-DP signed message envelope.",
+        "$ref": "https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/envelope.schema.json"
+      },
+      "CoreDpChoreographyMessage": {
+        "$ref": "https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json"
+      },
+      "CoreDpDnaOperation": {
+        "$ref": "https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/dna-operation.schema.json"
+      },
+      "CoreDpSearchContract": {
+        "$ref": "https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/search-contract.schema.json"
+      },
+      "CoreDpEvidenceEntry": {
+        "$ref": "https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/evidence-entry.schema.json"
+      },
+      "CoreDpError": {
+        "$ref": "https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/error.schema.json"
+      }
+    }
+  },
+  "security": [
+    { "BearerAuth": [] }
+  ],
+  "paths": {
+    "/api/v1/material": {
+      "post": {
+        "tags": ["Material"],
+        "summary": "Register MaterialDNA",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/ld+json": {
+              "schema": { "$ref": "#/components/schemas/MaterialDNA" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/ld+json": {
+                "schema": { "$ref": "#/components/schemas/MaterialDNA" }
+              }
+            }
+          },
+          "400": { "description": "Invalid request", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ErrorResponse" } } } }
+        }
+      }
+    },
+    "/api/v1/material/{id}": {
+      "get": {
+        "tags": ["Material"],
+        "summary": "Get MaterialDNA by ID",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/ld+json": {
+                "schema": { "$ref": "#/components/schemas/MaterialDNA" }
+              }
+            }
+          },
+          "404": { "description": "Not found", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ErrorResponse" } } } }
+        }
+      }
+    },
+    "/api/v1/material/search": {
+      "post": {
+        "tags": ["Material"],
+        "summary": "Search materials",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/ld+json": {
+              "schema": { "$ref": "#/components/schemas/MaterialSearchRequest" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/MaterialSearchResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/product": {
+      "post": {
+        "tags": ["Product"],
+        "summary": "Register ProductDNA",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/ld+json": {
+              "schema": { "$ref": "#/components/schemas/ProductDNA" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/ld+json": {
+                "schema": { "$ref": "#/components/schemas/ProductDNA" }
+              }
+            }
+          },
+          "400": { "description": "Invalid request", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ErrorResponse" } } } }
+        }
+      }
+    },
+    "/api/v1/product/{id}": {
+      "get": {
+        "tags": ["Product"],
+        "summary": "Get ProductDNA by ID",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/ld+json": {
+                "schema": { "$ref": "#/components/schemas/ProductDNA" }
+              }
+            }
+          },
+          "404": { "description": "Not found", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ErrorResponse" } } } }
+        }
+      }
+    },
+    "/api/v1/product/search": {
+      "post": {
+        "tags": ["Product", "Core-DP"],
+        "summary": "Search ProductDNA records",
+        "description": "Additive Core-DP profile endpoint for ProductDNA search parity with MaterialDNA. Local public-lab requests MAY use no authentication, bearer deployments MAY use BearerAuth, and cross-node requests with auth.mode=node-signature MUST include the Core-DP node signature headers.",
+        "security": [
+          {},
+          { "BearerAuth": [] },
+          { "NodeSignature": [], "NodeKeyId": [], "NodeSignatureInputSHA256": [] }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/search-contract.schema.json#/$defs/searchRequest" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/search-contract.schema.json#/$defs/searchResponse" }
+              }
+            }
+          },
+          "400": { "description": "Invalid request", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ErrorResponse" } } } }
+        }
+      }
+    },
+    "/api/v1/offer": {
+      "post": {
+        "tags": ["Offer"],
+        "summary": "Publish an Offer for a registered MaterialDNA or ProductDNA",
+        "description": "Step 2 of the SPECIFICATION.md §3.5 minimal interop flow. The offer quantity MUST NOT exceed the referenced material quantity.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/ld+json": {
+              "schema": { "$ref": "#/components/schemas/Offer" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/CreateAccepted" }
+              }
+            }
+          },
+          "400": { "description": "Invalid request, unknown referenced material/product, or invalid state transition", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ErrorResponse" } } } },
+          "409": { "description": "Offer id already exists", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ErrorResponse" } } } }
+        }
+      }
+    },
+    "/api/v1/match": {
+      "post": {
+        "tags": ["Match"],
+        "summary": "Accept a Match against an open Offer",
+        "description": "Step 3 of the SPECIFICATION.md §3.5 minimal interop flow. The referenced offer MUST be open; accepting a match reserves it.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/ld+json": {
+              "schema": { "$ref": "#/components/schemas/Match" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/CreateAccepted" }
+              }
+            }
+          },
+          "400": { "description": "Invalid request, unknown referenced material/product, or invalid state transition", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ErrorResponse" } } } },
+          "404": { "description": "Referenced offer does not exist", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ErrorResponse" } } } },
+          "409": { "description": "Match id already exists, or the offer is already reserved by another match", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ErrorResponse" } } } }
+        }
+      }
+    },
+    "/api/v1/transfer": {
+      "post": {
+        "tags": ["Transfer"],
+        "summary": "Record a Transfer for an accepted Match",
+        "description": "Step 4 of the SPECIFICATION.md §3.5 minimal interop flow. The referenced match MUST be accepted and MUST NOT already have an active transfer.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/ld+json": {
+              "schema": { "$ref": "#/components/schemas/Transfer" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/CreateAccepted" }
+              }
+            }
+          },
+          "400": { "description": "Invalid request, unknown referenced material/product, or invalid state transition", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ErrorResponse" } } } },
+          "404": { "description": "Referenced match does not exist", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ErrorResponse" } } } },
+          "409": { "description": "Transfer id already exists, or the match already has an active transfer", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ErrorResponse" } } } }
+        }
+      }
+    },
+    "/api/v1/node/info": {
+      "get": {
+        "tags": ["Node"],
+        "summary": "Get node information",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/ld+json": {
+                "schema": { "$ref": "#/components/schemas/NodeInfo" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/signals": {
+      "get": {
+        "tags": ["Signals"],
+        "summary": "Get LoopSignal configuration",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/ld+json": {
+                "schema": { "$ref": "#/components/schemas/LoopSignalConfig" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/transaction": {
+      "post": {
+        "tags": ["Transactions"],
+        "summary": "Create transaction",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/ld+json": {
+              "schema": { "$ref": "#/components/schemas/Transaction" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/ld+json": {
+                "schema": { "$ref": "#/components/schemas/TransactionStatus" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/federate/announce": {
+      "post": {
+        "tags": ["Federation"],
+        "summary": "Announce material availability",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/ld+json": {
+              "schema": { "$ref": "#/components/schemas/MaterialAnnouncement" }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Accepted",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/FederateAcceptedResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/federate/offer": {
+      "post": {
+        "tags": ["Federation"],
+        "summary": "Send offer to a node",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/ld+json": {
+              "schema": { "$ref": "#/components/schemas/MaterialOffer" }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Accepted",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/FederateAcceptedResponse" }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

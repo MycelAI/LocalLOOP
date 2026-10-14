@@ -1,0 +1,31 @@
+{
+  "name": "@local-loop/loop-protocol",
+  "version": "0.5.2",
+  "private": true,
+  "description": "LOOP specification and schemas",
+  "author": "Mycel UG (haftungsbeschr\u00e4nkt) <dev@mycel-ai.de>",
+  "license": "(MIT AND CC-BY-SA-4.0)",
+  "engines": {
+    "node": ">=24.19.0"
+  },
+  "scripts": {
+    "check:domains": "bash scripts/check-domains.sh",
+    "validate:schemas": "node scripts/validate-schemas.js",
+    "conformance:core-dp": "node profiles/core-dp/conformance/run-conformance.js",
+    "conformance:battery": "node profiles/battery/conformance/run-conformance.js",
+    "conformance:packaging": "node profiles/packaging/conformance/run-conformance.js",
+    "conformance:waste-shipment": "node profiles/waste-shipment/conformance/run-conformance.js",
+    "check:schemas-readme": "node scripts/check-schemas-readme.js",
+    "check:markers": "node scripts/check-agent-markers.js",
+    "test": "npm run validate:schemas && npm run check:schemas-readme && npm run check:markers"
+  },
+  "devDependencies": {
+    "ajv": "^8.20.0",
+    "ajv-formats": "^3.0.1",
+    "fast-glob": "^3.3.3"
+  },
+  "overrides": {
+    "fast-uri": "^4.1.3",
+    "picomatch": "^4.0.5"
+  }
+}

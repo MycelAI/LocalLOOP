@@ -1,0 +1,16 @@
+{
+  "@context": "https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
+  "@type": "Offer",
+  "schema_version": "0.2.0",
+  "id": "OFR-2F7A6B9C",
+  "material_id": "MAT-DE-MUC-2025-PLASTIC-B847F3",
+  "from_city": "Munich",
+  "to_city": "Berlin",
+  "quantity": {
+    "value": 800,
+    "unit": "kg"
+  },
+  "status": "open",
+  "available_until": "2025-06-05T10:00:00Z",
+  "terms": "Ready for pickup within 48 hours"
+}
