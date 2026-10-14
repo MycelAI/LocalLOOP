@@ -30,6 +30,7 @@ changes those terms. The project's own terms are in `LICENSE` (`LICENSE.txt` in 
 | Space Grotesk (web font, latin + latin-ext subsets, weights 400/500/600/700) | Google Fonts download of 2026-09-04 (font version 2.000) | OFL-1.1 | Copyright 2020 The Space Grotesk Project Authors (https://github.com/floriankarsten/space-grotesk) | https://github.com/floriankarsten/space-grotesk, https://fonts.google.com/specimen/Space+Grotesk | `apps/site/public/assets/fonts/space-grotesk-*.woff2` | site image |
 | IBM Plex Mono (web font, latin + latin-ext subsets, weights 400/600) | Google Fonts download of 2026-09-04 (font version 2.3) | OFL-1.1 | Copyright © 2017 IBM Corp. with Reserved Font Name "Plex" | https://github.com/IBM/plex, https://fonts.google.com/specimen/IBM+Plex+Mono | `apps/site/public/assets/fonts/ibm-plex-mono-*.woff2` | site image |
 | Phosphor Icons web font (bold and fill weights, woff2 + style.css) | 2.1.2 (@phosphor-icons/web) | MIT | Copyright (c) 2020-2021 Phosphor Icons | https://github.com/phosphor-icons/web | `apps/site/public/assets/icons/phosphor/**` | site image |
+| Redoc standalone bundle (API reference renderer for `/api/docs`; bundles React, DOMPurify and other MIT-licensed runtime code) | 3.0.1 (npm `redoc`) | MIT | Copyright (c) 2015-present, Rebilly, Inc. | https://github.com/Redocly/redoc | `apps/backend/vendor/redoc/` | backend image |
 | OpenStreetMap basemap (stitched, cropped and tinted from OpenStreetMap raster tiles, zoom 5, Web Mercator window centred on Munich) | baked 2026-09 | Map data: ODbL-1.0 | © OpenStreetMap contributors | https://www.openstreetmap.org/copyright | `apps/site/public/assets/loop-basemap.webp` | site image |
 | Contributor Covenant (Code of Conduct, adapted) | 3.0 | CC-BY-SA-4.0 | Organization for Ethical Source (steward) | https://www.contributor-covenant.org/version/3/0/ | `**/CODE_OF_CONDUCT.md` | site image (protocol copy under `/projects/loop-protocol/`) |
 
@@ -45,8 +46,14 @@ Notes:
 - The Phosphor woff2 files are byte-identical to the files in the
   @phosphor-icons/web 2.1.2 npm tarball; each style.css is that package's
   stylesheet reduced to the woff2 source.
+- The Redoc bundle is byte-identical to `bundles/redoc.standalone.js` in the
+  redoc 3.0.1 npm tarball (SHA-256
+  8c70c2de83d33e33a75b225e573d6d9fe851f066f824b44b1637d831d52d7543); its
+  licence is in `apps/backend/vendor/redoc/LICENSE`. The docs page sets
+  `disable-telemetry` and a CSP limited to the same origin, so the bundle's
+  optional telemetry and the Redocly badge image are never requested.
 - The basemap is a Produced Work from the OpenStreetMap database. The site
-  credits "© OpenStreetMap" with a link to
+  credits "© OpenStreetMap contributors" with a link to
   https://www.openstreetmap.org/copyright in the corner of the map, which
   states that the data is available under the Open Database License.
 - The site's code-highlighting theme is highlight.js

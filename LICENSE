@@ -60,6 +60,8 @@ third-party components are listed in THIRD_PARTY_NOTICES.md.
      Mono, SIL Open Font License 1.1 (OFL-1.1)
    - apps/site/public/assets/icons/phosphor/**: Phosphor Icons 2.1.2, MIT,
      Copyright (c) 2020-2021 Phosphor Icons
+   - apps/backend/vendor/redoc/**: Redoc 3.0.1 standalone bundle, MIT,
+     Copyright (c) 2015-present, Rebilly, Inc.
    - apps/site/public/assets/loop-basemap.webp: map image derived from
      OpenStreetMap; map data (c) OpenStreetMap contributors, available under
      the Open Database License (ODbL-1.0)

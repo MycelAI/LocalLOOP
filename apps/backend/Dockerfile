@@ -15,6 +15,8 @@ RUN bun run prisma:generate
 RUN chown -R app:app /app
 
 COPY --chown=app:app src ./src
+# Pinned Redoc bundle for /api/docs (see vendor/redoc/ and THIRD_PARTY_NOTICES.md).
+COPY --chown=app:app vendor ./vendor
 # Licence terms and third-party notices ship with the image (synced from the
 # repository root by scripts/sync-legal.sh).
 COPY LICENSE NOTICE THIRD_PARTY_NOTICES.md ./

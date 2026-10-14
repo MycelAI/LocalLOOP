@@ -7,6 +7,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.7.1] - 2026-10-14
+
+### Fixed
+- **`/api/docs` rendered a blank page.** It loaded the unversioned Redoc
+  bundle from jsDelivr, which now serves Redoc 3 as an ES module and threw
+  `Cannot use 'import.meta' outside a module`. Redoc 3.0.1 is now vendored
+  (`vendor/redoc/`, MIT, byte-identical to the npm tarball), served
+  same-origin at `/api/docs/assets/redoc-3.0.1.standalone.js` with an
+  immutable cache, and loaded as a module.
+- The OpenAPI document lists the public `/api/health`, `/api/docs` and
+  `/api/openapi.json` paths instead of the root aliases, which are not
+  reachable through `https://loop.urbnia.com`.
+
+### Security
+- The docs page sends its own Content-Security-Policy (same-origin scripts,
+  styles, images and connections; `blob:` only for Redoc's workers) and sets
+  `disable-telemetry`, so neither Redoc's optional telemetry endpoint nor the
+  Redocly badge image is ever contacted, and no third-party script runs.
+
 ## [0.7.0] - 2026-10-14
 
 ### Changed
@@ -562,7 +581,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Lab demo scripts (seed + simulate + one-command runner).
 - Privacy notice endpoint and in-memory metrics snapshot.
 
-[Unreleased]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.7.0...HEAD
+[Unreleased]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.7.1...HEAD
+[0.7.1]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.7.0...backend/v0.7.1
 [0.7.0]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.6.6...backend/v0.7.0
 [0.6.6]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.6.5...backend/v0.6.6
 [0.6.5]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.6.4...backend/v0.6.5

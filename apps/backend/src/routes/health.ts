@@ -76,7 +76,7 @@ export async function registerHealthRoutes(
   for (const url of ['/health', '/api/health']) {
     app.get(url, {
       schema: {
-        hide: url !== '/health',
+        hide: url === '/health',
         response: {
           200: healthResponseSchema,
           503: healthResponseSchema,

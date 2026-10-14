@@ -143,6 +143,14 @@ precedence = "override"
 SPDX-FileCopyrightText = "© 2017 IBM Corp. with Reserved Font Name \"Plex\""
 SPDX-License-Identifier = "OFL-1.1"
 
+# Redoc 3.0.1 standalone bundle (npm redoc@3.0.1, bundles/redoc.standalone.js),
+# vendored unmodified for the backend's /api/docs page.
+[[annotations]]
+path = "apps/backend/vendor/redoc/**"
+precedence = "override"
+SPDX-FileCopyrightText = "2015-present Rebilly, Inc."
+SPDX-License-Identifier = "MIT"
+
 # Phosphor Icons 2.1.2 (@phosphor-icons/web), woff2 + style.css copied from the
 # npm package; the woff2 files are byte-identical to the 2.1.2 tarball.
 [[annotations]]

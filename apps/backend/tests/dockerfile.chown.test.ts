@@ -10,6 +10,7 @@ describe('Dockerfile ownership', () => {
     const df = readFileSync(join(import.meta.dir, '..', 'Dockerfile'), 'utf8');
     expect(df).toContain('COPY --chown=app:app src');
     expect(df).toContain('USER app');
+    expect(df).toContain('COPY --chown=app:app vendor ./vendor');
     // expensive full-tree chown after src copy should be gone
     expect(df).not.toMatch(/COPY --chown=app:app src[\s\S]*RUN chown -R app:app \/app/);
   });
