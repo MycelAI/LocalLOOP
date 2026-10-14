@@ -5,7 +5,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Project Overview
 localLOOP is a monorepo (`MycelAI/LocalLOOP`, private) containing LOOP (spec + schemas), a public documentation hub, and a lab-only backend API that powers an interest registry and minimal interop demo flows. The project is early-stage (low TRL) with **no public pilots or deployments**.
 
-It was consolidated on 2026-10-14 from the former `local-loop-io/*` GitHub repos (now archived) with full history; former tags are prefixed (`backend/v0.6.4`, `site/v0.6.0`, `protocol/v0.5.2`, `org-profile/…`).
+Home: **https://loop.urbnia.com** (site) with the API same-origin under **https://loop.urbnia.com/api/**. It was consolidated on 2026-10-14 from the former `local-loop-io/*` GitHub repos (now archived) with full history; former tags are prefixed (`backend/v0.6.4`, `site/v0.6.0`, `protocol/v0.5.2`, `org-profile/…`).
 
 ## Tech Stack
 - Site: Next.js 16 (App Router), React 19, Playwright
@@ -14,8 +14,8 @@ It was consolidated on 2026-10-14 from the former `local-loop-io/*` GitHub repos
 - Infrastructure: Docker + Traefik on the VPS; optional systemd + Nginx config
 
 ## Architecture
-- **Docs hub (`apps/site`)** serves static protocol docs, examples, and a public interest form. Static Next.js export served by nginx in Docker behind Traefik at `https://localloop.urbnia.com`.
-- **Backend API (`apps/backend`)** handles interest submissions, lab demo flows, SSE streams, and metrics.
+- **Docs hub (`apps/site`)** serves static protocol docs, examples, and a public interest form. Static Next.js export served by nginx in Docker behind Traefik at `https://loop.urbnia.com`; the same nginx proxies `/api/*` to the backend container (`localloop-backend-api-1:8088`) over the shared `proxy` network.
+- **Backend API (`apps/backend`)** handles interest submissions, lab demo flows, SSE streams, and metrics. It has no public Traefik router; it is reached only through the site's `/api/` proxy (`/health`, `/docs`, `/openapi.json` also answer under `/api/`).
 - **Protocol (`protocol/`)** is the source of truth for schemas, spec, and RFCs.
 
 ## Directory Structure
@@ -87,11 +87,11 @@ npm run test                  # Validate schemas with AJV
 ```
 
 ## Production (this host IS the live VPS)
-- This checkout runs on the production VPS. `apps/backend` and `apps/site` compose stacks serve `loop-api.urbnia.com` and `localloop.urbnia.com` through the shared Traefik. Compose project names are pinned, so containers are `localloop-backend-{api,postgres,redis,seaweedfs,storage-proxy}-1` and `localloop-site-site-1`.
+- This checkout runs on the production VPS. The `apps/site` stack serves `loop.urbnia.com` through the shared Traefik and proxies `/api/*` to the `apps/backend` stack. The site stack's labels also 308-redirect `localloop.urbnia.com/*` → `loop.urbnia.com/*` and `loop-api.urbnia.com/*` → `loop.urbnia.com/api/*`. Compose project names are pinned, so containers are `localloop-backend-{api,postgres,redis,seaweedfs,storage-proxy}-1` and `localloop-site-site-1`.
 - `apps/backend/.env` and `.env.docker` hold production secrets (git-ignored). `apps/backend/data/` holds the live Postgres/Valkey/SeaweedFS data (root/container-owned); `apps/backend/backups/` holds nightly dumps.
 - `bun test` in `apps/backend` applies migrations to whatever `DATABASE_URL` points at — the default `.env` is **production**. Use a scratch DB (`localloop_test`) and an explicit `REDIS_URL` with the password.
 - systemd: `localloop-backend-backup.timer` (02:30 nightly) and `localloop-backend-healthcheck.timer` run `apps/backend/deploy/{backup.sh,healthcheck-alert.sh}` from this checkout.
-- Rebuild/redeploy: `cd apps/backend && docker compose up -d --build` (same for `apps/site`). Traefik router names (`localloop-api`, `localloop-site`) are global on this host — keep them unique.
+- Rebuild/redeploy: `cd apps/backend && docker compose up -d --build` (same for `apps/site`). Traefik router/middleware names (`localloop-site`, `localloop-legacy-site`, `localloop-legacy-api`, `localloop-legacy-*-redirect`) are global on this host — keep them unique. Redeploy the backend before the site when changing the proxy contract.
 
 ## Environment Variables (Backend)
 Source of truth: `apps/backend/src/config.ts` (Zod schema) and `.env.example`
@@ -108,8 +108,8 @@ weak/default secrets, secrets under 16 characters, and an unauthenticated `REDIS
 | REDIS_PASSWORD | Password the compose `redis` service starts with | (set in .env) |
 | STORAGE_ENDPOINT / STORAGE_PORT | SeaweedFS S3 host/port (host: `localhost:9200`; compose: `storage-proxy:9000`) | `localhost` / `9200` |
 | STORAGE_ACCESS_KEY / STORAGE_SECRET_KEY / STORAGE_BUCKET | Object-storage credentials (unused by routes today; former `MINIO_*` names still accepted) | `localloop` / `localloop_dev_secret` / `localloop-assets` |
-| ALLOWED_ORIGINS | CORS allowlist (comma-separated) | `https://localloop.urbnia.com` |
-| PUBLIC_BASE_URL | External API base URL | `https://loop-api.urbnia.com` |
+| ALLOWED_ORIGINS | CORS allowlist (comma-separated) | `https://loop.urbnia.com,https://localloop.urbnia.com` |
+| PUBLIC_BASE_URL | External base URL (node endpoint = this + `/api/v1`) | `https://loop.urbnia.com` |
 | PORT | Listen port | `8088` |
 | NODE_ID / NODE_NAME / NODE_CAPABILITIES / NODE_LAT / NODE_LON | Node identity for `GET /api/v1/node/info` | `lab-hub.loop` / … / `48.1351` / `11.582` |
 | RATE_LIMIT_MAX / RATE_LIMIT_WRITE_MAX | Read / write rate limits per window (`RATE_LIMIT_WINDOW`) | `600` / `20` per 15 min |
@@ -134,8 +134,10 @@ Authoritative list: `apps/backend/README.md` and `apps/backend/docs/SPEC-COMPLIA
 - Docs: `GET /openapi.json`, `GET /docs`
 
 ## Domain & Context Requirements
-- Public site: `https://localloop.urbnia.com`
-- Backend API: `https://loop-api.urbnia.com`
+- Home / site: `https://loop.urbnia.com`
+- Backend API: `https://loop.urbnia.com/api/` (same origin)
+- Former hostnames `localloop.urbnia.com` and `loop-api.urbnia.com` only redirect (308) — don't use them in new content, except for the protocol identifiers below.
+- JSON-LD contexts and schema `$id`s intentionally still use `localloop.urbnia.com` (published identifiers; they resolve via the redirect). Moving them to `loop.urbnia.com` is an open protocol-versioning decision.
 - JSON-LD context (v0.2.0): `https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld`
 - JSON-LD context (v0.1.1, still valid): `https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld`
 - `local-loop-io.github.io` and `api.local-loop.io` do **not** exist (do not reference).

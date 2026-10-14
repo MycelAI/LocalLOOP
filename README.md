@@ -10,8 +10,8 @@ registry and minimal interop demo flows.
 
 ```
 apps/
-  backend/        Bun + Fastify 5 API (Prisma 7, PostGIS, Valkey, SeaweedFS)  → https://loop-api.urbnia.com
-  site/           Next.js 16 static docs hub served by nginx                 → https://localloop.urbnia.com
+  backend/        Bun + Fastify 5 API (Prisma 7, PostGIS, Valkey, SeaweedFS)  → https://loop.urbnia.com/api/
+  site/           Next.js 16 static docs hub served by nginx                 → https://loop.urbnia.com
 protocol/         LOOP specification, JSON Schemas, JSON-LD contexts, RFCs, profiles, openapi.json
 ops/
   ledger/         Agent ledger, repo manifest, verification evidence, plans
@@ -39,7 +39,8 @@ currently disabled for this repo (org billing), so run it before pushing.
   protocol artifacts into `apps/site/public/projects/loop-protocol/`
   (`bash apps/site/scripts/aggregate-docs.sh`). The mirror keeps its public
   URL path, so JSON-LD contexts stay at
-  `https://localloop.urbnia.com/projects/loop-protocol/contexts/…`.
+  `https://localloop.urbnia.com/projects/loop-protocol/contexts/…` (served via
+  the redirect to `loop.urbnia.com`).
 - `bun run check:conformance` (in `apps/backend`) fails on any drift between
   the three, and on spec endpoints missing from the API.
 
@@ -48,6 +49,14 @@ currently disabled for this repo (org billing), so run it before pushing.
 Both apps run with Docker Compose behind the host's shared Traefik. Compose
 project names are pinned (`localloop-backend`, `localloop-site`), so
 containers keep their historical names.
+
+- `https://loop.urbnia.com` → site container (Traefik router `localloop-site`).
+- `https://loop.urbnia.com/api/*` → the site's nginx proxies to
+  `localloop-backend-api-1:8088` over the shared `proxy` network; the API has
+  no public router of its own.
+- `localloop.urbnia.com/*` and `loop-api.urbnia.com/*` → 308 redirects to
+  `loop.urbnia.com/*` and `loop.urbnia.com/api/*` (labels in
+  `apps/site/docker-compose.yml`).
 
 ```bash
 cd apps/backend && docker compose up -d --build   # API + Postgres + Valkey + SeaweedFS

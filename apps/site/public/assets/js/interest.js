@@ -18,7 +18,7 @@
       const apiStatusEl = document.querySelector('[data-api-status]');
       if (!form && !listEl && !apiStatusEl) return;
       const config = window.LOCALLOOP_CONFIG || {};
-      const apiBase = config.apiBase || 'https://loop-api.urbnia.com';
+      const apiBase = config.apiBase || 'https://loop.urbnia.com';
       const controller = new AbortController();
       const REQUEST_TIMEOUT_MS = 10000;
       const withTimeout = () => AbortSignal.any([controller.signal, AbortSignal.timeout(REQUEST_TIMEOUT_MS)]);

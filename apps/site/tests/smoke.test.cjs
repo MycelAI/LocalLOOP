@@ -51,8 +51,8 @@ test('metrics page wires live metrics panel', () => {
 test('api docs page links to the live docs instead of embedding an iframe', () => {
   const content = read(['app', 'docs', 'api', 'page.jsx']);
   assert.ok(content.includes('Open live Redoc'));
-  assert.ok(content.includes('https://loop-api.urbnia.com/openapi.json'));
-  assert.ok(content.includes('https://localloop.urbnia.com/projects/loop-protocol/openapi.json'));
+  assert.ok(content.includes('https://loop.urbnia.com/api/openapi.json'));
+  assert.ok(content.includes('https://loop.urbnia.com/projects/loop-protocol/openapi.json'));
 });
 
 test('federation docs page renders handshake guide', () => {
@@ -136,12 +136,12 @@ test('protocol mirror includes required v0.2.0 contract assets', () => {
   }
 });
 
-test('aggregate docs script prefers a local source checkout when available', () => {
+test('aggregate docs script mirrors from the monorepo protocol/ tree', () => {
   const content = read(['scripts', 'aggregate-docs.sh']);
   assert.ok(content.includes('resolve_local_source()'));
   assert.ok(content.includes('DOCS_LOCAL_ROOT'));
-  assert.ok(content.includes('ROOT_DIR/../$repo_name'));
-  assert.ok(content.includes('from local source'));
+  assert.ok(content.includes('loop-protocol) printf \'%s\\n\' "$MONOREPO_ROOT/protocol"'));
+  assert.ok(!content.includes('git clone'), 'must not fall back to the archived public repo');
 });
 
 test('canonical route inventory includes hidden docs and generated library details', async () => {
@@ -292,7 +292,7 @@ test('nginx static server declares baseline security headers', () => {
 test('security.txt is published under .well-known', () => {
   const content = read(['public', '.well-known', 'security.txt']);
   assert.ok(content.includes('Contact: mailto:dev@mycel-ai.de'));
-  assert.ok(content.includes('localloop.urbnia.com'));
+  assert.ok(content.includes('https://loop.urbnia.com'));
 });
 
 
@@ -305,7 +305,7 @@ test('robots.txt allows crawl and points at sitemap', () => {
 test('humans.txt exists with lab-demo posture', () => {
   const content = read(['public', 'humans.txt']);
   assert.ok(content.includes('Lab demo only'));
-  assert.ok(content.includes('localloop.urbnia.com'));
+  assert.ok(content.includes('https://loop.urbnia.com'));
 });
 
 test('ai.txt documents lab-demo posture', () => {
@@ -388,7 +388,7 @@ test('nginx serves the export 404, caches hashed assets, and sends HSTS + CSP', 
   assert.ok(conf.includes('immutable'));
   assert.ok(headers.includes('Strict-Transport-Security'));
   assert.ok(headers.includes('Content-Security-Policy'));
-  assert.ok(headers.includes("connect-src 'self' https://loop-api.urbnia.com"));
+  assert.ok(headers.includes("connect-src 'self';"), 'the lab API is same-origin (proxied under /api/)');
   assert.ok(!headers.includes('cdn.jsdelivr.net'), 'CSP must not need a CDN once fonts/icons are self-hosted');
   assert.ok(!/script-src[^;]*'unsafe-inline'/.test(headers), 'script-src must use per-page hashes, not unsafe-inline');
   assert.ok(headers.includes('$csp_script_hashes'));

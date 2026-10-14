@@ -8,6 +8,6 @@ export default function sitemap() {
     url,
     lastModified: now,
     changeFrequency: 'weekly',
-    priority: url === 'https://localloop.urbnia.com/' ? 1 : 0.8,
+    priority: url === 'https://loop.urbnia.com/' ? 1 : 0.8,
   }));
 }

@@ -3,8 +3,9 @@
 `CLAUDE.md` is the full guide; this is the short version for any agent.
 
 ## Layout
-- `apps/backend` — Bun + Fastify API → `https://loop-api.urbnia.com`
-- `apps/site` — Next.js static docs hub (nginx) → `https://localloop.urbnia.com`
+- `apps/backend` — Bun + Fastify API → `https://loop.urbnia.com/api/` (proxied by the site's nginx; no public router)
+- `apps/site` — Next.js static docs hub (nginx) → `https://loop.urbnia.com`
+- `localloop.urbnia.com` / `loop-api.urbnia.com` are 308 redirects to the above
 - `protocol/` — LOOP spec, schemas, contexts, RFCs, `openapi.json` (canonical)
 - `ops/ledger` — agent ledger + evidence; `ops/org-profile` — historical org profile
 

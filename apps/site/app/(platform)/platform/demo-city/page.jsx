@@ -189,7 +189,7 @@ export default function DemoCityPage() {
           <div><span>Example payload version</span><div>v0.2.0</div></div>
           <div><span>Value model</span><div>LC-DEMO — illustrative draft fields only; no backing, currency operation, or settlement is provided.</div></div>
           <div><span>Example capability labels</span><div>material-registry · loopcoin · loopsignal · federation</div></div>
-          <div><span>Referenced lab API</span><div><a href="https://loop-api.urbnia.com/docs" target="_blank" rel="noopener noreferrer">loop-api.urbnia.com/docs</a></div></div>
+          <div><span>Referenced lab API</span><div><a href="https://loop.urbnia.com/api/docs" target="_blank" rel="noopener noreferrer">loop.urbnia.com/api/docs</a></div></div>
           <div><span>Status</span><div>Lab demo only — no real logistics or settlement</div></div>
         </div>
         <div className="cta-row" style={{marginTop:'16px'}}>

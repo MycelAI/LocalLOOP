@@ -4,8 +4,18 @@ This backend serves the localLOOP lab demo and public APIs.
 
 ## Canonical domains
 
-- Public site / docs hub: https://localloop.urbnia.com
-- Backend API: https://loop-api.urbnia.com
+- Home (site / docs hub): https://loop.urbnia.com
+- Backend API: https://loop.urbnia.com/api/ (same origin; the site's nginx
+  proxies `/api/*` to the API container)
+
+Former hostnames, kept only as permanent (308) redirects at Traefik:
+
+- https://localloop.urbnia.com/<path> → https://loop.urbnia.com/<path>
+- https://loop-api.urbnia.com/<path> → https://loop.urbnia.com/api/<path>
+
+The protocol namespace below deliberately still uses `localloop.urbnia.com`:
+those URLs are published JSON-LD/schema identifiers and keep resolving via
+the redirect. Moving them is a protocol versioning decision.
 
 ## Protocol namespace
 

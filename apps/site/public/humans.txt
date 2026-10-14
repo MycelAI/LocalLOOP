@@ -1,6 +1,6 @@
 /* TEAM */
 Org: Mycel UG (haftungsbeschränkt)
-Site: https://localloop.urbnia.com
+Site: https://loop.urbnia.com
 Contact: dev@mycel-ai.de
 
 /* SITE */

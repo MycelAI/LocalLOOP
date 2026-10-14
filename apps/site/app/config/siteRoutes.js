@@ -12,7 +12,7 @@
  * this was unified.
  */
 
-const BASE = 'https://localloop.urbnia.com';
+const BASE = 'https://loop.urbnia.com';
 import { schemas } from './schemas.js';
 import { examples } from './examples.js';
 import navigationSectionsData from '../../public/assets/navigation.json' with { type: 'json' };

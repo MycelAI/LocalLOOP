@@ -1,5 +1,8 @@
 import { test, expect } from '@playwright/test';
 
+// The lab API is same-origin in production (nginx proxies /api/*).
+const isApi = (url: URL) => url.pathname.startsWith('/api/');
+
 // Runs meaningfully only against the nginx image (PLAYWRIGHT_BASE_URL pointing
 // at a container built from the Dockerfile), where the Content-Security-Policy
 // header is actually sent. Against the plain static server it still verifies
@@ -7,15 +10,15 @@ import { test, expect } from '@playwright/test';
 const routes = ['/', '/interest/', '/platform/demo-city/', '/docs/', '/protocol/spec/', '/protocol/what-is-loop/', '/library/schemas/material-dna/', '/docs/metrics/'];
 
 test.beforeEach(async ({ page }) => {
-  // In production the pages talk to https://loop-api.urbnia.com (allowed by
-  // connect-src); on a localhost origin config.js would pick the local dev API
-  // instead, which the policy rightly blocks — stub the production base and
-  // answer its reads locally so the pages exercise their real fetch paths.
+  // In production the pages talk to the same-origin /api/ proxy (allowed by
+  // connect-src 'self'); on a localhost origin config.js would pick the local
+  // dev API instead, which the policy rightly blocks — stub the same-origin
+  // base and answer its reads locally so the pages exercise their real fetch paths.
   await page.route('**/assets/js/config.js', (route) => route.fulfill({
     contentType: 'application/javascript',
-    body: "window.LOCALLOOP_CONFIG = { apiBase: 'https://loop-api.urbnia.com' };",
+    body: "window.LOCALLOOP_CONFIG = { apiBase: window.location.origin };",
   }));
-  await page.route('https://loop-api.urbnia.com/**', (route) => {
+  await page.route(isApi, (route) => {
     const url = route.request().url();
     const body = url.endsWith('/health') ? { status: 'ok', db: 'ok', redis: 'ok', uptime: 60 }
       : url.includes('/metrics') ? { metrics: {}, startedAt: '2026-01-01T00:00:00Z', uptimeSeconds: 60 }

@@ -18,7 +18,7 @@ const handshakePayload = {
 const localNode = {
   node_id: 'lab-hub.loop',
   name: 'localLOOP Lab Hub',
-  endpoint: 'https://loop-api.urbnia.com',
+  endpoint: 'https://loop.urbnia.com',
   capabilities: ['lab-relay'],
   last_seen: '2025-12-20T10:00:00Z',
   lab_only: true as const,
@@ -65,7 +65,7 @@ describe('federation routes', () => {
     const payload = response.json();
     expect(payload['@type']).toBe('NodeInfo');
     expect(payload.id).toBe(localNode.node_id);
-    expect(payload.endpoint).toBe('https://loop-api.urbnia.com/api/v1');
+    expect(payload.endpoint).toBe('https://loop.urbnia.com/api/v1');
     expect(payload.lab_only).toBe(true);
   });
 

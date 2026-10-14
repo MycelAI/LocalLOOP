@@ -68,35 +68,40 @@ export async function registerHealthRoutes(
   app: FastifyInstance,
   deps: HealthDeps = defaultDeps,
 ) {
-  app.get('/health', {
-    schema: {
-      response: {
-        200: healthResponseSchema,
-        503: healthResponseSchema,
+  // /api/health is an alias so the same-origin deployment (the site proxies
+  // https://loop.urbnia.com/api/* to this service) can reach it under /api/.
+  for (const url of ['/health', '/api/health']) {
+    app.get(url, {
+      schema: {
+        hide: url !== '/health',
+        response: {
+          200: healthResponseSchema,
+          503: healthResponseSchema,
+        },
       },
-    },
-  }, async (_request, reply) => {
-    const [dbStatus, redisStatus] = await Promise.all([
-      deps.checkDb(),
-      deps.checkRedis(),
-    ]);
+    }, async (_request, reply) => {
+      const [dbStatus, redisStatus] = await Promise.all([
+        deps.checkDb(),
+        deps.checkRedis(),
+      ]);
 
-    const healthy =
-      dbStatus === 'ok' && (redisStatus === 'ok' || redisStatus === 'skipped');
+      const healthy =
+        dbStatus === 'ok' && (redisStatus === 'ok' || redisStatus === 'skipped');
 
-    const payload = {
-      status: healthy ? 'ok' : 'degraded',
-      time: new Date().toISOString(),
-      uptime: process.uptime(),
-      db: dbStatus,
-      redis: redisStatus,
-      version: VERSION,
-    };
+      const payload = {
+        status: healthy ? 'ok' : 'degraded',
+        time: new Date().toISOString(),
+        uptime: process.uptime(),
+        db: dbStatus,
+        redis: redisStatus,
+        version: VERSION,
+      };
 
-    setNoStore(reply);
-    if (!healthy) {
-      reply.code(503);
-    }
-    return payload;
-  });
+      setNoStore(reply);
+      if (!healthy) {
+        reply.code(503);
+      }
+      return payload;
+    });
+  }
 }

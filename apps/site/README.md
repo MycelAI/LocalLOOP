@@ -4,10 +4,10 @@
 
 **The official website of localLOOP and home of the LOOP protocol, MaterialDNA, ProductDNA, city portals, and governance.**
 
-[![Site](https://img.shields.io/badge/site-localloop.urbnia.com-4f46e5?logo=github)](https://localloop.urbnia.com)
+[![Site](https://img.shields.io/badge/site-loop.urbnia.com-4f46e5?logo=github)](https://loop.urbnia.com)
 [![Protocol](https://img.shields.io/badge/protocol-loop--protocol-10b981?logo=github)](https://github.com/local-loop-io/loop-protocol)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Low TRL](https://img.shields.io/badge/status-lab%20demo%20only-orange)](https://localloop.urbnia.com/protocol/spec)
+[![Low TRL](https://img.shields.io/badge/status-lab%20demo%20only-orange)](https://loop.urbnia.com/protocol/spec)
 
 > **Early-stage, low-TRL concept.** No public pilots or deployments. Lab demo only.
 
@@ -17,7 +17,7 @@
 
 ## What this is
 
-This repository is the source for **[localloop.urbnia.com](https://localloop.urbnia.com)** — the official website of the localLOOP project and the canonical home for everything LOOP.
+This directory is the source for **[loop.urbnia.com](https://loop.urbnia.com)** (formerly localloop.urbnia.com, now redirected) — the official website of the localLOOP project and the canonical home for everything LOOP.
 
 It does three things:
 
@@ -121,7 +121,7 @@ tests/
 
 Protocol artifacts (schemas, docs, JSON-LD contexts) live in [`loop-protocol`](https://github.com/local-loop-io/loop-protocol) and are mirrored here under `public/projects/loop-protocol/`. When the protocol repo is updated, copy the changed files into that directory and commit.
 
-The `Domain Consistency` CI workflow validates that all internal links respect the canonical domain policy (`localloop.urbnia.com` / `loop-api.urbnia.com`).
+The `Domain Consistency` CI workflow validates that all internal links respect the canonical domain policy (`loop.urbnia.com`, API under `/api/`).
 
 ---
 
@@ -148,6 +148,6 @@ For this repo's canonical-domain policy, see [`DOMAIN-POLICY.md`](DOMAIN-POLICY.
 
 <div align="center">
 
-Built with [Next.js](https://nextjs.org) · Deployed with Docker + Traefik · Part of the [localLOOP](https://localloop.urbnia.com) project
+Built with [Next.js](https://nextjs.org) · Deployed with Docker + Traefik · Part of the [localLOOP](https://loop.urbnia.com) project
 
 </div>

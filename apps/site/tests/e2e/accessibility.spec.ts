@@ -1,5 +1,8 @@
 import { test, expect } from '@playwright/test';
 
+// The lab API is same-origin in production (nginx proxies /api/*).
+const isApi = (url: URL) => url.pathname.startsWith('/api/');
+
 const criticalRoutes = ['/', '/interest/', '/platform/demo-city/', '/platform/materialdna/'];
 
 test.beforeEach(async ({ page }) => {
@@ -9,9 +12,9 @@ test.beforeEach(async ({ page }) => {
   // mocks are inert.
   await page.route('**/assets/js/config.js', (route) => route.fulfill({
     contentType: 'application/javascript',
-    body: "window.LOCALLOOP_CONFIG = { apiBase: 'https://loop-api.urbnia.com' };",
+    body: "window.LOCALLOOP_CONFIG = { apiBase: window.location.origin };",
   }));
-  await page.route('https://loop-api.urbnia.com/**', async (route) => {
+  await page.route(isApi, async (route) => {
     if (route.request().method() !== 'GET') {
       await route.fulfill({ status: 405, body: 'Public tests never write to the lab API.' });
       return;

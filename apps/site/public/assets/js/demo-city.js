@@ -19,7 +19,7 @@
       if (!root) return;
       root.removeAttribute('data-demo-ready');
       const config = window.LOCALLOOP_CONFIG || {};
-      const apiBase = config.apiBase || 'https://loop-api.urbnia.com';
+      const apiBase = config.apiBase || 'https://loop.urbnia.com';
       const controller = new AbortController();
       const listeners = [];
       let refreshTimer = null;
@@ -67,7 +67,7 @@
       };
       const loadHeartbeat = async () => {
         try {
-          const data = await request('/health').then((response) => response.ok ? response.json() : Promise.reject(new Error('health')));
+          const data = await request('/api/health').then((response) => response.ok ? response.json() : Promise.reject(new Error('health')));
           if (disposed || !heartbeatEl) return;
           if (data.status !== 'ok' || data.db !== 'ok') throw new Error('degraded');
           heartbeatEl.innerHTML = `<span class="demo-status-dot demo-status-dot-live"></span>Node online &nbsp;·&nbsp; DB: ${esc(data.db)} &nbsp;·&nbsp; Uptime: ${Math.round(Number(data.uptime) / 3600)}h`;

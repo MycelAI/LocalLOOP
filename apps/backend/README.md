@@ -9,8 +9,8 @@ Backend service for the localLOOP lab demo — interest registry, city data, and
 | --- | --- |
 | Runtime | Bun + Fastify |
 | Data | PostgreSQL (PostGIS), Valkey 9 (Redis-compatible, via BullMQ/ioredis), SeaweedFS (S3-compatible, configured via `STORAGE_*`; not yet used by any route) |
-| API base | https://loop-api.urbnia.com |
-| Docs | Live OpenAPI at `/openapi.json`, Redoc at `/docs` |
+| API base | https://loop.urbnia.com/api/ (same-origin behind the site; `loop-api.urbnia.com` redirects there) |
+| Docs | Live OpenAPI at `/openapi.json`, Redoc at `/docs` (also `/api/openapi.json`, `/api/docs`, `/api/health`) |
 
 ## Quickstart (local)
 ```bash
@@ -151,7 +151,7 @@ See `.env.example` for the full list with descriptions. Key variables:
 | `REDIS_URL` | `redis://localhost:6381` | Valkey/Redis connection string (must embed a password in production; the compose service always requires one) |
 | `REDIS_PASSWORD` | — | Redis password for the compose redis service |
 | `STORAGE_SECRET_KEY` | `localloop_dev_secret` | SeaweedFS S3 secret (must be set and non-weak in production even though no route uses the store yet). `STORAGE_ENDPOINT`/`STORAGE_PORT`/`STORAGE_ACCESS_KEY`/`STORAGE_BUCKET`/`STORAGE_USE_SSL` complete the set; the former `MINIO_*` names are still read as a deprecated fallback |
-| `ALLOWED_ORIGINS` | `https://localloop.urbnia.com` | CORS allowlist (comma-separated) |
+| `ALLOWED_ORIGINS` | `https://loop.urbnia.com,https://localloop.urbnia.com` | CORS allowlist (comma-separated) |
 | `NODE_ID` | `lab-hub.loop` | Node identifier (pattern: `*.loop`) |
 | `NODE_CAPABILITIES` | `material-registry,loopsignal` | Advertised capabilities; canonical enum only |
 | `NODE_LAT` / `NODE_LON` | `48.1351` / `11.582` | Node location (required by canonical node-info schema; powers `radius_km` search) |
@@ -212,4 +212,4 @@ given table.
 
 ## Links
 - Protocol spec: https://github.com/local-loop-io/loop-protocol
-- Docs hub: https://localloop.urbnia.com
+- Docs hub: https://loop.urbnia.com

@@ -36,13 +36,12 @@ services:
         condition: service_healthy
     ports:
       - "127.0.0.1:8088:8088"
+    # No public Traefik router: https://loop.urbnia.com/api/* reaches this
+    # container through the site's nginx (apps/site/nginx.conf) over the shared
+    # `proxy` network, as localloop-backend-api-1:8088. loop-api.urbnia.com is
+    # redirected there by the site stack's Traefik labels.
     labels:
-      - "traefik.enable=true"
-      - "traefik.docker.network=proxy"
-      - "traefik.http.routers.localloop-api.rule=Host(`loop-api.urbnia.com`)"
-      - "traefik.http.routers.localloop-api.entrypoints=websecure"
-      - "traefik.http.routers.localloop-api.tls.certresolver=letsencrypt"
-      - "traefik.http.services.localloop-api.loadbalancer.server.port=8088"
+      - "traefik.enable=false"
     restart: unless-stopped
     networks:
       - default

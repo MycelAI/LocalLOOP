@@ -15,7 +15,7 @@ export default function ApiDocsPage() {
         <div className="cta-row">
           <a
             className="button primary"
-            href="https://loop-api.urbnia.com/docs"
+            href="https://loop.urbnia.com/api/docs"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -23,7 +23,7 @@ export default function ApiDocsPage() {
           </a>
           <a
             className="button secondary"
-            href="https://loop-api.urbnia.com/openapi.json"
+            href="https://loop.urbnia.com/api/openapi.json"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -31,7 +31,7 @@ export default function ApiDocsPage() {
           </a>
           <a
             className="button secondary"
-            href="https://localloop.urbnia.com/projects/loop-protocol/openapi.json"
+            href="https://loop.urbnia.com/projects/loop-protocol/openapi.json"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -47,8 +47,8 @@ export default function ApiDocsPage() {
           <code>http://localhost:8088/openapi.json</code> directly in your browser.
         </p>
         <div className="table-list">
-          <div><span>Protocol reference</span><div><code>https://localloop.urbnia.com/projects/loop-protocol/openapi.json</code></div></div>
-          <div><span>Live lab API</span><div><code>https://loop-api.urbnia.com</code></div></div>
+          <div><span>Protocol reference</span><div><code>https://loop.urbnia.com/projects/loop-protocol/openapi.json</code></div></div>
+          <div><span>Live lab API</span><div><code>https://loop.urbnia.com/api</code></div></div>
           <div><span>Preferred media type</span><div><code>application/ld+json</code> for LOOP payloads</div></div>
           <div><span>Scope</span><div>Lab demo only. The live backend is not a claim of protocol-wide conformance.</div></div>
         </div>

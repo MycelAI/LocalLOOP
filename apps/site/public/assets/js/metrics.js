@@ -13,7 +13,7 @@
     init() {
       activeCleanup();
       const config = window.LOCALLOOP_CONFIG || {};
-      const apiBase = config.apiBase || 'https://loop-api.urbnia.com';
+      const apiBase = config.apiBase || 'https://loop.urbnia.com';
       const panel = document.querySelector('[data-metrics-panel]');
       if (!panel) return;
       const controller = new AbortController();

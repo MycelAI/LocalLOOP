@@ -18,7 +18,7 @@ test('site styles are applied', async ({ page }) => {
 
 test('fonts and icons are served from the site origin (no third-party requests)', async ({ page }) => {
   const external: string[] = [];
-  const firstParty = new Set(['127.0.0.1', 'localhost', 'loop-api.urbnia.com', 'localloop.urbnia.com']);
+  const firstParty = new Set(['127.0.0.1', 'localhost', 'loop.urbnia.com']);
   page.on('request', (request) => {
     const url = new URL(request.url());
     if (!firstParty.has(url.hostname)) {

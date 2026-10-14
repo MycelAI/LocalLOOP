@@ -1,4 +1,4 @@
-export const SITE_URL = 'https://localloop.urbnia.com';
+export const SITE_URL = 'https://loop.urbnia.com';
 
 const defaultDescription =
   'localLOOP is an early-stage, lab-only documentation hub for exploratory circular-economy interoperability work.';

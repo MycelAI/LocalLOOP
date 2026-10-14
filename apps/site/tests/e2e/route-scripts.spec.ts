@@ -1,5 +1,8 @@
 import { test, expect } from '@playwright/test';
 
+// The lab API is same-origin in production (nginx proxies /api/*).
+const isApi = (url: URL) => url.pathname.startsWith('/api/');
+
 test('demo feature cleans up and initializes once across header-driven client navigation', async ({ page }) => {
   await page.addInitScript(() => {
     class TestEventSource {
@@ -31,9 +34,9 @@ test('demo feature cleans up and initializes once across header-driven client na
   // mocks are inert.
   await page.route('**/assets/js/config.js', (route) => route.fulfill({
     contentType: 'application/javascript',
-    body: "window.LOCALLOOP_CONFIG = { apiBase: 'https://loop-api.urbnia.com' };",
+    body: "window.LOCALLOOP_CONFIG = { apiBase: window.location.origin };",
   }));
-  await page.route('https://loop-api.urbnia.com/**', (route) => route.fulfill({ status: 200, contentType: 'application/json', body: '[]' }));
+  await page.route(isApi, (route) => route.fulfill({ status: 200, contentType: 'application/json', body: '[]' }));
 
   await page.goto('/platform/demo-city/');
   await expect(page.locator('[data-demo-city]')).toHaveAttribute('data-demo-ready', 'true');

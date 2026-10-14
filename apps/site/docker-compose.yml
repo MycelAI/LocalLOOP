@@ -6,14 +6,39 @@ services:
     build: .
     restart: unless-stopped
     networks:
+      # Shared with Traefik and with the backend's api container, which nginx
+      # reaches as localloop-backend-api-1:8088 for /api/*.
       - proxy
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=proxy"
-      - "traefik.http.routers.localloop-site.rule=Host(`localloop.urbnia.com`)"
+      - "traefik.http.services.localloop-site.loadbalancer.server.port=80"
+      # https://loop.urbnia.com — the home of localLOOP (site + /api/ proxy).
+      - "traefik.http.routers.localloop-site.rule=Host(`loop.urbnia.com`)"
       - "traefik.http.routers.localloop-site.entrypoints=websecure"
       - "traefik.http.routers.localloop-site.tls.certresolver=letsencrypt"
-      - "traefik.http.services.localloop-site.loadbalancer.server.port=80"
+      - "traefik.http.routers.localloop-site.service=localloop-site"
+      # Former hostnames, permanently redirected (308 keeps method and body, so
+      # API POSTs and federation calls survive the hop).
+      # localloop.urbnia.com/<path> -> loop.urbnia.com/<path>
+      - "traefik.http.routers.localloop-legacy-site.rule=Host(`localloop.urbnia.com`)"
+      - "traefik.http.routers.localloop-legacy-site.entrypoints=websecure"
+      - "traefik.http.routers.localloop-legacy-site.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.localloop-legacy-site.service=localloop-site"
+      - "traefik.http.routers.localloop-legacy-site.middlewares=localloop-legacy-site-redirect"
+      - "traefik.http.middlewares.localloop-legacy-site-redirect.redirectregex.regex=^https?://localloop\\.urbnia\\.com/(.*)"
+      - "traefik.http.middlewares.localloop-legacy-site-redirect.redirectregex.replacement=https://loop.urbnia.com/$${1}"
+      - "traefik.http.middlewares.localloop-legacy-site-redirect.redirectregex.permanent=true"
+      # loop-api.urbnia.com/api/<path> and loop-api.urbnia.com/<path> (health,
+      # docs, openapi.json) -> loop.urbnia.com/api/<path>
+      - "traefik.http.routers.localloop-legacy-api.rule=Host(`loop-api.urbnia.com`)"
+      - "traefik.http.routers.localloop-legacy-api.entrypoints=websecure"
+      - "traefik.http.routers.localloop-legacy-api.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.localloop-legacy-api.service=localloop-site"
+      - "traefik.http.routers.localloop-legacy-api.middlewares=localloop-legacy-api-redirect"
+      - "traefik.http.middlewares.localloop-legacy-api-redirect.redirectregex.regex=^https?://loop-api\\.urbnia\\.com/(?:api/)?(.*)"
+      - "traefik.http.middlewares.localloop-legacy-api-redirect.redirectregex.replacement=https://loop.urbnia.com/api/$${1}"
+      - "traefik.http.middlewares.localloop-legacy-api-redirect.redirectregex.permanent=true"
 
 networks:
   proxy:

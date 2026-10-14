@@ -1,5 +1,8 @@
 import { test, expect } from '@playwright/test';
 
+// The lab API is same-origin in production (nginx proxies /api/*).
+const isApi = (url: URL) => url.pathname.startsWith('/api/');
+
 // Non-GET requests the page attempts against the public API are recorded here
 // and asserted empty after each test: a `throw` inside a route handler only
 // produces an unhandled rejection and cannot fail the test.
@@ -9,9 +12,9 @@ test.beforeEach(async ({ page }) => {
   publicWrites = [];
   await page.route('**/assets/js/config.js', (route) => route.fulfill({
     contentType: 'application/javascript',
-    body: "window.LOCALLOOP_CONFIG = { apiBase: 'https://loop-api.urbnia.com' };",
+    body: "window.LOCALLOOP_CONFIG = { apiBase: window.location.origin };",
   }));
-  await page.route('https://loop-api.urbnia.com/**', (route) => {
+  await page.route(isApi, (route) => {
     if (route.request().method() !== 'GET') {
       publicWrites.push(`${route.request().method()} ${route.request().url()}`);
       return route.abort();
@@ -52,8 +55,8 @@ test('demo flow tabs support roving keyboard focus without API writes', async ({
 });
 
 test('labels API rate limiting accurately instead of reporting an unreachable backend', async ({ page }) => {
-  await page.unroute('https://loop-api.urbnia.com/**');
-  await page.route('https://loop-api.urbnia.com/**', (route) => {
+  await page.unroute(isApi);
+  await page.route(isApi, (route) => {
     if (route.request().url().endsWith('/health')) {
       return route.fulfill({
         status: 429,
@@ -77,8 +80,8 @@ test('labels API rate limiting accurately instead of reporting an unreachable ba
 });
 
 test('rate limiting produces the same actionable messaging for stats and collection panels, not just the heartbeat', async ({ page }) => {
-  await page.unroute('https://loop-api.urbnia.com/**');
-  await page.route('https://loop-api.urbnia.com/**', (route) => route.fulfill({
+  await page.unroute(isApi);
+  await page.route(isApi, (route) => route.fulfill({
     status: 429,
     contentType: 'application/json',
     headers: { 'access-control-allow-origin': '*' },
@@ -116,8 +119,8 @@ test('SSE created events refresh their matching panel and the stream indicator r
   });
 
   const requestCounts: Record<string, number> = {};
-  await page.unroute('https://loop-api.urbnia.com/**');
-  await page.route('https://loop-api.urbnia.com/**', (route) => {
+  await page.unroute(isApi);
+  await page.route(isApi, (route) => {
     const pathname = new URL(route.request().url()).pathname;
     requestCounts[pathname] = (requestCounts[pathname] || 0) + 1;
     const body = pathname === '/health' ? { status: 'ok', db: 'ok', uptime: 60 } : [];

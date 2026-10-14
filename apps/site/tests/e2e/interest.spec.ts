@@ -6,7 +6,7 @@ test.beforeEach(async ({ page }) => {
   // are what the page actually talks to.
   await page.route('**/assets/js/config.js', (route) => route.fulfill({
     contentType: 'application/javascript',
-    body: "window.LOCALLOOP_CONFIG = { apiBase: 'https://loop-api.urbnia.com' };",
+    body: "window.LOCALLOOP_CONFIG = { apiBase: window.location.origin };",
   }));
   await page.route('**/api/metrics', (route) => route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ metrics: {}, uptimeSeconds: 60 }) }));
   await page.route('**/api/interest/stream', (route) => route.fulfill({ status: 200, body: '' }));
