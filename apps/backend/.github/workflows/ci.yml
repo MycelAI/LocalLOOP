@@ -1,0 +1,65 @@
+name: Backend CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        # Same image as docker-compose.yml's postgres service — migrations
+        # require the bundled PostGIS extension, plain postgres won't do.
+        image: postgis/postgis:18-3.6
+        env:
+          POSTGRES_DB: localloop
+          POSTGRES_USER: localloop
+          POSTGRES_PASSWORD: localloop_ci_password
+        ports:
+          - 55432:5432
+        options: >-
+          --health-cmd "pg_isready -U localloop -d localloop"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+      redis:
+        # Same pinned Valkey image as docker-compose.yml's redis service, started
+        # with --requirepass to match its authenticated credential scheme.
+        image: valkey/valkey:9.0@sha256:4f90bb4e87e4df88e48404cc80930a90e21721ba9442d5a5859aedc1472b005d
+        command: --requirepass localloop_ci_redis_password
+        ports:
+          - 6381:6379
+        options: >-
+          --health-cmd "valkey-cli --no-auth-warning -a localloop_ci_redis_password ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    env:
+      DATABASE_URL: postgresql://localloop:localloop_ci_password@localhost:55432/localloop
+      REDIS_URL: redis://:localloop_ci_redis_password@localhost:6381
+    steps:
+      - uses: actions/checkout@v7
+      - name: Domain consistency check
+        run: ./scripts/check-domains.sh
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 'latest'
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+      - name: Audit dependencies
+        run: bun audit
+      - name: Generate Prisma client
+        run: bun run prisma:generate
+      - name: Run typecheck
+        run: bun run typecheck
+      - name: Lint
+        run: bun run lint
+      - name: Schema copies match loop-protocol (skipped without sibling checkout)
+        run: bun run check:schemas
+        env:
+          SCHEMA_SYNC_ALLOW_MISSING: '1'
+      - name: Run tests
+        run: bun run test

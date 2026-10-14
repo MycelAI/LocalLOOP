@@ -1,0 +1,28 @@
+[Unit]
+Description=localLOOP Backend Backup
+After=docker.service network.target
+Requires=docker.service
+
+[Service]
+Type=oneshot
+# /opt/localloop-backend is a placeholder: deploy/setup.sh rewrites every
+# occurrence in this file to INSTALL_DIR (the checkout docker-compose.yml runs
+# from) when installing the unit, so all three units agree on one path.
+WorkingDirectory=/opt/localloop-backend
+EnvironmentFile=-/opt/localloop-backend/.env
+# ProtectSystem=strict resolves ReadWritePaths= when the unit's mount namespace
+# is set up, i.e. before any Exec* step runs (an ExecStartPre mkdir fails with
+# status 226/NAMESPACE, with or without the '+' prefix). The backups directory
+# must therefore exist beforehand: deploy/setup.sh creates $INSTALL_DIR/backups.
+ExecStart=/opt/localloop-backend/deploy/backup.sh
+User=root
+Group=root
+NoNewPrivileges=yes
+ProtectSystem=strict
+# ProtectHome=yes masks /home entirely for the executed process -- this
+# broke localloop-backend-healthcheck.service even with a matching
+# ReadWritePaths=/ReadOnlyPaths= exception (status=203/EXEC), tested live
+# 2026-08-14. Left off here for the same reason rather than repeat that
+# failure; ProtectSystem=strict + NoNewPrivileges=yes still apply.
+PrivateTmp=yes
+ReadWritePaths=/opt/localloop-backend/backups /opt/localloop-backend/data

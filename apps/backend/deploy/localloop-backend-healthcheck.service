@@ -1,0 +1,21 @@
+[Unit]
+Description=localLOOP Backend Health Check
+After=docker.service network.target
+
+[Service]
+Type=oneshot
+# /opt/localloop-backend is a placeholder: deploy/setup.sh rewrites every
+# occurrence in this file to INSTALL_DIR when installing the unit.
+WorkingDirectory=/opt/localloop-backend
+EnvironmentFile=-/opt/localloop-backend/.env
+ExecStart=/opt/localloop-backend/deploy/healthcheck-alert.sh
+User=root
+Group=root
+NoNewPrivileges=yes
+ProtectSystem=strict
+# ProtectHome=yes masks /home entirely for the executed process -- tested
+# live 2026-08-14: even with a matching ReadOnlyPaths= exception for the
+# real deploy path (under /home/alphin), the unit still failed with
+# status=203/EXEC. Left off rather than fighting the sandbox further;
+# ProtectSystem=strict + NoNewPrivileges=yes still apply.
+PrivateTmp=yes

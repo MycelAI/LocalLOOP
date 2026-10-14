@@ -1,0 +1,152 @@
+import type { FastifyInstance } from 'fastify';
+import { config } from '../config';
+import { validateInterest } from '../validation';
+import { insertInterest, listInterests, countInterests } from '../db/interest';
+import { enqueueInterest } from '../queue';
+import { broadcastInterest, registerInterestStream } from '../realtime/interestStream';
+import { requireApiKey } from '../security/apiKey';
+import { sendSpecError, specErrorResponseSchema } from '../specErrors';
+import { setNoStoreIfUnset } from '../httpCache';
+
+const interestBodySchema = {
+  type: 'object',
+  required: ['name', 'consentPublic'],
+  properties: {
+    name: { type: 'string', minLength: 2, maxLength: 80 },
+    organization: { type: 'string', maxLength: 120 },
+    role: { type: 'string', maxLength: 80 },
+    country: { type: 'string', maxLength: 80 },
+    city: { type: 'string', maxLength: 80 },
+    website: { type: 'string', maxLength: 200 },
+    email: { type: 'string', maxLength: 120 },
+    message: { type: 'string', maxLength: 500 },
+    shareEmail: { type: 'boolean' },
+    consentPublic: { type: 'boolean' },
+    honey: { type: 'string', maxLength: 100 },
+  },
+};
+
+const interestResponseSchema = {
+  type: 'object',
+  properties: {
+    id: { type: 'number' },
+    created_at: { type: 'string' },
+  },
+};
+
+const listResponseSchema = {
+  type: 'object',
+  properties: {
+    results: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          id: { type: 'number' },
+          name: { type: 'string' },
+          organization: { type: ['string', 'null'] },
+          role: { type: ['string', 'null'] },
+          country: { type: ['string', 'null'] },
+          city: { type: ['string', 'null'] },
+          website: { type: ['string', 'null'] },
+          email: { type: ['string', 'null'] },
+          message: { type: ['string', 'null'] },
+          is_demo: { type: 'boolean' },
+          created_at: { type: 'string' },
+        },
+      },
+    },
+    total: { type: 'number' },
+  },
+};
+
+const apiKeySecurity = [{ ApiKeyAuth: [] }];
+
+const writeRateLimit = {
+  max: config.rateLimitWriteMax,
+  timeWindow: config.rateLimitWriteWindow,
+};
+
+type InterestDeps = {
+  insertInterest: typeof insertInterest;
+  listInterests: typeof listInterests;
+  countInterests: typeof countInterests;
+  enqueueInterest: typeof enqueueInterest;
+  broadcastInterest: typeof broadcastInterest;
+};
+
+const defaultDeps: InterestDeps = {
+  insertInterest,
+  listInterests,
+  countInterests,
+  enqueueInterest,
+  broadcastInterest,
+};
+
+export async function registerInterestRoutes(app: FastifyInstance, deps: InterestDeps = defaultDeps) {
+  app.addHook('onSend', async (_req, reply) => {
+    setNoStoreIfUnset(reply);
+  });
+  app.get('/api/interest', {
+    schema: {
+      querystring: {
+        type: 'object',
+        properties: {
+          limit: { type: 'integer', minimum: 1 },
+          search: { type: 'string' },
+        },
+      },
+      response: {
+        200: listResponseSchema,
+      },
+    },
+  }, async (request) => {
+    const rawLimit = (request.query as { limit?: number }).limit;
+    const limit = typeof rawLimit === 'number' && Number.isFinite(rawLimit)
+      ? Math.min(Math.trunc(rawLimit), config.publicLimit)
+      : config.publicLimit;
+    const search = (request.query as { search?: string }).search?.trim();
+
+    const [results, total] = await Promise.all([
+      deps.listInterests(limit, search),
+      deps.countInterests(search),
+    ]);
+
+    return { results, total };
+  });
+
+  app.post('/api/interest', {
+    config: { rateLimit: writeRateLimit },
+    schema: {
+      security: apiKeySecurity,
+      body: interestBodySchema,
+      response: {
+        201: interestResponseSchema,
+        400: specErrorResponseSchema,
+      },
+    },
+  }, async (request, reply) => {
+    if (!requireApiKey(request, reply)) {
+      return;
+    }
+
+    const validation = validateInterest(request.body);
+    if (!validation.ok) {
+      sendSpecError(reply, 'INVALID_REQUEST', 'Invalid request', { validation: validation.errors });
+      return;
+    }
+
+    const created = await deps.insertInterest(validation.data);
+    const payload = { id: created.id, created_at: created.created_at };
+    deps.enqueueInterest({ ...validation.data, ...payload }).catch((error) => {
+      request.log.warn({ error }, 'Failed to enqueue interest job');
+    });
+    deps.broadcastInterest(payload);
+
+    reply.code(201).send(payload);
+  });
+
+  app.get('/api/interest/stream', async (request, reply) => {
+    registerInterestStream(request, reply);
+  });
+}

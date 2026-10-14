@@ -1,0 +1,65 @@
+{
+  "name": "@local-loop/localloop-backend",
+  "version": "0.6.4",
+  "private": true,
+  "description": "Backend API for localLOOP expression-of-interest submissions",
+  "author": "Mycel UG (haftungsbeschränkt) <dev@mycel-ai.de>",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=24.19.0"
+  },
+  "volta": {
+    "node": "24.19.0"
+  },
+  "scripts": {
+    "dev": "bun run src/index.ts",
+    "start": "bun run src/index.ts",
+    "migrate": "bun run src/db/migrate.ts",
+    "test": "bun test --isolate",
+    "typecheck": "tsc --noEmit",
+    "import:sqlite": "bun run scripts/import-sqlite.ts",
+    "seed:lab": "bun run scripts/seed-lab.ts",
+    "cleanup:idempotency-keys": "bun run scripts/cleanup-idempotency-keys.ts",
+    "simulate:lab": "bun run scripts/simulate-lab.ts",
+    "lab:demo": "bun run scripts/lab-demo.ts",
+    "simulate:federation": "bun run scripts/simulate-federation.ts",
+    "lab:federation": "bun run scripts/lab-federation.ts",
+    "prisma:generate": "prisma generate",
+    "sync:schemas": "bun run scripts/sync-schemas.ts",
+    "check:schemas": "bun run scripts/sync-schemas.ts --check",
+    "check:conformance": "bun run scripts/check-conformance.ts",
+    "check:domains": "./scripts/check-domains.sh",
+    "lint": "biome lint ."
+  },
+  "dependencies": {
+    "@fastify/cors": "^11.3.0",
+    "@fastify/helmet": "^13.1.0",
+    "@fastify/rate-limit": "^11.2.0",
+    "@fastify/swagger": "^9.8.1",
+    "@prisma/adapter-pg": "^7.9.1",
+    "@prisma/client": "^7.9.1",
+    "better-auth": "^1.6.29",
+    "bullmq": "^6.1.1",
+    "fastify": "^5.12.3",
+    "ioredis": "^6.0.0",
+    "pg": "^8.23.0",
+    "prisma": "^7.9.1",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.5.12",
+    "@types/node": "^26.2.0",
+    "@types/pg": "^8.21.0",
+    "ajv": "8.20.0",
+    "bun-types": "^1.3.14",
+    "typescript": "^7.0.2"
+  },
+  "overrides": {
+    "ajv": "8.20.0",
+    "deepmerge-ts": "^8.0.2",
+    "fast-uri": "^4.1.3",
+    "mysql2": "^3.24.3",
+    "yaml": "^2.9.0"
+  }
+}
