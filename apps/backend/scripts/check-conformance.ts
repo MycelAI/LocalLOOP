@@ -13,7 +13,7 @@
  *      the built Fastify app (spec-required endpoints may not drift).
  *
  * Exit code 1 when any check fails. Run via `bun run check:conformance`;
- * exercised in tests/conformance.test.ts and the root .github/workflows/protocol-parity.yml.
+ * exercised in tests/conformance.test.ts and the root .github/workflows/conformance.yml.
  */
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import { join } from 'node:path';

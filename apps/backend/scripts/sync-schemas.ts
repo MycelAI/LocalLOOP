@@ -46,9 +46,9 @@ type Mode = 'sync' | 'check';
 
 function run(mode: Mode): boolean {
   if (!existsSync(SOURCE_BASE)) {
-    // Without the sibling protocol checkout (e.g. backend-only CI) there is
-    // nothing to compare against. The full gate runs in
-    // .github/workflows/protocol-parity.yml, which checks out all three repos.
+    // Without the monorepo protocol/ tree (backend built in isolation) there is
+    // nothing to compare against. The full gate runs in the root
+    // .github/workflows/conformance.yml.
     // Only report success when the caller explicitly allows the skip, so a
     // misconfigured local checkout cannot pass the gate vacuously.
     if (process.env.SCHEMA_SYNC_ALLOW_MISSING === '1') {

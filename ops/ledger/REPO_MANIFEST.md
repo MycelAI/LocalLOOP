@@ -1,5 +1,10 @@
 # REPO_MANIFEST — localLOOP multi-repo estate
 
+> **Historical (pre-2026-10-14).** The repos below were merged into the
+> `MycelAI/LocalLOOP` monorepo (`apps/backend`, `apps/site`, `protocol`,
+> `ops/org-profile`, `ops/ledger`) and the originals archived. See the root
+> `README.md` / `CLAUDE.md` for the current layout.
+
 Generated: 2026-07-25 (bootstrap); last refreshed 2026-09-05 (estate defect sweep). Update HEAD SHAs after each successful deploy cycle.
 
 Workspace root: `/home/alphin/code/local-loop-io/`

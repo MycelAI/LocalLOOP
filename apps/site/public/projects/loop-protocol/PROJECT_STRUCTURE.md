@@ -151,18 +151,16 @@ loop-protocol/
 │   ├── 0004-smart-contract-integration.md
 │   ├── 0005-solo-operator-governance-override.md
 │   └── README.md
-├── scripts/
-│   ├── check-agent-markers.js
-│   ├── check-domains.sh
-│   ├── check-schemas-readme.js
-│   ├── validate-schemas.js
-│   └── lib/
-│       └── profile-conformance-runner.js
-└── .github/
-    ├── dependabot.yml
-    └── workflows/
-        └── validate-schemas.yml
+└── scripts/
+    ├── check-agent-markers.js
+    ├── check-domains.sh
+    ├── check-schemas-readme.js
+    ├── validate-schemas.js
+    └── lib/
+        └── profile-conformance-runner.js
 ```
+
+CI for this tree runs from the LocalLOOP monorepo root (`.github/workflows/protocol.yml`).
 
 `bun.lock` (local, untracked) and `node_modules/` are generated and not part of the repository.
 

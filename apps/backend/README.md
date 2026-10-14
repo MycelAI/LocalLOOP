@@ -130,10 +130,10 @@ validated against the canonical JSON schemas (synced byte-identical into
 
 - Compliance matrix: [docs/SPEC-COMPLIANCE.md](docs/SPEC-COMPLIANCE.md)
 - `bun run check:conformance` — three-way drift gate (backend ↔ loop-protocol
-  ↔ docs-hub mirror at `localloop-site/public/projects/loop-protocol/`):
+  ↔ docs-hub mirror at `apps/site/public/projects/loop-protocol/`):
   schema copies, mirrored artifacts, and the implemented route surface must
   not drift. Runs in tests (`tests/conformance.test.ts`) and in CI
-  (`protocol-parity.yml`).
+  (root `.github/workflows/conformance.yml`).
 - `tests/specResponses.test.ts` validates live route responses against the
   canonical JSON schemas.
 

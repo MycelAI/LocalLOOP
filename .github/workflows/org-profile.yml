@@ -1,9 +1,15 @@
-name: Profile Policy Check
+name: Org Profile Policy
 
 on:
-  pull_request:
   push:
     branches: [main]
+    paths: ['ops/org-profile/**', '.github/workflows/org-profile.yml']
+  pull_request:
+    paths: ['ops/org-profile/**', '.github/workflows/org-profile.yml']
+
+defaults:
+  run:
+    working-directory: ops/org-profile
 
 jobs:
   policy-check:

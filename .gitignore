@@ -1,0 +1,8 @@
+# Per-tree ignores live in each tree's own .gitignore; these apply everywhere.
+node_modules/
+.env
+.env.*
+!.env.example
+!.env.*.example
+.DS_Store
+.claude/settings.local.json

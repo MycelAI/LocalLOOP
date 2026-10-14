@@ -3,7 +3,13 @@ name: Backend CI
 on:
   push:
     branches: [main]
+    paths: ['apps/backend/**', '.github/workflows/backend.yml']
   pull_request:
+    paths: ['apps/backend/**', '.github/workflows/backend.yml']
+
+defaults:
+  run:
+    working-directory: apps/backend
 
 jobs:
   test:
@@ -57,9 +63,7 @@ jobs:
         run: bun run typecheck
       - name: Lint
         run: bun run lint
-      - name: Schema copies match loop-protocol (skipped without sibling checkout)
+      - name: Schema copies match protocol/
         run: bun run check:schemas
-        env:
-          SCHEMA_SYNC_ALLOW_MISSING: '1'
       - name: Run tests
         run: bun run test

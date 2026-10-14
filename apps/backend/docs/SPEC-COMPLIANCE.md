@@ -220,10 +220,10 @@ management or trust.
 ## Conformance gate
 
 `bun run check:conformance` (tests/conformance.test.ts,
-.github/workflows/protocol-parity.yml) fails on:
+.github/workflows/conformance.yml at the monorepo root) fails on:
 
-1. Backend schema copies drifting from `loop-protocol/schemas` (byte-compare).
-2. Docs-hub mirror (`localloop-site/public/projects/loop-protocol/`) drifting
+1. Backend schema copies drifting from `protocol/schemas` (byte-compare).
+2. Docs-hub mirror (`apps/site/public/projects/loop-protocol/`) drifting
    from canonical schemas, contexts, `docs/`, `examples/`, `rfcs/`, `openapi.json`,
    or `SPECIFICATION.md`.
 3. Any `openapi.json` path+method missing from the built Fastify route table.

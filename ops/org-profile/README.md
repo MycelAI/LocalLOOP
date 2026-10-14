@@ -10,7 +10,7 @@ See `profile/README.md` for the public landing page content.
 - `profile/README.md`: org profile content (rendered at <https://github.com/local-loop-io>).
 - `AGENTS.md`, `CLAUDE.md`: org context, domains, and runbooks for contributors and agents.
 - `CODE_OF_CONDUCT.md`: organization-wide code of conduct.
-- `scripts/check-policy.sh`, `scripts/check-security-pointer.sh`: content-policy checks run by `.github/workflows/policy-check.yml`.
+- `scripts/check-policy.sh`, `scripts/check-security-pointer.sh`: content-policy checks run by the monorepo's root `.github/workflows/org-profile.yml`.
 - `CHANGELOG.md`: history of profile and policy changes.
 
 ## How to update

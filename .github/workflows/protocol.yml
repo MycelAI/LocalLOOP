@@ -1,9 +1,15 @@
-name: Validate Schemas
+name: Protocol
 
 on:
   push:
     branches: [main]
+    paths: ['protocol/**', '.github/workflows/protocol.yml']
   pull_request:
+    paths: ['protocol/**', '.github/workflows/protocol.yml']
+
+defaults:
+  run:
+    working-directory: protocol
 
 jobs:
   validate:
@@ -17,6 +23,7 @@ jobs:
         with:
           node-version: '24'
           cache: 'npm'
+          cache-dependency-path: protocol/package-lock.json
       - name: Install dependencies
         run: npm ci
       - name: Audit dependencies
