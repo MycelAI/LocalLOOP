@@ -29,7 +29,8 @@ manager workspace.
 | `apps/site` | `bun install` | `bun run lint && bun run typecheck && bun run build && bun run test` |
 | `protocol` | `npm ci` | `npm run test` |
 
-`scripts/ci-local.sh` runs the fast checks for every tree.
+`scripts/ci-local.sh` runs the fast checks for every tree. GitHub Actions is
+currently disabled for this repo (org billing), so run it before pushing.
 
 ## Cross-tree contracts
 

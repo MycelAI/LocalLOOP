@@ -167,7 +167,7 @@ Authoritative list: `apps/backend/README.md` and `apps/backend/docs/SPEC-COMPLIA
 - Backend: Bun tests for routes, SSE, queue, auth toggles; conformance gate
 - Site: Node smoke tests + Playwright E2E
 - Protocol: AJV schema validation + profile conformance vectors
-- CI: root `.github/workflows/*.yml`, path-filtered per tree. `scripts/ci-local.sh` runs the fast checks locally.
+- CI: root `.github/workflows/*.yml`, path-filtered per tree. **GitHub Actions is disabled on this repo** (MycelAI org billing blocks private-repo runners, same as OmniScript, since 2026-10-14) — `scripts/ci-local.sh` is the gate; run it before every push. Re-enable with `gh api -X PUT repos/MycelAI/LocalLOOP/actions/permissions -F enabled=true` once billing is fixed.
 
 ## Known Issues & Technical Debt (Top)
 - Protocol §8 endpoint implementation status: `apps/backend/docs/SPEC-COMPLIANCE.md`.
