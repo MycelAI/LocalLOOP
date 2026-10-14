@@ -25,7 +25,7 @@ dependencies are in scope.
   `127.0.0.1:8088`, and the site's nginx proxies `/api/*` to it over the
   shared proxy network, behind TLS terminated at Traefik.
 - Keep `ALLOWED_ORIGINS` limited to the site origin(s), which by default are
-  `https://loop.urbnia.com` and `https://localloop.urbnia.com`.
+  `https://loop.urbnia.com` and `https://loop.urbnia.com`.
 - Run with `NODE_ENV=production`. The config then refuses missing or weak
   secrets (`DATABASE_URL` password, `STORAGE_SECRET_KEY`, `BETTER_AUTH_SECRET`
   and `API_KEY` when enabled) and a `REDIS_URL` without a password.

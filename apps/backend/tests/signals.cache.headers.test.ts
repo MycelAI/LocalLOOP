@@ -10,7 +10,7 @@ describe('signals routes Cache-Control', () => {
     const app = Fastify({ logger: false });
     await registerSignalsRoutes(app, {
       getLoopSignalConfig: async () => ({
-        '@context': 'https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
+        '@context': 'https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
         '@type': 'LoopSignalConfig',
         schema_version: '0.2.0',
         node: 'lab-hub.loop',

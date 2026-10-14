@@ -7,7 +7,7 @@ import { registerLoopProtocolParsers } from '../src/protocol';
 import { registerFederateRoutes } from '../src/routes/federate';
 
 const announcementPayload = {
-  '@context': 'https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
+  '@context': 'https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
   '@type': 'MaterialAnnouncement',
   material: 'MAT-DE-MUC-2025-FOOD-B847F3',
   origin: 'munich.loop',
@@ -15,7 +15,7 @@ const announcementPayload = {
 };
 
 const offerPayload = {
-  '@context': 'https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
+  '@context': 'https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
   '@type': 'MaterialOffer',
   material: 'MAT-DE-MUC-2025-FOOD-B847F3',
   from: 'vienna.loop',

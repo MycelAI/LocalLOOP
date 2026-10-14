@@ -81,7 +81,7 @@ export async function seedLab() {
     const id = `MAT-DE-${city.code}-2025-${category.toUpperCase().split('-')[0]}-${randomHex(random, 6)}`;
 
     const materialPayload = {
-      '@context': 'https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld',
+      '@context': 'https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld',
       '@type': 'MaterialDNA',
       schema_version: '0.1.1',
       id,
@@ -106,7 +106,7 @@ export async function seedLab() {
     });
 
     const offerPayload = {
-      '@context': 'https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld',
+      '@context': 'https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld',
       '@type': 'Offer',
       schema_version: '0.1.1',
       id: `OFR-${randomHex(random, 8)}`,
@@ -138,7 +138,7 @@ export async function seedLab() {
     const productId = `PRD-DE-${city.code}-2025-${productCategory.toUpperCase().split('-')[0]}-${randomHex(random, 6)}`;
 
     const productPayload = {
-      '@context': 'https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
+      '@context': 'https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
       '@type': 'ProductDNA',
       schema_version: '0.2.0',
       id: productId,
@@ -164,7 +164,7 @@ export async function seedLab() {
     });
 
     const productOfferPayload = {
-      '@context': 'https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
+      '@context': 'https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
       '@type': 'Offer',
       schema_version: '0.2.0',
       id: `OFR-PRD-${randomHex(random, 8)}`,

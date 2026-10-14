@@ -16,7 +16,7 @@ const conflictError = () => {
 };
 
 const materialPayload = {
-  '@context': 'https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld',
+  '@context': 'https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld',
   '@type': 'MaterialDNA',
   schema_version: '0.1.1',
   id: 'MAT-DE-MUC-2025-PLASTIC-B847F3',
@@ -28,7 +28,7 @@ const materialPayload = {
 };
 
 const offerPayload = {
-  '@context': 'https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld',
+  '@context': 'https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld',
   '@type': 'Offer',
   schema_version: '0.1.1',
   id: 'OFR-2F7A6B9C',
@@ -41,7 +41,7 @@ const offerPayload = {
 };
 
 const matchPayload = {
-  '@context': 'https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld',
+  '@context': 'https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld',
   '@type': 'Match',
   schema_version: '0.1.1',
   id: 'MCH-9B3C8A12',
@@ -54,7 +54,7 @@ const matchPayload = {
 };
 
 const transferPayload = {
-  '@context': 'https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld',
+  '@context': 'https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld',
   '@type': 'Transfer',
   schema_version: '0.1.1',
   id: 'TRF-5D8A23F1',
@@ -66,7 +66,7 @@ const transferPayload = {
 };
 
 const productPayload = {
-  '@context': 'https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
+  '@context': 'https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
   '@type': 'ProductDNA',
   schema_version: '0.2.0',
   id: 'PRD-DE-MUC-2025-DESK-F4A7B2',
@@ -80,7 +80,7 @@ const productPayload = {
 };
 
 const productOfferPayload = {
-  '@context': 'https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
+  '@context': 'https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
   '@type': 'Offer',
   schema_version: '0.2.0',
   id: 'OFR-PRD-8C4F2A1B',
@@ -93,7 +93,7 @@ const productOfferPayload = {
 };
 
 const productMatchPayload = {
-  '@context': 'https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
+  '@context': 'https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
   '@type': 'Match',
   schema_version: '0.2.0',
   id: 'MCH-PRD-3D7E9F45',
@@ -106,7 +106,7 @@ const productMatchPayload = {
 };
 
 const productTransferPayload = {
-  '@context': 'https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
+  '@context': 'https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
   '@type': 'Transfer',
   schema_version: '0.2.0',
   id: 'TRF-PRD-1A5B8C2D',
@@ -118,7 +118,7 @@ const productTransferPayload = {
 };
 
 const materialStatusPayload = {
-  '@context': 'https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld',
+  '@context': 'https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld',
   '@type': 'MaterialStatusUpdate',
   schema_version: '0.1.1',
   id: '3c9a6a0b-8c1a-4d3f-9c2c-3c1c2f9d5c2a',

@@ -27,7 +27,7 @@ export async function runLabSimulation(baseUrl = `http://localhost:${config.port
   const now = new Date();
 
   const material = {
-    '@context': 'https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld',
+    '@context': 'https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld',
     '@type': 'MaterialDNA',
     schema_version: '0.1.1',
     id: buildMaterialId(now.getUTCFullYear()),
@@ -51,7 +51,7 @@ export async function runLabSimulation(baseUrl = `http://localhost:${config.port
   timeline.push({ label: 'MaterialDNA registered', id: materialCreated.id, createdAt: materialCreated.created_at });
 
   const offer = {
-    '@context': 'https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld',
+    '@context': 'https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld',
     '@type': 'Offer',
     schema_version: '0.1.1',
     id: buildId('OFR'),
@@ -76,7 +76,7 @@ export async function runLabSimulation(baseUrl = `http://localhost:${config.port
   timeline.push({ label: 'Offer published', id: offerCreated.id, createdAt: offerCreated.created_at });
 
   const match = {
-    '@context': 'https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld',
+    '@context': 'https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld',
     '@type': 'Match',
     schema_version: '0.1.1',
     id: buildId('MCH'),
@@ -100,7 +100,7 @@ export async function runLabSimulation(baseUrl = `http://localhost:${config.port
   timeline.push({ label: 'Match accepted', id: matchCreated.id, createdAt: matchCreated.created_at });
 
   const transfer = {
-    '@context': 'https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld',
+    '@context': 'https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld',
     '@type': 'Transfer',
     schema_version: '0.1.1',
     id: buildId('TRF'),
@@ -126,7 +126,7 @@ export async function runLabSimulation(baseUrl = `http://localhost:${config.port
   // --- ProductDNA flow ---
 
   const product = {
-    '@context': 'https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
+    '@context': 'https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
     '@type': 'ProductDNA',
     schema_version: '0.2.0',
     id: buildProductId(now.getUTCFullYear()),
@@ -151,7 +151,7 @@ export async function runLabSimulation(baseUrl = `http://localhost:${config.port
   timeline.push({ label: 'ProductDNA registered', id: productCreated.id, createdAt: productCreated.created_at });
 
   const productOffer = {
-    '@context': 'https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
+    '@context': 'https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
     '@type': 'Offer',
     schema_version: '0.2.0',
     id: buildId('OFR-PRD'),
@@ -176,7 +176,7 @@ export async function runLabSimulation(baseUrl = `http://localhost:${config.port
   timeline.push({ label: 'Product offer published', id: productOfferCreated.id, createdAt: productOfferCreated.created_at });
 
   const productMatch = {
-    '@context': 'https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
+    '@context': 'https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
     '@type': 'Match',
     schema_version: '0.2.0',
     id: buildId('MCH-PRD'),
@@ -200,7 +200,7 @@ export async function runLabSimulation(baseUrl = `http://localhost:${config.port
   timeline.push({ label: 'Product match accepted', id: productMatchCreated.id, createdAt: productMatchCreated.created_at });
 
   const productTransfer = {
-    '@context': 'https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
+    '@context': 'https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
     '@type': 'Transfer',
     schema_version: '0.2.0',
     id: buildId('TRF-PRD'),
@@ -228,7 +228,7 @@ export async function runLabSimulation(baseUrl = `http://localhost:${config.port
   const packagingProductId = `PRD-DE-MUC-${now.getUTCFullYear()}-CRATE-${crypto.randomUUID().replace(/-/g, '').slice(0, 8).toUpperCase()}`;
 
   const packagingProduct = {
-    '@context': 'https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
+    '@context': 'https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
     '@type': 'ProductDNA',
     schema_version: '0.2.0',
     id: packagingProductId,
@@ -263,7 +263,7 @@ export async function runLabSimulation(baseUrl = `http://localhost:${config.port
   timeline.push({ label: 'Reusable-packaging product registered', id: packagingProductCreated.id, createdAt: packagingProductCreated.created_at });
 
   const packagingOffer = {
-    '@context': 'https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
+    '@context': 'https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
     '@type': 'Offer',
     schema_version: '0.2.0',
     id: buildId('OFR-PKG'),
@@ -288,7 +288,7 @@ export async function runLabSimulation(baseUrl = `http://localhost:${config.port
   timeline.push({ label: 'Reusable-packaging offer published', id: packagingOfferCreated.id, createdAt: packagingOfferCreated.created_at });
 
   const packagingMatch = {
-    '@context': 'https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
+    '@context': 'https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
     '@type': 'Match',
     schema_version: '0.2.0',
     id: buildId('MCH-PKG'),
@@ -312,7 +312,7 @@ export async function runLabSimulation(baseUrl = `http://localhost:${config.port
   timeline.push({ label: 'Reusable-packaging match accepted', id: packagingMatchCreated.id, createdAt: packagingMatchCreated.created_at });
 
   const packagingTransfer = {
-    '@context': 'https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
+    '@context': 'https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
     '@type': 'Transfer',
     schema_version: '0.2.0',
     id: buildId('TRF-PKG'),
@@ -350,7 +350,7 @@ export async function runLabSimulation(baseUrl = `http://localhost:${config.port
   const municipalProductId = `PRD-DE-MUC-${now.getUTCFullYear()}-DEPOT-${crypto.randomUUID().replace(/-/g, '').slice(0, 8).toUpperCase()}`;
 
   const municipalProduct = {
-    '@context': 'https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
+    '@context': 'https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
     '@type': 'ProductDNA',
     schema_version: '0.2.0',
     id: municipalProductId,
@@ -377,7 +377,7 @@ export async function runLabSimulation(baseUrl = `http://localhost:${config.port
   timeline.push({ label: 'Municipal-reuse product registered', id: municipalProductCreated.id, createdAt: municipalProductCreated.created_at });
 
   const municipalOffer = {
-    '@context': 'https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
+    '@context': 'https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
     '@type': 'Offer',
     schema_version: '0.2.0',
     id: buildId('OFR-MUN'),
@@ -402,7 +402,7 @@ export async function runLabSimulation(baseUrl = `http://localhost:${config.port
   timeline.push({ label: 'Municipal-reuse offer published', id: municipalOfferCreated.id, createdAt: municipalOfferCreated.created_at });
 
   const municipalMatch = {
-    '@context': 'https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
+    '@context': 'https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
     '@type': 'Match',
     schema_version: '0.2.0',
     id: buildId('MCH-MUN'),
@@ -426,7 +426,7 @@ export async function runLabSimulation(baseUrl = `http://localhost:${config.port
   timeline.push({ label: 'Municipal-reuse match accepted', id: municipalMatchCreated.id, createdAt: municipalMatchCreated.created_at });
 
   const municipalTransfer = {
-    '@context': 'https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
+    '@context': 'https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
     '@type': 'Transfer',
     schema_version: '0.2.0',
     id: buildId('TRF-MUN'),

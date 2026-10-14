@@ -26,7 +26,7 @@ describe('GET /api/v1/signals', () => {
     expect(response.headers['content-type']).toContain('application/ld+json');
 
     const payload = response.json();
-    expect(payload['@context']).toBe('https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld');
+    expect(payload['@context']).toBe('https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld');
     expect(payload['@type']).toBe('LoopSignalConfig');
     expect(payload.schema_version).toBe('0.2.0');
     expect(payload.node).toBe('lab-hub.loop');

@@ -85,13 +85,13 @@ describe('loop stream', () => {
     const previousKeepAlive = config.sseKeepAliveMs;
     const previousOrigins = config.allowedOrigins;
     config.sseKeepAliveMs = 0;
-    config.allowedOrigins = ['https://localloop.urbnia.com'];
+    config.allowedOrigins = ['https://loop.urbnia.com'];
 
     const reply = makeReply();
-    registerLoopStream(makeRequest({ origin: 'https://localloop.urbnia.com' }), reply as any);
+    registerLoopStream(makeRequest({ origin: 'https://loop.urbnia.com' }), reply as any);
 
     const headers = reply.getHeaders();
-    expect(headers['Access-Control-Allow-Origin']).toBe('https://localloop.urbnia.com');
+    expect(headers['Access-Control-Allow-Origin']).toBe('https://loop.urbnia.com');
     expect(headers['Access-Control-Allow-Credentials']).toBe('true');
     expect(headers.Vary).toBe('Origin');
     reply.close();

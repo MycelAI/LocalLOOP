@@ -10,13 +10,13 @@ import { pool } from '../src/db/pool';
 
 describe('federation registry helpers', () => {
   it('appends the API prefix when PUBLIC_BASE_URL is a site origin', () => {
-    expect(resolveNodeApiEndpoint('https://loop-api.urbnia.com')).toBe('https://loop-api.urbnia.com/api/v1');
-    expect(resolveNodeApiEndpoint('https://loop-api.urbnia.com/')).toBe('https://loop-api.urbnia.com/api/v1');
+    expect(resolveNodeApiEndpoint('https://loop.urbnia.com')).toBe('https://loop.urbnia.com/api/v1');
+    expect(resolveNodeApiEndpoint('https://loop.urbnia.com/')).toBe('https://loop.urbnia.com/api/v1');
   });
 
   it('preserves already-prefixed API roots', () => {
-    expect(resolveNodeApiEndpoint('https://loop-api.urbnia.com/api/v1')).toBe('https://loop-api.urbnia.com/api/v1');
-    expect(resolveNodeApiEndpoint('https://loop-api.urbnia.com/api/v1/')).toBe('https://loop-api.urbnia.com/api/v1');
+    expect(resolveNodeApiEndpoint('https://loop.urbnia.com/api/v1')).toBe('https://loop.urbnia.com/api/v1');
+    expect(resolveNodeApiEndpoint('https://loop.urbnia.com/api/v1/')).toBe('https://loop.urbnia.com/api/v1');
   });
 });
 
@@ -53,7 +53,7 @@ describe('Federation registry lab boundary (SPEC-COMPLIANCE)', () => {
     });
 
     const handshakePayload = (name: string) => ({
-      '@context': 'https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld',
+      '@context': 'https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld',
       '@type': 'NodeHandshake',
       schema_version: '0.1.1',
       node_id: testNodeId,

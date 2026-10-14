@@ -91,7 +91,7 @@ export async function registerFederationRoutes(app: FastifyInstance, deps: Feder
     setPublicShortCache(reply, 30);
     const local = deps.getLocalNode();
     return {
-      '@context': 'https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
+      '@context': 'https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
       '@type': 'NodeInfo',
       schema_version: '0.2.0',
       id: local.node_id,
@@ -153,7 +153,7 @@ export async function registerFederationRoutes(app: FastifyInstance, deps: Feder
 
     const local = deps.getLocalNode();
     reply.code(202).send({
-      '@context': 'https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
+      '@context': 'https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
       '@type': 'NodeHandshakeResponse',
       schema_version: '0.2.0',
       status: 'accepted',

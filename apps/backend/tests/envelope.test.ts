@@ -93,7 +93,7 @@ describe('Core-DP signed envelope', () => {
       sender,
       receiver,
       body_schema:
-        'https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
+        'https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
       body: buildBody(),
       created_at: '2026-07-17T00:00:00Z',
     });
@@ -119,7 +119,7 @@ describe('Core-DP signed envelope', () => {
       sender,
       receiver,
       body_schema:
-        'https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
+        'https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
       body: buildBody(),
       created_at: '2026-07-17T00:00:00Z',
       replay_window_seconds: 300,
@@ -149,7 +149,7 @@ describe('Core-DP signed envelope', () => {
       sender,
       receiver,
       body_schema:
-        'https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
+        'https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
       body: buildBody(),
       created_at: '2026-07-17T00:00:00Z',
     });
@@ -182,7 +182,7 @@ describe('Core-DP signed envelope', () => {
       sender,
       receiver,
       body_schema:
-        'https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
+        'https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
       body: buildBody(),
       created_at: '2026-07-17T00:00:00Z',
     });
@@ -223,7 +223,7 @@ describe('Core-DP signed envelope', () => {
       sender,
       receiver,
       body_schema:
-        'https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
+        'https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
       body: buildBody(),
       created_at: '2026-07-17T00:00:00Z',
     });
@@ -251,7 +251,7 @@ describe('Core-DP signed envelope', () => {
       sender,
       receiver,
       body_schema:
-        'https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
+        'https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
       body: buildBody(),
       created_at: '2026-07-17T00:00:00Z',
       replay_window_seconds: 300,
@@ -275,7 +275,7 @@ describe('Core-DP signed envelope', () => {
       sender,
       receiver,
       body_schema:
-        'https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
+        'https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
       body: buildBody(),
       created_at: '2026-07-17T00:00:00Z',
       replay_window_seconds: 300,
@@ -292,7 +292,7 @@ describe('Core-DP signed envelope', () => {
       sender,
       receiver,
       body_schema:
-        'https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
+        'https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
       body: buildBody(),
       created_at: '2026-07-17T00:00:00Z',
       replay_window_seconds: 300,
@@ -309,7 +309,7 @@ describe('Core-DP signed envelope', () => {
         sender,
         receiver,
         body_schema:
-          'https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
+          'https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
         body: buildBody(),
         replay_window_seconds: 5,
       }),
@@ -330,7 +330,7 @@ describe('Core-DP signed envelope', () => {
       sender,
       receiver,
       body_schema:
-        'https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
+        'https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
       body: buildBody(),
       created_at: '2026-07-17T00:00:00Z',
     });
@@ -365,7 +365,7 @@ describe('Core-DP signed envelope', () => {
       sender,
       receiver,
       body_schema:
-        'https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
+        'https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
       body: buildBody(),
       created_at: '2026-07-17T00:00:00Z',
     });
@@ -396,7 +396,7 @@ describe('Core-DP signed envelope', () => {
       sender,
       receiver,
       body_schema:
-        'https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
+        'https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
       body: buildBody(),
       created_at: '2026-07-17T00:00:00Z',
     });
@@ -439,7 +439,7 @@ describe('Core-DP signed envelope', () => {
       sender,
       receiver,
       body_schema:
-        'https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
+        'https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
       body: buildBody(),
       created_at: '2026-07-17T00:00:00Z',
     });
@@ -470,7 +470,7 @@ describe('Core-DP signed envelope', () => {
       sender,
       receiver,
       body_schema:
-        'https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
+        'https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
       body: buildBody(),
       created_at: '2026-07-17T00:00:00Z',
     });
@@ -492,7 +492,7 @@ describe('Core-DP signed envelope', () => {
       sender,
       receiver,
       body_schema:
-        'https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
+        'https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
       body: buildBody(),
       created_at: '2026-07-17T00:00:00Z',
     });
@@ -520,7 +520,7 @@ describe('Core-DP signed envelope', () => {
       sender,
       receiver,
       body_schema:
-        'https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
+        'https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
       body: buildBody(),
       created_at: '2026-07-17T00:00:00Z',
     });
@@ -547,7 +547,7 @@ describe('Core-DP signed envelope', () => {
         sender,
         receiver,
         body_schema:
-          'https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
+          'https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
         body: buildBody(),
         created_at: '2026-07-17T00:00:00',
       }),
@@ -561,7 +561,7 @@ describe('Core-DP signed envelope', () => {
         sender,
         receiver,
         body_schema:
-          'https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
+          'https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
         body: buildBody(),
         created_at: '2026-07-17T00:00:00Z',
         replay_window_seconds: 300,
@@ -585,7 +585,7 @@ describe('Core-DP signed envelope', () => {
         sender,
         receiver,
         body_schema:
-          'https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
+          'https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
         body: buildBody(),
         created_at: '2026-07-17T01:00:00Z',
         replay_window_seconds: 300,
@@ -606,7 +606,7 @@ describe('Core-DP signed envelope', () => {
         sender,
         receiver,
         body_schema:
-          'https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
+          'https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
         body: buildBody(),
         created_at: '2026-07-17T01:00:00Z',
         replay_window_seconds: 60,
@@ -634,7 +634,7 @@ describe('Core-DP signed envelope', () => {
       sender,
       receiver,
       body_schema:
-        'https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
+        'https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
       body: buildBody(),
       created_at: '2026-07-17T01:00:00Z',
       replay_window_seconds: 300,
@@ -658,7 +658,7 @@ describe('Core-DP signed envelope', () => {
       sender,
       receiver,
       body_schema:
-        'https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
+        'https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
       body: buildBody(),
       created_at: '2026-07-17T01:00:00Z',
       replay_window_seconds: 300,
@@ -673,7 +673,7 @@ describe('Core-DP signed envelope', () => {
       sender,
       receiver,
       body_schema:
-        'https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
+        'https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
       body: buildBody(),
     });
 

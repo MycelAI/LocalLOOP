@@ -8,7 +8,7 @@ import { registerFederationSchemas } from '../src/schemas/federationSchemas';
 import { registerFederationRoutes } from '../src/routes/federation';
 
 const handshakePayload = {
-  '@context': 'https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld',
+  '@context': 'https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld',
   '@type': 'NodeHandshake',
   schema_version: '0.1.1',
   node_id: 'munich.loop',
@@ -21,7 +21,7 @@ const handshakePayload = {
 const localNode = {
   node_id: 'lab-hub.loop',
   name: 'localLOOP Lab Hub',
-  endpoint: 'https://loop-api.urbnia.com',
+  endpoint: 'https://loop.urbnia.com/api/v1',
   capabilities: ['lab-relay'],
   last_seen: '2025-12-20T10:00:00Z',
   lab_only: true as const,

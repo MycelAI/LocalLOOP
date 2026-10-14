@@ -42,7 +42,7 @@ const validateHandshakeResponse = ajv.compile(
 const validateFederateAccepted = ajv.compile(federateAcceptedSchema);
 
 const handshakePayload = {
-  '@context': 'https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld',
+  '@context': 'https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld',
   '@type': 'NodeHandshake',
   schema_version: '0.1.1',
   node_id: 'munich.loop',
@@ -55,14 +55,14 @@ const handshakePayload = {
 const stubLocalNode = {
   node_id: 'lab-hub.loop',
   name: 'localLOOP Lab Hub',
-  endpoint: 'https://loop-api.urbnia.com',
+  endpoint: 'https://loop.urbnia.com/api/v1',
   capabilities: ['lab-relay'],
   last_seen: '2025-12-20T10:00:00Z',
   lab_only: true as const,
 };
 
 const validMaterialDoc = {
-  '@context': 'https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld',
+  '@context': 'https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld',
   '@type': 'MaterialDNA',
   schema_version: '0.1.1',
   id: 'MAT-DE-MUC-2025-PLASTIC-B847F3',
@@ -74,7 +74,7 @@ const validMaterialDoc = {
 };
 
 const validProductDoc = {
-  '@context': 'https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
+  '@context': 'https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
   '@type': 'ProductDNA',
   schema_version: '0.2.0',
   id: 'PRD-DE-MUC-2025-DESK-F4A7B2',
@@ -88,7 +88,7 @@ const validProductDoc = {
 };
 
 const federateAnnouncementPayload = {
-  '@context': 'https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
+  '@context': 'https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
   '@type': 'MaterialAnnouncement',
   material: 'MAT-DE-MUC-2025-FOOD-B847F3',
   origin: 'munich.loop',
@@ -96,7 +96,7 @@ const federateAnnouncementPayload = {
 };
 
 const federateOfferPayload = {
-  '@context': 'https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
+  '@context': 'https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
   '@type': 'MaterialOffer',
   material: 'MAT-DE-MUC-2025-FOOD-B847F3',
   from: 'vienna.loop',
@@ -213,7 +213,7 @@ describe('canonical schema conformance of protocol responses', () => {
       method: 'POST',
       url: '/api/v1/transaction',
       payload: {
-        '@context': 'https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
+        '@context': 'https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
         '@type': 'MaterialTransaction',
         schema_version: '0.2.0',
         id: 'TXN-2026-07-19-777',

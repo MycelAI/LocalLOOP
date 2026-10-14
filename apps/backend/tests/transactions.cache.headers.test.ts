@@ -8,7 +8,7 @@ import { registerLoopSchemas } from '../src/schemas/loopSchemas';
 import { registerTransactionRoutes } from '../src/routes/transactions';
 
 const materialTransactionPayload = {
-  '@context': 'https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
+  '@context': 'https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
   '@type': 'MaterialTransaction',
   schema_version: '0.2.0',
   id: 'TXN-2026-07-19-001',

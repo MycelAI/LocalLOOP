@@ -15,7 +15,7 @@ COMPLETED
 - P3 backlog: 11 historical `localloop.github.io` path refs across 4 loop-protocol
   audit files (cycle 0029 counted 12 including CHANGELOG historical note)
 - On-disk canonical docs hub checkout: `localloop-site` (not `localloop.github.io`)
-- Live URLs (`localloop.urbnia.com`) unchanged — path refs only
+- Live URLs (the then-current site hostname) unchanged — path refs only
 
 ## Selected item
 Replace retired `localloop.github.io` repo path prefixes with `localloop-site` in

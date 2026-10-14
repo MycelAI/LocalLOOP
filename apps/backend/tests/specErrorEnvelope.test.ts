@@ -35,7 +35,7 @@ describe('specErrorCodeForStatus', () => {
 });
 
 const offerPayload = {
-  '@context': 'https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld',
+  '@context': 'https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld',
   '@type': 'Offer',
   schema_version: '0.1.1',
   id: 'OFR-2F7A6B9C',
@@ -111,7 +111,7 @@ describe('§8.3 envelope on legacy lab routes', () => {
       method: 'POST',
       url: '/api/v1/material',
       payload: {
-        '@context': 'https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld',
+        '@context': 'https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld',
         '@type': 'MaterialDNA',
         schema_version: '0.1.1',
         id: 'MAT-DE-MUC-2025-PLASTIC-B847F3',

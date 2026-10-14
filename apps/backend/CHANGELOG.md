@@ -7,6 +7,33 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.7.0] - 2026-10-14
+
+### Changed
+- **BREAKING: protocol identifiers on `loop.urbnia.com`** (loop-protocol
+  0.6.0). The synced schemas only accept `@context` values under
+  `https://loop.urbnia.com/projects/loop-protocol/contexts/`; payloads that
+  still name `https://localloop.urbnia.com/...` contexts are rejected with
+  400. Responses, the federation handshake, node info, signals and
+  transactions emit the new context and schema IRIs, and `/api/openapi.json`
+  references the new schema `$id`s.
+- `ALLOWED_ORIGINS` defaults to `https://loop.urbnia.com` only; the former
+  site origin (which only redirects and serves no pages) is no longer allowed.
+- Lab seed and simulation scripts use the new context IRIs; the bare-metal
+  `deploy/nginx.conf` example serves the API under `loop.urbnia.com/api/`.
+- `scripts/check-domains.sh` rejects the former hostnames outside the domain
+  policy and changelog history.
+
+### Migration
+- Clients and federation peers: send
+  `https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld`
+  (or `loop-v0.1.1.jsonld`) as `@context`.
+- Deployments with `ALLOWED_ORIGINS` / `AUTH_TRUSTED_ORIGINS` set explicitly
+  should drop `https://localloop.urbnia.com`.
+- Records stored before this release keep the context IRIs they were
+  registered with: their payloads are covered by append-only evidence hashes
+  (`loop_evidence.payload_hash_sha256`) and are intentionally not rewritten.
+
 ## [0.6.6] - 2026-10-14
 
 ### Added
@@ -535,7 +562,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Lab demo scripts (seed + simulate + one-command runner).
 - Privacy notice endpoint and in-memory metrics snapshot.
 
-[Unreleased]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.6.6...HEAD
+[Unreleased]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.7.0...HEAD
+[0.7.0]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.6.6...backend/v0.7.0
 [0.6.6]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.6.5...backend/v0.6.6
 [0.6.5]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.6.4...backend/v0.6.5
 [0.6.4]: https://github.com/local-loop-io/localloop-backend/compare/v0.6.3...v0.6.4

@@ -4,7 +4,7 @@
 import { afterEach, describe, expect, it } from 'bun:test';
 
 const originalOrigins = process.env.ALLOWED_ORIGINS;
-const ALLOWED_ORIGIN = 'https://localloop.urbnia.com';
+const ALLOWED_ORIGIN = 'https://loop.urbnia.com';
 
 const resetEnv = () => {
   if (originalOrigins === undefined) {

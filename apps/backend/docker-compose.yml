@@ -41,7 +41,7 @@ services:
       - "127.0.0.1:8088:8088"
     # No public Traefik router: https://loop.urbnia.com/api/* reaches this
     # container through the site's nginx (apps/site/nginx.conf) over the shared
-    # `proxy` network, as localloop-backend-api-1:8088. loop-api.urbnia.com is
+    # `proxy` network, as localloop-backend-api-1:8088. The former API hostname is
     # redirected there by the site stack's Traefik labels.
     labels:
       - "traefik.enable=false"

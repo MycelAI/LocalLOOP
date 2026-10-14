@@ -63,7 +63,7 @@ describe('Core-DP append-only evidence log', () => {
     const id = `TXN-EVIDENCE-${suffix()}`;
     createdTransactions.push(id);
     const payload = {
-      '@context': 'https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
+      '@context': 'https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
       '@type': 'MaterialTransaction',
       schema_version: '0.2.0',
       id,

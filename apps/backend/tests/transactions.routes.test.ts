@@ -11,7 +11,7 @@ import { transactionIdentity } from '../src/db/loop';
 import { pool } from '../src/db/pool';
 
 const materialTransactionPayload = {
-  '@context': 'https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
+  '@context': 'https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
   '@type': 'MaterialTransaction',
   schema_version: '0.2.0',
   id: 'TXN-2026-07-19-001',
@@ -27,7 +27,7 @@ const materialTransactionPayload = {
 };
 
 const settlementPayload = {
-  '@context': 'https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
+  '@context': 'https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
   '@type': 'Settlement',
   schema_version: '0.2.0',
   transaction_id: 'TXN-2026-07-19-002',

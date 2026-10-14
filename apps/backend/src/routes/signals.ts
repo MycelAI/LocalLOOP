@@ -8,7 +8,7 @@ import { getLoopSignalConfig } from '../db/loop';
 import { sendSpecError, specErrorResponseSchema } from '../specErrors';
 import { loopContentType } from '../protocol';
 
-export const LOOP_V0_2_CONTEXT = 'https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld';
+export const LOOP_V0_2_CONTEXT = 'https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld';
 
 type SignalsDeps = {
   getLoopSignalConfig: typeof getLoopSignalConfig;
