@@ -1,0 +1,91 @@
+# SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+# SPDX-License-Identifier: MIT
+name: Bug report
+description: Something in the backend, site, protocol or tooling does not work as documented.
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a problem. localLOOP is an early-stage **lab demo only**; there are no public pilots or deployments.
+
+        **Security vulnerabilities must not be reported here.** Email dev@mycel-ai.de privately instead (see SECURITY.md).
+  - type: dropdown
+    id: tree
+    attributes:
+      label: Affected tree
+      description: Which part of the monorepo is affected?
+      multiple: true
+      options:
+        - backend (apps/backend)
+        - site (apps/site)
+        - protocol (protocol/)
+        - org-profile (ops/org-profile)
+        - ops / tooling (scripts/, .github/, ops/ledger)
+        - Not sure
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version or commit
+      description: Release version from the tree's package.json or CHANGELOG (for example backend 0.6.5), or the commit SHA.
+      placeholder: "backend 0.6.5 / 4023d65"
+    validations:
+      required: true
+  - type: input
+    id: location
+    attributes:
+      label: URL, endpoint or file
+      description: Where does it happen? For example a page on https://loop.urbnia.com, an API route under /api/, or a file path.
+      placeholder: "https://loop.urbnia.com/api/v1/node/info"
+    validations:
+      required: false
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Minimal steps, commands or requests. Do not include secrets, tokens or personal data.
+      placeholder: |
+        1. Run `...`
+        2. Send `...`
+        3. See error
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behaviour
+      description: What should have happened? Link the spec section, schema or doc if relevant.
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behaviour
+      description: What happened instead? Paste relevant log output (it is rendered as code).
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Where did you run it?
+      placeholder: |
+        - Live lab site / local dev / container image
+        - OS:
+        - Bun / Node.js / npm versions:
+        - Browser (for site issues):
+    validations:
+      required: false
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: This is not a security vulnerability (those go to dev@mycel-ai.de).
+          required: true
+        - label: I searched existing issues for duplicates.
+          required: false

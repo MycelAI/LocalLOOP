@@ -1,0 +1,54 @@
+# SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+# SPDX-License-Identifier: MIT
+name: Feature or change request
+description: Suggest a new capability or a change to the backend, site or tooling.
+title: "[Change]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form for changes to the implementation, site or tooling. Changes to the **LOOP protocol** (spec, schemas, contexts, API contract) use the *Protocol change proposal* form instead.
+
+        localLOOP is a **lab demo only**; requests must not depend on pilots, production deployments or compliance claims.
+  - type: dropdown
+    id: tree
+    attributes:
+      label: Affected tree
+      multiple: true
+      options:
+        - backend (apps/backend)
+        - site (apps/site)
+        - protocol (protocol/)
+        - org-profile (ops/org-profile)
+        - ops / tooling (scripts/, .github/, ops/ledger)
+        - Not sure
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or motivation
+      description: What problem does this solve, and for whom?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change
+      description: Describe the change you would like. Include API shapes, UI sketches or examples if useful.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+    validations:
+      required: false
+  - type: textarea
+    id: impact
+    attributes:
+      label: Impact
+      description: Compatibility, security/privacy, data or documentation impact, if any.
+    validations:
+      required: false

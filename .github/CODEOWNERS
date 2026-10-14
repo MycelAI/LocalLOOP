@@ -1,5 +1,16 @@
-# CODEOWNERS for localloop.urbnia.com
-# These owners will be requested for review when changes are made
+# CODEOWNERS for the localLOOP monorepo (MycelAI/LocalLOOP)
+# These owners are requested for review on pull requests that touch the paths.
+# Ownership and maintainer roles: protocol/docs/governance/GOVERNANCE.md
+# (protocol, backend and docs/site maintainer roles are currently unassigned,
+# so the project steward owns every path).
 
 # Default owner for everything
 * @alpha912
+
+# Per-tree owners (listed explicitly so they can be reassigned per area)
+/apps/backend/    @alpha912
+/apps/site/       @alpha912
+/protocol/        @alpha912
+/ops/             @alpha912
+/.github/         @alpha912
+/scripts/         @alpha912

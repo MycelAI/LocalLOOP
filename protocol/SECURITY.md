@@ -4,6 +4,8 @@
 
 The LOOP team takes security seriously. We appreciate your efforts to responsibly disclose your findings.
 
+LOOP is an early-stage (low TRL) protocol with a lab demo only; there are no public pilots or deployments. This policy covers the LOOP specification, schemas, JSON-LD contexts and `openapi.json`, as well as the localLOOP lab services at `https://loop.urbnia.com` and `https://loop.urbnia.com/api/`.
+
 ### Where to Report
 
 **DO NOT** create public GitHub issues for security vulnerabilities.
@@ -26,7 +28,15 @@ Your report should include:
 - **Status Update**: Within 5 business days
 - **Resolution Target**: 30-90 days depending on severity
 
+These targets come from a single maintainer and are best effort. We follow coordinated disclosure: please give us a reasonable chance to fix an issue before publishing details, and we will agree on a disclosure date with you.
+
+### Supported Versions
+
+Only the latest protocol release (0.5.2) and the lab services at `https://loop.urbnia.com` receive security fixes. The archived `github.com/local-loop-io/*` repositories are read-only and do not receive fixes; if an issue there also affects the current protocol, report it as described above.
+
 ## 🛡️ Security Considerations
+
+The requirements below describe the target security posture for LOOP node operators. They are not a statement that the lab reference backend meets all of them; its implementation status is tracked in `apps/backend/docs/SPEC-COMPLIANCE.md` in the localLOOP repository.
 
 ### Node Security
 
@@ -127,7 +137,7 @@ const corsOptions = {
 
 ## 🚨 Known Security Issues
 
-### Version 0.1.x
+### Protocol 0.5.x
 | Issue | Severity | Status | Mitigation |
 |-------|----------|---------|------------|
 | None recorded | - | - | - |
@@ -160,7 +170,7 @@ const corsOptions = {
 
 We thank the following security researchers for responsibly disclosing vulnerabilities:
 
-- **[Your Name Here]** - [Description] (Date)
+- None recorded yet. With your permission, we will credit you here and in the release notes.
 
 ## 📚 Security Resources
 
@@ -187,7 +197,7 @@ We thank the following security researchers for responsibly disclosing vulnerabi
 
 ---
 
-*Last Updated: December 2025*  
-*Next Review: March 2026*
+*Last Updated: 2026-10-14*  
+*Next Review: 2027-04-14*
 
 <!-- agent-cycle-039: security doc anchor -->

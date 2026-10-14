@@ -1,0 +1,82 @@
+# SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+# SPDX-License-Identifier: MIT
+name: Protocol change proposal
+description: Propose a change to the LOOP specification, schemas, JSON-LD contexts or API contract (leads to an RFC).
+title: "[Protocol]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Protocol changes are decided through an RFC. Use this issue to describe the idea and gather early feedback; the decision itself is made on an RFC pull request:
+
+        1. Copy `protocol/rfcs/0000-template.md` to `protocol/rfcs/NNNN-short-title.md` (next free number).
+        2. Fill in every section, including `Status`, and open a pull request.
+        3. Review follows `protocol/docs/governance/GOVERNANCE.md` §2 (states `Draft`, `Review`, `Accepted`, `Rejected`, `Superseded`, `Withdrawn`; at least 5 calendar days of review, 48 hours for a documented urgent security/privacy response).
+
+        See `protocol/rfcs/README.md` for existing RFCs. Security vulnerabilities in the protocol go to dev@mycel-ai.de, not here.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Protocol area
+      multiple: true
+      options:
+        - Specification text (SPECIFICATION.md)
+        - JSON Schemas (protocol/schemas)
+        - JSON-LD contexts (protocol/contexts)
+        - API contract (protocol/openapi.json)
+        - Profiles (Core-DP / battery / packaging / waste-shipment)
+        - Federation / node interoperability
+        - Governance or RFC process
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Protocol version
+      description: The protocol release or spec section this applies to.
+      placeholder: "0.5.2, SPECIFICATION.md §8.2"
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem statement
+      description: What is missing, ambiguous or wrong today?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change
+      description: The change you propose, with example payloads or schema fragments where possible.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+    validations:
+      required: false
+  - type: textarea
+    id: compatibility
+    attributes:
+      label: Compatibility and migration
+      description: Is this breaking? Which schema versions, contexts or published identifiers are affected, and how would existing implementations migrate?
+    validations:
+      required: true
+  - type: textarea
+    id: security
+    attributes:
+      label: Security and privacy impact
+      description: RFCs must state security/privacy impact explicitly. Write "None expected" with a reason if applicable.
+    validations:
+      required: true
+  - type: checkboxes
+    id: rfc
+    attributes:
+      label: RFC
+      options:
+        - label: I am willing to draft or help draft the RFC.
+          required: false

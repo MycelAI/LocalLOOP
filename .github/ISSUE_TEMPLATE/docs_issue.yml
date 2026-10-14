@@ -1,0 +1,39 @@
+# SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+# SPDX-License-Identifier: MIT
+name: Documentation issue
+description: Report incorrect, outdated, unclear or missing documentation, including site pages and READMEs.
+title: "[Docs]: "
+labels: ["documentation"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping keep the docs accurate. If a page overstates maturity (pilots, deployments, compliance), please report it here as well; localLOOP is a **lab demo only**.
+  - type: input
+    id: location
+    attributes:
+      label: Page or file
+      description: URL on https://loop.urbnia.com or a repository path. Site pages under /projects/loop-protocol/ are mirrored from protocol/.
+      placeholder: "https://loop.urbnia.com/docs/security/ or protocol/SPECIFICATION.md"
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Kind of problem
+      options:
+        - Incorrect or outdated
+        - Unclear or confusing
+        - Missing
+        - Broken link or rendering
+        - Overstated claim (maturity, pilots, compliance)
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What is wrong, and what should it say instead? Quote the current text if possible.
+    validations:
+      required: true

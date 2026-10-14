@@ -1,23 +1,39 @@
 # Security Policy
 
-## Reporting a Vulnerability
+The reporting process, response targets, supported versions and scope for all
+of localLOOP are in the [root security policy](../../SECURITY.md).
+
+## Reporting a vulnerability
 
 Please report security issues by emailing **dev@mycel-ai.de** (GitHub: @alpha912).
 Do not open public issues for security-sensitive reports.
 
 ## Scope
 
-This repository contains the localLOOP backend API. All dependencies and server logic
-are in scope.
+This tree contains the localLOOP backend API (lab demo only), served at
+`https://loop.urbnia.com/api/`. Its code, configuration, container setup and
+dependencies are in scope.
 
-## Response Timeline
+## Response timeline
 
-- Initial response: within 72 hours
-- Status update: within 7 business days
+- Initial response: within 48 hours
+- Status update: within 5 business days
 
-## Secure Deployment Notes
-- Run behind TLS (reverse proxy).
-- Keep `ALLOWED_ORIGINS` restricted to the GitHub Pages domain.
-- Store the SQLite database outside the web root.
+## Secure deployment notes
 
-*Last Updated: December 2025*
+- Keep the API off the public internet. Compose publishes it only on
+  `127.0.0.1:8088`, and the site's nginx proxies `/api/*` to it over the
+  shared proxy network, behind TLS terminated at Traefik.
+- Keep `ALLOWED_ORIGINS` limited to the site origin(s), which by default are
+  `https://loop.urbnia.com` and `https://localloop.urbnia.com`.
+- Run with `NODE_ENV=production`. The config then refuses missing or weak
+  secrets (`DATABASE_URL` password, `STORAGE_SECRET_KEY`, `BETTER_AUTH_SECRET`
+  and `API_KEY` when enabled) and a `REDIS_URL` without a password.
+- PostgreSQL, Valkey and SeaweedFS listen on loopback ports only. Keep their
+  data directories (`data/`) and nightly dumps (`backups/`) out of version
+  control and readable only by the service owner.
+- Keep `.env` and `.env.docker` git-ignored and never commit them.
+- Never run the test suite against the production database. See the root
+  [CONTRIBUTING.md](../../CONTRIBUTING.md#backend-tests-need-a-scratch-database).
+
+*Last reviewed: 2026-10-14*

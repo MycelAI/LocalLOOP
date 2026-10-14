@@ -1,71 +1,88 @@
 # Contributing to LOOP
 
-Thank you for your interest in contributing to LOOP! We're building this together as a community.
+Thank you for your interest in the LOOP protocol. LOOP is early-stage (low
+TRL) and a lab demo only. There are no public pilots or deployments, and
+contributions must not suggest otherwise.
 
-## 🤝 Code of Conduct
+Please read the [Code of Conduct](CODE_OF_CONDUCT.md) before contributing.
+Report security problems privately to **dev@mycel-ai.de**, never in a public
+issue (see the security policy at https://loop.urbnia.com/protocol/security/).
 
-Please read our [Code of Conduct](CODE_OF_CONDUCT.md) before contributing.
+## Where the protocol lives
 
-## 🐛 Reporting Issues
+The protocol is developed in the `protocol/` directory of the localLOOP
+monorepo (`MycelAI/LocalLOOP`). That repository is private, and contributions
+are by invitation. The former public repository
+`github.com/local-loop-io/loop-protocol` is archived and read-only. If you
+don't have access, send proposals, questions and bug reports to
+**dev@mycel-ai.de**.
 
-- Check existing issues first
-- Use issue templates
-- Provide clear reproduction steps
-- Include relevant logs/screenshots
+Monorepo contributors: the root `CONTRIBUTING.md` covers prerequisites, the
+`scripts/ci-local.sh` gate, branches and commit style, changelogs, releases
+and licensing. This file only adds protocol-specific guidance.
 
-## 💡 Proposing Changes
+## Setup and checks
 
-### For Specification Changes
-
-1. Open a discussion first
-2. Draft an RFC using the template
-3. Submit PR with RFC document
-4. Community review period (2 weeks)
-5. Implementation after approval
-
-### For Documentation
-
-1. Fork the repository
-2. Make changes in a feature branch
-3. Submit a pull request
-4. Respond to review feedback
-
-## 🔧 Development Setup
+Run these from `protocol/`. The tree uses npm and `package-lock.json`, and
+needs Node.js 24.19 or newer.
 
 ```bash
-# Clone the repository
-git clone https://github.com/local-loop-io/loop-protocol.git
-cd loop-protocol
-
-# Install dependencies (for schema validation)
-npm install
-
-# Run tests
-npm run test
+npm ci
+npm test                      # schema validation, schemas README, doc markers
+npm run check:domains         # only the allowed domains (DOMAIN-POLICY.md)
+npm run conformance:core-dp   # also :battery, :packaging, :waste-shipment
 ```
 
-## 📝 Style Guidelines
+## Proposing changes
 
-- Use clear, descriptive commit messages
-- Follow existing formatting
-- Add examples for new features
-- Update relevant documentation
+### Specification, schema and API changes (RFCs)
 
-## 🚀 Pull Request Process
+Use an RFC for protocol, schema, API surface, compatibility, interoperability,
+security/privacy or governance changes:
 
-1. Update CHANGELOG.md
-2. Update relevant schemas/examples
-3. Ensure all tests pass
-4. Request review from maintainers
+1. Copy `rfcs/0000-template.md` to `rfcs/NNNN-short-title.md`, using the next
+   free number.
+2. Fill in every section, including `Status`.
+3. Open a pull request with the RFC.
+4. Review follows the states and windows in `docs/governance/GOVERNANCE.md`
+   §2: `Draft`, `Review`, `Accepted`, `Rejected`, `Superseded`, `Withdrawn`,
+   and at least 5 calendar days of review (48 hours for a documented urgent
+   security/privacy response).
 
-## 📜 RFC Process
+The RFC guide and template are also published at
+https://loop.urbnia.com/governance/rfcs/ and
+https://loop.urbnia.com/governance/template/.
 
-See rfcs/0000-template.md for the RFC template.
+### Documentation and examples
 
-## ❓ Questions?
+Make changes on a feature branch and open a pull request. Add or update
+examples in `examples/` when behaviour changes, and keep the wording within
+the claims policy (`docs/governance/CLAIMS-AND-MATURITY.md`).
 
-- GitHub Discussions or email: dev@mycel-ai.de
+## Protocol-specific rules
 
-Thank you for helping build the future of circular economy! 🌍
+- `protocol/` is canonical. After changing schemas, contexts, docs, examples,
+  RFCs, profiles, `openapi.json`, `SPECIFICATION.md` or this tree's top-level
+  docs, re-sync the site mirror and the backend schema copies as described in
+  the root `CONTRIBUTING.md`.
+- Adding RFC 2119 clauses to `SPECIFICATION.md` requires re-pinning
+  `profiles/core-dp/requirements/spec-v0.2.0-normative-manifest.json`.
+- Published JSON-LD context URLs and schema `$id`s keep the
+  `localloop.urbnia.com` host. Changing them is a protocol versioning decision
+  that needs an RFC.
+- Some docs carry `agent-cycle-NNN` HTML comment markers that
+  `npm run check:markers` requires. Keep them when you edit those files.
+- Record changes under `## [Unreleased]` in `CHANGELOG.md`.
+
+## Licensing
+
+Contributions are licensed inbound = outbound under the licence of the files
+you change: specification prose is CC-BY-SA-4.0, while schemas, JSON-LD
+contexts, `openapi.json` and scripts are MIT. The LOOP and localLOOP names and
+logos are not openly licensed.
+
+## Questions
+
+Email **dev@mycel-ai.de**.
 
 <!-- agent-cycle-040: contributing anchor -->

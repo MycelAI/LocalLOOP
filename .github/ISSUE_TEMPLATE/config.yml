@@ -1,0 +1,13 @@
+# SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+# SPDX-License-Identifier: MIT
+blank_issues_enabled: false
+contact_links:
+  - name: Report a security vulnerability
+    url: https://github.com/MycelAI/LocalLOOP/blob/main/SECURITY.md
+    about: Do not open a public issue. Email dev@mycel-ai.de privately; SECURITY.md lists what to include.
+  - name: Report a Code of Conduct concern
+    url: https://github.com/MycelAI/LocalLOOP/blob/main/CODE_OF_CONDUCT.md#reporting-an-issue
+    about: Email dev@mycel-ai.de; reports are handled privately.
+  - name: Questions and general contact
+    url: https://github.com/MycelAI/LocalLOOP/blob/main/SUPPORT.md
+    about: There is no Discussions forum; email dev@mycel-ai.de for questions.
