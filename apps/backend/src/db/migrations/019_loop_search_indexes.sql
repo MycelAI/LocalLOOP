@@ -1,3 +1,6 @@
+-- SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+-- SPDX-License-Identifier: MIT
+
 -- 019_loop_search_indexes.sql
 -- Indexes for filters the Core-DP local search (src/db/loop.ts runEntitySearch) actually
 -- issues but 010/012 never covered:

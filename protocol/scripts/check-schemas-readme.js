@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+// SPDX-License-Identifier: MIT
+
 const fs = require('fs');
 const path = require('path');
 const readme = fs.readFileSync(path.join(__dirname, '..', 'schemas', 'README.md'), 'utf8');

@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+# SPDX-License-Identifier: LicenseRef-Mycel-Proprietary
+
 set -euo pipefail
 CYCLE="${1:?cycle}"
 TITLE="${2:?title}"

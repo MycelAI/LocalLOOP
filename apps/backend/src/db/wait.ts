@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+// SPDX-License-Identifier: MIT
+
 import { prisma } from './prisma';
 
 export async function waitForDatabase(attempts = 10, delayMs = 1000) {

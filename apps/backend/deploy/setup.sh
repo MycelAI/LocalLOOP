@@ -1,4 +1,7 @@
 #!/bin/bash
+# SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+# SPDX-License-Identifier: MIT
+
 # localLOOP Backend Deployment Setup Script
 # This script provisions the non-root user and sets up the deployment environment.
 # Run as root: sudo bash deploy/setup.sh

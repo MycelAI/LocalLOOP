@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+# SPDX-License-Identifier: LicenseRef-Mycel-Proprietary
+
 # Ship a backend agent cycle: push branch, PR, admin-merge, tag (immutable), optional deploy.
 set -euo pipefail
 CYCLE="${1:?cycle number e.g. 005}"

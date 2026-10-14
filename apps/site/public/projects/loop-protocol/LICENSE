@@ -1,13 +1,38 @@
-LOOP — Dual License
+LOOP protocol - Dual License
 
 Copyright (c) 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
 
-This repository uses a dual-license model:
+This tree uses a dual-license model:
 
-1. Code (schemas/, scripts/, examples/, CI config, package.json):
-   MIT License — see LICENSES/MIT.txt
+1. Code and machine-readable artefacts - MIT License, see LICENSES/MIT.txt:
+   - schemas/ (including schemas/README.md)
+   - examples/ (including examples/README.md)
+   - scripts/
+   - contexts/ (JSON-LD contexts)
+   - openapi.json
+   - profiles/: every file that is not Markdown (JSON schemas, requirement
+     manifests, conformance vectors, trust fixtures, EPCIS fixtures and the
+     conformance runner scripts)
+   - package.json, package-lock.json, .gitignore
+   - CI configuration
 
-2. Specification prose (SPECIFICATION.md, docs/, rfcs/):
-   Creative Commons Attribution-ShareAlike 4.0 International — see LICENSES/CC-BY-SA-4.0.txt
+2. Specification prose - Creative Commons Attribution-ShareAlike 4.0
+   International (CC-BY-SA-4.0), see LICENSES/CC-BY-SA-4.0.txt:
+   - SPECIFICATION.md
+   - docs/
+   - rfcs/
+   - profiles/: every Markdown file (*.md)
+   - the Markdown files at the top of this tree: README.md, CHANGELOG.md,
+     CONTRIBUTING.md, SECURITY.md, DOMAIN-POLICY.md, PROJECT_STRUCTURE.md
 
-Full text of each license is in the LICENSES/ directory.
+CODE_OF_CONDUCT.md is adapted from the Contributor Covenant, version 3.0
+(https://www.contributor-covenant.org/version/3/0/), which is stewarded by the
+Organization for Ethical Source and licensed under CC BY-SA 4.0.
+
+The names "localLOOP" and "LOOP" are brand assets reserved by the copyright
+holders and are not licensed under either licence above; they may be used to
+refer to this specification. See
+LICENSES/LicenseRef-Mycel-Brand.txt.
+
+Full text of each licence is in the LICENSES/ directory. In the LocalLOOP
+monorepo, per-file SPDX information is recorded in the root REUSE.toml.

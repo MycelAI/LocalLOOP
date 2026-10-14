@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+# SPDX-License-Identifier: MIT
+
 set -euo pipefail
 
 REPOS_INPUT="${DOCS_REPOS:-loop-protocol}"
@@ -121,6 +124,8 @@ for repo in "${REPOS[@]}"; do
   sync_file "$SRC/SECURITY.md" "$DEST/SECURITY.md"
   sync_file "$SRC/DOMAIN-POLICY.md" "$DEST/DOMAIN-POLICY.md"
   sync_file "$SRC/LICENSE" "$DEST/LICENSE"
+  # LICENSE points at LICENSES/ for the full texts, so ship them together.
+  sync_dir "$SRC/LICENSES" "$DEST/LICENSES"
   sync_file "$SRC/PROJECT_STRUCTURE.md" "$DEST/PROJECT_STRUCTURE.md"
   sync_file "$SRC/openapi.json" "$DEST/openapi.json"
 

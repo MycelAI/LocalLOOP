@@ -1,3 +1,6 @@
+-- SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+-- SPDX-License-Identifier: MIT
+
 CREATE TABLE IF NOT EXISTS loop_materials (
   id TEXT PRIMARY KEY,
   category TEXT NOT NULL,

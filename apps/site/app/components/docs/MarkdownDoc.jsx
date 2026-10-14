@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+// SPDX-License-Identifier: MIT
+
 import fs from 'node:fs'
 import path from 'node:path'
 import MarkdownRenderer from './MarkdownRenderer'

@@ -1,3 +1,6 @@
+-- SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+-- SPDX-License-Identifier: MIT
+
 ALTER TABLE interests
   ADD COLUMN IF NOT EXISTS is_demo BOOLEAN NOT NULL DEFAULT FALSE;
 

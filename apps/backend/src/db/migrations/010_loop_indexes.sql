@@ -1,3 +1,6 @@
+-- SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+-- SPDX-License-Identifier: MIT
+
 -- Performance indexes for loop entity read endpoints
 CREATE INDEX IF NOT EXISTS idx_loop_materials_created_at ON loop_materials (created_at DESC);
 CREATE INDEX IF NOT EXISTS idx_loop_materials_category ON loop_materials (category);

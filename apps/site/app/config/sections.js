@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+// SPDX-License-Identifier: MIT
+
 /**
  * Unified sidebar configuration for all sections
  * This replaces 6 separate sidebar components with a single config-driven approach

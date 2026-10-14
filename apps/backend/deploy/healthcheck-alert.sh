@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+# SPDX-License-Identifier: MIT
+
 # Basic health-check alerting: polls the local API's /health endpoint and
 # reports failure two ways — (1) a non-zero exit, so the systemd service
 # that runs this script is marked failed and shows up in `systemctl

@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+// SPDX-License-Identifier: MIT
+
 import { createPublicKey, randomBytes, sign as cryptoSign, verify as cryptoVerify, type KeyLike } from 'node:crypto';
 import { canonicalJsonStringify, sha256Hex } from './crypto/canonical';
 import { CoreDpError, newCorrelationId, type CoreDpErrorCode } from './errors';

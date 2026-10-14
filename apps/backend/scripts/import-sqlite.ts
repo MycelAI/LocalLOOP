@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+// SPDX-License-Identifier: MIT
+
 import { Database } from 'bun:sqlite';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';

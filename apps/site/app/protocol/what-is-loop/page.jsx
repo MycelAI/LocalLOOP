@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+// SPDX-License-Identifier: MIT
+
 import { Fragment } from 'react';
 import { LoopCostCalculator } from '@/app/components/LoopCostCalculator';
 import { JsonLd } from '@/app/components/JsonLd';

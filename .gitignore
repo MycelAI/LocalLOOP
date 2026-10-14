@@ -6,3 +6,6 @@ node_modules/
 !.env.*.example
 .DS_Store
 .claude/settings.local.json
+
+# Release artefacts (SBOMs) and generator caches
+/dist/

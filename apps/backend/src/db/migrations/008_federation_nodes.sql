@@ -1,3 +1,6 @@
+-- SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+-- SPDX-License-Identifier: MIT
+
 CREATE TABLE IF NOT EXISTS federation_nodes (
   node_id    TEXT PRIMARY KEY,
   name       TEXT NOT NULL,

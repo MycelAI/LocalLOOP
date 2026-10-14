@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+// SPDX-License-Identifier: MIT
+
 import { Prisma } from '@prisma/client';
 import { config } from '../config';
 import type { InterestInput } from '../validation';

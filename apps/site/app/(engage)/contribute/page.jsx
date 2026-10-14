@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+// SPDX-License-Identifier: MIT
+
 import MarkdownDoc from '@/app/components/docs/MarkdownDoc'
 import { createMetadata } from '@/app/config/metadata'
 
@@ -29,8 +32,8 @@ export default function ContributePage() {
             <div>Shared expectations for collaboration</div>
           </div>
           <div>
-            <span>License</span>
-            <div>MIT licensed, open collaboration</div>
+            <span><a href="/docs/licenses/">Licences</a></span>
+            <div>Code MIT, specification prose CC BY-SA 4.0, brand assets reserved</div>
           </div>
         </div>
       </div>

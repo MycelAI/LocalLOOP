@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+// SPDX-License-Identifier: MIT
+
 import type { FastifyReply } from 'fastify';
 
 /** Lab node-info / signals are stable enough for a short public cache. */

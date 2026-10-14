@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+// SPDX-License-Identifier: MIT
+
 (() => {
   const NAME = 'demo-city';
   window.LOCALLOOP_FEATURES = window.LOCALLOOP_FEATURES || {};

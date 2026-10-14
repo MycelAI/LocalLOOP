@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+// SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+// SPDX-License-Identifier: MIT
+
 // Generates an nginx `map` of per-page Content-Security-Policy script hashes
 // from the static export in out/. Next.js's static export bootstraps each page
 // with a few inline <script> elements (the flight payload differs per page), so

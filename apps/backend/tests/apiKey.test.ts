@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+// SPDX-License-Identifier: MIT
+
 import { afterEach, describe, expect, it } from 'bun:test';
 import { requireApiKey } from '../src/security/apiKey';
 import { config } from '../src/config';

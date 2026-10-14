@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+// SPDX-License-Identifier: MIT
+
 import { createAliasMetadata } from '@/app/config/metadata';
 import { Redirect } from '@/app/components/Redirect';
 

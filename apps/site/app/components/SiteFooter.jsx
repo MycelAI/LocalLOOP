@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+// SPDX-License-Identifier: MIT
+
 export function SiteFooter() {
   return (
     <footer className="site-footer">
@@ -32,7 +35,9 @@ export function SiteFooter() {
           </a>
         </nav>
         <div className="footer-legal">
-          © 2025–2026 Mycel UG (haftungsbeschränkt). All rights reserved.
+          © 2025–2026 Alphin Tom / Mycel UG (haftungsbeschränkt). Code MIT ·
+          Specification CC BY-SA 4.0 · Brand assets reserved ·{' '}
+          <a href="/docs/licenses/">Licences</a>
         </div>
       </div>
     </footer>

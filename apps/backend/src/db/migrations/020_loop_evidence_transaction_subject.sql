@@ -1,3 +1,6 @@
+-- SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+-- SPDX-License-Identifier: MIT
+
 -- 020_loop_evidence_transaction_subject.sql
 -- Core-DP evidence-entry.schema.json (loop-protocol >= 0.5.2) allows `transaction` as a
 -- subject type, so POST /api/v1/transaction can write to the append-only evidence log

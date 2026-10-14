@@ -1,3 +1,6 @@
+-- SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+-- SPDX-License-Identifier: MIT
+
 -- 016_loop_evidence_status_updated.sql
 -- Additive: widens loop_evidence.event_type to accept 'status-updated', matching
 -- profiles/core-dp/schemas/evidence-entry.schema.json. Closes the gap where

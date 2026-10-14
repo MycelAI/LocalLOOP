@@ -1,0 +1,35 @@
+localLOOP
+Copyright (c) 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+
+Licensing terms: see LICENSE. Third-party components and their licences:
+see THIRD_PARTY_NOTICES.md. Licence texts: see LICENSES/.
+
+The names and marks "localLOOP" and "LOOP", the localLOOP logo, favicons and
+concept images are brand assets; no licence to them is granted (see
+LICENSES/LicenseRef-Mycel-Brand.txt).
+
+This product includes the following third-party material, which requires
+the attributions below.
+
+OpenStreetMap
+  The hero basemap (apps/site/public/assets/loop-basemap.webp) is derived
+  from OpenStreetMap. Map data (c) OpenStreetMap contributors, available
+  under the Open Database License 1.0 (https://opendatacommons.org/licenses/odbl/1-0/).
+  See https://www.openstreetmap.org/copyright.
+
+Fonts (SIL Open Font License 1.1, text in LICENSES/OFL-1.1.txt)
+  Fraunces - Copyright 2018 The Fraunces Project Authors
+    (https://github.com/undercasetype/Fraunces)
+  Space Grotesk - Copyright 2020 The Space Grotesk Project Authors
+    (https://github.com/floriankarsten/space-grotesk)
+  IBM Plex Mono - Copyright (c) 2017 IBM Corp. with Reserved Font Name "Plex"
+
+Phosphor Icons 2.1.2 (MIT, text in LICENSES/MIT.txt)
+  Copyright (c) 2020-2021 Phosphor Icons
+
+Contributor Covenant 3.0
+  The CODE_OF_CONDUCT.md files are adapted from the Contributor Covenant,
+  version 3.0, available at https://www.contributor-covenant.org/version/3/0/.
+  Contributor Covenant is stewarded by the Organization for Ethical Source
+  and licensed under CC BY-SA 4.0
+  (https://creativecommons.org/licenses/by-sa/4.0/).

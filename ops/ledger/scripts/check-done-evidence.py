@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+# SPDX-License-Identifier: LicenseRef-Mycel-Proprietary
+
 """Mechanical DONE gate: every LEDGER DONE cycle must have runtime reverify evidence.
 
 Fails unless reverify.txt proves runtime behavior via at least one of:

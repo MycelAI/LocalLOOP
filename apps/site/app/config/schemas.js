@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+// SPDX-License-Identifier: MIT
+
 export const schemas = [
   { slug: 'material-dna', file: 'projects/loop-protocol/schemas/material-dna.schema.json', title: 'MaterialDNA Schema' },
   { slug: 'product-dna', file: 'projects/loop-protocol/schemas/product-dna.schema.json', title: 'ProductDNA Schema' },

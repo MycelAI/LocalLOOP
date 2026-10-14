@@ -1,3 +1,6 @@
+-- SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+-- SPDX-License-Identifier: MIT
+
 -- 013_loop_evidence.sql
 -- Core-DP append-only evidence log, matching
 -- profiles/core-dp/schemas/evidence-entry.schema.json. Distinct from loop_events

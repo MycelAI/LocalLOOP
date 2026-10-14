@@ -1,0 +1,53 @@
+Mycel Brand Assets Notice (LicenseRef-Mycel-Brand)
+
+Copyright (c) 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+All rights reserved.
+
+1. Scope
+
+This notice applies to the files marked with the SPDX identifier
+"LicenseRef-Mycel-Brand", including the localLOOP logo, the site favicons and
+the localLOOP concept illustrations, and to the names and marks "localLOOP"
+and "LOOP" (together, the "Brand Assets"). The project's REUSE.toml
+and the LICENSE file at the root of the repository list the files concerned.
+
+2. No licence granted
+
+No licence or other right in the Brand Assets is granted, whether expressly,
+by implication, by estoppel or otherwise, except as stated in section 3. In
+particular, the open-source and open-content licences that apply to other
+parts of this project (such as MIT or CC-BY-SA-4.0) do not extend to the
+Brand Assets, even where a Brand Asset is distributed together with, or
+embedded in, material under those licences.
+
+3. Permitted reference
+
+You may use the names "localLOOP" and "LOOP" in a nominative or
+descriptive way to refer truthfully to this project, its specification or its
+software, for example to state that your work implements, uses, is
+compatible with, or is derived from it. Such use must not suggest that the
+copyright holders sponsor, endorse, certify or are affiliated with you or
+your work.
+
+Any other use of the Brand Assets, including using the logo, favicons or
+concept illustrations, or using the names as the name or mark of another
+product, service, organisation or domain, requires prior written permission
+from the copyright holders.
+
+4. Forks and redistribution
+
+If you redistribute or modify this project, you must remove or replace the
+Brand Assets unless you have permission to use them, and you must not present
+your version as the official localLOOP or LOOP project. The rest of the
+project remains available under its own licence terms.
+
+5. Earlier distributions
+
+This file does not limit rights already granted for copies distributed before
+2026-10-14 under other terms.
+
+6. Disclaimer
+
+The Brand Assets are provided "as is", without warranty of any kind.
+
+Contact: dev@mycel-ai.de

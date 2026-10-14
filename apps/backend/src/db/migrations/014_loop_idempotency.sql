@@ -1,3 +1,6 @@
+-- SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+-- SPDX-License-Identifier: MIT
+
 -- 014_loop_idempotency.sql
 -- REST-level idempotency for the Core-DP lifecycle write endpoints (material, product,
 -- offer, match, transfer). A client retrying a request after a dropped response supplies

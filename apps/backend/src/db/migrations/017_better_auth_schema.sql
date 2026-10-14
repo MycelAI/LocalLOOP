@@ -1,3 +1,6 @@
+-- SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+-- SPDX-License-Identifier: MIT
+
 -- 017_better_auth_schema.sql
 -- Provisions the better-auth (src/auth.ts) core schema: user, session, account,
 -- verification. Generated via better-auth's own `getMigrations().compileMigrations()`

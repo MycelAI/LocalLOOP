@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+// SPDX-License-Identifier: MIT
+
 import Script from 'next/script';
 import { JsonLd } from './components/JsonLd';
 import { RouteScripts } from './components/RouteScripts';

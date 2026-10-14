@@ -11,6 +11,8 @@ Use this checklist for any public artifact, protocol, backend, site, or coordina
 | Changelog and release notes | user-facing changes, limitations, upgrade notes, and corrections recorded | |
 | Compatibility and migrations | compatibility decision, migration/rollback path, and affected versions | |
 | Security and privacy | scoped review, secret handling, data/PII impact, and unresolved-risk decision | |
+| Licensing and legal material | `reuse lint` compliant; `node scripts/third-party-notices.mjs` rerun after dependency changes and `scripts/sync-legal.sh --check` clean (LICENSE, NOTICE, THIRD_PARTY_NOTICES.md and licence texts ship in the site's `/licenses/` and the backend image) | |
+| SBOM | CycloneDX SBOM from `scripts/release-sbom.sh <tree>` (written to `dist/sbom/`) attached to the release record | |
 | Accessibility | applicable accessibility checks, known limits, and remediation owner | |
 | Conformance and tests | applicable conformance, schema, unit/integration, and manual test results | |
 | Backup and restore drill | dated backup evidence and successful restore-drill evidence, or N/A rationale | |

@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+// SPDX-License-Identifier: MIT
+
 /**
  * Type shapes for the EU Digital Waste Shipment System (DIWASS), established under the
  * Waste Shipment Regulation (EU) 2024/1157 and Commission Implementing Regulation (EU)

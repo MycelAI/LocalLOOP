@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+# SPDX-License-Identifier: MIT
+
 # Pinned so the stack keeps its historical container/image names
 # (localloop-backend-*) now that it lives at apps/backend in the monorepo.
 name: localloop-backend

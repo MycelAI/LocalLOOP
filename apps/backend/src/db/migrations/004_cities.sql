@@ -1,3 +1,6 @@
+-- SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+-- SPDX-License-Identifier: MIT
+
 CREATE TABLE IF NOT EXISTS cities (
   id BIGSERIAL PRIMARY KEY,
   slug TEXT UNIQUE NOT NULL,

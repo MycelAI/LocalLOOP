@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+// SPDX-License-Identifier: MIT
+
 // This file assumes Prisma commands are run with Bun.
 import { defineConfig } from 'prisma/config';
 

@@ -1,0 +1,104 @@
+localLOOP monorepo - licensing terms
+
+Copyright (c) 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+
+This repository contains material under several licences. Each file's
+licence is stated either in an SPDX header inside the file
+(SPDX-FileCopyrightText / SPDX-License-Identifier) or, for files that cannot
+carry a header, in REUSE.toml at the repository root. REUSE.toml and those
+headers are the machine-readable source of truth (REUSE Specification 3.3);
+this file is the human-readable summary. Where this summary and a file's
+SPDX information differ, the SPDX information applies.
+
+Full licence texts are in LICENSES/. Attribution notices are in NOTICE, and
+third-party components are listed in THIRD_PARTY_NOTICES.md.
+
+1. MIT (default terms for first-party code and content, full text below)
+   - apps/backend/**   backend API: source, scripts, tests, deploy files,
+                       configuration and documentation
+   - apps/site/**      documentation hub: source, styles, scripts, tests,
+                       configuration, documentation and first-party images
+                       (for example the lab-demo-*.svg diagrams), except the
+                       third-party and brand files listed in sections 3-4
+   - ops/org-profile/** historical organisation profile
+   - scripts/**, .github/**, docs/** and files at the repository root,
+     except where sections 3-5 say otherwise
+   - protocol/ code and machine-readable artefacts: schemas/, examples/,
+     scripts/, contexts/*.jsonld, openapi.json, profiles/** except Markdown
+     (schemas, requirements, conformance vectors and runners, fixtures),
+     package.json, package-lock.json, .gitignore and CI configuration
+     (.github/workflows/protocol.yml)
+
+2. CC-BY-SA-4.0 (Creative Commons Attribution-ShareAlike 4.0 International)
+   - protocol/ prose: SPECIFICATION.md, docs/**, rfcs/**, the Markdown files
+     under profiles/**, and the Markdown files at the top of protocol/
+     (README.md, CHANGELOG.md, CONTRIBUTING.md, SECURITY.md,
+     DOMAIN-POLICY.md, PROJECT_STRUCTURE.md)
+   - the generated copy of protocol/ served by the site
+     (apps/site/public/projects/loop-protocol/**) follows the same split as
+     the files it copies
+   - every CODE_OF_CONDUCT.md: adapted from the Contributor Covenant,
+     version 3.0 (https://www.contributor-covenant.org/version/3/0/),
+     stewarded by the Organization for Ethical Source and licensed under
+     CC BY-SA 4.0
+
+3. LicenseRef-Mycel-Brand (all rights reserved; see
+   LICENSES/LicenseRef-Mycel-Brand.txt)
+   - the names and marks "localLOOP" and "LOOP"
+   - apps/site/public/assets/local-loop-logo.png
+   - apps/site/public/favicon.ico, apps/site/public/favicon.svg
+   - apps/site/public/assets/images/localloop-0*-16x9.webp (six concept
+     images)
+   - docs/assets/brand/** and docs/assets/screenshots/**
+   Nominative or descriptive use of the names to refer to the project is
+   permitted as described in that file. The MIT and CC-BY-SA-4.0 grants in
+   this repository do not cover brand assets.
+
+4. Third-party material (each under its own licence; see
+   THIRD_PARTY_NOTICES.md)
+   - apps/site/public/assets/fonts/**: Fraunces, Space Grotesk and IBM Plex
+     Mono, SIL Open Font License 1.1 (OFL-1.1)
+   - apps/site/public/assets/icons/phosphor/**: Phosphor Icons 2.1.2, MIT,
+     Copyright (c) 2020-2021 Phosphor Icons
+   - apps/site/public/assets/loop-basemap.webp: map image derived from
+     OpenStreetMap; map data (c) OpenStreetMap contributors, available under
+     the Open Database License (ODbL-1.0)
+   - npm dependencies are not committed; they are installed at build time
+     and keep their own licences (listed in THIRD_PARTY_NOTICES.md)
+
+5. LicenseRef-Mycel-Proprietary (internal records, no rights granted; see
+   LICENSES/LicenseRef-Mycel-Proprietary.txt)
+   - ops/ledger/**
+
+Per-tree LICENSE files (apps/backend/LICENSE, apps/site/LICENSE,
+protocol/LICENSE, ops/org-profile/LICENSE) restate the terms for each tree so
+that a tree remains correctly licensed when it is copied or shipped on its
+own.
+
+This repository is private. Access to it does not by itself grant any rights
+beyond the licences stated above, and planned future releases grant no
+rights until they are published.
+
+-------------------------------------------------------------------------------
+
+MIT License
+
+Copyright (c) 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

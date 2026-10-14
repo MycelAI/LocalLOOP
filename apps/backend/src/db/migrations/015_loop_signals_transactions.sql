@@ -1,3 +1,6 @@
+-- SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+-- SPDX-License-Identifier: MIT
+
 -- SPEC §6 / §8.1: LoopSignal configuration published by this node.
 -- Single-row table: a node publishes exactly one active signal configuration.
 CREATE TABLE IF NOT EXISTS loop_signal_config (

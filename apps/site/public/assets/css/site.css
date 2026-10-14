@@ -1,3 +1,8 @@
+/*
+ * SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+ * SPDX-License-Identifier: MIT
+ */
+
 :root {
   /* Typography */
   --font-sans: 'Space Grotesk', system-ui, sans-serif;
@@ -2066,6 +2071,17 @@ a.card h3:not(.card-title) {
   margin: 0;
   flex: 1 1 220px;
   text-align: right;
+}
+
+.footer-legal a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.footer-legal a:hover,
+.footer-legal a:focus-visible {
+  color: var(--accent);
 }
 
 @media (max-width: 900px) {

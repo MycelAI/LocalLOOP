@@ -19,3 +19,23 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+-------------------------------------------------------------------------------
+
+The MIT License above covers the first-party code and content of this tree.
+It does not cover the following files, which are under their own terms:
+
+- Brand assets, all rights reserved (LicenseRef-Mycel-Brand; text in
+  public/licenses/LICENSES/LicenseRef-Mycel-Brand.txt): the names and marks
+  "localLOOP" and "LOOP", public/assets/local-loop-logo.png,
+  public/favicon.ico, public/favicon.svg and the concept images
+  public/assets/images/localloop-0*-16x9.webp.
+- Third-party material (see public/licenses/THIRD_PARTY_NOTICES.md):
+  public/assets/fonts/** (SIL Open Font License 1.1),
+  public/assets/icons/phosphor/** (Phosphor Icons, MIT) and
+  public/assets/loop-basemap.webp (map data (c) OpenStreetMap contributors,
+  Open Database License 1.0).
+- public/projects/loop-protocol/**: a generated copy of the LOOP protocol
+  tree, under the terms in public/projects/loop-protocol/LICENSE (MIT for
+  code and machine-readable artefacts, CC-BY-SA-4.0 for specification prose).
+- CODE_OF_CONDUCT.md: adapted from the Contributor Covenant 3.0, CC BY-SA 4.0.

@@ -1,3 +1,6 @@
+-- SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+-- SPDX-License-Identifier: MIT
+
 -- 018_loop_idempotency_route_scope.sql
 -- Idempotency-Key cache rows are looked up by (key, route) (src/idempotency.ts), but
 -- 014 keyed the table on `key` alone and the INSERT used ON CONFLICT (key). Reusing one

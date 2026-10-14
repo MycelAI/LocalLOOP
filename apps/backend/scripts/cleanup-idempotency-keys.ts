@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+// SPDX-License-Identifier: MIT
+
 import { pool } from '../src/db/pool';
 import { IDEMPOTENCY_RETENTION_MS } from '../src/idempotency';
 

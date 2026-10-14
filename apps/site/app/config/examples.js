@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+// SPDX-License-Identifier: MIT
+
 export const examples = [
   { slug: 'material-registration', file: 'projects/loop-protocol/examples/01-material-registration.json', title: 'Material Registration' },
   { slug: 'offer', file: 'projects/loop-protocol/examples/06-offer.json', title: 'Offer' },

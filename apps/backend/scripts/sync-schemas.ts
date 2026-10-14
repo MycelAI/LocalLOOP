@@ -1,4 +1,7 @@
 #!/usr/bin/env bun
+// SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+// SPDX-License-Identifier: MIT
+
 // Copies canonical schemas from the monorepo's protocol/ tree into
 // src/schemas/, so the backend never hand-maintains a drifted duplicate.
 // `bun run sync:schemas` refreshes the copies; `bun run check:schemas` (used in

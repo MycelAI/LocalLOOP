@@ -1,3 +1,6 @@
+-- SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+-- SPDX-License-Identifier: MIT
+
 CREATE TABLE IF NOT EXISTS interests (
   id BIGSERIAL PRIMARY KEY,
   name TEXT NOT NULL,

@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+// SPDX-License-Identifier: MIT
+
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
@@ -412,6 +415,37 @@ test('no page loads fonts or icons from third-party origins', () => {
   assert.ok(!css.includes('fonts.googleapis.com'));
   assert.ok(fs.existsSync(path.join(process.cwd(), 'public', 'assets', 'css', 'fonts.css')));
   assert.ok(fs.existsSync(path.join(process.cwd(), 'public', 'assets', 'icons', 'phosphor', 'bold', 'Phosphor-Bold.woff2')));
+});
+
+test('licence terms and third-party notices are published with the site', () => {
+  // Fonts, icons and the OSM basemap are served publicly, so their licence
+  // texts and attributions ship in public/licenses (copied from the repository
+  // root by scripts/sync-legal.sh; `scripts/sync-legal.sh --check` guards drift).
+  const legalDir = path.join(process.cwd(), 'public', 'licenses');
+  for (const file of [
+    'LICENSE.txt',
+    'NOTICE.txt',
+    'THIRD_PARTY_NOTICES.md',
+    path.join('LICENSES', 'MIT.txt'),
+    path.join('LICENSES', 'CC-BY-SA-4.0.txt'),
+    path.join('LICENSES', 'OFL-1.1.txt'),
+    path.join('LICENSES', 'ODbL-1.0.txt'),
+    path.join('LICENSES', 'LicenseRef-Mycel-Brand.txt'),
+  ]) {
+    assert.ok(fs.existsSync(path.join(legalDir, file)), `public/licenses/${file} is missing`);
+  }
+  const notice = read(['public', 'licenses', 'NOTICE.txt']);
+  assert.ok(notice.includes('OpenStreetMap contributors'), 'NOTICE must carry the OSM attribution');
+  const thirdParty = read(['public', 'licenses', 'THIRD_PARTY_NOTICES.md']);
+  for (const component of ['Fraunces', 'Space Grotesk', 'IBM Plex Mono', 'Phosphor', 'highlight.js', 'mermaid', 'three']) {
+    assert.ok(thirdParty.includes(component), `third-party notices must list ${component}`);
+  }
+  const footer = read(['app', 'components', 'SiteFooter.jsx']);
+  assert.ok(footer.includes('href="/docs/licenses/"'), 'footer must link to the licence page');
+  assert.ok(!footer.includes('All rights reserved'), 'the site is not all-rights-reserved; see LICENSE');
+  const licencePage = read(['app', 'docs', 'licenses', 'page.jsx']);
+  assert.ok(licencePage.includes('/licenses/THIRD_PARTY_NOTICES.md'));
+  assert.ok(licencePage.includes('/licenses/LICENSES/OFL-1.1.txt'));
 });
 
 test('security.txt carries the mandatory Expires field and is not about to lapse', () => {

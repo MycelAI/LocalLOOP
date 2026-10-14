@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+# SPDX-License-Identifier: MIT
+
 FROM oven/bun:1.4.0
 
 WORKDIR /app
@@ -12,6 +15,9 @@ RUN bun run prisma:generate
 RUN chown -R app:app /app
 
 COPY --chown=app:app src ./src
+# Licence terms and third-party notices ship with the image (synced from the
+# repository root by scripts/sync-legal.sh).
+COPY LICENSE NOTICE THIRD_PARTY_NOTICES.md ./
 
 USER app
 

@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+// SPDX-License-Identifier: MIT
+
 import IORedis from 'ioredis';
 import { config } from '../src/config';
 import { runMigrations } from '../src/db/migrate';

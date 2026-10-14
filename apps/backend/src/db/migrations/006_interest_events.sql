@@ -1,3 +1,6 @@
+-- SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+-- SPDX-License-Identifier: MIT
+
 CREATE TABLE IF NOT EXISTS interest_events (
   id BIGSERIAL PRIMARY KEY,
   interest_id BIGINT NOT NULL REFERENCES interests(id) ON DELETE CASCADE,

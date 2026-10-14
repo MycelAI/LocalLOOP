@@ -1,0 +1,21 @@
+Mycel Proprietary Notice (LicenseRef-Mycel-Proprietary)
+
+Copyright (c) 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+All rights reserved.
+
+The files marked with the SPDX identifier "LicenseRef-Mycel-Proprietary"
+(internal records such as the operations ledger, plans, evidence logs,
+baselines and screenshots under ops/ledger/) are internal records of the
+copyright holders.
+
+No licence or other right to use, copy, modify, publish, distribute or
+sublicense these files is granted, whether expressly, by implication, by
+estoppel or otherwise. Access to a repository that contains these files does
+not grant any such right.
+
+The open-source and open-content licences that apply to other parts of this
+repository (such as MIT or CC-BY-SA-4.0) do not extend to these files.
+
+These files are provided "as is", without warranty of any kind.
+
+Contact: dev@mycel-ai.de

@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+# SPDX-License-Identifier: MIT
+
 [Unit]
 Description=localLOOP Backend API (legacy bare-metal alternative -- see note below)
 # Postgres and Valkey run as Docker containers (docker-compose.yml); there are

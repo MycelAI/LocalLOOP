@@ -1,3 +1,6 @@
+-- SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+-- SPDX-License-Identifier: MIT
+
 -- 011_loop_state_integrity.sql
 -- Enforce the MaterialDNA -> Offer -> Match -> Transfer state machine at the DB level.
 --

@@ -1,3 +1,6 @@
+-- SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+-- SPDX-License-Identifier: MIT
+
 -- 012_loop_search_columns.sql
 -- Core-DP local search (MaterialDNA/ProductDNA) orders results deterministically by
 -- updated_at then id. Materials/products have no update path in this profile (they are

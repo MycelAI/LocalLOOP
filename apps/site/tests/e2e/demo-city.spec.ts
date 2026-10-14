@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+// SPDX-License-Identifier: MIT
+
 import { test, expect } from '@playwright/test';
 
 // The lab API is same-origin in production (nginx proxies /api/*).

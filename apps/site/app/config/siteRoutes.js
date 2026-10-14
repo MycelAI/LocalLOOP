@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+// SPDX-License-Identifier: MIT
+
 /**
  * Single source of truth for site navigation and canonical routes.
  *
@@ -22,6 +25,7 @@ export const nonCanonicalAliases = ['/engage', '/contribute/CODE_OF_CONDUCT.md']
 const documentationRoutes = [
   '/docs/threat-model',
   '/docs/dpia-lite',
+  '/docs/licenses',
 ];
 
 export const navigationSections = navigationSectionsData;
