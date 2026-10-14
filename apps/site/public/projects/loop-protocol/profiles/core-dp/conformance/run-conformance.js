@@ -31,7 +31,7 @@
  * rather than silently passing or failing.
  */
 
-const fg = require('fast-glob');
+const { globSync } = require('node:fs');
 const {
   loadJson,
   formatErrors,
@@ -172,8 +172,8 @@ function recordInBucket(bucket, vectorId, status) {
 }
 
 function main() {
-  const schemaPaths = fg.sync(['schemas/*.schema.json']);
-  const profileSchemaPaths = fg.sync(['profiles/core-dp/schemas/*.schema.json']);
+  const schemaPaths = globSync(['schemas/*.schema.json']);
+  const profileSchemaPaths = globSync(['profiles/core-dp/schemas/*.schema.json']);
   const validators = new Map();
   const schemaIds = new Set();
   const schemaById = new Map();

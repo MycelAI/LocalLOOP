@@ -1,7 +1,6 @@
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
-const fg = require('fast-glob');
 const Ajv = require('ajv');
 const Ajv2020 = require('ajv/dist/2020');
 const draft7MetaSchema = require('ajv/dist/refs/json-schema-draft-07.json');
@@ -1715,10 +1714,10 @@ function assertExampleReadmeMatchesFiles(readmePath, examplePaths) {
 }
 
 function main() {
-  const schemaPaths = fg.sync(['schemas/*.schema.json']);
-  const profileSchemaPaths = fg.sync(['profiles/core-dp/schemas/*.schema.json']);
-  const examplePaths = fg.sync(['examples/**/*.json']);
-  const jsonPaths = fg.sync(['*.json', 'contexts/**/*.jsonld', 'examples/**/*.json', 'profiles/**/*.json', 'schemas/**/*.json']);
+  const schemaPaths = fs.globSync(['schemas/*.schema.json']);
+  const profileSchemaPaths = fs.globSync(['profiles/core-dp/schemas/*.schema.json']);
+  const examplePaths = fs.globSync(['examples/**/*.json']);
+  const jsonPaths = fs.globSync(['*.json', 'contexts/**/*.jsonld', 'examples/**/*.json', 'profiles/**/*.json', 'schemas/**/*.json']);
 
   if (schemaPaths.length === 0) {
     console.error('No schemas found in schemas/*.schema.json');

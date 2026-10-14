@@ -15,7 +15,7 @@
  * formatErrors/compileSchemas plumbing verbatim, exactly as Core-DP's harness does.
  */
 
-const fg = require('fast-glob');
+const { globSync } = require('node:fs');
 const { loadJson, formatErrors, compileSchemas } = require('../validate-schemas.js');
 
 const CORE_SCHEMA_GLOB = 'schemas/*.schema.json';
@@ -131,7 +131,7 @@ function recordInBucket(bucket, vectorId, status) {
  * }
  */
 function runProfileConformance(config) {
-  const schemaPaths = fg.sync([CORE_SCHEMA_GLOB]);
+  const schemaPaths = globSync([CORE_SCHEMA_GLOB]);
   const validators = new Map();
   const schemaIds = new Set();
   const schemaById = new Map();

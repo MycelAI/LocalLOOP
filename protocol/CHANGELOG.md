@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- The schema validator and conformance harnesses use Node's built-in
+  `fs.globSync` instead of `fast-glob` (identical file sets); `fast-glob` and
+  the `picomatch` override are removed from `devDependencies`.
+
+### Security
+- `npm audit` is clean: override `fast-uri` ^4.1.5 (GHSA-hrr3-gc8f-f4qj,
+  GHSA-jvvf-x445-j334, the Dependabot alert carried over from the archived
+  `local-loop-io/loop-protocol`), and dropping `fast-glob` removes the
+  `braces`/`micromatch` chain (GHSA-vfj7-8cjw-p6xm, no upstream fix). Dev
+  tooling only; no schema, context or specification change.
+
 ## [0.5.2] - 2026-09-05
 
 ### Added
