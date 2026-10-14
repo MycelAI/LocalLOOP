@@ -13,11 +13,25 @@ import 'highlight.js/styles/atom-one-dark.css'
 // keep a single h1 per page and an unbroken outline.
 const demote = (Tag) => ({ node: _node, ...props }) => <Tag {...props} />
 
+// Raw HTML is not rendered (no rehype-raw), so react-markdown would print HTML
+// comments -- such as the agent-cycle maintenance anchors in the mirrored
+// protocol files -- as visible text. Drop nodes that are only a comment; code
+// blocks are separate node types and keep their contents.
+const COMMENT_ONLY = /^\s*<!--[\s\S]*?-->\s*$/
+function remarkStripHtmlComments() {
+  const strip = (node) => {
+    if (!node.children) return
+    node.children = node.children.filter((child) => !(child.type === 'html' && COMMENT_ONLY.test(child.value)))
+    node.children.forEach(strip)
+  }
+  return strip
+}
+
 export default function MarkdownRenderer({ content }) {
   return (
     <div className="markdown-doc">
       <ReactMarkdown
-        remarkPlugins={[remarkGfm]}
+        remarkPlugins={[remarkGfm, remarkStripHtmlComments]}
         rehypePlugins={[rehypeHighlight]}
         components={{
           h1: demote('h2'),

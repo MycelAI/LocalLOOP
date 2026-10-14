@@ -407,7 +407,6 @@ This changelog is maintained by the LOOP maintainer (see `docs/governance/GOVERN
 
 ---
 
-[Unreleased]: https://github.com/MycelAI/LocalLOOP/compare/protocol/v0.5.2...HEAD
 [0.5.2]: https://github.com/local-loop-io/loop-protocol/compare/v0.5.1...v0.5.2
 [0.5.1]: https://github.com/local-loop-io/loop-protocol/compare/v0.5.0...v0.5.1
 [0.5.0]: https://github.com/local-loop-io/loop-protocol/compare/v0.4.0...v0.5.0

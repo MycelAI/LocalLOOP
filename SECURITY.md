@@ -37,8 +37,8 @@ Older versions do not receive fixes.
 
 | Tree | Supported | Not supported |
 | --- | --- | --- |
-| Backend (`apps/backend`) | 0.6.5 (latest) | < 0.6.5 |
-| Site (`apps/site`) | 0.6.1 (latest) | < 0.6.1 |
+| Backend (`apps/backend`) | 0.6.6 (latest) | < 0.6.6 |
+| Site (`apps/site`) | 0.6.2 (latest) | < 0.6.2 |
 | Protocol (`protocol`) | 0.5.2 (latest) | < 0.5.2 |
 | Archived `github.com/local-loop-io/*` repositories | none (read-only) | all |
 

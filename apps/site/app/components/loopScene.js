@@ -12,12 +12,12 @@ const GOLD = 0xd9a441;
 const INK = 0x334155;
 const SNOW = 0xf8fafc;
 
-// Web Mercator pixel offsets from Munich at zoom 6, matching
-// public/assets/loop-basemap.webp (a 1024px window centred on Munich).
+// Web Mercator pixel offsets from Munich at zoom 6. public/assets/loop-basemap.webp
+// is a 2048px zoom-5 window centred on Munich (stored at 1536px): the plane
+// spans ~45 world units, so even the top corner rays -- the most oblique in the
+// frustum -- land inside the sheet.
 // Map data (c) OpenStreetMap contributors, ODbL.
 const MAP_PX = 2048;
-// A 2048px zoom-5 window: the plane spans ~45 world units, so even the top
-// corner rays -- the most oblique in the frustum -- land inside the sheet.
 const WORLD_PER_PX = 0.022;
 const CITY_PX = {
   Munich: [0, 0],

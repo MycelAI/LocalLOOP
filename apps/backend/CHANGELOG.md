@@ -7,12 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.6.6] - 2026-10-14
+
+### Added
+- The image ships `LICENSE`, `NOTICE` and `THIRD_PARTY_NOTICES.md` in `/app`
+  (copies kept in sync with the repository root by `scripts/sync-legal.sh`).
+
 ### Changed
-- Documentation: README links now point at the monorepo's `protocol/` tree and
-  `loop.urbnia.com` instead of the archived `local-loop-io` repositories, adds
-  a caution about running DB-backed tests against a real database, and a
-  licensing section; licensing metadata (SPDX headers, REUSE) and community
-  files (contributing, security, code of conduct) updated for the monorepo.
+- Documentation: README links point at the monorepo's `protocol/` tree and
+  `loop.urbnia.com`, caution against DB-backed tests on a real database, and a
+  licensing section; SPDX headers and REUSE metadata added; community files
+  updated. No runtime behaviour change.
 
 ## [0.6.5] - 2026-10-14
 
@@ -530,7 +535,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Lab demo scripts (seed + simulate + one-command runner).
 - Privacy notice endpoint and in-memory metrics snapshot.
 
-[Unreleased]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.6.5...HEAD
+[Unreleased]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.6.6...HEAD
+[0.6.6]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.6.5...backend/v0.6.6
 [0.6.5]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.6.4...backend/v0.6.5
 [0.6.4]: https://github.com/local-loop-io/localloop-backend/compare/v0.6.3...v0.6.4
 [0.6.3]: https://github.com/local-loop-io/localloop-backend/compare/v0.6.2...v0.6.3

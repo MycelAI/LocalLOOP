@@ -67,7 +67,7 @@ export function LoopHeroAnimation() {
     credit.href = 'https://www.openstreetmap.org/copyright';
     credit.rel = 'noreferrer noopener';
     credit.target = '_blank';
-    credit.textContent = '\u00a9 OpenStreetMap';
+    credit.textContent = '\u00a9 OpenStreetMap contributors';
     layer.appendChild(credit);
 
     const mount = layer;

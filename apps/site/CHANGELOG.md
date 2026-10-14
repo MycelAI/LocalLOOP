@@ -7,15 +7,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.6.2] - 2026-10-14
+
+### Added
+- Licence terms ship with the site: `/licenses/` serves the project
+  `LICENSE`, `NOTICE`, `THIRD_PARTY_NOTICES.md` and the licence texts (synced
+  from the repository root by `scripts/sync-legal.sh`), and `/docs/licenses/`
+  explains which terms apply to what.
+
 ### Changed
-- Documentation: README now describes the monorepo workflow (protocol mirror
-  regenerated from `../../protocol` by `scripts/aggregate-docs.sh`, local
-  checks while GitHub Actions is disabled) instead of the archived
-  `local-loop-io` repositories, and adds a licensing section; licensing
-  metadata (SPDX headers, REUSE) and community files (contributing, security,
-  code of conduct) updated for the monorepo.
+- The footer states the actual terms ("Code MIT · Specification CC BY-SA 4.0 ·
+  Brand assets reserved") with a link to `/docs/licenses/` instead of "All
+  rights reserved"; the contribute page no longer says "MIT licensed" for
+  everything.
 - `/docs/api/` links the compliance matrix to the archived backend's tagged
   v0.6.4 snapshot instead of its moving `main` branch.
+- Documentation: README describes the monorepo workflow and licensing; SPDX
+  headers and REUSE metadata added; community files updated.
+
+### Fixed
+- HTML comments in mirrored protocol Markdown (the agent-cycle maintenance
+  anchors) no longer render as visible text on `/protocol/spec/` and other
+  mirrored pages.
+- The hero basemap credit reads "© OpenStreetMap contributors", the
+  attribution the OpenStreetMap licence asks for.
 
 ## [0.6.1] - 2026-10-14
 
@@ -626,7 +641,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-[Unreleased]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.6.1...HEAD
+[Unreleased]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.6.2...HEAD
+[0.6.2]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.6.1...site/v0.6.2
 [0.6.1]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.6.0...site/v0.6.1
 [0.6.0]: https://github.com/local-loop-io/localloop-site/compare/v0.5.3...v0.6.0
 [0.5.3]: https://github.com/local-loop-io/localloop-site/compare/v0.5.2...v0.5.3
