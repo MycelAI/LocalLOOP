@@ -11,6 +11,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - The schema validator and conformance harnesses use Node's built-in
   `fs.globSync` instead of `fast-glob` (identical file sets); `fast-glob` and
   the `picomatch` override are removed from `devDependencies`.
+- Documentation: README, schema and example READMEs, the backup runbook and
+  the specification's closing note point at `loop.urbnia.com`, the monorepo
+  paths and the RFC process instead of the archived repository and the former
+  hostnames (no normative change); licensing section added to the README;
+  licensing metadata (SPDX headers, REUSE) and community files updated.
 
 ### Security
 - `npm audit` is clean: override `fast-uri` ^4.1.5 (GHSA-hrr3-gc8f-f4qj,
@@ -402,7 +407,7 @@ This changelog is maintained by the LOOP maintainer (see `docs/governance/GOVERN
 
 ---
 
-[Unreleased]: https://github.com/local-loop-io/loop-protocol/compare/v0.5.2...HEAD
+[Unreleased]: https://github.com/MycelAI/LocalLOOP/compare/protocol/v0.5.2...HEAD
 [0.5.2]: https://github.com/local-loop-io/loop-protocol/compare/v0.5.1...v0.5.2
 [0.5.1]: https://github.com/local-loop-io/loop-protocol/compare/v0.5.0...v0.5.1
 [0.5.0]: https://github.com/local-loop-io/loop-protocol/compare/v0.4.0...v0.5.0
@@ -410,9 +415,5 @@ This changelog is maintained by the LOOP maintainer (see `docs/governance/GOVERN
 [0.3.0]: https://github.com/local-loop-io/loop-protocol/compare/v0.2.3...v0.3.0
 [0.2.3]: https://github.com/local-loop-io/loop-protocol/compare/v0.2.2...v0.2.3
 [0.2.2]: https://github.com/local-loop-io/loop-protocol/compare/v0.2.1...v0.2.2
-[0.2.1]: https://github.com/local-loop-io/loop-protocol/compare/v0.2.0...v0.2.1
-[0.2.0]: https://github.com/local-loop-io/loop-protocol/compare/v0.1.1-demo...v0.2.0
-[0.1.1]: https://github.com/local-loop-io/loop-protocol/releases/tag/v0.1.1
-[0.1.0]: https://github.com/local-loop-io/loop-protocol/releases/tag/v0.1.0
-[0.0.9-draft]: https://github.com/local-loop-io/loop-protocol/releases/tag/v0.0.9-draft
-[0.0.1-concept]: https://github.com/local-loop-io/loop-protocol/releases/tag/v0.0.1-concept
+[0.2.1]: https://github.com/local-loop-io/loop-protocol/compare/v0.1.1-demo...v0.2.1
+[0.1.1]: https://github.com/local-loop-io/loop-protocol/releases/tag/v0.1.1-demo

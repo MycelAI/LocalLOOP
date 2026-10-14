@@ -1,0 +1,28 @@
+<!--
+SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+SPDX-License-Identifier: LicenseRef-Mycel-Brand
+-->
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="220" viewBox="0 0 680 220" role="img" aria-labelledby="t d">
+  <title id="t">localLOOP</title>
+  <desc id="d">localLOOP wordmark with the infinity-loop mark: LOOP protocol, documentation hub and lab API. Early-stage, lab demo only.</desc>
+  <defs>
+    <linearGradient id="loop" x1="40" y1="0" x2="230" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1aa3c4"/>
+      <stop offset="0.45" stop-color="#4fb286"/>
+      <stop offset="0.6" stop-color="#eab308"/>
+      <stop offset="1" stop-color="#ea580c"/>
+    </linearGradient>
+    <linearGradient id="word" x1="430" y1="0" x2="640" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0d9488"/>
+      <stop offset="0.55" stop-color="#a16207"/>
+      <stop offset="1" stop-color="#c2410c"/>
+    </linearGradient>
+  </defs>
+  <path d="M230.0 104.0L229.4 110.5L227.5 116.7L224.5 122.4L220.5 127.4L215.8 131.6L210.6 134.8L205.0 137.2L199.3 138.6L193.5 139.3L187.9 139.2L182.4 138.6L177.1 137.3L172.1 135.7L167.4 133.6L162.8 131.3L158.6 128.7L154.5 126.0L150.6 123.1L146.9 120.0L143.4 116.9L139.9 113.8L136.6 110.5L133.3 107.3L130.0 104.0L126.7 100.7L123.4 97.5L120.1 94.2L116.6 91.1L113.1 88.0L109.4 84.9L105.5 82.0L101.4 79.3L97.2 76.7L92.6 74.4L87.9 72.3L82.9 70.7L77.6 69.4L72.1 68.8L66.5 68.7L60.7 69.4L55.0 70.8L49.4 73.2L44.2 76.4L39.5 80.6L35.5 85.6L32.5 91.3L30.6 97.5L30.0 104.0L30.6 110.5L32.5 116.7L35.5 122.4L39.5 127.4L44.2 131.6L49.4 134.8L55.0 137.2L60.7 138.6L66.5 139.3L72.1 139.2L77.6 138.6L82.9 137.3L87.9 135.7L92.6 133.6L97.2 131.3L101.4 128.7L105.5 126.0L109.4 123.1L113.1 120.0L116.6 116.9L120.1 113.8L123.4 110.5L126.7 107.3L130.0 104.0L133.3 100.7L136.6 97.5L139.9 94.2L143.4 91.1L146.9 88.0L150.6 84.9L154.5 82.0L158.6 79.3L162.8 76.7L167.4 74.4L172.1 72.3L177.1 70.7L182.4 69.4L187.9 68.8L193.5 68.7L199.3 69.4L205.0 70.8L210.6 73.2L215.8 76.4L220.5 80.6L224.5 85.6L227.5 91.3L229.4 97.5L230.0 104.0Z" fill="none" stroke="url(#loop)" stroke-width="16" stroke-linejoin="round"/>
+  <text x="262" y="122" font-family="Fraunces, Georgia, 'Times New Roman', serif" font-size="76" font-weight="700" letter-spacing="-1" textLength="356" lengthAdjust="spacingAndGlyphs" fill="#0f172a">local<tspan fill="url(#word)">LOOP</tspan></text>
+  <text x="266" y="160" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" fill="#475569">Local Optimization with Overflow Protocol</text>
+  <g transform="translate(266 178)">
+    <rect width="136" height="26" rx="13" fill="#fff7ed" stroke="#fdba74"/>
+    <text x="68" y="17.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="600" letter-spacing="1" fill="#9a3412">LAB DEMO ONLY</text>
+  </g>
+</svg>

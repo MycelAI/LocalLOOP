@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+// SPDX-License-Identifier: MIT
+
 import { createMetadata } from '@/app/config/metadata';
 
 export const metadata = createMetadata({ title: 'Lab API documentation', path: '/docs/api' });
@@ -64,7 +67,7 @@ export default function ApiDocsPage() {
           federation registry). The backend's compliance matrix records the status of each.
         </p>
         <div className="table-list">
-          <div><span>Compliance matrix</span><div><a href="https://github.com/local-loop-io/localloop-backend/blob/main/docs/SPEC-COMPLIANCE.md" target="_blank" rel="noopener noreferrer">docs/SPEC-COMPLIANCE.md</a></div></div>
+          <div><span>Compliance matrix</span><div><a href="https://github.com/local-loop-io/localloop-backend/blob/v0.6.4/docs/SPEC-COMPLIANCE.md" target="_blank" rel="noopener noreferrer">docs/SPEC-COMPLIANCE.md</a> (archived v0.6.4 snapshot)</div></div>
           <div><span>Node metadata</span><div><code>GET /api/v1/node/info</code></div></div>
           <div><span>Material status</span><div><code>POST /api/v1/material-status</code></div></div>
           <div><span>Lab relay</span><div><code>POST /api/v1/relay</code> for supported lab event families</div></div>

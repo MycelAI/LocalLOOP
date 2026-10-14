@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- Documentation: README now describes the monorepo workflow (protocol mirror
+  regenerated from `../../protocol` by `scripts/aggregate-docs.sh`, local
+  checks while GitHub Actions is disabled) instead of the archived
+  `local-loop-io` repositories, and adds a licensing section; licensing
+  metadata (SPDX headers, REUSE) and community files (contributing, security,
+  code of conduct) updated for the monorepo.
+- `/docs/api/` links the compliance matrix to the archived backend's tagged
+  v0.6.4 snapshot instead of its moving `main` branch.
+
 ## [0.6.1] - 2026-10-14
 
 ### Changed
@@ -229,6 +239,45 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Static nginx now emits baseline security headers (`X-Content-Type-Options`,
   `X-Frame-Options`, `Referrer-Policy`, `Permissions-Policy`) on HTML and
   mirrored markdown responses (agent cycle 002).
+
+## [0.5.0] - 2026-08-14
+
+> Reconstructed on 2026-10-14 from the `v0.5.0` tag message ("regulatory
+> extension scenarios panel on DEMO City page") and the commit history between
+> `v0.4.5` and `v0.5.0`; the release was tagged without a changelog entry.
+> Changes that the tag also contained but that were recorded under `[0.5.1]`
+> at the time (agent stamps, well-known files, security headers, the
+> deterministic domain check, mirror resyncs) are not repeated here.
+
+### Added
+- Regulatory extension scenarios panel on the DEMO City page, describing the
+  reusable-packaging and municipal-reuse lab demo scenarios as illustrations.
+- Dependabot configuration for npm and GitHub Actions.
+
+### Changed
+- Docs mirror resynced with the loop-protocol Horizon 2 and Horizon 3 additions
+  (access-scope, retention and category-classification guidance, the battery,
+  packaging and waste-shipment profiles, conformance harnesses, roadmap).
+- `SiteHeader.jsx` and `site-header.js` now share one navigation data file.
+- Dependencies updated (Next.js 16.3.1, React 19.2.8, Playwright 1.62.1,
+  highlight.js 11.12.0, mermaid 11.16.1); `engines`/Volta target Node 24 LTS
+  (24.19.0) instead of 25.1.0.
+- Docker builder image moved from Bun 1.2 to Bun 1.3.14, which fixes the
+  Turbopack production build.
+
+### Fixed
+- `aggregate-docs.sh` now also syncs `profiles/`, so the Core-DP profile is
+  mirrored for the first time; the sync fails when the anonymous clone fallback
+  fails.
+- Raw internal anchor links gained the trailing slash required by
+  `trailingSlash: true`, removing a redirect hop on each click.
+- DEMO City panels stay fresh, requests time out, and rate-limit gaps are
+  closed.
+- Screen-reader signal for the stream indicator; duplicate logo alt text
+  removed.
+- Two stale Playwright assertions, drifted README claims and a stale
+  `SECURITY.md` date corrected; dead component and stale route prefixes
+  removed.
 
 ## [0.4.5] - 2026-07-19
 
@@ -582,7 +631,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [0.6.0]: https://github.com/local-loop-io/localloop-site/compare/v0.5.3...v0.6.0
 [0.5.3]: https://github.com/local-loop-io/localloop-site/compare/v0.5.2...v0.5.3
 [0.5.2]: https://github.com/local-loop-io/localloop-site/compare/v0.5.1...v0.5.2
+[0.5.1]: https://github.com/local-loop-io/localloop-site/compare/v0.5.0...v0.5.1
+[0.5.0]: https://github.com/local-loop-io/localloop-site/compare/v0.4.5...v0.5.0
 [0.4.5]: https://github.com/local-loop-io/localloop-site/compare/v0.4.4...v0.4.5
+[0.4.4]: https://github.com/local-loop-io/localloop-site/compare/v0.4.3...v0.4.4
+[0.4.3]: https://github.com/local-loop-io/localloop-site/compare/v0.4.2...v0.4.3
+[0.4.2]: https://github.com/local-loop-io/localloop-site/compare/v0.4.1...v0.4.2
+[0.4.1]: https://github.com/local-loop-io/localloop-site/compare/v0.4.0...v0.4.1
+[0.4.0]: https://github.com/local-loop-io/localloop-site/compare/v0.3.4...v0.4.0
+[0.3.4]: https://github.com/local-loop-io/localloop-site/compare/v0.3.3...v0.3.4
+[0.3.3]: https://github.com/local-loop-io/localloop-site/compare/v0.3.2...v0.3.3
+[0.3.2]: https://github.com/local-loop-io/localloop-site/compare/v0.3.1...v0.3.2
+[0.3.1]: https://github.com/local-loop-io/localloop-site/compare/v0.3.0...v0.3.1
+[0.3.0]: https://github.com/local-loop-io/localloop-site/compare/v0.2.8...v0.3.0
 [0.2.8]: https://github.com/local-loop-io/localloop-site/compare/v0.2.7...v0.2.8
 [0.2.7]: https://github.com/local-loop-io/localloop-site/compare/v0.2.6...v0.2.7
 [0.2.6]: https://github.com/local-loop-io/localloop-site/compare/v0.2.5...v0.2.6
@@ -593,3 +654,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [0.2.1]: https://github.com/local-loop-io/localloop-site/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/local-loop-io/localloop-site/compare/v0.1.1-demo...v0.2.0
 [0.1.1]: https://github.com/local-loop-io/localloop-site/releases/tag/v0.1.1-demo
+
+<!-- Versions up to 0.6.0 link to the archived local-loop-io/localloop-site
+     repository; later versions to the monorepo, where tags carry the site/
+     prefix. -->

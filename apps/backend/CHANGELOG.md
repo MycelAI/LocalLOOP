@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- Documentation: README links now point at the monorepo's `protocol/` tree and
+  `loop.urbnia.com` instead of the archived `local-loop-io` repositories, adds
+  a caution about running DB-backed tests against a real database, and a
+  licensing section; licensing metadata (SPDX headers, REUSE) and community
+  files (contributing, security, code of conduct) updated for the monorepo.
+
 ## [0.6.5] - 2026-10-14
 
 ### Changed
@@ -535,3 +542,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [0.4.3]: https://github.com/local-loop-io/localloop-backend/compare/v0.4.2...v0.4.3
 [0.4.2]: https://github.com/local-loop-io/localloop-backend/compare/v0.4.1...v0.4.2
 [0.4.1]: https://github.com/local-loop-io/localloop-backend/compare/v0.4.0...v0.4.1
+[0.4.0]: https://github.com/local-loop-io/localloop-backend/compare/v0.3.1...v0.4.0
+[0.3.1]: https://github.com/local-loop-io/localloop-backend/compare/v0.3.0...v0.3.1
+[0.3.0]: https://github.com/local-loop-io/localloop-backend/compare/v0.2.4...v0.3.0
+[0.2.4]: https://github.com/local-loop-io/localloop-backend/compare/v0.2.3...v0.2.4
+[0.2.3]: https://github.com/local-loop-io/localloop-backend/compare/v0.1.1-demo...v0.2.3
+[0.1.1]: https://github.com/local-loop-io/localloop-backend/releases/tag/v0.1.1-demo
+
+<!-- 0.2.0, 0.2.1 and 0.2.2 were never tagged, so they have no link; the 0.2.3
+     comparison starts at v0.1.1-demo and covers them. Versions up to 0.6.4 link
+     to the archived local-loop-io/localloop-backend repository; later versions
+     to the monorepo, where tags carry the backend/ prefix. -->

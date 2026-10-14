@@ -22,6 +22,11 @@ bun run test                  # run all tests (--isolate; see CONTRIBUTING.md)
 bun run typecheck && bun run lint
 ```
 
+> **Caution:** DB-backed tests apply migrations to whatever `DATABASE_URL`
+> points at. On a host whose `.env` targets a real database, point
+> `DATABASE_URL` at a scratch database (e.g. `localloop_test`) and set an
+> explicit `REDIS_URL` with the password before running `bun run test`.
+
 `.env.example` holds host-reachable addresses for running the API on the host;
 `.env.docker.example` holds the in-network service names (`postgres`, `redis`,
 `storage-proxy`) the compose `api` container uses. DB-backed tests apply
@@ -122,18 +127,20 @@ not implemented in this lab preview.
 
 ## Spec conformance
 
-This repo aims to be the reference implementation of
-[loop-protocol](https://github.com/local-loop-io/loop-protocol) v0.2.0: every
+This service aims to be the reference implementation of the LOOP protocol
+([`protocol/`](../../protocol/README.md) in this monorepo) v0.2.0: every
 endpoint required by SPECIFICATION.md §8 and `openapi.json` is implemented and
 validated against the canonical JSON schemas (synced byte-identical into
 `src/schemas/`).
 
 - Compliance matrix: [docs/SPEC-COMPLIANCE.md](docs/SPEC-COMPLIANCE.md)
-- `bun run check:conformance` — three-way drift gate (backend ↔ loop-protocol
+- `bun run check:conformance` — three-way drift gate (backend ↔ `protocol/`
   ↔ docs-hub mirror at `apps/site/public/projects/loop-protocol/`):
   schema copies, mirrored artifacts, and the implemented route surface must
-  not drift. Runs in tests (`tests/conformance.test.ts`) and in CI
-  (root `.github/workflows/conformance.yml`).
+  not drift. Runs in tests (`tests/conformance.test.ts`), in
+  `scripts/ci-local.sh conformance` at the repository root, and in the root
+  `.github/workflows/conformance.yml` workflow (GitHub Actions is currently
+  disabled for the monorepo, so the local script is the gate).
 - `tests/specResponses.test.ts` validates live route responses against the
   canonical JSON schemas.
 
@@ -208,8 +215,23 @@ given table.
 
 ## Notes
 - Lab demo only. No public pilots or deployments.
-- The normative protocol reference is [loop-protocol](https://github.com/local-loop-io/loop-protocol).
+- The normative protocol reference is [`protocol/SPECIFICATION.md`](../../protocol/SPECIFICATION.md)
+  (rendered at https://loop.urbnia.com/protocol/spec/).
+- This tree was the standalone `local-loop-io/localloop-backend` repository
+  (now archived); it lives at `apps/backend/` in the localLOOP monorepo.
 
 ## Links
-- Protocol spec: https://github.com/local-loop-io/loop-protocol
+- Protocol source: [`protocol/`](../../protocol/README.md)
+- Protocol spec (rendered): https://loop.urbnia.com/protocol/spec/
+- Live API docs: https://loop.urbnia.com/api/docs
 - Docs hub: https://loop.urbnia.com
+- Monorepo overview: [`README.md`](../../README.md)
+
+## License
+The backend source code is released under the [MIT License](LICENSE).
+Canonical schema copies in `src/schemas/` come from `protocol/` and keep its
+licensing (MIT). The localLOOP and LOOP names and logos are reserved brand
+assets and are not covered by the MIT License. Per-file details are recorded
+with SPDX headers and the repository's `REUSE.toml`. Contributing:
+[`CONTRIBUTING.md`](CONTRIBUTING.md); security reports:
+[`SECURITY.md`](SECURITY.md).

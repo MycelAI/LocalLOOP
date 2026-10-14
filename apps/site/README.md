@@ -5,8 +5,8 @@
 **The official website of localLOOP and home of the LOOP protocol, MaterialDNA, ProductDNA, city portals, and governance.**
 
 [![Site](https://img.shields.io/badge/site-loop.urbnia.com-4f46e5?logo=github)](https://loop.urbnia.com)
-[![Protocol](https://img.shields.io/badge/protocol-loop--protocol-10b981?logo=github)](https://github.com/local-loop-io/loop-protocol)
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Protocol](https://img.shields.io/badge/protocol-spec%20v0.2.0-10b981)](../../protocol/README.md)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](#licensing)
 [![Low TRL](https://img.shields.io/badge/status-lab%20demo%20only-orange)](https://loop.urbnia.com/protocol/spec)
 
 > **Early-stage, low-TRL concept.** No public pilots or deployments. Lab demo only.
@@ -23,7 +23,7 @@ It does three things:
 
 1. **Is the home of LOOP** — spec, changelog, schemas, JSON-LD contexts, and examples for the LOOP protocol, MaterialDNA, ProductDNA, and governance RFCs
 2. **Documents lab concepts** — MaterialDNA, ProductDNA, city-portal concepts, implementation notes, regulatory research, and governance drafts
-3. **Collects consent-based interest** — a public expression-of-interest form backed by the [localloop-backend](https://github.com/local-loop-io/localloop-backend) API; do not submit sensitive information
+3. **Collects consent-based interest** — a public expression-of-interest form backed by the lab backend API in [`apps/backend`](../backend/README.md) (served same-origin under `/api/`); do not submit sensitive information
 
 ---
 
@@ -54,7 +54,7 @@ It does three things:
 | Styling | Vanilla CSS (custom design system) |
 | Testing | Playwright (E2E) + Node smoke tests |
 | Deploy | Docker + Traefik on VPS |
-| Protocol artifacts | Mirrored from `loop-protocol` into `public/projects/loop-protocol/` |
+| Protocol artifacts | Mirrored from [`protocol/`](../../protocol/README.md) into `public/projects/loop-protocol/` by `scripts/aggregate-docs.sh` |
 
 ---
 
@@ -119,30 +119,45 @@ tests/
 
 ## Keeping protocol content in sync
 
-Protocol artifacts (schemas, docs, JSON-LD contexts) live in [`loop-protocol`](https://github.com/local-loop-io/loop-protocol) and are mirrored here under `public/projects/loop-protocol/`. When the protocol repo is updated, copy the changed files into that directory and commit.
+Protocol artifacts (spec, schemas, docs, JSON-LD contexts, examples, RFCs, profiles) live in the monorepo's [`protocol/`](../../protocol/README.md) tree, which is canonical. They are mirrored here under `public/projects/loop-protocol/`; never edit the mirror by hand. After any protocol change, regenerate it from the repository root and review the result:
 
-The `Domain Consistency` CI workflow validates that all internal links respect the canonical domain policy (`loop.urbnia.com`, API under `/api/`).
+```bash
+bash apps/site/scripts/aggregate-docs.sh
+git status --short    # look for unexpected deletions (D) before committing
+```
+
+The mirror keeps its public URL path, so JSON-LD contexts stay resolvable at `https://localloop.urbnia.com/projects/loop-protocol/contexts/…` (via the redirect to `loop.urbnia.com`). In `apps/backend`, `bun run check:conformance` fails if the mirror drifts from `protocol/`.
+
+`bun run check:domains` (`scripts/check-domains.cjs`) enforces the canonical domain policy (`loop.urbnia.com`, API under `/api/`); see [`DOMAIN-POLICY.md`](DOMAIN-POLICY.md).
 
 ---
 
 ## Contributing
 
-1. Fork and clone
-2. `bun install && bun run dev`
-3. Follow the route + sidebar pattern in `app/config/`
-4. Add a Playwright spec in `tests/e2e/` for any new interactive or critical page
-5. Open a PR — CI runs build + E2E before merge
+1. `bun install && bun run dev`
+2. Follow the route + sidebar pattern in `app/config/`
+3. Add a Playwright spec in `tests/e2e/` for any new interactive or critical page
+4. Before opening a PR, run `bun run lint && bun run typecheck && bun run build && bun run test` (and `bun run test:e2e` for UI changes). GitHub Actions is currently disabled for the monorepo, so `scripts/ci-local.sh site` at the repository root is the gate.
 
-For this repo's canonical-domain policy, see [`DOMAIN-POLICY.md`](DOMAIN-POLICY.md).
+See [`CONTRIBUTING.md`](CONTRIBUTING.md) for the full workflow and [`DOMAIN-POLICY.md`](DOMAIN-POLICY.md) for the canonical-domain policy.
 
 ---
 
-## Related repos
+## Related trees
 
-| Repo | Description |
+This site is one tree of the localLOOP monorepo (formerly the standalone `local-loop-io/localloop-site` repository, now archived).
+
+| Path | Description |
 |---|---|
-| [`loop-protocol`](https://github.com/local-loop-io/loop-protocol) | Protocol source — schemas, spec, RFCs, JSON-LD contexts |
-| [`localloop-backend`](https://github.com/local-loop-io/localloop-backend) | Lab backend API — interest registry, demo flows, SSE, federation |
+| [`protocol/`](../../protocol/README.md) | Protocol source — schemas, spec, RFCs, JSON-LD contexts |
+| [`apps/backend/`](../backend/README.md) | Lab backend API — interest registry, demo flows, SSE, federation |
+| [Monorepo root](../../README.md) | Overview, architecture, checks, licensing |
+
+---
+
+## Licensing
+
+The site's source code is released under the [MIT License](LICENSE). Mirrored protocol content under `public/projects/loop-protocol/` keeps the protocol's licensing (specification prose CC BY-SA 4.0; schemas, contexts and code MIT). The localLOOP and LOOP names, the logo, favicons and the six concept images in `public/assets/images/` are reserved brand assets and are not covered by the MIT License. Per-file details are recorded with SPDX headers and the repository's `REUSE.toml`.
 
 ---
 

@@ -1,0 +1,122 @@
+<!--
+SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+SPDX-License-Identifier: MIT
+-->
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="t d">
+  <title id="t">localLOOP architecture</title>
+  <desc id="d">Runtime: a browser reaches loop.urbnia.com through the host's shared Traefik, which routes to the site container's nginx. nginx serves the static Next.js export and proxies /api/* to the backend API container (Bun and Fastify on port 8088) over the shared Docker proxy network. The API uses PostgreSQL with PostGIS, Valkey, and SeaweedFS behind an nginx storage proxy. The former hostnames localloop.urbnia.com and loop-api.urbnia.com answer with 308 redirects at Traefik. Build time: protocol/ is canonical; its schemas are synced byte-identical into the backend and its artifacts are mirrored into the site, and a conformance check fails on any drift.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10z" fill="#8b98a5"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="720" rx="22" fill="#0d1117"/>
+  <rect x="20" y="20" width="1160" height="420" rx="18" fill="none" stroke="#30363d" stroke-width="1.5"/>
+  <text x="42" y="50" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="600" letter-spacing="1.5" fill="#8b98a5">RUNTIME · ONE VPS · DOCKER COMPOSE</text>
+  <g>
+    <rect x="50" y="74" width="190" height="96" rx="12" fill="#161b22" stroke="#60a5fa" stroke-width="1.5"/>
+    <rect x="50" y="86" width="4" height="72" rx="2" fill="#60a5fa"/>
+    <text x="68" y="101" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#e6edf3">Browser / client</text>
+    <text xml:space="preserve" x="68" y="123" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#a8b3bf">HTTPS</text>
+    <text xml:space="preserve" x="68" y="142" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#a8b3bf">loop.urbnia.com</text>
+  </g>
+  <g>
+    <rect x="300" y="74" width="230" height="96" rx="12" fill="#161b22" stroke="#60a5fa" stroke-width="1.5"/>
+    <rect x="300" y="86" width="4" height="72" rx="2" fill="#60a5fa"/>
+    <text x="318" y="101" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#e6edf3">Traefik</text>
+    <text xml:space="preserve" x="318" y="123" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#a8b3bf">shared reverse proxy, TLS</text>
+    <text xml:space="preserve" x="318" y="142" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#a8b3bf">router: localloop-site</text>
+  </g>
+  <g>
+    <rect x="590" y="74" width="290" height="96" rx="12" fill="#161b22" stroke="#2dd4bf" stroke-width="1.5"/>
+    <rect x="590" y="86" width="4" height="72" rx="2" fill="#2dd4bf"/>
+    <text x="608" y="101" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#e6edf3">Site · nginx</text>
+    <text xml:space="preserve" x="608" y="123" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#a8b3bf">/      → static Next.js export</text>
+    <text xml:space="preserve" x="608" y="142" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#a8b3bf">/api/* → backend API (proxy)</text>
+  </g>
+  <g>
+    <rect x="300" y="222" width="230" height="96" rx="12" fill="#161b22" stroke="#3d4652" stroke-width="1.5" stroke-dasharray="6 5"/>
+    <text x="318" y="249" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#e6edf3">308 redirects</text>
+    <text xml:space="preserve" x="318" y="271" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#a8b3bf">localloop.urbnia.com → /</text>
+    <text xml:space="preserve" x="318" y="290" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#a8b3bf">loop-api.urbnia.com  → /api/</text>
+  </g>
+  <g>
+    <rect x="590" y="222" width="290" height="116" rx="12" fill="#161b22" stroke="#fb923c" stroke-width="1.5"/>
+    <rect x="590" y="234" width="4" height="92" rx="2" fill="#fb923c"/>
+    <text x="608" y="249" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#e6edf3">Backend API · Bun + Fastify 5</text>
+    <text xml:space="preserve" x="608" y="271" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#a8b3bf">localloop-backend-api-1:8088</text>
+    <text xml:space="preserve" x="608" y="290" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#a8b3bf">Docker network: proxy</text>
+    <text xml:space="preserve" x="608" y="309" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#a8b3bf">no public router of its own</text>
+  </g>
+  <g>
+    <rect x="940" y="74" width="220" height="76" rx="12" fill="#161b22" stroke="#facc15" stroke-width="1.5"/>
+    <rect x="940" y="86" width="4" height="52" rx="2" fill="#facc15"/>
+    <text x="958" y="101" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#e6edf3">PostgreSQL + PostGIS</text>
+    <text xml:space="preserve" x="958" y="123" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#a8b3bf">postgis/postgis:18-3.6</text>
+  </g>
+  <g>
+    <rect x="940" y="168" width="220" height="76" rx="12" fill="#161b22" stroke="#facc15" stroke-width="1.5"/>
+    <rect x="940" y="180" width="4" height="52" rx="2" fill="#facc15"/>
+    <text x="958" y="195" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#e6edf3">Valkey 9</text>
+    <text xml:space="preserve" x="958" y="217" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#a8b3bf">BullMQ queue via ioredis</text>
+  </g>
+  <g>
+    <rect x="940" y="262" width="220" height="96" rx="12" fill="#161b22" stroke="#facc15" stroke-width="1.5"/>
+    <rect x="940" y="274" width="4" height="72" rx="2" fill="#facc15"/>
+    <text x="958" y="289" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#e6edf3">SeaweedFS (S3)</text>
+    <text xml:space="preserve" x="958" y="311" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#a8b3bf">behind nginx storage-proxy</text>
+    <text xml:space="preserve" x="958" y="330" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#a8b3bf">configured, unused by routes</text>
+  </g>
+  <g>
+    <rect x="50" y="222" width="190" height="116" rx="12" fill="#161b22" stroke="#3d4652" stroke-width="1.5" stroke-dasharray="6 5"/>
+    <text x="68" y="249" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#e6edf3">Host · systemd</text>
+    <text xml:space="preserve" x="68" y="271" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#a8b3bf">nightly backup 02:30</text>
+    <text xml:space="preserve" x="68" y="290" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#a8b3bf">healthcheck timer</text>
+    <text xml:space="preserve" x="68" y="309" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#a8b3bf">dumps stay on-host</text>
+  </g>
+  <path d="M240 122H296" fill="none" stroke="#8b98a5" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <path d="M530 122H586" fill="none" stroke="#8b98a5" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <path d="M415 222V174" fill="none" stroke="#8b98a5" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#arrow)"/>
+  <path d="M735 170V218" fill="none" stroke="#8b98a5" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="745" y="199" text-anchor="start" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11.5" fill="#8b98a5">/api/*</text>
+  <path d="M880 262C905 262 905 112 936 112" fill="none" stroke="#8b98a5" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <path d="M880 280C915 280 910 206 936 206" fill="none" stroke="#8b98a5" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <path d="M880 300C915 300 910 310 936 310" fill="none" stroke="#8b98a5" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="50" y="410" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#8b98a5">Compose projects are pinned (localloop-backend, localloop-site); the API is reachable only through the site's /api/ proxy.</text>
+  <rect x="20" y="462" width="1160" height="238" rx="18" fill="none" stroke="#30363d" stroke-width="1.5"/>
+  <text x="42" y="492" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="600" letter-spacing="1.5" fill="#8b98a5">BUILD TIME · PROTOCOL IS CANONICAL</text>
+  <g>
+    <rect x="50" y="520" width="320" height="134" rx="12" fill="#161b22" stroke="#2dd4bf" stroke-width="1.5"/>
+    <rect x="50" y="532" width="4" height="110" rx="2" fill="#2dd4bf"/>
+    <text x="68" y="547" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#e6edf3">protocol/</text>
+    <text xml:space="preserve" x="68" y="569" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#a8b3bf">SPECIFICATION.md · openapi.json</text>
+    <text xml:space="preserve" x="68" y="588" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#a8b3bf">schemas/ · contexts/ · examples/</text>
+    <text xml:space="preserve" x="68" y="607" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#a8b3bf">rfcs/ · profiles/ · docs/</text>
+    <text xml:space="preserve" x="68" y="626" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#a8b3bf">AJV validation: npm run test</text>
+  </g>
+  <g>
+    <rect x="560" y="506" width="320" height="76" rx="12" fill="#161b22" stroke="#fb923c" stroke-width="1.5"/>
+    <rect x="560" y="518" width="4" height="52" rx="2" fill="#fb923c"/>
+    <text x="578" y="533" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#e6edf3">apps/backend/src/schemas/</text>
+    <text xml:space="preserve" x="578" y="555" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#a8b3bf">byte-identical schema copies</text>
+  </g>
+  <g>
+    <rect x="560" y="600" width="320" height="76" rx="12" fill="#161b22" stroke="#2dd4bf" stroke-width="1.5"/>
+    <rect x="560" y="612" width="4" height="52" rx="2" fill="#2dd4bf"/>
+    <text x="578" y="627" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#e6edf3">apps/site/public/projects/loop-protocol/</text>
+    <text xml:space="preserve" x="578" y="649" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#a8b3bf">mirror served at /projects/loop-protocol/</text>
+  </g>
+  <g>
+    <rect x="940" y="546" width="220" height="96" rx="12" fill="#161b22" stroke="#60a5fa" stroke-width="1.5"/>
+    <rect x="940" y="558" width="4" height="72" rx="2" fill="#60a5fa"/>
+    <text x="958" y="573" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#e6edf3">check:conformance</text>
+    <text xml:space="preserve" x="958" y="595" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#a8b3bf">fails on any drift and on</text>
+    <text xml:space="preserve" x="958" y="614" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#a8b3bf">spec routes missing in the API</text>
+  </g>
+  <path d="M370 560C460 560 460 544 556 544" fill="none" stroke="#8b98a5" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="465" y="536" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11.5" fill="#8b98a5">bun run sync:schemas</text>
+  <path d="M370 616C460 616 460 638 556 638" fill="none" stroke="#8b98a5" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="465" y="660" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11.5" fill="#8b98a5">aggregate-docs.sh</text>
+  <path d="M880 544C910 544 910 580 936 580" fill="none" stroke="#8b98a5" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#arrow)"/>
+  <path d="M880 638C910 638 910 610 936 610" fill="none" stroke="#8b98a5" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#arrow)"/>
+</svg>

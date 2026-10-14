@@ -1512,6 +1512,6 @@ Key properties of the v0.2.0 context:
 _End of Specification_
 
 _This specification is released under Creative Commons BY-SA 4.0. Code and schemas are released under the MIT license._
-_Contributions welcome at https://github.com/local-loop-io/loop-protocol_
+_Feedback and proposals: see the RFC process (`rfcs/`) and https://loop.urbnia.com/governance/_
 
 <!-- agent-cycle-035: spec maintenance anchor -->

@@ -28,8 +28,8 @@ Run `npm run test` from the repository root to validate all examples.
 
 ## How to Cite
 
-If you reference this repository, please cite:
-Alphin C. Tom. "LOOP Examples." localLOOP (Mycel), 2025-2026. https://github.com/local-loop-io/loop-protocol
+If you reference these examples, please cite:
+Alphin C. Tom. "LOOP Examples." localLOOP (Mycel), 2025-2026. https://loop.urbnia.com/library/examples/
 
 ```bibtex
 @misc{localloop_protocol_examples_2025,
@@ -37,8 +37,8 @@ Alphin C. Tom. "LOOP Examples." localLOOP (Mycel), 2025-2026. https://github.com
   organization = {Mycel},
   title = {LOOP Examples},
   year = {2026},
-  howpublished = {GitHub repository},
-  url = {https://github.com/local-loop-io/loop-protocol},
-  note = {Repository maintained by the author; version 0.5.x}
+  howpublished = {localLOOP documentation hub},
+  url = {https://loop.urbnia.com/library/examples/},
+  note = {Source: protocol/examples in the localLOOP monorepo; version 0.5.x. Releases up to 0.5.2 are also in the archived repository https://github.com/local-loop-io/loop-protocol}
 }
 ```

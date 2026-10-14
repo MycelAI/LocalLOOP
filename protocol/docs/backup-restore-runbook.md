@@ -5,14 +5,14 @@ service was renamed from `minio` to `seaweedfs` (with a `storage-proxy`
 nginx front end) at some point after this runbook was written; Section 3
 and 4.3 below referenced the old `minio` service/path name and would have
 failed if followed literally. Fixed after being caught by an actual drill
-run — see
-[localloop-agent evidence](https://github.com/local-loop-io/localloop-agent/tree/main/evidence/pilot-readiness-2026-08-14)
-for the drill record.
+run — the drill record is kept in the project's internal ledger
+(`ops/ledger/evidence/pilot-readiness-2026-08-14/` in the localLOOP monorepo,
+formerly the local-only `localloop-agent` repository; not published).
 
 This runbook covers backups for the localLOOP backend stack (Postgres, Redis, object storage). Adjust paths if your compose file or data volumes differ.
 
 ## 0) Preconditions
-- Access to the VPS host running Docker + `localloop-backend/docker-compose.yml`.
+- Access to the VPS host running Docker + `apps/backend/docker-compose.yml` (formerly `localloop-backend/docker-compose.yml`).
 - Sufficient free disk space for snapshots.
 - Backups stored off-host (recommended) or on a mounted backup volume.
 
@@ -100,9 +100,9 @@ docker compose start seaweedfs
 ## 6) Scheduled Backup Automation
 
 The repo now includes:
-- `localloop-backend/deploy/backup.sh`
-- `localloop-backend/deploy/localloop-backend-backup.service`
-- `localloop-backend/deploy/localloop-backend-backup.timer`
+- `apps/backend/deploy/backup.sh`
+- `apps/backend/deploy/localloop-backend-backup.service`
+- `apps/backend/deploy/localloop-backend-backup.timer`
 
 ### 6.1 Install the systemd units
 ```bash

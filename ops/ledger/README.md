@@ -12,4 +12,4 @@ and entries written before then refer to the old multi-repo paths.
 - `baselines/` — Playwright visual baselines
 - `evidence/` — verification captures
 
-Workspace root: `/home/alphin/code/MycelAI/localLOOP/` (was `/home/alphin/code/local-loop-io/`)
+Monorepo root: `/home/alphin/code/MycelAI/localLOOP/` (this directory is `ops/ledger/`; the former multi-repo workspace was `/home/alphin/code/local-loop-io/`).

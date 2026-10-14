@@ -1,7 +1,7 @@
 # LOOP Spec Compliance Matrix
 
-Tracks `localloop-backend` against the normative
-[loop-protocol](https://github.com/local-loop-io/loop-protocol) surface:
+Tracks the lab backend (`apps/backend`) against the normative LOOP protocol
+([`protocol/`](../../../protocol/README.md) in this monorepo) surface:
 SPECIFICATION.md §8 (API endpoints) plus `openapi.json` (the reference
 contract), §9.2 (node-to-node headers), and §8.3 (error envelope).
 

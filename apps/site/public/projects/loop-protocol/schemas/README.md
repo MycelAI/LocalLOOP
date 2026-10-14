@@ -11,7 +11,7 @@ JSON Schema definitions for LOOP payloads.
 - `material-status.schema.json` — Material status updates (v0.2.0)
 - `handshake.schema.json` — Federation handshake protocol (v0.2.0)
 - `federate-accepted.schema.json` — 202 Accepted response for federate announce/offer (v0.2.0)
-- `loopcoin.schema.json` — forward-looking/reserved schema; LoopCoin settlement has no corresponding route, schema, or data model in `localloop-backend` yet (see `localloop-backend/docs/SPEC-COMPLIANCE.md`'s LoopCoin settlement lab-boundary section for the current implementation-status boundary)
+- `loopcoin.schema.json` — forward-looking/reserved schema; LoopCoin settlement has no corresponding route, schema, or data model in the lab backend (`apps/backend` in the monorepo) yet (see `apps/backend/docs/SPEC-COMPLIANCE.md`'s LoopCoin settlement lab-boundary section for the current implementation-status boundary)
 - `loopsignal.schema.json`
 - `transaction.schema.json`
 - `node-info.schema.json`
@@ -34,8 +34,8 @@ This validates all JSON files in `examples/` against the schemas.
 
 ## How to Cite
 
-If you reference this repository, please cite:
-Alphin C. Tom. "LOOP Schemas." localLOOP (Mycel), 2025-2026. https://github.com/local-loop-io/loop-protocol
+If you reference these schemas, please cite:
+Alphin C. Tom. "LOOP Schemas." localLOOP (Mycel), 2025-2026. https://loop.urbnia.com/library/schemas/
 
 ```bibtex
 @misc{localloop_protocol_schemas_2025,
@@ -43,8 +43,8 @@ Alphin C. Tom. "LOOP Schemas." localLOOP (Mycel), 2025-2026. https://github.com/
   organization = {Mycel},
   title = {LOOP Schemas},
   year = {2026},
-  howpublished = {GitHub repository},
-  url = {https://github.com/local-loop-io/loop-protocol},
-  note = {Repository maintained by the author; version 0.5.x}
+  howpublished = {localLOOP documentation hub},
+  url = {https://loop.urbnia.com/library/schemas/},
+  note = {Source: protocol/schemas in the localLOOP monorepo; version 0.5.x. Releases up to 0.5.2 are also in the archived repository https://github.com/local-loop-io/loop-protocol}
 }
 ```
