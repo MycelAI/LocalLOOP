@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/epcis-mapping.schema.json",
+  "$id": "https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/epcis-mapping.schema.json",
   "title": "Core-DP EPCIS/CBV Mapping Metadata",
   "description": "Profile-local metadata for conservative EPCIS 2.0.1 and CBV 2.0 fixture mapping. This is not full EPCIS conformance.",
   "oneOf": [

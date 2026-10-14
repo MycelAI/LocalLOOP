@@ -16,7 +16,7 @@
       "payload_schema": "schemas/transfer.schema.json",
       "semantic_checks": ["waste-shipment-doc-ref-visibility-not-public"],
       "payload": {
-        "@context": "https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
+        "@context": "https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
         "@type": "Transfer",
         "schema_version": "0.2.0",
         "id": "TRF-WSR5C1D82",
@@ -47,7 +47,7 @@
       "coverage_tags": ["positive:material-classification"],
       "payload_schema": "schemas/material-dna.schema.json",
       "payload": {
-        "@context": "https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
+        "@context": "https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
         "@type": "MaterialDNA",
         "schema_version": "0.2.0",
         "id": "MAT-DE-MUC-2026-EWASTE-9C3F02",
@@ -75,7 +75,7 @@
       "payload_schema": "schemas/transfer.schema.json",
       "semantic_checks": ["waste-shipment-doc-ref-visibility-not-public"],
       "payload": {
-        "@context": "https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
+        "@context": "https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
         "@type": "Transfer",
         "schema_version": "0.2.0",
         "id": "TRF-WSR6D2E93",
@@ -98,7 +98,7 @@
       "payload_schema": "schemas/transfer.schema.json",
       "semantic_checks": ["waste-shipment-doc-ref-visibility-not-public"],
       "payload": {
-        "@context": "https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
+        "@context": "https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
         "@type": "Transfer",
         "schema_version": "0.2.0",
         "id": "TRF-WSR7E3F04",
@@ -118,7 +118,7 @@
       "payload_schema": "schemas/transfer.schema.json",
       "semantic_checks": ["waste-shipment-doc-ref-visibility-not-public"],
       "payload": {
-        "@context": "https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
+        "@context": "https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
         "@type": "Transfer",
         "schema_version": "0.2.0",
         "id": "TRF-WSR8F4A15",
@@ -149,7 +149,7 @@
       "payload_schema": "schemas/transfer.schema.json",
       "semantic_checks": ["waste-shipment-doc-ref-visibility-not-public"],
       "payload": {
-        "@context": "https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
+        "@context": "https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
         "@type": "Transfer",
         "schema_version": "0.2.0",
         "id": "TRF-WSR9A5B26",
@@ -171,7 +171,7 @@
       "expected_failure_contains": "must match format",
       "payload_schema": "schemas/transfer.schema.json",
       "payload": {
-        "@context": "https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
+        "@context": "https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
         "@type": "Transfer",
         "schema_version": "0.2.0",
         "id": "TRF-WSRAB6C37",
@@ -190,7 +190,7 @@
       "expected_failure_contains": "must match format",
       "payload_schema": "schemas/transfer.schema.json",
       "payload": {
-        "@context": "https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
+        "@context": "https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
         "@type": "Transfer",
         "schema_version": "0.2.0",
         "id": "TRF-WSRBC7D48",
@@ -211,7 +211,7 @@
       "expected_failure_contains": "must match pattern",
       "payload_schema": "schemas/material-dna.schema.json",
       "payload": {
-        "@context": "https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
+        "@context": "https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
         "@type": "MaterialDNA",
         "schema_version": "0.2.0",
         "id": "MAT-DE-MUC-2026-EWASTE-1D2E3F",
@@ -233,7 +233,7 @@
       "expected_failure_contains": "more than 120 characters",
       "payload_schema": "schemas/transfer.schema.json",
       "payload": {
-        "@context": "https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
+        "@context": "https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
         "@type": "Transfer",
         "schema_version": "0.2.0",
         "id": "TRF-WSRCD8E59",
@@ -254,7 +254,7 @@
       "expected_failure_contains": "allowed values",
       "payload_schema": "schemas/transfer.schema.json",
       "payload": {
-        "@context": "https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
+        "@context": "https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
         "@type": "Transfer",
         "schema_version": "0.2.0",
         "id": "TRF-WSRDE9F60",

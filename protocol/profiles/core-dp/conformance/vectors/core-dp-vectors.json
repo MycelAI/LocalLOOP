@@ -40,7 +40,7 @@
           "key_id": "key_berlin_2026_07"
         },
         "idempotency_key": "idem_offerAck0000000001",
-        "body_schema": "https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json",
+        "body_schema": "https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json",
         "body": {
           "conversation_id": "conv_offerAck00000001",
           "message_type": "offer.ack",
@@ -61,8 +61,8 @@
         "signature": {
           "alg": "Ed25519-lab-detached-v1",
           "key_id": "key_munich_2026_07",
-          "signing_input_sha256": "164dbf698ab242f1b671323a85c257171d526ba71f7228dec406c8ff8c64c0ac",
-          "value": "v1zAi20NW44VjbreJ9sPzSosN93qd6d_Q61wRa2cGZJ6UkqXpmp1i40Wi75Vyg6O303NU3G48m_WHkkFDQ9zCA"
+          "signing_input_sha256": "ac4f2d48cada4fe21f9d8bfbfb93cb2cf93f9ca4d119082f4020f93f30c5f2fe",
+          "value": "04YslyO1329Lzg-EuuZ_COJ5Db4YduJeqXEE0AaW_yDjzD6nEYDO_8SzPkji-WJ-HWDLbrCOzslYfCXEx1WSBQ"
         },
         "replay_window_seconds": 300
       }
@@ -98,7 +98,7 @@
           "key_id": "key_berlin_2026_07"
         },
         "idempotency_key": "idem_offerAck0000000001",
-        "body_schema": "https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json",
+        "body_schema": "https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json",
         "body": {
           "conversation_id": "conv_offerAck00000001",
           "message_type": "offer.ack",
@@ -119,8 +119,8 @@
         "signature": {
           "alg": "Ed25519-lab-detached-v1",
           "key_id": "key_munich_2026_07",
-          "signing_input_sha256": "164dbf698ab242f1b671323a85c257171d526ba71f7228dec406c8ff8c64c0ac",
-          "value": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          "signing_input_sha256": "ac4f2d48cada4fe21f9d8bfbfb93cb2cf93f9ca4d119082f4020f93f30c5f2fe",
+          "value": "LIYslyO1329Lzg-EuuZ_COJ5Db4YduJeqXEE0AaW_yDjzD6nEYDO_8SzPkji-WJ-HWDLbrCOzslYfCXEx1WSBQ"
         },
         "replay_window_seconds": 300
       }
@@ -156,7 +156,7 @@
           "key_id": "key_berlin_2026_07"
         },
         "idempotency_key": "idem_offerAck0000000001",
-        "body_schema": "https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json",
+        "body_schema": "https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json",
         "body": {
           "conversation_id": "conv_offerAck00000001",
           "message_type": "offer.ack",
@@ -177,7 +177,7 @@
         "signature": {
           "alg": "Ed25519-lab-detached-v1",
           "key_id": "key_munich_2026_08",
-          "signing_input_sha256": "164dbf698ab242f1b671323a85c257171d526ba71f7228dec406c8ff8c64c0ac",
+          "signing_input_sha256": "ac4f2d48cada4fe21f9d8bfbfb93cb2cf93f9ca4d119082f4020f93f30c5f2fe",
           "value": "s6mJJeJcy8t3X3i4qfLyrETR9PMkvCbJwxRDsvpDrlhfuJfeQ9u5HJU1mDm_XrQPrXK6VFt8NCB-WkJLMCPrCw"
         },
         "replay_window_seconds": 300
@@ -203,7 +203,7 @@
         "entity_type": "material",
         "request_id": "req_materialRegister0001",
         "record": {
-          "@context": "https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
+          "@context": "https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
           "@type": "MaterialDNA",
           "schema_version": "0.2.0",
           "id": "MAT-DE-MUC-2025-PLASTIC-B847F3",
@@ -297,7 +297,7 @@
           }
         },
         "record": {
-          "@context": "https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
+          "@context": "https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
           "@type": "ProductDNA",
           "schema_version": "0.2.0",
           "id": "PRD-DE-MUC-2025-DESK-F4A7B2",
@@ -415,7 +415,7 @@
           "key_id": "key_berlin_2026_07"
         },
         "idempotency_key": "idem_capAnnounce000001",
-        "body_schema": "https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json",
+        "body_schema": "https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json",
         "body": {
           "conversation_id": "conv_capAnnounce00001",
           "message_type": "capabilities.announce",
@@ -434,8 +434,8 @@
         "signature": {
           "alg": "Ed25519-lab-detached-v1",
           "key_id": "key_munich_2026_07",
-          "signing_input_sha256": "98dafd23611069e1a9ba7d18e2cd2574868011ec5f848a5dedb48b0c42340a25",
-          "value": "w-LCQInFWhnJf_fLLf4Ps4URHDyGZ17Xm2w4GpqPc0i9Up-CeiB-Qc82lHi7vCHKRkfMx7ZWwmxWAPisZGMtCg"
+          "signing_input_sha256": "6fea212245d1e89ae7efbf427220e1338ee345e795e1a1e07e90d356434f6ba5",
+          "value": "-TKKGKY_SR8S6pOqiixS6wVqQTlzX7UhnuegvFtzOMDDwcBfVactZpqO2LB33RzYMtwJjRqL4CiTG9RNHMapBQ"
         },
         "replay_window_seconds": 300
       }
@@ -543,7 +543,7 @@
           }
         },
         "record": {
-          "@context": "https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
+          "@context": "https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
           "@type": "MaterialDNA",
           "schema_version": "0.2.0",
           "id": "MAT-DE-MUC-2025-PLASTIC-B847F3",
@@ -896,7 +896,7 @@
           "key_id": "key_berlin_2026_07"
         },
         "idempotency_key": "idem_bodySchemaWrong0001",
-        "body_schema": "https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/dna-operation.schema.json",
+        "body_schema": "https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/dna-operation.schema.json",
         "body": {
           "message_type": "material.read",
           "operation": "read_request",
@@ -907,8 +907,8 @@
         "signature": {
           "alg": "Ed25519-lab-detached-v1",
           "key_id": "key_munich_2026_07",
-          "signing_input_sha256": "1edca91b0b463db9a4ee135a580f7b5c4a8a24db16beb7b3e08da82757f1e790",
-          "value": "K583TJk80sWz1jCj9kyILonBW9ogVeLayRl4KjQXx1-Mtsy1rbZbGItB60rYTD12Oxo3w5fsFnMoNILW76DJBg"
+          "signing_input_sha256": "e962c5b76e3920d5970eb0b51ef54c078aafd0d6ffb49df1d16ffa9ea8e78e1a",
+          "value": "fZcsDMpmG8zB97JpqfLJ9PjMUkcUZFtSVts4sP2xFk6yc21HiaUuFVsawZ0KzzgK_X3pAOyv0Cg-rpzEfCg9Aw"
         },
         "replay_window_seconds": 300
       }
@@ -950,7 +950,7 @@
             "0.2.0-lab"
           ]
         },
-        "body_schema": "https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json",
+        "body_schema": "https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json",
         "body": {
           "conversation_id": "conv_capAnnounceBad01",
           "message_type": "capabilities.announce",
@@ -969,8 +969,8 @@
         "signature": {
           "alg": "Ed25519-lab-detached-v1",
           "key_id": "key_munich_2026_07",
-          "signing_input_sha256": "5887994d03fdef6ef187e80d50bd5d0aebad8f60e974f0a72174aca64f9e7a03",
-          "value": "fUoupLbXpOS1r_n7RxksY-yTTcwJ7mfa3xkH8XytgD_YmR8C7wb9DUPLWni6JFffYWPNn_SuRTI5cNrKLeeNDw"
+          "signing_input_sha256": "c21fd1355388fc7234c95355ca7105649c1be2d7354966e9fccddbf1f1f37c3b",
+          "value": "S-yiHnN1T2k01JDHoZzIV5pjSfoDnhb4t_TyzRWRMdXiDizMVes-ZXdqI-kSpiqgp81rIsShWYqMbORu7zqxCQ"
         },
         "replay_window_seconds": 300
       }
@@ -1497,7 +1497,7 @@
           "key_id": "key_berlin_2026_07"
         },
         "idempotency_key": "idem_wrongBody0000001",
-        "body_schema": "https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json",
+        "body_schema": "https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json",
         "body": {
           "conversation_id": "conv_capAnnounce00001",
           "message_type": "capabilities.announce",
@@ -1516,8 +1516,8 @@
         "signature": {
           "alg": "Ed25519-lab-detached-v1",
           "key_id": "key_munich_2026_07",
-          "signing_input_sha256": "921b85a8348a22b5698dc94c6426c89896dd1d2c82836013f4d35b63a03f16df",
-          "value": "DzYfW0zitpkViEsgVMOicYbbTsyQEbCtlG48rc5Tyjl-1m5LZPmdh_5mInNBvbJ-JBw5KySCBYcJ81VmuEexDw"
+          "signing_input_sha256": "d6f9f5fc4613e6ade1f1a6067c50c3619bd67ad6a8300bd858ce9c90675d90a4",
+          "value": "MW5m5AH15sE8kymErfycuVN9n9s8N3jdSIz5rWOoszT-7Z2LSC6g87bl_pY7C--YZlGb5XHSjYLu38BXeaUgDw"
         },
         "replay_window_seconds": 300
       }
@@ -1549,7 +1549,7 @@
           "key_id": "key_berlin_2026_07"
         },
         "idempotency_key": "idem_wrongSchema000001",
-        "body_schema": "https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/error.schema.json",
+        "body_schema": "https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/error.schema.json",
         "body": {
           "conversation_id": "conv_offerAck00000001",
           "message_type": "offer.ack",
@@ -1570,8 +1570,8 @@
         "signature": {
           "alg": "Ed25519-lab-detached-v1",
           "key_id": "key_munich_2026_07",
-          "signing_input_sha256": "8bb078762257938789744d64b4bfb5018d38816218aec8ae625ec985fd13819f",
-          "value": "imtZzMlxoISmm51kCfjo3kWamjc6JFHsKzsLNVOlcfYwF35kiFd8jtbiI9DU2hQRFaIxXA5j7ZZujjuVVgEOBA"
+          "signing_input_sha256": "17bbb8b7bbfe9edfaa094a4a03af47e12d40e035dcd207de6b883f31b7f719ac",
+          "value": "nApvzHzzXjmqOgf2lMb4UljmzXmksTOXbhbM5hICercacr0_o5jZURfZSpvNcF2x8rknDO9jKO672AbUnexWDA"
         },
         "replay_window_seconds": 300
       }
@@ -1610,7 +1610,7 @@
           "key_id": "key_berlin_2026_07"
         },
         "idempotency_key": "idem_replayWindow0001",
-        "body_schema": "https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json",
+        "body_schema": "https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json",
         "body": {
           "conversation_id": "conv_capAnnounce00001",
           "message_type": "capabilities.announce",
@@ -1629,8 +1629,8 @@
         "signature": {
           "alg": "Ed25519-lab-detached-v1",
           "key_id": "key_munich_2026_07",
-          "signing_input_sha256": "0279f792da6c102e1b55829ca95f6b28cce81cfdcc17ccd4acf954450e5198a5",
-          "value": "wsgWhy0e-aG43th6cf9jgtXqbuqnMTJaUMl_Mhgbp_Ot3Omd-1d5GSRAxSRIf3e0YVLlKVZx5ZnHZBidZCyhDA"
+          "signing_input_sha256": "44825f106bf2d4fdaf40e7a3adbb1479c532e69c1f098832256514b44c576f8f",
+          "value": "nL4XvuLRut348PFH5TXLvl_zm6I9yYIbWZhJjPM2QlLLGHG5jJyIcLIrC-U04s60hFFtO6wkDLx0N-uTixAgDA"
         },
         "replay_window_seconds": 300
       }
@@ -1665,7 +1665,7 @@
           "key_id": "key_berlin_2026_07"
         },
         "idempotency_key": "idem_replayWindowBad01",
-        "body_schema": "https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json",
+        "body_schema": "https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json",
         "body": {
           "conversation_id": "conv_capAnnounce00001",
           "message_type": "capabilities.announce",
@@ -1684,8 +1684,8 @@
         "signature": {
           "alg": "Ed25519-lab-detached-v1",
           "key_id": "key_munich_2026_07",
-          "signing_input_sha256": "180518b888966c5e187f916e9853da370d6d5813e576048be581151e46b9100a",
-          "value": "6uqq3W_0U90uqbzjy0ZI0nb-yNGtCdtBVZdlY1QXUQ7AeNPRrIFAvS1zjoF3ErDzeG_Er_uAopad4Vd3vZTnAA"
+          "signing_input_sha256": "c7ff26593029c52a80efbe4dc6b2666dc6acb31329227b259a3ac5466e22700b",
+          "value": "Ryh0LgTt08gN3HdcCM60Zf9wR13a9QB7x2jpF5Wa1U-jBffpovaXspUt_ueeXlWzBXMQWust2KkZHX-jjjvWDw"
         },
         "replay_window_seconds": 60
       }
@@ -1880,7 +1880,7 @@
           "key_id": "key_berlin_2026_07"
         },
         "idempotency_key": "idem_offerAck0000000001",
-        "body_schema": "https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json",
+        "body_schema": "https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json",
         "body": {
           "conversation_id": "conv_offerAck00000001",
           "message_type": "offer.ack",
@@ -1901,8 +1901,8 @@
         "signature": {
           "alg": "Ed25519-lab-detached-v1",
           "key_id": "key_munich_2026_07",
-          "signing_input_sha256": "164dbf698ab242f1b671323a85c257171d526ba71f7228dec406c8ff8c64c0ac",
-          "value": "v1zAi20NW44VjbreJ9sPzSosN93qd6d_Q61wRa2cGZJ6UkqXpmp1i40Wi75Vyg6O303NU3G48m_WHkkFDQ9zCA"
+          "signing_input_sha256": "ac4f2d48cada4fe21f9d8bfbfb93cb2cf93f9ca4d119082f4020f93f30c5f2fe",
+          "value": "04YslyO1329Lzg-EuuZ_COJ5Db4YduJeqXEE0AaW_yDjzD6nEYDO_8SzPkji-WJ-HWDLbrCOzslYfCXEx1WSBQ"
         },
         "replay_window_seconds": 300
       }
@@ -1937,7 +1937,7 @@
           "key_id": "key_berlin_2026_07"
         },
         "idempotency_key": "idem_offerAck0000000001",
-        "body_schema": "https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json",
+        "body_schema": "https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json",
         "body": {
           "conversation_id": "conv_offerAck00000001",
           "message_type": "offer.ack",
@@ -1958,8 +1958,8 @@
         "signature": {
           "alg": "Ed25519-lab-detached-v1",
           "key_id": "key_munich_revoked_001",
-          "signing_input_sha256": "1f83b305062b54d353a845837505c23b2aaaf98516c6c723b8555668bcce2b1e",
-          "value": "P8bW_45CUtOVVmnRQEGMtHdy8E8SROESp7I7KJDqDKeONfOIABc9W5SlL2M3VbsnzDO1qr3oXnwTKt0n4XNqBA"
+          "signing_input_sha256": "ed022fd6db22804759c99f208f3711a1a9bee8025006ebc608b6004535997d66",
+          "value": "jKORVBqeJhv9EJtwhD20eVRnDLsc3M2zv9rnKvsfsBGDQ9vteXeUtRpUv13uATDBhjq0bzq9tf1BzZVs9jtlCA"
         },
         "replay_window_seconds": 300
       }
@@ -1994,7 +1994,7 @@
           "key_id": "key_berlin_2026_07"
         },
         "idempotency_key": "idem_offerAck0000000001",
-        "body_schema": "https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json",
+        "body_schema": "https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json",
         "body": {
           "conversation_id": "conv_offerAck00000001",
           "message_type": "offer.ack",
@@ -2015,7 +2015,7 @@
         "signature": {
           "alg": "Ed25519-lab-detached-v1",
           "key_id": "key_unknown_00000000",
-          "signing_input_sha256": "164dbf698ab242f1b671323a85c257171d526ba71f7228dec406c8ff8c64c0ac",
+          "signing_input_sha256": "e3c6406b39ebcfbe12056a1c5d03c65ebe6be0870580fbfffb5b67988832b514",
           "value": "s6mJJeJcy8t3X3i4qfLyrETR9PMkvCbJwxRDsvpDrlhfuJfeQ9u5HJU1mDm_XrQPrXK6VFt8NCB-WkJLMCPrCw"
         },
         "replay_window_seconds": 300
@@ -2054,7 +2054,7 @@
           "key_id": "key_berlin_2026_07"
         },
         "idempotency_key": "idem_replayEvalTime001",
-        "body_schema": "https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json",
+        "body_schema": "https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json",
         "body": {
           "conversation_id": "conv_replayEvalTime01",
           "message_type": "capabilities.announce",
@@ -2074,8 +2074,8 @@
         "signature": {
           "alg": "Ed25519-lab-detached-v1",
           "key_id": "key_munich_2026_07",
-          "signing_input_sha256": "7f1f6ba2f1ded5c29bfd9d05ba05942a6bbfd4089d21d6f49e656098a79e81ec",
-          "value": "UT4vJctB_pP-7ZX9PiYuxD1o542k-0zGCxy8lAwThT5BweHBJVOokt7B1bPSCf1UFORfGxrH0HZjOUJbOwqdAw"
+          "signing_input_sha256": "a44b9699dee671e186e79ef5bec23155ee5d2abde3554d9cd30ba7dd1f577385",
+          "value": "Q-KJZwOBPAACSgP4T3BybmcX5Gdqe1Q454T-nhix4aEWyJEe2J7sopJfgak1U0M3601TRfJv4n_Ohb2fPXnBBw"
         }
       },
       "evaluation_time": "2026-07-17T01:00:00Z"
@@ -2110,7 +2110,7 @@
           "key_id": "key_berlin_2026_07"
         },
         "idempotency_key": "idem_replayExpired001",
-        "body_schema": "https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json",
+        "body_schema": "https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json",
         "body": {
           "conversation_id": "conv_replayExpired001",
           "message_type": "capabilities.announce",
@@ -2130,8 +2130,8 @@
         "signature": {
           "alg": "Ed25519-lab-detached-v1",
           "key_id": "key_munich_2026_07",
-          "signing_input_sha256": "a05fa18658fbb9ea5cd4914cc13b8cc964d7cf0b9d4bebdd124b8dec71ffb950",
-          "value": "wD-n7_Ss46BWLRgGGmGDiGrnQ-UAreq4r-jijB9_xDJZCe5UQ6HTccQa1-F_NYGCaewP2gxJvgQ2JysuCAXGAQ"
+          "signing_input_sha256": "1edaa994a59312da966e1b1a205c4c1581671d8f4db698cd7a468ffb9fecffda",
+          "value": "zSHyDBoZxWSfdriX1Xq1_JPsiP_V6g6h_E3yxZGI2JzZxUdg2-IPV3gnNr12-iqSkEhn9Jts9BW_HMZGURxiDw"
         }
       },
       "evaluation_time": "2026-07-17T01:05:00Z"
@@ -2166,7 +2166,7 @@
           "key_id": "key_berlin_2026_07"
         },
         "idempotency_key": "idem_replayEvalBefore01",
-        "body_schema": "https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json",
+        "body_schema": "https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json",
         "body": {
           "conversation_id": "conv_replayEvalBefore01",
           "message_type": "capabilities.announce",
@@ -2186,8 +2186,8 @@
         "signature": {
           "alg": "Ed25519-lab-detached-v1",
           "key_id": "key_munich_2026_07",
-          "signing_input_sha256": "9021a343407d4c3083df42fa55883a65eb07893fbebb4595af65f8ed322b9b19",
-          "value": "7h0LCknzE2RNb7qD-LfLp2xVC2Q8FHJK3wtAO--NpIMTF_oQi24vlXN9ciRMHlsD5ajYtoE8_uO5lyq2CR4yAA"
+          "signing_input_sha256": "0ff9889e797bab6937582304bd310f44098deed65f303ddf05b9c88530212c97",
+          "value": "qZq3-21Z6BfTjciseXo0bD7q7-X3yFz-I2PjdK7w78UQN4n9LNeDRRM5crxL4J_bWquiYmSVxhtHb_yZ9YR-AQ"
         }
       },
       "evaluation_time": "2026-07-17T00:59:00Z"
@@ -2251,7 +2251,7 @@
           "key_id": "key_munich_2026_07"
         },
         "idempotency_key": "idem_wrongSender001",
-        "body_schema": "https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json",
+        "body_schema": "https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json",
         "body": {
           "conversation_id": "conv_wrongSender001",
           "message_type": "offer.publish",
@@ -2271,8 +2271,8 @@
         "signature": {
           "alg": "Ed25519-lab-detached-v1",
           "key_id": "key_berlin_2026_07",
-          "signing_input_sha256": "436fcf2725154a0590b275fd784362fcb74f4a43a6374b0642b1750a3bd58cca",
-          "value": "4Lz5DwJhyH2cH0Vb2-0pDOQCk4Ue1tMQj_R9C1yH4PUwMlMnpqODx-apxy3vVFxq2QasOCqJ8nwOvhB3h88VAg"
+          "signing_input_sha256": "ced6b65c43978604e7bf8aee1c7533e114de675e8fb871679739656d4d4b2116",
+          "value": "2r-a4SCTxHbBvmNyq7b2sr2RTj7lyGXTC0DKw8p6uDuFPUK7c5y6bKj3KRizBFG-2sNqv3U9eSualW-2CH74Cg"
         }
       }
     },
@@ -2306,7 +2306,7 @@
           "key_id": "key_berlin_2026_07"
         },
         "idempotency_key": "idem_rotatedKey000001",
-        "body_schema": "https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json",
+        "body_schema": "https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json",
         "body": {
           "conversation_id": "conv_capAnnounce00001",
           "message_type": "capabilities.announce",
@@ -2325,8 +2325,8 @@
         "signature": {
           "alg": "Ed25519-lab-detached-v1",
           "key_id": "key_munich_2025_01",
-          "signing_input_sha256": "93663e1b0f470918958703dec586aba6402eb7dff6d5e0a469f9d47bbcde9858",
-          "value": "gEInpt40Dz66dlHHDG9rOKd-mF9k7FVl9m3TS3mokXMChHV8u7443T570az6-y_s7Or4ZA2xNvL3kMUWc2GwAA"
+          "signing_input_sha256": "d3a14d2f152775f33324a826684b2f4f1420530d2a3eee2c58f04470793cd35d",
+          "value": "oehRhFSfMLVMAVa1y9Qh1KTW1R6j2dk1I4rjjz89xNmgh_1JiTZ-xedLihEM2mRw2G5D7pR991WiWKGe9e1LBQ"
         },
         "replay_window_seconds": 300
       }

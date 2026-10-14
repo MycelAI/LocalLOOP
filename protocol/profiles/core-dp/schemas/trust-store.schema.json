@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/trust-store.schema.json",
+  "$id": "https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/trust-store.schema.json",
   "title": "Core-DP Accepted Peer Keys Trust Store",
   "description": "External receiver-owned trust store containing public keys with lifecycle intervals and status for active, rotated, and revoked entries. Public keys only; no private key material.",
   "type": "object",

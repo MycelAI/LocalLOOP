@@ -52,7 +52,7 @@ The spec mandates `/api/v1/*` endpoints for core protocol operations.
 
 ## 5) Docs Hub vs Protocol Repo
 - The docs hub mirrors protocol artifacts, but lag can occur if mirroring is not run after updates.
-- Protocol OpenAPI artifact is now published as `loop-protocol/openapi.json` and mirrored at `https://localloop.urbnia.com/projects/loop-protocol/openapi.json` (corrected from a stale docs-hub path; canonical repo is `localloop-site`; see `DOMAIN-POLICY.md`).
+- Protocol OpenAPI artifact is now published as `loop-protocol/openapi.json` and mirrored at `https://loop.urbnia.com/projects/loop-protocol/openapi.json` (corrected from a stale docs-hub path; canonical repo is `localloop-site`; see `DOMAIN-POLICY.md`).
 
 ## 6) Resolution Plan
 - Spec §8 openapi.json surface is implemented in `localloop-backend` v0.4.0; remaining work is hardening (signature verification) and out-of-scope flows (LoopCoin, LoopSignal voting, LoopCost).

@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/peer-key-trust.schema.json",
+  "$id": "https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/peer-key-trust.schema.json",
   "title": "Core-DP Peer Key Trust Entry",
   "description": "LAB-ONLY Receiver-side accepted-peer key trust fixture for deterministic Ed25519 verification with active/revoked lifecycle checks.",
   "type": "object",

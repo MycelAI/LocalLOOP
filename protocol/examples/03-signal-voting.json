@@ -1,5 +1,5 @@
 {
-  "@context": "https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
+  "@context": "https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
   "@type": "LoopVote",
   "schema_version": "0.2.0",
   "node": "munich.loop",

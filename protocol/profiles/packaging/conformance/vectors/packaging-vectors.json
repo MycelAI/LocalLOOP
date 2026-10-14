@@ -15,7 +15,7 @@
       "payload_schema": "schemas/product-dna.schema.json",
       "semantic_checks": ["packaging-ppwr-regime-implies-reusable-category"],
       "payload": {
-        "@context": "https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
+        "@context": "https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
         "@type": "ProductDNA",
         "schema_version": "0.2.0",
         "id": "PRD-DE-MUC-2026-CRATE-4F8B21",
@@ -47,7 +47,7 @@
       "coverage_tags": ["positive:transfer-reusable-packaging"],
       "payload_schema": "schemas/transfer.schema.json",
       "payload": {
-        "@context": "https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
+        "@context": "https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
         "@type": "Transfer",
         "schema_version": "0.2.0",
         "id": "TRF-PKG7A2B9C",
@@ -80,7 +80,7 @@
       "payload_schema": "schemas/material-dna.schema.json",
       "semantic_checks": ["packaging-ppwr-regime-implies-reusable-category"],
       "payload": {
-        "@context": "https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
+        "@context": "https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
         "@type": "MaterialDNA",
         "schema_version": "0.2.0",
         "id": "MAT-DE-MUC-2026-CARDBOARD-8D2E71",
@@ -107,7 +107,7 @@
       "payload_schema": "schemas/product-dna.schema.json",
       "semantic_checks": ["packaging-ppwr-regime-implies-reusable-category"],
       "payload": {
-        "@context": "https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
+        "@context": "https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
         "@type": "ProductDNA",
         "schema_version": "0.2.0",
         "id": "PRD-DE-AUG-2026-PALLET-2C7F93",
@@ -134,7 +134,7 @@
       "payload_schema": "schemas/product-dna.schema.json",
       "semantic_checks": ["packaging-ppwr-regime-implies-reusable-category"],
       "payload": {
-        "@context": "https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
+        "@context": "https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
         "@type": "ProductDNA",
         "schema_version": "0.2.0",
         "id": "PRD-DE-MUC-2026-CRATE-9A1B44",
@@ -169,7 +169,7 @@
       "payload_schema": "schemas/product-dna.schema.json",
       "semantic_checks": ["packaging-ppwr-regime-implies-reusable-category"],
       "payload": {
-        "@context": "https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
+        "@context": "https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
         "@type": "ProductDNA",
         "schema_version": "0.2.0",
         "id": "PRD-DE-MUC-2026-DESK-3E8C12",
@@ -193,7 +193,7 @@
       "expected_failure_contains": "allowed values",
       "payload_schema": "schemas/product-dna.schema.json",
       "payload": {
-        "@context": "https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
+        "@context": "https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
         "@type": "ProductDNA",
         "schema_version": "0.2.0",
         "id": "PRD-DE-MUC-2026-CRATE-1B2C3D",
@@ -214,7 +214,7 @@
       "expected_failure_contains": ">=",
       "payload_schema": "schemas/product-dna.schema.json",
       "payload": {
-        "@context": "https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
+        "@context": "https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
         "@type": "ProductDNA",
         "schema_version": "0.2.0",
         "id": "PRD-DE-MUC-2026-CRATE-2C3D4E",
@@ -238,7 +238,7 @@
       "expected_failure_contains": "allowed values",
       "payload_schema": "schemas/product-dna.schema.json",
       "payload": {
-        "@context": "https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
+        "@context": "https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
         "@type": "ProductDNA",
         "schema_version": "0.2.0",
         "id": "PRD-DE-MUC-2026-CRATE-3D4E5F",
@@ -262,7 +262,7 @@
       "expected_failure_contains": "must match format",
       "payload_schema": "schemas/product-dna.schema.json",
       "payload": {
-        "@context": "https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
+        "@context": "https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
         "@type": "ProductDNA",
         "schema_version": "0.2.0",
         "id": "PRD-DE-MUC-2026-CRATE-4E5F6A",
@@ -286,7 +286,7 @@
       "expected_failure_contains": "more than 120 characters",
       "payload_schema": "schemas/transfer.schema.json",
       "payload": {
-        "@context": "https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
+        "@context": "https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
         "@type": "Transfer",
         "schema_version": "0.2.0",
         "id": "TRF-PKG5F6A7B",

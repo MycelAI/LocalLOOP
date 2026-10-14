@@ -1,0 +1,41 @@
+{
+  "_comment": "TEST-ONLY Ed25519 keys for regenerating the Core-DP conformance vectors (resign-vectors.js). They authenticate nothing; never use them in a node.",
+  "keys": {
+    "key_munich_2026_07": {
+      "node_id": "munich.loop",
+      "private_key_jwk": {
+        "crv": "Ed25519",
+        "d": "fbU1Z-g-aoduQcItMw-HMY0JwtBORTV8kEVTV2oJoJo",
+        "x": "2VmzgjFiaLeN5ZmRmeHLDCvuBI-FTXWqgFfQTUwQ2xU",
+        "kty": "OKP"
+      }
+    },
+    "key_munich_2025_01": {
+      "node_id": "munich.loop",
+      "private_key_jwk": {
+        "crv": "Ed25519",
+        "d": "diaVmSebficF8qnaVWBRkAW-3VcgPNfoHpCSouQJc48",
+        "x": "WhJWCFMFAKna-AZhrZxKdJUvvpYUYX8iTgTq2IuAQA4",
+        "kty": "OKP"
+      }
+    },
+    "key_munich_revoked_001": {
+      "node_id": "munich.loop",
+      "private_key_jwk": {
+        "crv": "Ed25519",
+        "d": "1l-dVTyuKBWrkt55cXnazeottru4YBQUxTVXUNKqGwc",
+        "x": "-000gHekZ7s5iQXoNEE76LM4Et44O-IFB9Ko-0_epIw",
+        "kty": "OKP"
+      }
+    },
+    "key_berlin_2026_07": {
+      "node_id": "berlin.loop",
+      "private_key_jwk": {
+        "crv": "Ed25519",
+        "d": "6r57rIYEUe6fiOBaQbTVI6Dp7UpWZAFQWKBaxL8jGK8",
+        "x": "lYOhV675fgg95cehXC-tBxMCfUNkn2EBNI9FHMpZkhM",
+        "kty": "OKP"
+      }
+    }
+  }
+}

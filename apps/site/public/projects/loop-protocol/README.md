@@ -1,7 +1,7 @@
 # LOOP
 
 [![Spec version](https://img.shields.io/badge/spec-v0.2.0-blue.svg)](SPECIFICATION.md)
-[![Package version](https://img.shields.io/badge/package-0.5.2-475569.svg)](CHANGELOG.md)
+[![Package version](https://img.shields.io/badge/package-0.6.0-475569.svg)](CHANGELOG.md)
 [![License](https://img.shields.io/badge/license-MIT%20%2B%20CC--BY--SA--4.0-green.svg)](LICENSE)
 [![Status](https://img.shields.io/badge/status-lab%20demo%20only-c2410c.svg)](docs/governance/CLAIMS-AND-MATURITY.md)
 
@@ -39,9 +39,9 @@ script. With Bun as your package manager, `bun install --frozen-lockfile` and
 ## Links
 - Docs hub: https://loop.urbnia.com (rendered spec: https://loop.urbnia.com/protocol/spec/)
 - Lab backend API: https://loop.urbnia.com/api/ (Redoc at https://loop.urbnia.com/api/docs)
-- JSON-LD contexts keep their published identifiers, e.g.
-  `https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld`
-  (served via the redirect to `loop.urbnia.com`).
+- JSON-LD contexts, terms and schema `$id`s live under
+  `https://loop.urbnia.com/projects/loop-protocol/`, e.g.
+  `https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld`.
 
 ## Contributing
 - Use `rfcs/` for feedback and proposals; see [CONTRIBUTING.md](CONTRIBUTING.md) and the [governance charter](docs/governance/GOVERNANCE.md).

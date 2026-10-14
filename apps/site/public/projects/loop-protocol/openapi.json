@@ -58,28 +58,28 @@
     },
     "schemas": {
       "MaterialDNA": {
-        "$ref": "https://localloop.urbnia.com/projects/loop-protocol/schemas/v0.2.0/material-dna.schema.json"
+        "$ref": "https://loop.urbnia.com/projects/loop-protocol/schemas/v0.2.0/material-dna.schema.json"
       },
       "ProductDNA": {
-        "$ref": "https://localloop.urbnia.com/projects/loop-protocol/schemas/v0.2.0/product-dna.schema.json"
+        "$ref": "https://loop.urbnia.com/projects/loop-protocol/schemas/v0.2.0/product-dna.schema.json"
       },
       "Offer": {
-        "$ref": "https://localloop.urbnia.com/projects/loop-protocol/schemas/v0.2.0/offer.schema.json"
+        "$ref": "https://loop.urbnia.com/projects/loop-protocol/schemas/v0.2.0/offer.schema.json"
       },
       "Match": {
-        "$ref": "https://localloop.urbnia.com/projects/loop-protocol/schemas/v0.2.0/match.schema.json"
+        "$ref": "https://loop.urbnia.com/projects/loop-protocol/schemas/v0.2.0/match.schema.json"
       },
       "Transfer": {
-        "$ref": "https://localloop.urbnia.com/projects/loop-protocol/schemas/v0.2.0/transfer.schema.json"
+        "$ref": "https://loop.urbnia.com/projects/loop-protocol/schemas/v0.2.0/transfer.schema.json"
       },
       "NodeInfo": {
-        "$ref": "https://localloop.urbnia.com/projects/loop-protocol/schemas/v0.2.0/node-info.schema.json"
+        "$ref": "https://loop.urbnia.com/projects/loop-protocol/schemas/v0.2.0/node-info.schema.json"
       },
       "LoopSignalConfig": {
-        "$ref": "https://localloop.urbnia.com/projects/loop-protocol/schemas/v0.2.0/loopsignal.schema.json"
+        "$ref": "https://loop.urbnia.com/projects/loop-protocol/schemas/v0.2.0/loopsignal.schema.json"
       },
       "Transaction": {
-        "$ref": "https://localloop.urbnia.com/projects/loop-protocol/schemas/v0.2.0/transaction.schema.json"
+        "$ref": "https://loop.urbnia.com/projects/loop-protocol/schemas/v0.2.0/transaction.schema.json"
       },
       "TransactionStatus": {
         "type": "object",
@@ -114,10 +114,10 @@
         }
       },
       "ProductSearchRequest": {
-        "$ref": "https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/search-contract.schema.json#/$defs/searchRequest"
+        "$ref": "https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/search-contract.schema.json#/$defs/searchRequest"
       },
       "ProductSearchResponse": {
-        "$ref": "https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/search-contract.schema.json#/$defs/searchResponse"
+        "$ref": "https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/search-contract.schema.json#/$defs/searchResponse"
       },
       "MaterialAnnouncement": {
         "type": "object",
@@ -144,7 +144,7 @@
         "required": ["@context", "@type", "material", "from", "base_price", "loop_cost", "valid_until"]
       },
       "FederateAcceptedResponse": {
-        "$ref": "https://localloop.urbnia.com/projects/loop-protocol/schemas/v0.2.0/federate-accepted.schema.json"
+        "$ref": "https://loop.urbnia.com/projects/loop-protocol/schemas/v0.2.0/federate-accepted.schema.json"
       },
       "ErrorResponse": {
         "type": "object",
@@ -175,22 +175,22 @@
       },
       "CoreDpEnvelope": {
         "description": "Lab-only Core-DP signed message envelope.",
-        "$ref": "https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/envelope.schema.json"
+        "$ref": "https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/envelope.schema.json"
       },
       "CoreDpChoreographyMessage": {
-        "$ref": "https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json"
+        "$ref": "https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json"
       },
       "CoreDpDnaOperation": {
-        "$ref": "https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/dna-operation.schema.json"
+        "$ref": "https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/dna-operation.schema.json"
       },
       "CoreDpSearchContract": {
-        "$ref": "https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/search-contract.schema.json"
+        "$ref": "https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/search-contract.schema.json"
       },
       "CoreDpEvidenceEntry": {
-        "$ref": "https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/evidence-entry.schema.json"
+        "$ref": "https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/evidence-entry.schema.json"
       },
       "CoreDpError": {
-        "$ref": "https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/error.schema.json"
+        "$ref": "https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/error.schema.json"
       }
     }
   },
@@ -326,7 +326,7 @@
           "required": true,
           "content": {
             "application/json": {
-              "schema": { "$ref": "https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/search-contract.schema.json#/$defs/searchRequest" }
+              "schema": { "$ref": "https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/search-contract.schema.json#/$defs/searchRequest" }
             }
           }
         },
@@ -335,7 +335,7 @@
             "description": "OK",
             "content": {
               "application/json": {
-                "schema": { "$ref": "https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/search-contract.schema.json#/$defs/searchResponse" }
+                "schema": { "$ref": "https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/search-contract.schema.json#/$defs/searchResponse" }
               }
             }
           },

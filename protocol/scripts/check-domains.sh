@@ -31,4 +31,23 @@ else
   fi
 fi
 
+# Former hostnames: since 2026-10-14 they only 308-redirect to loop.urbnia.com
+# (and /api/). Changelog history and the domain policy may still name them.
+former=(
+  "localloop.urbnia.com"
+  "loop-api.urbnia.com"
+)
+former_pattern=$(IFS='|'; echo "${former[*]//./\\.}")
+if command -v rg >/dev/null 2>&1; then
+  if rg -n "(${former_pattern})" --hidden --glob '!node_modules/**' --glob '!.git/**' --glob '!dist/**' --glob '!scripts/check-domains.sh' --glob '!DOMAIN-POLICY.md' --glob '!CHANGELOG.md' . ; then
+    echo "Former hostnames found (use https://loop.urbnia.com or https://loop.urbnia.com/api/)."
+    exit 1
+  fi
+else
+  if grep -RIn -E "(${former_pattern})" --exclude-dir=node_modules --exclude-dir=.git --exclude-dir=dist --exclude=DOMAIN-POLICY.md --exclude=check-domains.sh --exclude=CHANGELOG.md . ; then
+    echo "Former hostnames found (use https://loop.urbnia.com or https://loop.urbnia.com/api/)."
+    exit 1
+  fi
+fi
+
 echo "Domain check passed."

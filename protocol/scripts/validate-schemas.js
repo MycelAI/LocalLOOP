@@ -33,28 +33,28 @@ const TERMINAL_CORE_DP_STATES = new Set([
   'partitioned',
 ]);
 const CORE_DP_SEARCH_CONTRACT_SCHEMA_ID =
-  'https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/search-contract.schema.json';
+  'https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/search-contract.schema.json';
 const CORE_DP_SEARCH_REQUEST_REF = `${CORE_DP_SEARCH_CONTRACT_SCHEMA_ID}#/$defs/searchRequest`;
 const CORE_DP_SEARCH_RESPONSE_REF = `${CORE_DP_SEARCH_CONTRACT_SCHEMA_ID}#/$defs/searchResponse`;
 const CORE_DP_BODY_SCHEMA_BY_MESSAGE_TYPE = {
-  'capabilities.announce': 'https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
-  'capabilities.response': 'https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
-  'material.register': 'https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/dna-operation.schema.json',
-  'material.read': 'https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/dna-operation.schema.json',
+  'capabilities.announce': 'https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
+  'capabilities.response': 'https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
+  'material.register': 'https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/dna-operation.schema.json',
+  'material.read': 'https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/dna-operation.schema.json',
   'material.search': CORE_DP_SEARCH_CONTRACT_SCHEMA_ID,
-  'product.register': 'https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/dna-operation.schema.json',
-  'product.read': 'https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/dna-operation.schema.json',
+  'product.register': 'https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/dna-operation.schema.json',
+  'product.read': 'https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/dna-operation.schema.json',
   'product.search': CORE_DP_SEARCH_CONTRACT_SCHEMA_ID,
-  'offer.publish': 'https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
-  'offer.ack': 'https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
-  'offer.reject': 'https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
-  'match.propose': 'https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
-  'match.accept': 'https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
-  'match.reject': 'https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
-  'transfer.dispatch': 'https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
-  'transfer.receive': 'https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
-  'transfer.ack': 'https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
-  error: 'https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/error.schema.json',
+  'offer.publish': 'https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
+  'offer.ack': 'https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
+  'offer.reject': 'https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
+  'match.propose': 'https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
+  'match.accept': 'https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
+  'match.reject': 'https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
+  'transfer.dispatch': 'https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
+  'transfer.receive': 'https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
+  'transfer.ack': 'https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/choreography-message.schema.json',
+  error: 'https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/error.schema.json',
 };
 const CORE_DP_CHOREOGRAPHY_RULES = {
   'capabilities.announce': {
@@ -606,7 +606,7 @@ function assertOpenApiRefsResolve(openApiPath, schemaIds, schemaById) {
     }
     if (
       typeof value.$ref === 'string' &&
-      value.$ref.startsWith('https://localloop.urbnia.com/projects/loop-protocol/') &&
+      value.$ref.startsWith('https://loop.urbnia.com/projects/loop-protocol/') &&
       !localSchemaRefResolves(value.$ref, schemaIds, schemaById)
     ) {
       failures.push(`Unresolved OpenAPI schema ref: ${value.$ref}`);

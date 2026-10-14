@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/dna-operation.schema.json",
+  "$id": "https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/dna-operation.schema.json",
   "title": "Core-DP DNA Register/Read Operation",
   "description": "Minimal Core-DP MaterialDNA/ProductDNA register/read request and result contract. Register records compose the pinned LOOP v0.2.0 DNA schemas; DPP/VC/DID legal profile validation remains outside this profile.",
   "type": "object",
@@ -44,7 +44,7 @@
           "type": "array",
           "minItems": 1,
           "items": {
-            "$ref": "https://localloop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/error.schema.json"
+            "$ref": "https://loop.urbnia.com/projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/error.schema.json"
           }
         }
       }
@@ -59,7 +59,7 @@
           "entity_type": { "const": "material" },
           "record_id": { "$ref": "#/$defs/materialId" },
           "record": {
-            "$ref": "https://localloop.urbnia.com/projects/loop-protocol/schemas/v0.2.0/material-dna.schema.json"
+            "$ref": "https://loop.urbnia.com/projects/loop-protocol/schemas/v0.2.0/material-dna.schema.json"
           }
         }
       }
@@ -72,7 +72,7 @@
           "entity_type": { "const": "material" },
           "record_id": { "$ref": "#/$defs/materialId" },
           "record": {
-            "$ref": "https://localloop.urbnia.com/projects/loop-protocol/schemas/v0.2.0/material-dna.schema.json"
+            "$ref": "https://loop.urbnia.com/projects/loop-protocol/schemas/v0.2.0/material-dna.schema.json"
           }
         }
       }
@@ -85,7 +85,7 @@
           "entity_type": { "const": "product" },
           "record_id": { "$ref": "#/$defs/productId" },
           "record": {
-            "$ref": "https://localloop.urbnia.com/projects/loop-protocol/schemas/v0.2.0/product-dna.schema.json"
+            "$ref": "https://loop.urbnia.com/projects/loop-protocol/schemas/v0.2.0/product-dna.schema.json"
           }
         }
       }
@@ -98,7 +98,7 @@
           "entity_type": { "const": "product" },
           "record_id": { "$ref": "#/$defs/productId" },
           "record": {
-            "$ref": "https://localloop.urbnia.com/projects/loop-protocol/schemas/v0.2.0/product-dna.schema.json"
+            "$ref": "https://loop.urbnia.com/projects/loop-protocol/schemas/v0.2.0/product-dna.schema.json"
           }
         }
       }
@@ -155,7 +155,7 @@
         "operation": { "const": "register_request" },
         "entity_type": { "const": "material" },
         "record": {
-          "$ref": "https://localloop.urbnia.com/projects/loop-protocol/schemas/v0.2.0/material-dna.schema.json"
+          "$ref": "https://loop.urbnia.com/projects/loop-protocol/schemas/v0.2.0/material-dna.schema.json"
         }
       }
     },
@@ -167,7 +167,7 @@
         "operation": { "const": "register_request" },
         "entity_type": { "const": "product" },
         "record": {
-          "$ref": "https://localloop.urbnia.com/projects/loop-protocol/schemas/v0.2.0/product-dna.schema.json"
+          "$ref": "https://loop.urbnia.com/projects/loop-protocol/schemas/v0.2.0/product-dna.schema.json"
         }
       }
     },

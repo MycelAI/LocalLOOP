@@ -32,7 +32,7 @@ These targets come from a single maintainer and are best effort. We follow coord
 
 ### Supported Versions
 
-Only the latest protocol release (0.5.2) and the lab services at `https://loop.urbnia.com` receive security fixes. The archived `github.com/local-loop-io/*` repositories are read-only and do not receive fixes; if an issue there also affects the current protocol, report it as described above.
+Only the latest protocol release (0.6.0) and the lab services at `https://loop.urbnia.com` receive security fixes. The archived `github.com/local-loop-io/*` repositories are read-only and do not receive fixes; if an issue there also affects the current protocol, report it as described above.
 
 ## 🛡️ Security Considerations
 
@@ -137,7 +137,7 @@ const corsOptions = {
 
 ## 🚨 Known Security Issues
 
-### Protocol 0.5.x
+### Protocol 0.6.x
 | Issue | Severity | Status | Mitigation |
 |-------|----------|---------|------------|
 | None recorded | - | - | - |

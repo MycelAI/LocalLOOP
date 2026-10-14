@@ -5,7 +5,7 @@ import type { FastifyInstance } from 'fastify';
 import federateAcceptedSchema from './federate-accepted.schema.json';
 import handshakeRaw from './handshake.schema.json';
 
-const BASE = 'https://localloop.urbnia.com/projects/loop-protocol/schemas/v0.2.0';
+const BASE = 'https://loop.urbnia.com/projects/loop-protocol/schemas/v0.2.0';
 
 type SchemaDef = Record<string, unknown>;
 const defs = (handshakeRaw as any).definitions as Record<string, SchemaDef>;

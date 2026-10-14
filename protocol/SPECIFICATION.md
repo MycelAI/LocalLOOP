@@ -6,7 +6,7 @@
 
 **Version:** 0.2.0
 **Status:** Draft (DPP-Compatible Lab Baseline)
-**Updated:** March 2026
+**Updated:** October 2026
 **License:** CC BY-SA 4.0  
 
 ## Table of Contents
@@ -205,15 +205,15 @@ Receivers SHOULD accept additive minor/patch versions when unknown fields can be
 Payloads using `schema_version: "0.1.1"` remain valid against v0.2.0 schemas (backward compatible).
 
 - **MaterialDNA**
-  Schema: `https://localloop.urbnia.com/projects/loop-protocol/schemas/v0.2.0/material-dna.schema.json`
+  Schema: `https://loop.urbnia.com/projects/loop-protocol/schemas/v0.2.0/material-dna.schema.json`
 - **ProductDNA**
-  Schema: `https://localloop.urbnia.com/projects/loop-protocol/schemas/v0.2.0/product-dna.schema.json`
+  Schema: `https://loop.urbnia.com/projects/loop-protocol/schemas/v0.2.0/product-dna.schema.json`
 - **Offer**
-  Schema: `https://localloop.urbnia.com/projects/loop-protocol/schemas/v0.2.0/offer.schema.json`
+  Schema: `https://loop.urbnia.com/projects/loop-protocol/schemas/v0.2.0/offer.schema.json`
 - **Match**
-  Schema: `https://localloop.urbnia.com/projects/loop-protocol/schemas/v0.2.0/match.schema.json`
+  Schema: `https://loop.urbnia.com/projects/loop-protocol/schemas/v0.2.0/match.schema.json`
 - **Transfer**
-  Schema: `https://localloop.urbnia.com/projects/loop-protocol/schemas/v0.2.0/transfer.schema.json`
+  Schema: `https://loop.urbnia.com/projects/loop-protocol/schemas/v0.2.0/transfer.schema.json`
 
 > **Note**: v0.1.1 schema URLs remain available for backward compatibility. See RFC-0003 for the versioning policy.
 
@@ -287,7 +287,7 @@ MAT-DE-MUC-2025-PLASTIC-B847F3
 
 ```json
 {
-  "@context": "https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld",
+  "@context": "https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld",
   "@type": "MaterialDNA",
   "schema_version": "0.1.1",
   "id": "MAT-DE-MUC-2025-PLASTIC-B847F3",
@@ -427,7 +427,7 @@ PRD-DE-MUC-2025-DESK-F4A7B2
 
 ```json
 {
-  "@context": "https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
+  "@context": "https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
   "@type": "ProductDNA",
   "schema_version": "0.2.0",
   "id": "PRD-DE-MUC-2025-DESK-F4A7B2",
@@ -521,7 +521,7 @@ Each node's LoopCoin configuration:
 
 ```json
 {
-  "@context": "https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld",
+  "@context": "https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld",
   "@type": "LoopCoinConfig",
   "issuer": "munich.loop",
   "currency_code": "LC-MUC",
@@ -540,7 +540,7 @@ Each node's LoopCoin configuration:
 
 ```json
 {
-  "@context": "https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld",
+  "@context": "https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld",
   "@type": "LoopCoinTransfer",
   "id": "550e8400-e29b-41d4-a716-446655440000",
   "from": "user:maria@munich.loop",
@@ -560,7 +560,7 @@ When LoopCoins cross node boundaries:
 
 ```json
 {
-  "@context": "https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld",
+  "@context": "https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld",
   "@type": "InterNodeSettlement",
   "from_node": "munich.loop",
   "to_node": "berlin.loop",
@@ -594,7 +594,7 @@ Community preferences for material categories:
 
 ```json
 {
-  "@context": "https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld",
+  "@context": "https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld",
   "@type": "LoopSignalConfig",
   "node": "munich.loop",
   "signals": {
@@ -628,7 +628,7 @@ Community preferences for material categories:
 
 ```json
 {
-  "@context": "https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld",
+  "@context": "https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld",
   "@type": "LoopVote",
   "node": "munich.loop",
   "vote_id": "2025-05-plastic-increase",
@@ -755,7 +755,7 @@ Content-Type: application/ld+json
 Authorization: Bearer {token}
 
 {
-  "@context": "https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld",
+  "@context": "https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld",
   "@type": "MaterialDNA",
   "id": "MAT-DE-MUC-2025-PLASTIC-B847F3",
   "category": "plastic-pet",
@@ -765,7 +765,7 @@ Authorization: Bearer {token}
 
 Response: 201 Created
 {
-  "@context": "https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld",
+  "@context": "https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld",
   "@type": "MaterialDNA",
   "id": "MAT-DE-MUC-2025-PLASTIC-B847F3",
   "status": "registered",
@@ -780,7 +780,7 @@ GET /api/v1/material/MAT-DE-MUC-2025-PLASTIC-B847F3
 
 Response: 200 OK
 {
-  "@context": "https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld",
+  "@context": "https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld",
   "@type": "MaterialDNA",
   "id": "MAT-DE-MUC-2025-PLASTIC-B847F3",
   ...
@@ -821,7 +821,7 @@ Content-Type: application/ld+json
 Authorization: Bearer {token}
 
 {
-  "@context": "https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
+  "@context": "https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
   "@type": "ProductDNA",
   "schema_version": "0.2.0",
   "id": "PRD-DE-MUC-2026-CHAIR-001",
@@ -832,7 +832,7 @@ Authorization: Bearer {token}
 
 Response: 201 Created
 {
-  "@context": "https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
+  "@context": "https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
   "@type": "ProductDNA",
   "schema_version": "0.2.0",
   "id": "PRD-DE-MUC-2026-CHAIR-001",
@@ -848,7 +848,7 @@ GET /api/v1/product/PRD-DE-MUC-2026-CHAIR-001
 
 Response: 200 OK
 {
-  "@context": "https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
+  "@context": "https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
   "@type": "ProductDNA",
   "schema_version": "0.2.0",
   "id": "PRD-DE-MUC-2026-CHAIR-001",
@@ -872,7 +872,7 @@ Content-Type: application/ld+json
 Authorization: Bearer {token}
 
 {
-  "@context": "https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
+  "@context": "https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
   "@type": "Offer",
   "schema_version": "0.2.0",
   "id": "OFR-2F7A6B9C",
@@ -901,7 +901,7 @@ Content-Type: application/ld+json
 Authorization: Bearer {token}
 
 {
-  "@context": "https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
+  "@context": "https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
   "@type": "Match",
   "schema_version": "0.2.0",
   "id": "MCH-9B3C8A12",
@@ -930,7 +930,7 @@ Content-Type: application/ld+json
 Authorization: Bearer {token}
 
 {
-  "@context": "https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
+  "@context": "https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld",
   "@type": "Transfer",
   "schema_version": "0.2.0",
   "id": "TRF-5D8A23F1",
@@ -963,7 +963,7 @@ Content-Type: application/ld+json
 X-API-Key: {api-key}
 
 {
-  "@context": "https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld",
+  "@context": "https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld",
   "@type": "MaterialStatusUpdate",
   "schema_version": "0.1.1",
   "id": "3c9a6a0b-8c1a-4d3f-9c2c-3c1c2f9d5c2a",
@@ -992,7 +992,7 @@ GET /api/v1/node/info
 
 Response: 200 OK
 {
-  "@context": "https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld",
+  "@context": "https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld",
   "@type": "NodeInfo",
   "id": "munich.loop",
   "name": "Munich LOOP Node",
@@ -1015,7 +1015,7 @@ GET /api/v1/signals
 
 Response: 200 OK
 {
-  "@context": "https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld",
+  "@context": "https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld",
   "@type": "LoopSignalConfig",
   "node": "munich.loop",
   "signals": {
@@ -1037,7 +1037,7 @@ Content-Type: application/ld+json
 Authorization: Bearer {token}
 
 {
-  "@context": "https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld",
+  "@context": "https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld",
   "@type": "MaterialTransaction",
   "id": "TXN-2025-05-27-001",
   "material": "MAT-DE-MUC-2025-PLASTIC-B847F3",
@@ -1052,7 +1052,7 @@ Authorization: Bearer {token}
 
 Response: 201 Created
 {
-  "@context": "https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld",
+  "@context": "https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld",
   "@type": "TransactionStatus",
   "transaction_id": "TXN-2025-05-27-001",
   "status": "pending",
@@ -1072,7 +1072,7 @@ POST /api/v1/federate/announce
 X-Node-Signature: {signature}
 
 {
-  "@context": "https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld",
+  "@context": "https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld",
   "@type": "MaterialAnnouncement",
   "material": "MAT-DE-MUC-2025-PLASTIC-B847F3",
   "origin": "munich.loop",
@@ -1087,7 +1087,7 @@ POST /api/v1/federate/offer
 X-Node-Signature: {signature}
 
 {
-  "@context": "https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld",
+  "@context": "https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld",
   "@type": "MaterialOffer",
   "material": "MAT-DE-MUC-2025-PLASTIC-B847F3",
   "from": "berlin.loop",
@@ -1133,7 +1133,7 @@ Nodes maintain a registry of peers:
 
 ```json
 {
-  "@context": "https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld",
+  "@context": "https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld",
   "@type": "NodeRegistry",
   "version": "2025-05-27",
   "nodes": [
@@ -1263,7 +1263,7 @@ Test suite MUST cover:
 ```json
 POST munich.loop/api/v1/material
 {
-  "@context": "https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld",
+  "@context": "https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld",
   "@type": "MaterialDNA",
   "schema_version": "0.1.1",
   "id": "MAT-DE-MUC-2025-FOOD-B847F3",
@@ -1283,7 +1283,7 @@ POST munich.loop/api/v1/material
 
 Response:
 {
-  "@context": "https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld",
+  "@context": "https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld",
   "@type": "MaterialDNA",
   "id": "MAT-DE-MUC-2025-FOOD-B847F3",
   "status": "registered"
@@ -1295,7 +1295,7 @@ Response:
 ```json
 POST vienna.loop/api/v1/federate/announce
 {
-  "@context": "https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld",
+  "@context": "https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld",
   "@type": "MaterialAnnouncement",
   "material": "MAT-DE-MUC-2025-FOOD-B847F3",
   "origin": "munich.loop",
@@ -1320,7 +1320,7 @@ Total LoopCost: 104 LC
 ```json
 POST munich.loop/api/v1/federate/offer
 {
-  "@context": "https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld",
+  "@context": "https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld",
   "@type": "MaterialOffer",
   "material": "MAT-DE-MUC-2025-FOOD-B847F3",
   "from": "vienna.loop",
@@ -1348,7 +1348,7 @@ POST munich.loop/api/v1/federate/offer
 
 ```json
 {
-  "@context": "https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld",
+  "@context": "https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld",
   "@type": "SignalProposal",
   "node": "munich.loop",
   "changes": [
@@ -1364,7 +1364,7 @@ POST munich.loop/api/v1/federate/offer
 }
 
 {
-  "@context": "https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld",
+  "@context": "https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld",
   "@type": "LoopVote",
   "node": "munich.loop",
   "vote_id": "2025-06-plastic-increase",
@@ -1456,11 +1456,11 @@ Goal: Submit to standards body (W3C, IETF) after v1.0
 
 The canonical JSON-LD context for v0.2.0 is published at:
 
-`https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld`
+`https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld`
 
 The v0.1.1 context remains available at:
 
-`https://localloop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld`
+`https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld`
 
 Implementations MUST treat the published context files as the source of truth.
 This appendix is intentionally brief to avoid drift between the specification text and the published context files.
@@ -1474,9 +1474,21 @@ Key properties of the v0.2.0 context:
 - It sets `@vocab` to the LOOP terms namespace so additive fields expand predictably
 - It keeps date-time fields typed for interoperable processing
 
+All LOOP identifiers -- context URLs, the `@vocab` terms namespace
+(`https://loop.urbnia.com/projects/loop-protocol/terms/`) and schema `$id`s --
+live under `https://loop.urbnia.com/projects/loop-protocol/`.
+
 ---
 
 ## Appendix B: Change Log
+
+### Identifier namespace move (2026-10-14, protocol package 0.6.0)
+
+- Context URLs, the `@vocab`/`loop:` terms namespace, schema `$id`s and every
+  example moved from the former site hostname to `loop.urbnia.com`. Expanded
+  term IRIs change accordingly; the former host only redirects.
+- Specification version (0.2.0), schema versions and context file names are
+  unchanged.
 
 ### Version 0.2.0 (2026-03-08)
 

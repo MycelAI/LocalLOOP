@@ -67,9 +67,9 @@ the claims policy (`docs/governance/CLAIMS-AND-MATURITY.md`).
   the root `CONTRIBUTING.md`.
 - Adding RFC 2119 clauses to `SPECIFICATION.md` requires re-pinning
   `profiles/core-dp/requirements/spec-v0.2.0-normative-manifest.json`.
-- Published JSON-LD context URLs and schema `$id`s keep the
-  `localloop.urbnia.com` host. Changing them is a protocol versioning decision
-  that needs an RFC.
+- JSON-LD context URLs, `@vocab` and schema `$id`s live under
+  `https://loop.urbnia.com/projects/loop-protocol/`. Changing them is a
+  protocol versioning decision that needs an RFC.
 - Some docs carry `agent-cycle-NNN` HTML comment markers that
   `npm run check:markers` requires. Keep them when you edit those files.
 - Record changes under `## [Unreleased]` in `CHANGELOG.md`.

@@ -7,7 +7,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.6.0] - 2026-10-14
+
 ### Changed
+- **BREAKING: all identifiers moved to `loop.urbnia.com`.** JSON-LD context
+  URLs, the `@vocab` and `loop:` terms namespace
+  (`https://loop.urbnia.com/projects/loop-protocol/terms/`), every schema `$id`
+  and cross-schema `$ref`, the allowed `@context` values in the schemas, the
+  Core-DP envelope `body_schema` IRIs, `openapi.json`, the specification and
+  all examples and conformance vectors now use
+  `https://loop.urbnia.com/projects/loop-protocol/`. Expanded term IRIs change
+  accordingly. Specification version (0.2.0), schema versions and context file
+  names are unchanged.
+- Core-DP conformance vectors are re-signed with new TEST-ONLY Ed25519 keys
+  (`profiles/core-dp/conformance/trust/accepted-peer-keys.json` carries the new
+  public keys); `profiles/core-dp/conformance/resign-vectors.js` and
+  `trust/lab-test-private-keys.json` regenerate the signatures after future
+  envelope changes. Every vector still passes or fails for its declared reason.
+- `scripts/check-domains.sh` rejects the former hostnames
+  `localloop.urbnia.com` and `loop-api.urbnia.com` outside the domain policy
+  and changelog history.
 - The schema validator and conformance harnesses use Node's built-in
   `fs.globSync` instead of `fast-glob` (identical file sets); `fast-glob` and
   the `picomatch` override are removed from `devDependencies`.
@@ -23,6 +42,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `local-loop-io/loop-protocol`), and dropping `fast-glob` removes the
   `braces`/`micromatch` chain (GHSA-vfj7-8cjw-p6xm, no upstream fix). Dev
   tooling only; no schema, context or specification change.
+
+### Migration
+- Replace `https://localloop.urbnia.com/projects/loop-protocol/` with
+  `https://loop.urbnia.com/projects/loop-protocol/` in every `@context`, `$ref`
+  and stored identifier. Payloads that still use the old context URLs no
+  longer validate against these schemas.
+- JSON-LD consumers: terms now expand under
+  `https://loop.urbnia.com/projects/loop-protocol/terms/`. Data expanded with
+  the old context keeps the old term IRIs; map them one-to-one if you need to
+  compare old and new graphs.
+- The old URLs still resolve through a 308 redirect, so previously published
+  documents remain dereferenceable.
 
 ## [0.5.2] - 2026-09-05
 
