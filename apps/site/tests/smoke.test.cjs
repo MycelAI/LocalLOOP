@@ -325,6 +325,15 @@ test('well-known change-password is an nginx redirect to the security page', () 
   assert.ok(!fs.existsSync(path.join(process.cwd(), 'public', '.well-known', 'change-password')), 'static file would shadow the redirect');
 });
 
+test('nginx serves JSON-LD contexts as application/ld+json with CORS', () => {
+  const conf = read(['nginx.conf']);
+  const block = conf.slice(conf.indexOf('location ~* \\.jsonld$'));
+  assert.ok(conf.includes('location ~* \\.jsonld$'), 'missing .jsonld location');
+  assert.match(block, /default_type application\/ld\+json;/);
+  assert.match(block, /include \/etc\/nginx\/security-headers\.conf;/);
+  assert.match(block, /Access-Control-Allow-Origin "\*"/);
+});
+
 // Agent cycle stamps. Previously one near-identical test per cycle; now
 // data-driven so the coverage is the directory itself. EXPECTED_STAMP_CYCLES
 // pins the stamps that must not disappear, while the loop validates every stamp
