@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.8.1] - 2026-10-14
+
+### Changed
+- `/licenses/THIRD_PARTY_NOTICES.md` reflects backend 0.9.0, which no longer
+  ships Prisma or its dependencies (including the EPL-2.0 `elkjs`).
+
 ## [0.8.0] - 2026-10-14
 
 ### Changed
@@ -689,7 +695,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-[Unreleased]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.8.0...HEAD
+[Unreleased]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.8.1...HEAD
+[0.8.1]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.8.0...site/v0.8.1
 [0.8.0]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.7.2...site/v0.8.0
 [0.7.2]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.7.1...site/v0.7.2
 [0.7.1]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.7.0...site/v0.7.1

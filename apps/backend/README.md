@@ -193,25 +193,15 @@ tests/             Bun test suite
 ```
 
 ## Database layer
-Two different access patterns cover the schema, and they're not
-interchangeable:
-- **Prisma** (`prisma/schema.prisma`, `src/db/prisma.ts`) — only `Interest`
-  is queried via Prisma's typed model API; `City` goes through
-  `prisma.$queryRaw` for PostGIS geo queries. Prisma's connection also backs
-  the startup readiness probe and the `interests_search` materialized view
-  refresh.
-- **Hand-written SQL via `pool`** (`src/db/pool.ts`, `src/db/migrations/`) —
-  everything else, including all `Loop*` entities, payments, evidence,
-  idempotency keys, and signal config. Several of these have a Prisma model
-  in `schema.prisma` for type reference even though nothing queries them
-  through Prisma; 8 tables have no Prisma model at all: `loop_evidence`,
-  `loop_idempotency_keys`, `loop_signal_config`, `loop_transactions`
-  (migrations 013-015) and the better-auth tables `user`, `session`,
-  `account`, `verification` (migration 017).
-
-See the comment block at the top of `prisma/schema.prisma` for the full
-per-table breakdown before assuming Prisma is the source of truth for a
-given table.
+One access pattern: parameterized SQL through the shared `pg` pool
+(`src/db/pool.ts`; `withTransaction` for multi-statement writes), one query
+module per area in `src/db/` (`interest.ts`, `cities.ts`, `loop.ts`,
+`evidence.ts`, `payments.ts`, `federationNodes.ts`, `interestEvents.ts`).
+The schema is owned by the SQL files in `src/db/migrations/`, applied in order
+by `src/db/migrate.ts` (on start when `RUN_MIGRATIONS=true`, or
+`bun run migrate`). better-auth (when enabled) uses its own small pool against
+the same database. There is no ORM and no generate step; Prisma was removed in
+0.9.0.
 
 ## Notes
 - Lab demo only. No public pilots or deployments.

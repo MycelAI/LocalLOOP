@@ -33,7 +33,6 @@ import { registerLoopProtocolParsers } from './protocol';
 import { sendSpecError, sendSpecErrorForStatus } from './specErrors';
 import { VERSION, PROTOCOL_VERSION } from './version';
 import { setNoStore } from './httpCache';
-import { prisma } from './db/prisma';
 
 type BuildOptions = {
   logger?: boolean;
@@ -198,7 +197,6 @@ export async function startServer() {
         await worker.close();
       }
       await closeQueue();
-      await prisma.$disconnect();
       await closeAuthPool();
       await pool.end();
       process.exit(0);

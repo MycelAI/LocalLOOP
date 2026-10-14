@@ -20,7 +20,7 @@ something, report a problem or ask a question, email **dev@mycel-ai.de**
 
 | Path | What it is | Toolchain |
 | --- | --- | --- |
-| `apps/backend` | Bun + Fastify API, served under `https://loop.urbnia.com/api/` | Bun, Prisma, PostgreSQL/PostGIS, Valkey |
+| `apps/backend` | Bun + Fastify API, served under `https://loop.urbnia.com/api/` | Bun, `pg` (plain SQL), PostgreSQL/PostGIS, Valkey |
 | `apps/site` | Next.js static documentation hub, served at `https://loop.urbnia.com` | Bun, Next.js, Playwright |
 | `protocol` | LOOP specification, JSON Schemas, JSON-LD contexts, RFCs, profiles, `openapi.json` (canonical) | Node.js + npm, AJV |
 | `ops/ledger` | Internal ledger, evidence and plans (proprietary, not for outside contributions) | none |
@@ -65,7 +65,7 @@ Per tree (all of these scripts exist in the tree's `package.json`):
 | --- | --- | --- | --- |
 | `protocol` | `npm ci` | `npm test` (schemas, schemas README, doc markers) | plus `npm run check:domains` and `npm run conformance:core-dp` (or `:battery`, `:packaging`, `:waste-shipment`) |
 | `apps/site` | `bun install` | `bun run lint && bun run typecheck` | `bun run build && bun run test`, then `bun run test:e2e` (Playwright) |
-| `apps/backend` | `bun install && bun run prisma:generate` | `bun run typecheck && bun run lint` | `bun run check:conformance` and `bun run test` (see below) |
+| `apps/backend` | `bun install` | `bun run typecheck && bun run lint` | `bun run check:conformance` and `bun run test` (see below) |
 | `ops/org-profile` | none | `bash scripts/check-policy.sh && bash scripts/check-security-pointer.sh` | same |
 
 ### Backend tests need a scratch database

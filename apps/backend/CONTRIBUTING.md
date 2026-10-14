@@ -16,7 +16,6 @@ backend-specific guidance.
 ## Development Setup
 ```bash
 bun install
-bun run prisma:generate
 cp .env.example .env          # local development machines only
 docker compose up -d          # local Postgres, Valkey and SeaweedFS (development only)
 bun run dev

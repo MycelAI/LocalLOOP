@@ -24,6 +24,8 @@ use the date the change landed on `main`.
 ## 2026-10-14
 
 ### Changed
+- The backend uses plain parameterized SQL through `pg` only; Prisma is
+  removed (backend 0.9.0) and `ci-local.sh` no longer runs `prisma generate`.
 - Routing: the shared Traefik sends `loop.urbnia.com/api/*` straight to the
   backend (router `localloop-api`) and everything else to the site's nginx,
   which no longer proxies the API; the `storage-proxy` nginx in front of

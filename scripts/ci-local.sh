@@ -29,7 +29,6 @@ for t in "${targets[@]}"; do
       git diff --exit-code -- apps/site/public/projects
       cd "$ROOT/apps/backend"
       [[ -d node_modules ]] || bun install --frozen-lockfile
-      bun run prisma:generate >/dev/null
       bun run check:conformance
       ;;
     backend)
@@ -37,7 +36,6 @@ for t in "${targets[@]}"; do
       step "backend: domains, typecheck, lint, schema copies"
       ./scripts/check-domains.sh
       [[ -d node_modules ]] || bun install --frozen-lockfile
-      bun run prisma:generate >/dev/null
       bun run typecheck
       bun run lint
       bun run check:schemas

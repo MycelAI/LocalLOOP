@@ -14,8 +14,8 @@ This monorepo holds the LOOP specification and schemas, the public documentation
 [![Status: lab demo only](https://img.shields.io/badge/status-lab%20demo%20only-c2410c)](#limitations-and-status)
 [![Spec v0.2.0](https://img.shields.io/badge/spec-v0.2.0-0d9488)](protocol/SPECIFICATION.md)
 [![protocol 0.6.0](https://img.shields.io/badge/protocol-0.6.0-475569)](protocol/CHANGELOG.md)
-[![backend 0.8.1](https://img.shields.io/badge/backend-0.8.1-475569)](apps/backend/CHANGELOG.md)
-[![site 0.8.0](https://img.shields.io/badge/site-0.8.0-475569)](apps/site/CHANGELOG.md)
+[![backend 0.9.0](https://img.shields.io/badge/backend-0.9.0-475569)](apps/backend/CHANGELOG.md)
+[![site 0.8.1](https://img.shields.io/badge/site-0.8.1-475569)](apps/site/CHANGELOG.md)
 [![Licences: MIT, CC BY-SA 4.0](https://img.shields.io/badge/licences-MIT%20%C2%B7%20CC%20BY--SA%204.0-1d4ed8)](#licensing)
 
 [**Live site**](https://loop.urbnia.com) ·
@@ -132,7 +132,7 @@ OpenStreetMap contributors, ODbL).</sub>
 
 ```
 apps/
-  backend/        Bun + Fastify 5 API (Prisma 7, PostGIS, Valkey, SeaweedFS)  → https://loop.urbnia.com/api/
+  backend/        Bun + Fastify 5 API (plain SQL via pg, PostGIS, Valkey, SeaweedFS)  → https://loop.urbnia.com/api/
   site/           Next.js 16 static docs hub served by nginx                 → https://loop.urbnia.com
 protocol/         LOOP specification, JSON Schemas, JSON-LD contexts, RFCs, profiles, openapi.json
 ops/
@@ -225,7 +225,6 @@ Verified (no database needed):
 ```bash
 cd apps/backend
 bun install
-bun run prisma:generate
 bun run typecheck && bun run lint
 ```
 
@@ -251,7 +250,7 @@ bun run lab:demo              # migrate, seed and simulate the lab flow
 
 | Tree | Install | Check |
 | --- | --- | --- |
-| `apps/backend` | `bun install && bun run prisma:generate` | `bun run typecheck && bun run lint && bun run check:conformance && bun test` |
+| `apps/backend` | `bun install` | `bun run typecheck && bun run lint && bun run check:conformance && bun test` |
 | `apps/site` | `bun install` | `bun run lint && bun run typecheck && bun run build && bun run test` |
 | `protocol` | `npm ci` | `npm run test` |
 | repository | none | `node scripts/check-links.mjs` (relative links and anchors in all Markdown) |

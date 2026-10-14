@@ -28,8 +28,6 @@ jobs:
       - name: Install backend dependencies
         run: bun install --frozen-lockfile
         working-directory: apps/backend
-      - name: Generate Prisma client
-        run: bun run prisma:generate
         working-directory: apps/backend
       - name: Three-way conformance gate
         run: bun run check:conformance

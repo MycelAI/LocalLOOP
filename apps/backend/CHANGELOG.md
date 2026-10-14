@@ -7,6 +7,40 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.9.0] - 2026-10-14
+
+### Removed
+- **Prisma.** It backed only `src/db/interest.ts` (create/list/count) and the
+  raw PostGIS queries in `src/db/cities.ts`; every other table already used
+  parameterized SQL through the `pg` pool, the schema was owned by the SQL
+  migrations, and `prisma/schema.prisma` was a drifting copy. Both modules,
+  the readiness probe and shutdown now use the pool directly with the same
+  queries and response shapes. Removed: `prisma/`, `prisma.config.ts`,
+  `src/db/prisma.ts`, the `prisma:generate` script and Dockerfile step, and the
+  `prisma`, `@prisma/client` and `@prisma/adapter-pg` dependencies, plus the
+  `deepmerge-ts` and `mysql2` overrides that only applied to Prisma's tree.
+  The production install drops from 268 to 148 packages, and the image no
+  longer ships the EPL-2.0 `elkjs` that the Prisma CLI pulled in.
+
+### Fixed
+- `GET /api/cities`, `GET /api/cities/:slug` and `GET /api/cities/geojson`
+  returned every city `center`, feature `geometry` and feature `properties`
+  as `{}`: their response schemas declared bare objects, and Fastify's
+  serializer drops undeclared properties. The schemas now declare the GeoJSON
+  Point and feature-property shapes, and the route tests assert the
+  serialized content.
+
+### Added
+- `tests/db.queries.test.ts`: real-database coverage for the cities (bbox,
+  radius, distance, GeoJSON, by slug) and interest (insert, list, count)
+  queries, which the route tests mock. It passes against both the previous
+  Prisma implementation and the new one.
+
+### Migration
+- Drop `bun run prisma:generate` from local setup and scripts; `bun install`
+  is all the backend needs. No database change: the schema and migrations are
+  untouched.
+
 ## [0.8.1] - 2026-10-14
 
 ### Fixed
@@ -618,7 +652,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Lab demo scripts (seed + simulate + one-command runner).
 - Privacy notice endpoint and in-memory metrics snapshot.
 
-[Unreleased]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.8.1...HEAD
+[Unreleased]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.9.0...HEAD
+[0.9.0]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.8.1...backend/v0.9.0
 [0.8.1]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.8.0...backend/v0.8.1
 [0.8.0]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.7.1...backend/v0.8.0
 [0.7.1]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.7.0...backend/v0.7.1

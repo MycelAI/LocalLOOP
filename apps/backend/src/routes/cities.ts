@@ -22,13 +22,24 @@ type CityFilters = {
   };
 };
 
+// Response schemas drive fast-json-stringify, which drops any property they do
+// not declare: a bare { type: 'object' } serialized every center, geometry and
+// feature-properties object as {}. Declare the shapes the queries return.
+const pointSchema = {
+  type: ['object', 'null'],
+  properties: {
+    type: { type: 'string' },
+    coordinates: { type: 'array', items: { type: 'number' } },
+  },
+};
+
 const citySchema = {
   type: 'object',
   properties: {
     slug: { type: 'string' },
     name: { type: 'string' },
     country: { type: ['string', 'null'] },
-    center: { type: ['object', 'null'] },
+    center: pointSchema,
     created_at: { type: 'string' },
   },
 };
@@ -43,8 +54,17 @@ const geoJsonSchema = {
         type: 'object',
         properties: {
           type: { const: 'Feature' },
-          geometry: { type: ['object', 'null'] },
-          properties: { type: 'object' },
+          geometry: pointSchema,
+          properties: {
+            type: 'object',
+            properties: {
+              slug: { type: 'string' },
+              name: { type: 'string' },
+              country: { type: ['string', 'null'] },
+              created_at: { type: 'string' },
+              distance_m: { type: ['number', 'null'] },
+            },
+          },
         },
       },
     },

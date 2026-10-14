@@ -345,9 +345,6 @@ Production dependency closure of `apps/backend/package.json`
 | @better-auth/utils | 0.4.2 | MIT | (no copyright line in the licence file; author: Bereket Engida) | https://github.com/better-auth/utils |
 | @better-auth/utils | 0.5.0 | MIT | (no copyright line in the licence file; author: Bereket Engida) | https://github.com/better-auth/utils |
 | @better-fetch/fetch | 1.3.1 | MIT | Copyright (c) Bereket Engida | https://github.com/better-auth/better-fetch |
-| @electric-sql/pglite | 0.4.3 | Apache-2.0 | (no copyright line in the licence file; author: Electric DB Limited) | https://github.com/electric-sql/pglite |
-| @electric-sql/pglite-socket | 0.1.3 | Apache-2.0 | (no copyright line in the licence file; author: Electric DB Limited) | https://github.com/electric-sql/pglite |
-| @electric-sql/pglite-tools | 0.3.3 | Apache-2.0 | (no copyright line in the licence file; author: Electric DB Limited) | https://github.com/electric-sql/pglite |
 | @fastify/ajv-compiler | 4.0.5 | MIT | Copyright (c) 2022-present The Fastify team | https://github.com/fastify/ajv-compiler |
 | @fastify/cors | 11.3.0 | MIT | Copyright (c) 2018-present The Fastify team &lt;https://github.com/fastify/fastify#team> | https://github.com/fastify/fastify-cors |
 | @fastify/error | 4.2.0 | MIT | Copyright (c) 2020 Fastify | https://github.com/fastify/fastify-error |
@@ -365,105 +362,23 @@ Production dependency closure of `apps/backend/package.json`
 | @noble/hashes | 2.0.1 | MIT | Copyright (c) 2022 Paul Miller (https://paulmillr.com) | https://github.com/paulmillr/noble-hashes |
 | @opentelemetry/semantic-conventions | 1.41.1 | Apache-2.0 | (no copyright line in the licence file; author: OpenTelemetry Authors) | https://github.com/open-telemetry/opentelemetry-js |
 | @pinojs/redact | 0.4.0 | MIT | Copyright (c) 2025 pinojs contributors | https://github.com/pinojs/redact |
-| @prisma/adapter-pg | 7.9.1 | Apache-2.0 | (no copyright line in the licence file; author: Tom Houlé) | https://github.com/prisma/prisma |
-| @prisma/client | 7.9.1 | Apache-2.0 | (no copyright line in the licence file; author: Tim Suchanek) | https://github.com/prisma/prisma |
-| @prisma/client-runtime-utils | 7.9.1 | Apache-2.0 | (no copyright line in the licence file) | https://github.com/prisma/prisma |
-| @prisma/config | 7.9.1 | Apache-2.0 | (no copyright line in the licence file; author: Alberto Schiabel) | https://github.com/prisma/prisma |
-| @prisma/debug | 7.2.0 | Apache-2.0 | (no copyright line in the licence file; author: Tim Suchanek) | https://github.com/prisma/prisma |
-| @prisma/debug | 7.9.1 | Apache-2.0 | (no copyright line in the licence file; author: Tim Suchanek) | https://github.com/prisma/prisma |
-| @prisma/dev | 0.24.17 | ISC | (no copyright line in the licence file; author: Igal Klebanov) | https://www.npmjs.com/package/@prisma/dev |
-| @prisma/driver-adapter-utils | 7.9.1 | Apache-2.0 | (no copyright line in the licence file; author: Alberto Schiabel) | https://github.com/prisma/prisma |
-| @prisma/engines | 7.9.1 | Apache-2.0 | (no copyright line in the licence file; author: Tim Suchanek) | https://github.com/prisma/prisma |
-| @prisma/engines-version | 7.9.0-1.e922089b7d7502aff4249d5da3420f6fa55fc6ad | Apache-2.0 | (no copyright line in the licence file; author: Tim Suchanek) | https://github.com/prisma/engines-wrapper |
-| @prisma/fetch-engine | 7.9.1 | Apache-2.0 | (no copyright line in the licence file; author: Tim Suchanek) | https://github.com/prisma/prisma |
-| @prisma/get-platform | 7.2.0 | Apache-2.0 | (no copyright line in the licence file; author: Tim Suchanek) | https://github.com/prisma/prisma |
-| @prisma/get-platform | 7.9.1 | Apache-2.0 | (no copyright line in the licence file; author: Tim Suchanek) | https://github.com/prisma/prisma |
-| @prisma/get-platform | 7.9.1 | Apache-2.0 | (no copyright line in the licence file; author: Tim Suchanek) | https://github.com/prisma/prisma |
-| @prisma/query-plan-executor | 7.2.0 | Apache-2.0 | (no copyright line in the licence file) | https://github.com/prisma/prisma |
-| @prisma/streams-local | 0.1.11 | Apache-2.0 | (no copyright line in the licence file) | https://github.com/prisma/streams |
-| @prisma/studio-core | 0.33.0 | Apache-2.0 | (no copyright line in the licence file) | https://github.com/prisma/studio |
-| @radix-ui/primitive | 1.1.3 | MIT | Copyright (c) 2022 WorkOS | https://github.com/radix-ui/primitives |
-| @radix-ui/react-compose-refs | 1.1.2 | MIT | (no copyright line in the licence file) | https://github.com/radix-ui/primitives |
-| @radix-ui/react-primitive | 2.1.3 | MIT | Copyright (c) 2022 WorkOS | https://github.com/radix-ui/primitives |
-| @radix-ui/react-slot | 1.2.3 | MIT | Copyright (c) 2022 WorkOS | https://github.com/radix-ui/primitives |
-| @radix-ui/react-toggle | 1.1.10 | MIT | Copyright (c) 2022 WorkOS | https://github.com/radix-ui/primitives |
-| @radix-ui/react-use-controllable-state | 1.2.2 | MIT | Copyright (c) 2022 WorkOS | https://github.com/radix-ui/primitives |
-| @radix-ui/react-use-effect-event | 0.0.2 | MIT | Copyright (c) 2022 WorkOS | https://github.com/radix-ui/primitives |
-| @radix-ui/react-use-layout-effect | 1.1.1 | MIT | (no copyright line in the licence file) | https://github.com/radix-ui/primitives |
 | @standard-schema/spec | 1.1.0 | MIT | Copyright (c) 2024 Colin McDonnell | https://github.com/standard-schema/standard-schema |
-| @types/d3-array | 3.0.3 | MIT | Copyright (c) Microsoft Corporation. | https://github.com/DefinitelyTyped/DefinitelyTyped |
-| @types/d3-color | 3.1.0 | MIT | Copyright (c) Microsoft Corporation. | https://github.com/DefinitelyTyped/DefinitelyTyped |
-| @types/d3-delaunay | 6.0.1 | MIT | Copyright (c) Microsoft Corporation. | https://github.com/DefinitelyTyped/DefinitelyTyped |
-| @types/d3-format | 3.0.1 | MIT | Copyright (c) Microsoft Corporation. | https://github.com/DefinitelyTyped/DefinitelyTyped |
-| @types/d3-geo | 3.1.0 | MIT | Copyright (c) Microsoft Corporation. | https://github.com/DefinitelyTyped/DefinitelyTyped |
-| @types/d3-interpolate | 3.0.1 | MIT | Copyright (c) Microsoft Corporation. | https://github.com/DefinitelyTyped/DefinitelyTyped |
-| @types/d3-path | 3.1.1 | MIT | Copyright (c) Microsoft Corporation. | https://github.com/DefinitelyTyped/DefinitelyTyped |
-| @types/d3-scale | 4.0.2 | MIT | Copyright (c) Microsoft Corporation. | https://github.com/DefinitelyTyped/DefinitelyTyped |
-| @types/d3-shape | 3.1.7 | MIT | Copyright (c) Microsoft Corporation. | https://github.com/DefinitelyTyped/DefinitelyTyped |
-| @types/d3-time | 3.0.0 | MIT | Copyright (c) Microsoft Corporation. | https://github.com/DefinitelyTyped/DefinitelyTyped |
-| @types/d3-time-format | 2.1.0 | MIT | Copyright (c) Microsoft Corporation. All rights reserved. | https://www.github.com/DefinitelyTyped/DefinitelyTyped |
-| @types/geojson | 7946.0.16 | MIT | Copyright (c) Microsoft Corporation. | https://github.com/DefinitelyTyped/DefinitelyTyped |
-| @types/lodash | 4.17.25 | MIT | Copyright (c) Microsoft Corporation. | https://github.com/DefinitelyTyped/DefinitelyTyped |
-| @types/node | 25.9.5 | MIT | Copyright (c) Microsoft Corporation. | https://github.com/DefinitelyTyped/DefinitelyTyped |
-| @types/node | 26.2.0 | MIT | Copyright (c) Microsoft Corporation. | https://github.com/DefinitelyTyped/DefinitelyTyped |
-| @types/pg | 8.21.0 | MIT | Copyright (c) Microsoft Corporation. | https://github.com/DefinitelyTyped/DefinitelyTyped |
-| @types/react | 19.2.7 | MIT | Copyright (c) Microsoft Corporation. | https://github.com/DefinitelyTyped/DefinitelyTyped |
-| @visx/curve | 4.0.1-alpha.0 | MIT | Copyright (c) 2017-2018 Harrison Shoff | https://github.com/airbnb/visx |
-| @visx/event | 4.0.1-alpha.0 | MIT | Copyright (c) 2017-2018 Harrison Shoff | https://github.com/airbnb/visx |
-| @visx/grid | 4.0.1-alpha.0 | MIT | Copyright (c) 2017-2018 Harrison Shoff | https://github.com/airbnb/visx |
-| @visx/group | 4.0.1-alpha.0 | MIT | Copyright (c) 2017-2018 Harrison Shoff | https://github.com/airbnb/visx |
-| @visx/point | 4.0.1-alpha.0 | MIT | Copyright (c) 2017-2018 Harrison Shoff | https://github.com/airbnb/visx |
-| @visx/responsive | 4.0.1-alpha.0 | MIT | Copyright (c) 2017-2018 Harrison Shoff | https://github.com/airbnb/visx |
-| @visx/scale | 4.0.1-alpha.0 | MIT | Copyright (c) 2017-2018 Harrison Shoff | https://github.com/airbnb/visx |
-| @visx/shape | 4.0.1-alpha.0 | MIT | Copyright (c) 2017-2018 Harrison Shoff | https://github.com/airbnb/visx |
-| @visx/vendor | 4.0.0-alpha.0 | MIT and ISC | Copyright (c) 2017-2018 Harrison Shoff | https://github.com/airbnb/visx |
 | abstract-logging | 2.0.1 | MIT | (no copyright line in the licence file; author: James Sumners) | https://github.com/jsumners/abstract-logging |
 | ajv | 8.20.0 | MIT | Copyright (c) 2015-2021 Evgeny Poberezkin | https://github.com/ajv-validator/ajv |
 | ajv-formats | 3.0.1 | MIT | Copyright (c) 2020 Evgeny Poberezkin | https://github.com/ajv-validator/ajv-formats |
 | atomic-sleep | 1.0.0 | MIT | Copyright (c) 2020 David Mark Clements | https://github.com/davidmarkclements/atomic-sleep |
 | avvio | 9.1.0 | MIT | Copyright (c) 2020-2023 The Fastify Team<br>Copyright (c) 2016-2020 Matteo Collina | https://github.com/fastify/avvio |
-| aws-ssl-profiles | 1.1.2 | MIT | Copyright (c) 2024 Andrey Sidorov, Douglas Wilson, Weslley Araújo and contributors. | https://github.com/mysqljs/aws-ssl-profiles |
 | better-auth | 1.6.29 | MIT | Copyright (c) 2024 - present, Bereket Engida | https://github.com/better-auth/better-auth |
 | better-call | 1.4.0 | MIT | Copyright (c) 2025 Bereket Engida | https://github.com/better-auth/better-call |
-| better-result | 2.9.2 | MIT | Copyright (c) 2026 Dillon Mulroy | https://github.com/dmmulroy/better-result |
 | bullmq | 6.1.1 | MIT | Copyright (c) 2018 BullForce Labs AB and contributors. | https://github.com/taskforcesh/bullmq |
-| c12 | 3.3.4 | MIT | Copyright (c) Pooya Parsa &lt;pooya@pi0.io> | https://github.com/unjs/c12 |
-| chokidar | 5.0.0 | MIT | Copyright (c) 2012 Paul Miller (https://paulmillr.com), Elan Shanker | https://github.com/paulmillr/chokidar |
-| classnames | 2.5.1 | MIT | Copyright (c) 2018 Jed Watson | https://github.com/JedWatson/classnames |
 | cluster-key-slot | 1.1.1 | Apache-2.0 | Copyright (c) 2018 Mike Diarmid (Salakar) &lt;mike.diarmid@gmail.com> | https://github.com/Salakar/cluster-key-slot |
-| confbox | 0.2.2 | MIT | Copyright (c) Pooya Parsa &lt;pooya@pi0.io><br>Copyright (C) 2011-2015 by Vitaly Puzrin<br>Copyright (c) Squirrel Chat et al., All rights reserved.<br>Copyright (c) Microsoft<br>Copyright (c) 2012-2018 Aseem Kishore, and others (https://github.com/json5/json5/graphs/contributors)<br>Copyright (c) Sindre Sorhus &lt;sindresorhus@gmail.com> (https://sindresorhus.com) | https://github.com/unjs/confbox |
-| confbox | 0.2.4 | MIT | Copyright (c) Pooya Parsa &lt;pooya@pi0.io> | https://github.com/unjs/confbox |
 | cookie | 1.1.1 | MIT | Copyright (c) 2012-2014 Roman Shtylman &lt;shtylman@gmail.com><br>Copyright (c) 2015 Douglas Christopher Wilson &lt;doug@somethingdoug.com> | https://github.com/jshttp/cookie |
 | cron-parser | 5.8.1 | MIT | Copyright (c) 2014-2023 Harri Siirak | https://github.com/harrisiirak/cron-parser |
-| cross-spawn | 7.0.6 | MIT | Copyright (c) 2018 Made With MOXY Lda &lt;hello@moxy.studio> | git@github.com:moxystudio/node-cross-spawn |
-| csstype | 3.2.3 | MIT | Copyright (c) 2017-2018 Fredrik Nicol | https://github.com/frenic/csstype |
-| d3-array | 3.2.1 | ISC | Copyright 2010-2022 Mike Bostock | https://github.com/d3/d3-array |
-| d3-array | 3.2.4 | ISC | Copyright 2010-2023 Mike Bostock | https://github.com/d3/d3-array |
-| d3-color | 3.1.0 | ISC | Copyright 2010-2022 Mike Bostock | https://github.com/d3/d3-color |
-| d3-delaunay | 6.0.2 | ISC | Copyright 2018-2021 Observable, Inc.<br>Copyright 2021 Mapbox | https://github.com/d3/d3-delaunay |
-| d3-format | 3.1.0 | ISC | Copyright 2010-2021 Mike Bostock | https://github.com/d3/d3-format |
-| d3-geo | 3.1.0 | ISC | Copyright 2010-2022 Mike Bostock<br>Copyright 2008-2012 Charles Karney | https://github.com/d3/d3-geo |
-| d3-interpolate | 3.0.1 | ISC | Copyright 2010-2021 Mike Bostock | https://github.com/d3/d3-interpolate |
-| d3-path | 3.1.0 | ISC | Copyright 2015-2022 Mike Bostock | https://github.com/d3/d3-path |
-| d3-scale | 4.0.2 | ISC | Copyright 2010-2021 Mike Bostock | https://github.com/d3/d3-scale |
-| d3-shape | 3.2.0 | ISC | Copyright 2010-2022 Mike Bostock | https://github.com/d3/d3-shape |
-| d3-time | 3.1.0 | ISC | Copyright 2010-2022 Mike Bostock | https://github.com/d3/d3-time |
-| d3-time-format | 4.1.0 | ISC | Copyright 2010-2021 Mike Bostock | https://github.com/d3/d3-time-format |
 | debug | 4.4.3 | MIT | Copyright (c) 2014-2017 TJ Holowaychuk &lt;tj@vision-media.ca><br>Copyright (c) 2018-2021 Josh Junon | https://github.com/debug-js/debug |
-| deepmerge-ts | 8.0.2 | BSD-3-Clause | Copyright (c) 2021, Rebecca Stevens | https://github.com/RebeccaStevens/deepmerge-ts |
 | defu | 6.1.7 | MIT | Copyright (c) Pooya Parsa &lt;pooya@pi0.io> | https://github.com/unjs/defu |
-| delaunator | 5.1.0 | ISC | Copyright (c) 2026, Mapbox | https://github.com/mapbox/delaunator |
 | denque | 2.1.0 | Apache-2.0 | Copyright 2018-present Invertase Limited | https://github.com/invertase/denque |
 | dequal | 2.0.3 | MIT | Copyright (c) Luke Edwards &lt;luke.edwards05@gmail.com> (lukeed.com) | https://github.com/lukeed/dequal |
-| destr | 2.0.5 | MIT | Copyright (c) Pooya Parsa &lt;pooya@pi0.io> | https://github.com/unjs/destr |
 | detect-libc | 2.1.2 | Apache-2.0 | Copyright {yyyy} {name of copyright owner} | https://github.com/lovell/detect-libc |
-| dotenv | 17.4.2 | BSD-2-Clause | Copyright (c) 2015, Scott Motte | https://github.com/motdotla/dotenv |
-| effect | 3.20.0 | MIT | Copyright (c) 2023 Effectful Technologies Inc | https://github.com/Effect-TS/effect |
-| elkjs | 0.11.1 | EPL-2.0 | copyright rights in its Contribution, if any, to grant the copyright | https://github.com/kieler/elkjs |
-| empathic | 2.0.0 | MIT | Copyright (c) Luke Edwards &lt;luke.edwards05@gmail.com> (lukeed.com) | https://github.com/lukeed/empathic |
-| env-paths | 3.0.0 | MIT | Copyright (c) Sindre Sorhus &lt;sindresorhus@gmail.com> (https://sindresorhus.com) | https://github.com/sindresorhus/env-paths |
-| exsolve | 1.0.8 | MIT | Copyright (c) Pooya Parsa &lt;pooya@pi0.io><br>Copyright (c) 2021 Titus Wormer &lt;mailto:tituswormer@gmail.com><br>Copyright Node.js contributors. All rights reserved.<br>Copyright Joyent, Inc. and other Node contributors. All rights reserved. | https://github.com/unjs/exsolve |
-| fast-check | 3.23.2 | MIT | Copyright (c) 2017 Nicolas DUBIEN | https://github.com/dubzzz/fast-check |
 | fast-decode-uri-component | 1.0.1 | MIT | Copyright (c) 2018 Tomas Della Vedova<br>Copyright (c) 2017 Justin Ridgewell<br>Copyright (c) 2008-2009 Bjoern Hoehrmann &lt;bjoern@hoehrmann.de> | https://github.com/delvedor/fast-decode-uri-component |
 | fast-deep-equal | 3.1.3 | MIT | Copyright (c) 2017 Evgeny Poberezkin | https://github.com/epoberezkin/fast-deep-equal |
 | fast-json-stringify | 6.1.1 | MIT | Copyright (c) 2016-present Matteo Collina<br>Copyright (c) 2016-present The Fastify team | https://github.com/fastify/fast-json-stringify |
@@ -474,47 +389,25 @@ Production dependency closure of `apps/backend/package.json`
 | fastify-plugin | 6.0.0 | MIT | Copyright (c) 2017-present The Fastify team &lt;https://github.com/fastify/fastify#team> | https://github.com/fastify/fastify-plugin |
 | fastq | 1.19.1 | ISC | Copyright (c) 2015-2020, Matteo Collina &lt;matteo.collina@gmail.com> | https://github.com/mcollina/fastq |
 | find-my-way | 9.7.0 | MIT | Copyright (c) 2017-2019 Tomas Della Vedova | https://github.com/delvedor/find-my-way |
-| foreground-child | 3.3.1 | ISC | Copyright (c) 2015-2023 Isaac Z. Schlueter and Contributors | https://github.com/tapjs/foreground-child |
-| generate-function | 2.3.1 | MIT | Copyright (c) 2014 Mathias Buus | https://github.com/mafintosh/generate-function |
-| get-port-please | 3.2.0 | MIT | Copyright (c) Pooya Parsa &lt;pooya@pi0.io> | https://github.com/unjs/get-port-please |
-| giget | 3.2.0 | MIT | Copyright (c) Pooya Parsa &lt;pooya@pi0.io><br>Copyright (c) Isaac Z. Schlueter and Contributors<br>Copyright (c) 2017-2023 npm, Inc., Isaac Z. Schlueter, and Contributors<br>Copyright (c) 2017-2023 Isaac Z. Schlueter and Contributors<br>Copyright (c) 2017-2023 Node.js contributors. All rights reserved.<br>Copyright (c) 2017-2023 Joyent, Inc. and other Node contributors. All rights reserved. | https://github.com/unjs/giget |
-| graceful-fs | 4.2.11 | ISC | Copyright (c) 2011-2022 Isaac Z. Schlueter, Ben Noordhuis, and Contributors | https://github.com/isaacs/node-graceful-fs |
-| grammex | 3.1.12 | MIT | Copyright (c) 2023-present Fabio Spampinato | https://github.com/fabiospampinato/grammex |
-| graphmatch | 1.1.0 | MIT | Copyright (c) 2025-present Fabio Spampinato | https://github.com/fabiospampinato/graphmatch |
 | helmet | 8.1.0 | MIT | Copyright (c) 2012-2025 Evan Hahn, Adam Baldwin | https://github.com/helmetjs/helmet |
-| iconv-lite | 0.7.3 | MIT | Copyright (c) 2011 Alexander Shtuchkin | https://github.com/pillarjs/iconv-lite |
-| internmap | 2.0.3 | ISC | Copyright 2021 Mike Bostock | https://github.com/mbostock/internmap |
 | ioredis | 6.0.0 | MIT | Copyright (c) 2015-2022 Zihua Li | https://github.com/redis/ioredis |
 | ip-address | 10.7.4 | MIT | Copyright (C) 2011 by Beau Gunderson | https://github.com/beaugunderson/ip-address |
 | ipaddr.js | 2.3.0 | MIT | Copyright (C) 2011-2017 whitequark &lt;whitequark@whitequark.org> | https://github.com/whitequark/ipaddr.js |
-| is-property | 1.0.2 | MIT | Copyright (c) 2013 Mikola Lysenko | https://github.com/mikolalysenko/is-property |
-| isexe | 2.0.0 | ISC | Copyright (c) Isaac Z. Schlueter and Contributors | https://github.com/isaacs/isexe |
-| jiti | 2.6.1 | MIT | Copyright (c) Pooya Parsa &lt;pooya@pi0.io> | https://github.com/unjs/jiti |
 | jose | 6.1.3 | MIT | Copyright (c) 2018 Filip Skokan | https://github.com/panva/jose |
 | json-schema-ref-resolver | 3.0.0 | MIT | Copyright (c) 2023 Fastify | https://github.com/fastify/json-schema-ref-resolver |
 | json-schema-resolver | 3.0.0 | MIT | Copyright (c) 2020 Manuel Spigolon | https://github.com/Eomm/json-schema-resolver |
 | json-schema-traverse | 1.0.0 | MIT | Copyright (c) 2017 Evgeny Poberezkin | https://github.com/epoberezkin/json-schema-traverse |
 | kysely | 0.28.17 | MIT | Copyright (c) 2022 Sami Koskimäki | https://github.com/kysely-org/kysely |
 | light-my-request | 6.6.0 | BSD-3-Clause | Copyright (c) 2017 The Fastify Team<br>Copyright (c) 2012-2017, Project contributors<br>Copyright (c) 2012-2014, Walmart | https://github.com/fastify/light-my-request |
-| lodash | 4.18.1 | MIT | Copyright OpenJS Foundation and other contributors &lt;https://openjsf.org/> | https://github.com/lodash/lodash |
-| long | 5.3.2 | Apache-2.0 | (no copyright line in the licence file; author: Daniel Wirtz) | https://github.com/dcodeIO/long.js |
-| lru.min | 1.1.3 | MIT | Copyright (c) 2024-current Weslley Araújo (@wellwelwel) | https://github.com/wellwelwel/lru.min |
-| lru.min | 1.1.5 | MIT | Copyright (c) 2024-current Weslley Araújo (@wellwelwel) | https://github.com/wellwelwel/lru.min |
 | luxon | 3.7.2 | MIT | Copyright 2019 JS Foundation and other contributors | https://github.com/moment/luxon |
 | ms | 2.1.3 | MIT | Copyright (c) 2020 Vercel, Inc. | https://github.com/vercel/ms |
 | msgpackr | 2.0.5 | MIT | Copyright (c) 2020 Kris Zyp | http://github.com/kriszyp/msgpackr |
 | msgpackr-extract | 3.0.4 | MIT | Copyright (c) 2020 Kris Zyp | http://github.com/kriszyp/msgpackr-extract |
-| mysql2 | 3.24.3 | MIT | Copyright (c) 2016 Andrey Sidorov (sidorares@yandex.ru) and contributors | https://github.com/sidorares/node-mysql2 |
-| named-placeholders | 1.1.6 | MIT | Copyright (c) 2014 Andrey Sidorov | https://github.com/mysqljs/named-placeholders |
 | nanostores | 1.1.1 | MIT | Copyright 2020 Andrey Sitnik &lt;andrey@sitnik.ru> | https://github.com/nanostores/nanostores |
 | node-abort-controller | 3.1.1 | MIT | Copyright (c) 2019 Steve Faulkner | https://github.com/southpolesteve/node-abort-controller |
 | node-gyp-build-optional-packages | 5.2.2 | MIT | Copyright (c) 2017 Mathias Buus | https://github.com/prebuild/node-gyp-build |
-| ohash | 2.0.11 | MIT | Copyright (c) Pooya Parsa &lt;pooya@pi0.io> | https://github.com/unjs/ohash |
 | on-exit-leak-free | 2.1.2 | MIT | Copyright (c) 2021 Matteo Collina | https://github.com/mcollina/on-exit-or-gc |
 | openapi-types | 12.1.3 | MIT | Copyright (c) 2018 Kogo Softare LLC | https://github.com/kogosoftwarellc/open-api/tree/master/packages/openapi-types |
-| path-key | 3.1.1 | MIT | Copyright (c) Sindre Sorhus &lt;sindresorhus@gmail.com> (sindresorhus.com) | https://github.com/sindresorhus/path-key |
-| pathe | 2.0.3 | MIT | Copyright (c) Pooya Parsa &lt;pooya@pi0.io> - Daniel Roe &lt;daniel@roe.dev><br>Copyright Joyent, Inc. and other Node contributors.<br>Copyright (c) 2023-present Fabio Spampinato | https://github.com/unjs/pathe |
-| perfect-debounce | 2.1.0 | MIT | Copyright (c) Pooya Parsa &lt;pooya@pi0.io> | https://github.com/unjs/perfect-debounce |
 | pg | 8.23.0 | MIT | Copyright (c) 2010 - 2021 Brian Carlson | https://github.com/brianc/node-postgres |
 | pg-cloudflare | 1.4.0 | MIT | Copyright (c) 2010 - 2021 Brian Carlson | https://github.com/brianc/node-postgres |
 | pg-connection-string | 2.14.0 | MIT | Copyright (c) 2014 Iced Development | https://github.com/brianc/node-postgres |
@@ -526,76 +419,40 @@ Production dependency closure of `apps/backend/package.json`
 | pino | 10.1.0 | MIT | Copyright (c) 2016-2025 Matteo Collina, David Mark Clements and the Pino contributors listed at &lt;https://github.com/pinojs/pino#the-team> and in the README file. | https://github.com/pinojs/pino |
 | pino-abstract-transport | 2.0.0 | MIT | Copyright (c) 2021 pino | https://github.com/pinojs/pino-abstract-transport |
 | pino-std-serializers | 7.0.0 | MIT | Copyright Mateo Collina, David Mark Clements, James Sumners | ssh://git@github.com/pinojs/pino-std-serializers |
-| pkg-types | 2.3.0 | MIT | Copyright (c) Pooya Parsa &lt;pooya@pi0.io> - Daniel Roe &lt;daniel@roe.dev><br>Copyright Joyent, Inc. and other Node contributors. | https://github.com/unjs/pkg-types |
-| postgres | 3.4.7 | Unlicense | (no copyright line in the licence file; author: Rasmus Porsager) | https://github.com/porsager/postgres |
 | postgres-array | 2.0.0 | MIT | Copyright (c) Ben Drucker &lt;bvdrucker@gmail.com> (bendrucker.me) | https://github.com/bendrucker/postgres-array |
-| postgres-array | 3.0.4 | MIT | Copyright (c) Ben Drucker &lt;bvdrucker@gmail.com> (bendrucker.me) | https://github.com/bendrucker/postgres-array |
 | postgres-bytea | 1.0.1 | MIT | Copyright (c) Ben Drucker &lt;bvdrucker@gmail.com> (bendrucker.me) | https://github.com/bendrucker/postgres-bytea |
 | postgres-date | 1.0.7 | MIT | Copyright (c) Ben Drucker &lt;bvdrucker@gmail.com> (bendrucker.me) | https://github.com/bendrucker/postgres-date |
 | postgres-interval | 1.2.0 | MIT | Copyright (c) Ben Drucker &lt;bvdrucker@gmail.com> (bendrucker.me) | https://github.com/bendrucker/postgres-interval |
-| prisma | 7.9.1 | Apache-2.0 | (no copyright line in the licence file; author: Tim Suchanek) | https://github.com/prisma/prisma |
 | process-warning | 4.0.1 | MIT | Copyright (c) Fastify | https://github.com/fastify/process-warning |
 | process-warning | 5.0.0 | MIT | Copyright (c) Fastify | https://github.com/fastify/process-warning |
 | process-warning | 5.1.0 | MIT | Copyright (c) 2020-present The Fastify team &lt;https://github.com/fastify/fastify#team> | https://github.com/fastify/process-warning |
-| proper-lockfile | 4.1.2 | MIT | Copyright (c) 2018 Made With MOXY Lda &lt;hello@moxy.studio> | git@github.com:moxystudio/node-proper-lockfile |
-| pure-rand | 6.1.0 | MIT | Copyright (c) 2018 Nicolas DUBIEN | https://github.com/dubzzz/pure-rand |
 | quick-format-unescaped | 4.0.4 | MIT | Copyright (c) 2016-2019 David Mark Clements | https://github.com/davidmarkclements/quick-format |
-| rc9 | 3.0.1 | MIT | Copyright (c) Pooya Parsa &lt;pooya@pi0.io><br>Copyright (c) 2014, Hugh Kennedy | https://github.com/unjs/rc9 |
-| react | 19.2.3 | MIT | Copyright (c) Meta Platforms, Inc. and affiliates. | https://github.com/facebook/react |
-| react-dom | 19.2.3 | MIT | Copyright (c) Meta Platforms, Inc. and affiliates. | https://github.com/facebook/react |
-| readdirp | 5.0.0 | MIT | Copyright (c) 2012-2019 Thorsten Lorenz, Paul Miller (https://paulmillr.com) | https://github.com/paulmillr/readdirp |
 | real-require | 0.2.0 | MIT | Copyright (c) 2021 Paolo Insogna and the real-require contributors | https://github.com/pinojs/real-require |
 | redis-errors | 1.2.0 | MIT | Copyright (c) 2017 Ruben Bridgewater | https://github.com/NodeRedis/redis-errors |
-| remeda | 2.33.4 | MIT | (no copyright line in the licence file; author: Łukasz Sentkiewicz) | https://github.com/remeda/remeda |
 | require-from-string | 2.0.2 | MIT | Copyright (c) Vsevolod Strukchinsky &lt;floatdrop@gmail.com> (github.com/floatdrop) | https://github.com/floatdrop/require-from-string |
 | ret | 0.5.0 | MIT | Copyright (C) 2011 by fent | https://github.com/fent/ret.js |
-| retry | 0.12.0 | MIT | Copyright (c) 2011: | https://github.com/tim-kos/node-retry |
 | reusify | 1.1.0 | MIT | Copyright (c) 2015-2024 Matteo Collina | https://github.com/mcollina/reusify |
 | rfdc | 1.4.1 | MIT | Copyright 2019 "David Mark Clements &lt;david.mark.clements@gmail.com>" | https://github.com/davidmarkclements/rfdc |
-| robust-predicates | 3.0.3 | Unlicense | (no copyright line in the licence file; author: Vladimir Agafonkin) | https://github.com/mourner/robust-predicates |
 | rou3 | 0.9.2 | MIT | Copyright (c) Pooya Parsa &lt;pooya@pi0.io> | https://github.com/h3js/rou3 |
 | safe-regex2 | 5.0.0 | MIT | (no copyright line in the licence file; author: James Halliday) | https://github.com/fastify/safe-regex2 |
 | safe-stable-stringify | 2.5.0 | MIT | Copyright (c) Ruben Bridgewater | https://github.com/BridgeAR/safe-stable-stringify |
-| safer-buffer | 2.1.2 | MIT | Copyright (c) 2018 Nikita Skovoroda &lt;chalkerx@gmail.com> | https://github.com/ChALkeR/safer-buffer |
-| scheduler | 0.27.0 | MIT | Copyright (c) Meta Platforms, Inc. and affiliates. | https://github.com/facebook/react |
 | secure-json-parse | 4.1.0 | BSD-3-Clause | Copyright (c) 2019, Sideway Inc, and project contributors<br>Copyright (c) 2019-present The Fastify team | https://github.com/fastify/secure-json-parse |
 | semver | 7.8.5 | ISC | Copyright (c) Isaac Z. Schlueter and Contributors | https://github.com/npm/node-semver |
 | set-cookie-parser | 2.7.2 | MIT | Copyright (c) 2015 Nathan Friedly &lt;nathan@nfriedly.com> (http://nfriedly.com/) | https://github.com/nfriedly/set-cookie-parser |
 | set-cookie-parser | 3.1.2 | MIT | Copyright (c) 2015 Nathan Friedly &lt;nathan@nfriedly.com> (http://nfriedly.com/) | https://github.com/nfriedly/set-cookie-parser |
-| shebang-command | 2.0.0 | MIT | Copyright (c) Kevin Mårtensson &lt;kevinmartensson@gmail.com> (github.com/kevva) | https://github.com/kevva/shebang-command |
-| shebang-regex | 3.0.0 | MIT | Copyright (c) Sindre Sorhus &lt;sindresorhus@gmail.com> (sindresorhus.com) | https://github.com/sindresorhus/shebang-regex |
-| signal-exit | 3.0.7 | ISC | Copyright (c) 2015, Contributors | https://github.com/tapjs/signal-exit |
-| signal-exit | 4.1.0 | ISC | Copyright (c) 2015-2023 Benjamin Coe, Isaac Z. Schlueter, and Contributors | https://github.com/tapjs/signal-exit |
 | sonic-boom | 4.2.0 | MIT | Copyright (c) 2017 Matteo Collina | https://github.com/pinojs/sonic-boom |
 | split2 | 4.2.0 | ISC | Copyright (c) 2014-2018, Matteo Collina &lt;hello@matteocollina.com> | https://github.com/mcollina/split2 |
-| sql-escaper | 1.5.1 | MIT | Copyright (c) 2026 Weslley Araújo, Andrey Sidorov, Douglas Wilson, and contributors. | https://github.com/mysqljs/sql-escaper |
 | standard-as-callback | 2.1.0 | MIT | Copyright (c) 2018 Zihua Li<br>Copyright (c) 2013-2017 Petka Antonov | https://github.com/luin/asCallback |
-| std-env | 3.10.0 | MIT | Copyright (c) Pooya Parsa &lt;pooya@pi0.io> | https://github.com/unjs/std-env |
 | thread-stream | 3.1.0 | MIT | Copyright (c) 2021 Matteo Collina | https://github.com/mcollina/thread-stream |
 | toad-cache | 3.7.0 | MIT | Copyright (c) 2023 Igor Savin | https://github.com/kibertoad/toad-cache |
 | tslib | 2.8.1 | 0BSD | Copyright (c) Microsoft Corporation. | https://github.com/Microsoft/tslib |
-| undici-types | 7.24.6 | MIT | Copyright (c) Matteo Collina and Undici contributors | https://github.com/nodejs/undici |
-| undici-types | 8.3.0 | MIT | Copyright (c) Matteo Collina and Undici contributors | https://github.com/nodejs/undici |
-| valibot | 1.4.2 | MIT | Copyright (c) Fabian Hiller | https://github.com/open-circle/valibot |
-| which | 2.0.2 | ISC | Copyright (c) Isaac Z. Schlueter and Contributors | https://github.com/isaacs/node-which |
 | xtend | 4.0.2 | MIT | Copyright (c) 2012-2014 Raynos. | https://github.com/Raynos/xtend |
 | yaml | 2.9.0 | ISC | Copyright Eemeli Aro &lt;eemeli@gmail.com> | https://github.com/eemeli/yaml |
-| zeptomatch | 2.1.0 | MIT | Copyright (c) 2023-present Fabio Spampinato | https://github.com/fabiospampinato/zeptomatch |
 | zod | 4.4.3 | MIT | Copyright (c) 2025 Colin McDonnell | https://github.com/colinhacks/zod |
 
 ## 4. NOTICE files of shipped Apache-2.0 components
 
-### @prisma/studio-core 0.33.0
-
-```text
-This software includes brand elements owned by Prisma Data, Inc.
-
-Use in production is permitted under the Apache 2.0 license, provided that Prisma branding is preserved.
-
-You may not remove or obscure logos, UI marks, or references to Prisma unless you have purchased a commercial license.
-
-See: https://www.prisma.io/terms
-```
+None of the shipped packages include a NOTICE file.
 
 ## 5. Licence texts
 
@@ -694,20 +551,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ```
 
-### BSD-2-Clause
-
-```text
-Copyright (c) <year> <owner> 
-
-Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
-
-1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
-
-2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-```
-
 ### BSD-3-Clause
 
 ```text
@@ -722,91 +565,6 @@ Redistribution and use in source and binary forms, with or without modification,
 3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-```
-
-### EPL-2.0
-
-```text
-Eclipse Public License - v 2.0
-THE ACCOMPANYING PROGRAM IS PROVIDED UNDER THE TERMS OF THIS ECLIPSE PUBLIC LICENSE (“AGREEMENT”). ANY USE, REPRODUCTION OR DISTRIBUTION OF THE PROGRAM CONSTITUTES RECIPIENT'S ACCEPTANCE OF THIS AGREEMENT.
-
-1. DEFINITIONS
-“Contribution” means:
-
-a) in the case of the initial Contributor, the initial content Distributed under this Agreement, and
-b) in the case of each subsequent Contributor:
-i) changes to the Program, and
-ii) additions to the Program;
-where such changes and/or additions to the Program originate from and are Distributed by that particular Contributor. A Contribution “originates” from a Contributor if it was added to the Program by such Contributor itself or anyone acting on such Contributor's behalf. Contributions do not include changes or additions to the Program that are not Modified Works.
-“Contributor” means any person or entity that Distributes the Program.
-
-“Licensed Patents” mean patent claims licensable by a Contributor which are necessarily infringed by the use or sale of its Contribution alone or when combined with the Program.
-
-“Program” means the Contributions Distributed in accordance with this Agreement.
-
-“Recipient” means anyone who receives the Program under this Agreement or any Secondary License (as applicable), including Contributors.
-
-“Derivative Works” shall mean any work, whether in Source Code or other form, that is based on (or derived from) the Program and for which the editorial revisions, annotations, elaborations, or other modifications represent, as a whole, an original work of authorship.
-
-“Modified Works” shall mean any work in Source Code or other form that results from an addition to, deletion from, or modification of the contents of the Program, including, for purposes of clarity any new file in Source Code form that contains any contents of the Program. Modified Works shall not include works that contain only declarations, interfaces, types, classes, structures, or files of the Program solely in each case in order to link to, bind by name, or subclass the Program or Modified Works thereof.
-
-“Distribute” means the acts of a) distributing or b) making available in any manner that enables the transfer of a copy.
-
-“Source Code” means the form of a Program preferred for making modifications, including but not limited to software source code, documentation source, and configuration files.
-
-“Secondary License” means either the GNU General Public License, Version 2.0, or any later versions of that license, including any exceptions or additional permissions as identified by the initial Contributor.
-
-2. GRANT OF RIGHTS
-a) Subject to the terms of this Agreement, each Contributor hereby grants Recipient a non-exclusive, worldwide, royalty-free copyright license to reproduce, prepare Derivative Works of, publicly display, publicly perform, Distribute and sublicense the Contribution of such Contributor, if any, and such Derivative Works.
-b) Subject to the terms of this Agreement, each Contributor hereby grants Recipient a non-exclusive, worldwide, royalty-free patent license under Licensed Patents to make, use, sell, offer to sell, import and otherwise transfer the Contribution of such Contributor, if any, in Source Code or other form. This patent license shall apply to the combination of the Contribution and the Program if, at the time the Contribution is added by the Contributor, such addition of the Contribution causes such combination to be covered by the Licensed Patents. The patent license shall not apply to any other combinations which include the Contribution. No hardware per se is licensed hereunder.
-c) Recipient understands that although each Contributor grants the licenses to its Contributions set forth herein, no assurances are provided by any Contributor that the Program does not infringe the patent or other intellectual property rights of any other entity. Each Contributor disclaims any liability to Recipient for claims brought by any other entity based on infringement of intellectual property rights or otherwise. As a condition to exercising the rights and licenses granted hereunder, each Recipient hereby assumes sole responsibility to secure any other intellectual property rights needed, if any. For example, if a third party patent license is required to allow Recipient to Distribute the Program, it is Recipient's responsibility to acquire that license before distributing the Program.
-d) Each Contributor represents that to its knowledge it has sufficient copyright rights in its Contribution, if any, to grant the copyright license set forth in this Agreement.
-e) Notwithstanding the terms of any Secondary License, no Contributor makes additional grants to any Recipient (other than those set forth in this Agreement) as a result of such Recipient's receipt of the Program under the terms of a Secondary License (if permitted under the terms of Section 3).
-3. REQUIREMENTS
-3.1 If a Contributor Distributes the Program in any form, then:
-
-a) the Program must also be made available as Source Code, in accordance with section 3.2, and the Contributor must accompany the Program with a statement that the Source Code for the Program is available under this Agreement, and informs Recipients how to obtain it in a reasonable manner on or through a medium customarily used for software exchange; and
-b) the Contributor may Distribute the Program under a license different than this Agreement, provided that such license:
-i) effectively disclaims on behalf of all other Contributors all warranties and conditions, express and implied, including warranties or conditions of title and non-infringement, and implied warranties or conditions of merchantability and fitness for a particular purpose;
-ii) effectively excludes on behalf of all other Contributors all liability for damages, including direct, indirect, special, incidental and consequential damages, such as lost profits;
-iii) does not attempt to limit or alter the recipients' rights in the Source Code under section 3.2; and
-iv) requires any subsequent distribution of the Program by any party to be under a license that satisfies the requirements of this section 3.
-3.2 When the Program is Distributed as Source Code:
-
-a) it must be made available under this Agreement, or if the Program (i) is combined with other material in a separate file or files made available under a Secondary License, and (ii) the initial Contributor attached to the Source Code the notice described in Exhibit A of this Agreement, then the Program may be made available under the terms of such Secondary Licenses, and
-b) a copy of this Agreement must be included with each copy of the Program.
-3.3 Contributors may not remove or alter any copyright, patent, trademark, attribution notices, disclaimers of warranty, or limitations of liability (‘notices’) contained within the Program from any copy of the Program which they Distribute, provided that Contributors may add their own appropriate notices.
-
-4. COMMERCIAL DISTRIBUTION
-Commercial distributors of software may accept certain responsibilities with respect to end users, business partners and the like. While this license is intended to facilitate the commercial use of the Program, the Contributor who includes the Program in a commercial product offering should do so in a manner which does not create potential liability for other Contributors. Therefore, if a Contributor includes the Program in a commercial product offering, such Contributor (“Commercial Contributor”) hereby agrees to defend and indemnify every other Contributor (“Indemnified Contributor”) against any losses, damages and costs (collectively “Losses”) arising from claims, lawsuits and other legal actions brought by a third party against the Indemnified Contributor to the extent caused by the acts or omissions of such Commercial Contributor in connection with its distribution of the Program in a commercial product offering. The obligations in this section do not apply to any claims or Losses relating to any actual or alleged intellectual property infringement. In order to qualify, an Indemnified Contributor must: a) promptly notify the Commercial Contributor in writing of such claim, and b) allow the Commercial Contributor to control, and cooperate with the Commercial Contributor in, the defense and any related settlement negotiations. The Indemnified Contributor may participate in any such claim at its own expense.
-
-For example, a Contributor might include the Program in a commercial product offering, Product X. That Contributor is then a Commercial Contributor. If that Commercial Contributor then makes performance claims, or offers warranties related to Product X, those performance claims and warranties are such Commercial Contributor's responsibility alone. Under this section, the Commercial Contributor would have to defend claims against the other Contributors related to those performance claims and warranties, and if a court requires any other Contributor to pay any damages as a result, the Commercial Contributor must pay those damages.
-
-5. NO WARRANTY
-EXCEPT AS EXPRESSLY SET FORTH IN THIS AGREEMENT, AND TO THE EXTENT PERMITTED BY APPLICABLE LAW, THE PROGRAM IS PROVIDED ON AN “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED INCLUDING, WITHOUT LIMITATION, ANY WARRANTIES OR CONDITIONS OF TITLE, NON-INFRINGEMENT, MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE. Each Recipient is solely responsible for determining the appropriateness of using and distributing the Program and assumes all risks associated with its exercise of rights under this Agreement, including but not limited to the risks and costs of program errors, compliance with applicable laws, damage to or loss of data, programs or equipment, and unavailability or interruption of operations.
-
-6. DISCLAIMER OF LIABILITY
-EXCEPT AS EXPRESSLY SET FORTH IN THIS AGREEMENT, AND TO THE EXTENT PERMITTED BY APPLICABLE LAW, NEITHER RECIPIENT NOR ANY CONTRIBUTORS SHALL HAVE ANY LIABILITY FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING WITHOUT LIMITATION LOST PROFITS), HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OR DISTRIBUTION OF THE PROGRAM OR THE EXERCISE OF ANY RIGHTS GRANTED HEREUNDER, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
-
-7. GENERAL
-If any provision of this Agreement is invalid or unenforceable under applicable law, it shall not affect the validity or enforceability of the remainder of the terms of this Agreement, and without further action by the parties hereto, such provision shall be reformed to the minimum extent necessary to make such provision valid and enforceable.
-
-If Recipient institutes patent litigation against any entity (including a cross-claim or counterclaim in a lawsuit) alleging that the Program itself (excluding combinations of the Program with other software or hardware) infringes such Recipient's patent(s), then such Recipient's rights granted under Section 2(b) shall terminate as of the date such litigation is filed.
-
-All Recipient's rights under this Agreement shall terminate if it fails to comply with any of the material terms or conditions of this Agreement and does not cure such failure in a reasonable period of time after becoming aware of such noncompliance. If all Recipient's rights under this Agreement terminate, Recipient agrees to cease use and distribution of the Program as soon as reasonably practicable. However, Recipient's obligations under this Agreement and any licenses granted by Recipient relating to the Program shall continue and survive.
-
-Everyone is permitted to copy and distribute copies of this Agreement, but in order to avoid inconsistency the Agreement is copyrighted and may only be modified in the following manner. The Agreement Steward reserves the right to publish new versions (including revisions) of this Agreement from time to time. No one other than the Agreement Steward has the right to modify this Agreement. The Eclipse Foundation is the initial Agreement Steward. The Eclipse Foundation may assign the responsibility to serve as the Agreement Steward to a suitable separate entity. Each new version of the Agreement will be given a distinguishing version number. The Program (including Contributions) may always be Distributed subject to the version of the Agreement under which it was received. In addition, after a new version of the Agreement is published, Contributor may elect to Distribute the Program (including its Contributions) under the new version.
-
-Except as expressly stated in Sections 2(a) and 2(b) above, Recipient receives no rights or licenses to the intellectual property of any Contributor under this Agreement, whether expressly, by implication, estoppel or otherwise. All rights in the Program not expressly granted under this Agreement are reserved. Nothing in this Agreement is intended to be enforceable by any entity that is not a Contributor or Recipient. No third-party beneficiary rights are created under this Agreement.
-
-Exhibit A – Form of Secondary Licenses Notice
-“This Source Code may also be made available under the following Secondary Licenses when the conditions for such availability set forth in the Eclipse Public License, v. 2.0 are satisfied: {name license(s), version(s), and exceptions or additional permissions here}.”
-
-Simply including a copy of this Agreement, including this Exhibit A is not sufficient to license the Source Code under Secondary Licenses.
-
-If it is not possible or desirable to put the notice in a particular file, then You may include the notice in a location (such as a LICENSE file in a relevant directory) where a recipient would be likely to look for such a notice.
-
-You may add additional accurate notices of copyright ownership.
 ```
 
 ### ISC

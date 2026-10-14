@@ -4,7 +4,7 @@
 import { afterAll, describe, expect, it } from 'bun:test';
 import { probeDatabase } from './dbReady';
 import { insertInterest, listInterests, refreshInterestSearch } from '../src/db/interest';
-import { prisma } from '../src/db/prisma';
+import { pool } from '../src/db/pool';
 
 const dbReady = await probeDatabase('interest.privacy');
 const createdIds: number[] = [];
@@ -12,7 +12,7 @@ const createdIds: number[] = [];
 afterAll(async () => {
   if (!dbReady) return;
   for (const id of createdIds) {
-    await prisma.interest.delete({ where: { id: BigInt(id) } }).catch(() => undefined);
+    await pool.query('DELETE FROM interests WHERE id = $1', [id]).catch(() => undefined);
   }
   await refreshInterestSearch().catch(() => undefined);
 });
@@ -39,10 +39,7 @@ describe('interest list email privacy', () => {
 
     // Revoke sharing without refreshing the materialized view — search used to
     // read the MV's stale email column and leak the address.
-    await prisma.interest.update({
-      where: { id: BigInt(created.id) },
-      data: { shareEmail: false },
-    });
+    await pool.query('UPDATE interests SET share_email = FALSE WHERE id = $1', [created.id]);
 
     const results = await listInterests(50, marker);
     const hit = results.find((row) => row.id === created.id);

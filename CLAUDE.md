@@ -9,7 +9,7 @@ Home: **https://loop.urbnia.com** (site) with the API same-origin under **https:
 
 ## Tech Stack
 - Site: Next.js 16 (App Router), React 19, Playwright
-- Backend: Bun, Fastify 5, Prisma 7 + `pg`, PostgreSQL (PostGIS), Valkey 9 (Redis-compatible) + BullMQ/ioredis, SeaweedFS (S3 gateway `seaweedfs:8333`, host `127.0.0.1:9200`; configured via `STORAGE_*`; no route uses the store yet)
+- Backend: Bun, Fastify 5, `pg` (plain parameterized SQL, no ORM), PostgreSQL (PostGIS), Valkey 9 (Redis-compatible) + BullMQ/ioredis, SeaweedFS (S3 gateway `seaweedfs:8333`, host `127.0.0.1:9200`; configured via `STORAGE_*`; no route uses the store yet)
 - Protocol: JSON-LD + JSON Schema, AJV validation
 - Infrastructure: Docker + Traefik on the VPS; optional systemd + Nginx config
 
@@ -22,7 +22,6 @@ Home: **https://loop.urbnia.com** (site) with the API same-origin under **https:
 ```
 /apps/backend
   /src - server, routes, db, realtime, schemas (mirrored from protocol/)
-  /prisma - schema + config
   /scripts - lab demo/federation scripts, sync-schemas, check-conformance
   /deploy - systemd units, backup/healthcheck scripts, setup.sh
   /vendor - pinned Redoc bundle for /api/docs
@@ -57,7 +56,6 @@ Home: **https://loop.urbnia.com** (site) with the API same-origin under **https:
 ```bash
 bun install
 cp .env.example .env          # First time setup (production .env already present on the VPS)
-bun run prisma:generate       # Generate Prisma client
 docker compose up -d          # Postgres, Valkey, SeaweedFS and the api container
 bun run dev                   # Start API server (port 8088)
 bun run typecheck             # TypeScript validation
@@ -161,7 +159,7 @@ Authoritative list: `apps/backend/README.md` and `apps/backend/docs/SPEC-COMPLIA
 ### Database Layer
 - Query functions in `src/db/` modules (e.g., `src/db/interest.ts`)
 - SQL migrations in `src/db/migrations/`
-- Prisma schema in `prisma/schema.prisma`
+- The SQL migrations are the schema's source of truth (no ORM, no generate step)
 - Connection pooling via `src/db/pool.ts`
 
 ### Real-time (SSE)

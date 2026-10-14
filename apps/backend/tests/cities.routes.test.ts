@@ -51,6 +51,8 @@ describe('city routes', () => {
     const payload = response.json();
     expect(payload.results).toHaveLength(1);
     expect(payload.results[0].slug).toBe('demo-city');
+    // The response schema must not strip the GeoJSON center.
+    expect(payload.results[0].center).toEqual({ type: 'Point', coordinates: [0, 0] });
   });
 
   it('returns geojson list', async () => {
@@ -63,6 +65,18 @@ describe('city routes', () => {
     const payload = response.json();
     expect(payload.type).toBe('FeatureCollection');
     expect(payload.features).toHaveLength(1);
+    // geometry and properties must survive response serialization intact.
+    expect(payload.features[0].geometry).toEqual({ type: 'Point', coordinates: [0, 0] });
+    expect(payload.features[0].properties).toMatchObject({ slug: 'demo-city', name: 'DEMO City', country: 'N/A', distance_m: null });
+  });
+
+  it('returns a single city with its center', async () => {
+    const { app, deps } = buildApp();
+    await registerCityRoutes(app, deps);
+
+    const response = await app.inject({ method: 'GET', url: '/api/cities/demo-city' });
+    expect(response.statusCode).toBe(200);
+    expect(response.json().center).toEqual({ type: 'Point', coordinates: [0, 0] });
   });
 
   it('rejects invalid bbox query', async () => {
