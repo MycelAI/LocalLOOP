@@ -35,9 +35,9 @@ Tree-specific notes live in each tree's `CONTRIBUTING.md`:
 ## Prerequisites
 
 - **Bun 1.4.x**, the version used by the backend and site Dockerfiles
-  (`oven/bun:1.4.0`).
+  (`oven/bun:1.4.3`).
 - **Node.js 24.19 or newer**, as required by `engines` in every `package.json`.
-  The backend and site pin `24.19.0` through Volta.
+  The backend and site pin `24.21.0` through Volta.
 - **npm** for `protocol/`, which uses `package-lock.json`. If `npm` in your shell
   is an alias for Bun, call the real npm binary directly (for example the one
   installed by Volta).

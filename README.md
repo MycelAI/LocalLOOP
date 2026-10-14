@@ -14,8 +14,8 @@ This monorepo holds the LOOP specification and schemas, the public documentation
 [![Status: lab demo only](https://img.shields.io/badge/status-lab%20demo%20only-c2410c)](#limitations-and-status)
 [![Spec v0.2.0](https://img.shields.io/badge/spec-v0.2.0-0d9488)](protocol/SPECIFICATION.md)
 [![protocol 0.6.0](https://img.shields.io/badge/protocol-0.6.0-475569)](protocol/CHANGELOG.md)
-[![backend 0.9.0](https://img.shields.io/badge/backend-0.9.0-475569)](apps/backend/CHANGELOG.md)
-[![site 0.8.1](https://img.shields.io/badge/site-0.8.1-475569)](apps/site/CHANGELOG.md)
+[![backend 0.9.1](https://img.shields.io/badge/backend-0.9.1-475569)](apps/backend/CHANGELOG.md)
+[![site 0.9.0](https://img.shields.io/badge/site-0.9.0-475569)](apps/site/CHANGELOG.md)
 [![Licences: MIT, CC BY-SA 4.0](https://img.shields.io/badge/licences-MIT%20%C2%B7%20CC%20BY--SA%204.0-1d4ed8)](#licensing)
 
 [**Live site**](https://loop.urbnia.com) ·
@@ -170,13 +170,13 @@ manager workspace. Per-tree details live in
 
 | Tool | Version | Needed for |
 | --- | --- | --- |
-| [Bun](https://bun.sh) | 1.4.0 (the version in both Dockerfiles) | `apps/backend`, `apps/site` |
-| [Node.js](https://nodejs.org) | ≥ 24.19 (`engines` in every `package.json`) | `protocol` scripts, site smoke tests, `scripts/check-links.mjs` |
+| [Bun](https://bun.sh) | 1.4.3 (the version in both Dockerfiles) | `apps/backend`, `apps/site` |
+| [Node.js](https://nodejs.org) | ≥ 24.19 (`engines` in every `package.json`; Volta pins 24.21) | `protocol` scripts, site smoke tests, `scripts/check-links.mjs` |
 | npm | bundled with Node | `protocol` (`package-lock.json`) |
 | Docker with Compose v2 | recent | running the backend stack and building the images |
 | PostgreSQL + PostGIS | 18 + 3.6 (`postgis/postgis:18-3.6`) | backend data (started by compose) |
-| Valkey | 9 (Redis-compatible) | backend queue (started by compose) |
-| SeaweedFS | 4.40 behind nginx (S3-compatible) | configured object store, no route uses it yet (started by compose) |
+| Valkey | 9.2 (Redis-compatible) | backend queue (started by compose) |
+| SeaweedFS | 4.48 (S3 gateway, host `127.0.0.1:9200`) | configured object store, no route uses it yet (started by compose) |
 
 > [!NOTE]
 > Where `npm` is aliased to Bun, use `npm run test` rather than bare

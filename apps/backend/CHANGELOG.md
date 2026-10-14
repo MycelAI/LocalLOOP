@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.9.1] - 2026-10-14
+
+### Changed
+- Dependencies at their latest releases: better-auth 1.7.8, bullmq 6.3.15,
+  zod 4.6.7, fastify 5.12.7, @fastify/swagger 9.9.2, @fastify/helmet 13.2.0,
+  @fastify/cors 11.3.1, @fastify/rate-limit 11.2.1, pg 8.23.1; dev: Biome
+  2.5.15 (config uses `"preset": "recommended"`), @types/node 26.6.5,
+  @types/pg 8.23.1, bun-types 1.4.3. `bun audit` is clean.
+- Runtime and images: `oven/bun:1.4.3`, Valkey 9.2 and SeaweedFS 4.48 (both
+  pinned by digest), Volta Node 24.21.0. PostGIS `18-3.6` was already current.
+
 ## [0.9.0] - 2026-10-14
 
 ### Removed
@@ -652,7 +663,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Lab demo scripts (seed + simulate + one-command runner).
 - Privacy notice endpoint and in-memory metrics snapshot.
 
-[Unreleased]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.9.0...HEAD
+[Unreleased]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.9.1...HEAD
+[0.9.1]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.9.0...backend/v0.9.1
 [0.9.0]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.8.1...backend/v0.9.0
 [0.8.1]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.8.0...backend/v0.8.1
 [0.8.0]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.7.1...backend/v0.8.0

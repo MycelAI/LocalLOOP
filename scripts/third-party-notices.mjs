@@ -26,6 +26,11 @@ const check = process.argv.includes('--check');
 // licence file.
 const LICENSE_OVERRIDES = { khroma: 'MIT', graphmatch: 'MIT' };
 
+// Packages whose licence file is the bare licence text, so the line scan picks
+// up a clause instead of a notice. Values are the notices the packages carry
+// in their own sources (elkjs: the header of lib/elk.bundled.js).
+const COPYRIGHT_OVERRIDES = { elkjs: ['Copyright (c) 2017 Kiel University and others'] };
+
 // next is a runtime dependency of the site, but most of its own dependency
 // tree only runs at build time. Of next's dependencies, only these end up in
 // the static export (out/_next/static); the rest are build-only.
@@ -132,7 +137,7 @@ function rows(entries, treeDir) {
     .sort((a, b) => a.pkg.name.localeCompare(b.pkg.name) || a.pkg.version.localeCompare(b.pkg.version))
     .map(({ file, pkg }) => {
       const dir = dirname(file);
-      const notices = copyrights(dir);
+      const notices = COPYRIGHT_OVERRIDES[pkg.name] ?? copyrights(dir);
       const holder = notices.length
         ? notices.join('<br>')
         : `(no copyright line in the licence file${author(pkg) ? `; author: ${author(pkg)}` : ''})`;

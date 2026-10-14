@@ -36,7 +36,7 @@ jobs:
       redis:
         # Same pinned Valkey image as docker-compose.yml's redis service, started
         # with --requirepass to match its authenticated credential scheme.
-        image: valkey/valkey:9.0@sha256:4f90bb4e87e4df88e48404cc80930a90e21721ba9442d5a5859aedc1472b005d
+        image: valkey/valkey:9.2@sha256:247b5e730bdc9dc29fddb8274d1731b203a1a1a46af63eae3a9d55b4bf74853f
         command: --requirepass localloop_ci_redis_password
         ports:
           - 6381:6379

@@ -1,14 +1,14 @@
 # SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
 # SPDX-License-Identifier: MIT
 
-FROM oven/bun:1.4.0-alpine AS builder
+FROM oven/bun:1.4.3-alpine AS builder
 WORKDIR /app
 COPY package.json bun.lock ./
 RUN bun install --frozen-lockfile
 COPY . .
 RUN bun run build && bun scripts/generate-csp-hashes.mjs /app/csp-script-hashes.conf
 
-FROM nginx:1.28-alpine
+FROM nginx:1.30-alpine
 COPY --from=builder /app/out /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 COPY security-headers.conf /etc/nginx/security-headers.conf

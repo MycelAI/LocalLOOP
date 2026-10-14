@@ -9,7 +9,9 @@ export default function MermaidBlock({ chart }) {
   const id = useId().replace(/:/g, '')
   useEffect(() => {
     import('mermaid').then(({ default: mermaid }) => {
-      mermaid.initialize({ startOnLoad: false, theme: 'neutral' })
+      // Mermaid 12 re-lays out and recolours diagrams by default; pin the
+      // dagre layout and classic look so mirrored diagrams render as before.
+      mermaid.initialize({ startOnLoad: false, theme: 'neutral', layout: 'dagre', look: 'classic' })
       return mermaid.render(`m${id}`, chart).then(({ svg }) => {
         if (ref.current) ref.current.innerHTML = svg
       })

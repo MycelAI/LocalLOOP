@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.9.0] - 2026-10-14
+
+### Changed
+- **Mermaid 12** (was 11). Diagrams keep their previous appearance through
+  `layout: 'dagre'` and `look: 'classic'`; Mermaid 12 needs an ES2024 browser
+  (Safari 17.4+), and older browsers show the diagram source via the existing
+  fallback. It also moves KaTeX to 0.18, so `bun audit` is clean (the KaTeX
+  advisory noted in 0.6.1 is resolved). Mermaid 12 bundles the ELK layout
+  engine (`elkjs`, EPL-2.0), now listed in the third-party notices.
+- Next.js 16.4.1, React 19.3.1, three 0.186.1; dev: Playwright 1.64.1,
+  Biome 2.5.15 (config uses `"preset": "recommended"`), @types/node 26.6.5.
+- Images: `oven/bun:1.4.3-alpine` builder and `nginx:1.30-alpine` (the current
+  stable branch); Volta Node 24.21.0.
+
 ## [0.8.1] - 2026-10-14
 
 ### Changed
@@ -695,7 +709,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-[Unreleased]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.8.1...HEAD
+[Unreleased]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.9.0...HEAD
+[0.9.0]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.8.1...site/v0.9.0
 [0.8.1]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.8.0...site/v0.8.1
 [0.8.0]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.7.2...site/v0.8.0
 [0.7.2]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.7.1...site/v0.7.2

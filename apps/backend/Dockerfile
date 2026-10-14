@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
 # SPDX-License-Identifier: MIT
 
-FROM oven/bun:1.4.0
+FROM oven/bun:1.4.3
 
 WORKDIR /app
 

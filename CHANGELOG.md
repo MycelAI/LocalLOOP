@@ -24,6 +24,8 @@ use the date the change landed on `main`.
 ## 2026-10-14
 
 ### Changed
+- Every dependency, runtime and image at its latest stable release (backend
+  0.9.1, site 0.9.0; protocol was already current); host Bun 1.4.3.
 - The backend uses plain parameterized SQL through `pg` only; Prisma is
   removed (backend 0.9.0) and `ci-local.sh` no longer runs `prisma generate`.
 - Routing: the shared Traefik sends `loop.urbnia.com/api/*` straight to the
