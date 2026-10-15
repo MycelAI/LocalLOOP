@@ -15,7 +15,7 @@ This monorepo holds the LOOP specification and schemas, the public documentation
 [![Spec v0.2.0](https://img.shields.io/badge/spec-v0.2.0-0d9488)](protocol/SPECIFICATION.md)
 [![protocol 0.6.0](https://img.shields.io/badge/protocol-0.6.0-475569)](protocol/CHANGELOG.md)
 [![backend 0.10.0](https://img.shields.io/badge/backend-0.10.0-475569)](apps/backend/CHANGELOG.md)
-[![site 0.11.2](https://img.shields.io/badge/site-0.11.2-475569)](apps/site/CHANGELOG.md)
+[![site 0.12.0](https://img.shields.io/badge/site-0.12.0-475569)](apps/site/CHANGELOG.md)
 [![Licences: MIT, CC BY-SA 4.0](https://img.shields.io/badge/licences-MIT%20%C2%B7%20CC%20BY--SA%204.0-1d4ed8)](#licensing)
 
 [**Live site**](https://loop.urbnia.com) ·
@@ -366,8 +366,9 @@ secrets live in the git-ignored `apps/backend/.env` / `.env.docker`; data in
   the API is tracked in
   [`apps/backend/docs/SPEC-COMPLIANCE.md`](apps/backend/docs/SPEC-COMPLIANCE.md).
   Node-to-node signatures are checked for presence and freshness only.
-- **Private monorepo.** This repository is private; the archived
-  `github.com/local-loop-io/*` repositories are public but read-only.
+- **One public monorepo.** This repository replaces the former
+  `github.com/local-loop-io/*` repositories, which are archived and
+  read-only (their history is included here).
 - **No hosted CI.** GitHub Actions is disabled (organisation billing);
   `scripts/ci-local.sh` is the gate.
 - **Operations.** Nightly database dumps stay on the host (nothing is copied

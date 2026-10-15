@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- The protocol is developed in the public monorepo
+  https://github.com/MycelAI/LocalLOOP: `CONTRIBUTING.md` invites issues and
+  pull requests there (it no longer says contributions are by invitation),
+  the schema and example citations name the repository, and `package.json`
+  records `repository`, `homepage` and `bugs`.
+
 ## [0.6.0] - 2026-10-14
 
 ### Changed

@@ -36,7 +36,7 @@ Only the latest protocol release (0.6.0) and the lab services at `https://loop.u
 
 ## 🛡️ Security Considerations
 
-The requirements below describe the target security posture for LOOP node operators. They are not a statement that the lab reference backend meets all of them; its implementation status is tracked in `apps/backend/docs/SPEC-COMPLIANCE.md` in the localLOOP repository.
+The requirements below describe the target security posture for LOOP node operators. They are not a statement that the lab reference backend meets all of them; its implementation status is tracked in [`apps/backend/docs/SPEC-COMPLIANCE.md`](https://github.com/MycelAI/LocalLOOP/blob/main/apps/backend/docs/SPEC-COMPLIANCE.md) in the localLOOP repository.
 
 ### Node Security
 

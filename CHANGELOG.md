@@ -24,6 +24,15 @@ use the date the change landed on `main`.
 ## 2026-10-15
 
 ### Changed
+- The repository is public: https://github.com/MycelAI/LocalLOOP. Before
+  the switch the full history was scanned (gitleaks, plus a check that no
+  production secret value appears in any blob); the only hits were test
+  fixtures. Contributor docs, the licence notice, the site (footer, API page,
+  contribute page, `llms.txt`, `SoftwareSourceCode` structured data, site
+  0.12.0) and every `package.json` point to it. A new always-running
+  `Gate` workflow runs `scripts/ci-local.sh` on every pull request and push.
+
+### Changed
 - Site performance, SEO and GEO (site 0.11.0): Lighthouse 100 for
   accessibility, best practices and SEO, and desktop performance 99-100
   (mobile 84-93); a small logo and a subset icon font, bundled

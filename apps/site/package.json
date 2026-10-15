@@ -1,10 +1,19 @@
 {
   "name": "localloop-site",
   "private": true,
-  "version": "0.11.2",
+  "version": "0.12.0",
   "description": "localLOOP hub and city landing pages",
   "author": "Mycel UG (haftungsbeschränkt) <dev@mycel-ai.de>",
   "license": "MIT",
+  "homepage": "https://loop.urbnia.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MycelAI/LocalLOOP.git",
+    "directory": "apps/site"
+  },
+  "bugs": {
+    "url": "https://github.com/MycelAI/LocalLOOP/issues"
+  },
   "engines": {
     "node": ">=24.19.0"
   },

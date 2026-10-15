@@ -10,12 +10,11 @@ issue (see the security policy at https://loop.urbnia.com/protocol/security/).
 
 ## Where the protocol lives
 
-The protocol is developed in the `protocol/` directory of the localLOOP
-monorepo (`MycelAI/LocalLOOP`). That repository is private, and contributions
-are by invitation. The former public repository
-`github.com/local-loop-io/loop-protocol` is archived and read-only. If you
-don't have access, send proposals, questions and bug reports to
-**dev@mycel-ai.de**.
+The protocol is developed in the `protocol/` directory of the public localLOOP
+monorepo, https://github.com/MycelAI/LocalLOOP. Open issues and pull requests
+there; protocol changes follow the RFC process described below. The former
+repository `github.com/local-loop-io/loop-protocol` is archived and
+read-only. You can also send proposals and questions to **dev@mycel-ai.de**.
 
 Monorepo contributors: the root `CONTRIBUTING.md` covers prerequisites, the
 `scripts/ci-local.sh` gate, branches and commit style, changelogs, releases

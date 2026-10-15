@@ -58,7 +58,10 @@ const ORGANIZATION = {
     width: 512,
     height: 512,
   },
+  sameAs: ['https://github.com/MycelAI'],
 };
+
+export const REPOSITORY_URL = 'https://github.com/MycelAI/LocalLOOP';
 
 // Site-wide structured data: the publisher and the site itself, linked by @id
 // so search engines and AI answer engines attribute every page consistently.
@@ -76,6 +79,18 @@ export function websiteJsonLd() {
         description: defaultDescription,
         inLanguage: 'en',
         publisher: { '@id': `${SITE_URL}/#organization` },
+      },
+      {
+        '@type': 'SoftwareSourceCode',
+        '@id': `${SITE_URL}/#source`,
+        name: 'localLOOP',
+        description:
+          'Monorepo with the LOOP protocol (specification, JSON Schemas, JSON-LD contexts), this documentation site and the lab API. Lab demo only.',
+        codeRepository: REPOSITORY_URL,
+        license: 'https://spdx.org/licenses/MIT.html',
+        programmingLanguage: ['JavaScript', 'TypeScript'],
+        author: { '@id': `${SITE_URL}/#organization` },
+        isPartOf: { '@id': `${SITE_URL}/#website` },
       },
     ],
   };

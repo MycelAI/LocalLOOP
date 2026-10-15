@@ -27,7 +27,7 @@ export function SiteFooter() {
           <a href="/docs/dpia-lite/">Privacy &amp; data handling</a>
           <a href="mailto:dev@mycel-ai.de">Contact</a>
           <a
-            href="https://github.com/local-loop-io"
+            href="https://github.com/MycelAI/LocalLOOP"
             target="_blank"
             rel="noopener noreferrer"
           >

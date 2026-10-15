@@ -5,6 +5,15 @@
   "description": "Backend API for localLOOP expression-of-interest submissions",
   "author": "Mycel UG (haftungsbeschränkt) <dev@mycel-ai.de>",
   "license": "MIT",
+  "homepage": "https://loop.urbnia.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MycelAI/LocalLOOP.git",
+    "directory": "apps/backend"
+  },
+  "bugs": {
+    "url": "https://github.com/MycelAI/LocalLOOP/issues"
+  },
   "type": "module",
   "engines": {
     "node": ">=24.19.0"

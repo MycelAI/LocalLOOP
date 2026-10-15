@@ -1,6 +1,6 @@
 <div align="center">
 
-[<img src="https://loop.urbnia.com/assets/local-loop-logo.png" width="180" alt="localLOOP" />](https://loop.urbnia.com)
+[<img src="https://loop.urbnia.com/assets/local-loop-logo-192.webp" width="180" alt="localLOOP" />](https://loop.urbnia.com)
 
 # localLOOP
 
@@ -15,6 +15,9 @@ Open research protocol for lab-only exploration.
 [![Status](https://img.shields.io/badge/status-lab_demo_only-f59e0b?style=flat-square)](https://loop.urbnia.com/protocol/spec)
 
 </div>
+
+> [!IMPORTANT]
+> **This organization is archived.** Since 2026-10-14 localLOOP is developed in the open in one repository, **[MycelAI/LocalLOOP](https://github.com/MycelAI/LocalLOOP)**: protocol, website and lab API, with the full history of the repositories below. Open issues and pull requests there.
 
 ---
 
@@ -41,7 +44,7 @@ LOOP - *Local Optimization with Overflow Protocol* - defines how autonomous city
 | **Offer -> Match -> Transfer** | The minimal interop flow across federated nodes |
 | **Federation handshake** | How two LOOP nodes discover and register each other |
 
-For exact protocol versions and release status, see the [canonical specification](https://loop.urbnia.com/protocol/spec) and [release metadata](https://github.com/local-loop-io/loop-protocol/releases).
+For exact protocol versions and release status, see the [canonical specification](https://loop.urbnia.com/protocol/spec) and [protocol changelog](https://github.com/MycelAI/LocalLOOP/blob/main/protocol/CHANGELOG.md).
 
 **vNext direction:** Core-DP implementer preview is a proposed working label for future protocol exploration, not a version commitment.
 
@@ -49,12 +52,14 @@ For exact protocol versions and release status, see the [canonical specification
 
 ## Repositories
 
-| Repo | What's inside |
+Everything now lives in **[MycelAI/LocalLOOP](https://github.com/MycelAI/LocalLOOP)**. The repositories in this organization are archived and read-only:
+
+| Archived repo | Now in MycelAI/LocalLOOP |
 |:---|:---|
-| [**loop-protocol**](https://github.com/local-loop-io/loop-protocol) | Normative specification, JSON schemas, JSON-LD contexts, examples, and governance RFCs |
-| [**loop.urbnia.com**](https://github.com/local-loop-io/localloop-site) | Official website - protocol spec, platform docs, schema library, guides, governance, interest registry |
-| [**localloop-backend**](https://github.com/local-loop-io/localloop-backend) | Lab REST API - interest registry, demo flows, SSE streams, federation handshake, city data |
-| [**.github**](https://github.com/local-loop-io/.github) | This organization profile and its content-policy checks |
+| [loop-protocol](https://github.com/local-loop-io/loop-protocol) | [`protocol/`](https://github.com/MycelAI/LocalLOOP/tree/main/protocol): specification, JSON schemas, JSON-LD contexts, examples, RFCs |
+| [localloop-site](https://github.com/local-loop-io/localloop-site) | [`apps/site/`](https://github.com/MycelAI/LocalLOOP/tree/main/apps/site): the website at loop.urbnia.com |
+| [localloop-backend](https://github.com/local-loop-io/localloop-backend) | [`apps/backend/`](https://github.com/MycelAI/LocalLOOP/tree/main/apps/backend): the lab API at loop.urbnia.com/api |
+| [.github](https://github.com/local-loop-io/.github) | [`ops/org-profile/`](https://github.com/MycelAI/LocalLOOP/tree/main/ops/org-profile): this profile and its content-policy checks |
 
 ---
 
@@ -76,8 +81,8 @@ For exact protocol versions and release status, see the [canonical specification
 
 ## Get involved
 
-**Read** the [specification](https://loop.urbnia.com/protocol/spec) and [examples](https://github.com/local-loop-io/loop-protocol/tree/main/examples).
-**Raise ideas** via issues or draft an RFC in the [protocol repo](https://github.com/local-loop-io/loop-protocol).
+**Read** the [specification](https://loop.urbnia.com/protocol/spec) and [examples](https://github.com/MycelAI/LocalLOOP/tree/main/protocol/examples).
+**Raise ideas** via [issues](https://github.com/MycelAI/LocalLOOP/issues) or draft an RFC in [MycelAI/LocalLOOP](https://github.com/MycelAI/LocalLOOP).
 **Express interest** if you represent a city, research group, or operator - [register here](https://loop.urbnia.com/interest).
 
 ---
@@ -94,7 +99,7 @@ For exact protocol versions and release status, see the [canonical specification
   title        = {localLOOP - Local Optimization with Overflow Protocol},
   year         = {2026},
   publisher    = {GitHub},
-  url          = {https://github.com/local-loop-io},
+  url          = {https://github.com/MycelAI/LocalLOOP},
   note         = {Lab demo only. No public pilots or deployments.}
 }
 ```

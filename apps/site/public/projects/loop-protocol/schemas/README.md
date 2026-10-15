@@ -45,6 +45,6 @@ Alphin C. Tom. "LOOP Schemas." localLOOP (Mycel), 2025-2026. https://loop.urbnia
   year = {2026},
   howpublished = {localLOOP documentation hub},
   url = {https://loop.urbnia.com/library/schemas/},
-  note = {Source: protocol/schemas in the localLOOP monorepo; version 0.5.x. Releases up to 0.5.2 are also in the archived repository https://github.com/local-loop-io/loop-protocol}
+  note = {Source: protocol/schemas in https://github.com/MycelAI/LocalLOOP; version 0.5.x. Releases up to 0.5.2 are also in the archived repository https://github.com/local-loop-io/loop-protocol}
 }
 ```
