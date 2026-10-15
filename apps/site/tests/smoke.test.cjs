@@ -550,10 +550,12 @@ test('the static protocol mirror index is a complete, indexable page', () => {
   assert.match(read(['public', 'assets', 'css', 'site.css']), /header\[data-site-header\]:empty \{\s+min-height: 89px;/);
 });
 
-test('the loop-cost calculator values meet WCAG AA contrast', () => {
+test('calculator values and live metric labels meet WCAG AA contrast', () => {
   const css = read(['public', 'assets', 'css', 'site.css']);
   const rule = css.slice(css.indexOf('.wil-calc-value {'), css.indexOf('}', css.indexOf('.wil-calc-value {')));
   assert.match(rule, /color: #0f766e;/, '#0d9488 (--accent-2) is only 3.7:1 on white at 12px');
+  const label = css.slice(css.indexOf('.metric-label {'), css.indexOf('}', css.indexOf('.metric-label {')));
+  assert.match(label, /color: var\(--ink-soft\);/, 'live metric labels: #6a7a86 is only 4.42:1 on white');
 });
 
 test('built 404 page has a title and a canonical link', { skip: !hasBuild && 'run `bun run build` first' }, () => {

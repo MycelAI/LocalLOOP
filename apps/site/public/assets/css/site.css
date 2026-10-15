@@ -140,7 +140,7 @@
 
 .metric-label {
   font-size: 13px;
-  color: #6a7a86;
+  color: var(--ink-soft);
   text-transform: capitalize;
 }
 

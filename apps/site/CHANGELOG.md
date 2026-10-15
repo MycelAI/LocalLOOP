@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.11.1] - 2026-10-15
+
+### Fixed
+- The live metrics labels on `/docs/metrics/` use `--ink-soft` (7.6:1)
+  instead of `#6a7a86` (4.42:1, below WCAG AA); the labels render only with
+  live API data, so the local audit could not see them.
+
 ## [0.11.0] - 2026-10-15
 
 ### Changed
@@ -775,7 +782,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-[Unreleased]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.11.0...HEAD
+[Unreleased]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.11.1...HEAD
+[0.11.1]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.11.0...site/v0.11.1
 [0.11.0]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.10.0...site/v0.11.0
 [0.10.0]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.9.0...site/v0.10.0
 [0.9.0]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.8.1...site/v0.9.0
