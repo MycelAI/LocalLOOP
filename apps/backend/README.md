@@ -81,8 +81,8 @@ database is reachable.
 | --- | --- | --- |
 | `GET` | `/api/v1/federation/nodes` | List known federation nodes |
 | `POST` | `/api/v1/federation/handshake` | Register a federation node (lab-only handshake) |
-| `POST` | `/api/v1/federate/announce` | Spec §8.2 MaterialAnnouncement (requires §9.2 node headers) |
-| `POST` | `/api/v1/federate/offer` | Spec §8.2 inbound MaterialOffer for a locally hosted material |
+| `POST` | `/api/v1/federate/announce` | Spec §8.2 MaterialAnnouncement (requires §9.2 node headers **and** the API key) |
+| `POST` | `/api/v1/federate/offer` | Spec §8.2 inbound MaterialOffer for a locally hosted material (node headers **and** the API key) |
 
 ### Evidence (Core-DP append-only log)
 | Method | Path | Description |
@@ -167,12 +167,39 @@ See `.env.example` for the full list with descriptions. Key variables:
 | `RATE_LIMIT_WRITE_MAX` | `20` | Write route rate limit per window |
 | `REQUEST_TIMEOUT_MS` | `30000` | Server connection timeout |
 | `AUTH_ENABLED` | `false` | Enable BetterAuth |
-| `API_KEY_ENABLED` | `false` | Require `X-API-Key` on write routes |
+| `API_KEY_ENABLED` | `false` | Require `X-API-Key` (or `Authorization: Bearer`) on the lab write routes |
+| `API_KEY` | — | The key. `POST /api/v1/relay` and `POST /api/v1/federate/*` **always** require it, whatever `API_KEY_ENABLED` says, and answer `503` when it is unset; in production it must be non-weak whenever set |
+| `SSE_MAX_CLIENTS` / `SSE_MAX_CLIENTS_PER_IP` | `200` / `5` | Open streams per SSE endpoint, in total and per client IP |
+| `TRUSTED_PROXY_CIDRS` | `10.250.250.0/29` | Peers whose `X-Forwarded-For` is trusted for `request.ip` (and so for the per-IP limits): the `localloop-edge` network that only Traefik and the API join |
 | `RUN_MIGRATIONS` | `true` | Auto-run DB migrations on startup |
 | `WORKER_ENABLED` | `false` | Consume queued interest jobs. When left at the default `false`, `POST /api/interest` still enqueues a BullMQ job, but nothing ever picks it up. |
 | `ALERT_WEBHOOK_URL` | — | Optional. Read by `deploy/healthcheck-alert.sh` (not the app process / not in `src/config.ts`) — if set, a failed `/health` check POSTs a JSON `{text: ...}` payload here (Slack/Discord/generic-webhook compatible) in addition to the always-on journal/exit-code failure signal. See `deploy/localloop-backend-healthcheck.timer`. |
 
 In `NODE_ENV=production` the server refuses to start with missing or weak secrets.
+
+## Edge network and limits
+
+The shared Traefik reaches the API over a dedicated Docker network,
+`localloop-edge` (`10.250.250.0/29`), that nothing else joins; the API is not on
+the shared `proxy` network. Create it once per host and attach Traefik
+(`/root/traefik/docker-compose.yml` lists it under `networks`):
+
+```bash
+docker network create --subnet 10.250.250.0/29 localloop-edge
+docker network connect localloop-edge traefik   # live; or recreate Traefik
+```
+
+Limits, outermost first:
+
+- Traefik `localloop-api-ratelimit`: 20 requests/s per client IP, burst 60.
+- The API: 600 reads and 20 writes per route per 15 minutes per client IP
+  (`RATE_LIMIT_*`); 5 open streams per IP and 200 in total per SSE endpoint;
+  1 MiB bodies (`BODY_LIMIT`).
+- `X-Forwarded-For` counts only from `TRUSTED_PROXY_CIDRS`, so no container
+  or client can choose its own address.
+
+The container runs as a non-root user with no capabilities, a read-only root
+filesystem (`/tmp` is a tmpfs), and CPU, memory and process limits.
 
 ## Repo layout
 ```

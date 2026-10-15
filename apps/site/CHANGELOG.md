@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.10.0] - 2026-10-15
+
+### Security
+- **Unprivileged, read-only container.** The image is
+  `nginxinc/nginx-unprivileged:1.30-alpine` (pinned by digest) running as uid
+  101 on port 8080, with no capabilities, `no-new-privileges`, a read-only
+  root filesystem (`/tmp` tmpfs), CPU/memory/process limits and a
+  healthcheck. The Bun builder image is pinned by digest too.
+- `server_tokens off`: responses no longer reveal the nginx version.
+- Traefik rate limit on the site and legacy-redirect routers (50 requests/s
+  per client IP, burst 200).
+- The site container can no longer reach the API: the API moved to its own
+  `localloop-edge` network (backend 0.10.0).
+
+### Migration
+- Traefik's service port for the site is now 8080 (label updated).
+
 ## [0.9.0] - 2026-10-14
 
 ### Changed
@@ -709,7 +726,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-[Unreleased]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.9.0...HEAD
+[Unreleased]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.10.0...HEAD
+[0.10.0]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.9.0...site/v0.10.0
 [0.9.0]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.8.1...site/v0.9.0
 [0.8.1]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.8.0...site/v0.8.1
 [0.8.0]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.7.2...site/v0.8.0

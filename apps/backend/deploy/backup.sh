@@ -3,6 +3,8 @@
 # SPDX-License-Identifier: MIT
 
 set -euo pipefail
+# Dumps contain every table, including contact details: owner-only files.
+umask 077
 
 PROJECT_DIR="${PROJECT_DIR:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}"
 COMPOSE_FILE="${COMPOSE_FILE:-$PROJECT_DIR/docker-compose.yml}"

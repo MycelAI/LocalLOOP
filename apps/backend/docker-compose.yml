@@ -18,16 +18,23 @@ services:
     build: .
     env_file:
       - .env.docker
+    environment:
+      # Read-only root filesystem: no transpiler cache writes.
+      BUN_RUNTIME_TRANSPILER_CACHE_PATH: "0"
     security_opt:
       - no-new-privileges:true
     cap_drop:
       - ALL
+    read_only: true
+    tmpfs:
+      - /tmp:size=64m,mode=1777
     logging: *default-logging
     deploy:
       resources:
         limits:
           cpus: '1.0'
           memory: 512M
+          pids: 256
         reservations:
           memory: 128M
     depends_on:
@@ -40,25 +47,37 @@ services:
     ports:
       - "127.0.0.1:8088:8088"
     # https://loop.urbnia.com/api/* is routed here by the shared Traefik, ahead
-    # of the site router for the same host (longer rule, explicit priority).
-    # The site stack still owns the host's other routers and the 308 redirects
-    # for the former hostnames. Router/service names are global on this host.
+    # of the site router for the same host (longer rule, explicit priority),
+    # over the dedicated `localloop-edge` network (10.250.250.0/29) that only
+    # Traefik and this container join. The API is not on the shared `proxy`
+    # network, so no other container can reach it, and it trusts
+    # X-Forwarded-For only from that subnet (TRUSTED_PROXY_CIDRS).
+    # Router/middleware/service names are global on this host.
     labels:
       - "traefik.enable=true"
-      - "traefik.docker.network=proxy"
+      - "traefik.docker.network=localloop-edge"
       - "traefik.http.routers.localloop-api.rule=Host(`loop.urbnia.com`) && PathPrefix(`/api/`)"
       - "traefik.http.routers.localloop-api.priority=100"
       - "traefik.http.routers.localloop-api.entrypoints=websecure"
       - "traefik.http.routers.localloop-api.tls.certresolver=letsencrypt"
       - "traefik.http.routers.localloop-api.service=localloop-api"
+      - "traefik.http.routers.localloop-api.middlewares=localloop-api-ratelimit,localloop-api-compress"
+      # Outer per-IP limit at the edge (Traefik's remote address); the API's own
+      # 600 reads / 20 writes per 15 min per IP apply behind it.
+      - "traefik.http.middlewares.localloop-api-ratelimit.ratelimit.average=20"
+      - "traefik.http.middlewares.localloop-api-ratelimit.ratelimit.period=1s"
+      - "traefik.http.middlewares.localloop-api-ratelimit.ratelimit.burst=60"
+      # Compress JSON and the Redoc bundle; never the SSE streams.
+      - "traefik.http.middlewares.localloop-api-compress.compress=true"
+      - "traefik.http.middlewares.localloop-api-compress.compress.excludedcontenttypes=text/event-stream"
       - "traefik.http.services.localloop-api.loadbalancer.server.port=8088"
     restart: unless-stopped
     networks:
       - default
-      - proxy
+      - localloop-edge
 
   postgres:
-    image: postgis/postgis:18-3.6
+    image: postgis/postgis:18-3.6@sha256:60f6ad1d21ea86a67d47780b9a0d1e1d200500f62b19293fa834d0dea80b8677
     security_opt:
       - no-new-privileges:true
     deploy:
@@ -66,6 +85,7 @@ services:
         limits:
           cpus: '1.0'
           memory: 512M
+          pids: 512
         reservations:
           memory: 256M
     environment:
@@ -90,6 +110,7 @@ services:
         limits:
           cpus: '0.5'
           memory: 128M
+          pids: 64
         reservations:
           memory: 64M
     # Valkey 9.2 (pinned by digest). Invoked by its own binary names; the
@@ -97,7 +118,17 @@ services:
     image: valkey/valkey:9.2@sha256:247b5e730bdc9dc29fddb8274d1731b203a1a1a46af63eae3a9d55b4bf74853f
     security_opt:
       - no-new-privileges:true
-    command: ["valkey-server", "--requirepass", "${REDIS_PASSWORD:?REDIS_PASSWORD is required}"]
+    # The password reaches Valkey through a mode-600 config file written at
+    # start, not argv, so it is absent from `docker inspect` (Cmd) and `ps`.
+    # The image's entrypoint still drops to the valkey user (setpriv), and
+    # exec keeps valkey-server as PID 1 so SIGTERM saves the dataset.
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - |
+        umask 077
+        printf 'requirepass "%s"\n' "$$REDIS_PASSWORD" > /tmp/valkey-auth.conf
+        chown valkey:valkey /tmp/valkey-auth.conf
+        exec docker-entrypoint.sh valkey-server /tmp/valkey-auth.conf
     environment:
       REDIS_PASSWORD: ${REDIS_PASSWORD:?REDIS_PASSWORD is required}
     ports:
@@ -118,6 +149,7 @@ services:
         limits:
           cpus: '0.5'
           memory: 256M
+          pids: 256
         reservations:
           memory: 64M
     # "mini" mode bundles master+volume+filer+S3 gateway in one process,
@@ -142,5 +174,8 @@ services:
       retries: 5
 
 networks:
-  proxy:
+  # Created once on the host (see apps/backend/README.md "Edge network"):
+  #   docker network create --subnet 10.250.250.0/29 localloop-edge
+  # and joined by the shared Traefik (/root/traefik/docker-compose.yml).
+  localloop-edge:
     external: true

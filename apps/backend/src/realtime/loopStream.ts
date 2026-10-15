@@ -7,10 +7,20 @@ import { sendSpecErrorForStatus } from '../specErrors';
 
 const clients = new Set<FastifyReply>();
 const heartbeatTimers = new Map<FastifyReply, ReturnType<typeof setInterval>>();
+// Open streams per client IP, so one address cannot take every slot.
+const clientIp = new Map<FastifyReply, string>();
+const streamsPerIp = new Map<string, number>();
 
 /** Forget a subscriber and stop its keep-alive timer. Safe to call more than once. */
 function dropClient(reply: FastifyReply) {
   clients.delete(reply);
+  const ip = clientIp.get(reply);
+  if (ip !== undefined) {
+    clientIp.delete(reply);
+    const remaining = (streamsPerIp.get(ip) ?? 1) - 1;
+    if (remaining > 0) streamsPerIp.set(ip, remaining);
+    else streamsPerIp.delete(ip);
+  }
   const timer = heartbeatTimers.get(reply);
   if (timer) {
     clearInterval(timer);
@@ -42,6 +52,11 @@ export function registerLoopStream(request: FastifyRequest, reply: FastifyReply)
     sendSpecErrorForStatus(reply, 429, 'Too many active stream connections');
     return;
   }
+  const ip = request.ip ?? 'unknown';
+  if ((streamsPerIp.get(ip) ?? 0) >= config.sseMaxClientsPerIp) {
+    sendSpecErrorForStatus(reply, 429, 'Too many active stream connections from this address');
+    return;
+  }
 
   const headers: Record<string, string> = {
     'Content-Type': 'text/event-stream',
@@ -70,6 +85,8 @@ export function registerLoopStream(request: FastifyRequest, reply: FastifyReply)
   reply.raw.write('\n');
 
   clients.add(reply);
+  clientIp.set(reply, ip);
+  streamsPerIp.set(ip, (streamsPerIp.get(ip) ?? 0) + 1);
 
   if (config.sseKeepAliveMs > 0) {
     const timer = setInterval(() => safeWrite(reply, ': keep-alive\n\n'), config.sseKeepAliveMs);

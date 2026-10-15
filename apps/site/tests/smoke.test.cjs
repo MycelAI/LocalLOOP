@@ -339,6 +339,23 @@ test('the API is routed by Traefik; nginx only answers /api/ with a JSON 503 fal
   assert.match(block, /Retry-After/);
 });
 
+test('site container runs unprivileged and read-only, behind a Traefik rate limit', () => {
+  const dockerfile = read(['Dockerfile']);
+  assert.match(dockerfile, /^FROM nginxinc\/nginx-unprivileged:[0-9.]+-alpine@sha256:[0-9a-f]{64}$/m);
+  assert.match(dockerfile, /^FROM oven\/bun:[0-9.]+-alpine@sha256:[0-9a-f]{64} AS builder$/m);
+  const conf = read(['nginx.conf']);
+  assert.match(conf, /listen 8080;/);
+  assert.match(conf, /server_tokens off;/);
+  const compose = read(['docker-compose.yml']);
+  for (const needle of ['no-new-privileges:true', 'cap_drop:\n      - ALL', 'read_only: true', '/tmp:size=16m', 'pids: 64', 'healthcheck:', 'http://127.0.0.1:8080/']) {
+    assert.ok(compose.includes(needle), `site compose is missing ${needle}`);
+  }
+  assert.ok(compose.includes('localloop-site.loadbalancer.server.port=8080'));
+  assert.ok(compose.includes('routers.localloop-site.middlewares=localloop-site-ratelimit'));
+  assert.ok(compose.includes('localloop-legacy-site.middlewares=localloop-site-ratelimit,'));
+  assert.ok(compose.includes('localloop-legacy-api.middlewares=localloop-site-ratelimit,'));
+});
+
 test('nginx serves Core-DP profile schemas at their versioned $id paths', () => {
   const conf = read(['nginx.conf']);
   assert.ok(conf.includes('location ^~ /projects/loop-protocol/profiles/core-dp/0.1.0-lab/schemas/'));

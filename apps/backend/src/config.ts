@@ -68,6 +68,11 @@ const envSchema = z.object({
   RATE_LIMIT_WRITE_WINDOW: z.string().default('15 minutes'),
   SSE_KEEPALIVE_MS: z.coerce.number().default(25000),
   SSE_MAX_CLIENTS: z.coerce.number().default(200),
+  // Per client IP, across each stream: one address cannot take every slot.
+  SSE_MAX_CLIENTS_PER_IP: z.coerce.number().default(5),
+  // Reverse proxies whose X-Forwarded-For is trusted for request.ip (and so for
+  // the per-IP rate limits). Only Traefik sits on the dedicated edge network.
+  TRUSTED_PROXY_CIDRS: z.string().default('10.250.250.0/29'),
   BODY_LIMIT: z.coerce.number().default(1048576),
   RUN_MIGRATIONS: z.string().optional(),
   SEARCH_REFRESH_ON_WRITE: z.string().optional(),
@@ -158,6 +163,9 @@ const ensureSecureProductionConfig = () => {
     if (isWeakSecret(parsed.API_KEY)) {
       throw new Error('Insecure API_KEY for production when API key protection is enabled');
     }
+  } else if (parsed.API_KEY && isWeakSecret(parsed.API_KEY)) {
+    // The relay and federation ingest routes always require the key.
+    throw new Error('Insecure API_KEY for production');
   }
 };
 
@@ -211,6 +219,8 @@ export const config = {
   rateLimitWriteWindow: parsed.RATE_LIMIT_WRITE_WINDOW,
   sseKeepAliveMs: parsed.SSE_KEEPALIVE_MS,
   sseMaxClients: parsed.SSE_MAX_CLIENTS,
+  sseMaxClientsPerIp: parsed.SSE_MAX_CLIENTS_PER_IP,
+  trustedProxyCidrs: parsed.TRUSTED_PROXY_CIDRS.split(',').map((value) => value.trim()).filter(Boolean),
   bodyLimit: parsed.BODY_LIMIT,
   runMigrations: booleanFromEnv(parsed.RUN_MIGRATIONS, true),
   refreshSearchOnWrite: booleanFromEnv(parsed.SEARCH_REFRESH_ON_WRITE, true),

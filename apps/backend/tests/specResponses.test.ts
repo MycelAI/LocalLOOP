@@ -21,6 +21,9 @@ import { registerTransactionRoutes } from '../src/routes/transactions';
 import { registerLoopRoutes } from '../src/routes/loop';
 import { fakeInsertLoopEvidence } from './testEvidence';
 import { getLocalNode } from '../src/federation/registry';
+import { apiKeyHeader, useTestApiKey } from './testApiKey';
+
+useTestApiKey();
 
 /**
  * Validates live route responses against the canonical loop-protocol schemas
@@ -106,6 +109,7 @@ const federateOfferPayload = {
 };
 
 const federateNodeHeaders = () => ({
+  ...apiKeyHeader,
   'x-node-id': 'munich.loop',
   'x-node-signature': 'lab-signature-placeholder',
   'x-timestamp': new Date().toISOString(),

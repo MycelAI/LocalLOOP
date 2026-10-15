@@ -21,6 +21,17 @@ use the date the change landed on `main`.
 
 ## Unreleased
 
+## 2026-10-15
+
+### Security
+- Production hardening after a deployment audit (backend 0.10.0, site 0.10.0):
+  the API sits on a dedicated `localloop-edge` network shared only with
+  Traefik and trusts forwarded client addresses only from it; Traefik rate
+  limits every localLOOP router; the relay and federation ingest routes
+  always need the API key; per-IP stream caps; unprivileged, read-only
+  containers with process limits; images pinned by digest; owner-only
+  backups. The shared Traefik compose file lists the new network.
+
 ## 2026-10-14
 
 ### Changed

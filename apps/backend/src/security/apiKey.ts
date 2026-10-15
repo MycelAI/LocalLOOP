@@ -29,11 +29,27 @@ const safeCompare = (left: string, right: string) => {
   return timingSafeEqual(leftBuffer, rightBuffer);
 };
 
-export function requireApiKey(request: FastifyRequest, reply: FastifyReply) {
-  if (!config.auth.apiKeyEnabled) return true;
+/**
+ * Gate a route on X-API-Key / Bearer. By default only when API_KEY_ENABLED is
+ * on; `always: true` enforces it regardless, for routes that must never be
+ * anonymous (lab relay, federation ingest) — those answer 503 when no API_KEY
+ * is configured rather than falling open.
+ */
+export function requireApiKey(
+  request: FastifyRequest,
+  reply: FastifyReply,
+  options: { always?: boolean } = {},
+) {
+  if (!config.auth.apiKeyEnabled && !options.always) return true;
 
   if (!config.auth.apiKey) {
-    sendSpecErrorForStatus(reply, 503, 'API key protection is enabled but no API_KEY is configured');
+    sendSpecErrorForStatus(
+      reply,
+      503,
+      options.always
+        ? 'This route requires an API key and no API_KEY is configured'
+        : 'API key protection is enabled but no API_KEY is configured',
+    );
     return false;
   }
 

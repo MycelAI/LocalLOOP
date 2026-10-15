@@ -7,6 +7,9 @@ import { registerLoopProtocolParsers } from '../src/protocol';
 import { registerLoopRoutes } from '../src/routes/loop';
 import { registerLoopSchemas } from '../src/schemas/loopSchemas';
 import { fakeInsertLoopEvidence } from './testEvidence';
+import { apiKeyHeader, useTestApiKey } from './testApiKey';
+
+useTestApiKey();
 
 const materialPayload = {
   '@context': 'https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld',
@@ -171,7 +174,7 @@ describe('loop write routes Cache-Control', () => {
     ['/api/v1/relay', relayPayload, 202],
   ])('returns no-store on POST %s', async (url, payload, expectedStatus) => {
     const app = await buildApp();
-    const response = await app.inject({ method: 'POST', url, payload });
+    const response = await app.inject({ method: 'POST', url, payload, headers: apiKeyHeader });
     expect(response.statusCode).toBe(expectedStatus);
     expect(response.headers['cache-control']).toBe('no-store');
   });

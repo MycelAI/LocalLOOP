@@ -8,6 +8,9 @@ import { registerLoopRoutes } from '../src/routes/loop';
 import { registerLoopSchemas } from '../src/schemas/loopSchemas';
 import { LoopStateError } from '../src/db/loop';
 import { fakeInsertLoopEvidence } from './testEvidence';
+import { apiKeyHeader, useTestApiKey } from './testApiKey';
+
+useTestApiKey();
 
 const conflictError = () => {
   const error = new Error('duplicate key value violates unique constraint');
@@ -299,6 +302,7 @@ describe('loop routes', () => {
     const response = await app.inject({
       method: 'POST',
       url: '/api/v1/relay',
+      headers: apiKeyHeader,
       payload: {
         event_type: 'material.created',
         entity_type: 'material',
@@ -319,6 +323,7 @@ describe('loop routes', () => {
     const response = await app.inject({
       method: 'POST',
       url: '/api/v1/relay',
+      headers: apiKeyHeader,
       payload: {
         event_type: 'material.deleted',
         entity_type: 'material',
@@ -338,6 +343,7 @@ describe('loop routes', () => {
     const response = await app.inject({
       method: 'POST',
       url: '/api/v1/relay',
+      headers: apiKeyHeader,
       payload: {
         event_type: 'material.created',
         entity_type: 'transaction',
@@ -357,6 +363,7 @@ describe('loop routes', () => {
     const response = await app.inject({
       method: 'POST',
       url: '/api/v1/relay',
+      headers: apiKeyHeader,
       payload: {
         event_type: 'material.created',
         entity_type: '__proto__',

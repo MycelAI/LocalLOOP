@@ -41,14 +41,13 @@ type BuildOptions = {
 export async function buildServer(options: BuildOptions = {}) {
   const app = Fastify({
     logger: options.logger ?? true,
-    // Exactly one reverse-proxy hop (the shared Traefik, which routes
-    // https://loop.urbnia.com/api/* here) sits in front of this process, and its address inside
-    // the compose network is not stable, so trust only the immediate peer
-    // (hop 0) rather than every X-Forwarded-For value a client cares to send —
-    // with `true`, any caller could pick its own request.ip and sidestep the
-    // per-IP rate limits. (Fastify >= 5.12.1 dropped the numeric hop-count
-    // form, GHSA-3m5p-2c4r-xxw2; the trust function is the supported way.)
-    trustProxy: (_address: string, hop: number) => hop === 0,
+    // The shared Traefik reaches this container over the dedicated
+    // `localloop-edge` network (10.250.250.0/29, nothing else attached), so
+    // X-Forwarded-For is trusted only when the peer is inside that subnet.
+    // Trusting any immediate peer (the previous hop-0 rule) let every container
+    // on the shared `proxy` network pick its own request.ip and sidestep the
+    // per-IP rate limits; trusting `true` would let any client do so.
+    trustProxy: config.trustedProxyCidrs,
     bodyLimit: config.bodyLimit,
     connectionTimeout: config.requestTimeoutMs,
   });

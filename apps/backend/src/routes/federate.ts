@@ -123,7 +123,7 @@ export async function registerFederateRoutes(app: FastifyInstance, deps: Federat
       },
     },
   }, async (request, reply) => {
-    if (!requireApiKey(request, reply)) {
+    if (!requireApiKey(request, reply, { always: true })) {
       return;
     }
     if (!requireNodeHeaders(request, reply)) {
@@ -174,7 +174,7 @@ export async function registerFederateRoutes(app: FastifyInstance, deps: Federat
       },
     },
   }, async (request, reply) => {
-    if (!requireApiKey(request, reply)) {
+    if (!requireApiKey(request, reply, { always: true })) {
       return;
     }
     if (!requireNodeHeaders(request, reply)) {

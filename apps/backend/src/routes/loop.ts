@@ -727,7 +727,7 @@ export async function registerLoopRoutes(app: FastifyInstance, deps: LoopDeps = 
       },
     },
   }, async (request, reply) => {
-    if (!requireApiKey(request, reply)) {
+    if (!requireApiKey(request, reply, { always: true })) {
       return;
     }
 

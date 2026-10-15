@@ -24,12 +24,24 @@ dependencies are in scope.
 - Keep the API off the public internet. Compose publishes it only on
   `127.0.0.1:8088`; the only public path is the shared Traefik's
   `localloop-api` router (`https://loop.urbnia.com/api/*`, TLS terminated at
-  Traefik).
+  Traefik), over the dedicated `localloop-edge` network that only Traefik and
+  the API join. `X-Forwarded-For` is trusted only from that subnet
+  (`TRUSTED_PROXY_CIDRS`), so neither clients nor other containers can pick
+  their own address for the per-IP limits.
+- Rate limits: Traefik per client IP (20/s, burst 60), then 600 reads and 20
+  writes per route per 15 minutes per IP, 5 streams per IP per SSE endpoint.
+- `POST /api/v1/relay` and `POST /api/v1/federate/*` always require `API_KEY`
+  (header `X-API-Key` or `Authorization: Bearer`); the other lab writes need it
+  only with `API_KEY_ENABLED=true`.
+- Containers: the API runs as uid 10001 with no capabilities, a read-only root
+  filesystem and CPU/memory/process limits; the site runs unprivileged nginx
+  with the same restrictions; images are pinned by digest. Backups are written
+  owner-only (`umask 077`).
 - Keep `ALLOWED_ORIGINS` limited to the site origin, which by default is
   `https://loop.urbnia.com`.
 - Run with `NODE_ENV=production`. The config then refuses missing or weak
   secrets (`DATABASE_URL` password, `STORAGE_SECRET_KEY`, `BETTER_AUTH_SECRET`
-  and `API_KEY` when enabled) and a `REDIS_URL` without a password.
+  and `API_KEY` whenever set) and a `REDIS_URL` without a password.
 - PostgreSQL, Valkey and SeaweedFS listen on loopback ports only. Keep their
   data directories (`data/`) and nightly dumps (`backups/`) out of version
   control and readable only by the service owner.

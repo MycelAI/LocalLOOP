@@ -45,7 +45,7 @@ SPDX-License-Identifier: MIT
     <rect x="590" y="234" width="4" height="92" rx="2" fill="#fb923c"/>
     <text x="608" y="249" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#e6edf3">Backend API · Bun + Fastify 5</text>
     <text xml:space="preserve" x="608" y="271" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#a8b3bf">localloop-backend-api-1:8088</text>
-    <text xml:space="preserve" x="608" y="290" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#a8b3bf">Docker network: proxy</text>
+    <text xml:space="preserve" x="608" y="290" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#a8b3bf">network: localloop-edge</text>
     <text xml:space="preserve" x="608" y="309" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#a8b3bf">Traefik router: localloop-api</text>
   </g>
   <g>

@@ -5,6 +5,9 @@ import { describe, expect, it } from 'bun:test';
 import Fastify from 'fastify';
 import { registerLoopProtocolParsers } from '../src/protocol';
 import { registerFederateRoutes } from '../src/routes/federate';
+import { apiKeyHeader, useTestApiKey } from './testApiKey';
+
+useTestApiKey();
 
 const announcementPayload = {
   '@context': 'https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
@@ -25,6 +28,7 @@ const offerPayload = {
 };
 
 const nodeHeaders = () => ({
+  ...apiKeyHeader,
   'x-node-id': 'munich.loop',
   'x-node-signature': 'lab-signature-placeholder',
   'x-timestamp': new Date().toISOString(),
@@ -69,7 +73,7 @@ describe('POST /api/v1/federate/announce', () => {
     const { app, deps } = buildApp();
     await registerFederateRoutes(app, deps);
 
-    const response = await app.inject({ method: 'POST', url: '/api/v1/federate/announce', payload: announcementPayload });
+    const response = await app.inject({ method: 'POST', url: '/api/v1/federate/announce', headers: apiKeyHeader, payload: announcementPayload });
     expect(response.statusCode).toBe(401);
     expect(response.json().error.code).toBe('UNAUTHORIZED');
   });

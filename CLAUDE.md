@@ -86,7 +86,7 @@ npm run test                  # Validate schemas with AJV
 ```
 
 ## Production (this host IS the live VPS)
-- This checkout runs on the production VPS. The shared Traefik routes `loop.urbnia.com/api/*` to the `apps/backend` api container (router `localloop-api`, priority 100) and everything else on `loop.urbnia.com` to the `apps/site` nginx (router `localloop-site`); the site nginx answers `/api/*` with a JSON 503 only while the API router is absent. The site stack's labels also 308-redirect `localloop.urbnia.com/*` → `loop.urbnia.com/*` and `loop-api.urbnia.com/*` → `loop.urbnia.com/api/*`. Compose project names are pinned, so containers are `localloop-backend-{api,postgres,redis,seaweedfs}-1` and `localloop-site-site-1`.
+- This checkout runs on the production VPS. The shared Traefik routes `loop.urbnia.com/api/*` to the `apps/backend` api container (router `localloop-api`, priority 100, over the dedicated `localloop-edge` network 10.250.250.0/29 that only Traefik and the API join; the API is not on `proxy`) and everything else on `loop.urbnia.com` to the `apps/site` nginx (router `localloop-site`); the site nginx answers `/api/*` with a JSON 503 only while the API router is absent. The site stack's labels also 308-redirect `localloop.urbnia.com/*` → `loop.urbnia.com/*` and `loop-api.urbnia.com/*` → `loop.urbnia.com/api/*`. Compose project names are pinned, so containers are `localloop-backend-{api,postgres,redis,seaweedfs}-1` and `localloop-site-site-1`.
 - `apps/backend/.env` and `.env.docker` hold production secrets (git-ignored). `apps/backend/data/` holds the live Postgres/Valkey/SeaweedFS data (root/container-owned); `apps/backend/backups/` holds nightly dumps.
 - `bun test` in `apps/backend` applies migrations to whatever `DATABASE_URL` points at — the default `.env` is **production**. Use a scratch DB (`localloop_test`) and an explicit `REDIS_URL` with the password.
 - systemd: `localloop-backend-backup.timer` (02:30 nightly) and `localloop-backend-healthcheck.timer` run `apps/backend/deploy/{backup.sh,healthcheck-alert.sh}` from this checkout.
@@ -112,11 +112,12 @@ weak/default secrets, secrets under 16 characters, and an unauthenticated `REDIS
 | PORT | Listen port | `8088` |
 | NODE_ID / NODE_NAME / NODE_CAPABILITIES / NODE_LAT / NODE_LON | Node identity for `GET /api/v1/node/info` | `lab-hub.loop` / … / `48.1351` / `11.582` |
 | RATE_LIMIT_MAX / RATE_LIMIT_WRITE_MAX | Read / write rate limits per window (`RATE_LIMIT_WINDOW`) | `600` / `20` per 15 min |
-| SSE_KEEPALIVE_MS / SSE_MAX_CLIENTS | SSE heartbeat and subscriber cap | `25000` / `200` |
+| SSE_KEEPALIVE_MS / SSE_MAX_CLIENTS / SSE_MAX_CLIENTS_PER_IP | SSE heartbeat, subscriber cap per endpoint, and per client IP | `25000` / `200` / `5` |
+| TRUSTED_PROXY_CIDRS | Peers whose X-Forwarded-For sets request.ip (Traefik's `localloop-edge` network) | `10.250.250.0/29` |
 | RUN_MIGRATIONS | Apply `src/db/migrations` on start | `true` |
 | SEARCH_REFRESH_ON_WRITE | Refresh the interest search view on each POST | `true` |
 | AUTH_ENABLED / BETTER_AUTH_SECRET / AUTH_TRUSTED_ORIGINS | better-auth toggle and settings | `false` |
-| API_KEY_ENABLED / API_KEY | Require `X-API-Key` on write routes | `false` |
+| API_KEY_ENABLED / API_KEY | Require `X-API-Key` on the lab write routes; `/api/v1/relay` and `/api/v1/federate/*` always require `API_KEY` (503 if unset) | `false` |
 | WORKER_ENABLED | Consume queued interest jobs | `false` |
 | PAYMENTS_ENABLED | Payments intake routes | `false` |
 

@@ -14,8 +14,8 @@ This monorepo holds the LOOP specification and schemas, the public documentation
 [![Status: lab demo only](https://img.shields.io/badge/status-lab%20demo%20only-c2410c)](#limitations-and-status)
 [![Spec v0.2.0](https://img.shields.io/badge/spec-v0.2.0-0d9488)](protocol/SPECIFICATION.md)
 [![protocol 0.6.0](https://img.shields.io/badge/protocol-0.6.0-475569)](protocol/CHANGELOG.md)
-[![backend 0.9.1](https://img.shields.io/badge/backend-0.9.1-475569)](apps/backend/CHANGELOG.md)
-[![site 0.9.0](https://img.shields.io/badge/site-0.9.0-475569)](apps/site/CHANGELOG.md)
+[![backend 0.10.0](https://img.shields.io/badge/backend-0.10.0-475569)](apps/backend/CHANGELOG.md)
+[![site 0.10.0](https://img.shields.io/badge/site-0.10.0-475569)](apps/site/CHANGELOG.md)
 [![Licences: MIT, CC BY-SA 4.0](https://img.shields.io/badge/licences-MIT%20%C2%B7%20CC%20BY--SA%204.0-1d4ed8)](#licensing)
 
 [**Live site**](https://loop.urbnia.com) ·
@@ -335,8 +335,12 @@ containers keep their historical names.
 - `https://loop.urbnia.com` → site container (Traefik router `localloop-site`).
 - `https://loop.urbnia.com/api/*` → backend container
   `localloop-backend-api-1:8088` (Traefik router `localloop-api`, labels in
-  `apps/backend/docker-compose.yml`). While that container is down the site's
-  nginx answers `/api/*` with a JSON 503.
+  `apps/backend/docker-compose.yml`) over the dedicated `localloop-edge`
+  network, which only Traefik and the API join. While that container is down
+  the site's nginx answers `/api/*` with a JSON 503.
+- Limits: Traefik rate limits per client IP on every localLOOP router; the
+  API adds per-route read/write limits and per-IP stream caps (see
+  [`apps/backend/README.md`](apps/backend/README.md#edge-network-and-limits)).
 - `localloop.urbnia.com/*` and `loop-api.urbnia.com/*` → 308 redirects to
   `loop.urbnia.com/*` and `loop.urbnia.com/api/*` (labels in
   `apps/site/docker-compose.yml`).

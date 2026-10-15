@@ -104,6 +104,40 @@ describe('production config security checks', () => {
     ).rejects.toThrow('Insecure API_KEY for production when API key protection is enabled');
   });
 
+  it('rejects a weak API_KEY in production even while API_KEY_ENABLED is off', async () => {
+    // The relay and federation ingest routes always require the key.
+    await expect(
+      loadConfig({
+        NODE_ENV: 'production',
+        DATABASE_URL: 'postgresql://localloop:VeryStrongPass123!@localhost:55432/localloop',
+        STORAGE_SECRET_KEY: 'strong-storage-secret',
+        REDIS_URL: 'redis://:StrongRedisPass456!@localhost:6381',
+        API_KEY: 'short1',
+      }),
+    ).rejects.toThrow('Insecure API_KEY for production');
+  });
+
+  it('allows production without an API_KEY (gated routes then answer 503)', async () => {
+    const module = await loadConfig({
+      NODE_ENV: 'production',
+      DATABASE_URL: 'postgresql://localloop:VeryStrongPass123!@localhost:55432/localloop',
+      STORAGE_SECRET_KEY: 'strong-storage-secret',
+      REDIS_URL: 'redis://:StrongRedisPass456!@localhost:6381',
+    });
+    // Loads without throwing; the gated routes then answer 503 (see
+    // apiKey.always.test.ts).
+    expect(module.config).toBeDefined();
+  });
+
+  it('parses SSE_MAX_CLIENTS_PER_IP and TRUSTED_PROXY_CIDRS', async () => {
+    const defaults = await loadConfig({});
+    expect(defaults.config.sseMaxClientsPerIp).toBe(5);
+    expect(defaults.config.trustedProxyCidrs).toEqual(['10.250.250.0/29']);
+    const custom = await loadConfig({ SSE_MAX_CLIENTS_PER_IP: '3', TRUSTED_PROXY_CIDRS: '10.0.0.0/8, 192.168.1.1' });
+    expect(custom.config.sseMaxClientsPerIp).toBe(3);
+    expect(custom.config.trustedProxyCidrs).toEqual(['10.0.0.0/8', '192.168.1.1']);
+  });
+
   it('allows strong secrets in production', async () => {
     const module = await loadConfig({
       NODE_ENV: 'production',

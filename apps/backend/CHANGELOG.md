@@ -7,6 +7,39 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.10.0] - 2026-10-15
+
+### Security
+- **Dedicated edge network.** The API leaves the shared `proxy` network (44
+  containers from other projects could reach it directly) and joins
+  `localloop-edge` (`10.250.250.0/29`), which only the shared Traefik joins.
+  `X-Forwarded-For` is trusted only from that subnet (`TRUSTED_PROXY_CIDRS`)
+  instead of from any immediate peer, which had let any container on `proxy`
+  choose its own `request.ip` and get a fresh rate-limit budget per request.
+- **Always-on API key** for `POST /api/v1/relay` and
+  `POST /api/v1/federate/announce|offer`, whatever `API_KEY_ENABLED` says
+  (`401` without it, `503` when no `API_KEY` is configured). Production
+  refuses a weak `API_KEY` whenever one is set.
+- **Per-IP stream cap**: at most `SSE_MAX_CLIENTS_PER_IP` (default 5) open
+  streams per client IP on each SSE endpoint, so one address cannot take all
+  `SSE_MAX_CLIENTS` slots.
+- **Edge limits**: Traefik rate limit (20 requests/s per client IP, burst 60)
+  and compression (JSON, the 2.3 MB Redoc bundle; never `text/event-stream`)
+  on the API router.
+- **Container hardening**: read-only root filesystem with a `/tmp` tmpfs and a
+  process limit for the API; process limits for Postgres, Valkey and SeaweedFS;
+  PostGIS and the Bun base image pinned by digest. Valkey reads its password
+  from a mode-600 config file written at start instead of argv, so it no
+  longer shows in `docker inspect` or `ps`.
+- `deploy/backup.sh` writes dumps owner-only (`umask 077`).
+
+### Migration
+- Clients of `/api/v1/relay` and `/api/v1/federate/*` must send `X-API-Key`
+  (or `Authorization: Bearer`) with the configured `API_KEY`.
+- Create the edge network and attach Traefik before deploying (see
+  "Edge network and limits" in the README); `TRUSTED_PROXY_CIDRS` must match
+  its subnet.
+
 ## [0.9.1] - 2026-10-14
 
 ### Changed
@@ -663,7 +696,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Lab demo scripts (seed + simulate + one-command runner).
 - Privacy notice endpoint and in-memory metrics snapshot.
 
-[Unreleased]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.9.1...HEAD
+[Unreleased]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.10.0...HEAD
+[0.10.0]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.9.1...backend/v0.10.0
 [0.9.1]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.9.0...backend/v0.9.1
 [0.9.0]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.8.1...backend/v0.9.0
 [0.8.1]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.8.0...backend/v0.8.1

@@ -8,20 +8,51 @@ services:
   site:
     build: .
     restart: unless-stopped
+    # Static files only: no capabilities, no privilege escalation, read-only
+    # root filesystem (nginx writes its pid and temp files to the /tmp tmpfs).
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    read_only: true
+    tmpfs:
+      - /tmp:size=16m,mode=1777
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 128M
+          pids: 64
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "5"
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1:8080/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
     networks:
-      # Shared with Traefik and with the backend's api container, which nginx
-      # reaches as localloop-backend-api-1:8088 for /api/*.
+      # Shared with Traefik only. The API sits on its own localloop-edge network
+      # (apps/backend/docker-compose.yml), so this container cannot reach it.
       - proxy
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=proxy"
-      - "traefik.http.services.localloop-site.loadbalancer.server.port=80"
+      - "traefik.http.services.localloop-site.loadbalancer.server.port=8080"
       # https://loop.urbnia.com — the home of localLOOP (static site; /api/* is
       # routed to the backend by the router in apps/backend/docker-compose.yml).
       - "traefik.http.routers.localloop-site.rule=Host(`loop.urbnia.com`)"
       - "traefik.http.routers.localloop-site.entrypoints=websecure"
       - "traefik.http.routers.localloop-site.tls.certresolver=letsencrypt"
       - "traefik.http.routers.localloop-site.service=localloop-site"
+      - "traefik.http.routers.localloop-site.middlewares=localloop-site-ratelimit"
+      # Per client IP (Traefik's remote address): generous for a static site
+      # whose pages load fonts, images and chunks in parallel.
+      - "traefik.http.middlewares.localloop-site-ratelimit.ratelimit.average=50"
+      - "traefik.http.middlewares.localloop-site-ratelimit.ratelimit.period=1s"
+      - "traefik.http.middlewares.localloop-site-ratelimit.ratelimit.burst=200"
       # Former hostnames, permanently redirected (308 keeps method and body, so
       # API POSTs and federation calls survive the hop).
       # localloop.urbnia.com/<path> -> loop.urbnia.com/<path>
@@ -29,7 +60,7 @@ services:
       - "traefik.http.routers.localloop-legacy-site.entrypoints=websecure"
       - "traefik.http.routers.localloop-legacy-site.tls.certresolver=letsencrypt"
       - "traefik.http.routers.localloop-legacy-site.service=localloop-site"
-      - "traefik.http.routers.localloop-legacy-site.middlewares=localloop-legacy-site-redirect"
+      - "traefik.http.routers.localloop-legacy-site.middlewares=localloop-site-ratelimit,localloop-legacy-site-redirect"
       - "traefik.http.middlewares.localloop-legacy-site-redirect.redirectregex.regex=^https?://localloop\\.urbnia\\.com/(.*)"
       - "traefik.http.middlewares.localloop-legacy-site-redirect.redirectregex.replacement=https://loop.urbnia.com/$${1}"
       - "traefik.http.middlewares.localloop-legacy-site-redirect.redirectregex.permanent=true"
@@ -39,7 +70,7 @@ services:
       - "traefik.http.routers.localloop-legacy-api.entrypoints=websecure"
       - "traefik.http.routers.localloop-legacy-api.tls.certresolver=letsencrypt"
       - "traefik.http.routers.localloop-legacy-api.service=localloop-site"
-      - "traefik.http.routers.localloop-legacy-api.middlewares=localloop-legacy-api-redirect"
+      - "traefik.http.routers.localloop-legacy-api.middlewares=localloop-site-ratelimit,localloop-legacy-api-redirect"
       - "traefik.http.middlewares.localloop-legacy-api-redirect.redirectregex.regex=^https?://loop-api\\.urbnia\\.com/(?:api/)?(.*)"
       - "traefik.http.middlewares.localloop-legacy-api-redirect.redirectregex.replacement=https://loop.urbnia.com/api/$${1}"
       - "traefik.http.middlewares.localloop-legacy-api-redirect.redirectregex.permanent=true"

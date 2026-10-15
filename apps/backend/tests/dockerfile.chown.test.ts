@@ -11,6 +11,7 @@ describe('Dockerfile ownership', () => {
     expect(df).toContain('COPY --chown=app:app src');
     expect(df).toContain('USER app');
     expect(df).toContain('COPY --chown=app:app vendor ./vendor');
+    expect(df).toMatch(/^FROM oven\/bun:[0-9.]+@sha256:[0-9a-f]{64}$/m);
     // expensive full-tree chown after src copy should be gone
     expect(df).not.toMatch(/COPY --chown=app:app src[\s\S]*RUN chown -R app:app \/app/);
   });
