@@ -77,6 +77,9 @@ test('key concepts scroll-links the active tab to scroll position on desktop', a
 });
 
 test('key concepts traverses all 6 tabs before the next section becomes visible', async ({ page }) => {
+  // ~100 small wheel steps with a layout read after each: ~13 s locally, but
+  // past the 30 s default on slower shared CI runners.
+  test.setTimeout(90_000);
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto('/');
   const wrapper = page.locator('.kc-scroll-wrapper');
