@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.11.2] - 2026-10-15
+
+### Fixed
+- Pages could load without their CSS or JavaScript. Next prefetched every
+  header menu link on load (~115 of ~147 requests on desktop), so a second
+  page load within a second or two, or several visitors behind one NAT,
+  exceeded the per-IP rate limit added in 0.10.0, and Traefik answered
+  content-hashed chunks with 429. Menu links no longer prefetch (30 requests
+  per load; clicks still navigate client-side), and `/_next/static/` and
+  `/assets/` have their own router (`localloop-site-static`) with a looser
+  bucket (300/s, burst 1000).
+
 ## [0.11.1] - 2026-10-15
 
 ### Fixed
@@ -782,7 +794,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-[Unreleased]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.11.1...HEAD
+[Unreleased]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.11.2...HEAD
+[0.11.2]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.11.1...site/v0.11.2
 [0.11.1]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.11.0...site/v0.11.1
 [0.11.0]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.10.0...site/v0.11.0
 [0.10.0]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.9.0...site/v0.10.0

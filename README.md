@@ -15,7 +15,7 @@ This monorepo holds the LOOP specification and schemas, the public documentation
 [![Spec v0.2.0](https://img.shields.io/badge/spec-v0.2.0-0d9488)](protocol/SPECIFICATION.md)
 [![protocol 0.6.0](https://img.shields.io/badge/protocol-0.6.0-475569)](protocol/CHANGELOG.md)
 [![backend 0.10.0](https://img.shields.io/badge/backend-0.10.0-475569)](apps/backend/CHANGELOG.md)
-[![site 0.11.1](https://img.shields.io/badge/site-0.11.1-475569)](apps/site/CHANGELOG.md)
+[![site 0.11.2](https://img.shields.io/badge/site-0.11.2-475569)](apps/site/CHANGELOG.md)
 [![Licences: MIT, CC BY-SA 4.0](https://img.shields.io/badge/licences-MIT%20%C2%B7%20CC%20BY--SA%204.0-1d4ed8)](#licensing)
 
 [**Live site**](https://loop.urbnia.com) ·

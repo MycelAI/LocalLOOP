@@ -321,6 +321,11 @@ test('the served Phosphor subset covers every icon the site uses', () => {
   assert.ok(!fs.existsSync(path.join(process.cwd(), 'public', 'assets', 'icons', 'phosphor', 'fill')), 'the unused fill weight must not be served');
 });
 
+test('header menu links do not prefetch every route on load', () => {
+  const header = read(['app', 'components', 'SiteHeader.jsx']);
+  assert.match(header, /<Link href=\{href\} prefetch=\{false\}/);
+});
+
 test('header and footer use the small logo, not the 1.4 MB source PNG', () => {
   for (const file of ['SiteHeader.jsx', 'SiteFooter.jsx']) {
     const source = read(['app', 'components', file]);
@@ -431,6 +436,11 @@ test('site container runs unprivileged and read-only, behind a Traefik rate limi
   assert.ok(compose.includes('routers.localloop-site.middlewares=localloop-site-ratelimit'));
   assert.ok(compose.includes('localloop-legacy-site.middlewares=localloop-site-ratelimit,'));
   assert.ok(compose.includes('localloop-legacy-api.middlewares=localloop-site-ratelimit,'));
+  // Hashed chunks and assets have their own looser bucket (a page load must
+  // never get 429s for its CSS/JS), still below the API router's priority.
+  assert.match(compose, /routers\.localloop-site-static\.rule=Host\(`loop\.urbnia\.com`\) && \(PathPrefix\(`\/_next\/static\/`\) \|\| PathPrefix\(`\/assets\/`\)\)/);
+  assert.ok(compose.includes('routers.localloop-site-static.priority=50'));
+  assert.ok(compose.includes('routers.localloop-site-static.middlewares=localloop-site-static-ratelimit'));
 });
 
 test('nginx serves Core-DP profile schemas at their versioned $id paths', () => {

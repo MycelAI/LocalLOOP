@@ -99,9 +99,12 @@ const clampMegaMenuToViewport = (groupEl) => {
   menu.style.right = 'auto';
 };
 
+// No viewport prefetch for menu links: with every section's links mounted in
+// the header, prefetching them all cost ~115 requests per page load, enough to
+// trip the per-IP rate limit. Clicks still navigate client-side.
 function NavigationLink({ href, children, ...props }) {
   if (href.startsWith('/')) {
-    return <Link href={href} {...props}>{children}</Link>;
+    return <Link href={href} prefetch={false} {...props}>{children}</Link>;
   }
 
   return <a href={href} {...props}>{children}</a>;

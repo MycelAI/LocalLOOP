@@ -53,6 +53,18 @@ services:
       - "traefik.http.middlewares.localloop-site-ratelimit.ratelimit.average=50"
       - "traefik.http.middlewares.localloop-site-ratelimit.ratelimit.period=1s"
       - "traefik.http.middlewares.localloop-site-ratelimit.ratelimit.burst=200"
+      # Content-hashed chunks and static assets get their own, looser bucket so
+      # a burst of page loads (or many visitors behind one NAT) is throttled on
+      # HTML, never left with 429s for its CSS and JavaScript.
+      - "traefik.http.routers.localloop-site-static.rule=Host(`loop.urbnia.com`) && (PathPrefix(`/_next/static/`) || PathPrefix(`/assets/`))"
+      - "traefik.http.routers.localloop-site-static.priority=50"
+      - "traefik.http.routers.localloop-site-static.entrypoints=websecure"
+      - "traefik.http.routers.localloop-site-static.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.localloop-site-static.service=localloop-site"
+      - "traefik.http.routers.localloop-site-static.middlewares=localloop-site-static-ratelimit"
+      - "traefik.http.middlewares.localloop-site-static-ratelimit.ratelimit.average=300"
+      - "traefik.http.middlewares.localloop-site-static-ratelimit.ratelimit.period=1s"
+      - "traefik.http.middlewares.localloop-site-static-ratelimit.ratelimit.burst=1000"
       # Former hostnames, permanently redirected (308 keeps method and body, so
       # API POSTs and federation calls survive the hop).
       # localloop.urbnia.com/<path> -> loop.urbnia.com/<path>
