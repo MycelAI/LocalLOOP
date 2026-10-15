@@ -5,9 +5,9 @@
 
 :root {
   /* Typography */
-  --font-sans: 'Space Grotesk', system-ui, sans-serif;
-  --font-display: 'Fraunces', Georgia, serif;
-  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --font-sans: 'Space Grotesk', 'Space Grotesk Fallback', system-ui, sans-serif;
+  --font-display: 'Fraunces', 'Fraunces Fallback', Georgia, serif;
+  --font-mono: 'IBM Plex Mono', 'IBM Plex Mono Fallback', ui-monospace, monospace;
 
   /* Core colors */
   --ink: #0f172a;
@@ -212,6 +212,25 @@ header[data-site-header] {
 #main-content:focus-visible {
   outline: 3px solid var(--accent);
   outline-offset: -3px;
+}
+
+/* Static HTML pages under public/ get their header from site-header.js after
+   first paint; hold its rendered height meanwhile so the page does not jump. */
+header[data-site-header]:empty {
+  min-height: 89px;
+}
+
+@media (min-width: 1120px) {
+  header[data-site-header]:empty {
+    min-height: 105px;
+  }
+}
+
+/* Every Phosphor glyph is 1em wide: reserve that box so icons do not shift
+   the layout when the icon font arrives. Contextual rules (`.x i`) win. */
+.ph-bold {
+  display: inline-block;
+  width: 1em;
 }
 
 body {
@@ -4779,7 +4798,7 @@ a.card h3:not(.card-title) {
 .demo-tab-btn { min-height: 44px; min-width: 44px; }
 
 .demo-filter-btn:hover { border-color: var(--accent); color: var(--accent); }
-.demo-filter-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+.demo-filter-btn.active { background: #c2410c; border-color: #c2410c; color: #fff; } /* white on #c2410c: 5.2:1 (WCAG AA) */
 
 /* Tab buttons */
 .demo-tab-row {
@@ -4855,7 +4874,7 @@ a.card h3:not(.card-title) {
 .demo-table tr:hover td { background: rgba(var(--border-ink-rgb),0.02); }
 
 .demo-id {
-  font-family: 'IBM Plex Mono', monospace !important;
+  font-family: 'IBM Plex Mono', 'IBM Plex Mono Fallback', monospace !important;
   font-size: 0.76rem !important;
   color: var(--ink-soft) !important;
   word-break: break-all;
@@ -5993,7 +6012,8 @@ a.card h3:not(.card-title) {
   font-family: var(--font-mono);
   font-size: var(--text-xs);
   font-weight: 600;
-  color: var(--accent-2);
+  /* Darker than --accent-2 (3.7:1 on white) to reach 4.5:1 at this size. */
+  color: #0f766e;
 }
 
 .wil-calc-field input[type='range'] {

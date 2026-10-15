@@ -7,6 +7,55 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.11.0] - 2026-10-15
+
+### Changed
+- **Performance.** Lighthouse mobile performance on the home page went from
+  34 to about 90 and desktop from 56 to 99-100:
+  - The header and footer logo is a 3 KB WebP (`local-loop-logo-96.webp`)
+    instead of the 1.4 MB source PNG that every page downloaded.
+  - Icons: the Phosphor bold font and stylesheet are a subset of the 83 icons
+    the site uses (11 KB + 5 KB instead of 150 KB + 86 KB), built by
+    `scripts/subset-phosphor.sh` from the full copy in `assets-src/phosphor/`;
+    the unused fill weight (132 KB + 86 KB) is gone. The scan also covers the
+    static HTML in `public/` (header partial, protocol mirror index).
+  - Stylesheets are bundled by Next into content-hashed files instead of
+    three separate render-blocking requests.
+  - The three.js hero loads on the visitor's first interaction (pointer, key,
+    touch, wheel or scroll) instead of with the page.
+  - Markdown documents (the specification, the mirrored protocol docs) are
+    rendered to HTML at build time and sent once as a string: the
+    specification page shrank from 611 KB to 257 KB, and the browser no longer
+    downloads the Markdown toolchain or re-renders the document on hydration.
+    Mermaid diagrams load and render only when they scroll into view.
+- **SEO and GEO.** A 1200x630 social card (`og-image.png`, Twitter
+  `summary_large_image`); site-wide `Organization` + `WebSite` structured
+  data and a `TechArticle` for the specification; `llms.txt` summarising the
+  project and its canonical sources for AI assistants; `robots.txt` keeps API
+  data out of the index while allowing its reference and OpenAPI document.
+
+### Fixed
+- Heading order on `/docs/`, `/library/`, `/protocol/`, `/governance/` and
+  the protocol mirror index (an outline `<h2>` before the cards); a smoke
+  test now fails if any built page skips a heading level. Also fixed: the
+  colour contrast of the demo-city filter's active button, and generic
+  "Learn more" link text (cards now say where they lead).
+- Layout shift while fonts load: each web font has a metric-matched local
+  fallback (`size-adjust` and ascent/descent overrides), icons reserve their
+  1em box, and static pages hold the header's height until `site-header.js`
+  fills it.
+- Accessibility: GFM task-list checkboxes in rendered Markdown are labelled
+  ("Done"/"Not done"); the loop-cost calculator's values use a darker teal
+  (5.5:1 instead of 3.7:1).
+- The protocol mirror index (`/projects/loop-protocol/`) is a complete page:
+  indexable, with a description, canonical link, social card and a `<main>`
+  landmark, and listed in the sitemap; its injected header uses the small logo.
+- Remote images in mirrored Markdown (README badges) are shown as their alt
+  text instead of being blocked by the CSP and logged as errors.
+- `scripts/generate-csp-hashes.mjs` splits long per-page hash lists across
+  several nginx variables: Next can emit 120+ inline scripts on long pages,
+  which exceeded nginx's 4 KB token limit and stopped the container.
+
 ## [0.10.0] - 2026-10-15
 
 ### Security
@@ -726,7 +775,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-[Unreleased]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.10.0...HEAD
+[Unreleased]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.11.0...HEAD
+[0.11.0]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.10.0...site/v0.11.0
 [0.10.0]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.9.0...site/v0.10.0
 [0.9.0]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.8.1...site/v0.9.0
 [0.8.1]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.8.0...site/v0.8.1

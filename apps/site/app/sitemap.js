@@ -5,9 +5,13 @@ import { getCanonicalUrls } from './config/siteRoutes.js';
 
 export const dynamic = 'force-static';
 
+// Hand-written static pages served from public/ (outside the App Router).
+const STATIC_PAGES = ['https://loop.urbnia.com/projects/loop-protocol/'];
+
 export default function sitemap() {
   const now = new Date();
-  return getCanonicalUrls().map(({ url }) => ({
+  const urls = [...getCanonicalUrls().map(({ url }) => url), ...STATIC_PAGES];
+  return urls.map((url) => ({
     url,
     lastModified: now,
     changeFrequency: 'weekly',

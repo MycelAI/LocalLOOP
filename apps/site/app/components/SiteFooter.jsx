@@ -7,7 +7,7 @@ export function SiteFooter() {
       <div className="footer-container">
         <div className="footer-brand">
           <img
-            src="/assets/local-loop-logo.png"
+            src="/assets/local-loop-logo-96.webp"
             alt=""
             className="footer-logo"
             width={22}

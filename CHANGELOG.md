@@ -23,6 +23,15 @@ use the date the change landed on `main`.
 
 ## 2026-10-15
 
+### Changed
+- Site performance, SEO and GEO (site 0.11.0): Lighthouse 100 for
+  accessibility, best practices and SEO, and desktop performance 99-100
+  (mobile 84-93); a small logo and a subset icon font, bundled
+  stylesheets, Markdown rendered at build time, a social card,
+  `Organization`/`WebSite`/`TechArticle` structured data and `llms.txt`.
+  The full Phosphor icon source moved to `apps/site/assets-src/phosphor/`
+  (listed in `REUSE.toml` and the third-party notices).
+
 ### Security
 - Production hardening after a deployment audit (backend 0.10.0, site 0.10.0):
   the API sits on a dedicated `localloop-edge` network shared only with

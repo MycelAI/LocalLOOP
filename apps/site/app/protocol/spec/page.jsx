@@ -1,8 +1,9 @@
 // SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
 // SPDX-License-Identifier: MIT
 
+import { JsonLd } from '@/app/components/JsonLd'
 import MarkdownDoc from '@/app/components/docs/MarkdownDoc'
-import { createMetadata } from '@/app/config/metadata'
+import { createMetadata, specificationJsonLd } from '@/app/config/metadata'
 
 export const metadata = createMetadata({
   title: 'Protocol specification',
@@ -13,6 +14,7 @@ export const metadata = createMetadata({
 export default function ProtocolSpecPage() {
   return (
     <div className="content-stack">
+      <JsonLd data={specificationJsonLd()} />
       <div className="content-panel">
         <h1 className="hub-heading">Specification v0.2.0</h1>
         <p>

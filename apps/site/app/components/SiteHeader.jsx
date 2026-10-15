@@ -256,7 +256,7 @@ export function SiteHeader({ subtitle = '' }) {
       <nav className="nav-container" aria-label="Primary">
         <Link href="/" className="nav-brand">
           <img
-            src="/assets/local-loop-logo.png"
+            src="/assets/local-loop-logo-96.webp"
             alt=""
             className="nav-logo-img"
             width={32}

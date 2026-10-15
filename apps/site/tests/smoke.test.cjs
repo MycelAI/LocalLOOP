@@ -299,6 +299,83 @@ test('security.txt is published under .well-known', () => {
 });
 
 
+test('the served Phosphor subset covers every icon the site uses', () => {
+  const subset = read(['public', 'assets', 'icons', 'phosphor', 'bold', 'style.css']);
+  const sources = [
+    ...walk(path.join(process.cwd(), 'app')).filter((file) => /\.(jsx?|mjs)$/.test(file)),
+    ...walk(path.join(process.cwd(), 'public', 'assets', 'js')).filter((file) => /\.(jsx?|mjs)$/.test(file)),
+    // Static pages served as-is (header partial, protocol mirror index).
+    ...walk(path.join(process.cwd(), 'public')).filter((file) => file.endsWith('.html')),
+  ];
+  const used = new Set();
+  for (const file of sources) {
+    const text = fs.readFileSync(file, 'utf8');
+    for (const match of text.matchAll(/\bph-[a-z0-9-]+/g)) used.add(match[0]);
+    for (const match of text.matchAll(/icon="([a-z0-9-]+)"/g)) used.add(`ph-${match[1]}`);
+  }
+  for (const style of ['ph-bold', 'ph-fill', 'ph-light', 'ph-thin', 'ph-duotone', 'ph-regular']) used.delete(style);
+  const missing = [...used].filter((name) => !subset.includes(`.ph-bold.${name}:before`));
+  assert.deepEqual(missing, [], `icons missing from the subset (run scripts/subset-phosphor.sh): ${missing.join(', ')}`);
+  const font = fs.statSync(path.join(process.cwd(), 'public', 'assets', 'icons', 'phosphor', 'bold', 'Phosphor-Bold.woff2'));
+  assert.ok(font.size < 40_000, `icon font should be a subset, got ${font.size} bytes`);
+  assert.ok(!fs.existsSync(path.join(process.cwd(), 'public', 'assets', 'icons', 'phosphor', 'fill')), 'the unused fill weight must not be served');
+});
+
+test('header and footer use the small logo, not the 1.4 MB source PNG', () => {
+  for (const file of ['SiteHeader.jsx', 'SiteFooter.jsx']) {
+    const source = read(['app', 'components', file]);
+    assert.ok(!source.includes('local-loop-logo.png'), `${file} still loads the full-size logo`);
+    assert.ok(source.includes('local-loop-logo-96.webp'));
+  }
+  const logo = fs.statSync(path.join(process.cwd(), 'public', 'assets', 'local-loop-logo-96.webp'));
+  assert.ok(logo.size < 10_000);
+});
+
+test('llms.txt summarises the project for AI assistants with canonical links', () => {
+  const content = read(['public', 'llms.txt']);
+  assert.match(content, /^# localLOOP\n\n> /);
+  for (const url of ['https://loop.urbnia.com/protocol/spec/', 'https://loop.urbnia.com/protocol/what-is-loop/', 'https://loop.urbnia.com/api/openapi.json']) {
+    assert.ok(content.includes(url), `llms.txt should link ${url}`);
+  }
+  assert.ok(content.toLowerCase().includes('lab demo only'));
+  assert.ok(!/localloop\.urbnia\.com|loop-api\.urbnia\.com/.test(content));
+});
+
+test('robots.txt keeps API data out of the index but not its reference', () => {
+  const content = read(['public', 'robots.txt']);
+  assert.ok(content.includes('Disallow: /api/'));
+  assert.ok(content.includes('Allow: /api/docs'));
+  assert.ok(content.includes('Allow: /api/openapi.json'));
+  assert.ok(content.includes('llms.txt'));
+});
+
+test('pages carry a large social card and Organization/WebSite structured data', () => {
+  const meta = read(['app', 'config', 'metadata.js']);
+  assert.ok(meta.includes("card: 'summary_large_image'"));
+  assert.ok(meta.includes("url: '/assets/og-image.png'"));
+  assert.ok(meta.includes("'@type': 'Organization'") && meta.includes("'@type': 'WebSite'"));
+  assert.ok(fs.existsSync(path.join(process.cwd(), 'public', 'assets', 'og-image.png')));
+  assert.ok(read(['app', 'protocol', 'spec', 'page.jsx']).includes('specificationJsonLd()'));
+});
+
+test('CSP hash generator splits long hash lists below nginx token limits', async () => {
+  const os = require('node:os');
+  const { buildCspConf, HASHES_PER_VAR } = await import(path.join(process.cwd(), 'scripts', 'generate-csp-hashes.mjs'));
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'csp-'));
+  const scripts = Array.from({ length: 130 }, (_, i) => `<script>self.__next_f.push([1,"chunk-${i}"])</script>`).join('');
+  fs.mkdirSync(path.join(dir, 'long'));
+  fs.writeFileSync(path.join(dir, 'long', 'index.html'), `<html><body>${scripts}</body></html>`);
+  fs.writeFileSync(path.join(dir, 'index.html'), '<html><body><script>a()</script></body></html>');
+  const { conf, pages } = buildCspConf(dir);
+  assert.equal(pages, 2);
+  for (const line of conf.split('\n')) assert.ok(line.length < 3500, `line too long for nginx: ${line.length}`);
+  const chunkVars = conf.match(/^map \$uri \$csp_p\d+_\d+ \{$/gm) ?? [];
+  assert.equal(chunkVars.length, Math.ceil(130 / HASHES_PER_VAR));
+  assert.match(conf, /"\/long\/index\.html" "\$csp_p\d+_0 \$csp_p\d+_1 \$csp_p\d+_2 \$csp_p\d+_3";/);
+  assert.equal((conf.match(/sha256-/g) ?? []).length, 131);
+  fs.rmSync(dir, { recursive: true, force: true });
+});
+
 test('robots.txt allows crawl and points at sitemap', () => {
   const content = read(['public', 'robots.txt']);
   assert.ok(content.includes('Allow: /'));
@@ -419,6 +496,64 @@ test('built docs pages contain no literal backticks and exactly one h1', { skip:
     const h1Count = (main.match(/<h1[\s>]/g) || []).length;
     assert.equal(h1Count, 1, `${path.relative(outDir, filePath)} has ${h1Count} <h1> elements`);
   }
+});
+
+test('built pages never skip a heading level (Lighthouse heading-order)', { skip: !hasBuild && 'run `bun run build` first' }, () => {
+  const skips = [];
+  for (const filePath of walk(outDir).filter((file) => file.endsWith('.html'))) {
+    const html = fs.readFileSync(filePath, 'utf8').replace(/<script[\s\S]*?<\/script>/g, '');
+    const levels = [...html.matchAll(/<h([1-6])[\s>]/g)].map((match) => Number(match[1]));
+    let previous = 0;
+    for (const level of levels) {
+      if (level > previous + 1) skips.push(`${path.relative(outDir, filePath)}: h${previous} -> h${level} (${levels.join(',')})`);
+      previous = level;
+    }
+  }
+  assert.deepEqual(skips, []);
+});
+
+test('built Markdown pages render at build time without comments, remote images or a client toolchain', { skip: !hasBuild && 'run `bun run build` first' }, () => {
+  const spec = fs.readFileSync(path.join(outDir, 'protocol', 'spec', 'index.html'), 'utf8');
+  assert.ok(spec.includes('class="mermaid-block"'), 'mermaid fences become placeholders');
+  assert.ok(!spec.includes('agent-cycle'), 'HTML comment anchors must not reach the page');
+  assert.ok(spec.includes('class="hljs'), 'code is highlighted at build time');
+  for (const filePath of walk(outDir).filter((file) => file.endsWith('index.html') && !file.includes(`${path.sep}projects${path.sep}`))) {
+    const html = fs.readFileSync(filePath, 'utf8');
+    assert.ok(!/<img[^>]+src="https?:\/\/(?!loop\.urbnia\.com\/)/.test(html), `${path.relative(outDir, filePath)} renders a remote image the CSP would block`);
+  }
+  const changelog = fs.readFileSync(path.join(outDir, 'protocol', 'changelog', 'index.html'), 'utf8');
+  const checkboxes = changelog.match(/<input[^>]*type="checkbox"[^>]*>/g) || [];
+  assert.ok(checkboxes.length > 0, 'the protocol changelog has task-list items');
+  for (const box of checkboxes) assert.match(box, /aria-label="(Done|Not done)"/, `task-list checkbox without a label: ${box}`);
+});
+
+test('web fonts have metric-matched local fallbacks and icons reserve their box (no swap layout shift)', () => {
+  const fonts = read(['public', 'assets', 'css', 'fonts.css']);
+  const css = read(['public', 'assets', 'css', 'site.css']);
+  for (const family of ['Space Grotesk', 'Fraunces', 'IBM Plex Mono']) {
+    assert.ok(fonts.includes(`font-family: '${family} Fallback';`), `${family} has a fallback face`);
+    assert.ok(css.includes(`'${family}', '${family} Fallback'`), `${family} stacks list the fallback right after the web font`);
+  }
+  assert.match(fonts, /size-adjust: [\d.]+%;\s+ascent-override/);
+  assert.match(css, /\.ph-bold \{\s+display: inline-block;\s+width: 1em;/);
+});
+
+test('the static protocol mirror index is a complete, indexable page', () => {
+  const html = read(['public', 'projects', 'loop-protocol', 'index.html']);
+  assert.ok(!html.includes('noindex'), 'the mirror index is linked from the site and should be indexable');
+  assert.match(html, /<meta name="description" content="[^"]{50,}"/);
+  assert.match(html, /<link rel="canonical" href="https:\/\/loop\.urbnia\.com\/projects\/loop-protocol\/"/);
+  assert.match(html, /<main id="main-content">[\s\S]+<\/main>/);
+  assert.ok(read(['app', 'sitemap.js']).includes("'https://loop.urbnia.com/projects/loop-protocol/'"), 'listed in the sitemap');
+  const header = read(['public', 'assets', 'partials', 'site-header.html']);
+  assert.ok(header.includes('/assets/local-loop-logo-96.webp') && !header.includes('local-loop-logo.png'), 'the injected header uses the small logo');
+  assert.match(read(['public', 'assets', 'css', 'site.css']), /header\[data-site-header\]:empty \{\s+min-height: 89px;/);
+});
+
+test('the loop-cost calculator values meet WCAG AA contrast', () => {
+  const css = read(['public', 'assets', 'css', 'site.css']);
+  const rule = css.slice(css.indexOf('.wil-calc-value {'), css.indexOf('}', css.indexOf('.wil-calc-value {')));
+  assert.match(rule, /color: #0f766e;/, '#0d9488 (--accent-2) is only 3.7:1 on white at 12px');
 });
 
 test('built 404 page has a title and a canonical link', { skip: !hasBuild && 'run `bun run build` first' }, () => {

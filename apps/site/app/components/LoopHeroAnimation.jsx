@@ -75,7 +75,11 @@ export function LoopHeroAnimation() {
     let disposed = false;
     let cleanup = () => {};
 
-    (async () => {
+    // three.js and the scene (~170 kB of script plus a WebGL render loop) load
+    // on the visitor's first interaction rather than with the page, so the
+    // hero text, navigation and first paint are never held up by them. The
+    // play button counts as an interaction too.
+    const bootScene = async () => {
       let createLoopScene;
       try {
         ({ createLoopScene } = await import('./loopScene.js'));
@@ -165,10 +169,21 @@ export function LoopHeroAnimation() {
         delete window.__loopSeek;
         engineRef.current = null;
       };
-    })();
+    };
+
+    const startEvents = ['pointerdown', 'pointermove', 'keydown', 'touchstart', 'wheel', 'scroll'];
+    let booted = false;
+    const start = () => {
+      if (booted) return;
+      booted = true;
+      for (const name of startEvents) window.removeEventListener(name, start);
+      bootScene();
+    };
+    for (const name of startEvents) window.addEventListener(name, start, { passive: true });
 
     return () => {
       disposed = true;
+      for (const name of startEvents) window.removeEventListener(name, start);
       cleanup();
     };
   }, []);

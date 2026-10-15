@@ -10,7 +10,7 @@ import Link from 'next/link';
  * @param {string} title - Card title
  * @param {string} description - Card description text
  * @param {string} href - Link destination (makes card clickable)
- * @param {string} linkText - Text for the link (default: "Learn more")
+ * @param {string} linkText - Text for the link (default: "Read about <title>"; link text must say where it goes)
  * @param {string} variant - Card style variant: 'default' | 'feature' | 'cta'
  * @param {string} size - Card size: 'sm' | 'md' | 'lg'
  * @param {string} className - Additional CSS classes
@@ -20,7 +20,7 @@ export function Card({
   title,
   description,
   href,
-  linkText = 'Learn more',
+  linkText,
   variant = 'default',
   size = 'md',
   className = '',
@@ -44,8 +44,8 @@ export function Card({
       {title && <h3 className="card-title">{title}</h3>}
       {description && <p className="card-description">{description}</p>}
       {children}
-      {href && linkText && (
-        <span className="card-link">{linkText} <span aria-hidden="true">&rarr;</span></span>
+      {href && (linkText ?? title) && (
+        <span className="card-link">{linkText ?? `Read about ${title}`} <span aria-hidden="true">&rarr;</span></span>
       )}
     </>
   );

@@ -1,3 +1,12 @@
+# localLOOP documentation hub: everything public may be crawled and indexed,
+# by search engines and by AI assistants / answer engines alike. The lab API
+# under /api/ serves data, not pages; its reference and contract may be crawled.
 User-agent: *
 Allow: /
+# API data is not for indexing; its human-readable reference and contract are.
+Allow: /api/docs
+Allow: /api/openapi.json
+Disallow: /api/
+
 Sitemap: https://loop.urbnia.com/sitemap.xml
+# AI-readable summary: https://loop.urbnia.com/llms.txt

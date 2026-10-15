@@ -17,6 +17,7 @@ export default function GovernancePage() {
       </div>
 
       <div className="content-panel">
+        <h2 className="visually-hidden">Governance documents</h2>
         <div className="grid">
           <a className="card has-icon" href="/governance/rfcs/">
             <span className="card-icon" aria-hidden="true">

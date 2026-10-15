@@ -17,6 +17,7 @@ export default function LibraryPage() {
       </div>
 
       <div className="content-panel">
+        <h2 className="visually-hidden">Library sections</h2>
         <div className="grid">
           <a className="card has-icon" href="/library/schemas/">
             <span className="card-icon" aria-hidden="true">

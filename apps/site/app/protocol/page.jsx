@@ -18,6 +18,7 @@ export default function ProtocolPage() {
       </div>
 
       <div className="content-panel">
+        <h2 className="visually-hidden">Protocol documents</h2>
         <div className="grid">
           <a className="card has-icon" href="/protocol/what-is-loop/">
             <span className="card-icon" aria-hidden="true">

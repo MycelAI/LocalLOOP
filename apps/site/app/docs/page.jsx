@@ -23,6 +23,7 @@ export default function DocsPage() {
       </div>
 
       <div className="content-panel">
+        <h2 className="visually-hidden">Documentation guides</h2>
         <div className="grid">
           <a className="card has-icon" href="/docs/regulatory-alignment/">
             <span className="card-icon" aria-hidden="true">

@@ -29,7 +29,7 @@ changes those terms. The project's own terms are in `LICENSE` (`LICENSE.txt` in 
 | Fraunces (web font, latin + latin-ext subsets, weights 300/500/700) | Google Fonts download of 2026-09-04 (font version 1.000) | OFL-1.1 | Copyright 2018 The Fraunces Project Authors (https://github.com/undercasetype/Fraunces) | https://github.com/undercasetype/Fraunces, https://fonts.google.com/specimen/Fraunces | `apps/site/public/assets/fonts/fraunces-*.woff2` | site image |
 | Space Grotesk (web font, latin + latin-ext subsets, weights 400/500/600/700) | Google Fonts download of 2026-09-04 (font version 2.000) | OFL-1.1 | Copyright 2020 The Space Grotesk Project Authors (https://github.com/floriankarsten/space-grotesk) | https://github.com/floriankarsten/space-grotesk, https://fonts.google.com/specimen/Space+Grotesk | `apps/site/public/assets/fonts/space-grotesk-*.woff2` | site image |
 | IBM Plex Mono (web font, latin + latin-ext subsets, weights 400/600) | Google Fonts download of 2026-09-04 (font version 2.3) | OFL-1.1 | Copyright © 2017 IBM Corp. with Reserved Font Name "Plex" | https://github.com/IBM/plex, https://fonts.google.com/specimen/IBM+Plex+Mono | `apps/site/public/assets/fonts/ibm-plex-mono-*.woff2` | site image |
-| Phosphor Icons web font (bold and fill weights, woff2 + style.css) | 2.1.2 (@phosphor-icons/web) | MIT | Copyright (c) 2020-2021 Phosphor Icons | https://github.com/phosphor-icons/web | `apps/site/public/assets/icons/phosphor/**` | site image |
+| Phosphor Icons web font (bold weight; the site serves a subset of the icons it uses, built by `apps/site/scripts/subset-phosphor.sh` from the full copy in `apps/site/assets-src/phosphor/`) | 2.1.2 (@phosphor-icons/web) | MIT | Copyright (c) 2020-2021 Phosphor Icons | https://github.com/phosphor-icons/web | `apps/site/public/assets/icons/phosphor/**` | site image |
 | Redoc standalone bundle (API reference renderer for `/api/docs`; bundles React, DOMPurify and other MIT-licensed runtime code) | 3.0.1 (npm `redoc`) | MIT | Copyright (c) 2015-present, Rebilly, Inc. | https://github.com/Redocly/redoc | `apps/backend/vendor/redoc/` | backend image |
 | OpenStreetMap basemap (stitched, cropped and tinted from OpenStreetMap raster tiles, zoom 5, Web Mercator window centred on Munich) | baked 2026-09 | Map data: ODbL-1.0 | © OpenStreetMap contributors | https://www.openstreetmap.org/copyright | `apps/site/public/assets/loop-basemap.webp` | site image |
 | Contributor Covenant (Code of Conduct, adapted) | 3.0 | CC-BY-SA-4.0 | Organization for Ethical Source (steward) | https://www.contributor-covenant.org/version/3/0/ | `**/CODE_OF_CONDUCT.md` | site image (protocol copy under `/projects/loop-protocol/`) |
@@ -43,9 +43,10 @@ Notes:
   quotes each family's OFL.txt in https://github.com/google/fonts. "Plex" is
   a Reserved Font Name under the OFL: a modified version of IBM Plex Mono
   must not use that name.
-- The Phosphor woff2 files are byte-identical to the files in the
-  @phosphor-icons/web 2.1.2 npm tarball; each style.css is that package's
-  stylesheet reduced to the woff2 source.
+- `apps/site/assets-src/phosphor/Phosphor-Bold.woff2` is byte-identical to the
+  file in the @phosphor-icons/web 2.1.2 npm tarball and its style.css is that
+  package's stylesheet reduced to the woff2 source; the served font and
+  stylesheet are subsets of them (fonttools pyftsubset), unmodified otherwise.
 - The Redoc bundle is byte-identical to `bundles/redoc.standalone.js` in the
   redoc 3.0.1 npm tarball (SHA-256
   8c70c2de83d33e33a75b225e573d6d9fe851f066f824b44b1637d831d52d7543); its
@@ -193,12 +194,14 @@ split into chunks that load only on pages that need them.
 | extend | 3.0.2 | MIT | Copyright (c) 2014 Stefan Thomas | https://github.com/justmoon/node-extend |
 | hachure-fill | 0.5.2 | MIT | Copyright (c) 2023 Preet Shihn | https://github.com/pshihn/hachure-fill |
 | hast-util-is-element | 3.0.0 | MIT | Copyright (c) 2016 Titus Wormer &lt;tituswormer@gmail.com> | https://github.com/syntax-tree/hast-util-is-element |
+| hast-util-to-html | 9.0.5 | MIT | Copyright (c) Titus Wormer &lt;tituswormer@gmail.com> | https://github.com/syntax-tree/hast-util-to-html |
 | hast-util-to-jsx-runtime | 2.3.6 | MIT | Copyright (c) Titus Wormer &lt;tituswormer@gmail.com> | https://github.com/syntax-tree/hast-util-to-jsx-runtime |
 | hast-util-to-text | 4.0.2 | MIT | Copyright (c) 2019 Titus Wormer &lt;tituswormer@gmail.com> | https://github.com/syntax-tree/hast-util-to-text |
 | hast-util-whitespace | 3.0.0 | MIT | Copyright (c) 2016 Titus Wormer &lt;tituswormer@gmail.com> | https://github.com/syntax-tree/hast-util-whitespace |
 | highlight.js | 11.11.2 | BSD-3-Clause | Copyright (c) 2006, Ivan Sagalaev. | https://github.com/highlightjs/highlight.js |
 | highlight.js | 11.12.0 | BSD-3-Clause | Copyright (c) 2006, Ivan Sagalaev. | https://github.com/highlightjs/highlight.js |
 | html-url-attributes | 3.0.1 | MIT | Copyright (c) Titus Wormer | https://github.com/rehypejs/rehype-minify/tree/main/packages/html-url-attributes |
+| html-void-elements | 3.0.0 | MIT | Copyright (c) 2016 Titus Wormer &lt;tituswormer@gmail.com> | https://github.com/wooorm/html-void-elements |
 | iconv-lite | 0.6.3 | MIT | Copyright (c) 2011 Alexander Shtuchkin | https://github.com/ashtuchkin/iconv-lite |
 | import-meta-resolve | 4.2.0 | MIT | Copyright (c) Titus Wormer &lt;mailto:tituswormer@gmail.com><br>Copyright Node.js contributors. All rights reserved.<br>Copyright Joyent, Inc. and other Node contributors. All rights reserved. | https://github.com/wooorm/import-meta-resolve |
 | inline-style-parser | 0.2.7 | MIT | Copyright (c) 2012 TJ Holowaychuk &lt;tj@vision-media.ca> | https://github.com/remarkablemark/inline-style-parser |
@@ -275,6 +278,7 @@ split into chunks that load only on pages that need them.
 | react-dom | 19.3.1 | MIT | Copyright (c) Meta Platforms, Inc. and affiliates. | https://github.com/react/react |
 | react-markdown | 10.1.0 | MIT | Copyright (c) Espen Hovlandsdal | https://github.com/remarkjs/react-markdown |
 | rehype-highlight | 7.0.2 | MIT | Copyright (c) Titus Wormer &lt;tituswormer@gmail.com> | https://github.com/rehypejs/rehype-highlight |
+| rehype-stringify | 10.0.1 | MIT | Copyright (c) Titus Wormer | https://github.com/rehypejs/rehype/tree/main/packages/rehype-stringify |
 | remark-gfm | 4.0.1 | MIT | Copyright (c) Titus Wormer &lt;tituswormer@gmail.com> | https://github.com/remarkjs/remark-gfm |
 | remark-parse | 11.0.0 | MIT | Copyright (c) 2014 Titus Wormer &lt;tituswormer@gmail.com> | https://github.com/remarkjs/remark/tree/main/packages/remark-parse |
 | remark-rehype | 11.1.2 | MIT | Copyright (c) Titus Wormer &lt;tituswormer@gmail.com> | https://github.com/remarkjs/remark-rehype |

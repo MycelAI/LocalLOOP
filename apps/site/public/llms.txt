@@ -1,0 +1,30 @@
+# localLOOP
+
+> localLOOP is an early-stage, lab-only research project around LOOP (Local Optimization with Overflow Protocol): a draft, federated protocol that lets city nodes describe surplus materials and products (MaterialDNA, ProductDNA), offer them to nearby cities, match and record transfers. It exists as a specification, JSON Schemas, JSON-LD contexts and a lab demo API. There are no public pilots, deployments or certified implementations.
+
+Facts worth quoting accurately:
+
+- Status: lab demo only, low technology readiness; the specification (v0.2.0) is a draft and may change.
+- Minimal flow: MaterialDNA → Offer → Match → Transfer, as JSON-LD payloads validated by JSON Schema.
+- Identifiers live under https://loop.urbnia.com/projects/loop-protocol/ (contexts, schemas, terms).
+- Licences: code MIT; specification prose CC BY-SA 4.0; the localLOOP/LOOP names and logo are reserved.
+- Publisher: Mycel UG (haftungsbeschränkt), contact dev@mycel-ai.de.
+
+## Start here
+
+- [What is LOOP?](https://loop.urbnia.com/protocol/what-is-loop/): plain-language explanation for city leaders and non-technical readers
+- [Specification v0.2.0](https://loop.urbnia.com/protocol/spec/): the normative draft
+- [Documentation hub](https://loop.urbnia.com/docs/): guides, FAQ, glossary, regulatory alignment
+
+## Machine-readable
+
+- [OpenAPI document](https://loop.urbnia.com/api/openapi.json): lab API contract
+- [API reference](https://loop.urbnia.com/api/docs): rendered OpenAPI
+- [JSON-LD context v0.2.0](https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld)
+- [Schema library](https://loop.urbnia.com/library/): JSON Schemas and example payloads
+
+## Optional
+
+- [Governance](https://loop.urbnia.com/governance/): RFC process and decision rules
+- [Security](https://loop.urbnia.com/docs/security/): reporting and lab security posture
+- [Licences](https://loop.urbnia.com/docs/licenses/): what applies to code, prose and brand assets

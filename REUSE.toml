@@ -154,7 +154,7 @@ SPDX-License-Identifier = "MIT"
 # Phosphor Icons 2.1.2 (@phosphor-icons/web), woff2 + style.css copied from the
 # npm package; the woff2 files are byte-identical to the 2.1.2 tarball.
 [[annotations]]
-path = "apps/site/public/assets/icons/phosphor/**"
+path = ["apps/site/public/assets/icons/phosphor/**", "apps/site/assets-src/phosphor/**"]
 precedence = "override"
 SPDX-FileCopyrightText = "2020-2021 Phosphor Icons"
 SPDX-License-Identifier = "MIT"
@@ -172,6 +172,8 @@ SPDX-License-Identifier = "ODbL-1.0"
 [[annotations]]
 path = [
   "apps/site/public/assets/local-loop-logo.png",
+  "apps/site/public/assets/local-loop-logo-*",
+  "apps/site/public/assets/og-image.png",
   "apps/site/public/favicon.ico",
   "apps/site/public/favicon.svg",
   "apps/site/public/assets/images/localloop-0*-16x9.webp",
