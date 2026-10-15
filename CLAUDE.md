@@ -171,7 +171,8 @@ Authoritative list: `apps/backend/README.md` and `apps/backend/docs/SPEC-COMPLIA
 - Backend: Bun tests for routes, SSE, queue, auth toggles; conformance gate
 - Site: Node smoke tests + Playwright E2E
 - Protocol: AJV schema validation + profile conformance vectors
-- CI: root `.github/workflows/*.yml`, path-filtered per tree. **GitHub Actions is disabled on this repo** (MycelAI org billing blocks private-repo runners, same as OmniScript, since 2026-10-14) — `scripts/ci-local.sh` is the gate; run it before every push. Re-enable with `gh api -X PUT repos/MycelAI/LocalLOOP/actions/permissions -F enabled=true` once billing is fixed.
+- CI: GitHub Actions runs again since the repo went public (2026-10-15; free for public repos). `gate.yml` runs `scripts/ci-local.sh` on every PR and push and is the only required status check on `main` (path-filtered checks can't be required: they never report on PRs outside their paths). The per-tree workflows (`backend.yml` with Postgres/Valkey services, `site.yml` with Playwright, `protocol.yml`, `conformance.yml`, `org-profile.yml`) run on their paths. Still run `scripts/ci-local.sh` before pushing.
+- `main` is protected: changes land through a PR whose `gate` check passes (linear history, no force pushes or deletion; applies to admins too). Merge with `gh pr merge <n> --rebase --delete-branch`, then tag the merged commit.
 
 ## Known Issues & Technical Debt (Top)
 - Protocol §8 endpoint implementation status: `apps/backend/docs/SPEC-COMPLIANCE.md`.

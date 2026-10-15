@@ -29,8 +29,17 @@ use the date the change landed on `main`.
   production secret value appears in any blob); the only hits were test
   fixtures. Contributor docs, the licence notice, the site (footer, API page,
   contribute page, `llms.txt`, `SoftwareSourceCode` structured data, site
-  0.12.0) and every `package.json` point to it. A new always-running
-  `Gate` workflow runs `scripts/ci-local.sh` on every pull request and push.
+  0.12.0) and every `package.json` point to it.
+- GitHub Actions runs again (free for public repositories). A new
+  always-running `Gate` workflow runs `scripts/ci-local.sh` on every pull
+  request and push and is the required check for `main`, which is now
+  protected (pull requests only, linear history, no force pushes or
+  deletion). `conformance.yml` had a duplicated `working-directory` key that
+  made GitHub reject the whole workflow; fixed.
+- Secret scanning with push protection, Dependabot alerts and security
+  updates, and private vulnerability reporting are on.
+- The archived `local-loop-io` repositories and organization profile now
+  point to this repository.
 
 ### Changed
 - Site performance, SEO and GEO (site 0.11.0): Lighthouse 100 for

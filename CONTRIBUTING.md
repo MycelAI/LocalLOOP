@@ -48,8 +48,11 @@ Tree-specific notes live in each tree's `CONTRIBUTING.md`:
 
 ## Running the checks
 
-GitHub Actions is disabled on this repository, so **`scripts/ci-local.sh` is
-the gate. Run it before every push.**
+Every pull request runs the **Gate** workflow (`scripts/ci-local.sh` on
+GitHub's runners), which must pass before `main` accepts the change, plus the
+per-tree workflows for the paths you touched (DB-backed backend tests, the
+site build with Playwright, protocol conformance). Run the same gate locally
+before you push:
 
 ```bash
 bash scripts/ci-local.sh                     # all targets
