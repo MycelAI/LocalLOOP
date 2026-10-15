@@ -6,8 +6,13 @@ lab services run on a real host and store submissions from the public.
 
 ## Reporting a vulnerability
 
-Email **dev@mycel-ai.de** (maintainer: GitHub @alpha912, Mycel UG
-(haftungsbeschränkt)).
+Use either private channel:
+
+- GitHub's private vulnerability reporting:
+  [Report a vulnerability](https://github.com/MycelAI/LocalLOOP/security/advisories/new)
+  (only you and the maintainers see the report), or
+- email **dev@mycel-ai.de** (maintainer: GitHub @alpha912, Mycel UG
+  (haftungsbeschränkt)).
 
 - **Do not** open a public issue, pull request or other public post for a
   security problem.

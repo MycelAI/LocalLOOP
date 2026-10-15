@@ -119,8 +119,20 @@ configuration. See each tree's `DOMAIN-POLICY.md`.
 
 ## Branches, commits and pull requests
 
-- Work on a feature branch and open a pull request against `main`. Only the
-  project steward (@alpha912) merges.
+- `main` is protected. Only the project steward (@alpha912) can push to it
+  or merge into it; everyone else contributes through pull requests.
+- **Outside contributors:** fork the repository, create a branch in your fork
+  (for example `fix/site-footer-link`), push it and open a pull request
+  against `MycelAI/LocalLOOP:main`. **Collaborators** branch in this
+  repository instead. Either way, one topic per branch.
+- A pull request can be merged when the required **Gate** check passes
+  (`scripts/ci-local.sh` on GitHub's runners), the branch is up to date with
+  `main` and all review conversations are resolved. The per-tree workflows for
+  the paths you touched should pass too. History stays linear: pull requests
+  are merged with **rebase**, never with merge commits; force pushes to and
+  deletion of `main` are blocked.
+- First-time contributors' workflow runs wait for a maintainer's approval
+  before they start; that is a GitHub default for forks, not a rejection.
 - Keep pull requests focused, ideally on one tree. Fill in the
   [pull request template](.github/PULL_REQUEST_TEMPLATE.md).
 - Use [Conventional Commits](https://www.conventionalcommits.org/) as in the

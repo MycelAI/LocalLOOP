@@ -40,6 +40,10 @@ use the date the change landed on `main`.
   updates, and private vulnerability reporting are on.
 - The archived `local-loop-io` repositories and organization profile now
   point to this repository.
+- `main` accepts pushes and merges from @alpha912 only; everyone else
+  contributes by pull request (forks for outside contributors). `CONTRIBUTING.md`
+  documents the fork, Gate and rebase-merge flow; `SECURITY.md` and the issue
+  chooser offer GitHub's private vulnerability reporting next to email.
 
 ### Changed
 - Site performance, SEO and GEO (site 0.11.0): Lighthouse 100 for
