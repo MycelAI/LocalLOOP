@@ -140,7 +140,7 @@ ops/
   org-profile/    Source of the local-loop-io GitHub org profile (historical)
 docs/assets/      README artwork: banner, architecture diagrams, screenshots
 scripts/          Monorepo-wide tooling (ci-local.sh, check-links.mjs)
-.github/          CI workflows (path-filtered per tree; Actions currently disabled), Dependabot, CODEOWNERS
+.github/          CI workflows (Gate on every PR, plus path-filtered per-tree workflows), Dependabot, CODEOWNERS
 ```
 
 Each tree keeps its own toolchain and lockfile; there is no root package
@@ -255,9 +255,9 @@ bun run lab:demo              # migrate, seed and simulate the lab flow
 | `protocol` | `npm ci` | `npm run test` |
 | repository | none | `node scripts/check-links.mjs` (relative links and anchors in all Markdown) |
 
-`scripts/ci-local.sh` runs the fast checks for every tree. GitHub Actions is
-currently disabled for this repository (organisation billing), so run it
-before pushing.
+`scripts/ci-local.sh` runs the fast checks for every tree. The required
+**Gate** workflow runs it on every pull request; run it locally before
+pushing.
 
 ## Examples
 
@@ -369,8 +369,6 @@ secrets live in the git-ignored `apps/backend/.env` / `.env.docker`; data in
 - **One public monorepo.** This repository replaces the former
   `github.com/local-loop-io/*` repositories, which are archived and
   read-only (their history is included here).
-- **No hosted CI.** GitHub Actions is disabled (organisation billing);
-  `scripts/ci-local.sh` is the gate.
 - **Operations.** Nightly database dumps stay on the host (nothing is copied
   off-host yet) and a periodic restore drill is still an open follow-up. The
   pilot-readiness claim in
