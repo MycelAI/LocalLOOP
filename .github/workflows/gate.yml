@@ -1,0 +1,38 @@
+# SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
+# SPDX-License-Identifier: MIT
+
+# The one required status check for `main`. It runs on every pull request and
+# push, whatever the paths, because a required check from a path-filtered
+# workflow would never report on PRs that don't touch its paths. It runs the
+# same gate as `scripts/ci-local.sh`; the per-tree workflows add the heavier
+# DB-backed backend tests and the Playwright suite.
+name: Gate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: gate-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  gate:
+    name: gate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.4.3
+      - name: Install REUSE
+        run: pipx install reuse
+      - name: scripts/ci-local.sh
+        run: bash scripts/ci-local.sh

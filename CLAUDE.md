@@ -3,7 +3,7 @@
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Project Overview
-localLOOP is a monorepo (`MycelAI/LocalLOOP`, private) containing LOOP (spec + schemas), a public documentation hub, and a lab-only backend API that powers an interest registry and minimal interop demo flows. The project is early-stage (low TRL) with **no public pilots or deployments**.
+localLOOP is a public monorepo (`MycelAI/LocalLOOP`, https://github.com/MycelAI/LocalLOOP) containing LOOP (spec + schemas), a public documentation hub, and a lab-only backend API that powers an interest registry and minimal interop demo flows. The project is early-stage (low TRL) with **no public pilots or deployments**.
 
 Home: **https://loop.urbnia.com** (site) with the API same-origin under **https://loop.urbnia.com/api/**. It was consolidated on 2026-10-14 from the former `local-loop-io/*` GitHub repos (now archived) with full history; former tags are prefixed (`backend/v0.6.4`, `site/v0.6.0`, `protocol/v0.5.2`, `org-profile/…`).
 
@@ -143,7 +143,7 @@ Authoritative list: `apps/backend/README.md` and `apps/backend/docs/SPEC-COMPLIA
 - JSON-LD context (v0.1.1, still valid): `https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld`
 - Historical lab records in production (payloads registered before 2026-10-14) keep the old context IRIs: they are covered by append-only evidence hashes and must not be rewritten.
 - `local-loop-io.github.io` and `api.local-loop.io` do **not** exist (do not reference).
-- Public pages may still link to the archived (read-only, public) `github.com/local-loop-io/*` repos; this monorepo is private.
+- Source links point to `https://github.com/MycelAI/LocalLOOP` (public since 2026-10-15). The archived `github.com/local-loop-io/*` repos are read-only; link to them only for history (their READMEs and the org profile point here).
 
 ## Cross-tree sync rules
 - Any change under `protocol/{schemas,contexts,docs,examples,rfcs}`, `openapi.json` or `SPECIFICATION.md` must be followed by `bash apps/site/scripts/aggregate-docs.sh` (and `bun run sync:schemas` in `apps/backend` for schemas). Then `git status --short` — scan for unexpected `D` lines before committing.

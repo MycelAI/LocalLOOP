@@ -11,6 +11,11 @@ from the git history and tag; this tree is historical (see `README.md`).
 ## [Unreleased]
 
 ### Changed
+- The profile announces that the organization is archived and that
+  localLOOP is developed in the open at https://github.com/MycelAI/LocalLOOP;
+  the repositories table maps each archived repository to its directory there,
+  and the citation, examples, issues and changelog links point to it. The
+  logo uses the 192 px WebP instead of the 1.4 MB PNG.
 - Profile, README and agent context files link to `https://loop.urbnia.com`
   and `https://loop.urbnia.com/api/` instead of the former hostnames, which
   only redirect.

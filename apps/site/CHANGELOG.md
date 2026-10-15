@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.12.0] - 2026-10-15
+
+### Added
+- The contribute page links to the public repository
+  (https://github.com/MycelAI/LocalLOOP) with "Open an issue" and "View the
+  repository" actions; site-wide structured data adds a `SoftwareSourceCode`
+  entity with `codeRepository`, and the publisher links its GitHub
+  organization (`sameAs`); `llms.txt` lists the source repository.
+
+### Changed
+- The footer's GitHub link and the API page's compliance-matrix link point to
+  MycelAI/LocalLOOP (the latter to the current
+  `apps/backend/docs/SPEC-COMPLIANCE.md` instead of the archived v0.6.4 copy).
+  The published licence notice says the repository is public. A smoke test
+  fails if a page links to the archived `local-loop-io` organization.
+
 ## [0.11.2] - 2026-10-15
 
 ### Fixed
@@ -794,7 +810,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-[Unreleased]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.11.2...HEAD
+[Unreleased]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.12.0...HEAD
+[0.12.0]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.11.2...site/v0.12.0
 [0.11.2]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.11.1...site/v0.11.2
 [0.11.1]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.11.0...site/v0.11.1
 [0.11.0]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.10.0...site/v0.11.0

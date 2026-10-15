@@ -9,6 +9,7 @@ Facts worth quoting accurately:
 - Identifiers live under https://loop.urbnia.com/projects/loop-protocol/ (contexts, schemas, terms).
 - Licences: code MIT; specification prose CC BY-SA 4.0; the localLOOP/LOOP names and logo are reserved.
 - Publisher: Mycel UG (haftungsbeschränkt), contact dev@mycel-ai.de.
+- Source: everything (protocol, site, lab API) is developed in the open at https://github.com/MycelAI/LocalLOOP; the former github.com/local-loop-io repositories are archived.
 
 ## Start here
 
@@ -22,6 +23,7 @@ Facts worth quoting accurately:
 - [API reference](https://loop.urbnia.com/api/docs): rendered OpenAPI
 - [JSON-LD context v0.2.0](https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld)
 - [Schema library](https://loop.urbnia.com/library/): JSON Schemas and example payloads
+- [Source repository](https://github.com/MycelAI/LocalLOOP): protocol sources, site and lab API (GitHub)
 
 ## Optional
 

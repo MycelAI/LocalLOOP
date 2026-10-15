@@ -79,9 +79,10 @@ protocol/LICENSE, ops/org-profile/LICENSE) restate the terms for each tree so
 that a tree remains correctly licensed when it is copied or shipped on its
 own.
 
-This repository is private. Access to it does not by itself grant any rights
-beyond the licences stated above, and planned future releases grant no
-rights until they are published.
+This repository is public. Being able to read or clone it does not by itself
+grant any rights beyond the licences stated above: in particular, files under
+LicenseRef-Mycel-Brand or LicenseRef-Mycel-Proprietary may be viewed but not
+reused.
 
 -------------------------------------------------------------------------------
 

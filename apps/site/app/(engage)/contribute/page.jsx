@@ -19,7 +19,14 @@ export default function ContributePage() {
           Contributions are welcome across specs, schemas, docs, and tooling.
           This project is early-stage, so feedback is especially valuable.
         </p>
+        <p>
+          Everything is developed in the open in one repository,{' '}
+          <a href="https://github.com/MycelAI/LocalLOOP">MycelAI/LocalLOOP</a>: the protocol,
+          this site and the lab API. Open an issue or a pull request there.
+        </p>
         <div className="cta-row">
+          <a className="button primary" href="https://github.com/MycelAI/LocalLOOP/issues/new/choose">Open an issue</a>
+          <a className="button secondary" href="https://github.com/MycelAI/LocalLOOP">View the repository</a>
           <a className="button secondary" href="/projects/">Project hub</a>
         </div>
       </div>

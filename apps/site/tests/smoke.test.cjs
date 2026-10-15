@@ -354,6 +354,21 @@ test('robots.txt keeps API data out of the index but not its reference', () => {
   assert.ok(content.includes('llms.txt'));
 });
 
+test('the site points at the public MycelAI/LocalLOOP repository, not the archived org', () => {
+  const sources = [
+    ...walk(path.join(process.cwd(), 'app')).filter((file) => /\.(jsx?|mjs)$/.test(file)),
+    ...walk(path.join(process.cwd(), 'public', 'assets')).filter((file) => /\.(js|html|json)$/.test(file)),
+    path.join(process.cwd(), 'public', 'llms.txt'),
+  ];
+  // Links only: naming the archived org in prose (llms.txt) is intentional.
+  const stale = sources.filter((file) => fs.readFileSync(file, 'utf8').includes('https://github.com/local-loop-io'));
+  assert.deepEqual(stale.map((file) => path.relative(process.cwd(), file)), []);
+  assert.ok(read(['app', 'components', 'SiteFooter.jsx']).includes('href="https://github.com/MycelAI/LocalLOOP"'));
+  const meta = read(['app', 'config', 'metadata.js']);
+  assert.ok(meta.includes("'@type': 'SoftwareSourceCode'") && meta.includes("REPOSITORY_URL = 'https://github.com/MycelAI/LocalLOOP'"));
+  assert.ok(read(['public', 'llms.txt']).includes('https://github.com/MycelAI/LocalLOOP'));
+});
+
 test('pages carry a large social card and Organization/WebSite structured data', () => {
   const meta = read(['app', 'config', 'metadata.js']);
   assert.ok(meta.includes("card: 'summary_large_image'"));

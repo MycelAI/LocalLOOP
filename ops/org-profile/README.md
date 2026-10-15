@@ -1,6 +1,6 @@
 # localLOOP Organization Profile
 
-> **Historical.** Source of the profile of the archived `local-loop-io` GitHub organization, kept for reference since the 2026-10-14 consolidation into the localLOOP monorepo; hostnames below predate the move (current home: <https://loop.urbnia.com>, API under `/api/`).
+> **Historical.** Source of the profile of the archived `local-loop-io` GitHub organization, kept for reference since the 2026-10-14 consolidation into the localLOOP monorepo (<https://github.com/MycelAI/LocalLOOP>); hostnames below predate the move (current home: <https://loop.urbnia.com>, API under `/api/`).
 
 This repository defines the GitHub organization profile for localLOOP.
 See `profile/README.md` for the public landing page content.

@@ -10,11 +10,13 @@ Security problems go to [SECURITY.md](SECURITY.md), never to a public issue.
 
 ## Who can contribute
 
-This repository (`MycelAI/LocalLOOP`) is private, and contributions are by
-invitation. The former public repositories under `github.com/local-loop-io/`
-are archived and read-only. If you don't have access and want to propose
-something, report a problem or ask a question, email **dev@mycel-ai.de**
-(see [SUPPORT.md](SUPPORT.md)).
+Anyone can contribute to this repository
+(`https://github.com/MycelAI/LocalLOOP`): open an issue with one of the issue
+forms, or fork the repository and open a pull request against `main`. For
+anything larger than a small fix, open an issue first so we can agree on the
+approach. The former repositories under `github.com/local-loop-io/` are
+archived and read-only. You can also email **dev@mycel-ai.de** (see
+[SUPPORT.md](SUPPORT.md)).
 
 ## Repository layout
 
