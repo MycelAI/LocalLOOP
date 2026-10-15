@@ -3,8 +3,8 @@
 blank_issues_enabled: false
 contact_links:
   - name: Report a security vulnerability
-    url: https://github.com/MycelAI/LocalLOOP/blob/main/SECURITY.md
-    about: Do not open a public issue. Email dev@mycel-ai.de privately; SECURITY.md lists what to include.
+    url: https://github.com/MycelAI/LocalLOOP/security/advisories/new
+    about: Do not open a public issue. Report privately here, or email dev@mycel-ai.de; SECURITY.md lists what to include.
   - name: Report a Code of Conduct concern
     url: https://github.com/MycelAI/LocalLOOP/blob/main/CODE_OF_CONDUCT.md#reporting-an-issue
     about: Email dev@mycel-ai.de; reports are handled privately.
