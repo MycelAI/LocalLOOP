@@ -33,11 +33,16 @@ for t in "${targets[@]}"; do
     conformance)
       cd "$ROOT"
       step "conformance: site mirror in sync with protocol/"
+      # Fingerprint the mirror's files before and after re-mirroring: any
+      # change (an edit, a deletion, or a new file git diff would not see
+      # because it is untracked) means protocol/ was not re-mirrored. Comparing
+      # contents, not git status, lets an already re-mirrored but uncommitted
+      # change pass, so the check also works before committing.
+      mirror_state() { (cd apps/site/public/projects && find . -type f -print0 | sort -z | xargs -0 sha256sum); }
+      before="$(mirror_state)"
       bash apps/site/scripts/aggregate-docs.sh >/dev/null
-      # git status, not git diff: a protocol file added without re-mirroring
-      # shows up as an *untracked* mirror copy, which git diff ignores.
-      if [[ -n "$(git status --porcelain -- apps/site/public/projects)" ]]; then
-        git status --short -- apps/site/public/projects
+      if [[ "$before" != "$(mirror_state)" ]]; then
+        diff <(echo "$before") <(mirror_state) | head -20 || true
         echo "Site mirror out of sync: run bash apps/site/scripts/aggregate-docs.sh and add the result" >&2
         exit 1
       fi

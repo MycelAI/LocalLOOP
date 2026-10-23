@@ -21,6 +21,14 @@ use the date the change landed on `main`.
 
 ## Unreleased
 
+### Fixed
+- `scripts/ci-local.sh conformance` failed on any uncommitted mirror change,
+  so a correctly re-mirrored protocol edit could not pass the local gate
+  before it was committed. It now compares the mirror's file contents before
+  and after re-mirroring; new, edited and deleted protocol files that were
+  never re-mirrored still fail it. (`conformance.yml` keeps its
+  clean-checkout `git status` check.)
+
 ## 2026-10-23
 
 ### Fixed
