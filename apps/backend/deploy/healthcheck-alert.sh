@@ -53,9 +53,15 @@ response="$(curl -sS -m "$TIMEOUT_SECONDS" -w $'\n%{http_code}' "$HEALTH_URL" 2>
 http_code="${response##*$'\n'}"
 body="${response%$'\n'*}"
 
-status="$(echo "$body" | grep -o '"status":"[^"]*"' | head -1 | cut -d'"' -f4)"
-db="$(echo "$body" | grep -o '"db":"[^"]*"' | head -1 | cut -d'"' -f4)"
-redis="$(echo "$body" | grep -o '"redis":"[^"]*"' | head -1 | cut -d'"' -f4)"
+# Read the fields with jq, tolerating a body that is not JSON at all (a proxy's
+# HTML 502, a 404 page): under `set -euo pipefail` a failed extraction used to
+# end the script before send_alert ran, so exactly those outages went silent.
+field() {
+  jq -r --arg k "$1" 'if type == "object" then (.[$k] // empty) | tostring else empty end' <<<"$body" 2>/dev/null || true
+}
+status="$(field status)"
+db="$(field db)"
+redis="$(field redis)"
 
 if [[ "$http_code" != "200" || "$status" != "ok" ]]; then
   send_alert "http=$http_code status=${status:-unknown} db=${db:-unknown} redis=${redis:-unknown} (full body: $body)"

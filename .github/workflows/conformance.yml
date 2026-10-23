@@ -18,9 +18,12 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - name: Mirror is in sync with protocol/
+        # git status, not git diff: a newly added protocol file that was never
+        # mirrored leaves an untracked copy, which git diff does not report.
         run: |
           bash apps/site/scripts/aggregate-docs.sh
-          git diff --exit-code
+          git status --short
+          test -z "$(git status --porcelain)"
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
         with:
