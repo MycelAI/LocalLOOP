@@ -22,9 +22,11 @@ test('demo feature cleans up and initializes once across header-driven client na
       addEventListener(type: string, listener: (event: MessageEvent) => void) {
         this.listeners.set(type, [...(this.listeners.get(type) || []), listener]);
       }
-      emit(type: string, data: unknown) {
-        const event = { data: JSON.stringify(data) } as MessageEvent;
-        for (const listener of this.listeners.get(type) ?? []) listener(event);
+      // Unnamed `data:` frames carrying the event type, as loopStream.ts sends.
+      emit(type: string, data: Record<string, unknown>) {
+        const event = { data: JSON.stringify({ type, ...data }) } as MessageEvent;
+        this.onmessage?.(event);
+        for (const listener of this.listeners.get('message') ?? []) listener(event);
       }
       close() { if (!this.isClosed) { this.isClosed = true; TestEventSource.closed += 1; } }
     }

@@ -84,12 +84,31 @@
             body: JSON.stringify(payload),
             signal: withTimeout(),
           });
-          if (!response.ok) throw new Error('submit');
+          if (!response.ok) {
+            // Retrying cannot fix a rejected field, and a rate-limited client
+            // has to wait, so say which case this is instead of "try again".
+            if (response.status === 400) {
+              const body = await response.json().catch(() => null);
+              const fields = Object.keys(body?.error?.details?.validation?.fieldErrors ?? {});
+              setStatus(fields.length ? `Please check these fields: ${fields.join(', ')}.` : 'Please check the form fields and submit again.', true);
+              return;
+            }
+            if (response.status === 429) {
+              const seconds = Number(response.headers.get('Retry-After'));
+              const wait = Number.isFinite(seconds) && seconds > 0 ? `about ${Math.ceil(seconds / 60)} minute(s)` : 'a few minutes';
+              setStatus(`Too many submissions from your connection. Please wait ${wait} before trying again.`, true);
+              return;
+            }
+            throw new Error('submit');
+          }
           form.reset();
           setStatus('Submission received. Public-list visibility depends on consent and service processing.', false);
           loadList();
         } catch (error) {
-          if (error.name !== 'AbortError') setStatus('We could not submit your interest. Please try again later.', true);
+          // A timeout does not mean the POST failed: it may still have been
+          // stored, so don't invite a duplicate resubmission.
+          if (error.name === 'TimeoutError') setStatus('The server did not answer in time. Your submission may still have been received; please check the list before submitting again.', true);
+          else if (error.name !== 'AbortError') setStatus('We could not submit your interest. Please try again later.', true);
         } finally {
           if (!disposed && button) {
             button.disabled = false;

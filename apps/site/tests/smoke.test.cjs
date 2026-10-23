@@ -552,6 +552,37 @@ test('built Markdown pages render at build time without comments, remote images 
   for (const box of checkboxes) assert.match(box, /aria-label="(Done|Not done)"/, `task-list checkbox without a label: ${box}`);
 });
 
+test('built pages have no broken internal links or #anchors', { skip: !hasBuild && 'run `bun run build` first' }, () => {
+  // Resolves like nginx's try_files $uri $uri/ (plus the Core-DP $id rewrite).
+  const resolve = (urlPath) => {
+    const rewritten = urlPath.replace(/^\/projects\/loop-protocol\/profiles\/core-dp\/0\.1\.0-lab\/schemas\//, '/projects/loop-protocol/profiles/core-dp/schemas/');
+    const file = path.join(outDir, decodeURIComponent(rewritten));
+    if (!fs.existsSync(file)) return null;
+    if (fs.statSync(file).isFile()) return file;
+    const index = path.join(file, 'index.html');
+    return fs.existsSync(index) ? index : null;
+  };
+  const ids = new Map();
+  const idsOf = (file) => {
+    if (!ids.has(file)) ids.set(file, new Set([...fs.readFileSync(file, 'utf8').matchAll(/\s(?:id|name)="([^"]+)"/g)].map((match) => match[1])));
+    return ids.get(file);
+  };
+  const broken = new Set();
+  for (const filePath of walk(outDir).filter((file) => file.endsWith('.html'))) {
+    const pageUrl = `/${path.relative(outDir, filePath).split(path.sep).join('/').replace(/index\.html$/, '')}`;
+    for (const match of fs.readFileSync(filePath, 'utf8').matchAll(/\s(?:href|src)="([^"]+)"/g)) {
+      const raw = match[1].replace(/&amp;/g, '&').replace(/^https:\/\/loop\.urbnia\.com(?=\/)/, '');
+      if (/^([a-z][a-z0-9+.-]*:|\/\/)/i.test(raw)) continue;
+      const url = new URL(raw, `https://loop.urbnia.com${pageUrl}`);
+      if (url.pathname.startsWith('/api/')) continue;
+      const target = resolve(url.pathname);
+      const hash = decodeURIComponent(url.hash.slice(1));
+      if (!target || (hash && target.endsWith('.html') && !idsOf(target).has(hash))) broken.add(`${pageUrl} -> ${raw}`);
+    }
+  }
+  assert.deepEqual([...broken], []);
+});
+
 test('web fonts have metric-matched local fallbacks and icons reserve their box (no swap layout shift)', () => {
   const fonts = read(['public', 'assets', 'css', 'fonts.css']);
   const css = read(['public', 'assets', 'css', 'site.css']);
@@ -588,6 +619,17 @@ test('built 404 page has a title and a canonical link', { skip: !hasBuild && 'ru
   assert.match(html, /<title>Page not found \| localLOOP<\/title>/);
   assert.ok(html.includes('rel="canonical"'));
   assert.ok(html.includes('noindex'));
+});
+
+test('nginx makes browsers revalidate HTML and the unhashed /assets/ scripts and styles', () => {
+  const conf = read(['nginx.conf']);
+  const block = (start) => conf.slice(conf.indexOf(start), conf.indexOf('}', conf.indexOf(start)));
+  assert.match(block('location / {'), /add_header Cache-Control "no-cache" always;/);
+  // ^~ prefixes: a regex location would never win over `location ^~ /assets/`.
+  for (const dir of ['/assets/js/', '/assets/css/']) {
+    assert.match(block(`location ^~ ${dir} {`), /add_header Cache-Control "no-cache" always;/, `${dir} revalidates`);
+  }
+  assert.match(block('location ^~ /assets/ {'), /max-age=604800/);
 });
 
 test('nginx serves the export 404, caches hashed assets, and sends HSTS + CSP', () => {

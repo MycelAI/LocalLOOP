@@ -79,3 +79,34 @@ test('interest form submits with required fields', async ({ page }) => {
     'Submission received. Public-list visibility depends on consent and service processing.',
   );
 });
+
+test('interest form explains validation and rate-limit rejections instead of "try again later"', async ({ page }) => {
+  let status = 400;
+  await page.route('**/api/interest', async (route) => {
+    if (route.request().method() !== 'POST') return route.fallback();
+    await route.fulfill(status === 400
+      ? { status, contentType: 'application/json', body: JSON.stringify({ error: { code: 'INVALID_REQUEST', message: 'Invalid request', details: { validation: { formErrors: [], fieldErrors: { website: ['Invalid URL'] } } } } }) }
+      : { status, contentType: 'application/json', headers: { 'Retry-After': '600' }, body: JSON.stringify({ error: { code: 'INVALID_REQUEST', message: 'Rate limit exceeded' } }) });
+  });
+  await page.goto('/interest/');
+
+  await page.getByLabel('Name *').fill('Ada Example');
+  await page.getByLabel('I agree my submission is listed publicly').check();
+  const submit = page.getByRole('button', { name: /Submit interest/i });
+  const statusEl = page.locator('[data-interest-status]');
+
+  await submit.click();
+  await expect(statusEl).toHaveText('Please check these fields: website.');
+
+  status = 429;
+  await submit.click();
+  await expect(statusEl).toHaveText('Too many submissions from your connection. Please wait about 10 minute(s) before trying again.');
+  await expect(submit).toBeEnabled();
+});
+
+test('interest form mirrors the API field limits', async ({ page }) => {
+  await page.goto('/interest/');
+  await expect(page.getByLabel('Name *')).toHaveAttribute('minlength', '2');
+  await expect(page.getByLabel('Name *')).toHaveAttribute('maxlength', '80');
+  await expect(page.locator('#message')).toHaveAttribute('maxlength', '500');
+});

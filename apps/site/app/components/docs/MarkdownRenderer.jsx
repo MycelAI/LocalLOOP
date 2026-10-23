@@ -84,6 +84,46 @@ function rehypeLocalImagesOnly() {
   }
 }
 
+// Headings get GitHub-style ids (lowercase, punctuation dropped, spaces to
+// hyphens, -1/-2 suffixes for repeats) so the documents' own tables of
+// contents and cross-document #anchors resolve, as they do on GitHub.
+function headingText(node) {
+  if (node.type === 'text') return node.value
+  return (node.children ?? []).map(headingText).join('')
+}
+function rehypeHeadingIds() {
+  return (tree) => {
+    const seen = new Map()
+    visit(tree, 'element', (node) => {
+      if (!/^h[1-6]$/.test(node.tagName) || node.properties?.id) return
+      const base = headingText(node).toLowerCase().trim().replace(/[^\p{L}\p{N}\s_-]/gu, '').replace(/\s/g, '-')
+      if (!base) return
+      const count = seen.get(base) ?? 0
+      seen.set(base, count + 1)
+      node.properties.id = count ? `${base}-${count}` : base
+    })
+  }
+}
+
+// Relative links in mirrored documents are written against the document's
+// own folder, but the page lives at a different URL; resolve them against
+// the mirrored file's location (file.data.baseDir, e.g.
+// /projects/loop-protocol/docs/) so they reach the mirrored target instead
+// of a 404.
+function rehypeResolveRelativeLinks() {
+  return (tree, file) => {
+    const baseDir = file.data?.baseDir
+    if (!baseDir) return
+    visit(tree, 'element', (node) => {
+      if (node.tagName !== 'a') return
+      const href = String(node.properties?.href ?? '')
+      if (!href || /^(#|\/|[a-z][a-z0-9+.-]*:)/i.test(href)) return
+      const url = new URL(href, `https://loop.urbnia.com${baseDir}`)
+      node.properties.href = `${url.pathname}${url.search}${url.hash}`
+    })
+  }
+}
+
 // GFM task lists render disabled checkboxes with no accessible name; label
 // each with its state so screen readers (and the axe "label" rule) get one.
 function rehypeLabelTaskCheckboxes() {
@@ -102,17 +142,19 @@ const processor = unified()
   .use(remarkRehype)
   .use(rehypeMermaidPlaceholders)
   .use(rehypeLocalImagesOnly)
+  .use(rehypeHeadingIds)
+  .use(rehypeResolveRelativeLinks)
   .use(rehypeDemoteHeadings)
   .use(rehypeLabelTaskCheckboxes)
   .use(rehypeHighlight)
   .use(rehypeStringify)
 
-export function renderMarkdown(content) {
-  return String(processor.processSync(content))
+export function renderMarkdown(content, baseDir) {
+  return String(processor.processSync({ value: content, data: { baseDir } }))
 }
 
-export default function MarkdownRenderer({ content }) {
-  const html = renderMarkdown(content)
+export default function MarkdownRenderer({ content, baseDir }) {
+  const html = renderMarkdown(content, baseDir)
   return (
     <div className="markdown-doc">
       <div
