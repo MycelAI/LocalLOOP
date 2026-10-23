@@ -806,9 +806,26 @@ export function transactionIdentity(payload: LoopTransactionPayload): { id: stri
   return { id: payload.transaction_id as string, status: payload.status as string };
 }
 
+/** SPEC §3.6: a transaction in one of these states never leaves it for a non-terminal one. */
+export const TRANSACTION_TERMINAL_STATUSES = ['completed', 'cancelled', 'disputed'];
+
+/**
+ * MaterialTransaction creates the transaction (a duplicate id is a 23505 the
+ * route maps to 409). Settlement and TransactionStatus are updates of an
+ * existing transaction: they used to be INSERTed under the referenced id too,
+ * so for a real transaction they always failed with 409, and for an unknown
+ * one they created an orphan row. They now lock the row, apply the §3.6 rule
+ * (no way back from a terminal state; a Settlement completes a transaction
+ * that is not already terminal) and update its status. The stored payload
+ * stays the original MaterialTransaction; the Settlement/TransactionStatus
+ * body is kept in the loop event and the evidence log.
+ */
 export async function createLoopTransaction(payload: LoopTransactionPayload, db?: PoolClient): Promise<LoopCreateResult> {
+  const { id, status } = transactionIdentity(payload);
+  if (payload['@type'] !== 'MaterialTransaction') {
+    return updateLoopTransactionStatus(payload, id, status, db);
+  }
   return withTransaction(async (client) => {
-    const { id, status } = transactionIdentity(payload);
     const { rows } = await client.query(
       `INSERT INTO loop_transactions (id, status, payload)
        VALUES ($1, $2, $3)
@@ -828,6 +845,52 @@ export async function createLoopTransaction(payload: LoopTransactionPayload, db?
       client,
     );
     return { id: created.id, created_at: created.created_at, event };
+  }, db);
+}
+
+async function updateLoopTransactionStatus(
+  payload: LoopTransactionPayload,
+  id: string,
+  status: string,
+  db?: PoolClient,
+): Promise<LoopCreateResult> {
+  const settlement = payload['@type'] === 'Settlement';
+  return withTransaction(async (client) => {
+    const { rows: current } = await client.query(
+      'SELECT status FROM loop_transactions WHERE id = $1 FOR UPDATE',
+      [id],
+    );
+    const existing = current[0] as { status: string } | undefined;
+    if (!existing) {
+      throw new LoopStateError('not_found', `Transaction with ID ${id} not found`);
+    }
+    if (TRANSACTION_TERMINAL_STATUSES.includes(existing.status)) {
+      if (settlement) {
+        throw new LoopStateError('conflict', `Transaction ${id} is already ${existing.status} and cannot be settled again`);
+      }
+      if (!TRANSACTION_TERMINAL_STATUSES.includes(status)) {
+        throw new LoopStateError('conflict', `Transaction ${id} is ${existing.status} (terminal) and cannot return to ${status}`);
+      }
+    }
+
+    const { rows } = await client.query(
+      `UPDATE loop_transactions SET status = $2, updated_at = NOW()
+       WHERE id = $1
+       RETURNING id, updated_at`,
+      [id, status],
+    );
+    const updated = rows[0] as { id: string; updated_at: string };
+    const eventType = settlement ? 'transaction.settled' : 'transaction.status_updated';
+    const event = buildLoopEvent(eventType, 'transaction', updated.id, payload, updated.updated_at);
+    await insertLoopEvent(
+      { event_type: eventType, entity_type: 'transaction', entity_id: updated.id, payload: event },
+      client,
+    );
+    await insertLoopEvidence(
+      { subject: { type: 'transaction', id: updated.id }, eventType: 'status-updated', data: payload },
+      client,
+    );
+    return { id: updated.id, created_at: updated.updated_at, event };
   }, db);
 }
 
