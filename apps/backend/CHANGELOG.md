@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.11.0] - 2026-10-23
+
 ### Security
 - `POST /api/v1/federation/handshake` always requires `API_KEY` (401 without
   it, 503 if none is configured), like `/relay` and `/federate/*`. With the
@@ -742,7 +744,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Lab demo scripts (seed + simulate + one-command runner).
 - Privacy notice endpoint and in-memory metrics snapshot.
 
-[Unreleased]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.10.0...HEAD
+[Unreleased]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.11.0...HEAD
+[0.11.0]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.10.0...backend/v0.11.0
 [0.10.0]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.9.1...backend/v0.10.0
 [0.9.1]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.9.0...backend/v0.9.1
 [0.9.0]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.8.1...backend/v0.9.0

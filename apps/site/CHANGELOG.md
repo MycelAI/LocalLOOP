@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.13.0] - 2026-10-23
+
 ### Fixed
 - DEMO City's Offers, Matches, Transfers and Materials tables now refresh when
   the live stream reports a change. The page listened for named SSE events,
@@ -834,7 +836,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-[Unreleased]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.12.0...HEAD
+[Unreleased]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.13.0...HEAD
+[0.13.0]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.12.0...site/v0.13.0
 [0.12.0]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.11.2...site/v0.12.0
 [0.11.2]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.11.1...site/v0.11.2
 [0.11.1]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.11.0...site/v0.11.1
