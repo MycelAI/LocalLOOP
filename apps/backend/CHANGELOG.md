@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.11.2] - 2026-10-23
+
+### Changed
+- Dependencies: `bullmq` 6.3.15 → 6.3.19 and `better-auth` 1.7.8 → 1.7.12
+  (patch releases; no API or configuration changes).
+
 ## [0.11.1] - 2026-10-23
 
 ### Fixed
@@ -759,7 +765,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Lab demo scripts (seed + simulate + one-command runner).
 - Privacy notice endpoint and in-memory metrics snapshot.
 
-[Unreleased]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.11.1...HEAD
+[Unreleased]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.11.2...HEAD
+[0.11.2]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.11.1...backend/v0.11.2
 [0.11.1]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.11.0...backend/v0.11.1
 [0.11.0]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.10.0...backend/v0.11.0
 [0.10.0]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.9.1...backend/v0.10.0

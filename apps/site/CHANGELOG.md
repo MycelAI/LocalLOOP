@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.13.1] - 2026-10-23
+
+### Changed
+- `next` 16.4.1 → 16.4.2 (patch release).
+- The mirrored protocol docs pick up the corrected `openapi.json` (the §9.2
+  federation headers and their `400`/`401` responses) and the §8.2 federate
+  request examples that now show all three §9.2 headers.
+
 ## [0.13.0] - 2026-10-23
 
 ### Fixed
@@ -836,7 +844,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-[Unreleased]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.13.0...HEAD
+[Unreleased]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.13.1...HEAD
+[0.13.1]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.13.0...site/v0.13.1
 [0.13.0]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.12.0...site/v0.13.0
 [0.12.0]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.11.2...site/v0.12.0
 [0.11.2]: https://github.com/MycelAI/LocalLOOP/compare/site/v0.11.1...site/v0.11.2
