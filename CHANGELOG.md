@@ -21,6 +21,16 @@ use the date the change landed on `main`.
 
 ## Unreleased
 
+### Fixed
+- The site-mirror drift check (`scripts/ci-local.sh conformance`, which the
+  required `gate` runs, and `conformance.yml`) used `git diff --exit-code`,
+  which ignores untracked files: a protocol schema, example or RFC added
+  without re-running `aggregate-docs.sh` passed every check and never reached
+  the site. Both now fail on any `git status --porcelain` output.
+- The required `gate` now runs the Core-DP, battery, packaging and
+  waste-shipment conformance vectors (`scripts/ci-local.sh protocol`); they
+  only ran in the path-filtered, non-required `protocol.yml`.
+
 ## 2026-10-15
 
 ### Changed

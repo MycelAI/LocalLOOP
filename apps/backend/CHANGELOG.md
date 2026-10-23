@@ -34,6 +34,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `POST /api/interest` no longer answers 500 when the search-view refresh
   after a committed insert fails; the submission is stored, so a 500 only
   invited a duplicate.
+- `deploy/healthcheck-alert.sh` exited silently (no `ALERT:` line, no
+  webhook) when `/health` answered something other than compact JSON, such as
+  a proxy's HTML 502 or a 404 page: under `set -euo pipefail` the failed
+  `grep` extraction ended the script before `send_alert`. Fields are now read
+  with `jq`, tolerating non-JSON bodies.
+- `deploy/setup.sh` ran `chown -R` over the whole install directory, so
+  re-running it on a live checkout re-owned `data/` (the containers'
+  Postgres/Valkey/SeaweedFS state) and `backups/`, and handed `.env` and
+  `.env.docker` to the service user. It now owns only the application files;
+  `data/` and `backups/` get an owner only when it creates them, and the
+  secrets are `root:<group>` mode 640. Its copy step also gains `Dockerfile`,
+  the licence files the Dockerfile copies, `tsconfig.json` and `biome.json`,
+  so a fresh install can `docker compose up -d --build`.
 
 ### Changed
 - `package.json` records `repository` (the public

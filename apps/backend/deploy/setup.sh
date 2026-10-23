@@ -34,15 +34,23 @@ fi
 # Create installation directory
 echo "Setting up installation directory..."
 mkdir -p "$INSTALL_DIR"
-mkdir -p "$INSTALL_DIR/data"
-mkdir -p "$INSTALL_DIR/backups"
+# data/ (Postgres/Valkey/SeaweedFS state, owned by the containers' users) and
+# backups/ (written by the root backup unit) get an owner only when created
+# here; re-running setup on a live checkout must not re-own their contents.
+for dir in data backups; do
+    [[ -d "$INSTALL_DIR/$dir" ]] || install -d -o "$SERVICE_USER" -g "$SERVICE_GROUP" "$INSTALL_DIR/$dir"
+done
 
 # Copy application files (if running from source directory)
 if [[ -f "src/index.ts" && "$(cd . && pwd -P)" == "$(cd "$INSTALL_DIR" && pwd -P)" ]]; then
     echo "Running from $INSTALL_DIR itself; skipping file copy."
 elif [[ -f "src/index.ts" ]]; then
     echo "Copying application files..."
-    cp -r src deploy scripts vendor package.json bun.lock docker-compose.yml .env.example .env.docker.example "$INSTALL_DIR/"
+    # Everything `docker compose up -d --build` needs (the Dockerfile COPYs the
+    # licence files) plus the tooling configs, so the copy can build and check.
+    cp -r src deploy scripts vendor package.json bun.lock tsconfig.json biome.json \
+        Dockerfile docker-compose.yml LICENSE NOTICE THIRD_PARTY_NOTICES.md \
+        .env.example .env.docker.example "$INSTALL_DIR/"
     chmod +x "$INSTALL_DIR"/deploy/*.sh
 
     # Copy .env.example if .env doesn't exist
@@ -61,9 +69,19 @@ elif [[ -f "src/index.ts" ]]; then
     fi
 fi
 
-# Set ownership
+# Set ownership of the application files only: not data/ and backups/ (see
+# above), and not the secrets, which the service user may read but not change.
 echo "Setting ownership to $SERVICE_USER:$SERVICE_GROUP..."
-chown -R "$SERVICE_USER:$SERVICE_GROUP" "$INSTALL_DIR"
+chown "$SERVICE_USER:$SERVICE_GROUP" "$INSTALL_DIR"
+find "$INSTALL_DIR" -mindepth 1 -maxdepth 1 \
+    ! -name data ! -name backups ! -name .env ! -name .env.docker \
+    -exec chown -R "$SERVICE_USER:$SERVICE_GROUP" {} +
+for secrets in "$INSTALL_DIR/.env" "$INSTALL_DIR/.env.docker"; do
+    if [[ -f "$secrets" ]]; then
+        chown "root:$SERVICE_GROUP" "$secrets"
+        chmod 640 "$secrets"
+    fi
+done
 
 # Install systemd units. The unit files in deploy/ reference the placeholder
 # path /opt/localloop-backend; rewrite it to the actual INSTALL_DIR so every

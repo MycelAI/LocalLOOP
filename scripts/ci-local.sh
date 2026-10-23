@@ -21,12 +21,26 @@ for t in "${targets[@]}"; do
       ./scripts/check-domains.sh
       [[ -d node_modules ]] || "$NPM" ci
       "$NPM" run test
+      # The profile vectors otherwise run only in the path-filtered protocol.yml,
+      # which is not a required check: a schema change that breaks a vector
+      # could merge through the required gate.
+      step "protocol: profile conformance vectors"
+      for profile in core-dp battery packaging waste-shipment; do
+        "$NPM" run -s "conformance:$profile" >/dev/null || { "$NPM" run -s "conformance:$profile" | tail -40; exit 1; }
+        echo "conformance:$profile ok"
+      done
       ;;
     conformance)
       cd "$ROOT"
       step "conformance: site mirror in sync with protocol/"
       bash apps/site/scripts/aggregate-docs.sh >/dev/null
-      git diff --exit-code -- apps/site/public/projects
+      # git status, not git diff: a protocol file added without re-mirroring
+      # shows up as an *untracked* mirror copy, which git diff ignores.
+      if [[ -n "$(git status --porcelain -- apps/site/public/projects)" ]]; then
+        git status --short -- apps/site/public/projects
+        echo "Site mirror out of sync: run bash apps/site/scripts/aggregate-docs.sh and add the result" >&2
+        exit 1
+      fi
       cd "$ROOT/apps/backend"
       [[ -d node_modules ]] || bun install --frozen-lockfile
       bun run check:conformance
