@@ -30,7 +30,7 @@ dependencies are in scope.
   their own address for the per-IP limits.
 - Rate limits: Traefik per client IP (20/s, burst 60), then 600 reads and 20
   writes per route per 15 minutes per IP, 5 streams per IP per SSE endpoint.
-- `POST /api/v1/relay` and `POST /api/v1/federate/*` always require `API_KEY`
+- `POST /api/v1/relay`, `POST /api/v1/federate/*` and `POST /api/v1/federation/handshake` always require `API_KEY`
   (header `X-API-Key` or `Authorization: Bearer`); the other lab writes need it
   only with `API_KEY_ENABLED=true`.
 - Containers: the API runs as uid 10001 with no capabilities, a read-only root

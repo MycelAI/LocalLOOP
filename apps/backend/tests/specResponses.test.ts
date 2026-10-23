@@ -19,7 +19,7 @@ import { registerFederateRoutes } from '../src/routes/federate';
 import { registerSignalsRoutes } from '../src/routes/signals';
 import { registerTransactionRoutes } from '../src/routes/transactions';
 import { registerLoopRoutes } from '../src/routes/loop';
-import { fakeInsertLoopEvidence } from './testEvidence';
+import { fakeInsertLoopEvidence, fakeWithTransaction } from './testEvidence';
 import { getLocalNode } from '../src/federation/registry';
 import { apiKeyHeader, useTestApiKey } from './testApiKey';
 
@@ -130,6 +130,7 @@ const buildLoopAppWithDocs = async () => {
     createLoopTransfer: async () => ({ ...record, event: {} }),
     insertLoopEvent: async () => ({ id: 1, created_at: record.created_at }),
     insertLoopEvidence: fakeInsertLoopEvidence,
+    withTransaction: fakeWithTransaction,
     listLoopEvents: async () => [],
     getLoopMaterial: async () => undefined,
     getLoopMaterialById: async (id: string) =>
@@ -273,6 +274,7 @@ describe('canonical schema conformance of protocol responses', () => {
     const response = await app.inject({
       method: 'POST',
       url: '/api/v1/federation/handshake',
+      headers: apiKeyHeader,
       payload: handshakePayload,
     });
     expect(response.statusCode).toBe(202);

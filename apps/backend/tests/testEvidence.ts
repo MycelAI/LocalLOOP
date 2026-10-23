@@ -1,6 +1,7 @@
 // SPDX-FileCopyrightText: 2025-2026 Alphin Tom / Mycel UG (haftungsbeschränkt)
 // SPDX-License-Identifier: MIT
 
+import type { PoolClient } from 'pg';
 import type { EvidenceEntry, InsertEvidenceInput } from '../src/db/evidence';
 
 /**
@@ -26,4 +27,12 @@ export async function fakeInsertLoopEvidence(input: InsertEvidenceInput): Promis
     payload_hash_sha256: '0'.repeat(64),
     retention: { retain_until: new Date().toISOString(), exportable: true, redaction_status: 'none' },
   };
+}
+
+/**
+ * Shared LoopDeps.withTransaction stub: runs the callback with a stand-in
+ * client (the route tests stub every query function, so nothing touches it).
+ */
+export async function fakeWithTransaction<T>(fn: (client: PoolClient) => Promise<T>, existing?: PoolClient): Promise<T> {
+  return fn(existing ?? ({} as PoolClient));
 }

@@ -6,11 +6,15 @@ import Fastify from 'fastify';
 import { registerLoopProtocolParsers } from '../src/protocol';
 import { registerLoopRoutes } from '../src/routes/loop';
 import { registerLoopSchemas } from '../src/schemas/loopSchemas';
-import { LoopStateError } from '../src/db/loop';
-import { fakeInsertLoopEvidence } from './testEvidence';
+import { insertLoopEvent, LoopStateError } from '../src/db/loop';
+import { pool, withTransaction } from '../src/db/pool';
+import { probeDatabase } from './dbReady';
+import { fakeInsertLoopEvidence, fakeWithTransaction } from './testEvidence';
 import { apiKeyHeader, useTestApiKey } from './testApiKey';
 
 useTestApiKey();
+
+const dbReady = await probeDatabase('loop.routes');
 
 const conflictError = () => {
   const error = new Error('duplicate key value violates unique constraint');
@@ -161,6 +165,7 @@ const buildApp = () => {
     createLoopTransfer: async (_p: { id: string }) => ({ id: _p.id, created_at: new Date().toISOString(), event: eventFor('transfer.created', 'transfer', _p.id, _p) }),
     insertLoopEvent: async () => ({ id: 1, created_at: new Date().toISOString() }),
     insertLoopEvidence: fakeInsertLoopEvidence,
+    withTransaction: fakeWithTransaction,
     listLoopEvents: async () => ([{ id: 1, event_type: 'material.created', entity_type: 'material', entity_id: materialPayload.id, payload: {}, created_at: new Date().toISOString() }]),
     getLoopMaterial: async (id: string) => (id === materialPayload.id ? { id } : undefined),
     getLoopMaterialById: async (id: string) => (id === materialPayload.id ? { ...fakeMaterialRecord, payload: materialPayload } : undefined),
@@ -244,6 +249,59 @@ describe('loop routes', () => {
     // mutable loop_events/SSE feed — see docs/retention-and-evidence-guidance.md.
     expect(calls.evidence?.eventType).toBe('status-updated');
     expect(calls.evidence?.subject).toEqual({ type: 'material', id: materialPayload.id });
+  });
+
+  it('writes the status event and its evidence row through the same transaction client', async () => {
+    const { app, deps } = buildApp();
+    const lockClient = { name: 'idempotency-lock-client' } as never;
+    const seen: { tx?: unknown; event?: unknown; evidence?: unknown } = {};
+    await registerLoopRoutes(app, {
+      ...deps,
+      withTransaction: async (fn, existing) => {
+        seen.tx = existing;
+        return fn(lockClient);
+      },
+      insertLoopEvent: async (_input, db) => {
+        seen.event = db;
+        return { id: 4, created_at: new Date().toISOString() };
+      },
+      insertLoopEvidence: async (input, db) => {
+        seen.evidence = db;
+        return deps.insertLoopEvidence(input);
+      },
+    });
+
+    const response = await app.inject({ method: 'POST', url: '/api/v1/material-status', payload: materialStatusPayload });
+    expect(response.statusCode).toBe(201);
+    expect(seen.event).toBe(lockClient);
+    expect(seen.evidence).toBe(lockClient);
+  });
+
+  it.skipIf(!dbReady)('rolls the status event back when its evidence row cannot be written', async () => {
+    const { app, deps } = buildApp();
+    const materialId = `MAT-DE-MUC-2025-PLASTIC-${crypto.randomUUID().replace(/-/g, '').slice(0, 6).toUpperCase()}`;
+    await registerLoopRoutes(app, {
+      ...deps,
+      getLoopMaterial: async (id: string) => (id === materialId ? { id } : undefined),
+      insertLoopEvent,
+      withTransaction,
+      insertLoopEvidence: async () => { throw new Error('evidence store unavailable'); },
+    });
+    const countEvents = async () => Number((await pool.query(
+      "SELECT count(*) FROM loop_events WHERE event_type = 'material.status_updated' AND entity_id = $1",
+      [materialId],
+    )).rows[0].count);
+
+    for (const headers of [{}, { 'idempotency-key': `status-${materialId}` }]) {
+      const response = await app.inject({
+        method: 'POST',
+        url: '/api/v1/material-status',
+        headers,
+        payload: { ...materialStatusPayload, material_id: materialId },
+      });
+      expect(response.statusCode).toBe(500);
+    }
+    expect(await countEvents()).toBe(0);
   });
 
   it('rejects offers for unknown materials', async () => {

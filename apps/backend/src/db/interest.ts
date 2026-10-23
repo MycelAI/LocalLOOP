@@ -56,7 +56,7 @@ export async function refreshInterestSearch() {
   await pool.query('REFRESH MATERIALIZED VIEW CONCURRENTLY interests_search');
 }
 
-export async function insertInterest(input: InterestInput) {
+export async function insertInterest(input: InterestInput, refreshSearch: () => Promise<void> = refreshInterestSearch) {
   const { rows } = await pool.query(
     `INSERT INTO interests
        (name, organization, role, country, city, website, email, message,
@@ -77,8 +77,15 @@ export async function insertInterest(input: InterestInput) {
   );
   const created = rows[0] as { id: string; created_at: Date };
 
+  // The row is already committed: a failed refresh (lock or statement timeout,
+  // a connection blip) only delays search visibility until the next refresh,
+  // so it must not turn the submission into a 500 that invites a duplicate.
   if (config.refreshSearchOnWrite) {
-    await refreshInterestSearch();
+    try {
+      await refreshSearch();
+    } catch (error) {
+      console.error('Interest search refresh failed after insert', error);
+    }
   }
 
   return { id: Number(created.id), created_at: created.created_at.toISOString() };

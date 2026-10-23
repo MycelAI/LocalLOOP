@@ -53,7 +53,7 @@ in `src/routes/federate.ts`).
 | `POST /api/v1/federate/announce`, `POST /api/v1/federate/offer` | Presence + timestamp only; no Ed25519/HMAC check on header value | ⚠️ Intentional lab boundary |
 | Core-DP signed envelope (`src/envelope.ts`) | Full detached Ed25519 verification against trust store | ✅ Implemented (separate profile; not wired to §9.2 headers) |
 | Core-DP search `auth.mode: node-signature` | Rejected before search runs (`invalid_request`; no verification attempted) | ✅ Fail-closed |
-| `POST /api/v1/federation/handshake` | Lab-only registry route; §9.2 headers not required (API key only) | ✅ Lab-only extension |
+| `POST /api/v1/federation/handshake` | Lab-only registry route; §9.2 headers not required; always requires `API_KEY` (401 without it, 503 if none is configured) | ✅ Lab-only extension |
 
 This is not a compliance gap for the lab demo: conformance checks route
 presence and timestamp behavior, not production-grade node authentication.

@@ -87,4 +87,15 @@ describe('interest queries', () => {
     expect(hit?.email).toBeNull(); // shareEmail false: never listed
     expect(hit?.is_demo).toBe(false);
   });
+
+  it.skipIf(!dbReady)('returns the committed row when the search refresh after it fails', async () => {
+    const marker = `dbq-refresh-${Date.now()}`;
+    const created = await insertInterest(
+      { name: marker, country: 'DE', shareEmail: false, consentPublic: true },
+      async () => { throw new Error('canceling statement due to lock timeout'); },
+    );
+    createdIds.push(created.id);
+    expect(typeof created.id).toBe('number');
+    expect((await listInterests(5)).some((row) => row.id === created.id)).toBe(true);
+  });
 });

@@ -112,8 +112,8 @@ export async function registerEvidenceRoutes(
           subject_type: { type: 'string' },
           subject_id: { type: 'string' },
           event_type_in: { type: 'string', description: 'Comma-separated list of event_type values' },
-          since: { type: 'string' },
-          limit: { type: 'number' },
+          since: { type: 'string', format: 'date-time' },
+          limit: { type: 'integer' },
           cursor: { type: 'string' },
         },
       },
@@ -144,7 +144,7 @@ export async function registerEvidenceRoutes(
       }, deps.listLoopEvidence);
       reply.send(result);
     } catch (error) {
-      sendCoreDpError(reply, toCoreDpError(error));
+      sendCoreDpError(reply, toCoreDpError(error, request.log));
     }
   });
 
@@ -157,8 +157,8 @@ export async function registerEvidenceRoutes(
           subject_type: { type: 'string' },
           subject_id: { type: 'string' },
           event_type_in: { type: 'array', items: { type: 'string' } },
-          since: { type: 'string' },
-          limit: { type: 'number' },
+          since: { type: 'string', format: 'date-time' },
+          limit: { type: 'integer' },
           cursor: { type: 'string' },
         },
       },
@@ -175,7 +175,7 @@ export async function registerEvidenceRoutes(
       const result = await runList(body, deps.listLoopEvidence);
       reply.send(result);
     } catch (error) {
-      sendCoreDpError(reply, toCoreDpError(error));
+      sendCoreDpError(reply, toCoreDpError(error, request.log));
     }
   });
 }

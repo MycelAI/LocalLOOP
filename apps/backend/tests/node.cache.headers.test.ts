@@ -6,6 +6,9 @@ import Fastify from 'fastify';
 import { registerLoopProtocolParsers } from '../src/protocol';
 import { registerFederationSchemas } from '../src/schemas/federationSchemas';
 import { registerFederationRoutes } from '../src/routes/federation';
+import { apiKeyHeader, useTestApiKey } from './testApiKey';
+
+useTestApiKey();
 
 const handshakePayload = {
   '@context': 'https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld',
@@ -66,6 +69,7 @@ describe('node info route Cache-Control', () => {
     const response = await app.inject({
       method: 'POST',
       url: '/api/v1/federation/handshake',
+      headers: apiKeyHeader,
       payload: handshakePayload,
     });
     expect(response.statusCode).toBe(202);

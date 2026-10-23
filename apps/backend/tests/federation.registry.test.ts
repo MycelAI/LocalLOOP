@@ -6,7 +6,10 @@ import { probeDatabase } from './dbReady';
 import Fastify from 'fastify';
 import { resolveNodeApiEndpoint } from '../src/federation/registry';
 import { registerFederationRoutes } from '../src/routes/federation';
+import { apiKeyHeader, useTestApiKey } from './testApiKey';
 import { pool } from '../src/db/pool';
+
+useTestApiKey();
 
 describe('federation registry helpers', () => {
   it('appends the API prefix when PUBLIC_BASE_URL is a site origin', () => {
@@ -72,6 +75,7 @@ describe('Federation registry lab boundary (SPEC-COMPLIANCE)', () => {
         const first = await app.inject({
           method: 'POST',
           url: '/api/v1/federation/handshake',
+          headers: apiKeyHeader,
           payload: handshakePayload('Node Under Test v1'),
         });
         expect(first.statusCode).toBe(202);
@@ -79,6 +83,7 @@ describe('Federation registry lab boundary (SPEC-COMPLIANCE)', () => {
         const second = await app.inject({
           method: 'POST',
           url: '/api/v1/federation/handshake',
+          headers: apiKeyHeader,
           payload: handshakePayload('Node Under Test v2'),
         });
         expect(second.statusCode).toBe(202);

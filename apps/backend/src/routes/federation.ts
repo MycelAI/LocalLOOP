@@ -131,7 +131,10 @@ export async function registerFederationRoutes(app: FastifyInstance, deps: Feder
     },
   }, async (request, reply) => {
     setNoStore(reply);
-    if (!requireApiKey(request, reply)) {
+    // The registry upserts on node_id, so an anonymous handshake could repoint
+    // a known peer's endpoint: like /relay and /federate/*, this route always
+    // requires API_KEY (503 if none is configured), whatever API_KEY_ENABLED says.
+    if (!requireApiKey(request, reply, { always: true })) {
       return;
     }
 

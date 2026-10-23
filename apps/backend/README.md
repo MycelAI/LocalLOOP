@@ -168,7 +168,7 @@ See `.env.example` for the full list with descriptions. Key variables:
 | `REQUEST_TIMEOUT_MS` | `30000` | Server connection timeout |
 | `AUTH_ENABLED` | `false` | Enable BetterAuth |
 | `API_KEY_ENABLED` | `false` | Require `X-API-Key` (or `Authorization: Bearer`) on the lab write routes |
-| `API_KEY` | — | The key. `POST /api/v1/relay` and `POST /api/v1/federate/*` **always** require it, whatever `API_KEY_ENABLED` says, and answer `503` when it is unset; in production it must be non-weak whenever set |
+| `API_KEY` | — | The key. `POST /api/v1/relay`, `POST /api/v1/federate/*` and `POST /api/v1/federation/handshake` **always** require it, whatever `API_KEY_ENABLED` says, and answer `503` when it is unset; in production it must be non-weak whenever set |
 | `SSE_MAX_CLIENTS` / `SSE_MAX_CLIENTS_PER_IP` | `200` / `5` | Open streams per SSE endpoint, in total and per client IP |
 | `TRUSTED_PROXY_CIDRS` | `10.250.250.0/29` | Peers whose `X-Forwarded-For` is trusted for `request.ip` (and so for the per-IP limits): the `localloop-edge` network that only Traefik and the API join |
 | `RUN_MIGRATIONS` | `true` | Auto-run DB migrations on startup |
