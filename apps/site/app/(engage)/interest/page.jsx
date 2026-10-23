@@ -96,35 +96,35 @@ export default function InterestPage() {
             <form className="interest-form" data-interest-form>
               <div className="field">
                 <label htmlFor="name">Name *</label>
-                <input id="name" name="name" type="text" required autoComplete="name" />
+                <input id="name" name="name" type="text" required minLength={2} maxLength={80} autoComplete="name" />
               </div>
               <div className="field">
                 <label htmlFor="organization">Organization</label>
-                <input id="organization" name="organization" type="text" autoComplete="organization" />
+                <input id="organization" name="organization" type="text" maxLength={120} autoComplete="organization" />
               </div>
               <div className="field">
                 <label htmlFor="role">Role</label>
-                <input id="role" name="role" type="text" />
+                <input id="role" name="role" type="text" maxLength={80} />
               </div>
               <div className="field">
                 <label htmlFor="country">Country</label>
-                <input id="country" name="country" type="text" autoComplete="country-name" />
+                <input id="country" name="country" type="text" maxLength={80} autoComplete="country-name" />
               </div>
               <div className="field">
                 <label htmlFor="city">City</label>
-                <input id="city" name="city" type="text" autoComplete="address-level2" />
+                <input id="city" name="city" type="text" maxLength={80} autoComplete="address-level2" />
               </div>
               <div className="field">
                 <label htmlFor="website">Website</label>
-                <input id="website" name="website" type="url" autoComplete="url" />
+                <input id="website" name="website" type="url" maxLength={200} autoComplete="url" />
               </div>
               <div className="field">
                 <label htmlFor="email">Email</label>
-                <input id="email" name="email" type="email" autoComplete="email" />
+                <input id="email" name="email" type="email" maxLength={120} autoComplete="email" />
               </div>
               <div className="field">
                 <label htmlFor="message">Message</label>
-                <textarea id="message" name="message"></textarea>
+                <textarea id="message" name="message" maxLength={500}></textarea>
               </div>
               <div className="field inline">
                 <input id="shareEmail" name="shareEmail" type="checkbox" />

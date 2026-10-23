@@ -12,6 +12,7 @@
   // A visit loads five read-only API resources (plus the material table).
   // Keep the refresh cadence comfortably below the public API's shared limit.
   const REFRESH_INTERVAL_MS = 5 * 60 * 1000;
+  const LIST_LIMIT = 100;
   let activeCleanup = () => {};
 
   features[NAME] = {
@@ -70,9 +71,15 @@
       };
       const loadHeartbeat = async () => {
         try {
-          const data = await request('/api/health').then((response) => response.ok ? response.json() : Promise.reject(new Error('health')));
+          // /api/health answers 503 with a JSON body when the DB or Valkey is
+          // down; that is a degraded node, not an unreachable one.
+          const data = await request('/api/health').then((response) => response.ok || response.status === 503 ? response.json() : Promise.reject(new Error('health')));
           if (disposed || !heartbeatEl) return;
-          if (data.status !== 'ok' || data.db !== 'ok') throw new Error('degraded');
+          if (data.status !== 'ok' || data.db !== 'ok') {
+            heartbeatEl.innerHTML = `<span class="demo-status-dot demo-status-dot-offline"></span> Node degraded &nbsp;·&nbsp; DB: ${esc(data.db || 'unknown')}`;
+            heartbeatEl.className = 'demo-heartbeat demo-heartbeat-offline';
+            return;
+          }
           heartbeatEl.innerHTML = `<span class="demo-status-dot demo-status-dot-live"></span>Node online &nbsp;·&nbsp; DB: ${esc(data.db)} &nbsp;·&nbsp; Uptime: ${Math.round(Number(data.uptime) / 3600)}h`;
           heartbeatEl.className = 'demo-heartbeat demo-heartbeat-live';
         } catch (error) {
@@ -87,8 +94,10 @@
       };
       const loadStats = async () => {
         try {
-          const counts = await Promise.all(['/api/v1/material', '/api/v1/offer', '/api/v1/match', '/api/v1/transfer'].map((path) => request(path).then((response) => response.ok ? response.json() : []).then((data) => Array.isArray(data) ? data.length : 0)));
-          if (!disposed && statsEl) statsEl.innerHTML = counts.map((count, index) => `<div class="demo-stat-card"><span class="demo-stat-value">${count}</span><span class="demo-stat-label">${['Materials', 'Offers', 'Matches', 'Transfers'][index]}</span></div>`).join('');
+          // List routes return 20 records by default and at most 100, so ask
+          // for the maximum and show "100+" when the page is full.
+          const counts = await Promise.all(['/api/v1/material', '/api/v1/offer', '/api/v1/match', '/api/v1/transfer'].map((path) => request(`${path}?limit=${LIST_LIMIT}`).then((response) => response.ok ? response.json() : Promise.reject(new Error('stats'))).then((data) => Array.isArray(data) ? data.length : 0)));
+          if (!disposed && statsEl) statsEl.innerHTML = counts.map((count, index) => `<div class="demo-stat-card"><span class="demo-stat-value">${count >= LIST_LIMIT ? `${LIST_LIMIT}+` : count}</span><span class="demo-stat-label">${['Materials', 'Offers', 'Matches', 'Transfers'][index]}</span></div>`).join('');
         } catch (error) {
           if (error.name === 'AbortError') return;
           if (error.name === 'RateLimitError') { notice(statsEl, 'Demo refresh paused — API request limit reached. Retrying in a few minutes.'); return; }
@@ -108,7 +117,7 @@
           notice(element, `${type[0].toUpperCase()}${type.slice(1)} unavailable.`);
         }
       };
-      const loadMaterials = () => loadCollection('materials', '/api/v1/material', materialsEl, ['Material ID', 'Category', 'Quantity', 'City', 'Registered']);
+      const loadMaterials = () => loadCollection('materials', `/api/v1/material?limit=${LIST_LIMIT}`, materialsEl, ['Material ID', 'Category', 'Quantity', 'City', 'Registered']);
       const loadOffers = () => loadCollection('offers', '/api/v1/offer', offersEl, ['Offer ID', 'Material', 'Route', 'Quantity', 'Status', 'Until']);
       const loadMatches = () => loadCollection('matches', '/api/v1/match', matchesEl, ['Match ID', 'Material', 'Route', 'Status', 'Matched At']);
       const loadTransfers = () => loadCollection('transfers', '/api/v1/transfer', transfersEl, ['Transfer ID', 'Material', 'Status', 'Handoff', 'Received']);
@@ -123,9 +132,10 @@
       const connectStream = () => {
         if (!streamEl || !('EventSource' in window)) return;
         stream = new EventSource(`${apiBase}/api/v1/stream`);
-        const panelLoaders = { 'offer.created': loadOffers, 'match.created': loadMatches, 'transfer.created': loadTransfers };
-        ['material.created', 'offer.created', 'match.created', 'transfer.created', 'material.status_updated'].forEach((eventName) => { stream.addEventListener(eventName, (event) => { try { const data = JSON.parse(event.data); appendEntry({ event: eventName, entity_id: data.entity_id || data.id }); panelLoaders[eventName]?.(); } catch {} }); });
-        stream.onmessage = (event) => { try { const data = JSON.parse(event.data); if (data.type || data.event_type) appendEntry({ event: data.type || data.event_type, entity_id: data.entity_id || data.id }); } catch {} };
+        // The backend sends unnamed SSE messages whose JSON carries the event
+        // type ({ type: 'offer.created', entity_id, ... }), so dispatch on that.
+        const panelLoaders = { 'material.created': loadMaterials, 'material.status_updated': loadMaterials, 'offer.created': loadOffers, 'match.created': loadMatches, 'transfer.created': loadTransfers };
+        stream.onmessage = (event) => { try { const data = JSON.parse(event.data); const type = data.type || data.event_type; if (!type) return; appendEntry({ event: type, entity_id: data.entity_id || data.id }); panelLoaders[type]?.(); } catch {} };
         const setStreamStatus = (online) => {
           const dot = root.querySelector('.demo-stream-dot');
           if (!dot) return;

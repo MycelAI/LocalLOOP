@@ -7,6 +7,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+- DEMO City's Offers, Matches, Transfers and Materials tables now refresh when
+  the live stream reports a change. The page listened for named SSE events,
+  but the API sends unnamed messages whose JSON carries the type, so only the
+  stream log updated. The E2E fakes now send the real wire format.
+- DEMO City's stat cards were capped at 20 (the list routes' default page
+  size); they now request the maximum of 100 and show "100+" when full, and a
+  failed list call shows "Stats unavailable" instead of counting as 0. A
+  health answer of 503 with a JSON body shows "Node degraded" rather than
+  "Backend unreachable".
+- Heading links in mirrored documents work: headings get GitHub-style ids,
+  so the specification's table of contents (16 links) resolves, and relative
+  links are resolved against the mirrored file's folder instead of the page
+  URL (24 links returned 404). A smoke test now fails on any broken internal
+  link or `#anchor` in the build.
+- The interest form enforces the API's field limits, says which fields the
+  API rejected (400) or how long to wait after the write limit (429), and on
+  a timeout warns that the submission may have been stored instead of
+  inviting a duplicate.
+- nginx makes browsers revalidate HTML and the unhashed `/assets/js/` and
+  `/assets/css/` files (`Cache-Control: no-cache`, cheap 304s), so a deploy
+  takes effect at once instead of after up to a week. Fonts and images keep
+  the one-week cache.
+
 ## [0.12.0] - 2026-10-15
 
 ### Added

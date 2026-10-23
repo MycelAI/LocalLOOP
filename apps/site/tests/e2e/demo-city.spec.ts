@@ -82,6 +82,25 @@ test('labels API rate limiting accurately instead of reporting an unreachable ba
   await expect(page.getByText(/^Backend unreachable$/i)).toHaveCount(0);
 });
 
+test('a degraded node (health 503 with a JSON body) is not reported as unreachable', async ({ page }) => {
+  await page.unroute(isApi);
+  await page.route(isApi, (route) => {
+    const health = route.request().url().endsWith('/health');
+    return route.fulfill({
+      status: health ? 503 : 200,
+      contentType: 'application/json',
+      headers: { 'access-control-allow-origin': '*' },
+      body: health ? JSON.stringify({ status: 'degraded', db: 'error', redis: 'ok' }) : '[]',
+    });
+  });
+
+  await page.goto('/platform/demo-city/');
+
+  await expect(page.locator('.demo-heartbeat')).toContainText(/Node degraded/i);
+  await expect(page.locator('.demo-heartbeat')).toContainText(/DB: error/i);
+  await expect(page.getByText(/^Backend unreachable$/i)).toHaveCount(0);
+});
+
 test('rate limiting produces the same actionable messaging for stats and collection panels, not just the heartbeat', async ({ page }) => {
   await page.unroute(isApi);
   await page.route(isApi, (route) => route.fulfill({
@@ -99,7 +118,7 @@ test('rate limiting produces the same actionable messaging for stats and collect
   await expect(page.locator('[data-demo-materials]').getByText(/^Materials unavailable\.$/i)).toHaveCount(0);
 });
 
-test('SSE created events refresh their matching panel and the stream indicator recovers after a transient error', async ({ page }) => {
+test('SSE messages refresh their matching panel and the stream indicator recovers after a transient error', async ({ page }) => {
   await page.addInitScript(() => {
     class TestEventSource {
       static instances: TestEventSource[] = [];
@@ -111,9 +130,12 @@ test('SSE created events refresh their matching panel and the stream indicator r
       addEventListener(type: string, listener: (event: MessageEvent) => void) {
         this.listeners.set(type, [...(this.listeners.get(type) || []), listener]);
       }
-      emit(type: string, data: unknown) {
-        const event = { data: JSON.stringify(data) } as MessageEvent;
-        for (const listener of this.listeners.get(type) ?? []) listener(event);
+      // The backend writes unnamed `data:` frames whose JSON names the event
+      // type (loopStream.ts), so only `onmessage` and 'message' listeners fire.
+      emit(type: string, data: Record<string, unknown>) {
+        const event = { data: JSON.stringify({ type, ...data }) } as MessageEvent;
+        this.onmessage?.(event);
+        for (const listener of this.listeners.get('message') ?? []) listener(event);
       }
       close() {}
     }

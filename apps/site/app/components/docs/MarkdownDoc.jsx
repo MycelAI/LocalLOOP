@@ -18,5 +18,6 @@ export default function MarkdownDoc({ filePath }) {
       content = `\`\`\`json\n${JSON.stringify(JSON.parse(content), null, 2)}\n\`\`\``
     } catch {}
   }
-  return <MarkdownRenderer content={content} />
+  const baseDir = `/${path.posix.dirname(filePath)}/`
+  return <MarkdownRenderer content={content} baseDir={baseDir} />
 }
