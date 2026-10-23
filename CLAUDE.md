@@ -117,7 +117,7 @@ weak/default secrets, secrets under 16 characters, and an unauthenticated `REDIS
 | RUN_MIGRATIONS | Apply `src/db/migrations` on start | `true` |
 | SEARCH_REFRESH_ON_WRITE | Refresh the interest search view on each POST | `true` |
 | AUTH_ENABLED / BETTER_AUTH_SECRET / AUTH_TRUSTED_ORIGINS | better-auth toggle and settings | `false` |
-| API_KEY_ENABLED / API_KEY | Require `X-API-Key` on the lab write routes; `/api/v1/relay` and `/api/v1/federate/*` always require `API_KEY` (503 if unset) | `false` |
+| API_KEY_ENABLED / API_KEY | Require `X-API-Key` on the lab write routes; `/api/v1/relay`, `/api/v1/federate/*` and `/api/v1/federation/handshake` always require `API_KEY` (503 if unset) | `false` |
 | WORKER_ENABLED | Consume queued interest jobs | `false` |
 | PAYMENTS_ENABLED | Payments intake routes | `false` |
 

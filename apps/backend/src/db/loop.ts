@@ -700,7 +700,10 @@ async function runEntitySearch(entityConfig: EntitySearchConfig, opts: LoopSearc
   // from migration 012 can serve the continuation; wrapping the column in
   // EXTRACT(EPOCH ...) made every page after the first a full scan.
   if (cursor) {
-    const decoded = decodeCursor<{ u: number; i: string }>(cursor);
+    const decoded = decodeCursor<{ u: unknown; i: unknown }>(cursor);
+    if (typeof decoded.u !== 'number' || !Number.isFinite(decoded.u) || typeof decoded.i !== 'string') {
+      throw new CoreDpError('invalid_request', 'Invalid cursor: malformed cursor payload');
+    }
     values.push(decoded.u, decoded.i);
     conditions.push(`(updated_at, id) > (to_timestamp($${values.length - 1}::double precision), $${values.length})`);
   }

@@ -49,6 +49,7 @@ import { loopContentType } from '../protocol';
 import { CoreDpError, sendCoreDpError, toCoreDpError } from '../errors';
 import { sendSpecError, specErrorResponseSchema } from '../specErrors';
 import { withIdempotency } from '../idempotency';
+import { withTransaction } from '../db/pool';
 
 const createResponseSchema = {
   type: 'object',
@@ -148,6 +149,7 @@ type LoopDeps = {
   createLoopTransfer: typeof createLoopTransfer;
   insertLoopEvent: typeof insertLoopEvent;
   insertLoopEvidence: typeof insertLoopEvidence;
+  withTransaction: typeof withTransaction;
   listLoopEvents: typeof listLoopEvents;
   getLoopMaterial: typeof getLoopMaterial;
   getLoopMaterialById: typeof getLoopMaterialById;
@@ -177,6 +179,7 @@ const defaultDeps: LoopDeps = {
   createLoopTransfer,
   insertLoopEvent,
   insertLoopEvidence,
+  withTransaction,
   listLoopEvents,
   getLoopMaterial,
   getLoopMaterialById,
@@ -552,19 +555,25 @@ export async function registerLoopRoutes(app: FastifyInstance, deps: LoopDeps = 
     const idempotencyKey = request.headers['idempotency-key'] as string | undefined;
     let outcome: { status: 201; body: { id: string; created_at: string } };
     try {
-      outcome = await withIdempotency('material.status_update', idempotencyKey, payload, async () => {
-        const created = await deps.insertLoopEvent({
-          event_type: eventPayload.type,
-          entity_type: eventPayload.entity,
-          entity_id: eventPayload.entity_id,
-          payload: eventPayload,
-        });
-
-        await deps.insertLoopEvidence({
-          subject: { type: 'material', id: payload.material_id },
-          eventType: 'status-updated',
-          data: payload,
-        });
+      outcome = await withIdempotency('material.status_update', idempotencyKey, payload, async (lockClient) => {
+        // The event and its evidence row commit together, on the connection
+        // that holds the idempotency lock when there is one: two autocommit
+        // writes on other pool connections could leave an event without
+        // evidence, and needed a second connection per keyed request.
+        const created = await deps.withTransaction(async (client) => {
+          const event = await deps.insertLoopEvent({
+            event_type: eventPayload.type,
+            entity_type: eventPayload.entity,
+            entity_id: eventPayload.entity_id,
+            payload: eventPayload,
+          }, client);
+          await deps.insertLoopEvidence({
+            subject: { type: 'material', id: payload.material_id },
+            eventType: 'status-updated',
+            data: payload,
+          }, client);
+          return event;
+        }, lockClient);
 
         deps.broadcastLoopEvent({
           ...eventPayload,
@@ -787,11 +796,11 @@ export async function registerLoopRoutes(app: FastifyInstance, deps: LoopDeps = 
       id_prefix: { type: 'string', minLength: 3 },
       origin_city: { type: 'string', minLength: 1 },
       current_city: { type: 'string', minLength: 1 },
-      available_from_gte: { type: 'string' },
-      available_from_lt: { type: 'string' },
+      available_from_gte: { type: 'string', format: 'date-time' },
+      available_from_lt: { type: 'string', format: 'date-time' },
       quantity_min: { type: 'number', minimum: 0 },
       condition: { type: 'string', minLength: 1 },
-      updated_since: { type: 'string' },
+      updated_since: { type: 'string', format: 'date-time' },
     },
   };
 
@@ -947,7 +956,7 @@ export async function registerLoopRoutes(app: FastifyInstance, deps: LoopDeps = 
         strictFiltering: body.strict_filtering,
       });
     } catch (error) {
-      sendCoreDpError(reply, toCoreDpError(error));
+      sendCoreDpError(reply, toCoreDpError(error, request.log));
       return;
     }
 

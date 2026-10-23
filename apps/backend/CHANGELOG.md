@@ -7,6 +7,34 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Security
+- `POST /api/v1/federation/handshake` always requires `API_KEY` (401 without
+  it, 503 if none is configured), like `/relay` and `/federate/*`. With the
+  default `API_KEY_ENABLED=false` it was anonymous, and because the registry
+  upserts on `node_id`, anyone could repoint a known peer's endpoint.
+  SPEC-COMPLIANCE already described it as "API key only".
+- `application/ld+json` bodies are parsed with Fastify's JSON parser, as
+  `application/json` is: `__proto__`/`constructor.prototype` keys are
+  rejected instead of reaching handlers.
+
+### Fixed
+- `POST /api/v1/material-status` wrote its loop event and evidence row as two
+  autocommit statements on other pool connections than the idempotency lock:
+  a failed evidence write left an event with no evidence (and a retry with
+  the same key appended another), and each keyed request held two
+  connections, exhausting a small pool under concurrency. Both now commit in
+  one transaction on the lock's connection.
+- A malformed or empty `application/ld+json` body is a 400
+  `INVALID_REQUEST`, not a logged 500.
+- Evidence listing/search (`limit` must be an integer, `since` a date-time)
+  and Core-DP search (`available_from_*`, `updated_since` date-times;
+  cursors with mistyped fields) reject bad input with 400 instead of passing
+  it to Postgres and answering a retryable 500. Unexpected Core-DP errors no
+  longer echo the raw engine message to the client; it goes to the log.
+- `POST /api/interest` no longer answers 500 when the search-view refresh
+  after a committed insert fails; the submission is stored, so a 500 only
+  invited a duplicate.
+
 ### Changed
 - `package.json` records `repository` (the public
   https://github.com/MycelAI/LocalLOOP, directory `apps/backend`), `homepage`

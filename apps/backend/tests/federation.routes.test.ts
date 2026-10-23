@@ -6,6 +6,10 @@ import Fastify from 'fastify';
 import { registerLoopProtocolParsers } from '../src/protocol';
 import { registerFederationSchemas } from '../src/schemas/federationSchemas';
 import { registerFederationRoutes } from '../src/routes/federation';
+import { config } from '../src/config';
+import { apiKeyHeader, useTestApiKey } from './testApiKey';
+
+useTestApiKey();
 
 const handshakePayload = {
   '@context': 'https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld',
@@ -93,6 +97,7 @@ describe('federation routes', () => {
     const response = await app.inject({
       method: 'POST',
       url: '/api/v1/federation/handshake',
+      headers: apiKeyHeader,
       payload: handshakePayload,
     });
 
@@ -122,6 +127,7 @@ describe('federation routes', () => {
     const response = await app.inject({
       method: 'POST',
       url: '/api/v1/federation/handshake',
+      headers: apiKeyHeader,
       payload: {
         ...handshakePayload,
         endpoint: 'not-a-uri',
@@ -159,6 +165,7 @@ describe('federation handshake lab boundary (no ยง9.2 headers, SPEC-COMPLIANCE ย
     const response = await app.inject({
       method: 'POST',
       url: '/api/v1/federation/handshake',
+      headers: apiKeyHeader,
       payload: handshakePayload,
     });
 
@@ -174,6 +181,7 @@ describe('federation handshake lab boundary (no ยง9.2 headers, SPEC-COMPLIANCE ย
       method: 'POST',
       url: '/api/v1/federation/handshake',
       headers: {
+        ...apiKeyHeader,
         'x-node-id': '',
         'x-node-signature': '',
         'x-timestamp': new Date(Date.now() - 10 * 60 * 1000).toISOString(),
@@ -183,5 +191,65 @@ describe('federation handshake lab boundary (no ยง9.2 headers, SPEC-COMPLIANCE ย
 
     expect(response.statusCode).toBe(202);
     expect(response.json().status).toBe('accepted');
+  });
+});
+
+describe('federation handshake authentication', () => {
+  const build = async () => {
+    const app = Fastify({ logger: false });
+    registerLoopProtocolParsers(app);
+    registerFederationSchemas(app);
+    const upserts: string[] = [];
+    await registerFederationRoutes(app, {
+      listNodes: async () => [],
+      upsertNode: async (node) => {
+        upserts.push(node.node_id);
+        return { ...node, last_seen: '2025-12-20T10:00:00Z', lab_only: true as const };
+      },
+      getLocalNode: () => ({
+        node_id: 'local-node',
+        name: 'Local Node',
+        endpoint: 'https://loop.urbnia.com/api/v1',
+        capabilities: [],
+        last_seen: '2025-12-20T10:00:00Z',
+        lab_only: true as const,
+      }),
+    });
+    return { app, upserts };
+  };
+
+  // The registry upserts on node_id, so an anonymous handshake could repoint a
+  // real peer at another endpoint. It must need the key even with the default
+  // API_KEY_ENABLED=false, like /relay and /federate/*.
+  it('rejects an anonymous handshake even when API_KEY_ENABLED is off', async () => {
+    const enabled = config.auth.apiKeyEnabled;
+    config.auth.apiKeyEnabled = false;
+    try {
+      const { app, upserts } = await build();
+      const response = await app.inject({
+        method: 'POST',
+        url: '/api/v1/federation/handshake',
+        payload: { ...handshakePayload, endpoint: 'https://attacker.example/api/v1' },
+      });
+      expect(response.statusCode).toBe(401);
+      expect(upserts).toEqual([]);
+      await app.close();
+    } finally {
+      config.auth.apiKeyEnabled = enabled;
+    }
+  });
+
+  it('answers 503 when no API_KEY is configured at all', async () => {
+    const key = config.auth.apiKey;
+    config.auth.apiKey = '';
+    try {
+      const { app, upserts } = await build();
+      const response = await app.inject({ method: 'POST', url: '/api/v1/federation/handshake', payload: handshakePayload });
+      expect(response.statusCode).toBe(503);
+      expect(upserts).toEqual([]);
+      await app.close();
+    } finally {
+      config.auth.apiKey = key;
+    }
   });
 });

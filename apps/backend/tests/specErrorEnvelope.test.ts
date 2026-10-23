@@ -5,7 +5,7 @@ import { describe, expect, it } from 'bun:test';
 import Fastify from 'fastify';
 import { registerLoopProtocolParsers } from '../src/protocol';
 import { registerLoopRoutes } from '../src/routes/loop';
-import { fakeInsertLoopEvidence } from './testEvidence';
+import { fakeInsertLoopEvidence, fakeWithTransaction } from './testEvidence';
 import { registerCityRoutes } from '../src/routes/cities';
 import { registerInterestRoutes } from '../src/routes/interest';
 import { registerLoopSchemas } from '../src/schemas/loopSchemas';
@@ -61,6 +61,7 @@ const buildLoopApp = () => {
     createLoopTransfer: async () => ({ ...record, event: { type: 'transfer.created', entity: 'transfer', entity_id: 'x', data: {}, created_at: record.created_at } }),
     insertLoopEvent: async () => ({ id: 1, created_at: record.created_at }),
     insertLoopEvidence: fakeInsertLoopEvidence,
+    withTransaction: fakeWithTransaction,
     listLoopEvents: async () => [],
     getLoopMaterial: async () => undefined,
     getLoopMaterialById: async () => undefined,

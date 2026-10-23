@@ -6,6 +6,7 @@ import { pool, type Queryable } from './pool';
 import { config } from '../config';
 import { canonicalHash } from '../crypto/canonical';
 import { encodeCursor, decodeCursor } from '../pagination';
+import { CoreDpError } from '../errors';
 
 export type EvidenceSubjectType = 'material' | 'product' | 'offer' | 'match' | 'transfer' | 'envelope' | 'transaction';
 
@@ -180,7 +181,12 @@ export async function listLoopEvidence(filters: ListEvidenceFilters): Promise<Li
   if (filters.eventTypeIn?.length) push('event_type = ANY(?)', filters.eventTypeIn);
   if (filters.since) push('recorded_at >= ?', filters.since);
   if (filters.cursor) {
-    const decoded = decodeCursor<{ s: number }>(filters.cursor);
+    const decoded = decodeCursor<{ s: unknown }>(filters.cursor);
+    // A well-formed cursor whose fields have the wrong type would otherwise
+    // reach Postgres and come back as a 500.
+    if (!Number.isSafeInteger(decoded.s)) {
+      throw new CoreDpError('invalid_request', 'Invalid cursor: malformed cursor payload');
+    }
     values.push(decoded.s);
     conditions.push(`sequence > $${values.length}`);
   }

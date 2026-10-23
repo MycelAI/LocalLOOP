@@ -6,7 +6,7 @@ import Fastify from 'fastify';
 import { registerLoopProtocolParsers } from '../src/protocol';
 import { registerLoopRoutes } from '../src/routes/loop';
 import { registerLoopSchemas } from '../src/schemas/loopSchemas';
-import { fakeInsertLoopEvidence } from './testEvidence';
+import { fakeInsertLoopEvidence, fakeWithTransaction } from './testEvidence';
 import { apiKeyHeader, useTestApiKey } from './testApiKey';
 
 useTestApiKey();
@@ -138,6 +138,7 @@ const buildApp = async () => {
     }),
     insertLoopEvent: async () => ({ id: 1, created_at: new Date().toISOString() }),
     insertLoopEvidence: fakeInsertLoopEvidence,
+    withTransaction: fakeWithTransaction,
     listLoopEvents: async () => [],
     getLoopMaterial: async (id: string) => (id === materialPayload.id ? { id } : undefined),
     getLoopMaterialById: async () => undefined,

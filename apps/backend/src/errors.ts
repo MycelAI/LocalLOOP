@@ -86,11 +86,16 @@ export function sendCoreDpError(reply: FastifyReply, error: CoreDpError) {
   reply.code(error.httpStatus).send(error.toBody());
 }
 
-/** Wrap an unknown caught value as an internal_error CoreDpError, preserving a CoreDpError as-is. */
-export function toCoreDpError(error: unknown): CoreDpError {
+/**
+ * Wrap an unknown caught value as an internal_error CoreDpError, preserving a
+ * CoreDpError as-is. The client gets a generic message: an engine error's own
+ * text (e.g. Postgres "invalid input syntax for type ...") stays in the log,
+ * which `log` receives when given.
+ */
+export function toCoreDpError(error: unknown, log?: { error: (obj: object, msg: string) => void }): CoreDpError {
   if (error instanceof CoreDpError) {
     return error;
   }
-  const message = error instanceof Error ? error.message : 'Unexpected error';
-  return new CoreDpError('internal_error', message);
+  log?.error({ err: error }, 'Unhandled Core-DP error');
+  return new CoreDpError('internal_error', 'Internal server error');
 }
