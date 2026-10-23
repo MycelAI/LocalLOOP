@@ -32,6 +32,29 @@
     }
   ],
   "components": {
+    "parameters": {
+      "XNodeId": {
+        "name": "X-Node-ID",
+        "in": "header",
+        "required": true,
+        "description": "Identifier of the requesting node (SPECIFICATION.md §9.2), e.g. munich.loop.",
+        "schema": { "type": "string", "minLength": 1 }
+      },
+      "XNodeSignature": {
+        "name": "X-Node-Signature",
+        "in": "header",
+        "required": true,
+        "description": "Signature over the request by the requesting node (SPECIFICATION.md §9.2).",
+        "schema": { "type": "string", "minLength": 1 }
+      },
+      "XTimestamp": {
+        "name": "X-Timestamp",
+        "in": "header",
+        "required": true,
+        "description": "Request time (SPECIFICATION.md §9.2); a request more than 5 minutes from the receiving node's clock is rejected.",
+        "schema": { "type": "string", "format": "date-time" }
+      }
+    },
     "securitySchemes": {
       "BearerAuth": {
         "type": "http",
@@ -511,6 +534,11 @@
       "post": {
         "tags": ["Federation"],
         "summary": "Announce material availability",
+        "parameters": [
+          { "$ref": "#/components/parameters/XNodeId" },
+          { "$ref": "#/components/parameters/XNodeSignature" },
+          { "$ref": "#/components/parameters/XTimestamp" }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -527,6 +555,22 @@
                 "schema": { "$ref": "#/components/schemas/FederateAcceptedResponse" }
               }
             }
+          },
+          "400": {
+            "description": "Invalid request body, or a missing or malformed X-Timestamp",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorResponse" }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing credentials, missing X-Node-ID or X-Node-Signature, or an X-Timestamp outside the ±5 minute tolerance",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorResponse" }
+              }
+            }
           }
         }
       }
@@ -535,6 +579,11 @@
       "post": {
         "tags": ["Federation"],
         "summary": "Send offer to a node",
+        "parameters": [
+          { "$ref": "#/components/parameters/XNodeId" },
+          { "$ref": "#/components/parameters/XNodeSignature" },
+          { "$ref": "#/components/parameters/XTimestamp" }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -549,6 +598,22 @@
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/FederateAcceptedResponse" }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request body, or a missing or malformed X-Timestamp",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorResponse" }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing credentials, missing X-Node-ID or X-Node-Signature, or an X-Timestamp outside the ±5 minute tolerance",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorResponse" }
               }
             }
           }
