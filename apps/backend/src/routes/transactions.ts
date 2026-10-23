@@ -7,6 +7,7 @@ import { config } from '../config';
 import {
   createLoopTransaction,
   getLoopTransactionById,
+  LoopStateError,
   transactionIdentity,
   type LoopTransactionPayload,
 } from '../db/loop';
@@ -88,6 +89,7 @@ export async function registerTransactionRoutes(app: FastifyInstance, deps: Tran
       response: {
         201: transactionStatusResponseSchema,
         400: specErrorResponseSchema,
+        404: specErrorResponseSchema,
         409: mixedWriteErrorResponseSchema,
       },
     },
@@ -115,6 +117,13 @@ export async function registerTransactionRoutes(app: FastifyInstance, deps: Tran
     } catch (error) {
       if (error instanceof CoreDpError) {
         sendCoreDpError(reply, error);
+        return;
+      }
+      // Settlement / TransactionStatus for an unknown transaction (404), or
+      // one that would leave a terminal state (409, SPEC §3.6).
+      if (error instanceof LoopStateError) {
+        sendSpecError(reply, error.kind === 'not_found' ? 'NOT_FOUND' : 'CONFLICT', error.message,
+          error.kind === 'not_found' ? { searched_id: transactionIdentity(payload).id } : undefined);
         return;
       }
       const pgError = error as DbLikeError;

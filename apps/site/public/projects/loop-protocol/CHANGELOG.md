@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+- `openapi.json`: `POST /api/v1/transaction` documents that a `Settlement` or
+  `TransactionStatus` updates the existing transaction named by
+  `transaction_id` (SPECIFICATION.md §3.6), and lists the `400`, `404`
+  (unknown transaction) and `409` (duplicate id, or leaving a terminal state)
+  responses it can return; only `201` was listed.
+
 ### Changed
 - The protocol is developed in the public monorepo
   https://github.com/MycelAI/LocalLOOP: `CONTRIBUTING.md` invites issues and

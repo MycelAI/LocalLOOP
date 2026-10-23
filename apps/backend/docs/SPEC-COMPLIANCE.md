@@ -25,7 +25,7 @@ Checked against loop-protocol **v0.5.1** (SPECIFICATION.md v0.2.0 baseline, `ope
 | `POST /api/v1/product/search` | Core-DP (openapi tag) | ✅ Implemented | Additive lab profile endpoint |
 | `GET /api/v1/node/info` | MUST (§8.1) | ✅ Implemented | Validates against canonical node-info schema (location, capability enum enforced via config warning) |
 | `GET /api/v1/signals` | MUST (§8.1) | ✅ Implemented (v0.4.0) | LoopSignalConfig from `loop_signal_config` table; seeded per §6.1 example |
-| `POST /api/v1/transaction` | MUST (§8.1) | ✅ Implemented (v0.4.0) | Canonical transaction schema (oneOf MaterialTransaction / Settlement / TransactionStatus); responds TransactionStatus with resolvable `settlement_url`; §3.6 status values enforced by DB CHECK; Idempotency-Key conflicts answered with the Core-DP `conflict` body (fixed v0.4.3) |
+| `POST /api/v1/transaction` | MUST (§8.1) | ✅ Implemented (v0.4.0) | Canonical transaction schema (oneOf MaterialTransaction / Settlement / TransactionStatus); responds TransactionStatus with resolvable `settlement_url`; §3.6 status values enforced by DB CHECK; Settlement / TransactionStatus update the existing transaction (404 if unknown, 409 when leaving a terminal state or settling a terminal one; fixed after v0.11.0); Idempotency-Key conflicts answered with the Core-DP `conflict` body (fixed v0.4.3) |
 | `POST /api/v1/federate/announce` | MUST (§8.2) | ✅ Implemented (v0.4.0) | §9.2 headers enforced (see below) |
 | `POST /api/v1/federate/offer` | MUST (§8.2) | ✅ Implemented (v0.4.0) | §9.2 headers enforced; material must be hosted locally; expired offers rejected |
 | `POST /api/v1/material-status` | Optional (lab ext) | ✅ Implemented | Lab-only extension, excluded from protocol openapi.json |
@@ -82,7 +82,7 @@ LoopCoin wallet, currency engine, or settlement execution.
 
 | Surface | Behavior | Status |
 | --- | --- | --- |
-| `POST /api/v1/transaction` | Persists MaterialTransaction / Settlement / TransactionStatus; returns TransactionStatus with resolvable `settlement_url` | ✅ Record-only |
+| `POST /api/v1/transaction` | Persists a MaterialTransaction; a Settlement / TransactionStatus updates that transaction's status (event + evidence recorded); returns TransactionStatus with resolvable `settlement_url` | ✅ Record-only |
 | `GET /api/v1/transaction/:id` | Returns stored TransactionStatus; no wallet lookup or clearing | ✅ Record-only |
 | LoopCoin transfer / config HTTP routes | Not implemented (spec §5 schema types exist; no wallet engine) | ⚠️ Intentional lab boundary |
 | `GET /api/v1/node/info` `capabilities` | May include `loopcoin`; advertises intent only — no currency engine behind it | ⚠️ Intentional lab boundary |

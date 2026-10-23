@@ -318,3 +318,98 @@ describe('GET /api/v1/transaction/:id', () => {
     expect(payload.error.details.searched_id).toBe('TXN-2026-01-01-999');
   });
 });
+
+// Settlement and TransactionStatus update an existing transaction (SPEC §3.6).
+// They used to be INSERTed under the referenced id, so settling a real
+// transaction always failed with 409 and settling an unknown one created an
+// orphan "completed" row. These run against the real database layer.
+describe('POST /api/v1/transaction updates an existing transaction', () => {
+  const ids: string[] = [];
+  const newId = () => {
+    const id = `TXN-2026-10-23-${Math.floor(Math.random() * 1e9).toString().padStart(9, '0')}`;
+    ids.push(id);
+    return id;
+  };
+  const statusOf = async (id: string) =>
+    ((await pool.query('SELECT status FROM loop_transactions WHERE id = $1', [id])).rows[0] as { status: string } | undefined)?.status;
+  const post = async (payload: Record<string, unknown>) => {
+    const app = Fastify({ logger: false });
+    registerLoopProtocolParsers(app);
+    registerLoopSchemas(app);
+    await registerTransactionRoutes(app);
+    try {
+      return await app.inject({ method: 'POST', url: '/api/v1/transaction', payload });
+    } finally {
+      await app.close();
+    }
+  };
+  const transactionStatus = (id: string, status: string) => ({
+    '@context': 'https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.2.0.jsonld',
+    '@type': 'TransactionStatus',
+    transaction_id: id,
+    status,
+    updated_at: '2026-10-23T12:00:00Z',
+  });
+
+  afterAll(async () => {
+    if (dbReady) {
+      for (const id of ids) {
+        await pool.query('DELETE FROM loop_transactions WHERE id = $1', [id]);
+      }
+    }
+  });
+
+  it.skipIf(!dbReady)('settles a pending transaction: 201 completed, and the stored status follows', async () => {
+    const id = newId();
+    expect((await post({ ...materialTransactionPayload, id })).statusCode).toBe(201);
+
+    const settled = await post({ ...settlementPayload, transaction_id: id });
+    expect(settled.statusCode).toBe(201);
+    expect(settled.json().status).toBe('completed');
+    expect(await statusOf(id)).toBe('completed');
+
+    const events = await pool.query(
+      "SELECT count(*)::int AS n FROM loop_events WHERE entity_id = $1 AND event_type = 'transaction.settled'",
+      [id],
+    );
+    expect(events.rows[0].n).toBe(1);
+    const evidence = await pool.query(
+      "SELECT count(*)::int AS n FROM loop_evidence WHERE subject_type = 'transaction' AND subject_id = $1 AND event_type = 'status-updated'",
+      [id],
+    );
+    expect(evidence.rows[0].n).toBe(1);
+  });
+
+  it.skipIf(!dbReady)('answers 404 for a Settlement of an unknown transaction and creates nothing', async () => {
+    const id = newId();
+    const response = await post({ ...settlementPayload, transaction_id: id });
+    expect(response.statusCode).toBe(404);
+    expect(response.json().error.code).toBe('NOT_FOUND');
+    expect(response.json().error.details.searched_id).toBe(id);
+    expect(await statusOf(id)).toBeUndefined();
+  });
+
+  it.skipIf(!dbReady)('applies TransactionStatus updates and refuses to leave a terminal state', async () => {
+    const id = newId();
+    expect((await post({ ...materialTransactionPayload, id })).statusCode).toBe(201);
+
+    const confirmed = await post(transactionStatus(id, 'confirmed'));
+    expect(confirmed.statusCode).toBe(201);
+    expect(await statusOf(id)).toBe('confirmed');
+
+    expect((await post(transactionStatus(id, 'completed'))).statusCode).toBe(201);
+
+    // terminal -> non-terminal: rejected (§3.6 MUST NOT, SHOULD answer 409)
+    const backwards = await post(transactionStatus(id, 'in_transit'));
+    expect(backwards.statusCode).toBe(409);
+    expect(backwards.json().error.code).toBe('CONFLICT');
+    expect(await statusOf(id)).toBe('completed');
+
+    // a completed transaction cannot be settled a second time
+    expect((await post({ ...settlementPayload, transaction_id: id })).statusCode).toBe(409);
+
+    // terminal -> terminal stays possible (e.g. disputing a completed transaction)
+    expect((await post(transactionStatus(id, 'disputed'))).statusCode).toBe(201);
+    expect(await statusOf(id)).toBe('disputed');
+  });
+});

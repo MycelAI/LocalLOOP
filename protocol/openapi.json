@@ -461,7 +461,8 @@
     "/api/v1/transaction": {
       "post": {
         "tags": ["Transactions"],
-        "summary": "Create transaction",
+        "summary": "Create a transaction, or record a Settlement / TransactionStatus for an existing one",
+        "description": "A MaterialTransaction creates the transaction. A Settlement (marks it completed) or a TransactionStatus updates the existing transaction named by transaction_id, subject to SPECIFICATION.md §3.6: a transaction in a terminal state (completed, cancelled, disputed) cannot return to a non-terminal one, and a terminal transaction cannot be settled again.",
         "requestBody": {
           "required": true,
           "content": {
@@ -472,10 +473,34 @@
         },
         "responses": {
           "201": {
-            "description": "Created",
+            "description": "Created, or status recorded",
             "content": {
               "application/ld+json": {
                 "schema": { "$ref": "#/components/schemas/TransactionStatus" }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorResponse" }
+              }
+            }
+          },
+          "404": {
+            "description": "Settlement or TransactionStatus for a transaction that does not exist",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorResponse" }
+              }
+            }
+          },
+          "409": {
+            "description": "Transaction id already exists, or the update would leave a terminal state (SPECIFICATION.md §3.6)",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorResponse" }
               }
             }
           }

@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+- A `Settlement` or `TransactionStatus` posted to `POST /api/v1/transaction`
+  for an existing transaction always answered `409` and never changed its
+  status: every `@type` was INSERTed under the referenced id. For an unknown
+  id it created an orphan "completed" transaction instead. Both now update the
+  existing transaction under a row lock, recording a `transaction.settled` /
+  `transaction.status_updated` loop event and a `status-updated` evidence
+  entry: `404 NOT_FOUND` for an unknown transaction, and `409 CONFLICT` for
+  leaving a terminal state (`completed`, `cancelled`, `disputed`) for a
+  non-terminal one or settling a terminal transaction again (SPEC §3.6).
+  A terminal-to-terminal update (e.g. disputing a completed transaction) is
+  allowed. The stored payload stays the original `MaterialTransaction`.
+
 ## [0.11.0] - 2026-10-23
 
 ### Security
