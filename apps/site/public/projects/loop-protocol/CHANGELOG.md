@@ -8,6 +8,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Fixed
+- `openapi.json`: `POST /api/v1/federate/announce` and `/federate/offer`
+  declare the three headers SPECIFICATION.md §9.2 makes mandatory
+  (`X-Node-ID`, `X-Node-Signature`, `X-Timestamp`) as required header
+  parameters (shared under `components.parameters`), and list their `400`
+  (invalid body, missing or malformed `X-Timestamp`) and `401` (missing node
+  headers or credentials, stale timestamp) responses. They declared neither,
+  so a client generated from the contract always received an undocumented
+  `401`.
+- SPECIFICATION.md §8.2: the federate request examples show all three §9.2
+  headers; they carried only `X-Node-Signature`. The Core-DP normative
+  manifest is re-pinned for the shifted line numbers (no clause changed).
 - `openapi.json`: `POST /api/v1/transaction` documents that a `Settlement` or
   `TransactionStatus` updates the existing transaction named by
   `transaction_id` (SPECIFICATION.md §3.6), and lists the `400`, `404`

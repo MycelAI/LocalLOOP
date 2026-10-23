@@ -1069,7 +1069,9 @@ For node-to-node communication:
 
 ```http
 POST /api/v1/federate/announce
+X-Node-ID: {requesting-node-id}
 X-Node-Signature: {signature}
+X-Timestamp: {ISO 8601 request time}
 
 {
   "@context": "https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld",
@@ -1084,7 +1086,9 @@ X-Node-Signature: {signature}
 
 ```http
 POST /api/v1/federate/offer
+X-Node-ID: {requesting-node-id}
 X-Node-Signature: {signature}
+X-Timestamp: {ISO 8601 request time}
 
 {
   "@context": "https://loop.urbnia.com/projects/loop-protocol/contexts/loop-v0.1.1.jsonld",
