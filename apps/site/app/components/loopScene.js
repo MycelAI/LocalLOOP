@@ -10,7 +10,6 @@ const TEAL_DEEP = 0x0f766e;
 const WARM = 0xe06c47;
 const GOLD = 0xd9a441;
 const INK = 0x334155;
-const SNOW = 0xf8fafc;
 
 // Web Mercator pixel offsets from Munich at zoom 6. public/assets/loop-basemap.webp
 // is a 2048px zoom-5 window centred on Munich (stored at 1536px): the plane
