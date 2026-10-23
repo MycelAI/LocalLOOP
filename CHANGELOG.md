@@ -21,6 +21,8 @@ use the date the change landed on `main`.
 
 ## Unreleased
 
+## 2026-10-23
+
 ### Fixed
 - The site-mirror drift check (`scripts/ci-local.sh conformance`, which the
   required `gate` runs, and `conformance.yml`) used `git diff --exit-code`,
