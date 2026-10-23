@@ -21,6 +21,8 @@ use the date the change landed on `main`.
 
 ## Unreleased
 
+## 2026-10-23
+
 ### Fixed
 - `scripts/ci-local.sh conformance` failed on any uncommitted mirror change,
   so a correctly re-mirrored protocol edit could not pass the local gate
@@ -28,10 +30,6 @@ use the date the change landed on `main`.
   and after re-mirroring; new, edited and deleted protocol files that were
   never re-mirrored still fail it. (`conformance.yml` keeps its
   clean-checkout `git status` check.)
-
-## 2026-10-23
-
-### Fixed
 - The site-mirror drift check (`scripts/ci-local.sh conformance`, which the
   required `gate` runs, and `conformance.yml`) used `git diff --exit-code`,
   which ignores untracked files: a protocol schema, example or RFC added

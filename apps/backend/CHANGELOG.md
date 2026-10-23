@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.11.1] - 2026-10-23
+
 ### Fixed
 - A `Settlement` or `TransactionStatus` posted to `POST /api/v1/transaction`
   for an existing transaction always answered `409` and never changed its
@@ -757,7 +759,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Lab demo scripts (seed + simulate + one-command runner).
 - Privacy notice endpoint and in-memory metrics snapshot.
 
-[Unreleased]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.11.0...HEAD
+[Unreleased]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.11.1...HEAD
+[0.11.1]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.11.0...backend/v0.11.1
 [0.11.0]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.10.0...backend/v0.11.0
 [0.10.0]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.9.1...backend/v0.10.0
 [0.9.1]: https://github.com/MycelAI/LocalLOOP/compare/backend/v0.9.0...backend/v0.9.1
